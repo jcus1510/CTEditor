@@ -1,0 +1,17 @@
+{
+    "name": "CTEditor.Party.Domain",
+    "rootNamespace": "CTEditor.Party.Domain",
+    "references": [
+        "CTEditor.SharedKernel",
+        "CTEditor.GameDefinition.Domain"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}
