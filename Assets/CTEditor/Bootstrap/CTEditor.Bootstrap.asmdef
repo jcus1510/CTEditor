@@ -1,0 +1,22 @@
+{
+    "name": "CTEditor.Bootstrap",
+    "rootNamespace": "CTEditor.Bootstrap",
+    "references": [
+        "CTEditor.SharedKernel",
+        "CTEditor.GameContracts",
+        "CTEditor.GameDefinition.Domain",
+        "CTEditor.GameDefinition",
+        "CTEditor.Party.Domain",
+        "CTEditor.Battle.Domain",
+        "CTEditor.Eventing.Domain"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
