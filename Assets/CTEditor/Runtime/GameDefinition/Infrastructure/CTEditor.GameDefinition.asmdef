@@ -1,0 +1,17 @@
+{
+    "name": "CTEditor.GameDefinition",
+    "rootNamespace": "CTEditor.GameDefinition.Infrastructure",
+    "references": [
+        "CTEditor.GameDefinition.Domain",
+        "CTEditor.SharedKernel"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
