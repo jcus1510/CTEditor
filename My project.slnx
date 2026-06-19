@@ -4,4 +4,5 @@
   <Project Path="CTEditor.GameDefinition.csproj" />
   <Project Path="CTEditor.Battle.Domain.csproj" />
   <Project Path="CTEditor.SharedKernel.csproj" />
+  <Project Path="CTEditor.Tests.EditMode.csproj" />
 </Solution>
