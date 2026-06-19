@@ -5,7 +5,7 @@
   <Project Path="CTEditor.Battle.Domain.csproj" />
   <Project Path="CTEditor.SharedKernel.csproj" />
   <Project Path="CTEditor.GameContracts.csproj" />
+  <Project Path="CTEditor.Bootstrap.csproj" />
   <Project Path="CTEditor.Eventing.Domain.csproj" />
   <Project Path="CTEditor.Tests.EditMode.csproj" />
-  <Project Path="CTEditor.Bootstrap.csproj" />
 </Solution>
