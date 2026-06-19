@@ -5,9 +5,11 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "CTEditor.SharedKernel",
+        "CTEditor.GameContracts",
         "CTEditor.GameDefinition.Domain",
         "CTEditor.Party.Domain",
-        "CTEditor.Battle.Domain"
+        "CTEditor.Battle.Domain",
+        "CTEditor.Eventing.Domain"
     ],
     "includePlatforms": [
         "Editor"
