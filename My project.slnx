@@ -2,5 +2,6 @@
   <Project Path="CTEditor.Party.Domain.csproj" />
   <Project Path="CTEditor.GameDefinition.Domain.csproj" />
   <Project Path="CTEditor.GameDefinition.csproj" />
+  <Project Path="CTEditor.Battle.Domain.csproj" />
   <Project Path="CTEditor.SharedKernel.csproj" />
 </Solution>
