@@ -1,4 +1,2 @@
 ﻿<Solution>
-  <Project Path="CTEditor.GameDefinition.Domain.csproj" />
-  <Project Path="CTEditor.SharedKernel.csproj" />
 </Solution>
