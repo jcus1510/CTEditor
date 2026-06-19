@@ -1,0 +1,16 @@
+{
+    "name": "CTEditor.GameContracts",
+    "rootNamespace": "CTEditor.GameContracts",
+    "references": [
+        "CTEditor.SharedKernel"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}
