@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.SharedKernel.Events;
@@ -19,16 +20,14 @@ using CTEditor.Bootstrap.Platform;
 namespace CTEditor.Bootstrap
 {
     /// <summary>
-    /// EL COMPOSITION ROOT (J.4): el único lugar que conoce a todos los contextos y los ENSAMBLA.
-    /// Es un MonoBehaviour que corre al arrancar: toma los assets que arrastró el autor, los traduce
-    /// con la ACL, construye los catálogos y las fórmulas, crea las instancias y corre un combate
-    /// imprimiéndolo en la Console. Así el motor pasa de "aprueba tests" a "arranca en una escena".
+    /// EL COMPOSITION ROOT (J.4): el único que conoce a todos los contextos y los ensambla. Toma los
+    /// assets del autor, los traduce con la ACL, construye catálogos y fórmulas, crea instancias y
+    /// corre un combate — ahora REPRODUCIDO CON RITMO a través del event bus.
     ///
-    /// Nadie depende de esta clase; ella depende de todo. Por eso está permitido que lo conozca todo:
-    /// es el punto de ensamblaje, en el borde más externo. Aquí (y solo aquí) el acoplamiento es legítimo.
-    ///
-    /// Versión mínima: corre UN combate 1v1 de demostración. Más adelante crecerá con el wiring del
-    /// EffectDispatcher, los flujos entre contextos y la presentación real.
+    /// Aquí se ve M.2 en vivo: el dominio resuelve cada TURNO AL INSTANTE (ResolveTurn devuelve toda
+    /// la lista de eventos de golpe), y la PRESENTACIÓN (esta corutina) es la que "tarda": publica
+    /// cada evento en el bus y espera un momento. El dominio nunca esperó; la presentación marca el
+    /// ritmo. Cambia los Debug.Log de los suscriptores por animaciones y tienes el combate visual.
     /// </summary>
     public sealed class GameBootstrap : MonoBehaviour
     {
@@ -40,21 +39,24 @@ namespace CTEditor.Bootstrap
         [SerializeField] private RulesetData ruleset;
 
         [Header("Parámetros de la demo")]
-        [SerializeField] private int level = 10;
+        [SerializeField] private int playerLevel = 10;
+        [SerializeField] private int enemyLevel = 10;
         [SerializeField] private int seed = 12345;
+        [SerializeField] private float secondsPerBeat = 0.6f; // ritmo de la presentación
 
-        private void Start()
+        private void Start() => StartCoroutine(RunBattle());
+
+        private IEnumerator RunBattle()
         {
-            // Comprobaciones amables: si falta algo por asignar, lo decimos claro y salimos.
-            if (moves == null || moves.Length == 0) { Debug.LogError("[CTEditor] Asigna al menos un MoveData en 'moves'."); return; }
-            if (playerSpecies == null || enemySpecies == null) { Debug.LogError("[CTEditor] Asigna playerSpecies y enemySpecies."); return; }
-            if (typeChart == null) { Debug.LogError("[CTEditor] Asigna un TypeChartData."); return; }
-            if (ruleset == null) { Debug.LogError("[CTEditor] Asigna un RulesetData."); return; }
+            // Comprobaciones amables.
+            if (moves == null || moves.Length == 0) { Debug.LogError("[CTEditor] Asigna al menos un MoveData en 'moves'."); yield break; }
+            if (playerSpecies == null || enemySpecies == null) { Debug.LogError("[CTEditor] Asigna playerSpecies y enemySpecies."); yield break; }
+            if (typeChart == null) { Debug.LogError("[CTEditor] Asigna un TypeChartData."); yield break; }
+            if (ruleset == null) { Debug.LogError("[CTEditor] Asigna un RulesetData."); yield break; }
 
             // --- COMPOSICIÓN: assets -> dominio (vía ACL y catálogos) ---
             ICatalog<Move> moveCatalog = new ScriptableObjectCatalog<MoveData, Move>(
                 moves, d => d.Id, MoveMapper.ToDomain);
-
             var chart = TypeChartMapper.ToDomain(typeChart);
             var rules = RulesetMapper.ToDomain(ruleset);
             IRng rng = new SystemRng(seed);
@@ -63,28 +65,49 @@ namespace CTEditor.Bootstrap
             var playerDef = SpeciesMapper.ToDomain(playerSpecies);
             var enemyDef = SpeciesMapper.ToDomain(enemySpecies);
 
-            // --- DEFINICIÓN -> INSTANCIA -> SNAPSHOT ---
-            var playerMon = MonsterFactory.Create(new Id<MonsterInstance>("player"), playerDef, level, rules, growth);
-            var enemyMon = MonsterFactory.Create(new Id<MonsterInstance>("enemy"), enemyDef, level, rules, growth);
+            // --- EL TABLÓN: presentación se SUSCRIBE a los eventos (M.2) ---
+            var bus = new EventBus();
+            bus.Subscribe<MoveUsedEvent>(e => Debug.Log($"{Name(e.Attacker)} uso {e.Move}."));
+            bus.Subscribe<MoveMissedEvent>(e => Debug.Log($"{Name(e.Attacker)} fallo {e.Move}."));
+            bus.Subscribe<DamageDealtEvent>(e => Debug.Log($"  -> {Name(e.Target)} recibio {e.Amount} de dano (x{e.Effectiveness})."));
+            bus.Subscribe<MonsterFaintedEvent>(e => Debug.Log($"{Name(e.Combatant)} se debilito."));
+            bus.Subscribe<BattleEndedEvent>(e => Debug.Log($"=== Fin del combate: {e.Outcome} ==="));
+
+            // --- DEFINICIÓN -> INSTANCIA -> SNAPSHOT (cada uno con SU nivel) ---
+            var playerMon = MonsterFactory.Create(new Id<MonsterInstance>("player"), playerDef, playerLevel, rules, growth);
+            var enemyMon = MonsterFactory.Create(new Id<MonsterInstance>("enemy"), enemyDef, enemyLevel, rules, growth);
+
+            _names["p1"] = playerDef.DisplayName;
+            _names["p2"] = enemyDef.DisplayName;
 
             var playerSnap = Snapshot("p1", playerMon, playerDef);
             var enemySnap = Snapshot("p2", enemyMon, enemyDef);
 
-            // 'Battle' calificado completo por la política de namespaces que elegimos (opción 1).
             var battle = new CTEditor.Battle.Domain.Battle(playerSnap, enemySnap);
             var resolver = new TurnResolver(moveCatalog, chart, new ClassicDamageFormula(), rng);
 
-            // --- BUCLE: el dominio resuelve, nosotros imprimimos la línea de tiempo ---
-            Debug.Log($"=== Combate: {playerDef.DisplayName} vs {enemyDef.DisplayName} ===");
+            Debug.Log($"=== Combate: {playerDef.DisplayName} (Nv.{playerLevel}) vs {enemyDef.DisplayName} (Nv.{enemyLevel}) ===");
+
+            // --- BUCLE DE TURNOS ---
+            int turn = 1;
             int safety = 0;
             while (!battle.IsOver && safety++ < 100)
             {
-                var playerAction = new UseMove(battle.Player.Moves[0]);
-                var enemyAction = new UseMove(battle.Enemy.Moves[0]);
-                foreach (var ev in resolver.ResolveTurn(battle, playerAction, enemyAction))
-                    Debug.Log(Describe(ev));
+                Debug.Log($"--- Turno {turn++} ---");
+
+                // El dominio resuelve el turno AL INSTANTE (toda la lista de golpe)...
+                var events = resolver.ResolveTurn(
+                    battle,
+                    new UseMove(battle.Player.Moves[0]),
+                    new UseMove(battle.Enemy.Moves[0]));
+
+                // ...y la PRESENTACIÓN la reproduce con ritmo: publica cada evento y espera.
+                foreach (var ev in events)
+                {
+                    bus.Publish(ev);
+                    yield return new WaitForSeconds(secondsPerBeat);
+                }
             }
-            Debug.Log($"=== Resultado: {battle.Outcome} ===");
         }
 
         private static BattleParticipant Snapshot(string id, MonsterInstance inst, Species species)
@@ -97,19 +120,9 @@ namespace CTEditor.Bootstrap
                 species.Types,
                 inst.Moves);
 
-        // Traduce un evento de dominio a texto. Esto es presentación MÍNIMA: en el juego real, un
-        // MonoBehaviour suscrito haría animaciones en vez de Debug.Log.
-        private static string Describe(IDomainEvent e)
-        {
-            switch (e)
-            {
-                case MoveUsedEvent mu: return $"{mu.Attacker} uso {mu.Move}.";
-                case MoveMissedEvent mm: return $"{mm.Attacker} fallo {mm.Move}.";
-                case DamageDealtEvent dd: return $"  -> {dd.Target} recibio {dd.Amount} de dano (x{dd.Effectiveness}).";
-                case MonsterFaintedEvent mf: return $"{mf.Combatant} se debilito.";
-                case BattleEndedEvent be: return $"Fin: {be.Outcome}";
-                default: return e.GetType().Name;
-            }
-        }
+        private readonly System.Collections.Generic.Dictionary<string, string> _names
+            = new System.Collections.Generic.Dictionary<string, string>();
+
+        private string Name(Id<BattleParticipant> id) => _names.TryGetValue(id.Value, out var n) ? n : id.Value;
     }
 }
