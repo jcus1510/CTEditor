@@ -8,4 +8,5 @@
   <Project Path="CTEditor.Bootstrap.csproj" />
   <Project Path="CTEditor.Eventing.Domain.csproj" />
   <Project Path="CTEditor.Tests.EditMode.csproj" />
+  <Project Path="CTEditor.GameDefinition.Editor.csproj" />
 </Solution>
