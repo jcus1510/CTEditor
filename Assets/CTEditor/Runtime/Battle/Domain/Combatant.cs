@@ -32,6 +32,9 @@ namespace CTEditor.Battle.Domain
         /// <summary>Estado alterado actual (quemado, etc.). Null = sano. Mutable durante el combate.</summary>
         public StatusId? Status { get; private set; }
 
+        /// <summary>Cuántos turnos lleva activo el estado actual (para tóxico progresivo y duraciones).</summary>
+        public int StatusTurns { get; private set; }
+
         internal Combatant(BattleParticipant snapshot)
         {
             if (snapshot == null) throw new ArgumentNullException(nameof(snapshot));
@@ -63,7 +66,19 @@ namespace CTEditor.Battle.Domain
         }
 
         // Estado alterado: lo fija/limpia solo la lógica de Battle (TurnResolver).
-        internal void SetStatus(StatusId status) => Status = status;
-        internal void ClearStatus() => Status = null;
+        internal void SetStatus(StatusId status)
+        {
+            Status = status;
+            StatusTurns = 0; // arranca el contador para este estado
+        }
+
+        internal void ClearStatus()
+        {
+            Status = null;
+            StatusTurns = 0;
+        }
+
+        // Avanza el contador de turnos del estado (lo llama el fin de turno).
+        internal void AdvanceStatusTurn() => StatusTurns++;
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using CTEditor.SharedKernel.ValueObjects;
 
 namespace CTEditor.GameDefinition.Domain.Status
@@ -7,8 +9,11 @@ namespace CTEditor.GameDefinition.Domain.Status
     /// estado, sin que el combate lo tenga hardcodeado. "Quemado" no es un 'if' en el código: es esta
     /// ficha. Inventar un estado nuevo = rellenar una de estas.
     ///
-    /// Esta es la versión inicial con los dos comportamientos más icónicos. Más adelante crecerá con
-    /// modificadores pasivos de stats (p.ej. quemado baja el Ataque) y hooks OnApply/OnRemove.
+    /// Ahora cubre el repertorio clásico completo y deja inventar libremente:
+    /// - daño por turno (fijo o PROGRESIVO, como el tóxico que escala cada turno);
+    /// - probabilidad de impedir la acción (parálisis, sueño, congelado);
+    /// - modificadores PASIVOS de stats (quemado baja Ataque, parálisis baja Velocidad);
+    /// - duración en turnos (el sueño se va solo tras N turnos; 0 = permanente hasta curar).
     /// </summary>
     public sealed class StatusConditionDefinition
     {
@@ -16,19 +21,24 @@ namespace CTEditor.GameDefinition.Domain.Status
         public string DisplayName { get; }
 
         /// <summary>
-        /// Daño residual por turno, como % de los PS MÁXIMOS (quemado ≈ 6.25%, veneno ≈ 12.5%).
-        /// 0% = no hace daño por turno.
+        /// Daño por turno, como % de los PS MÁXIMOS. Si ProgressiveResidual es true, este es el % del
+        /// PRIMER turno y se multiplica por el número de turnos transcurridos (tóxico: n×base).
         /// </summary>
         public Percentage ResidualDamagePercent { get; }
 
-        /// <summary>
-        /// Probabilidad de que el portador NO pueda actuar en su turno (parálisis ≈ 25%, dormido alto,
-        /// congelado muy alto). 0% = nunca impide actuar. Es una primera aproximación: el sueño con
-        /// duración por turnos y el descongelarse llegarán con los hooks por turno.
-        /// </summary>
+        /// <summary>Si true, el daño residual escala con los turnos activos (envenenamiento grave).</summary>
+        public bool ProgressiveResidual { get; }
+
+        /// <summary>Probabilidad por turno de no poder actuar (parálisis/sueño/congelado). 0% = nunca.</summary>
         public Percentage ActionPreventionChance { get; }
 
-        /// <summary>Si es true, el estado se limpia al cambiar de monstruo (estados "volátiles" como confusión).</summary>
+        /// <summary>Modificadores pasivos de stats mientras el estado dura (p.ej. Attack ×0.5).</summary>
+        public IReadOnlyList<StatPassiveModifier> PassiveModifiers { get; }
+
+        /// <summary>Duración en turnos. 0 = permanente (hasta curar). &gt;0 = se quita solo tras esos turnos.</summary>
+        public int DurationTurns { get; }
+
+        /// <summary>Si true, el estado se quita al cambiar de monstruo (estados volátiles).</summary>
         public bool ClearedOnSwitch { get; }
 
         public StatusConditionDefinition(
@@ -36,13 +46,22 @@ namespace CTEditor.GameDefinition.Domain.Status
             string displayName,
             Percentage residualDamagePercent,
             Percentage actionPreventionChance,
-            bool clearedOnSwitch = false)
+            bool clearedOnSwitch = false,
+            IReadOnlyList<StatPassiveModifier> passiveModifiers = null,
+            bool progressiveResidual = false,
+            int durationTurns = 0)
         {
             Id = id;
             DisplayName = string.IsNullOrWhiteSpace(displayName) ? id.Value : displayName;
             ResidualDamagePercent = residualDamagePercent;
             ActionPreventionChance = actionPreventionChance;
             ClearedOnSwitch = clearedOnSwitch;
+            ProgressiveResidual = progressiveResidual;
+            DurationTurns = durationTurns < 0 ? 0 : durationTurns;
+            // Copia defensiva: la ficha es inmutable.
+            PassiveModifiers = passiveModifiers == null
+                ? Array.Empty<StatPassiveModifier>()
+                : new List<StatPassiveModifier>(passiveModifiers);
         }
     }
 }

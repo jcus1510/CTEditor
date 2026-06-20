@@ -22,3 +22,4 @@ MonoBehaviour:
   maxPp: 40
   priority: 0
   target: 0
+  secondaryEffects: []
