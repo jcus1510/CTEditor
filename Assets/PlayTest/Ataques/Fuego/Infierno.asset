@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af2ff6f36485864784eac3bda8601c8, type: 3}
   m_Name: Infierno
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
-  id: Ember
-  displayName: Ember
+  id: 'Inferno '
+  displayName: 'Inferno '
   type: {fileID: 11400000, guid: 278ca0bc774101049ba2ece04286234d, type: 2}
   category: 1
-  power: 40
+  power: 100
   neverMisses: 0
-  accuracy: 100
-  maxPp: 40
+  accuracy: 50
+  maxPp: 5
   priority: 0
   target: 0
+  secondaryEffects: []

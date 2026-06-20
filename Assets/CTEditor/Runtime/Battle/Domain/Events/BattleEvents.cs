@@ -97,4 +97,16 @@ namespace CTEditor.Battle.Domain.Events
             Status = status;
         }
     }
+
+    /// <summary>Un estado se disipó solo al cumplirse su duración (p.ej. el monstruo despertó).</summary>
+    public sealed class StatusFadedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public StatusId Status { get; }
+        public StatusFadedEvent(Id<BattleParticipant> combatant, StatusId status)
+        {
+            Combatant = combatant;
+            Status = status;
+        }
+    }
 }

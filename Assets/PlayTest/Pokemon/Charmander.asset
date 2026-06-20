@@ -26,4 +26,10 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 499a292130b274f469ad5a50b56d23ec, type: 2}
     level: 4
+  - move: {fileID: 11400000, guid: 6d239efe5f8f2584db84aa6ba6a623fd, type: 2}
+    level: 4
+  - move: {fileID: 11400000, guid: 573073191e7eb9f43ad92fcdd695fb1b, type: 2}
+    level: 4
+  - move: {fileID: 11400000, guid: 8914c68bb501e784caaa232b34e453d1, type: 2}
+    level: 4
   evolutions: []

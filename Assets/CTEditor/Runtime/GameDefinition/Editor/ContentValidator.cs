@@ -34,6 +34,16 @@ namespace CTEditor.GameDefinition.Editor
     /// </summary>
     public static class ContentValidator
     {
+        /// <summary>Devuelve solo los problemas que afectan a un asset concreto (para la UI por-ficha).</summary>
+        public static List<ValidationIssue> IssuesFor(Object asset)
+        {
+            var filtered = new List<ValidationIssue>();
+            foreach (var issue in Validate())
+                if (issue.Context == asset)
+                    filtered.Add(issue);
+            return filtered;
+        }
+
         public static List<ValidationIssue> Validate()
         {
             var issues = new List<ValidationIssue>();

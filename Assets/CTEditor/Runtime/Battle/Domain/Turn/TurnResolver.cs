@@ -81,11 +81,11 @@ namespace CTEditor.Battle.Domain.Turn
                 }
             }
 
-            // --- FASE: FIN DE TURNO (daño residual de estados: veneno, quemadura) ---
+            // --- FASE: FIN DE TURNO (estados: daño residual, progresión, expiración por duración) ---
             if (!battle.IsOver)
             {
-                ApplyResidual(battle.Player, events);
-                ApplyResidual(battle.Enemy, events);
+                ApplyEndOfTurnStatus(battle.Player, events);
+                ApplyEndOfTurnStatus(battle.Enemy, events);
             }
 
             // --- FASE: DESENLACE ---
@@ -136,8 +136,8 @@ namespace CTEditor.Battle.Domain.Turn
                 bool stab = ContainsType(actor.Types, move.Type);
 
                 // SELECCIÓN DE STATS por categoría (aquí "vive" Físico vs Especial).
-                int attackStat = move.Category == MoveCategory.Physical ? actor.Stats.Attack : actor.Stats.SpAttack;
-                int defenseStat = move.Category == MoveCategory.Physical ? target.Stats.Defense : target.Stats.SpDefense;
+                int attackStat = EffectiveStat(actor, move.Category == MoveCategory.Physical ? StatId.Attack : StatId.SpAttack);
+                int defenseStat = EffectiveStat(target, move.Category == MoveCategory.Physical ? StatId.Defense : StatId.SpDefense);
 
                 var context = new DamageContext(
                     actor.Level, attackStat, defenseStat, move.Power, effectiveness, stab, _rng);
@@ -199,21 +199,52 @@ namespace CTEditor.Battle.Domain.Turn
             return false;
         }
 
-        // Daño residual de un estado al final del turno.
-        private void ApplyResidual(Combatant combatant, List<IDomainEvent> events)
+        // Fin de turno para un combatiente: avanza el contador del estado, aplica el daño residual
+        // (fijo o PROGRESIVO como el tóxico), y expira el estado si cumplió su duración.
+        private void ApplyEndOfTurnStatus(Combatant combatant, List<IDomainEvent> events)
         {
             if (_statuses == null || combatant.IsFainted || !combatant.Status.HasValue) return;
             if (!TryGetStatus(combatant.Status.Value, out var def)) return;
 
+            combatant.AdvanceStatusTurn(); // ahora lleva 1, 2, 3... turnos con este estado
+
+            // Daño residual: si es progresivo, escala con los turnos (tóxico = n × base).
             float frac = def.ResidualDamagePercent.AsFraction;
-            if (frac <= 0f) return;
+            if (frac > 0f)
+            {
+                float effective = def.ProgressiveResidual ? frac * combatant.StatusTurns : frac;
+                int damage = Math.Max(1, (int)(combatant.MaxHp * effective));
+                combatant.TakeDamage(damage);
+                events.Add(new StatusDamageEvent(combatant.Id, combatant.Status.Value, damage));
 
-            int damage = Math.Max(1, (int)(combatant.MaxHp * frac));
-            combatant.TakeDamage(damage);
-            events.Add(new StatusDamageEvent(combatant.Id, combatant.Status.Value, damage));
+                if (combatant.IsFainted)
+                {
+                    events.Add(new MonsterFaintedEvent(combatant.Id));
+                    return; // debilitado: no tiene sentido seguir con la duración
+                }
+            }
 
-            if (combatant.IsFainted)
-                events.Add(new MonsterFaintedEvent(combatant.Id));
+            // Expiración por duración (p.ej. el sueño se va tras N turnos). 0 = permanente.
+            if (def.DurationTurns > 0 && combatant.StatusTurns >= def.DurationTurns)
+            {
+                var faded = combatant.Status.Value;
+                combatant.ClearStatus();
+                events.Add(new StatusFadedEvent(combatant.Id, faded));
+            }
+        }
+
+        // Calcula la stat EFECTIVA: base × los multiplicadores pasivos del estado actual (quemado
+        // baja Ataque, parálisis baja Velocidad). Nunca toca la base; la efectiva se computa al vuelo.
+        private int EffectiveStat(Combatant c, StatId stat)
+        {
+            float value = c.Stats.Of(stat);
+            if (_statuses != null && c.Status.HasValue && TryGetStatus(c.Status.Value, out var def))
+            {
+                foreach (var mod in def.PassiveModifiers)
+                    if (mod.Stat == stat)
+                        value *= mod.Multiplier;
+            }
+            return (int)value;
         }
 
         // El catálogo se indexa por el texto del id; envolvemos el StatusId en un Id<...> tipado.
@@ -240,7 +271,7 @@ namespace CTEditor.Battle.Domain.Turn
             int pa = PriorityOf(a.action), pb = PriorityOf(b.action);
             if (pa != pb) return pa < pb; // menor prioridad -> va después
 
-            int sa = a.actor.Stats.Speed, sb = b.actor.Stats.Speed;
+            int sa = EffectiveStat(a.actor, StatId.Speed), sb = EffectiveStat(b.actor, StatId.Speed);
             if (sa != sb) return sa < sb; // menor velocidad -> va después
 
             return _rng.Next(0, 2) == 0;  // empate exacto: azar
