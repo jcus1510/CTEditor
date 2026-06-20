@@ -1,6 +1,7 @@
 using CTEditor.SharedKernel.Events;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Moves;
+using CTEditor.GameDefinition.Domain.Status;
 
 namespace CTEditor.Battle.Domain.Events
 {
@@ -57,5 +58,43 @@ namespace CTEditor.Battle.Domain.Events
     {
         public BattleOutcome Outcome { get; }
         public BattleEndedEvent(BattleOutcome outcome) => Outcome = outcome;
+    }
+
+    /// <summary>Se infligió un estado alterado a un combatiente (p.ej. quedó quemado).</summary>
+    public sealed class StatusInflictedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Target { get; }
+        public StatusId Status { get; }
+        public StatusInflictedEvent(Id<BattleParticipant> target, StatusId status)
+        {
+            Target = target;
+            Status = status;
+        }
+    }
+
+    /// <summary>Daño residual por un estado al final del turno (veneno, quemadura).</summary>
+    public sealed class StatusDamageEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Target { get; }
+        public StatusId Status { get; }
+        public int Amount { get; }
+        public StatusDamageEvent(Id<BattleParticipant> target, StatusId status, int amount)
+        {
+            Target = target;
+            Status = status;
+            Amount = amount;
+        }
+    }
+
+    /// <summary>Un estado impidió actuar al combatiente este turno (paralizado/dormido/congelado).</summary>
+    public sealed class ActionPreventedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public StatusId Status { get; }
+        public ActionPreventedEvent(Id<BattleParticipant> combatant, StatusId status)
+        {
+            Combatant = combatant;
+            Status = status;
+        }
     }
 }

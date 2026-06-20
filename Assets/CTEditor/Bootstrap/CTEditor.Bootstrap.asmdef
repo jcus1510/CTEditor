@@ -8,7 +8,9 @@
         "CTEditor.GameDefinition",
         "CTEditor.Party.Domain",
         "CTEditor.Battle.Domain",
-        "CTEditor.Eventing.Domain"
+        "CTEditor.Eventing.Domain",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

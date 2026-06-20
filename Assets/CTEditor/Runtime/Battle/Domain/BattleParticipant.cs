@@ -5,6 +5,7 @@ using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Types;
 using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Domain.Species;
+using CTEditor.GameDefinition.Domain.Status;
 
 namespace CTEditor.Battle.Domain
 {
@@ -42,6 +43,9 @@ namespace CTEditor.Battle.Domain
         /// <summary>Los movimientos que puede usar.</summary>
         public IReadOnlyList<Id<Move>> Moves { get; }
 
+        /// <summary>Estado alterado con el que entra al combate (normalmente ninguno). Null = sano.</summary>
+        public StatusId? InitialStatus { get; }
+
         public BattleParticipant(
             Id<BattleParticipant> id,
             Id<Species> speciesId,
@@ -49,7 +53,8 @@ namespace CTEditor.Battle.Domain
             StatBlock stats,
             int currentHp,
             IReadOnlyList<Id<ElementType>> types,
-            IReadOnlyList<Id<Move>> moves)
+            IReadOnlyList<Id<Move>> moves,
+            StatusId? initialStatus = null)
         {
             if (stats == null) throw new ArgumentNullException(nameof(stats));
 
@@ -61,6 +66,7 @@ namespace CTEditor.Battle.Domain
             // Copias defensivas: la foto no debe poder alterarse desde fuera.
             Types = types == null ? Array.Empty<Id<ElementType>>() : new List<Id<ElementType>>(types);
             Moves = moves == null ? Array.Empty<Id<Move>>() : new List<Id<Move>>(moves);
+            InitialStatus = initialStatus;
         }
     }
 }
