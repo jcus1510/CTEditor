@@ -27,7 +27,8 @@ namespace CTEditor.Party.Domain
             Species species,
             int level,
             Ruleset ruleset,
-            IStatGrowthFormula growth)
+            IStatGrowthFormula growth,
+            IReadOnlyList<Id<Move>> chosenMoves = null)
         {
             if (species == null) throw new ArgumentNullException(nameof(species));
             if (ruleset == null) throw new ArgumentNullException(nameof(ruleset));
@@ -48,9 +49,12 @@ namespace CTEditor.Party.Domain
             }
             var stats = statsBuilder.Build();
 
-            // 3) Movimientos de arranque: los más recientes que ya aprendió a este nivel, hasta el
-            //    máximo que permite el Ruleset.
-            var moves = DefaultMoves(species, lvl.Value, ruleset.MaxMovesPerMonster);
+            // 3) Movimientos. Si quien llama PASÓ un set elegido (el jugador en el editor/equipo),
+            //    se respeta (recortado al máximo del Ruleset). Si no, se auto-derivan del learnset por
+            //    nivel (lo típico para un monstruo salvaje o un rival generado por nivel).
+            var moves = (chosenMoves != null && chosenMoves.Count > 0)
+                ? Clamp(chosenMoves, ruleset.MaxMovesPerMonster)
+                : DefaultMoves(species, lvl.Value, ruleset.MaxMovesPerMonster);
 
             // 4) Nace con los PS llenos.
             int maxHp = stats.Of(StatId.Hp);
@@ -76,6 +80,17 @@ namespace CTEditor.Party.Domain
             for (int i = start; i < eligible.Count; i++)
                 result.Add(eligible[i].Move);
 
+            return result;
+        }
+
+        // Recorta una lista ELEGIDA al máximo permitido (toma los primeros N, respetando el orden que
+        // puso el jugador). Si ya cabe, la devuelve tal cual.
+        private static IReadOnlyList<Id<Move>> Clamp(IReadOnlyList<Id<Move>> chosen, int maxMoves)
+        {
+            if (chosen.Count <= maxMoves) return chosen;
+            var result = new List<Id<Move>>(maxMoves);
+            for (int i = 0; i < maxMoves; i++)
+                result.Add(chosen[i]);
             return result;
         }
     }

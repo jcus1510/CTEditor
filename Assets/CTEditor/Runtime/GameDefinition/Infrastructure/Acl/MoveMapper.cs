@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Domain.Types;
+using CTEditor.GameDefinition.Domain.Status;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 
 namespace CTEditor.GameDefinition.Infrastructure.Acl
@@ -35,6 +37,18 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 ? (Percentage?)null
                 : new Percentage(data.Accuracy);
 
+            // EFECTOS SECUNDARIOS: cada sub-ficha -> un MoveEffect del dominio. Las entradas vacías
+            // (sin estado) se ignoran.
+            var effects = new List<MoveEffect>();
+            if (data.SecondaryEffects != null)
+            {
+                foreach (var e in data.SecondaryEffects)
+                {
+                    if (e == null || string.IsNullOrWhiteSpace(e.statusId)) continue;
+                    effects.Add(new MoveEffect(new Percentage(e.chancePercent), new StatusId(e.statusId)));
+                }
+            }
+
             return new Move(
                 new Id<Move>(data.Id),
                 data.DisplayName,
@@ -44,7 +58,8 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 accuracy,
                 data.MaxPp,
                 data.Priority,
-                data.Target);
+                data.Target,
+                effects);
         }
     }
 }

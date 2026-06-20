@@ -4,6 +4,7 @@ using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Types;
 using CTEditor.GameDefinition.Domain.Moves;
+using CTEditor.GameDefinition.Domain.Status;
 
 namespace CTEditor.Battle.Domain
 {
@@ -28,6 +29,9 @@ namespace CTEditor.Battle.Domain
         /// <summary>PS actuales DENTRO del combate. Es lo único mutable aquí (de momento).</summary>
         public int CurrentHp { get; private set; }
 
+        /// <summary>Estado alterado actual (quemado, etc.). Null = sano. Mutable durante el combate.</summary>
+        public StatusId? Status { get; private set; }
+
         internal Combatant(BattleParticipant snapshot)
         {
             if (snapshot == null) throw new ArgumentNullException(nameof(snapshot));
@@ -38,6 +42,7 @@ namespace CTEditor.Battle.Domain
             Types = snapshot.Types;       // ya vienen como listas de solo lectura copiadas
             Moves = snapshot.Moves;
             CurrentHp = snapshot.CurrentHp;
+            Status = snapshot.InitialStatus;
         }
 
         public int MaxHp => Stats.Of(StatId.Hp);
@@ -56,5 +61,9 @@ namespace CTEditor.Battle.Domain
             if (amount <= 0 || IsFainted) return;
             CurrentHp = Math.Min(MaxHp, CurrentHp + amount);
         }
+
+        // Estado alterado: lo fija/limpia solo la lógica de Battle (TurnResolver).
+        internal void SetStatus(StatusId status) => Status = status;
+        internal void ClearStatus() => Status = null;
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Types;
 
@@ -48,6 +49,9 @@ namespace CTEditor.GameDefinition.Domain.Moves
 
         public MoveTarget Target { get; }
 
+        /// <summary>Efectos secundarios al impactar (p.ej. 10% de quemar). Vacío = ninguno.</summary>
+        public IReadOnlyList<MoveEffect> SecondaryEffects { get; }
+
         public Move(
             Id<Move> id,
             string displayName,
@@ -57,7 +61,8 @@ namespace CTEditor.GameDefinition.Domain.Moves
             Percentage? accuracy,
             int maxPp,
             int priority,
-            MoveTarget target)
+            MoveTarget target,
+            IReadOnlyList<MoveEffect> secondaryEffects = null)
         {
             // Estas validaciones LANZAN si los datos son absurdos. Son la última línea de defensa:
             // el autor nunca debería llegar aquí con basura, porque la validación amigable (con
@@ -77,6 +82,10 @@ namespace CTEditor.GameDefinition.Domain.Moves
             MaxPp = maxPp;
             Priority = priority;
             Target = target;
+            // Copia defensiva: la ficha es inmutable, nadie debe alterar su lista por fuera.
+            SecondaryEffects = secondaryEffects == null
+                ? Array.Empty<MoveEffect>()
+                : new List<MoveEffect>(secondaryEffects);
         }
 
         /// <summary>¿Este movimiento hace daño directo? (No es de Estado y tiene potencia.)</summary>

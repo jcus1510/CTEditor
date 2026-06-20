@@ -38,6 +38,11 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField] private int priority = 0;
         [SerializeField] private MoveTarget target = MoveTarget.SingleEnemy;
 
+        // Efectos secundarios autorables: cada uno = probabilidad + estado a infligir. Un movimiento
+        // de daño con un efecto al 10% es un "efecto secundario"; un movimiento de Estado (Power 0,
+        // categoría Status) con un efecto al 100% es algo como Fuego Fatuo.
+        [SerializeField] private MoveEffectData[] secondaryEffects;
+
         public string Id => id;
         public string DisplayName => displayName;
         public ElementTypeData Type => type;
@@ -48,5 +53,17 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public int MaxPp => maxPp;
         public int Priority => priority;
         public MoveTarget Target => target;
+        public MoveEffectData[] SecondaryEffects => secondaryEffects;
+
+        /// <summary>
+        /// Sub-ficha de un efecto secundario, editable en el Inspector (Unity sabe dibujar clases
+        /// marcadas [Serializable]). El mapper la traduce a un MoveEffect del dominio.
+        /// </summary>
+        [System.Serializable]
+        public sealed class MoveEffectData
+        {
+            [Range(0f, 100f)] public float chancePercent = 100f;
+            public string statusId; // id del estado a infligir (debe existir como StatusConditionData)
+        }
     }
 }
