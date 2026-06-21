@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Moves;
+using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Types;
 using CTEditor.GameDefinition.Domain.Status;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
@@ -44,8 +45,26 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
             {
                 foreach (var e in data.SecondaryEffects)
                 {
-                    if (e == null || string.IsNullOrWhiteSpace(e.statusId)) continue;
-                    effects.Add(new MoveEffect(new Percentage(e.chancePercent), new StatusId(e.statusId)));
+                    if (e == null) continue;
+                    var chance = new Percentage(e.chancePercent);
+
+                    switch (e.kind)
+                    {
+                        case MoveEffectKind.InflictStatus:
+                            if (string.IsNullOrWhiteSpace(e.statusId)) continue; // efecto de estado vacío: se ignora
+                            effects.Add(new MoveEffect(chance, MoveEffectKind.InflictStatus, e.target, status: new StatusId(e.statusId)));
+                            break;
+
+                        case MoveEffectKind.ChangeStatStage:
+                            if (string.IsNullOrWhiteSpace(e.statStatId)) continue; // sin stat: se ignora
+                            effects.Add(new MoveEffect(chance, MoveEffectKind.ChangeStatStage, e.target,
+                                stat: new StatId(e.statStatId), stages: e.statStages));
+                            break;
+
+                        default: // Drain / Recoil / HealSelf: usan el porcentaje
+                            effects.Add(new MoveEffect(chance, e.kind, e.target, amount: new Percentage(e.amountPercent)));
+                            break;
+                    }
                 }
             }
 
@@ -59,7 +78,11 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 data.MaxPp,
                 data.Priority,
                 data.Target,
-                effects);
+                effects,
+                data.MinHits,
+                data.MaxHits,
+                data.CritStage,
+                data.TwoTurn);
         }
     }
 }

@@ -138,8 +138,12 @@ namespace CTEditor.GameDefinition.Editor
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Parálisis")) ApplyPreset("paralysis");
-            if (GUILayout.Button("Sueño")) ApplyPreset("sleep");
+            if (GUILayout.Button("Dormido")) ApplyPreset("sleep");
             if (GUILayout.Button("Congelado")) ApplyPreset("freeze");
+            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Confusión")) ApplyPreset("confusion");
+            if (GUILayout.Button("Somnoliento (bostezo)")) ApplyPreset("drowsy");
             EditorGUILayout.EndHorizontal();
             EditorGUILayout.Space();
         }
@@ -148,8 +152,8 @@ namespace CTEditor.GameDefinition.Editor
         {
             if (_selected == null) return;
 
-            string display;
-            float residual, prevention;
+            string display, transformsTo = "";
+            float residual, prevention, recovery = 0f, selfDamage = 0f;
             bool progressive;
             int duration;
             string passiveStat = null;
@@ -157,12 +161,14 @@ namespace CTEditor.GameDefinition.Editor
 
             switch (kind)
             {
-                case "burn":      display = "Quemado";   residual = 6.25f; progressive = false; prevention = 0f;   duration = 0; passiveStat = "attack"; passiveMul = 0.5f; break;
-                case "poison":    display = "Veneno";    residual = 12.5f; progressive = false; prevention = 0f;   duration = 0; break;
-                case "toxic":     display = "Tóxico";    residual = 6.25f; progressive = true;  prevention = 0f;   duration = 0; break;
-                case "paralysis": display = "Parálisis"; residual = 0f;    progressive = false; prevention = 25f;  duration = 0; passiveStat = "speed"; passiveMul = 0.5f; break;
-                case "sleep":     display = "Sueño";     residual = 0f;    progressive = false; prevention = 100f; duration = 3; break;
-                case "freeze":    display = "Congelado"; residual = 0f;    progressive = false; prevention = 100f; duration = 0; break;
+                case "burn":      display = "Quemado";     residual = 6.25f; progressive = false; prevention = 0f;   duration = 0; passiveStat = "attack"; passiveMul = 0.5f; break;
+                case "poison":    display = "Veneno";      residual = 12.5f; progressive = false; prevention = 0f;   duration = 0; break;
+                case "toxic":     display = "Tóxico";      residual = 6.25f; progressive = true;  prevention = 0f;   duration = 0; break;
+                case "paralysis": display = "Parálisis";   residual = 0f;    progressive = false; prevention = 25f;  duration = 0; passiveStat = "speed"; passiveMul = 0.5f; break;
+                case "sleep":     display = "Dormido";     residual = 0f;    progressive = false; prevention = 100f; duration = 3; recovery = 33f; break;
+                case "freeze":    display = "Congelado";   residual = 0f;    progressive = false; prevention = 100f; duration = 0; recovery = 20f; break;
+                case "confusion": display = "Confusión";   residual = 0f;    progressive = false; prevention = 33f;  duration = 4; recovery = 33f; selfDamage = 12.5f; break;
+                case "drowsy":    display = "Somnoliento"; residual = 0f;    progressive = false; prevention = 0f;   duration = 1; transformsTo = "sleep"; break;
                 default: return;
             }
 
@@ -172,6 +178,9 @@ namespace CTEditor.GameDefinition.Editor
             so.FindProperty("progressiveResidual").boolValue = progressive;
             so.FindProperty("actionPreventionChance").floatValue = prevention;
             so.FindProperty("durationTurns").intValue = duration;
+            so.FindProperty("recoveryChancePerTurn").floatValue = recovery;
+            so.FindProperty("selfDamageOnPreventedPercent").floatValue = selfDamage;
+            so.FindProperty("transformsToStatus").stringValue = transformsTo;
 
             var mods = so.FindProperty("passiveModifiers");
             if (passiveStat == null)

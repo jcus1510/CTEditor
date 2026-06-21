@@ -189,6 +189,16 @@ namespace CTEditor.Bootstrap
                 case StatusInflictedEvent si: AppendLog($"{NameOf(si.Target)} quedo afectado por {si.Status}!"); break;
                 case StatusDamageEvent sd: AppendLog($"{NameOf(sd.Target)} sufrio {sd.Amount} por {sd.Status}."); break;
                 case ActionPreventedEvent ap: AppendLog($"{NameOf(ap.Combatant)} no pudo moverse ({ap.Status})."); break;
+                case StatusFadedEvent sf: AppendLog($"{NameOf(sf.Combatant)} se recupero de {sf.Status}."); break;
+                case HpRestoredEvent hr: AppendLog($"{NameOf(hr.Combatant)} recupero {hr.Amount} PS."); break;
+                case RecoilDamageEvent rc: AppendLog($"{NameOf(rc.Combatant)} sufrio {rc.Amount} de retroceso."); break;
+                case StatStageChangedEvent ss:
+                    AppendLog($"{NameOf(ss.Combatant)} {(ss.Delta > 0 ? "subio" : "bajo")} su {ss.Stat.Value} ({(ss.Delta > 0 ? "+" : "")}{ss.Delta}).");
+                    break;
+                case FlinchedEvent fl: AppendLog($"{NameOf(fl.Combatant)} retrocedio y no pudo moverse."); break;
+                case CriticalHitEvent _: AppendLog("¡Un golpe critico!"); break;
+                case ChargingStartedEvent cg: AppendLog($"{NameOf(cg.Combatant)} esta acumulando energia..."); break;
+                case RechargingEvent rch: AppendLog($"{NameOf(rch.Combatant)} debe recargar y no pudo atacar."); break;
                 case BattleEndedEvent be: AppendLog(OutcomeText(be.Outcome)); break;
             }
         }

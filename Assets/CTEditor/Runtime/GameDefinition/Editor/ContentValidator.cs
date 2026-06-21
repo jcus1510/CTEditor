@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 
 namespace CTEditor.GameDefinition.Editor
@@ -62,6 +63,7 @@ namespace CTEditor.GameDefinition.Editor
             CollectIds(types, t => t.Id, "tipo", issues);
 
             ValidateMoves(moves, statusIds, issues);
+            ValidateStatuses(statuses, statusIds, issues);
             ValidateSpecies(species, issues);
             ValidateRulesets(rulesets, issues);
             ValidateCharts(charts, issues);
@@ -77,19 +79,39 @@ namespace CTEditor.GameDefinition.Editor
                 if (move.Type == null)
                     issues.Add(Error($"El movimiento '{Name(move)}' no tiene tipo asignado.", move));
 
+                if (move.MaxHits < move.MinHits)
+                    issues.Add(Warning($"El movimiento '{Name(move)}' tiene MaxHits ({move.MaxHits}) menor que MinHits ({move.MinHits}); se ajustará a MinHits.", move));
+
                 if (move.SecondaryEffects == null) continue;
                 foreach (var effect in move.SecondaryEffects)
                 {
                     if (effect == null) continue;
-                    if (string.IsNullOrWhiteSpace(effect.statusId))
+
+                    if (effect.kind == MoveEffectKind.InflictStatus)
                     {
-                        issues.Add(Warning($"El movimiento '{Name(move)}' tiene un efecto secundario sin estado (se ignorará).", move));
+                        if (string.IsNullOrWhiteSpace(effect.statusId))
+                            issues.Add(Warning($"El movimiento '{Name(move)}' tiene un efecto de estado sin estado (se ignorará).", move));
+                        else if (!statusIds.Contains(effect.statusId))
+                            issues.Add(Error($"El movimiento '{Name(move)}' inflige el estado '{effect.statusId}', que no existe.", move));
                     }
-                    else if (!statusIds.Contains(effect.statusId))
+                    else if (effect.kind == MoveEffectKind.ChangeStatStage)
                     {
-                        issues.Add(Error($"El movimiento '{Name(move)}' inflige el estado '{effect.statusId}', que no existe.", move));
+                        if (string.IsNullOrWhiteSpace(effect.statStatId))
+                            issues.Add(Warning($"El movimiento '{Name(move)}' tiene un efecto de etapa sin stat (se ignorará).", move));
+                        else if (effect.statStages == 0)
+                            issues.Add(Warning($"El movimiento '{Name(move)}' cambia la stat '{effect.statStatId}' en 0 etapas (sin efecto).", move));
                     }
                 }
+            }
+        }
+
+        // --- Estados ---
+        private static void ValidateStatuses(List<StatusConditionData> statuses, HashSet<string> statusIds, List<ValidationIssue> issues)
+        {
+            foreach (var st in statuses)
+            {
+                if (!string.IsNullOrWhiteSpace(st.TransformsToStatus) && !statusIds.Contains(st.TransformsToStatus))
+                    issues.Add(Error($"El estado '{Name(st)}' se transforma en '{st.TransformsToStatus}', que no existe.", st));
             }
         }
 
@@ -201,6 +223,7 @@ namespace CTEditor.GameDefinition.Editor
         }
 
         private static string Name(MoveData m) => string.IsNullOrWhiteSpace(m.Id) ? m.name : m.Id;
+        private static string Name(StatusConditionData s) => string.IsNullOrWhiteSpace(s.Id) ? s.name : s.Id;
         private static string Name(SpeciesData s) => string.IsNullOrWhiteSpace(s.Id) ? s.name : s.Id;
         private static string Name(RulesetData r) => r.name;
         private static string Name(TypeChartData c) => c.name;

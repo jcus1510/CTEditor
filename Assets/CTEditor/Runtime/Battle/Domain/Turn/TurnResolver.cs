@@ -67,7 +67,31 @@ namespace CTEditor.Battle.Domain.Turn
             {
                 if (battle.IsOver) break;            // alguien huyó o el combate ya acabó
                 if (play.actor.IsFainted) continue;  // un debilitado no actúa
+
+                // RECARGA: tras un movimiento de recarga, este turno se pierde por completo.
+                if (play.actor.MustRecharge)
+                {
+                    events.Add(new RechargingEvent(play.actor.Id));
+                    play.actor.ClearRecharge();
+                    continue;
+                }
+
+                // CARGA COMPROMETIDA: si venía cargando, lanza ESE movimiento e ignora la acción elegida.
+                // Simplificación deliberada: una carga ya iniciada se libera (no la interrumpe estado/flinch).
+                if (play.actor.ChargingMove.HasValue)
+                {
+                    var release = new UseMove(play.actor.ChargingMove.Value);
+                    play.actor.ClearChargingMove();
+                    ResolveMove(play.actor, play.target, release, events, isChargedRelease: true);
+                    continue;
+                }
+
                 if (IsPreventedByStatus(play.actor, events)) continue; // p.ej. paralizado/dormido
+                if (play.actor.Flinched)             // retrocedió: pierde el turno (lo provocó alguien que actuó antes)
+                {
+                    events.Add(new FlinchedEvent(play.actor.Id));
+                    continue;
+                }
 
                 switch (play.action)
                 {
@@ -87,6 +111,10 @@ namespace CTEditor.Battle.Domain.Turn
                 ApplyEndOfTurnStatus(battle.Player, events);
                 ApplyEndOfTurnStatus(battle.Enemy, events);
             }
+
+            // El retroceso (flinch) solo dura este turno: se limpia siempre.
+            battle.Player.ClearFlinch();
+            battle.Enemy.ClearFlinch();
 
             // --- FASE: DESENLACE ---
             if (!battle.IsOver)
@@ -109,9 +137,18 @@ namespace CTEditor.Battle.Domain.Turn
         // Resuelve un UseMove: emite el evento de uso, tira precisión, y si conecta calcula el daño
         // (si lo hay) y aplica los efectos del movimiento (infligir estado, etc.), incluso para los
         // movimientos de Estado sin daño como Fuego Fatuo.
-        private void ResolveMove(Combatant actor, Combatant target, UseMove useMove, List<IDomainEvent> events)
+        private void ResolveMove(Combatant actor, Combatant target, UseMove useMove, List<IDomainEvent> events, bool isChargedRelease = false)
         {
             var move = _moves.Get(useMove.Move); // resuelve el id -> Move vía catálogo
+
+            // DOS TURNOS (CARGA): el primer uso solo carga; el golpe llega al turno siguiente.
+            if (move.TwoTurn == TwoTurnKind.Charge && !isChargedRelease)
+            {
+                actor.SetChargingMove(move.Id);
+                events.Add(new ChargingStartedEvent(actor.Id, move.Id));
+                return;
+            }
+
             events.Add(new MoveUsedEvent(actor.Id, move.Id));
 
             // PRECISIÓN: si no es "nunca falla", tiramos contra su precisión.
@@ -127,6 +164,7 @@ namespace CTEditor.Battle.Domain.Turn
 
             // Movimientos sin daño directo (categoría Estado, como Fuego Fatuo): no calculan daño,
             // pero SÍ aplican sus efectos abajo. Por eso ya no salimos aquí.
+            int damageDealt = 0;
             if (move.DealsDirectDamage)
             {
                 // EFECTIVIDAD (tabla de tipos: tipo del movimiento contra los tipos del objetivo).
@@ -135,39 +173,122 @@ namespace CTEditor.Battle.Domain.Turn
                 // STAB: ¿el tipo del movimiento está entre los tipos del atacante?
                 bool stab = ContainsType(actor.Types, move.Type);
 
-                // SELECCIÓN DE STATS por categoría (aquí "vive" Físico vs Especial).
+                // SELECCIÓN DE STATS por categoría (aquí "vive" Físico vs Especial). Se calcula una
+                // sola vez: no cambia entre golpes de un mismo movimiento.
                 int attackStat = EffectiveStat(actor, move.Category == MoveCategory.Physical ? StatId.Attack : StatId.SpAttack);
                 int defenseStat = EffectiveStat(target, move.Category == MoveCategory.Physical ? StatId.Defense : StatId.SpDefense);
 
-                var context = new DamageContext(
-                    actor.Level, attackStat, defenseStat, move.Power, effectiveness, stab, _rng);
-                int damage = _damageFormula.Compute(context);
+                // GOLPE MÚLTIPLE: cuántas veces impacta (1 si es normal; al azar en el rango si no).
+                int hits = move.MaxHits <= move.MinHits ? move.MinHits : _rng.Next(move.MinHits, move.MaxHits + 1);
 
-                target.TakeDamage(damage);
-                events.Add(new DamageDealtEvent(target.Id, damage, effectiveness));
-
-                if (target.IsFainted)
+                for (int h = 0; h < hits; h++)
                 {
-                    events.Add(new MonsterFaintedEvent(target.Id));
-                    return; // un objetivo debilitado ya no recibe efectos secundarios
+                    // Cada impacto recalcula su daño: la aleatoriedad y el crítico se tiran por golpe.
+                    var context = new DamageContext(
+                        actor.Level, attackStat, defenseStat, move.Power, effectiveness, stab, _rng, move.CritStage);
+                    var result = _damageFormula.Compute(context);
+                    int damage = result.Damage;
+                    damageDealt += damage;
+
+                    target.TakeDamage(damage);
+                    events.Add(new DamageDealtEvent(target.Id, damage, effectiveness));
+                    if (result.WasCritical) events.Add(new CriticalHitEvent(target.Id));
+
+                    if (target.IsFainted)
+                    {
+                        events.Add(new MonsterFaintedEvent(target.Id));
+                        return; // objetivo debilitado: ni más golpes ni efectos secundarios
+                    }
                 }
             }
 
             // EFECTOS DEL MOVIMIENTO: se aplican si el movimiento CONECTÓ. Da igual si fue un efecto
             // SECUNDARIO de un movimiento de daño (10% de quemar) o el efecto PRINCIPAL de uno de
             // estado (Fuego Fatuo, 100% de quemar y sin daño): es el MISMO mecanismo.
-            ApplyMoveEffects(actor, target, move, events);
+            ApplyMoveEffects(actor, target, move, damageDealt, events);
+
+            // DOS TURNOS (RECARGA): si el movimiento conectó, el próximo turno deberá recargar.
+            if (move.TwoTurn == TwoTurnKind.Recharge)
+                actor.SetMustRecharge();
         }
 
         // Aplica los efectos del movimiento, cada uno sujeto a su probabilidad.
-        private void ApplyMoveEffects(Combatant actor, Combatant target, Move move, List<IDomainEvent> events)
+        // Aplica los efectos del movimiento, cada uno sujeto a su probabilidad. Drenaje y retroceso
+        // usan el daño ya causado; la autocuración usa los PS máximos del atacante.
+        private void ApplyMoveEffects(Combatant actor, Combatant target, Move move, int damageDealt, List<IDomainEvent> events)
         {
-            if (_statuses == null || move.SecondaryEffects.Count == 0) return;
+            if (move.SecondaryEffects.Count == 0) return;
 
             foreach (var effect in move.SecondaryEffects)
             {
-                if (_rng.NextFloat() < effect.Chance.AsFraction)
-                    TryInflictStatus(target, effect.InflictsStatus, events);
+                if (_rng.NextFloat() >= effect.Chance.AsFraction) continue;
+
+                switch (effect.Kind)
+                {
+                    case MoveEffectKind.InflictStatus:
+                        if (_statuses != null)
+                        {
+                            // El objetivo puede ser el rival (lo normal) o uno mismo (p.ej. Resto se duerme).
+                            var statusTarget = effect.Target == EffectTarget.Self ? actor : target;
+                            TryInflictStatus(statusTarget, effect.Status, events);
+                        }
+                        break;
+
+                    case MoveEffectKind.Drain:
+                    {
+                        int heal = (int)(damageDealt * effect.Amount.AsFraction);
+                        if (heal > 0 && !actor.IsFainted)
+                        {
+                            actor.HealHp(heal);
+                            events.Add(new HpRestoredEvent(actor.Id, heal));
+                        }
+                        break;
+                    }
+
+                    case MoveEffectKind.Recoil:
+                    {
+                        int recoil = (int)(damageDealt * effect.Amount.AsFraction);
+                        if (recoil > 0)
+                        {
+                            actor.TakeDamage(recoil);
+                            events.Add(new RecoilDamageEvent(actor.Id, recoil));
+                            if (actor.IsFainted)
+                                events.Add(new MonsterFaintedEvent(actor.Id));
+                        }
+                        break;
+                    }
+
+                    case MoveEffectKind.HealSelf:
+                    {
+                        int heal = (int)(actor.MaxHp * effect.Amount.AsFraction);
+                        if (heal > 0 && !actor.IsFainted)
+                        {
+                            actor.HealHp(heal);
+                            events.Add(new HpRestoredEvent(actor.Id, heal));
+                        }
+                        break;
+                    }
+
+                    case MoveEffectKind.ChangeStatStage:
+                    {
+                        // Sube/baja una etapa. El objetivo puede ser uno mismo (Danza Espada) o el rival (Gruñido).
+                        var affected = effect.Target == EffectTarget.Self ? actor : target;
+                        if (affected.IsFainted) break;
+                        int applied = affected.ChangeStage(effect.Stat, effect.Stages);
+                        if (applied != 0) // si ya estaba en el tope (+6/-6), no pasa nada y no narramos
+                            events.Add(new StatStageChangedEvent(affected.Id, effect.Stat, applied));
+                        break;
+                    }
+
+                    case MoveEffectKind.Flinch:
+                    {
+                        // Marca el retroceso en el objetivo. Solo le hará perder el turno si todavía
+                        // no actuó (el bucle de resolución comprueba la marca antes de cada acción).
+                        var affected = effect.Target == EffectTarget.Self ? actor : target;
+                        if (!affected.IsFainted) affected.SetFlinched();
+                        break;
+                    }
+                }
             }
         }
 
@@ -193,6 +314,17 @@ namespace CTEditor.Battle.Domain.Turn
 
             if (_rng.NextFloat() < chance)
             {
+                // Confusión y similares: al impedir la acción, el portador puede hacerse daño a sí mismo.
+                float selfFrac = def.SelfDamageOnPreventedPercent.AsFraction;
+                if (selfFrac > 0f)
+                {
+                    int selfDamage = Math.Max(1, (int)(actor.MaxHp * selfFrac));
+                    actor.TakeDamage(selfDamage);
+                    events.Add(new StatusDamageEvent(actor.Id, actor.Status.Value, selfDamage));
+                    if (actor.IsFainted)
+                        events.Add(new MonsterFaintedEvent(actor.Id));
+                }
+
                 events.Add(new ActionPreventedEvent(actor.Id, actor.Status.Value));
                 return true;
             }
@@ -213,19 +345,46 @@ namespace CTEditor.Battle.Domain.Turn
             if (frac > 0f)
             {
                 float effective = def.ProgressiveResidual ? frac * combatant.StatusTurns : frac;
-                int damage = Math.Max(1, (int)(combatant.MaxHp * effective));
-                combatant.TakeDamage(damage);
-                events.Add(new StatusDamageEvent(combatant.Id, combatant.Status.Value, damage));
+                int amount = Math.Max(1, (int)(combatant.MaxHp * effective));
 
-                if (combatant.IsFainted)
+                if (def.ResidualHeals)
                 {
-                    events.Add(new MonsterFaintedEvent(combatant.Id));
-                    return; // debilitado: no tiene sentido seguir con la duración
+                    combatant.HealHp(amount);
+                    events.Add(new HpRestoredEvent(combatant.Id, amount));
+                }
+                else
+                {
+                    combatant.TakeDamage(amount);
+                    events.Add(new StatusDamageEvent(combatant.Id, combatant.Status.Value, amount));
+
+                    if (combatant.IsFainted)
+                    {
+                        events.Add(new MonsterFaintedEvent(combatant.Id));
+                        return; // debilitado: no tiene sentido seguir con la duración
+                    }
                 }
             }
 
-            // Expiración por duración (p.ej. el sueño se va tras N turnos). 0 = permanente.
-            if (def.DurationTurns > 0 && combatant.StatusTurns >= def.DurationTurns)
+            // Recuperación: por azar cada turno (despertar / salir de confusión) o al cumplir la duración.
+            float recovery = def.RecoveryChancePerTurn.AsFraction;
+            bool recovered = recovery > 0f && _rng.NextFloat() < recovery;
+            bool capped = def.DurationTurns > 0 && combatant.StatusTurns >= def.DurationTurns;
+
+            if (recovered || capped)
+                EndOrTransformStatus(combatant, def, events);
+        }
+
+        // Termina el estado: si está marcado para transformarse (somnoliento -> dormido) lo cambia; si
+        // no, lo cura. Reusa eventos: StatusInflicted para el nuevo estado, StatusFaded al curarse.
+        private static void EndOrTransformStatus(Combatant combatant, StatusConditionDefinition def, List<IDomainEvent> events)
+        {
+            if (def.TransformsToStatus.HasValue)
+            {
+                var next = def.TransformsToStatus.Value;
+                combatant.SetStatus(next); // reinicia el contador para el nuevo estado
+                events.Add(new StatusInflictedEvent(combatant.Id, next));
+            }
+            else
             {
                 var faded = combatant.Status.Value;
                 combatant.ClearStatus();
@@ -238,13 +397,27 @@ namespace CTEditor.Battle.Domain.Turn
         private int EffectiveStat(Combatant c, StatId stat)
         {
             float value = c.Stats.Of(stat);
+
+            // 1) Modificadores pasivos del estado (quemar -> Ataque x0.5, parálisis -> Velocidad x0.5).
             if (_statuses != null && c.Status.HasValue && TryGetStatus(c.Status.Value, out var def))
             {
                 foreach (var mod in def.PassiveModifiers)
                     if (mod.Stat == stat)
                         value *= mod.Multiplier;
             }
+
+            // 2) Etapas de combate (-6..+6). Multiplicador clásico: etapa>=0 -> (2+etapa)/2;
+            //    etapa<0 -> 2/(2-etapa). Así +1 = x1.5, +2 = x2, -1 = x0.66, etc.
+            value *= StageMultiplier(c.GetStage(stat));
+
             return (int)value;
+        }
+
+        /// <summary>Multiplicador clásico de una etapa de stat (-6..+6).</summary>
+        private static float StageMultiplier(int stage)
+        {
+            if (stage >= 0) return (2f + stage) / 2f;
+            return 2f / (2f - stage);
         }
 
         // El catálogo se indexa por el texto del id; envolvemos el StatusId en un Id<...> tipado.

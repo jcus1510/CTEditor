@@ -1,6 +1,7 @@
 using CTEditor.SharedKernel.Events;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Moves;
+using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Status;
 
 namespace CTEditor.Battle.Domain.Events
@@ -108,5 +109,76 @@ namespace CTEditor.Battle.Domain.Events
             Combatant = combatant;
             Status = status;
         }
+    }
+
+    /// <summary>Un combatiente recuperó PS (drenaje, autocuración, regeneración por estado).</summary>
+    public sealed class HpRestoredEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public int Amount { get; }
+        public HpRestoredEvent(Id<BattleParticipant> combatant, int amount)
+        {
+            Combatant = combatant;
+            Amount = amount;
+        }
+    }
+
+    /// <summary>Un combatiente recibió daño de retroceso (recoil) por su propio movimiento.</summary>
+    public sealed class RecoilDamageEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public int Amount { get; }
+        public RecoilDamageEvent(Id<BattleParticipant> combatant, int amount)
+        {
+            Combatant = combatant;
+            Amount = amount;
+        }
+    }
+
+    /// <summary>Un combatiente retrocedió (flinch) y perdió su turno.</summary>
+    public sealed class FlinchedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public FlinchedEvent(Id<BattleParticipant> combatant) { Combatant = combatant; }
+    }
+
+    /// <summary>Una stat cambió de etapa en combate (Delta real aplicado; +sube, -baja).</summary>
+    public sealed class StatStageChangedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public StatId Stat { get; }
+        public int Delta { get; }
+        public StatStageChangedEvent(Id<BattleParticipant> combatant, StatId stat, int delta)
+        {
+            Combatant = combatant;
+            Stat = stat;
+            Delta = delta;
+        }
+    }
+
+    /// <summary>Un golpe fue crítico (se aplicó el multiplicador de crítico).</summary>
+    public sealed class CriticalHitEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Target { get; }
+        public CriticalHitEvent(Id<BattleParticipant> target) { Target = target; }
+    }
+
+    /// <summary>Un combatiente empezó a cargar un movimiento de dos turnos (golpeará al siguiente).</summary>
+    public sealed class ChargingStartedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public Id<Move> Move { get; }
+        public ChargingStartedEvent(Id<BattleParticipant> combatant, Id<Move> move)
+        {
+            Combatant = combatant;
+            Move = move;
+        }
+    }
+
+    /// <summary>Un combatiente debe recargar este turno (tras un movimiento de recarga) y pierde el turno.</summary>
+    public sealed class RechargingEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public RechargingEvent(Id<BattleParticipant> combatant) { Combatant = combatant; }
     }
 }

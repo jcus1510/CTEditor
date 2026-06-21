@@ -29,6 +29,9 @@ namespace CTEditor.Battle.Domain.Formulas
         /// <summary>Azar inyectado, para crítico y la variación aleatoria. Determinista bajo semilla.</summary>
         public IRng Rng { get; }
 
+        /// <summary>Nivel de crítico del movimiento (0 = normal; mayor = más probabilidad de crítico).</summary>
+        public int CritStage { get; }
+
         public DamageContext(
             int attackerLevel,
             int attackStat,
@@ -36,7 +39,8 @@ namespace CTEditor.Battle.Domain.Formulas
             int movePower,
             float typeEffectiveness,
             bool stab,
-            IRng rng)
+            IRng rng,
+            int critStage = 0)
         {
             AttackerLevel = attackerLevel;
             AttackStat = attackStat;
@@ -45,6 +49,19 @@ namespace CTEditor.Battle.Domain.Formulas
             TypeEffectiveness = typeEffectiveness;
             Stab = stab;
             Rng = rng;
+            CritStage = critStage;
+        }
+    }
+
+    /// <summary>Resultado de la fórmula: el daño y si fue golpe crítico (para narrarlo).</summary>
+    public readonly struct DamageResult
+    {
+        public int Damage { get; }
+        public bool WasCritical { get; }
+        public DamageResult(int damage, bool wasCritical)
+        {
+            Damage = damage;
+            WasCritical = wasCritical;
         }
     }
 
@@ -56,7 +73,7 @@ namespace CTEditor.Battle.Domain.Formulas
     /// </summary>
     public interface IDamageFormula
     {
-        /// <summary>Daño final a aplicar, a partir del contexto ya resuelto.</summary>
-        int Compute(DamageContext context);
+        /// <summary>Daño final (y si fue crítico) a partir del contexto ya resuelto.</summary>
+        DamageResult Compute(DamageContext context);
     }
 }

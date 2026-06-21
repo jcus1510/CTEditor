@@ -14,12 +14,12 @@ namespace CTEditor.Battle.Domain.Formulas
     /// </summary>
     public sealed class ClassicDamageFormula : IDamageFormula
     {
-        public int Compute(DamageContext c)
+        public DamageResult Compute(DamageContext c)
         {
             // Sin potencia (movimientos de estado) no hay daño directo.
-            if (c.MovePower <= 0) return 0;
+            if (c.MovePower <= 0) return new DamageResult(0, false);
             // Inmune: la efectividad fue 0.
-            if (c.TypeEffectiveness <= 0f) return 0;
+            if (c.TypeEffectiveness <= 0f) return new DamageResult(0, false);
 
             // Evitamos dividir por cero si por algún dato raro la defensa fuera 0.
             int defense = c.DefenseStat <= 0 ? 1 : c.DefenseStat;
@@ -31,8 +31,11 @@ namespace CTEditor.Battle.Domain.Formulas
             // --- MODIFICADORES ---
             float stab = c.Stab ? 1.5f : 1f;
 
-            // Crítico: ~1 de cada 16 (6.25%), ×1.5. Usa el azar INYECTADO (determinista bajo semilla).
-            bool isCrit = c.Rng.Next(0, 16) == 0;
+            // Crítico: la probabilidad sube con el "crit stage" del movimiento. Denominadores clásicos:
+            // etapa 0 -> 1/16, 1 -> 1/8, 2 -> 1/4, 3 -> 1/3, 4+ -> 1/2. Usa el azar INYECTADO.
+            int[] denominators = { 16, 8, 4, 3, 2 };
+            int idx = c.CritStage < 0 ? 0 : (c.CritStage >= denominators.Length ? denominators.Length - 1 : c.CritStage);
+            bool isCrit = c.Rng.Next(0, denominators[idx]) == 0;
             float crit = isCrit ? 1.5f : 1f;
 
             // Variación aleatoria: entre 0.85 y 1.00, para que no todo golpe sea idéntico.
@@ -42,7 +45,8 @@ namespace CTEditor.Battle.Domain.Formulas
 
             // Convertimos a entero. Un golpe que acierta hace al menos 1 (salvo inmunidad, ya filtrada).
             int damage = (int)total;
-            return damage < 1 ? 1 : damage;
+            if (damage < 1) damage = 1;
+            return new DamageResult(damage, isCrit);
         }
     }
 }

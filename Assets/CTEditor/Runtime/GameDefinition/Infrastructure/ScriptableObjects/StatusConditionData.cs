@@ -19,6 +19,9 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Tooltip("Si está marcado, el daño residual escala cada turno (envenenamiento grave / tóxico).")]
         [SerializeField] private bool progressiveResidual = false;
 
+        [Tooltip("Si está marcado, el residual CURA en vez de dañar cada turno (regeneración).")]
+        [SerializeField] private bool residualHeals = false;
+
         [Tooltip("Probabilidad por turno de no poder actuar. 0 = nunca impide (p.ej. quemado).")]
         [SerializeField, Range(0f, 100f)] private float actionPreventionChance = 0f;
 
@@ -28,6 +31,15 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Tooltip("Duración en turnos. 0 = permanente (hasta curar). >0 = se quita solo tras esos turnos (p.ej. sueño).")]
         [SerializeField, Min(0)] private int durationTurns = 0;
 
+        [Tooltip("Probabilidad por turno de recuperarse solo (dormido/confuso despiertan al azar). 0 = solo por duración.")]
+        [SerializeField, Range(0f, 100f)] private float recoveryChancePerTurn = 0f;
+
+        [Tooltip("Si impide la acción, daño que el portador se hace a sí mismo (% PS máx). Confusión > 0; dormido = 0.")]
+        [SerializeField, Range(0f, 100f)] private float selfDamageOnPreventedPercent = 0f;
+
+        [Tooltip("Al terminar, se convierte en este estado en vez de curarse (somnoliento -> dormido). Vacío = se cura.")]
+        [StatusIdReference, SerializeField] private string transformsToStatus;
+
         [Tooltip("Modificadores pasivos de stats mientras dura (p.ej. Attack ×0.5 para quemado).")]
         [SerializeField] private PassiveStatModifierData[] passiveModifiers;
 
@@ -35,9 +47,13 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public string DisplayName => displayName;
         public float ResidualDamagePercent => residualDamagePercent;
         public bool ProgressiveResidual => progressiveResidual;
+        public bool ResidualHeals => residualHeals;
         public float ActionPreventionChance => actionPreventionChance;
         public bool ClearedOnSwitch => clearedOnSwitch;
         public int DurationTurns => durationTurns;
+        public float RecoveryChancePerTurn => recoveryChancePerTurn;
+        public float SelfDamageOnPreventedPercent => selfDamageOnPreventedPercent;
+        public string TransformsToStatus => transformsToStatus;
         public PassiveStatModifierData[] PassiveModifiers => passiveModifiers;
 
         /// <summary>Sub-ficha de un modificador pasivo: qué stat y por cuánto la multiplica (0.5 = la mitad).</summary>
