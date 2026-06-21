@@ -10,6 +10,7 @@ using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Domain.Species;
 using CTEditor.GameDefinition.Domain.Catalog;
 using CTEditor.GameDefinition.Domain.Status;
+using CTEditor.GameDefinition.Domain.Abilities;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 using CTEditor.GameDefinition.Infrastructure.Acl;
 using CTEditor.GameDefinition.Infrastructure.Catalog;
@@ -44,6 +45,7 @@ namespace CTEditor.Bootstrap
         [SerializeField] private TypeChartData typeChart;
         [SerializeField] private RulesetData ruleset;
         [SerializeField] private StatusConditionData[] statuses; // estados que el autor definió
+        [SerializeField] private AbilityData[] abilities;        // habilidades que el autor definió
         [SerializeField] private int playerLevel = 10;
         [SerializeField] private int enemyLevel = 10;
         [SerializeField] private int seed = 12345;
@@ -100,9 +102,9 @@ namespace CTEditor.Bootstrap
             var enemyMon = MonsterFactory.Create(new Id<MonsterInstance>("enemy"), enemyDef, enemyLevel, rules, growth);
 
             var playerSnap = new BattleParticipant(new Id<BattleParticipant>("p1"), playerMon.SpeciesId, playerMon.Level.Value,
-                playerMon.Stats, playerMon.CurrentHp, playerDef.Types, playerMon.Moves);
+                playerMon.Stats, playerMon.CurrentHp, playerDef.Types, playerMon.Moves, playerMon.Status, playerDef.Ability);
             var enemySnap = new BattleParticipant(new Id<BattleParticipant>("p2"), enemyMon.SpeciesId, enemyMon.Level.Value,
-                enemyMon.Stats, enemyMon.CurrentHp, enemyDef.Types, enemyMon.Moves);
+                enemyMon.Stats, enemyMon.CurrentHp, enemyDef.Types, enemyMon.Moves, enemyMon.Status, enemyDef.Ability);
 
             // Catálogo de estados (si el autor asignó alguno). Si no, el combate corre sin estados.
             ICatalog<StatusConditionDefinition> statusCatalog =
@@ -111,8 +113,14 @@ namespace CTEditor.Bootstrap
                         statuses, d => d.Id, StatusMapper.ToDomain)
                     : null;
 
+            ICatalog<AbilityDefinition> abilityCatalog =
+                (abilities != null && abilities.Length > 0)
+                    ? new ScriptableObjectCatalog<AbilityData, AbilityDefinition>(
+                        abilities, d => d.Id, AbilityMapper.ToDomain)
+                    : null;
+
             _battle = new CTEditor.Battle.Domain.Battle(playerSnap, enemySnap);
-            _resolver = new TurnResolver(_moveCatalog, chart, new ClassicDamageFormula(), rng, statusCatalog);
+            _resolver = new TurnResolver(_moveCatalog, chart, new ClassicDamageFormula(), rng, statusCatalog, abilities: abilityCatalog);
 
             if (playerNameText) playerNameText.text = playerDef.DisplayName;
             if (enemyNameText) enemyNameText.text = enemyDef.DisplayName;
@@ -120,6 +128,12 @@ namespace CTEditor.Bootstrap
             SetupMoveButtons();
             UpdateHud();
             AppendLog($"Aparecio {enemyDef.DisplayName} (Nv.{enemyLevel}). [IA: {aiLevel}]");
+
+            // Habilidades AL ENTRAR (Intimidación, etc.) de ambos activos, antes del primer turno.
+            foreach (var ev in _resolver.ResolveBattleStart(_battle))
+                Present(ev);
+            UpdateHud();
+
             return true;
         }
 
@@ -199,6 +213,12 @@ namespace CTEditor.Bootstrap
                 case CriticalHitEvent _: AppendLog("¡Un golpe critico!"); break;
                 case ChargingStartedEvent cg: AppendLog($"{NameOf(cg.Combatant)} esta acumulando energia..."); break;
                 case RechargingEvent rch: AppendLog($"{NameOf(rch.Combatant)} debe recargar y no pudo atacar."); break;
+                case MonsterWithdrawnEvent mw: AppendLog($"{NameOf(mw.Combatant)} se retiro del combate."); break;
+                case MonsterSentEvent mse: AppendLog($"¡Adelante, {NameOf(mse.Combatant)}!"); break;
+                case ReplacementRequiredEvent rr: AppendLog(rr.PlayerSide ? "Debes enviar otro monstruo." : "El rival debe enviar otro monstruo."); break;
+                case ItemUsedInBattleEvent iu: AppendLog($"Se uso un objeto sobre {NameOf(iu.Target)}."); break;
+                case MonsterCapturedEvent mc: AppendLog($"¡{NameOf(mc.Target)} fue capturado!"); break;
+                case CaptureFailedEvent _: AppendLog("¡Casi! El monstruo se solto."); break;
                 case BattleEndedEvent be: AppendLog(OutcomeText(be.Outcome)); break;
             }
         }
@@ -251,6 +271,7 @@ namespace CTEditor.Bootstrap
                 case BattleOutcome.PlayerWon: return "Ganaste el combate!";
                 case BattleOutcome.PlayerLost: return "Perdiste el combate...";
                 case BattleOutcome.Fled: return "Huiste del combate.";
+                case BattleOutcome.Caught: return "¡Capturaste al monstruo!";
                 default: return "";
             }
         }

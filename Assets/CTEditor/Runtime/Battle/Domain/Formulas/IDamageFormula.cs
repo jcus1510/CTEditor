@@ -26,6 +26,9 @@ namespace CTEditor.Battle.Domain.Formulas
         /// <summary>¿El tipo del movimiento coincide con un tipo del atacante? (bonus STAB).</summary>
         public bool Stab { get; }
 
+        /// <summary>Multiplicador STAB explícito (Adaptable = 2). 0 = usar el valor por defecto según Stab (1.5/1).</summary>
+        public float StabMultiplier { get; }
+
         /// <summary>Azar inyectado, para crítico y la variación aleatoria. Determinista bajo semilla.</summary>
         public IRng Rng { get; }
 
@@ -40,7 +43,8 @@ namespace CTEditor.Battle.Domain.Formulas
             float typeEffectiveness,
             bool stab,
             IRng rng,
-            int critStage = 0)
+            int critStage = 0,
+            float stabMultiplier = 0f)
         {
             AttackerLevel = attackerLevel;
             AttackStat = attackStat;
@@ -50,6 +54,7 @@ namespace CTEditor.Battle.Domain.Formulas
             Stab = stab;
             Rng = rng;
             CritStage = critStage;
+            StabMultiplier = stabMultiplier;
         }
     }
 

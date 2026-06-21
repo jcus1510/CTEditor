@@ -24,4 +24,30 @@ namespace CTEditor.Battle.Domain.Actions
     public sealed class Flee : BattleAction
     {
     }
+
+    /// <summary>Cambiar el monstruo activo por otro del equipo (por su id de combate).</summary>
+    public sealed class SwitchMonster : BattleAction
+    {
+        public Id<BattleParticipant> Target { get; }
+        public SwitchMonster(Id<BattleParticipant> target) => Target = target;
+    }
+
+    /// <summary>Usar un objeto sobre un miembro del propio equipo (curar, revivir, quitar estado).</summary>
+    public sealed class UseItemAction : BattleAction
+    {
+        public Id<BattleParticipant> Target { get; }
+        public BattleItemEffect Effect { get; }
+        public UseItemAction(Id<BattleParticipant> target, BattleItemEffect effect)
+        {
+            Target = target;
+            Effect = effect;
+        }
+    }
+
+    /// <summary>Intentar capturar al rival activo. CatchBonus &gt; 1 mejora la probabilidad (mejores bolas).</summary>
+    public sealed class Capturar : BattleAction
+    {
+        public float CatchBonus { get; }
+        public Capturar(float catchBonus = 1f) => CatchBonus = catchBonus;
+    }
 }

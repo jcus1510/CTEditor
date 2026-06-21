@@ -73,6 +73,10 @@ namespace CTEditor.GameDefinition.Domain.Moves
         /// <summary>Modo de dos turnos (cargar / recargar). None = normal.</summary>
         public TwoTurnKind TwoTurn { get; }
 
+        /// <summary>¿El movimiento hace CONTACTO físico? Relevante para habilidades de reacción
+        /// (Estática, Cuerpo Llama, Piel Tosca...). El autor lo marca; típico en físicos.</summary>
+        public bool MakesContact { get; }
+
         public Move(
             Id<Move> id,
             string displayName,
@@ -87,7 +91,8 @@ namespace CTEditor.GameDefinition.Domain.Moves
             int minHits = 1,
             int maxHits = 1,
             int critStage = 0,
-            TwoTurnKind twoTurn = TwoTurnKind.None)
+            TwoTurnKind twoTurn = TwoTurnKind.None,
+            bool makesContact = false)
         {
             // Estas validaciones LANZAN si los datos son absurdos. Son la última línea de defensa:
             // el autor nunca debería llegar aquí con basura, porque la validación amigable (con
@@ -118,6 +123,7 @@ namespace CTEditor.GameDefinition.Domain.Moves
 
             CritStage = critStage < 0 ? 0 : critStage;
             TwoTurn = twoTurn;
+            MakesContact = makesContact;
         }
 
         /// <summary>¿Este movimiento hace daño directo? (No es de Estado y tiene potencia.)</summary>

@@ -29,7 +29,7 @@ namespace CTEditor.Battle.Domain.Formulas
             core = core / 50f + 2f;
 
             // --- MODIFICADORES ---
-            float stab = c.Stab ? 1.5f : 1f;
+            float stab = c.StabMultiplier > 0f ? c.StabMultiplier : (c.Stab ? 1.5f : 1f);
 
             // Crítico: la probabilidad sube con el "crit stage" del movimiento. Denominadores clásicos:
             // etapa 0 -> 1/16, 1 -> 1/8, 2 -> 1/4, 3 -> 1/3, 4+ -> 1/2. Usa el azar INYECTADO.

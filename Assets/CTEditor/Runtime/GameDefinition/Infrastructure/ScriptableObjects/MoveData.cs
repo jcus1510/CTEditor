@@ -53,6 +53,9 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Tooltip("Dos turnos: None normal; Charge carga y golpea al siguiente; Recharge golpea y recarga.")]
         [SerializeField] private TwoTurnKind twoTurn = TwoTurnKind.None;
 
+        [Tooltip("¿Hace contacto físico? Lo usan habilidades como Estática o Cuerpo Llama.")]
+        [SerializeField] private bool makesContact = false;
+
         public string Id => id;
         public string DisplayName => displayName;
         public ElementTypeData Type => type;
@@ -68,6 +71,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public int MaxHits => maxHits;
         public int CritStage => critStage;
         public TwoTurnKind TwoTurn => twoTurn;
+        public bool MakesContact => makesContact;
 
         /// <summary>
         /// Sub-ficha de un efecto secundario, editable en el Inspector (Unity sabe dibujar clases

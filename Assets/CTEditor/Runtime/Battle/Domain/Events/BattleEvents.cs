@@ -181,4 +181,47 @@ namespace CTEditor.Battle.Domain.Events
         public Id<BattleParticipant> Combatant { get; }
         public RechargingEvent(Id<BattleParticipant> combatant) { Combatant = combatant; }
     }
+
+    /// <summary>Un monstruo se retiró del campo (lo cambiaron por otro).</summary>
+    public sealed class MonsterWithdrawnEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public MonsterWithdrawnEvent(Id<BattleParticipant> combatant) { Combatant = combatant; }
+    }
+
+    /// <summary>Un monstruo entró al campo (relevo voluntario o forzado).</summary>
+    public sealed class MonsterSentEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public MonsterSentEvent(Id<BattleParticipant> combatant) { Combatant = combatant; }
+    }
+
+    /// <summary>Un bando debe enviar un relevo: su activo cayó pero aún tiene reservas. PlayerSide
+    /// indica de qué lado (true = jugador). El combate se PAUSA hasta que llegue el reemplazo.</summary>
+    public sealed class ReplacementRequiredEvent : IDomainEvent
+    {
+        public bool PlayerSide { get; }
+        public ReplacementRequiredEvent(bool playerSide) { PlayerSide = playerSide; }
+    }
+
+    /// <summary>Se usó un objeto sobre un combatiente (sus efectos concretos se narran aparte).</summary>
+    public sealed class ItemUsedInBattleEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Target { get; }
+        public ItemUsedInBattleEvent(Id<BattleParticipant> target) { Target = target; }
+    }
+
+    /// <summary>Se capturó al rival. El orquestador lo añadirá al equipo (integración con Party).</summary>
+    public sealed class MonsterCapturedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Target { get; }
+        public MonsterCapturedEvent(Id<BattleParticipant> target) { Target = target; }
+    }
+
+    /// <summary>El intento de captura falló.</summary>
+    public sealed class CaptureFailedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Target { get; }
+        public CaptureFailedEvent(Id<BattleParticipant> target) { Target = target; }
+    }
 }

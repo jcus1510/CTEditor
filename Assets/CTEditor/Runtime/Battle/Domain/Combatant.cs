@@ -5,6 +5,7 @@ using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Types;
 using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Domain.Status;
+using CTEditor.GameDefinition.Domain.Abilities;
 
 namespace CTEditor.Battle.Domain
 {
@@ -31,6 +32,9 @@ namespace CTEditor.Battle.Domain
 
         /// <summary>Estado alterado actual (quemado, etc.). Null = sano. Mutable durante el combate.</summary>
         public StatusId? Status { get; private set; }
+
+        /// <summary>La habilidad del combatiente (de su especie). Null = ninguna. Solo lectura.</summary>
+        public AbilityId? Ability { get; }
 
         /// <summary>Cuántos turnos lleva activo el estado actual (para tóxico progresivo y duraciones).</summary>
         public int StatusTurns { get; private set; }
@@ -70,6 +74,7 @@ namespace CTEditor.Battle.Domain
             Moves = snapshot.Moves;
             CurrentHp = snapshot.CurrentHp;
             Status = snapshot.InitialStatus;
+            Ability = snapshot.Ability;
         }
 
         public int MaxHp => Stats.Of(StatId.Hp);
@@ -87,6 +92,14 @@ namespace CTEditor.Battle.Domain
         {
             if (amount <= 0 || IsFainted) return;
             CurrentHp = Math.Min(MaxHp, CurrentHp + amount);
+        }
+
+        // Revive: cura a un combatiente DEBILITADO (HealHp se niega a tocar a un caído). Solo aplica
+        // si está debilitado; deja al menos 1 PS y nunca supera el máximo.
+        internal void Revive(int hp)
+        {
+            if (!IsFainted) return;
+            CurrentHp = Math.Min(MaxHp, Math.Max(1, hp));
         }
 
         // Estado alterado: lo fija/limpia solo la lógica de Battle (TurnResolver).

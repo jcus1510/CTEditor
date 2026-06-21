@@ -6,6 +6,7 @@ using CTEditor.GameDefinition.Domain.Types;
 using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Domain.Species;
 using CTEditor.GameDefinition.Domain.Status;
+using CTEditor.GameDefinition.Domain.Abilities;
 
 namespace CTEditor.Battle.Domain
 {
@@ -46,6 +47,9 @@ namespace CTEditor.Battle.Domain
         /// <summary>Estado alterado con el que entra al combate (normalmente ninguno). Null = sano.</summary>
         public StatusId? InitialStatus { get; }
 
+        /// <summary>La habilidad del monstruo (de su especie). Null = ninguna.</summary>
+        public AbilityId? Ability { get; }
+
         public BattleParticipant(
             Id<BattleParticipant> id,
             Id<Species> speciesId,
@@ -54,7 +58,8 @@ namespace CTEditor.Battle.Domain
             int currentHp,
             IReadOnlyList<Id<ElementType>> types,
             IReadOnlyList<Id<Move>> moves,
-            StatusId? initialStatus = null)
+            StatusId? initialStatus = null,
+            AbilityId? ability = null)
         {
             if (stats == null) throw new ArgumentNullException(nameof(stats));
 
@@ -67,6 +72,7 @@ namespace CTEditor.Battle.Domain
             Types = types == null ? Array.Empty<Id<ElementType>>() : new List<Id<ElementType>>(types);
             Moves = moves == null ? Array.Empty<Id<Move>>() : new List<Id<Move>>(moves);
             InitialStatus = initialStatus;
+            Ability = ability;
         }
     }
 }
