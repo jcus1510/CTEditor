@@ -45,18 +45,55 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 ? (StatId?)null
                 : new StatId(data.OnEntryStatId);
 
+            StatId? statusBoostStat = string.IsNullOrWhiteSpace(data.StatusStatBoostStatId)
+                ? (StatId?)null
+                : new StatId(data.StatusStatBoostStatId);
+
+            Id<ElementType>? lowHpType = data.LowHpBoostType != null
+                ? new Id<ElementType>(data.LowHpBoostType.Id)
+                : (Id<ElementType>?)null;
+
+            var incoming = new List<TypeDamageMultiplier>();
+            if (data.IncomingTypeMultipliers != null)
+            {
+                foreach (var e in data.IncomingTypeMultipliers)
+                    if (e != null && e.type != null)
+                        incoming.Add(new TypeDamageMultiplier(new Id<ElementType>(e.type.Id), e.multiplier));
+            }
+
+            StatId? endOfTurnStat = string.IsNullOrWhiteSpace(data.EndOfTurnStatId)
+                ? (StatId?)null
+                : new StatId(data.EndOfTurnStatId);
+
             return new AbilityDefinition(
-                new AbilityId(data.Id),
-                data.DisplayName,
-                modifiers,
-                statusImmunities,
-                typeImmunities,
-                new Percentage(data.AbsorbImmuneHealPercent),
-                contactStatus,
-                new Percentage(data.ContactReactionChance),
-                onEntryStat,
-                data.OnEntryStages,
-                data.OnEntryTargetsSelf);
+                id: new AbilityId(data.Id),
+                displayName: data.DisplayName,
+                passiveModifiers: modifiers,
+                statusImmunities: statusImmunities,
+                typeImmunities: typeImmunities,
+                absorbImmuneHealPercent: new Percentage(data.AbsorbImmuneHealPercent),
+                contactReactionStatus: contactStatus,
+                contactReactionChance: new Percentage(data.ContactReactionChance),
+                onEntryStat: onEntryStat,
+                onEntryStages: data.OnEntryStages,
+                onEntryTargetsSelf: data.OnEntryTargetsSelf,
+                statusStatBoostStat: statusBoostStat,
+                statusStatBoostMultiplier: data.StatusStatBoostMultiplier,
+                lowHpBoostType: lowHpType,
+                lowHpThreshold: new Percentage(data.LowHpThresholdPercent),
+                lowHpBoostMultiplier: data.LowHpBoostMultiplier,
+                incomingTypeMultipliers: incoming,
+                stabMultiplierOverride: data.StabMultiplierOverride,
+                statusMovePriorityBonus: data.StatusMovePriorityBonus,
+                preventsStatReduction: data.PreventsStatReduction,
+                curesStatusOnSwitchOut: data.CuresStatusOnSwitchOut,
+                healPercentOnSwitchOut: new Percentage(data.HealPercentOnSwitchOut),
+                endOfTurnStat: endOfTurnStat,
+                endOfTurnStages: data.EndOfTurnStages,
+                endOfTurnHealPercent: new Percentage(data.EndOfTurnHealPercent),
+                endOfTurnHealRequiresStatus: data.EndOfTurnHealRequiresStatus,
+                endOfTurnCureStatusChance: new Percentage(data.EndOfTurnCureStatusChance),
+                negatesStatusDamage: data.NegatesStatusDamage);
         }
     }
 }
