@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CTEditor.SharedKernel.ValueObjects;
+using CTEditor.GameDefinition.Domain.Status;
 
 namespace CTEditor.Battle.Domain
 {
@@ -10,7 +11,8 @@ namespace CTEditor.Battle.Domain
         InProgress,
         PlayerWon,
         PlayerLost,
-        Fled
+        Fled,
+        Caught
     }
 
     /// <summary>
@@ -24,11 +26,15 @@ namespace CTEditor.Battle.Domain
         public int FinalHp { get; }
         public bool Fainted { get; }
 
-        public ParticipantResult(Id<BattleParticipant> participantId, int finalHp, bool fainted)
+        /// <summary>Estado alterado con el que terminó (null = sano). Party decide si persiste.</summary>
+        public StatusId? FinalStatus { get; }
+
+        public ParticipantResult(Id<BattleParticipant> participantId, int finalHp, bool fainted, StatusId? finalStatus = null)
         {
             ParticipantId = participantId;
             FinalHp = finalHp;
             Fainted = fainted;
+            FinalStatus = finalStatus;
         }
     }
 

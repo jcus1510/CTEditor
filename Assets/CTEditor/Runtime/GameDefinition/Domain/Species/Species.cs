@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Types;
+using CTEditor.GameDefinition.Domain.Abilities;
 
 namespace CTEditor.GameDefinition.Domain.Species
 {
@@ -45,13 +46,17 @@ namespace CTEditor.GameDefinition.Domain.Species
         /// <summary>Sus posibles evoluciones (0, 1 o varias).</summary>
         public IReadOnlyList<Evolution> Evolutions { get; }
 
+        /// <summary>La habilidad de la especie (null = ninguna). Rasgo pasivo que se aplica en combate.</summary>
+        public AbilityId? Ability { get; }
+
         public Species(
             Id<Species> id,
             string displayName,
             IReadOnlyList<Id<ElementType>> types,
             StatBlock baseStats,
             IReadOnlyList<LearnableMove> learnset,
-            IReadOnlyList<Evolution> evolutions)
+            IReadOnlyList<Evolution> evolutions,
+            AbilityId? ability = null)
         {
             // Una criatura sin ningún tipo no tiene sentido en el modelo de combate.
             if (types is null || types.Count == 0)
@@ -73,6 +78,7 @@ namespace CTEditor.GameDefinition.Domain.Species
             BaseStats = baseStats;          // StatBlock ya es inmutable, no hace falta copiar
             Learnset = CopyOrEmpty(learnset);
             Evolutions = CopyOrEmpty(evolutions);
+            Ability = ability;
         }
 
         /// <summary>¿Tiene más de un tipo?</summary>

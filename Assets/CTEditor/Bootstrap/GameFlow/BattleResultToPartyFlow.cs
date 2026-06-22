@@ -42,7 +42,8 @@ namespace CTEditor.Bootstrap.GameFlow
                     continue;
 
                 ApplyHp(monster, pr);
-                // Aquí, en el futuro, también: XP ganada, estado alterado persistente, etc.
+                ApplyStatus(monster, pr);
+                // Pendiente (milestone de progresión): XP ganada y subida de nivel.
             }
         }
 
@@ -65,6 +66,22 @@ namespace CTEditor.Bootstrap.GameFlow
                 monster.TakeDamage(-delta);
             else if (delta > 0)
                 monster.Heal(delta);
+        }
+
+        // Persiste el estado alterado final. Un debilitado queda sin estado; si terminó sano (porque
+        // se curó en combate) también se limpia. Los estados volátiles (confusión) no llegan aquí.
+        private static void ApplyStatus(MonsterInstance monster, ParticipantResult pr)
+        {
+            if (pr.Fainted)
+            {
+                monster.ClearStatus();
+                return;
+            }
+
+            if (pr.FinalStatus.HasValue)
+                monster.SetStatus(pr.FinalStatus.Value);
+            else
+                monster.ClearStatus();
         }
     }
 }

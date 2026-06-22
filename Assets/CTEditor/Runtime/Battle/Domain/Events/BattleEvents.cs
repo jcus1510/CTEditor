@@ -1,6 +1,7 @@
 using CTEditor.SharedKernel.Events;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Moves;
+using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Status;
 
 namespace CTEditor.Battle.Domain.Events
@@ -108,5 +109,119 @@ namespace CTEditor.Battle.Domain.Events
             Combatant = combatant;
             Status = status;
         }
+    }
+
+    /// <summary>Un combatiente recuperó PS (drenaje, autocuración, regeneración por estado).</summary>
+    public sealed class HpRestoredEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public int Amount { get; }
+        public HpRestoredEvent(Id<BattleParticipant> combatant, int amount)
+        {
+            Combatant = combatant;
+            Amount = amount;
+        }
+    }
+
+    /// <summary>Un combatiente recibió daño de retroceso (recoil) por su propio movimiento.</summary>
+    public sealed class RecoilDamageEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public int Amount { get; }
+        public RecoilDamageEvent(Id<BattleParticipant> combatant, int amount)
+        {
+            Combatant = combatant;
+            Amount = amount;
+        }
+    }
+
+    /// <summary>Un combatiente retrocedió (flinch) y perdió su turno.</summary>
+    public sealed class FlinchedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public FlinchedEvent(Id<BattleParticipant> combatant) { Combatant = combatant; }
+    }
+
+    /// <summary>Una stat cambió de etapa en combate (Delta real aplicado; +sube, -baja).</summary>
+    public sealed class StatStageChangedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public StatId Stat { get; }
+        public int Delta { get; }
+        public StatStageChangedEvent(Id<BattleParticipant> combatant, StatId stat, int delta)
+        {
+            Combatant = combatant;
+            Stat = stat;
+            Delta = delta;
+        }
+    }
+
+    /// <summary>Un golpe fue crítico (se aplicó el multiplicador de crítico).</summary>
+    public sealed class CriticalHitEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Target { get; }
+        public CriticalHitEvent(Id<BattleParticipant> target) { Target = target; }
+    }
+
+    /// <summary>Un combatiente empezó a cargar un movimiento de dos turnos (golpeará al siguiente).</summary>
+    public sealed class ChargingStartedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public Id<Move> Move { get; }
+        public ChargingStartedEvent(Id<BattleParticipant> combatant, Id<Move> move)
+        {
+            Combatant = combatant;
+            Move = move;
+        }
+    }
+
+    /// <summary>Un combatiente debe recargar este turno (tras un movimiento de recarga) y pierde el turno.</summary>
+    public sealed class RechargingEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public RechargingEvent(Id<BattleParticipant> combatant) { Combatant = combatant; }
+    }
+
+    /// <summary>Un monstruo se retiró del campo (lo cambiaron por otro).</summary>
+    public sealed class MonsterWithdrawnEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public MonsterWithdrawnEvent(Id<BattleParticipant> combatant) { Combatant = combatant; }
+    }
+
+    /// <summary>Un monstruo entró al campo (relevo voluntario o forzado).</summary>
+    public sealed class MonsterSentEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public MonsterSentEvent(Id<BattleParticipant> combatant) { Combatant = combatant; }
+    }
+
+    /// <summary>Un bando debe enviar un relevo: su activo cayó pero aún tiene reservas. PlayerSide
+    /// indica de qué lado (true = jugador). El combate se PAUSA hasta que llegue el reemplazo.</summary>
+    public sealed class ReplacementRequiredEvent : IDomainEvent
+    {
+        public bool PlayerSide { get; }
+        public ReplacementRequiredEvent(bool playerSide) { PlayerSide = playerSide; }
+    }
+
+    /// <summary>Se usó un objeto sobre un combatiente (sus efectos concretos se narran aparte).</summary>
+    public sealed class ItemUsedInBattleEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Target { get; }
+        public ItemUsedInBattleEvent(Id<BattleParticipant> target) { Target = target; }
+    }
+
+    /// <summary>Se capturó al rival. El orquestador lo añadirá al equipo (integración con Party).</summary>
+    public sealed class MonsterCapturedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Target { get; }
+        public MonsterCapturedEvent(Id<BattleParticipant> target) { Target = target; }
+    }
+
+    /// <summary>El intento de captura falló.</summary>
+    public sealed class CaptureFailedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Target { get; }
+        public CaptureFailedEvent(Id<BattleParticipant> target) { Target = target; }
     }
 }

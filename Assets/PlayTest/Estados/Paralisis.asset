@@ -16,9 +16,13 @@ MonoBehaviour:
   displayName: "Par\xE1lisis"
   residualDamagePercent: 0
   progressiveResidual: 0
+  residualHeals: 0
   actionPreventionChance: 25
   clearedOnSwitch: 0
   durationTurns: 0
+  recoveryChancePerTurn: 0
+  selfDamageOnPreventedPercent: 0
+  transformsToStatus: 
   passiveModifiers:
   - statId: speed
     multiplier: 0.5

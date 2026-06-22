@@ -26,8 +26,14 @@ namespace CTEditor.Battle.Domain.Formulas
         /// <summary>¿El tipo del movimiento coincide con un tipo del atacante? (bonus STAB).</summary>
         public bool Stab { get; }
 
+        /// <summary>Multiplicador STAB explícito (Adaptable = 2). 0 = usar el valor por defecto según Stab (1.5/1).</summary>
+        public float StabMultiplier { get; }
+
         /// <summary>Azar inyectado, para crítico y la variación aleatoria. Determinista bajo semilla.</summary>
         public IRng Rng { get; }
+
+        /// <summary>Nivel de crítico del movimiento (0 = normal; mayor = más probabilidad de crítico).</summary>
+        public int CritStage { get; }
 
         public DamageContext(
             int attackerLevel,
@@ -36,7 +42,9 @@ namespace CTEditor.Battle.Domain.Formulas
             int movePower,
             float typeEffectiveness,
             bool stab,
-            IRng rng)
+            IRng rng,
+            int critStage = 0,
+            float stabMultiplier = 0f)
         {
             AttackerLevel = attackerLevel;
             AttackStat = attackStat;
@@ -45,6 +53,20 @@ namespace CTEditor.Battle.Domain.Formulas
             TypeEffectiveness = typeEffectiveness;
             Stab = stab;
             Rng = rng;
+            CritStage = critStage;
+            StabMultiplier = stabMultiplier;
+        }
+    }
+
+    /// <summary>Resultado de la fórmula: el daño y si fue golpe crítico (para narrarlo).</summary>
+    public readonly struct DamageResult
+    {
+        public int Damage { get; }
+        public bool WasCritical { get; }
+        public DamageResult(int damage, bool wasCritical)
+        {
+            Damage = damage;
+            WasCritical = wasCritical;
         }
     }
 
@@ -56,7 +78,7 @@ namespace CTEditor.Battle.Domain.Formulas
     /// </summary>
     public interface IDamageFormula
     {
-        /// <summary>Daño final a aplicar, a partir del contexto ya resuelto.</summary>
-        int Compute(DamageContext context);
+        /// <summary>Daño final (y si fue crítico) a partir del contexto ya resuelto.</summary>
+        DamageResult Compute(DamageContext context);
     }
 }

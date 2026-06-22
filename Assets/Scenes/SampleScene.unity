@@ -1721,6 +1721,7 @@ MonoBehaviour:
   typeChart: {fileID: 11400000, guid: 2035061c9c8d9bb4f90fb782435bacde, type: 2}
   ruleset: {fileID: 11400000, guid: 55355d8f7bd727b4cb7611cd9754bf2f, type: 2}
   statuses: []
+  abilities: []
   playerLevel: 50
   enemyLevel: 50
   seed: 12345

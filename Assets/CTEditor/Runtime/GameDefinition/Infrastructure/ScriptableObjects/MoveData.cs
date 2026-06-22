@@ -43,6 +43,23 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         // categoría Status) con un efecto al 100% es algo como Fuego Fatuo.
         [SerializeField] private MoveEffectData[] secondaryEffects;
 
+        [Tooltip("Golpe múltiple: mínimo y máximo de impactos por turno. 1 y 1 = normal; 2 y 5 = multi-golpe clásico.")]
+        [SerializeField, Min(1)] private int minHits = 1;
+        [SerializeField, Min(1)] private int maxHits = 1;
+
+        [Tooltip("Nivel de crítico: 0 normal, mayor = más probabilidad (0=1/16, 1=1/8, 2=1/4, 3=1/3, 4+=1/2).")]
+        [SerializeField, Min(0)] private int critStage = 0;
+
+        [Tooltip("Dos turnos: None normal; Charge carga y golpea al siguiente; Recharge golpea y recarga.")]
+        [SerializeField] private TwoTurnKind twoTurn = TwoTurnKind.None;
+
+        [Tooltip("¿Hace contacto físico? Lo usan habilidades como Estática o Cuerpo Llama.")]
+        [SerializeField] private bool makesContact = false;
+
+        [Header("Presentacion (lo lee solo la UI; el dominio lo ignora)")]
+        [Tooltip("Segundos que la UI espera para la animacion de este movimiento (0 = sin pausa de animacion).")]
+        [SerializeField] private float animationSeconds = 0f;
+
         public string Id => id;
         public string DisplayName => displayName;
         public ElementTypeData Type => type;
@@ -54,6 +71,12 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public int Priority => priority;
         public MoveTarget Target => target;
         public MoveEffectData[] SecondaryEffects => secondaryEffects;
+        public int MinHits => minHits;
+        public int MaxHits => maxHits;
+        public int CritStage => critStage;
+        public TwoTurnKind TwoTurn => twoTurn;
+        public bool MakesContact => makesContact;
+        public float AnimationSeconds => animationSeconds;
 
         /// <summary>
         /// Sub-ficha de un efecto secundario, editable en el Inspector (Unity sabe dibujar clases
@@ -63,7 +86,12 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public sealed class MoveEffectData
         {
             [Range(0f, 100f)] public float chancePercent = 100f;
-            public string statusId; // id del estado a infligir (debe existir como StatusConditionData)
+            public MoveEffectKind kind = MoveEffectKind.InflictStatus;
+            public EffectTarget target = EffectTarget.Opponent;
+            [StatusIdReference] public string statusId;     // si kind == InflictStatus
+            [Range(0f, 100f)] public float amountPercent;   // si kind == Drain/Recoil/HealSelf (% del daño o de PS máx)
+            public string statStatId;                       // si kind == ChangeStatStage (id de la stat: ej. "attack")
+            [Range(-6, 6)] public int statStages;           // si kind == ChangeStatStage (delta de etapas, p.ej. +2 o -1)
         }
     }
 }

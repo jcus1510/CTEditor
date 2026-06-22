@@ -26,6 +26,9 @@ namespace CTEditor.GameDefinition.Domain.Status
         /// </summary>
         public Percentage ResidualDamagePercent { get; }
 
+        /// <summary>Si true, el "daño" residual en realidad CURA cada turno (regeneración).</summary>
+        public bool ResidualHeals { get; }
+
         /// <summary>Si true, el daño residual escala con los turnos activos (envenenamiento grave).</summary>
         public bool ProgressiveResidual { get; }
 
@@ -41,6 +44,15 @@ namespace CTEditor.GameDefinition.Domain.Status
         /// <summary>Si true, el estado se quita al cambiar de monstruo (estados volátiles).</summary>
         public bool ClearedOnSwitch { get; }
 
+        /// <summary>Probabilidad por turno de recuperarse solo (dormido/confuso despiertan al azar). 0% = solo por duración.</summary>
+        public Percentage RecoveryChancePerTurn { get; }
+
+        /// <summary>Si el estado impide la acción, daño que el portador se hace a sí mismo (% de PS máx). Confusión &gt; 0; dormido = 0.</summary>
+        public Percentage SelfDamageOnPreventedPercent { get; }
+
+        /// <summary>Al terminar, en vez de curarse se CONVIERTE en este estado (somnoliento -&gt; dormido). Null = se cura.</summary>
+        public StatusId? TransformsToStatus { get; }
+
         public StatusConditionDefinition(
             StatusId id,
             string displayName,
@@ -49,7 +61,11 @@ namespace CTEditor.GameDefinition.Domain.Status
             bool clearedOnSwitch = false,
             IReadOnlyList<StatPassiveModifier> passiveModifiers = null,
             bool progressiveResidual = false,
-            int durationTurns = 0)
+            int durationTurns = 0,
+            Percentage recoveryChancePerTurn = default,
+            Percentage selfDamageOnPreventedPercent = default,
+            StatusId? transformsToStatus = null,
+            bool residualHeals = false)
         {
             Id = id;
             DisplayName = string.IsNullOrWhiteSpace(displayName) ? id.Value : displayName;
@@ -58,6 +74,10 @@ namespace CTEditor.GameDefinition.Domain.Status
             ClearedOnSwitch = clearedOnSwitch;
             ProgressiveResidual = progressiveResidual;
             DurationTurns = durationTurns < 0 ? 0 : durationTurns;
+            RecoveryChancePerTurn = recoveryChancePerTurn;
+            SelfDamageOnPreventedPercent = selfDamageOnPreventedPercent;
+            TransformsToStatus = transformsToStatus;
+            ResidualHeals = residualHeals;
             // Copia defensiva: la ficha es inmutable.
             PassiveModifiers = passiveModifiers == null
                 ? Array.Empty<StatPassiveModifier>()

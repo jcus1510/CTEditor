@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de9bc52f7cb4d64bb8017208f82cbc6, type: 3}
+  m_Name: Envenenado
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.StatusConditionData
+  id: Envenenado
+  displayName: Veneno
+  residualDamagePercent: 12.5
+  progressiveResidual: 0
+  residualHeals: 0
+  actionPreventionChance: 0
+  clearedOnSwitch: 0
+  durationTurns: 0
+  recoveryChancePerTurn: 0
+  selfDamageOnPreventedPercent: 0
+  transformsToStatus: 
+  passiveModifiers: []

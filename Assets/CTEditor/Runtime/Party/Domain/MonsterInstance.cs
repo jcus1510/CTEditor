@@ -4,6 +4,7 @@ using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Domain.Species;
+using CTEditor.GameDefinition.Domain.Status;
 
 namespace CTEditor.Party.Domain
 {
@@ -94,5 +95,15 @@ namespace CTEditor.Party.Domain
         }
 
         public void FullRestore() => CurrentHp = MaxHp;
+
+        /// <summary>
+        /// Estado alterado PERSISTENTE (quemado, envenenado...). Null = sano. Lo clásico es que los
+        /// estados no-volátiles sobrevivan al combate; el orquestador lo aplica desde el resultado.
+        /// (Los volátiles tipo confusión no deberían persistir: no se devuelven en el resultado.)
+        /// </summary>
+        public StatusId? Status { get; private set; }
+
+        public void SetStatus(StatusId status) => Status = status;
+        public void ClearStatus() => Status = null;
     }
 }

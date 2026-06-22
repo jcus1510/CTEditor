@@ -4,6 +4,7 @@ using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Species;
 using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Types;
+using CTEditor.GameDefinition.Domain.Abilities;
 using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 
@@ -80,13 +81,18 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
             }
 
             // El constructor de Species hará las copias defensivas y validará (al menos un tipo, etc.).
+            AbilityId? ability = string.IsNullOrWhiteSpace(data.AbilityId)
+                ? (AbilityId?)null
+                : new AbilityId(data.AbilityId);
+
             return new Species(
                 new Id<Species>(data.Id),
                 data.DisplayName,
                 types,
                 baseStats,
                 learnset,
-                evolutions);
+                evolutions,
+                ability);
         }
     }
 }

@@ -18,6 +18,9 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         // una lista editable. Soporta mono, doble o más tipos: la libertad de la que hablamos.
         [SerializeField] private ElementTypeData[] types;
 
+        [Tooltip("Id de la habilidad de la especie (debe existir como AbilityData). Vacío = ninguna.")]
+        [SerializeField] private string abilityId;
+
         // --- STATS BASE ---
         // Aquí está la idea importante: en el dominio los stats son UNIFORMES por clave (StatBlock).
         // Pero pedirle al autor que escriba "hp", "attack"... a mano sería horrible. Así que en la
@@ -43,6 +46,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public string Id => id;
         public string DisplayName => displayName;
         public ElementTypeData[] Types => types;
+        public string AbilityId => abilityId;
         public int Hp => hp;
         public int Attack => attack;
         public int Defense => defense;
