@@ -22,4 +22,16 @@ MonoBehaviour:
   maxPp: 40
   priority: 0
   target: 0
-  secondaryEffects: []
+  secondaryEffects:
+  - chancePercent: 0
+    kind: 5
+    target: 0
+    statusId: Paralisis
+    amountPercent: 11.8
+    statStatId: speed
+    statStages: -2
+  minHits: 1
+  maxHits: 1
+  critStage: 10
+  twoTurn: 1
+  makesContact: 0

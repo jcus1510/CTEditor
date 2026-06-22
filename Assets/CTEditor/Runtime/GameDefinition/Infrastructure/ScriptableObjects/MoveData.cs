@@ -56,6 +56,10 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Tooltip("¿Hace contacto físico? Lo usan habilidades como Estática o Cuerpo Llama.")]
         [SerializeField] private bool makesContact = false;
 
+        [Header("Presentacion (lo lee solo la UI; el dominio lo ignora)")]
+        [Tooltip("Segundos que la UI espera para la animacion de este movimiento (0 = sin pausa de animacion).")]
+        [SerializeField] private float animationSeconds = 0f;
+
         public string Id => id;
         public string DisplayName => displayName;
         public ElementTypeData Type => type;
@@ -72,6 +76,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public int CritStage => critStage;
         public TwoTurnKind TwoTurn => twoTurn;
         public bool MakesContact => makesContact;
+        public float AnimationSeconds => animationSeconds;
 
         /// <summary>
         /// Sub-ficha de un efecto secundario, editable en el Inspector (Unity sabe dibujar clases
