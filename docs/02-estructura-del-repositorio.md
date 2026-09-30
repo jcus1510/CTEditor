@@ -20,6 +20,8 @@ CTEditor/
 │  │  │  ├─ Art/Domain/               imagen de píxeles, corte de tilesets y hojas de personaje (aplicación)
 │  │  │  ├─ Project/                  carpeta de proyecto: proyecto.json, JSON, PNG, catálogo, corte (aplicación)
 │  │  │  ├─ Workspace/                entorno de trabajo: tema, paneles, atajos (aplicación)
+│  │  │  ├─ World/Domain/             el mundo: tilesets, mapas, capas, paso, jugador andando
+│  │  │  ├─ Editing/                  casos de uso del editor: sesión de mapas y de píxeles
 │  │  ├─ App/                        la APLICACIÓN CTEditor (UI Toolkit): ventana, paneles, recursos, corte ([20](20-aplicacion.md))
 │  │  │  └─ GameContracts/            contratos entre contextos (IPartyCommands, IInventoryCommands)
 │  │  ├─ Bootstrap/                   escena y juego: GameBootstrap, ContentLibrary, BattleScreen, BattleLab,

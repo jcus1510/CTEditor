@@ -61,12 +61,15 @@ namespace CTEditor.App
             };
             ApplyScale(_shell.Workspace.UiScale);
             ApplyClearColor();
+            // The main camera only clears the screen: maps are drawn by their own cameras into textures.
+            if (Camera.main != null) Camera.main.cullingMask = 0;
         }
 
         private void ApplyScale(float userScale)
         {
             float dpi = Screen.dpi > 0 ? Screen.dpi / 96f : 1f;
             _panel.scale = Mathf.Clamp(userScale * dpi, 0.5f, 4f);
+            if (_shell != null) _shell.PixelsPerPoint = _panel.scale;
             ApplyClearColor();
         }
 
@@ -98,6 +101,7 @@ namespace CTEditor.App
 
         private void Update()
         {
+            _shell?.Tick(Time.unscaledDeltaTime);
 #if CTEDITOR_INPUT_SYSTEM
             // Function keys work even when no field has the keyboard focus (UI Toolkit only sends keys to a focused element).
             var kb = Keyboard.current;

@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using CTEditor.Art.Domain;
+using CTEditor.Editing;
 using CTEditor.Project;
 using CTEditor.Workspace;
 
@@ -50,6 +52,20 @@ namespace CTEditor.App
         public ProjectSettings Project { get; private set; }
         public bool HasProject => Project != null;
 
+        /// <summary>Casos de uso del proyecto abierto (null sin proyecto). Los paneles los comparten.</summary>
+        public MapEditorSession Maps { get; private set; }
+        public PixelEditorSession Pixels { get; private set; }
+        /// <summary>Qué editor reciben deshacer, rehacer y las herramientas: «mapa» o «retoque» (el último que se tocó).</summary>
+        public string ActiveEditor { get; set; } = "mapa";
+        /// <summary>Píxeles físicos por punto de la interfaz (escala del usuario × ppp): para texturas nítidas.</summary>
+        public float PixelsPerPoint { get; set; } = 1f;
+        public bool IsPlaying => _play != null;
+
+        /// <summary>Cada fotograma (segundos desde el anterior).</summary>
+        public event Action<float> Ticked;
+        /// <summary>Empieza o termina el modo juego.</summary>
+        public event Action<bool> PlayingChanged;
+
         /// <summary>Cambió la escala de la interfaz (AppRoot ajusta el panel).</summary>
         public Action<float> ScaleChanged;
         /// <summary>Pantalla completa ↔ ventana (lo hace AppRoot).</summary>
@@ -71,6 +87,8 @@ namespace CTEditor.App
         private IVisualElementScheduledItem _saveSoon;
         private FileSystemWatcher _watcher;
         private volatile bool _assetsDirty;
+        private PlayScreen _play;
+        private IVisualElementScheduledItem _autosave;
 
         public VisualElement DragLayer => _dragLayer;
 
@@ -99,6 +117,7 @@ namespace CTEditor.App
         /// <summary>Rebuilds the whole interface (after a theme, font or project change).</summary>
         public void Rebuild()
         {
+            StopPlay();
             Ui.Theme = Workspace.Theme;
             Ui.FontSize = Workspace.FontSize;
             Ui.InvalidateColors();
@@ -177,8 +196,10 @@ namespace CTEditor.App
                 var problems = settings.Problems();
                 if (problems.Count > 0) { Error(string.Join(" ", problems)); return false; }
                 ProjectLayout.CreateFolders(root);
+                CloseSessions();
                 ProjectRoot = root;
                 Project = settings;
+                OpenSessions();
                 Workspace.NoteRecentProject(root);
                 SaveWorkspaceNow();
                 StartWatching();
@@ -218,6 +239,9 @@ namespace CTEditor.App
 
         public void CloseProject()
         {
+            StopPlay();
+            SaveEverything(quiet: true);
+            CloseSessions();
             StopWatching();
             ProjectRoot = null;
             Project = null;
@@ -225,16 +249,148 @@ namespace CTEditor.App
             ProjectChanged?.Invoke();
         }
 
-        public void SaveProject()
+        public void SaveProject() => SaveEverything(quiet: false);
+
+        /// <summary>Guarda el proyecto, los mapas, las propiedades de tiles y la imagen que se esté retocando.</summary>
+        public void SaveEverything(bool quiet)
         {
             if (!HasProject) return;
             try
             {
                 ProjectFile.Save(ProjectRoot, Project);
+                Maps?.Save();
+                if (Pixels != null && Pixels.IsDirty) Pixels.Save();
                 SaveWorkspaceNow();
-                Info("Guardado.");
+                if (!quiet) Success("Guardado.");
             }
             catch (Exception e) { Error("No se pudo guardar: " + e.Message); }
+        }
+
+        private void OpenSessions()
+        {
+            Maps = new MapEditorSession(new JsonMapRepository(ProjectRoot), new FolderTilesetRepository(ProjectRoot));
+            Maps.LoadPlayerStart(Project.StartMap, Project.StartX, Project.StartY);
+            Maps.Message += OnSessionMessage;
+            Maps.DirtyChanged += ScheduleAutosave;
+            Maps.PlayerStartChanged += OnPlayerStartChanged;
+            try { Maps.LoadTree(); }
+            catch (Exception e) { Error("No se pudo leer el árbol de mapas: " + e.Message); }
+            var first = !string.IsNullOrEmpty(Project.StartMap) && Maps.Tree.Contains(Project.StartMap)
+                ? Project.StartMap
+                : Maps.Tree.Walk().Select(w => w.entry.Id).FirstOrDefault();
+            if (first != null) Maps.OpenMap(first);
+
+            Pixels = new PixelEditorSession(new PngImageRepository());
+            Pixels.Message += OnSessionMessage;
+        }
+
+        private void CloseSessions()
+        {
+            if (Maps != null)
+            {
+                Maps.Message -= OnSessionMessage;
+                Maps.DirtyChanged -= ScheduleAutosave;
+                Maps.PlayerStartChanged -= OnPlayerStartChanged;
+            }
+            if (Pixels != null) Pixels.Message -= OnSessionMessage;
+            Maps = null;
+            Pixels = null;
+        }
+
+        private void OnSessionMessage(string text, string level) => Note(text, level);
+
+        private void OnPlayerStartChanged()
+        {
+            var (map, x, y) = Maps.PlayerStart;
+            Project.StartMap = map;
+            Project.StartX = x;
+            Project.StartY = y;
+            try { ProjectFile.Save(ProjectRoot, Project); }
+            catch (Exception e) { Error("No se pudo guardar el inicio: " + e.Message); }
+            Info($"Inicio del jugador: {map} ({x}, {y}).");
+        }
+
+        /// <summary>Maps save themselves a moment after the last change (nothing is lost if the program closes).</summary>
+        private void ScheduleAutosave()
+        {
+            if (Maps == null || !Maps.IsDirty) return;
+            _autosave?.Pause();
+            _autosave = Root.schedule.Execute(() =>
+            {
+                try { Maps?.Save(); }
+                catch (Exception e) { Error("No se pudo guardar el mapa: " + e.Message); }
+            });
+            _autosave.ExecuteLater(1500);
+        }
+
+        public void Tick(float dt) => Ticked?.Invoke(dt);
+
+        /// <summary>Opens an image in the pixel editor (optionally focused on one tile) and shows its panel.</summary>
+        public void OpenRetouch(string fullPath, PixelRect? tile = null, int tileWidth = 0, int tileHeight = 0)
+        {
+            if (Pixels == null) return;
+            if (Pixels.IsDirty && Pixels.Path != fullPath) Pixels.Save();
+            var slice = SliceFile.LoadFor(fullPath);
+            int tw = tileWidth > 0 ? tileWidth : slice?.Settings.TileWidth ?? 0, th = tileHeight > 0 ? tileHeight : slice?.Settings.TileHeight ?? 0;
+            bool ok = tile.HasValue ? Pixels.OpenTile(fullPath, tile.Value, tw, th) : Pixels.Open(fullPath, tw, th);
+            if (!ok) return;
+            ActiveEditor = "retoque";
+            if (!Workspace.Layout.IsOpen(PanelCatalog.PixelEditor))
+            {
+                Workspace.Layout.Open(PanelCatalog.PixelEditor, PanelCatalog.Map);
+                SetLayout(Workspace.Layout);
+            }
+            else
+            {
+                Workspace.Layout.Focus(PanelCatalog.PixelEditor);
+                _dock?.Refresh();
+            }
+        }
+
+        // ── Play ─────────────────────────────────────────────────────────────────────────────────
+
+        /// <summary>▶ Jugar: desde el inicio del proyecto (o desde el mapa y casilla que se den).</summary>
+        public void StartPlay(string mapId = null, int x = -1, int y = -1)
+        {
+            if (!HasProject || Maps == null || IsPlaying) return;
+            if (mapId == null)
+            {
+                (mapId, x, y) = Maps.PlayerStart;
+                if (string.IsNullOrEmpty(mapId) || !Maps.Tree.Contains(mapId))
+                {
+                    if (Maps.Map == null) { Warn("Crea un mapa antes de jugar (panel Mapas → Nuevo mapa)."); return; }
+                    Warn("Aún no hay inicio del jugador: se empieza en el centro del mapa abierto. Ponlo con la herramienta «Inicio».");
+                    (mapId, x, y) = (Maps.Map.Id, Maps.Map.Width / 2, Maps.Map.Height / 2);
+                }
+            }
+            CloseMenu();
+            try { Maps.Save(); }
+            catch (Exception e) { Error("No se pudo guardar antes de jugar: " + e.Message); }
+            try
+            {
+                _play = new PlayScreen(this, mapId, x, y);
+            }
+            catch (Exception e)
+            {
+                _play = null;
+                Error("No se pudo empezar a jugar: " + e.Message);
+                return;
+            }
+            _screen.Show(false);
+            Root.Insert(Root.IndexOf(_screen) + 1, _play);
+            _play.Focus();
+            PlayingChanged?.Invoke(true);
+        }
+
+        public void StopPlay()
+        {
+            if (_play == null) return;
+            _play.Dispose();
+            _play.RemoveFromHierarchy();
+            _play = null;
+            _screen.Show(true);
+            Root.Focus();
+            PlayingChanged?.Invoke(false);
         }
 
         public string GraphicsFolder => HasProject ? Path.Combine(ProjectRoot, ProjectLayout.GraphicsFolder) : null;
@@ -271,11 +427,14 @@ namespace CTEditor.App
         {
             if (!_assetsDirty) return;
             _assetsDirty = false;
+            Maps?.ReloadTilesets();
             AssetsChanged?.Invoke();
         }
 
         public void Shutdown()
         {
+            StopPlay();
+            SaveEverything(quiet: true);
             StopWatching();
             SaveWorkspaceNow();
         }
@@ -514,16 +673,43 @@ namespace CTEditor.App
             {
                 case "guardar": SaveProject(); break;
                 case "pantalla_completa": ToggleFullscreen?.Invoke(); break;
-                case "jugar":
+                case "jugar": if (IsPlaying) StopPlay(); else StartPlay(); break;
                 case "probar_aqui":
-                case "depurador":
-                    Info("Jugar llega en la fase 3, junto al editor de mapas.");
+                    if (IsPlaying) { StopPlay(); break; }
+                    if (Maps?.Map == null) { Warn("Abre un mapa para probar desde él."); break; }
+                    var c = Maps.Cursor ?? (Maps.Map.Width / 2, Maps.Map.Height / 2);
+                    StartPlay(Maps.Map.Id, c.x, c.y);
                     break;
+                case "depurador":
+                    if (IsPlaying) _play.ToggleDebug();
+                    else Info("El depurador se abre durante el juego (F9 mientras juegas).");
+                    break;
+                case "deshacer":
+                    if (ActiveEditor == "retoque" && Pixels?.Image != null) Pixels.Undo();
+                    else Maps?.Undo();
+                    break;
+                case "rehacer":
+                    if (ActiveEditor == "retoque" && Pixels?.Image != null) Pixels.Redo();
+                    else Maps?.Redo();
+                    break;
+                case "lapiz": Tool(MapTool.Pencil, PixelTool.Pencil); break;
+                case "relleno": Tool(MapTool.Fill, PixelTool.Fill); break;
+                case "rectangulo": Tool(MapTool.Rectangle, PixelTool.Rectangle); break;
+                case "cuentagotas": Tool(MapTool.Picker, PixelTool.Picker); break;
+                case "goma": Tool(MapTool.Eraser, PixelTool.Eraser); break;
+                case "capa_siguiente": if (Maps?.Map != null) Maps.SetActiveLayer(Maps.ActiveLayer + 1); break;
+                case "capa_anterior": if (Maps?.Map != null) Maps.SetActiveLayer(Maps.ActiveLayer - 1); break;
                 case "buscar": Info("La búsqueda en todo el proyecto llegará con los editores de mapas y eventos."); break;
                 default:
                     ActionRequested?.Invoke(id);
                     break;
             }
+        }
+
+        private void Tool(MapTool map, PixelTool pixel)
+        {
+            if (ActiveEditor == "retoque" && Pixels?.Image != null) Pixels.SetTool(pixel);
+            else Maps?.SetTool(map);
         }
 
         /// <summary>Actions that belong to a panel (tools, grid...): the panels listen here.</summary>
@@ -532,6 +718,7 @@ namespace CTEditor.App
         private void OnKeyDown(KeyDownEvent e)
         {
             if (e.keyCode == KeyCode.None) return;
+            if (IsPlaying && e.keyCode != KeyCode.F5 && e.keyCode != KeyCode.F9 && e.keyCode != KeyCode.F11) return;
             if (e.keyCode == KeyCode.Escape)
             {
                 if (IsMenuOpen) { CloseMenu(); e.StopPropagation(); return; }

@@ -74,4 +74,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   datos empaquetados con cifrado opcional; después proyecto Unity). `Assets/CTEditor/App` con UI Toolkit: ventana
   única a pantalla completa, inicio, menús, paneles acoplables, Recursos, asistente de corte, explorador,
   personalización; `Tools/compilar_app` para compilarla sin Unity.
+- **Revisión DDD + fases 3 y 4**: `World.Domain`, `Editing` (casos de uso), repositorios, deshacer común y registros
+  extensibles ([03](03-arquitectura.md)); editor de mapas (árbol, herramientas, capas, propiedades de tile, inicio,
+  autoguardado), ▶ Jugar / Probar aquí con el jugador andando, editor de píxeles Retoque. Tests `MapEditingTests`,
+  `PixelEditingTests`.
 - **Documentación** completa por capítulos (esta carpeta).

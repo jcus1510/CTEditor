@@ -13,7 +13,7 @@ como ventanas del editor de Unity. Plan completo y decisiones: [PROPUESTA_APLICA
 - El entorno de trabajo de cada usuario se guarda en `Application.persistentDataPath/entorno.json` (menú CTEditor →
   Aplicación → Abrir la carpeta del entorno de trabajo).
 
-## Qué hay (fase 2)
+## Qué hay (fases 2, 3 y 4)
 
 | Pieza | Archivo | Qué hace |
 |---|---|---|
@@ -27,7 +27,23 @@ como ventanas del editor de Unity. Plan completo y decisiones: [PROPUESTA_APLICA
 | Explorador | `FolderBrowser.cs` | Elegir carpeta o archivo dentro de la aplicación (no hay diálogo nativo): accesos, unidades, subir, ruta a mano, nueva carpeta; marca los proyectos de CTEditor. |
 | Entorno | `SettingsDialog.cs` | Tema y cada color, escala y letra, pantalla completa, distribuciones (de fábrica y propias) y atajos. |
 | Estilo | `Ui.cs`, `Textures.cs` | Controles con el tema aplicado en código (sin hojas de estilo aparte); texturas nítidas, tiras para imágenes muy altas, miniaturas reducidas en memoria. |
-| Resto de paneles | `Panels/PanelRegistry.cs` | Mapa, Mapas, Tiles, Capas, Propiedades, Juego (fase 3), Retoque (4), Eventos (7), Base de datos (10): de momento explican cuándo llegan. Avisos: el registro. |
+| Registro de paneles | `Panels/PanelRegistry.cs` | `PanelRegistry.Register(id, fábrica)`: cada panel se registra; un módulo nuevo añade el suyo sin tocar nada. Eventos (fase 7) y Base de datos (fase 10) aún explican cuándo llegan. |
+| Mapas | `Panels/MapTreePanel.cs` | Árbol de mapas como RPG Maker: nuevo mapa (nombre, 20 × 15 por defecto, tileset, dónde), abrir, cambiar el nombre (doble clic), mover dentro de otro o a la raíz, borrar; marca el mapa de inicio y los que no se han guardado (*). |
+| Mapa | `Panels/MapPanel.cs` | El mapa con el **mismo renderizador que el juego** (Tilemap de Unity en una textura). Herramientas: lápiz (con sello de varios tiles), rectángulo, relleno, goma, cuentagotas, inicio del jugador. Clic derecho = coger tiles del mapa; botón central o Alt = mover; rueda = zoom al ratón; Ctrl + clic = retocar ese tile. Rejilla, capa activa, atenuar las demás, «Probar aquí». |
+| Tiles | `Panels/TilesPanel.cs` | Paleta del tileset (clic o arrastrar = sello) y **propiedades pintadas encima** como en RPG Maker XP: paso (centro = todo, borde = un lado), prioridad 0-5, terreno (hierba, agua…), arbusto, mostrador. Arrastrar aplica a varios; se deshace con Ctrl+Z. |
+| Capas | `Panels/MapTreePanel.cs` (`LayersPanel`) | Capas de arriba abajo: ver, bloquear, opacidad, añadir, quitar, subir, bajar, cambiar el nombre. |
+| Propiedades | `Panels/InspectorPanel.cs` | Nombre, tamaño con ancla (por dónde crece), tileset, música, bici, exterior; inicio del jugador y su hoja de personaje. |
+| Retoque | `Panels/RetouchPanel.cs` | Editor de píxeles: lápiz, goma, relleno, línea, rectángulo (borde o relleno), cuentagotas, reemplazar color; grosor; colores principal/secundario, código, paleta de la imagen o del tile, recientes; rejilla de píxeles y de tiles; **modo tile** con vista 3 × 3; guardar (el mapa y el juego se actualizan solos). |
+| Juego | `Play/PlayScreen.cs` | **▶ Jugar (F5) / Probar aquí (Ctrl+F5)**: el jugador anda con las reglas de paso de RPG Maker XP, animado con su hoja de personaje; cámara que le sigue; resolución del proyecto ampliada en múltiplos exactos; recarga los gráficos si cambian; F9 depurador (casilla, terreno, lados libres, atravesar paredes); Esc vuelve al editor tal como estaba. |
+| Dibujo | `Rendering/MapRenderer.cs`, `Rendering/TilesetAtlas.cs` | Cada capa = dos tilemaps (debajo / encima del jugador según la prioridad del tile); cámara propia en su capa de Unity; tiras para tilesets muy altos. |
+
+## Cómo se hace un mapa (flujo)
+
+1. **Recursos** → Importar (o copiar) el tileset en `graficos/tilesets` → **Cortar** (32 px).
+2. **Mapas** → Nuevo mapa (elige el tileset).
+3. **Tiles** → elige un tile o un bloque → pinta en **Mapa** (B lápiz, U rectángulo, G relleno, E goma, I cuentagotas).
+4. **Tiles** → modo Paso / Prioridad / Terreno para decir por dónde se pasa, qué va encima del jugador y dónde hay hierba.
+5. **Propiedades** → Colocar el inicio → **Jugar (F5)**. Esc para volver. Todo se guarda solo.
 
 ## Reglas
 

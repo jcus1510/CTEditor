@@ -1,38 +1,60 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine.UIElements;
 using CTEditor.Workspace;
 
 namespace CTEditor.App
 {
-    /// <summary>Crea el contenido de cada panel por su id. Los que aún no existen explican en qué fase llegan.</summary>
+    /// <summary>
+    /// Crea el contenido de cada panel por su id. Es un REGISTRO: un módulo nuevo añade su panel con Register (y su nombre
+    /// con PanelCatalog.Register) sin tocar este archivo. Los que aún no existen explican en qué fase llegan.
+    /// </summary>
     public static class PanelRegistry
     {
+        private static readonly Dictionary<string, Func<AppShell, VisualElement>> Factories = new Dictionary<string, Func<AppShell, VisualElement>>();
+
+        static PanelRegistry()
+        {
+            Register(PanelCatalog.Assets, s => new AssetsPanel(s));
+            Register(PanelCatalog.Messages, s => new MessagesPanel(s));
+            Register(PanelCatalog.Map, s => new MapPanel(s));
+            Register(PanelCatalog.MapTree, s => new MapTreePanel(s));
+            Register(PanelCatalog.Palette, s => new TilesPanel(s));
+            Register(PanelCatalog.Layers, s => new LayersPanel(s));
+            Register(PanelCatalog.Inspector, s => new InspectorPanel(s));
+            Register(PanelCatalog.PixelEditor, s => new RetouchPanel(s));
+            Register(PanelCatalog.Game, s => GamePanel(s));
+            Register(PanelCatalog.Events, _ => Placeholder("Eventos", "Eventos en lista o en grafo de nodos, con recetas y el mapa de la historia.", "Fase 7"));
+            Register(PanelCatalog.Database, _ => Placeholder("Base de datos", "Especies, movimientos, objetos, habilidades, entrenadores… De momento siguen en los editores de Unity.", "Fase 10"));
+            ShortcutMap.RegisterAction(new ShortcutAction("linea", "Herramienta: línea (retoque)", "L"));
+        }
+
+        public static void Register(string panelId, Func<AppShell, VisualElement> factory)
+        {
+            if (string.IsNullOrWhiteSpace(panelId)) throw new ArgumentException("El panel necesita un id.", nameof(panelId));
+            Factories[panelId] = factory ?? throw new ArgumentNullException(nameof(factory));
+        }
+
         public static VisualElement Create(string panelId, AppShell shell)
         {
-            switch (panelId)
+            if (!shell.HasProject) return Placeholder(PanelCatalog.LabelOf(panelId), "Abre un proyecto.", "");
+            try
             {
-                case PanelCatalog.Assets: return new AssetsPanel(shell);
-                case PanelCatalog.Messages: return new MessagesPanel(shell);
-                case PanelCatalog.Map:
-                    return Placeholder("Mapa", "Aquí se pintarán los mapas: capas ilimitadas, pincel, relleno, paso y terreno, con «Probar aquí».", "Fase 3");
-                case PanelCatalog.MapTree:
-                    return Placeholder("Mapas", "El árbol de mapas del juego (carpetas, orden, mapa inicial).", "Fase 3");
-                case PanelCatalog.Palette:
-                    return Placeholder("Tiles", "La paleta de tiles del tileset del mapa. Corta antes tus tilesets desde el panel Recursos.", "Fase 3");
-                case PanelCatalog.Layers:
-                    return Placeholder("Capas", "Capas del mapa: visibles, bloqueadas, opacidad y orden.", "Fase 3");
-                case PanelCatalog.Inspector:
-                    return Placeholder("Propiedades", "Lo que tengas seleccionado: un mapa, un tile, un NPC o un evento.", "Fase 3");
-                case PanelCatalog.Events:
-                    return Placeholder("Eventos", "Eventos en lista o en grafo de nodos, con recetas y el mapa de la historia.", "Fase 7");
-                case PanelCatalog.PixelEditor:
-                    return Placeholder("Retoque", "Editor de píxeles para corregir tiles y sprites, con modo tile y retoque desde el mapa.", "Fase 4");
-                case PanelCatalog.Game:
-                    return Placeholder("Juego", "El juego corriendo dentro de la aplicación, con los cambios en caliente.", "Fase 3");
-                case PanelCatalog.Database:
-                    return Placeholder("Base de datos", "Especies, movimientos, objetos, habilidades, entrenadores… De momento siguen en los editores de Unity.", "Fase 10");
-                default:
-                    return Placeholder(PanelCatalog.LabelOf(panelId), "Panel desconocido.", "");
+                return Factories.TryGetValue(panelId, out var f) ? f(shell) : Placeholder(PanelCatalog.LabelOf(panelId), "Panel desconocido.", "");
             }
+            catch (Exception e)
+            {
+                shell.Error($"No se pudo abrir el panel «{PanelCatalog.LabelOf(panelId)}»: {e.Message}");
+                return Placeholder(PanelCatalog.LabelOf(panelId), "Este panel falló al abrirse (ver Avisos).", "");
+            }
+        }
+
+        private static VisualElement GamePanel(AppShell shell)
+        {
+            var box = Placeholder("Juego", "El juego se abre a toda la ventana, con la resolución del proyecto ampliada en píxeles exactos. Esc vuelve aquí.", "");
+            box.With(Ui.Button("Jugar desde el inicio", () => shell.StartPlay(), Ui.ButtonKind.Primary),
+                Ui.Button("Probar desde el ratón (mapa)", () => shell.RunAction("probar_aqui")));
+            return box;
         }
 
         private static VisualElement Placeholder(string title, string text, string phase)

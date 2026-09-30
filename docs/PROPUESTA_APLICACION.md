@@ -1,6 +1,6 @@
 # Propuesta — Aplicación CTEditor: mapas, NPC, eventos, recursos y editor de píxeles
 
-> Estado: **EN CURSO** (fases 0-1-2 hechas; la aplicación se describe en [20](20-aplicacion.md)). Decisiones del autor: el editor será una **aplicación propia** (no solo
+> Estado: **EN CURSO** (fases 0 a 4 hechas; la aplicación se describe en [20](20-aplicacion.md)). Decisiones del autor: el editor será una **aplicación propia** (no solo
 > herramientas dentro de Unity); las generaciones quedan en pausa; eventos **por nodos y grafos** además de lista;
 > **editar y jugar al instante**; **editor de píxeles** incorporado (tipo Aseprite) para retocar; **lectura de carpetas**
 > y **corte de tilesets** con el tamaño de tile que se elija. La protección del código (DLL) no interesa por ahora. Más
@@ -202,4 +202,9 @@ ficha con **línea de visión** dibujada, plantillas (enfermera, tendero, profes
 - **Fase 2 (aplicación)**: `Assets/CTEditor/App` — ventana única, pantalla de inicio, menús, paneles acoplables con
   separadores y pestañas arrastrables, panel Recursos, asistente de corte visual (con vista previa andando para
   personajes), explorador de carpetas y personalización del entorno. Ver [20](20-aplicacion.md).
-- **Siguiente**: pintar las propiedades de tile sobre el tileset y la fase 3 (editor de mapas y ▶ Jugar).
+- **Revisión DDD** ([03](03-arquitectura.md)): `World.Domain` (mundo), `Editing` (casos de uso), repositorios en el
+  dominio implementados en `Project`, deshacer común en `SharedKernel`, registros extensibles.
+- **Fase 3**: árbol de mapas, editor de mapas con herramientas y deshacer, propiedades de tile pintadas sobre el tileset,
+  capas, propiedades del mapa, inicio del jugador, autoguardado y **▶ Jugar / Probar aquí** con el jugador andando.
+- **Fase 4**: editor de píxeles Retoque con modo tile y retoque desde el mapa, Tiles y Recursos.
+- **Siguiente**: fase 5 (conexiones entre mapas, teletransportes, zonas de encuentro pintadas, vista del mundo).

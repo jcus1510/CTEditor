@@ -4,7 +4,8 @@
 
 0. **Ahora: la aplicación CTEditor** ([PROPUESTA_APLICACION](PROPUESTA_APLICACION.md)): aplicación propia hecha con
    Unity; recursos y corte de tilesets; editor de mapas con ▶ jugar al instante y cambios en caliente; editor de
-   píxeles; NPC; eventos en lista y en grafo de nodos. Fases 0-1-2 hechas (la aplicación ya abre: [20](20-aplicacion.md)). **Las generaciones quedan en pausa**
+   píxeles; NPC; eventos en lista y en grafo de nodos. Fases 0 a 4 hechas ([20](20-aplicacion.md)); siguiente: fase 5
+   (conexiones, teletransportes, zonas de encuentro, vista del mundo). **Las generaciones quedan en pausa**
    (los puntos 2-3 siguen apuntados). Más adelante: herramientas de Unity para profesionales.
 
 1. ~~Habilidades por bloques~~ ✅ (hecho: [09](09-efectos-por-bloques.md)).

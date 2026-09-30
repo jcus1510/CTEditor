@@ -45,9 +45,20 @@ namespace CTEditor.Editing
         public TileStamp Stamp { get; private set; } = TileStamp.Single(0);
         public CommandHistory History { get; } = new CommandHistory();
         public TerrainCatalog Terrains { get; set; } = TerrainCatalog.Essentials();
+        /// <summary>Ver las capas que no son la activa atenuadas (solo en el editor).</summary>
+        public bool DimOtherLayers { get; private set; }
+
+        public void SetDimOtherLayers(bool dim)
+        {
+            DimOtherLayers = dim;
+            SelectionChanged?.Invoke();
+        }
 
         /// <summary>Rectángulo que se está arrastrando (rectángulo o cuentagotas), en casillas; null si no hay.</summary>
         public (int x0, int y0, int x1, int y1)? DragRect { get; private set; }
+
+        /// <summary>Casilla bajo el ratón en el mapa abierto (para «Probar aquí» y la barra de estado).</summary>
+        public (int x, int y)? Cursor { get; set; }
 
         /// <summary>Inicio del jugador (mapa y casilla). Lo guarda el proyecto.</summary>
         public (string map, int x, int y) PlayerStart { get; private set; }
@@ -150,6 +161,13 @@ namespace CTEditor.Editing
         }
 
         // ── Open / save ──────────────────────────────────────────────────────────────────────────
+
+        /// <summary>Un mapa por id (cargado si hace falta; null si no existe). Lo usa el modo juego.</summary>
+        public MapDefinition Find(string id)
+        {
+            try { return Get(id); }
+            catch (Exception) { return null; }
+        }
 
         private MapDefinition Get(string id)
         {
