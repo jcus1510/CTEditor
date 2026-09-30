@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b4cfbe12bbb2843911d239033ad44c, type: 3}
+  m_Name: bosque_verde
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.EncounterZoneData
+  id: bosque_verde
+  displayName: Bosque Verde
+  entries:
+  - species: {fileID: 11400000, guid: 96279475b3dc3c94c955e0e6c1fad621, type: 2}
+    minLevel: 3
+    maxLevel: 5
+    weight: 35
+  - species: {fileID: 11400000, guid: c96956f6c0532084b9ffc5adb3705e97, type: 2}
+    minLevel: 3
+    maxLevel: 5
+    weight: 35
+  - species: {fileID: 11400000, guid: c1f4e757011ee6140a15f30c4c946459, type: 2}
+    minLevel: 4
+    maxLevel: 6
+    weight: 10
+  - species: {fileID: 11400000, guid: 2d7a3a21e7185cd42bdd7974749472aa, type: 2}
+    minLevel: 4
+    maxLevel: 6
+    weight: 10
+  - species: {fileID: 11400000, guid: d148172c1ce1a0947a931dda22f9f42e, type: 2}
+    minLevel: 3
+    maxLevel: 5
+    weight: 5
+  - species: {fileID: 11400000, guid: 48137f4a5ce288d4f81b8268482104cb, type: 2}
+    minLevel: 4
+    maxLevel: 6
+    weight: 5

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baed9b190ffa9e84db024c867a8ae03b, type: 3}
+  m_Name: equipo_prueba_50
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TeamPresetData
+  id: equipo_prueba_50
+  displayName: Equipo de prueba (Nv. 50)
+  description: 'Seis monstruos a nivel 50 con IVs perfectos y una mochila completa:
+    para probarlo todo.'
+  members:
+  - species: {fileID: 11400000, guid: 90db4dc28ed5d35438001cded61f1cf6, type: 2}
+    level: 50
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: 31
+    nickname: 
+  - species: {fileID: 11400000, guid: 2ca17a2317036b2469359a38a07a614a, type: 2}
+    level: 50
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: 31
+    nickname: 
+  - species: {fileID: 11400000, guid: f7bdd799cc1a6484ab6addd4b51b9f78, type: 2}
+    level: 50
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: 31
+    nickname: 
+  - species: {fileID: 11400000, guid: d148172c1ce1a0947a931dda22f9f42e, type: 2}
+    level: 50
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: 31
+    nickname: 
+  - species: {fileID: 11400000, guid: e82dc14f3f7028040bd4c208195566b2, type: 2}
+    level: 50
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: 31
+    nickname: 
+  - species: {fileID: 11400000, guid: bc0caf2b3ee63b540acec34fe72ee456, type: 2}
+    level: 50
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: 31
+    nickname: 
+  money: 50000
+  items:
+  - itemId: hyper_potion
+    quantity: 10
+  - itemId: full_restore
+    quantity: 5
+  - itemId: revive
+    quantity: 5
+  - itemId: full_heal
+    quantity: 5
+  - itemId: ether
+    quantity: 5
+  - itemId: poke_ball
+    quantity: 20
+  - itemId: great_ball
+    quantity: 10
+  - itemId: ultra_ball
+    quantity: 10
+  - itemId: master_ball
+    quantity: 3
+  - itemId: x_attack
+    quantity: 3
