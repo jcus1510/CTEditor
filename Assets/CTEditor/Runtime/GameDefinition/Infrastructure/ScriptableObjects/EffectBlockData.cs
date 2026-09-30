@@ -28,10 +28,4 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Min(0)] public int maxPerBattle;
     }
 
-    /// <summary>
-    /// Marks an OLD field kept only so existing assets can be converted to effect blocks. Hidden in the editor and left
-    /// out of the Excel sheets.
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Field)]
-    public sealed class LegacyFieldAttribute : Attribute { }
 }

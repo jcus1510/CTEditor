@@ -280,24 +280,6 @@ namespace CTEditor.GameDefinition.Editor.Csv
                         try { blocks = EffectText.Parse(v); }
                         catch (FormatException e) { throw new CsvCellException(e.Message); }
                         ItemEffectsEditing.SetBlocks(so, blocks);
-                    })
-                  // Compatibilidad con los packs: «captura» es el multiplicador de la bola (un bloque «al usarlo: captura»).
-                  .Col("captura", "Multiplicador de captura si es una bola (0 = no es bola). Es lo mismo que «al_usar: captura xN» en efectos.",
-                    d => { var b = ItemEffectsEditing.Blocks(d).FirstOrDefault(x => x.Trigger == EffectTrigger.OnUse && x.Action == EffectAction.Catch); return b == null ? "0" : EffectText.N(b.Amount); },
-                    (so, v, c) =>
-                    {
-                        if (string.IsNullOrWhiteSpace(v)) return;
-                        if (!CsvTable.TryNumber(v, out float mult) || mult < 0) throw new CsvCellException($"'{v}' no es un multiplicador de captura válido.");
-                        var arr = so.FindProperty("effects");
-                        int found = -1;
-                        for (int i = 0; i < arr.arraySize; i++)
-                        {
-                            var el = arr.GetArrayElementAtIndex(i);
-                            if (el.FindPropertyRelative("trigger").intValue == (int)EffectTrigger.OnUse && el.FindPropertyRelative("action").intValue == (int)EffectAction.Catch) { found = i; break; }
-                        }
-                        if (mult <= 0f) { if (found >= 0) arr.DeleteArrayElementAtIndex(found); return; }
-                        if (found < 0) { found = arr.arraySize; arr.arraySize++; EffectText.Write(arr.GetArrayElementAtIndex(found), new EffectBlock(EffectTrigger.OnUse, EffectAction.Catch, mult)); }
-                        else arr.GetArrayElementAtIndex(found).FindPropertyRelative("amount").floatValue = mult;
                     });
             return schema;
         }

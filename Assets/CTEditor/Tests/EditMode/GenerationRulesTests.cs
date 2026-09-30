@@ -49,7 +49,7 @@ namespace CTEditor.Tests.EditMode
         private static readonly ItemDefinition[] Items =
         {
             new ItemDefinition("choice_band", "choice_band", ItemCategory.Held,
-                extras: new ItemExtras { StatMultipliers = new[] { new ConditionalStat(StatId.Attack, 1.5f) } }),
+                effects: new[] { TestItems.Stat("attack", 1.5f) }),
         };
 
         private static TurnResolver Resolver(GenerationRules g) => new TurnResolver(

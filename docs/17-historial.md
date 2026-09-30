@@ -44,5 +44,10 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   seguía con el código viejo. Cambiado a `DrawDottedLine` y creada `Tools/compilar_unity` (compila y prueba TODO sin
   Unity). La detección de CSV por cabeceras ya no adivina si la mayoría de columnas no encajan.
 - **Objetos por EFECTOS** (bloques «cuándo / si / qué»): dominio, motor, datos, editor con tarjetas y desplegables,
-  plantillas por piezas, Excel `efectos`, conversión automática de objetos antiguos, regla «las MT se gastan». Ver [09](09-efectos-por-bloques.md).
+  plantillas por piezas, Excel `efectos`, regla «las MT se gastan». Ver [09](09-efectos-por-bloques.md).
+- **Sistema antiguo de objetos eliminado**: sin campos sueltos, sin `ItemExtras`, sin botón de conversión. Las
+  plantillas de objetos pasan a ser datos (`Plantillas/objetos.csv`, 135 objetos, +16 bayas con efecto) y los packs
+  traen todos sus objetos con todos sus efectos; el verificador revisa los efectos.
+- **Editor más rápido**: validación en caché, búsquedas por id indexadas, referencias en una sola pasada, listas
+  virtuales, sin repintar al mover el ratón, papelera y recuentos en caché ([11](11-editor.md)).
 - **Documentación** completa por capítulos (esta carpeta).

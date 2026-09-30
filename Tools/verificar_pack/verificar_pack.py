@@ -46,6 +46,14 @@ class Report:
 
 # ---------------- La base que crean las plantillas del código ----------------
 
+ITEM_TEMPLATES = os.path.join(ROOT, 'Assets', 'GameContent', 'Plantillas', 'objetos.csv')
+
+
+def item_templates():
+    """Los objetos clásicos con TODOS sus efectos (Assets/GameContent/Plantillas/objetos.csv): una fila por objeto."""
+    return load(ITEM_TEMPLATES)[1] if os.path.exists(ITEM_TEMPLATES) else []
+
+
 def code_base():
     """Ids que crean las plantillas C# (Centro de Contenido → base clásica)."""
     def read(rel):
@@ -65,9 +73,8 @@ def code_base():
         'ability': set(re.findall(r'P\("[^"]+",\s*"([a-z0-9_]+)"', read('Windows/AbilityEditorWindow.cs'))),
         'ai': {f'nivel_{i}' for i in range(1, 8)},
     }
-    items = read('Windows/ItemEditorWindow.cs')
-    base['item'] = (set(re.findall(r'P\(ItemCategory\.\w+,\s*"(\w+)"', items)) | set(re.findall(r'Berry\("(\w+)"', items))
-                    | set(re.findall(r'\(\s*"(\w+)",\s*"[^"]+",\s*\d+', items)))
+    # Objetos clásicos: la hoja de plantillas (datos, no código).
+    base['item'] = {r['id'] for r in item_templates()}
     return base
 
 
@@ -101,6 +108,42 @@ def check_format(folder, rep):
 
 # ---------------- 2. Referencias ----------------
 
+EFFECT_TRIGGERS = {'al_usar', 'siempre', 'al_entrar', 'fin_de_turno', 'antes_de_golpe', 'tras_golpe', 'contacto', 'al_hacer_daño',
+                   'al_sufrir_estado', 'poca_vida', 'al_caminar'}
+STATS = {'hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'speed', 'accuracy', 'evasion'}
+# Acción → qué tipo de id lleva (como EffectText.cs).
+EFFECT_REFS = {'curar_estado': 'status_list', 'poner_estado': 'status', 'etapa': 'stat', 'stat': 'stat', 'evs': 'stat',
+               'inmune': 'types', 'clima': 'weather', 'enseñar': 'move'}
+EFFECT_ACTIONS = set(EFFECT_REFS) | {'curar', 'curar_pct', 'perder', 'curar_del_daño', 'revivir', 'pp', 'pp_todos', 'critico', 'precision',
+                                     'evasion', 'potencia', 'daño', 'daño_recibido', 'aguantar', 'primero', 'eleccion', 'sin_movs_estado',
+                                     'pantallas', 'retroceso', 'gastar', 'captura', 'amistad', 'nivel', 'huir', 'repelente', 'forma', 'mecanica'}
+
+
+def check_item_effects(text, w, need, rep):
+    """Revisa la columna «efectos» de un objeto: momentos y acciones conocidos e ids que existen (mismo formato que EffectText.cs)."""
+    for block in [b.strip() for b in (text or '').split('|') if b.strip()]:
+        head, sep, body = block.partition(']:') if '[' in block.split(':')[0] else block.partition(':')
+        if not sep:
+            rep.error(f'{w}: efecto sin «:» → «{block}»'); continue
+        trig = head.split('[')[0].split('@')[0].strip()
+        if trig not in EFFECT_TRIGGERS:
+            rep.error(f'{w}: momento «{trig}» desconocido')
+        for cond in re.findall(r'(?:mov|propio|rival)\.tipo=(\w+)', head): need('types', cond, w)
+        for cond in re.findall(r'(?:propio|rival)\.estado=(\w+)', head): need('status', cond, w, soft=True)
+        words = body.split(';')[0].split()
+        if not words:
+            rep.error(f'{w}: efecto sin acción → «{block}»'); continue
+        action, args = words[0], [a for a in words[1:] if not re.match(r'^[x×+\-]?[\d,.]+%?$', a)]
+        if action not in EFFECT_ACTIONS:
+            rep.error(f'{w}: acción «{action}» desconocida'); continue
+        kind = EFFECT_REFS.get(action)
+        for a in args:
+            for ref in a.split(','):
+                if kind == 'status_list' or kind == 'status': need('status', ref, w, soft=True)
+                elif kind == 'stat':
+                    if ref not in STATS: rep.warn(f'{w}: estadística «{ref}» no es de las clásicas')
+                elif kind: need(kind, ref, w, soft=kind == 'weather')
+
 def check_references(sheets, rep):
     base = code_base()
     known = {k: set(v) for k, v in base.items()}
@@ -111,6 +154,13 @@ def check_references(sheets, rep):
     def need(kind, value, where, soft=False):
         if value and value not in known.get(kind, set()):
             (rep.warn if soft else rep.error)(f'{where}: {kind} «{value}» no existe (ni en el pack ni en la base del código)')
+
+    # EFECTOS de los objetos: los ids que nombran (tipos, estados, estadísticas, climas, movimientos) deben existir.
+    if 'objetos.csv' in sheets:
+        _, rows, lines = sheets['objetos.csv']
+        for r, ln in zip(rows, lines):
+            w = f'objetos.csv:{ln} {r["id"]}'
+            check_item_effects(r.get('efectos', ''), w, need, rep)
 
     if 'especies.csv' in sheets:
         _, rows, lines = sheets['especies.csv']

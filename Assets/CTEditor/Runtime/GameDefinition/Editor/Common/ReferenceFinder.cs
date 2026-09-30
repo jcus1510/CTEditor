@@ -52,11 +52,37 @@ namespace CTEditor.GameDefinition.Editor
         {
             var found = new List<ContentReference>();
             if (target == null) return found;
-            string targetId = target is IContentAsset c ? c.Id : null;
+            foreach (var (_, r) in FindReferencesToAny(new[] { target })) found.Add(r);
+            return found;
+        }
 
+        /// <summary>
+        /// Referencias a CUALQUIERA de 'targets' en UNA sola pasada por el proyecto (mucho más rápido que buscar una a una:
+        /// la validación de la papelera lo usa con cientos de fichas a la vez). Devuelve (a quién apunta, la referencia).
+        /// </summary>
+        public static List<(ScriptableObject target, ContentReference reference)> FindReferencesToAny(ICollection<ScriptableObject> targets)
+        {
+            var found = new List<(ScriptableObject, ContentReference)>();
+            if (targets == null || targets.Count == 0) return found;
+            var byObject = new HashSet<Object>();
+            var byId = new Dictionary<(Type, string), ScriptableObject>();
+            foreach (var t in targets)
+            {
+                if (t == null) continue;
+                byObject.Add(t);
+                if (t is IContentAsset c && !string.IsNullOrEmpty(c.Id) && !byId.ContainsKey((t.GetType(), c.Id))) byId[(t.GetType(), c.Id)] = t;
+            }
+            var search = new Search { Objects = byObject, Ids = byId, Found = found };
             foreach (var type in ContentTypes)
+            {
+                if (!PlanOf(type).MayHaveRefs) continue;
                 foreach (var owner in ContentAssets.LoadAll(type))
-                    found.AddRange(FindIn(owner, target));
+                {
+                    if (byObject.Contains(owner)) continue;
+                    search.Owner = owner;
+                    Walk(owner, owner.GetType(), "", search, 0);
+                }
+            }
             return found;
         }
 
@@ -65,7 +91,12 @@ namespace CTEditor.GameDefinition.Editor
         {
             var found = new List<ContentReference>();
             if (owner == null || target == null || owner == target) return found;
-            Walk(owner, owner.GetType(), "", target, target is IContentAsset c ? c.Id : null, owner, found, 0);
+            var list = new List<(ScriptableObject, ContentReference)>();
+            var byId = new Dictionary<(Type, string), ScriptableObject>();
+            if (target is IContentAsset c && !string.IsNullOrEmpty(c.Id)) byId[(target.GetType(), c.Id)] = target;
+            var search = new Search { Objects = new HashSet<Object> { target }, Ids = byId, Found = list, Owner = owner };
+            Walk(owner, owner.GetType(), "", search, 0);
+            foreach (var (_, r) in list) found.Add(r);
             return found;
         }
 
@@ -97,63 +128,105 @@ namespace CTEditor.GameDefinition.Editor
             return updated;
         }
 
-        // ---------------- Recorrido por reflexión ----------------
+        // ---------------- Recorrido por reflexión (con un «plan» por tipo, calculado una sola vez) ----------------
 
-        private static void Walk(object obj, Type type, string path, ScriptableObject target, string targetId,
-            ScriptableObject owner, List<ContentReference> found, int depth)
+        private sealed class Search
         {
-            if (obj == null || depth > 6) return;
+            public HashSet<Object> Objects;
+            public Dictionary<(Type, string), ScriptableObject> Ids;
+            public List<(ScriptableObject, ContentReference)> Found;
+            public ScriptableObject Owner;
+        }
 
+        private enum FieldKind { ObjectRef, IdString, Nested }
+
+        private sealed class FieldPlan
+        {
+            public FieldInfo Field;
+            public bool IsList;
+            public Type ElementType;
+            public FieldKind Kind;
+            public Type IdTarget;        // IdString: a qué tipo de ficha apunta el texto
+        }
+
+        private sealed class TypePlan
+        {
+            public List<FieldPlan> Fields = new List<FieldPlan>();
+            public bool MayHaveRefs;
+        }
+
+        private static readonly Dictionary<Type, TypePlan> Plans = new Dictionary<Type, TypePlan>();
+
+        private static TypePlan PlanOf(Type type)
+        {
+            if (Plans.TryGetValue(type, out var plan)) return plan;
+            plan = new TypePlan();
+            Plans[type] = plan;   // antes de recorrer: tipos que se contienen a sí mismos no dan vueltas sin fin
             foreach (var field in SerializedFields(type))
             {
-                string fieldPath = path.Length == 0 ? field.Name : path + "." + field.Name;
-                object value = field.GetValue(obj);
                 Type ft = field.FieldType;
-
-                // Arrays y listas: se revisa cada elemento con los atributos del campo.
-                if (ft.IsArray || (ft.IsGenericType && ft.GetGenericTypeDefinition() == typeof(List<>)))
+                bool isList = ft.IsArray || (ft.IsGenericType && ft.GetGenericTypeDefinition() == typeof(List<>));
+                Type et = isList ? (ft.IsArray ? ft.GetElementType() : ft.GetGenericArguments()[0]) : ft;
+                FieldPlan fp = null;
+                if (typeof(Object).IsAssignableFrom(et)) fp = new FieldPlan { Kind = FieldKind.ObjectRef };
+                else if (et == typeof(string))
                 {
-                    if (!(value is IList list)) continue;
-                    Type et = ft.IsArray ? ft.GetElementType() : ft.GetGenericArguments()[0];
-                    for (int i = 0; i < list.Count; i++)
-                        CheckValue(list[i], et, field, $"{fieldPath}.Array.data[{i}]", target, targetId, owner, found, depth);
-                    continue;
+                    var target = IdTargetOf(field);
+                    if (target != null) fp = new FieldPlan { Kind = FieldKind.IdString, IdTarget = target };
                 }
-                CheckValue(value, ft, field, fieldPath, target, targetId, owner, found, depth);
+                else if (!et.IsPrimitive && !et.IsEnum && et.IsDefined(typeof(SerializableAttribute), false) && PlanOf(et).MayHaveRefs)
+                    fp = new FieldPlan { Kind = FieldKind.Nested };
+                if (fp == null) continue;
+                fp.Field = field; fp.IsList = isList; fp.ElementType = et;
+                plan.Fields.Add(fp);
             }
+            plan.MayHaveRefs = plan.Fields.Count > 0;
+            return plan;
         }
 
-        private static void CheckValue(object value, Type type, FieldInfo field, string path, ScriptableObject target,
-            string targetId, ScriptableObject owner, List<ContentReference> found, int depth)
-        {
-            if (value == null) return;
-
-            if (typeof(Object).IsAssignableFrom(type))
-            {
-                if (ReferenceEquals(value, target))
-                    found.Add(new ContentReference { Owner = owner, PropertyPath = path, ById = false });
-                return;
-            }
-
-            if (type == typeof(string))
-            {
-                if (targetId != null && (string)value == targetId && PointsTo(field, target.GetType()))
-                    found.Add(new ContentReference { Owner = owner, PropertyPath = path, ById = true });
-                return;
-            }
-
-            // Estructuras y clases [Serializable] anidadas (entradas de learnset, efectos de movimiento...).
-            if (!type.IsPrimitive && !type.IsEnum && type.IsDefined(typeof(SerializableAttribute), false))
-                Walk(value, type, path, target, targetId, owner, found, depth + 1);
-        }
-
-        // ¿Este campo de texto guarda ids del tipo de ficha buscado?
-        private static bool PointsTo(FieldInfo field, Type targetType)
+        // ¿A qué tipo de ficha apunta este campo de texto? (null = no es una referencia)
+        private static Type IdTargetOf(FieldInfo field)
         {
             var content = field.GetCustomAttribute<ContentIdReferenceAttribute>();
-            if (content != null) return content.DataType == targetType;
-            if (field.GetCustomAttribute<StatusIdReferenceAttribute>() != null) return targetType == typeof(StatusConditionData);
-            return false;
+            if (content != null) return content.DataType;
+            if (field.GetCustomAttribute<StatusIdReferenceAttribute>() != null) return typeof(StatusConditionData);
+            return null;
+        }
+
+        private static void Walk(object obj, Type type, string path, Search s, int depth)
+        {
+            if (obj == null || depth > 6) return;
+            foreach (var fp in PlanOf(type).Fields)
+            {
+                string fieldPath = path.Length == 0 ? fp.Field.Name : path + "." + fp.Field.Name;
+                object value = fp.Field.GetValue(obj);
+                if (fp.IsList)
+                {
+                    if (!(value is IList list)) continue;
+                    for (int i = 0; i < list.Count; i++) Check(list[i], fp, $"{fieldPath}.Array.data[{i}]", s, depth);
+                }
+                else Check(value, fp, fieldPath, s, depth);
+            }
+        }
+
+        private static void Check(object value, FieldPlan fp, string path, Search s, int depth)
+        {
+            if (value == null) return;
+            switch (fp.Kind)
+            {
+                case FieldKind.ObjectRef:
+                    if (value is Object o && s.Objects.Contains(o))
+                        s.Found.Add(((ScriptableObject)o, new ContentReference { Owner = s.Owner, PropertyPath = path, ById = false }));
+                    break;
+                case FieldKind.IdString:
+                    var id = (string)value;
+                    if (id.Length > 0 && s.Ids.TryGetValue((fp.IdTarget, id), out var target))
+                        s.Found.Add((target, new ContentReference { Owner = s.Owner, PropertyPath = path, ById = true }));
+                    break;
+                case FieldKind.Nested:
+                    Walk(value, fp.ElementType, path, s, depth + 1);
+                    break;
+            }
         }
 
         // Campos que Unity serializa: públicos (no [NonSerialized]) o privados con [SerializeField].

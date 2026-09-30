@@ -42,7 +42,9 @@ namespace CTEditor.GameDefinition.Editor
             _items = all.Where(a => ContentTrash.GroupOfPath(AssetDatabase.GetAssetPath(a)).Length == 0)
                 .OrderBy(a => ContentTrash.CategoryOfPath(AssetDatabase.GetAssetPath(a))).ThenBy(a => a.name).ToList();
             _uses.Clear();
-            foreach (var a in _items) _uses[a] = ReferenceFinder.FindReferencesTo(a).Count;
+            foreach (var a in _items) _uses[a] = 0;
+            // Una sola pasada por el proyecto para todas las fichas sueltas de la papelera.
+            foreach (var (target, _) in ReferenceFinder.FindReferencesToAny(_items)) if (_uses.ContainsKey(target)) _uses[target]++;
             Repaint();
         }
 

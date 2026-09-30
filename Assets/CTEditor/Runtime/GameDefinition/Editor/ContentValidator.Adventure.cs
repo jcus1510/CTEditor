@@ -21,6 +21,8 @@ namespace CTEditor.GameDefinition.Editor
             var itemIds = new HashSet<string>(LoadAll<ItemData>().Where(i => !string.IsNullOrEmpty(i.Id)).Select(i => i.Id));
 
             var trainers = LoadAll<TrainerData>();
+            var itemsById = new Dictionary<string, ItemData>();
+            foreach (var i in LoadAll<ItemData>()) if (!string.IsNullOrEmpty(i.Id) && !itemsById.ContainsKey(i.Id)) itemsById[i.Id] = i;
             CollectIds(trainers, t => t.Id, "entrenador", issues);
             foreach (var t in trainers)
             {
@@ -30,7 +32,7 @@ namespace CTEditor.GameDefinition.Editor
                 foreach (var it in t.Items ?? new BagEntryData[0])
                 {
                     if (it == null || string.IsNullOrWhiteSpace(it.itemId)) continue;
-                    var item = LoadAll<ItemData>().FirstOrDefault(x => x.Id == it.itemId);
+                    itemsById.TryGetValue(it.itemId, out var item);
                     if (item == null) issues.Add(Error($"El entrenador '{Name(t)}' lleva en la mochila '{it.itemId}', que no existe.", t));
                     else if (!item.UsableInBattle) issues.Add(Warning($"El entrenador '{Name(t)}' lleva '{item.DisplayName}', que no se puede usar en combate: nunca lo usará.", t));
                 }

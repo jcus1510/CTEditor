@@ -22,19 +22,27 @@ namespace CTEditor.GameDefinition.Editor
         // es decir, en cada tecla. Se guarda la lista por tipo y se vacía sola cuando cambia algún asset
         // (ContentAssetsWatcher) o cuando creamos/movemos/borramos fichas desde aquí.
         private static readonly Dictionary<Type, List<ScriptableObject>> Cache = new Dictionary<Type, List<ScriptableObject>>();
+        // Id → ficha por tipo, para que FindById no recorra toda la lista (los editores lo llaman muchas veces por repintado).
+        private static readonly Dictionary<Type, Dictionary<string, ScriptableObject>> ById = new Dictionary<Type, Dictionary<string, ScriptableObject>>();
+        private static readonly Dictionary<Type, double> ByIdBuiltAt = new Dictionary<Type, double>();
 
         /// <summary>Olvida la caché (tras crear, borrar, mover o importar fichas).</summary>
-        public static void ClearCache() { Cache.Clear(); Version++; }
+        public static void ClearCache() { Cache.Clear(); ById.Clear(); ByIdBuiltAt.Clear(); Version++; }
 
         /// <summary>Sube cada vez que cambia algún asset: otras cachés del editor lo usan para saber si caducaron.</summary>
         public static int Version { get; private set; }
 
+        /// <summary>Sube cada vez que se EDITA una ficha (sus datos, no la lista): lo usa la validación en caché.</summary>
+        public static int EditStamp { get; private set; }
+
+        /// <summary>Avisa de que alguna ficha cambió sus datos (las ventanas lo llaman al editar en el inspector).</summary>
+        public static void NoteEdited() => EditStamp++;
+
+        // La lista de un tipo. No se comprueba en cada llamada si alguna ficha se destruyó (esa comprobación de Unity es
+        // cara y se hacía miles de veces por repintado): al borrar o mover assets, ContentAssetsWatcher vacía la caché.
         private static List<ScriptableObject> Cached(Type type)
         {
-            if (Cache.TryGetValue(type, out var list))
-            {
-                if (list.TrueForAll(a => a != null)) return list;   // alguna se destruyó: se vuelve a buscar
-            }
+            if (Cache.TryGetValue(type, out var list)) return list;
             list = new List<ScriptableObject>();
             foreach (var guid in AssetDatabase.FindAssets("t:" + type.Name))
             {
@@ -50,8 +58,9 @@ namespace CTEditor.GameDefinition.Editor
         /// <summary>Todas las fichas de un tipo en el proyecto (las de la PAPELERA no cuentan). Copia: se puede ordenar.</summary>
         public static List<T> LoadAll<T>() where T : ScriptableObject
         {
-            var list = new List<T>();
-            foreach (var a in Cached(typeof(T))) if (a is T t) list.Add(t);
+            var src = Cached(typeof(T));
+            var list = new List<T>(src.Count);
+            foreach (var a in src) if (a is T t) list.Add(t);
             return list;
         }
 
@@ -59,13 +68,33 @@ namespace CTEditor.GameDefinition.Editor
         public static List<ScriptableObject> LoadAll(Type type)
             => type == null ? new List<ScriptableObject>() : new List<ScriptableObject>(Cached(type));
 
-        /// <summary>Busca una ficha por su id (null si no existe).</summary>
+        /// <summary>Cuántas fichas hay de un tipo (sin copiar la lista).</summary>
+        public static int CountOf<T>() where T : ScriptableObject => Cached(typeof(T)).Count;
+
+        /// <summary>
+        /// Busca una ficha por su id (null si no existe). Usa un índice: si el id de una ficha cambió (se renombró en el
+        /// inspector), el acierto se comprueba y, si no hay, el índice se rehace (como mucho dos veces por segundo).
+        /// </summary>
         public static T FindById<T>(string id) where T : ScriptableObject, IContentAsset
         {
             if (string.IsNullOrWhiteSpace(id)) return null;
-            foreach (var a in LoadAll<T>())
-                if (a.Id == id) return a;
-            return null;
+            var type = typeof(T);
+            if (!ById.TryGetValue(type, out var index)) index = BuildIndex(type);
+            if (index.TryGetValue(id, out var hit) && hit is T t && t != null && t.Id == id) return t;
+            double now = EditorApplication.timeSinceStartup;
+            if (ByIdBuiltAt.TryGetValue(type, out var at) && now - at < 0.5) return null;
+            index = BuildIndex(type);
+            return index.TryGetValue(id, out hit) && hit is T t2 && t2 != null && t2.Id == id ? t2 : null;
+        }
+
+        private static Dictionary<string, ScriptableObject> BuildIndex(Type type)
+        {
+            var index = new Dictionary<string, ScriptableObject>();
+            foreach (var a in Cached(type))
+                if (a is IContentAsset c && !string.IsNullOrEmpty(c.Id) && !index.ContainsKey(c.Id)) index[c.Id] = a;
+            ById[type] = index;
+            ByIdBuiltAt[type] = EditorApplication.timeSinceStartup;
+            return index;
         }
 
         /// <summary>El id de una ficha, o su nombre de archivo si aún no tiene id.</summary>
@@ -193,6 +222,7 @@ namespace CTEditor.GameDefinition.Editor
             edit(so);
             so.ApplyModifiedProperties();
             EditorUtility.SetDirty(asset);
+            NoteEdited();
         }
 
         private static string SafeFileName(string id)

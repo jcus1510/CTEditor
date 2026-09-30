@@ -1,9 +1,12 @@
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Domain.Items;
 using CTEditor.GameDefinition.Editor;
+using CTEditor.GameDefinition.Editor.Csv;
 
 namespace CTEditor.Tests.EditMode
 {
@@ -30,32 +33,46 @@ namespace CTEditor.Tests.EditMode
             }
         }
 
-        [Test]
-        public void Every_classic_item_survives_a_trip_through_the_excel_text()
+        /// <summary>The classic items sheet (Assets/GameContent/Plantillas/objetos.csv), from Unity or from Tools/compilar_unity.</summary>
+        private static string LibraryFile()
         {
-            var items = new[]
+            const string rel = "Assets/GameContent/Plantillas/objetos.csv";
+            if (File.Exists(rel)) return rel;
+            for (var dir = new DirectoryInfo(TestContext.CurrentContext.TestDirectory); dir != null; dir = dir.Parent)
+                if (File.Exists(Path.Combine(dir.FullName, rel))) return Path.Combine(dir.FullName, rel);
+            Assert.Fail("No se encuentra " + rel);
+            return null;
+        }
+
+        [Test]
+        public void Every_classic_item_of_the_templates_sheet_is_read_and_written_back_without_losses()
+        {
+            var rows = CsvTable.Load(LibraryFile()).Rows;
+            Assert.Greater(rows.Count, 100);
+            var ids = new HashSet<string>();
+            foreach (var r in rows)
             {
-                new ItemDefinition("potion", "p", ItemCategory.Medicine, healHp: 20),
-                new ItemDefinition("full_restore", "p", ItemCategory.Medicine, healPercent: 100, curesAllStatus: true),
-                new ItemDefinition("antidote", "p", ItemCategory.StatusCure, curesStatusId: "poison|toxic"),
-                new ItemDefinition("elixir", "p", ItemCategory.PpRestore, restorePp: 10, restorePpAllMoves: true),
-                new ItemDefinition("ultra", "p", ItemCategory.Ball, catchMultiplier: 1.5f),
-                new ItemDefinition("x_attack", "p", ItemCategory.BattleBoost, battleStatId: "attack", battleStages: 2),
-                new ItemDefinition("sitrus", "p", ItemCategory.Held, heldTriggerHpPercent: 50, heldTriggerHealPercent: 25),
-                new ItemDefinition("comp", "p", ItemCategory.Held, extras: new ItemExtras
-                {
-                    ResistBerryType = "fire", BlackSludge = true, AirBalloon = true, ContactDamagePercent = 16.67f, QuickClawChance = 20,
-                    FlinchChance = 10, SelfStatusEndOfTurn = "burn", ChoiceLock = true, CuresAnyStatus = true, SurviveFromFullHp = true,
-                    WeatherTurnsBonus = 3, SuperEffectiveBoost = 1.2f,
-                }),
-            };
-            foreach (var it in items)
-            {
-                string text = EffectText.Format(it.Effects);
-                var back = EffectText.Parse(text);
-                Assert.AreEqual(it.Effects.Count, back.Count, text);
-                for (int i = 0; i < back.Count; i++) AssertSame(it.Effects[i], back[i]);
+                Assert.IsTrue(ids.Add(r["id"]), "id repetido: " + r["id"]);
+                var blocks = EffectText.Parse(r["efectos"]);
+                var back = EffectText.Parse(EffectText.Format(blocks));
+                Assert.AreEqual(blocks.Count, back.Count, r["id"]);
+                for (int i = 0; i < back.Count; i++) AssertSame(blocks[i], back[i]);
+                foreach (var b in blocks) Assert.IsTrue(EffectRules.IsSupported(b), $"{r["id"]}: {EffectText.Format(b)} no lo aplica el motor");
             }
+        }
+
+        [Test]
+        public void The_effects_of_every_pack_are_read()
+        {
+            var packs = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(LibraryFile())), "Packs");
+            int files = 0;
+            foreach (var file in Directory.GetFiles(packs, "objetos.csv", SearchOption.AllDirectories))
+            {
+                files++;
+                foreach (var r in CsvTable.Load(file).Rows)
+                    Assert.DoesNotThrow(() => EffectText.Parse(r["efectos"]), $"{file}: {r["id"]}");
+            }
+            Assert.Greater(files, 0);
         }
 
         [Test]

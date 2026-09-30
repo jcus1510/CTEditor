@@ -93,30 +93,22 @@ namespace CTEditor.Tests.EditMode
             }),
         };
 
-        private static ConditionalStat Cs(string stat, float m, params Condition[] c) => new ConditionalStat(new StatId(stat), m, c);
-        private static ItemDefinition Held(string id, ItemExtras x, IReadOnlyList<PowerModifier> pm = null)
-            => new ItemDefinition(id, id, ItemCategory.Held, heldPowerModifiers: pm, extras: x);
+        // The same effect text as Assets/GameContent/Plantillas/objetos.csv: these tests check that the DATA gives the right battle.
+        private static ItemDefinition Held(string id, string effects)
+            => new ItemDefinition(id, id, ItemCategory.Held, effects: EffectText.Parse(effects));
 
         private static readonly ItemDefinition[] Items =
         {
-            Held("choice_band", new ItemExtras { StatMultipliers = new[] { Cs("attack", 1.5f) }, ChoiceLock = true }),
-            Held("life_orb", new ItemExtras { AttackRecoilPercent = 10f }, new[] { new PowerModifier(1.3f) }),
-            Held("focus_sash", new ItemExtras { SurviveFromFullHp = true }),
-            Held("assault_vest", new ItemExtras { StatMultipliers = new[] { Cs("sp_defense", 1.5f) }, BlocksStatusMoves = true }),
-            Held("weakness_policy", new ItemExtras
-            {
-                OnHitStats = new[]
-                {
-                    new OnHitStat(StatId.Attack, 2, new[] { new Condition(ConditionKind.MoveEffectiveness, ConditionSubject.Self, Comparison.Greater, 1f) }),
-                    new OnHitStat(StatId.SpAttack, 2, new[] { new Condition(ConditionKind.MoveEffectiveness, ConditionSubject.Self, Comparison.Greater, 1f) }),
-                },
-                OnHitConsumed = true,
-            }),
-            Held("air_balloon", new ItemExtras { AirBalloon = true }),
-            Held("occa_berry", new ItemExtras { ResistBerryType = "fire" }),
-            Held("eviolite", new ItemExtras { StatMultipliers = new[] { Cs("defense", 1.5f, new Condition(ConditionKind.CanEvolve)) } }),
-            Held("rocky_helmet", new ItemExtras { ContactDamagePercent = 16.67f }),
-            Held("lum_berry", new ItemExtras { CuresAnyStatus = true }),
+            Held("choice_band", "siempre: stat attack x1,5 | siempre: eleccion"),
+            Held("life_orb", "siempre: potencia x1,3 | al_hacer_daño: perder 10%"),
+            Held("focus_sash", "antes_de_golpe [si propio.vida>=100]: aguantar; se_gasta"),
+            Held("assault_vest", "siempre: stat sp_defense x1,5 | siempre: sin_movs_estado"),
+            Held("weakness_policy", "tras_golpe [si propio.eficacia>1]: etapa attack +2; se_gasta | tras_golpe [si propio.eficacia>1]: etapa sp_attack +2; se_gasta"),
+            Held("air_balloon", "siempre: inmune ground | tras_golpe: gastar; se_gasta"),
+            Held("occa_berry", "antes_de_golpe [si mov.tipo=fire & propio.eficacia>1]: daño_recibido x0,5; se_gasta"),
+            Held("eviolite", "siempre [si propio.puede_evolucionar]: stat defense x1,5 | siempre [si propio.puede_evolucionar]: stat sp_defense x1,5"),
+            Held("rocky_helmet", "contacto: perder 16,67%; al_rival"),
+            Held("lum_berry", "al_sufrir_estado: curar_estado; se_gasta"),
         };
 
         private static readonly SideConditionDefinition[] Sides =

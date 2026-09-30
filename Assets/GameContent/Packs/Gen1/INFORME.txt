@@ -20,8 +20,8 @@ APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con
 ENTRENADORES CON MIEMBROS DE GENERACIONES POSTERIORES (QUITADOS) (1):
    especialista_electric
 
-OBJETOS AÑADIDOS SOLO CON SUS DATOS (SIN EFECTO EN COMBATE TODAVÍA), POR CATEGORÍA (4):
-   Ball: 1, Key: 16, Other: 15, Vitamin: 7
+OBJETOS SOLO CON SUS DATOS (SIN EFECTOS TODAVÍA), POR CATEGORÍA (4):
+   Evolution: 5, Key: 16, Other: 15, Vitamin: 7
 
 Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
 The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.

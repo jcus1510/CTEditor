@@ -98,8 +98,7 @@ namespace CTEditor.GameDefinition.Editor
             new Category { Label = "Habilidades", AssetType = typeof(AbilityData), Files = new[] { PackTools.AbilitiesFile },
                 Help = "Desde la 3.ª generación." },
             new Category { Label = "Objetos", AssetType = typeof(ItemData), Files = new[] { "objetos.csv" },
-                Help = "Los objetos con efecto de las plantillas se quedan siempre (el resto sale del pack).",
-                Protected = () => new HashSet<string>(ItemEditorWindow.Library.Select(p => p.Id)) },
+                Help = "Todos los de la generación, con sus efectos." },
             new Category { Label = "Naturalezas", AssetType = typeof(NatureData), Files = new[] { "naturalezas.csv" },
                 Help = "Desde la 3.ª generación." },
             new Category { Label = "Grupos huevo", AssetType = typeof(EggGroupData), Files = new[] { "grupos_huevo.csv" },
@@ -291,7 +290,7 @@ namespace CTEditor.GameDefinition.Editor
                     if (moved > 0) _report.Add(_leftover == Leftover.Trash ? $"A la papelera (grupo «{group}»): {moved}" : $"Borradas para siempre: {moved}");
                 }
 
-                // 3) La base que el pack referencia (estados, climas, Forcejeo, objetos con efecto...) y el pack.
+                // 3) La base que el pack referencia (estados, climas, Forcejeo...) y el pack.
                 EditorUtility.DisplayProgressBar("Cambiar de generación", "Preparando la base…", 0.35f);
                 var baseReport = new List<string>();
                 ContentHubWindow.CreateClassicBase(baseReport, pack);

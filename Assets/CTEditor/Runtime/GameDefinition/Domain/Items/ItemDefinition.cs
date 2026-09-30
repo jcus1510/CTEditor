@@ -26,8 +26,8 @@ namespace CTEditor.GameDefinition.Domain.Items
 
     /// <summary>
     /// An ITEM: identity + where it can be used + a list of EFFECT BLOCKS («when / if / then»). Everything it does comes from
-    /// <see cref="Effects"/>. The old per-feature constructor parameters (healHp, heldTriggerHpPercent, extras...) are still
-    /// accepted and converted to blocks, and the old properties are read-only VIEWS of the blocks, so existing callers work.
+    /// <see cref="Effects"/>. The convenience properties below (HealHp, CatchMultiplier...) are read-only VIEWS of the blocks
+    /// for the bag, the AI and the battle session.
     /// </summary>
     public sealed class ItemDefinition
     {
@@ -47,13 +47,7 @@ namespace CTEditor.GameDefinition.Domain.Items
 
         public ItemDefinition(string id, string displayName, ItemCategory category,
             string description = "", int price = 0, bool usableInBattle = false, bool usableOutsideBattle = false,
-            bool consumable = true, int healHp = 0, float healPercent = 0f, bool curesAllStatus = false,
-            string curesStatusId = null, bool revives = false, float reviveHpPercent = 0f, int restorePp = 0,
-            bool restorePpAllMoves = false, int friendshipChange = 0, float catchMultiplier = 0f,
-            string battleStatId = null, int battleStages = 0, IReadOnlyList<PowerModifier> heldPowerModifiers = null,
-            float heldEndOfTurnHealPercent = 0f, float heldTriggerHpPercent = 0f, int heldTriggerHealHp = 0,
-            float heldTriggerHealPercent = 0f, bool heldConsumedOnTrigger = true, ItemExtras extras = null,
-            IReadOnlyList<EffectBlock> effects = null, bool? isBerry = null)
+            bool consumable = true, IReadOnlyList<EffectBlock> effects = null, bool? isBerry = null)
         {
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("El objeto necesita un id.", nameof(id));
             Id = id;
@@ -64,12 +58,8 @@ namespace CTEditor.GameDefinition.Domain.Items
             UsableInBattle = usableInBattle;
             UsableOutsideBattle = usableOutsideBattle;
             Consumable = consumable;
-            Effects = effects != null
-                ? new List<EffectBlock>(effects.Where(e => e != null))
-                : ItemLegacy.ToBlocks(healHp, healPercent, curesAllStatus, curesStatusId, revives, reviveHpPercent, restorePp,
-                    restorePpAllMoves, friendshipChange, catchMultiplier, battleStatId, battleStages, heldPowerModifiers,
-                    heldEndOfTurnHealPercent, heldTriggerHpPercent, heldTriggerHealHp, heldTriggerHealPercent, heldConsumedOnTrigger, extras);
-            IsBerry = isBerry ?? (category == ItemCategory.Berry || ItemLegacy.LooksLikeBerry(Effects));
+            Effects = effects == null ? Array.Empty<EffectBlock>() : new List<EffectBlock>(effects.Where(e => e != null));
+            IsBerry = isBerry ?? (category == ItemCategory.Berry || ItemEffects.LooksLikeBerry(Effects));
         }
 
         // ---------------- Views of the blocks (for the bag, the AI and the old callers) ----------------

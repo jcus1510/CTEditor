@@ -207,17 +207,10 @@ namespace CTEditor.GameDefinition.Editor
             => Entries.Add(new EditorEntry { Category = cat, Order = order, Title = title, Icon = icon, Description = description, Color = color, Open = open, Count = count, Keywords = keywords });
 
         // Cuentas con caché de 2 s (el Centro se redibuja a menudo y buscar en el proyecto es lento).
-        private static readonly Dictionary<Type, (double time, int count)> CountCache = new Dictionary<Type, (double, int)>();
+        // El número de fichas de cada tipo ya está en la caché de ContentAssets: contarlo no cuesta nada.
+        public static int Count<T>() where T : ScriptableObject => ContentAssets.CountOf<T>();
 
-        public static int Count<T>() where T : ScriptableObject
-        {
-            double now = EditorApplication.timeSinceStartup;
-            if (CountCache.TryGetValue(typeof(T), out var c) && now - c.time < 2.0) return c.count;
-            int n = ContentAssets.LoadAll<T>().Count;
-            CountCache[typeof(T)] = (now, n);
-            return n;
-        }
-
-        public static void ClearCounts() => CountCache.Clear();
+        /// <summary>Se mantiene por compatibilidad: los recuentos ya se actualizan solos.</summary>
+        public static void ClearCounts() { }
     }
 }
