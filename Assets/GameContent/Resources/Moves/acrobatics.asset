@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af2ff6f36485864784eac3bda8601c8, type: 3}
+  m_Name: acrobatics
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
+  id: acrobatics
+  displayName: "Acr\xF3bata"
+  type: {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
+  category: 0
+  power: 55
+  neverMisses: 0
+  accuracy: 100
+  maxPp: 15
+  priority: 0
+  target: 0
+  secondaryEffects: []
+  minHits: 1
+  maxHits: 1
+  critStage: 0
+  twoTurn: 0
+  makesContact: 1
+  fixedDamage: 0
+  fixedDamageAmount: 0
+  respectsTypeImmunity: 0
+  powerModifiers:
+  - multiplier: 2
+    conditions:
+    - kind: 23
+      subject: 0
+      comparison: 2
+      number: 0
+      text: 
+      negate: 1
+  powerFormula: 
+  attackStat: 
+  defenseStat: 
+  attackStatFromTarget: 0
+  tags: []
+  requirements: []
+  typeByWeather: []
+  animationSeconds: 0

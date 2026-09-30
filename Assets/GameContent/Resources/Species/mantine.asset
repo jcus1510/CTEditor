@@ -36,7 +36,7 @@ MonoBehaviour:
     100 metros de altura, para descender luego planeando.
   femalePercent: 50
   legendary: 0
-  hp: 85
+  hp: 65
   attack: 40
   defense: 70
   spAttack: 80

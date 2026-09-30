@@ -37,7 +37,7 @@ MonoBehaviour:
   femalePercent: 50
   legendary: 0
   hp: 52
-  attack: 90
+  attack: 65
   defense: 55
   spAttack: 58
   spDefense: 62

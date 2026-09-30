@@ -40,7 +40,23 @@ MonoBehaviour:
   endOfTurnHealRequiresStatus: 0
   endOfTurnCureStatusChance: 0
   negatesStatusDamage: 0
-  offensivePowerModifiers: []
+  offensivePowerModifiers:
+  - multiplier: 1.25
+    conditions:
+    - kind: 26
+      subject: 0
+      comparison: 2
+      number: 0
+      text: 
+      negate: 0
+  - multiplier: 0.75
+    conditions:
+    - kind: 27
+      subject: 0
+      comparison: 2
+      number: 0
+      text: 
+      negate: 0
   defensivePowerModifiers: []
   onEntryWeather: 
   onEntryWeatherTurns: 0
@@ -123,3 +139,12 @@ MonoBehaviour:
   infiltrator: 0
   magicBounce: 0
   weightMultiplier: 1
+  priorityType: 
+  priorityTypeBonus: 0
+  contactStatDrop: 
+  contactStatDropStages: 0
+  stealOnHit: 0
+  spreadsAbilityOnContact: 0
+  convertNormalTo: 
+  convertBoost: 1
+  berryBonusHealPercent: 0

@@ -37,9 +37,9 @@ MonoBehaviour:
   legendary: 0
   hp: 65
   attack: 47
-  defense: 75
+  defense: 55
   spAttack: 73
-  spDefense: 85
+  spDefense: 75
   speed: 85
   customStats: []
   learnset:

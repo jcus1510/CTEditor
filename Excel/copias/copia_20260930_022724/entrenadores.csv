@@ -1,0 +1,114 @@
+﻿id;nombre;clase;ia;nivel_ia;usa_objetos;mochila;curar_bajo;puede_cambiar;movimientos_auto;dinero_base;equipo;frase_inicio;frase_derrota;frase_victoria
+alto_mando_agatha;Agatha;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;Los fantasmas no perdonan, jovencito.;Bah... ganas tú.;Jijiji...
+alto_mando_alecran;Alecrán;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;Los Pokémon bicho son bellos y fuertes.;Has superado a mis bichos.;Te han picado.
+alto_mando_bruno;Bruno;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;¡Pongamos a prueba nuestros músculos!;¡Uf! Has ganado.;¡La fuerza lo es todo!
+alto_mando_bruno_johto;Bruno;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;¡Soy Bruno del Alto Mando!;¡Mi fuerza no ha bastado!;¡Hooah!
+alto_mando_delos;Delos;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;Perdona, estaba leyendo. Empecemos.;Qué final tan inesperado.;Tal y como lo había leído.
+alto_mando_dracon;Dracón;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;Para ganar a los dragones necesitas algo más que fuerza.;Tienes lo que hace falta.;Los dragones no perdonan.
+alto_mando_fatima;Fátima;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;Los espíritus de este lugar me dan fuerza...;Tu corazón es más fuerte que mis fantasmas.;Jijiji...
+alto_mando_fausto;Fausto;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;¡Enciende tu espíritu de lucha!;¡Ardes de verdad!;¡Quemado!
+alto_mando_gaia;Gaia;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;Jojojo, ¿me enseñas de qué eres capaz?;Qué joven tan fuerte.;La tierra siempre gana.
+alto_mando_karen;Karen;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;Los fuertes usan a sus favoritos.;Bien hecho. Me gusta tu estilo.;Así se gana.
+alto_mando_koga;Koga;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;¡Fwahahaha! ¡Te enseñaré el arte ninja!;Has superado mis técnicas.;¡El ninja siempre gana!
+alto_mando_lance;Lance;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;¡Los dragones son invencibles!;Increíble... eres el mejor.;Los dragones jamás caen.
+alto_mando_lorelei;Lorelei;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;Nadie puede superar mis monstruos de hielo.;Qué frío... has ganado.;Congelado, como esperaba.
+alto_mando_mento;Mento;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;Mi mente es mi arma.;No puede ser... has ganado.;Mi poder psíquico es superior.
+alto_mando_nivea;Nívea;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;Vine a Hoenn a buscar retos ardientes...;Por fin, un entrenador de sangre caliente.;Qué frío tan decepcionante.
+alto_mando_sixto;Sixto;Alto Mando;experto;5;si;full_restore:2;25;si;ia;100;;¡Me gusta tu mirada! Vamos a divertirnos.;¡Ja! Me has ganado limpiamente.;¡Así se juega!
+aqua_soldado;Soldado Aqua;Team Aqua;listo;3;si;;25;no;ia;30;;¡El Team Aqua ampliará el mar!;¡Glub!;¡Viva el Team Aqua!
+campeona_cintia;Cintia;Campeón;experto;5;si;full_restore:3|full_heal:1;25;si;ia;150;;Soy Cintia, la Campeona. Te lo daré todo.;Ha sido un combate precioso. Eres el nuevo Campeón.;Aún puedes mejorar.
+campeon_azul;Azul;Campeón;experto;5;si;full_restore:3|full_heal:1;25;si;ia;150;;¡Por fin! ¡Soy el campeón y no pienso perder contra ti!;¡¿Cómo?! ¡Mi reinado ha terminado!;¡Ja! ¡Soy el mejor del mundo!
+campeon_lance;Lance;Campeón;experto;5;si;full_restore:3|full_heal:1;25;si;ia;150;;Te estaba esperando. ¡Soy Lance, el Campeón!;Ya no soy el Campeón... enhorabuena.;Aún no estás a la altura.
+campeon_plubio;Plubio;Campeón;experto;5;si;full_restore:3|full_heal:1;25;si;ia;150;;Soy Plubio, el Campeón. Muéstrame la belleza de tu combate.;Eres el nuevo Campeón de Hoenn.;Aún te falta elegancia.
+campista_jaime;Jaime;Campista;novato;1;no;;25;no;ia;20;;¡Me encanta la acampada!;¡Uf!;¡Viva el campo!
+campista_pedro;Pedro;Campista;novato;1;no;;25;no;ia;20;;¡La naturaleza es mi entrenamiento!;¡Me voy a acampar!;¡Viva el campo!
+cazabichos_bruno_s;Bruno;Cazabichos;novato;1;no;;25;no;ia;12;;¡He cazado muchos bichos!;¡Mis bichos!;¡Bichos, bichos!
+cazabichos_dani;Dani;Cazabichos;novato;1;no;;25;no;ia;12;;¡Los bichos son lo mejor!;¡Mis bichos...!;¡Bichos al poder!
+cazabichos_ricardo;Ricardo;Cazabichos;novato;1;no;;25;no;ia;12;;¡Mis bichos pican!;¡Mis Wurmple!;¡Bichos al poder!
+cazabichos_rick;Rick;Cazabichos;novato;;si;potion:1;25;si;ia;12;;¡Mira lo que he atrapado en el bosque!;¡Mis bichos...!;¡Los bichos mandan!
+chica_lola;Lola;Chica;novato;1;no;;25;no;ia;15;;¡Me has mirado! ¡Eso es un reto!;¡Ay, qué rabia!;¡Toma ya!
+cientifico_luis;Luis;Científico;listo;2;si;super_potion:1;25;no;ia;48;;Mis cálculos son perfectos.;Error de cálculo...;Lo que decían mis datos.
+comandante_saturno;Saturno;Comandante Galáctico;experto;4;si;super_potion:2;25;si;ia;60;;No te interpongas en nuestros planes.;Interesante...;Era de esperar.
+domador_toni;Toni;Domador;listo;2;si;super_potion:1;25;no;ia;40;;¡Mis fieras están hambrientas!;¡Ay! ¡Me han mordido!;¡Buen chico!
+dominguera_lisa;Lisa;Dominguera;novato;1;no;;25;no;ia;20;;¡Qué día más bonito para combatir!;¡Ohh, qué pena!;¡Qué bien lo he pasado!
+dominguera_luisa;Luisa;Dominguera;novato;1;no;;25;no;ia;20;;¡Qué buen día para un combate!;¡Ay, qué pena!;¡Qué divertido!
+entrenador_rojo;Rojo;Entrenador Pokémon;experto;5;si;full_restore:3|max_revive:1;25;si;ia;200;;...;...!;...
+esquiadora_nuria;Nuria;Esquiadora;listo;2;si;super_potion:1;25;no;ia;32;;¡Me encanta la nieve!;¡Me he congelado!;¡Deslízate conmigo!
+galactico_soldado;Soldado Galáctico;Team Galáctico;listo;3;si;;25;no;ia;30;;¡El Team Galáctico creará un mundo nuevo!;¡Qué vergüenza!;¡Por el Team Galáctico!
+guay_abel;Abel;Entrenador guay;listo;3;si;hyper_potion:1;25;no;ia;35;;Los mejores entrenadores pasan por aquí.;¡Qué nivel!;Aún te queda camino.
+guay_alma;Alma;Entrenadora guay;listo;3;si;hyper_potion:1;25;no;ia;35;;¿Crees que puedes con la Calle Victoria?;Impresionante.;Vuelve cuando seas más fuerte.
+guay_elena;Elena;Entrenadora guay;listo;3;si;hyper_potion:1;25;no;ia;35;;¿Crees que puedes con la Liga?;Increíble.;Vuelve más fuerte.
+guay_hector;Héctor;Entrenador guay;listo;3;si;hyper_potion:1;25;no;ia;35;;La Calle Victoria es para los mejores.;¡Buen combate!;Entrena más.
+guay_nacho;Nacho;Entrenador guay;listo;3;si;hyper_potion:1;25;no;ia;35;;La Calle Victoria es solo para los mejores.;¡Ups! Me has ganado.;Vuelve cuando seas más fuerte.
+guay_rodrigo;Rodrigo;Entrenador guay;listo;3;si;hyper_potion:1;25;no;ia;35;;La Calle Victoria es el último reto.;¡Impresionante!;Aún no estás listo.
+guay_sara;Sara;Entrenadora guay;listo;3;si;hyper_potion:1;25;no;ia;35;;¿Lista para la Liga? ¡Demuéstralo!;¡Eres buena!;Aún no.
+guay_sonia;Sonia;Entrenadora guay;listo;3;si;hyper_potion:1;25;no;ia;35;;Solo entreno para la Liga.;Tienes lo que hay que tener.;Aún no estás listo para la Liga.
+jefe_aquiles;Aquiles;Jefe del Team Aqua;experto;4;si;super_potion:2;25;si;ia;100;;¡Todo empezó en el mar y al mar volverá!;¡Grr! Eres más fuerte de lo que pensaba.;¡Ja, ja! ¡El mar es mío!
+jefe_helio;Helio;Jefe del Team Galáctico;experto;4;si;full_restore:1|hyper_potion:2;25;si;ia;100;;El mundo necesita un nuevo comienzo. No me detendrás.;... Así que el espíritu humano es fuerte.;Tu voluntad no basta.
+jefe_magno;Magno;Jefe del Team Magma;experto;4;si;super_potion:2;25;si;ia;100;;La humanidad necesita más tierra. ¡Aparta!;Hmm... quizá me equivoqué.;Nada detendrá mis planes.
+joven_ben;Ben;Joven;novato;1;no;;25;no;ia;16;;¡Oye! ¡Tus monstruos parecen débiles!;¡Vaya! ¡Eres fuerte!;¡Te lo dije!
+joven_calvin;Calvin;Joven;novato;1;no;;25;no;ia;16;;¡Eh, tú! ¡Combate!;¡Uy! Qué rápido.;¡Toma ya!
+joven_joaquin;Joaquín;Joven;novato;;si;;25;si;ia;16;;¡Eh, tú! ¡Mis monstruos son los más rápidos!;¡Jo! Ha sido mala suerte...;¡Te lo dije! ¡Son los mejores!
+joven_joaquin_johto;Joaquín;Joven;novato;1;no;;25;no;ia;16;;¡Mi Rattata está entre el 1% de los mejores!;¡Mi Rattata...!;¡Te lo dije!
+joven_tristan;Tristán;Joven;novato;1;no;;25;no;ia;16;;¡Oye, combate conmigo!;¡Ay! ¡Qué fuerte eres!;¡Gané!
+karateka_hiro;Hiro;Karateka;listo;2;si;;25;no;ia;25;;¡Hiaaa!;¡Mi cinturón negro...!;¡Kiai!
+karateka_takao;Takao;Karateka;listo;2;si;;25;no;ia;25;;¡Hiaaa!;¡Mi técnica...!;¡Kiai!
+lider_acero;Acero;Líder de gimnasio;experto;4;si;hyper_potion:2;25;si;ia;100;;¡Mis Pokémon de acero son invencibles!;Mi hijo tenía razón... Toma la Medalla Mina.;¡El acero no se dobla!
+lider_alana;Alana;Líder de gimnasio;experto;4;si;hyper_potion:2;25;si;ia;100;;Mis Pokémon pájaro y yo surcamos el cielo juntos.;Nunca había visto a nadie volar tan alto. Toma la Medalla Pluma.;El cielo es nuestro.
+lider_anibal;Aníbal;Líder de gimnasio;experto;4;si;super_potion:2;25;si;ia;100;;¡Entreno bajo la cascada todos los días!;¡Uf! Toma la Medalla Tormenta.;¡Wahahaha!
+lider_anton;Antón;Líder de gimnasio;experto;4;si;potion:1;25;si;ia;100;;¡Los bichos son fascinantes!;Eres bueno. Toma la Medalla Colmena.;¡Los bichos también saben ganar!
+lider_blaine;Blaine;Líder de gimnasio;experto;4;si;hyper_potion:2;25;si;ia;100;;¡Ja! ¡Te voy a quemar hasta las cenizas!;¡Me he quemado yo! Toma la Medalla Volcán.;¡Fuego, fuego y más fuego!
+lider_blanca;Blanca;Líder de gimnasio;experto;4;si;super_potion:1;25;si;ia;100;;¡A todo el mundo le encantan mis monstruos monos!;Buaaa... ¡toma la Medalla Planicie!;¡Mi Miltank es imparable!
+lider_brega;Brega;Líder de gimnasio;experto;4;si;super_potion:2;25;si;ia;100;;No suelo perder... pero da lo mejor de ti.;Has sido mejor. Toma la Medalla Adoquín.;Debo entrenar aún más... aunque gané.
+lider_brock;Brock;Líder de gimnasio;listo;;si;super_potion:1;25;si;ia;100;;¡Mi voluntad es firme como una roca! ¡Demuéstrame lo que vales!;Te he subestimado. Toma la Medalla Roca.;Tus monstruos necesitan más entrenamiento.
+lider_brock_kanto;Brock;Líder de gimnasio;experto;4;si;super_potion:1;25;si;ia;100;;¡Mi voluntad es firme como una roca!;Te he subestimado. Toma la Medalla Roca.;Te falta entrenamiento.
+lider_candela;Candela;Líder de gimnasio;experto;4;si;super_potion:2;25;si;ia;100;;¡Te voy a enseñar lo que es el fuego de verdad!;Uf... me he pasado de calor. Toma la Medalla Calor.;¡Ardiendo!
+lider_debora;Débora;Líder de gimnasio;experto;4;si;hyper_potion:2;25;si;ia;100;;Soy la mejor domadora de dragones del mundo.;... No lo acepto. Pero toma la Medalla Dragón.;¡Los dragones son invencibles!
+lider_erico;Erico;Líder de gimnasio;experto;4;si;super_potion:2;25;si;ia;100;;¡Wahahahah! ¡Voy a electrizarte!;¡Wahahah! Me has cargado de alegría. Toma la Medalla Dinamo.;¡Qué chispa!
+lider_erika;Erika;Líder de gimnasio;experto;4;si;super_potion:2;25;si;ia;100;;Me encantan las plantas... ¿vienes a combatir?;Oh... toma la Medalla Arcoíris.;Las flores siempre vuelven a crecer.
+lider_fantina;Fantina;Líder de gimnasio;experto;4;si;super_potion:2;25;si;ia;100;;¡Bienvenido a mi escenario de fantasmas!;Magnifique... Toma la Medalla Reliquia.;¡Los fantasmas bailan!
+lider_fredo;Fredo;Líder de gimnasio;experto;4;si;hyper_potion:2;25;si;ia;100;;He vivido muchos inviernos...;Admito tu fuerza. Toma la Medalla Glaciar.;El frío lo congela todo.
+lider_galan;Galán;Líder de gimnasio;experto;4;si;hyper_potion:3;25;si;ia;100;;Déjame enseñarte la elegancia del agua.;Tu técnica es exquisita. Toma la Medalla Lluvia.;Pura elegancia.
+lider_gardenia;Gardenia;Líder de gimnasio;experto;4;si;super_potion:2;25;si;ia;100;;¡Mis Pokémon planta son lo más!;¡Qué fuerte eres! Toma la Medalla Bosque.;¡Las flores ganan!
+lider_giovanni;Giovanni;Líder de gimnasio;experto;4;si;hyper_potion:2|full_heal:1;25;si;ia;100;;Así que has llegado hasta aquí...;Ja... toma la Medalla Tierra.;El Team Rocket no perdona.
+lider_inverna;Inverna;Líder de gimnasio;experto;4;si;hyper_potion:2;25;si;ia;100;;¡Concentración total! ¡Vamos!;¡Qué calor me has hecho pasar! Toma la Medalla Carámbano.;¡Congelado!
+lider_koga;Koga;Líder de gimnasio;experto;4;si;hyper_potion:2;25;si;ia;100;;¡Un ninja no teme al veneno!;Has demostrado tu valía. Toma la Medalla Alma.;El veneno siempre gana a la larga.
+lider_lectro;Lectro;Líder de gimnasio;experto;4;si;full_restore:1|hyper_potion:2;25;si;ia;100;;Por fin alguien que merece la pena.;Esto sí es un combate. Toma la Medalla Faro.;Otro más...
+lider_mananti;Mananti;Líder de gimnasio;experto;4;si;hyper_potion:2;25;si;ia;100;;¡Soy Mananti! ¡Mi oleaje te arrastrará!;¡Bwahahaha! Toma la Medalla Ciénaga.;¡Arrastrado por la marea!
+lider_marcial;Marcial;Líder de gimnasio;experto;4;si;potion:2;25;si;ia;100;;¡Las olas me han hecho fuerte! ¿Aguantarás mi oleaje?;¡Uau! Me has arrastrado. Toma la Medalla Puño.;¡Surfeando la victoria!
+lider_misty;Misty;Líder de gimnasio;listo;;si;super_potion:1|x_defense:1;25;si;ia;100;;¡Mi política es un ataque total con monstruos de agua!;Vaya, eres fuerte. Toma la Medalla Cascada.;¿Lo ves? ¡El agua lo arrasa todo!
+lider_misty_kanto;Misty;Líder de gimnasio;experto;4;si;super_potion:1;25;si;ia;100;;¡Mi política es un ataque total con monstruos de agua!;Eres fuerte. Toma la Medalla Cascada.;¡El agua lo arrasa todo!
+lider_morti;Morti;Líder de gimnasio;experto;4;si;super_potion:2;25;si;ia;100;;Veo cosas que los demás no ven...;No lo vi venir. Toma la Medalla Niebla.;El más allá me acompaña.
+lider_norman;Norman;Líder de gimnasio;experto;4;si;hyper_potion:2;25;si;ia;100;;Como padre y como líder, daré lo mejor de mí.;Has crecido mucho. Toma la Medalla Equilibrio.;Aún no es el momento.
+lider_pegaso;Pegaso;Líder de gimnasio;experto;4;si;potion:1;25;si;ia;100;;¡Los monstruos pájaro son los mejores!;Vale, toma la Medalla Céfiro.;¡Te he dejado sin viento!
+lider_petra;Petra;Líder de gimnasio;experto;4;si;potion:2;25;si;ia;100;;¡Soy Petra, líder del Gimnasio Férrica! ¿Me enseñas lo que has aprendido?;Vaya... Toma la Medalla Piedra.;¡Aún te queda mucho por estudiar!
+lider_roco;Roco;Líder de gimnasio;experto;4;si;potion:2;25;si;ia;100;;¡Soy Roco, líder del Gimnasio Pirita! ¡Te enterraré bajo las rocas!;Me has pillado. Toma la Medalla Carbón.;¡Duros como la roca!
+lider_sabrina;Sabrina;Líder de gimnasio;experto;4;si;hyper_potion:2;25;si;ia;100;;Ya sabía que vendrías...;No lo había previsto. Toma la Medalla Pantano.;Te lo dije: lo había visto.
+lider_surge;Teniente Surge;Líder de gimnasio;experto;4;si;super_potion:2;25;si;ia;100;;¡En la guerra, lo eléctrico me salvó la vida!;¡Uau! Toma la Medalla Trueno.;¡Electrocutado, chaval!
+lider_vito_leti;Vito y Leti;Líder de gimnasio;experto;4;si;hyper_potion:2;25;si;ia;100;;¡Juntos somos invencibles!;¡Qué conexión la tuya con tus Pokémon! Toma la Medalla Mente.;¡Lo sabíamos!
+lider_yasmina;Yasmina;Líder de gimnasio;experto;4;si;super_potion:2;25;si;ia;100;;Mis monstruos de acero son muy duros...;Muy bien... toma la Medalla Mineral.;El acero no se dobla.
+magma_soldado;Soldado Magma;Team Magma;listo;3;si;;25;no;ia;30;;¡El Team Magma ampliará la tierra!;¡Grrr!;¡Viva el Team Magma!
+medium_irene;Irene;Médium;listo;2;si;;25;no;ia;30;;Los espíritus me hablan...;Los espíritus se han ido...;Jijiji...
+montanero_alvaro;Álvaro;Montañero;listo;2;si;;25;no;ia;36;;¡Las cuevas son mi casa!;¡Uf!;¡Duro como la roca!
+montanero_marcos;Marcos;Montañero;listo;2;si;;25;no;ia;36;;¡Las montañas me han hecho fuerte!;¡Uf! Me has tumbado.;¡Duro como la roca!
+motorista_rudi;Rudi;Motorista;listo;2;si;;25;no;ia;20;;¡Quítate de en medio!;¡Mi moto no arranca!;¡A toda pastilla!
+ornitologo_pablo;Pablo;Ornitólogo;listo;2;si;potion:1;25;no;ia;25;;¡Mis pájaros vuelan más alto!;¡Plumas por todas partes!;¡A volar!
+pescador_elias;Elías;Pescador;listo;2;si;;25;no;ia;35;;¡Algo ha picado!;Se me escapó...;¡Buena pesca!
+pescador_mateo;Mateo;Pescador;listo;2;si;;25;no;ia;35;;¡Mira lo que he pescado!;¡Se escapó!;¡Qué pesca!
+pescador_ned;Ned;Pescador;listo;2;si;;25;no;ia;35;;¡Pican, pican!;Se me ha escapado...;¡Menuda pesca!
+pokefan_isabel;Isabel;Pokéfan;listo;2;si;potion:1;25;no;ia;30;;¡Qué monos son mis Pokémon!;¡Pobrecitos!;¡Adorables y fuertes!
+pokemaniaco_gus;Gus;Pokémaníaco;listo;2;si;;25;no;ia;50;;¡Tengo monstruos rarísimos!;¡Mis monstruos raros...!;¡Colecciono victorias!
+rival_aura;Aura;Rival;listo;2;si;potion:2;25;no;ia;35;;¡Vamos a ver cuánto has mejorado!;¡Jo! Te has hecho muy fuerte.;¡Te gané!
+rival_azul;Azul;Rival;experto;;si;potion:2|full_heal:1;25;si;ia;35;;¡Llegas tarde! Ya te estaba esperando. ¡Veamos cuánto has mejorado!;¡¿Qué?! ¡No puede ser!;¡Ja! ¡Como siempre, soy el mejor!
+rival_azul_bosque;Azul;Rival;listo;2;si;potion:2;25;no;ia;35;;¡Eh! ¿Aún sigues por aquí?;¡Bah! Ha sido suerte.;¡Soy mucho mejor que tú!
+rival_azul_silph;Azul;Rival;listo;3;si;hyper_potion:2|full_heal:1;25;no;ia;35;;¡Tú otra vez! ¡Aparta!;¡Grr! ¡Vete a salvar Silph si quieres!;¡Ja! ¡A ver si entrenas más!
+rival_blasco;Blasco;Rival;experto;4;si;full_restore:1|hyper_potion:2;25;si;ia;50;;He venido a demostrar lo fuerte que me he hecho.;Sigues siendo mi meta.;¡Lo he conseguido!
+rival_israel;Israel;Rival;listo;2;si;potion:2;25;no;ia;35;;¡Te pongo una multa si pierdes! ¡Combate!;¡¿Qué?! ¡Te multo por ganar!;¡Ja! ¡Soy el mejor!
+rival_israel_liga;Israel;Rival;experto;4;si;full_restore:1|hyper_potion:2;25;si;ia;50;;¡Esta vez sí que te gano!;Aún me queda camino... ¡pero te alcanzaré!;¡Sí! ¡Por fin!
+rival_plata_1;Plata;Rival;listo;2;si;potion:1;25;no;ia;35;;¡Tú otra vez! Voy a ser el más fuerte.;Hmpf. Solo es un combate.;Débil. Como pensaba.
+rival_plata_2;Plata;Rival;listo;3;si;super_potion:2;25;no;ia;35;;Ya no soy el de antes.;¿Por qué pierdo...?;La fuerza lo es todo.
+rocket_escondite;Soldado Rocket;Team Rocket;listo;3;si;super_potion:1;25;no;ia;30;;¡Intruso!;¡Ay! ¡Se lo diré al jefe!;¡Fuera de aquí!
+rocket_monte_moon;Soldado Rocket;Team Rocket;listo;3;si;;25;no;ia;30;;¡Estos fósiles son del Team Rocket!;¡Maldición!;¡No te metas con el Team Rocket!
+rocket_pozo;Soldado Rocket;Team Rocket;listo;3;si;;25;no;ia;30;;¡Las colas de Slowpoke se venden muy bien!;¡Ay! ¡Nos han pillado!;¡Fuera de aquí, mocoso!
+rocket_radio;Soldado Rocket;Team Rocket;listo;3;si;super_potion:1;25;no;ia;30;;¡La Torre Radio es nuestra!;¡No puede ser!;¡El Team Rocket ha vuelto!
+rocket_silph;Soldado Rocket;Team Rocket;listo;3;si;super_potion:1;25;no;ia;30;;¡Silph S.A. es nuestra!;¡No puede ser!;¡Larga vida al Team Rocket!

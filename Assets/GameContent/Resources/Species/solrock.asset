@@ -36,7 +36,7 @@ MonoBehaviour:
     de d\xEDa. Brilla al rotar."
   femalePercent: -1
   legendary: 0
-  hp: 90
+  hp: 70
   attack: 95
   defense: 85
   spAttack: 55

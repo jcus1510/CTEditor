@@ -57,8 +57,8 @@ MonoBehaviour:
     itemId: 
     minFriendship: 0
     conditions:
-    - check: 12
-      value: 12
+    - check: 14
+      value: 2
       itemId: 
       move: {fileID: 0}
       type: {fileID: 0}

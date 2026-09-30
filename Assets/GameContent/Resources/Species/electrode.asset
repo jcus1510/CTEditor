@@ -40,7 +40,7 @@ MonoBehaviour:
   defense: 70
   spAttack: 80
   spDefense: 80
-  speed: 150
+  speed: 140
   customStats: []
   learnset:
   - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}

@@ -36,7 +36,9 @@ MonoBehaviour:
   attackStat: 
   defenseStat: 
   attackStatFromTarget: 0
-  tags: []
+  tags:
+  - pulso
+  - bomba
   requirements: []
   typeByWeather: []
   animationSeconds: 0

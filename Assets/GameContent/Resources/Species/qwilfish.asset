@@ -38,7 +38,7 @@ MonoBehaviour:
   legendary: 0
   hp: 65
   attack: 95
-  defense: 85
+  defense: 75
   spAttack: 55
   spDefense: 55
   speed: 85

@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Golpe Bajo
   type: {fileID: 11400000, guid: bbd8692173525a3468bd903198cef800, type: 2}
   category: 0
-  power: 70
+  power: 80
   neverMisses: 0
   accuracy: 100
   maxPp: 5

@@ -33,7 +33,7 @@ MonoBehaviour:
   respectsTypeImmunity: 0
   powerModifiers: []
   powerFormula: 
-  attackStat: 
+  attackStat: attack
   defenseStat: 
   attackStatFromTarget: 1
   tags: []

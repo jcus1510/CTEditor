@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a524c0c1215c914980dd316ea83611c, type: 3}
+  m_Name: nivel_6
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.AiLevelData
+  id: nivel_6
+  displayName: Maestro
+  level: 6
+  description: "Jugador de competici\xF3n: memoria, PREDICCIONES (cambia al que resiste
+    tu golpe y castiga tus cambios), sets y objetos de competici\xF3n."
+  knowledge: 2
+  brain: 3
+  mistakePercent: 0
+  predictPercent: 60
+  itemUsePercent: 100
+  heal: 2
+  healBelowPercent: 45
+  canSwitch: 1
+  defaultBag:
+  - itemId: full_restore
+    quantity: 2
+  - itemId: full_heal
+    quantity: 1
+  moveset: 4
+  synergies: 1
+  useMachineMoves: 1
+  useTutorMoves: 1
+  useEggMoves: 1
+  heldItems: 2
+  competitiveTraining: 1
+  autoHeldItems: 1
+  heldItemsMigrated: 1

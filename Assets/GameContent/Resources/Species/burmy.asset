@@ -58,8 +58,8 @@ MonoBehaviour:
     itemId: 
     minFriendship: 0
     conditions:
-    - check: 12
-      value: 50
+    - check: 14
+      value: 2
       itemId: 
       move: {fileID: 0}
       type: {fileID: 0}
@@ -76,8 +76,8 @@ MonoBehaviour:
     itemId: 
     minFriendship: 0
     conditions:
-    - check: 12
-      value: 50
+    - check: 14
+      value: 1
       itemId: 
       move: {fileID: 0}
       type: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
       text: 
       time: 0
       relation: 0
-      negate: 1
+      negate: 0
   machineMoves: []
   tutorMoves:
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}

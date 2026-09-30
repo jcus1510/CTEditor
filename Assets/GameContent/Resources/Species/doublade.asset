@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: doublade
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: doublade
+  displayName: Doublade
+  types:
+  - {fileID: 11400000, guid: bf405ce6e8c187d4eb662c226bd3ab72, type: 2}
+  - {fileID: 11400000, guid: 1f6653f8eb948e44995eccd8804153ac, type: 2}
+  abilityId: no_guard
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: medium_fast
+  baseExpYield: 157
+  evYield:
+  - statId: defense
+    amount: 2
+  baseFriendship: 70
+  catchRate: 90
+  dexNumber: 680
+  category: Tizona
+  heightM: 0.8
+  weightKg: 4.5
+  dexColor: "marr\xF3n"
+  dexDescription: "Al evolucionar se divide en dos espadas. Se comunican entre s\xED
+    mediante telepat\xEDa y coordinan los ataques para rebanar al enemigo."
+  femalePercent: 50
+  legendary: 0
+  hp: 59
+  attack: 110
+  defense: 150
+  spAttack: 45
+  spDefense: 49
+  speed: 35
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 0927fa82b29ce494f9e7659bf9e2c328, type: 2}
+    level: 5
+  - move: {fileID: 11400000, guid: 7ce7ff990b0321741a8bc6f26ba81eb7, type: 2}
+    level: 8
+  - move: {fileID: 11400000, guid: 23c41488587880a41af470a39ef66e7a, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: c7d5fc352a8bd5a41936db4341695266, type: 2}
+    level: 18
+  - move: {fileID: 11400000, guid: 967dec9d4d420ef4a9c9f67d1395f3ac, type: 2}
+    level: 20
+  - move: {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
+    level: 22
+  - move: {fileID: 11400000, guid: d783373f10e72584b8c07508ed727511, type: 2}
+    level: 26
+  - move: {fileID: 11400000, guid: 41fecb803ec631c42ae3e13be0a7d87f, type: 2}
+    level: 29
+  - move: {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
+    level: 32
+  - move: {fileID: 11400000, guid: d6fc617569a3bd947948534486732eb3, type: 2}
+    level: 36
+  - move: {fileID: 11400000, guid: 9b9589e37c0d49e42813fab80503590a, type: 2}
+    level: 41
+  - move: {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
+    level: 45
+  - move: {fileID: 11400000, guid: 462a0206fda152043a170d964f28f2be, type: 2}
+    level: 51
+  evolutions:
+  - target: {fileID: 11400000, guid: b25ba875c9253a746bac2e4ac68ee9bd, type: 2}
+    requiredLevel: 0
+    method: 1
+    itemId: dusk_stone
+    minFriendship: 0
+    conditions: []
+  machineMoves:
+  - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: 4684f72d3faef8940bcbd8c6d3e78a7d, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: bcc1d78857f00f041a19fbc5a4d58a00, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 394d58ae125778d47ab4bfa87263bff9, type: 2}
+  - {fileID: 11400000, guid: 2fd745dccb0947b42b56bb569dde9db2, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: c49703054ffc0dc40a9619b9efe13529, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+  - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: d783373f10e72584b8c07508ed727511, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+  - {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
+  - {fileID: 11400000, guid: 31e908a8bab2b1a48b4863c7c49a01ae, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 3c0263f9417ef0d479e327f62c683a81, type: 2}
+  - {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
+  - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
+  - {fileID: 11400000, guid: 6589ee989c30c544cb926ea68983bc7d, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
+  eggMoves:
+  - {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
+  - {fileID: 11400000, guid: 7ce7ff990b0321741a8bc6f26ba81eb7, type: 2}
+  - {fileID: 11400000, guid: 967dec9d4d420ef4a9c9f67d1395f3ac, type: 2}
+  - {fileID: 11400000, guid: f0c6915b05197a74e8e3860e9378ddee, type: 2}
+  eggGroups:
+  - {fileID: 11400000, guid: 2a9396fa90416b64f84c4a3cdedb4711, type: 2}

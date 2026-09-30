@@ -85,7 +85,8 @@ MonoBehaviour:
   critMaxesAttack: 0
   ohkoImmune: 0
   survivesFromFullHp: 0
-  immuneToMoveTags: []
+  immuneToMoveTags:
+  - polvo
   blocksMoveTagsForAll: []
   onlySuperEffectiveHits: 0
   onImmuneStat: 
@@ -125,3 +126,12 @@ MonoBehaviour:
   infiltrator: 0
   magicBounce: 0
   weightMultiplier: 1
+  priorityType: 
+  priorityTypeBonus: 0
+  contactStatDrop: 
+  contactStatDropStages: 0
+  stealOnHit: 0
+  spreadsAbilityOnContact: 0
+  convertNormalTo: 
+  convertBoost: 1
+  berryBonusHealPercent: 0

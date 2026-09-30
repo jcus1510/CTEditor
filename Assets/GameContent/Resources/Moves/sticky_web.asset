@@ -21,7 +21,7 @@ MonoBehaviour:
   accuracy: 100
   maxPp: 20
   priority: 0
-  target: 1
+  target: 2
   secondaryEffects:
   - chancePercent: 100
     kind: 10

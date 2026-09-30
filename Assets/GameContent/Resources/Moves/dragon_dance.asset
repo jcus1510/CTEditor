@@ -68,7 +68,8 @@ MonoBehaviour:
   attackStat: 
   defenseStat: 
   attackStatFromTarget: 0
-  tags: []
+  tags:
+  - danza
   requirements: []
   typeByWeather: []
   animationSeconds: 0

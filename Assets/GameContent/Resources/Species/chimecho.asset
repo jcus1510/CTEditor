@@ -37,11 +37,11 @@ MonoBehaviour:
     siete tipos de gritos diferentes.
   femalePercent: 50
   legendary: 0
-  hp: 75
+  hp: 65
   attack: 50
-  defense: 80
+  defense: 70
   spAttack: 95
-  spDefense: 90
+  spDefense: 80
   speed: 65
   customStats: []
   learnset:

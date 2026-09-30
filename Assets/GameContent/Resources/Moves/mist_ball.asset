@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Bola Neblina
   type: {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
   category: 1
-  power: 95
+  power: 70
   neverMisses: 0
   accuracy: 100
   maxPp: 5
@@ -52,7 +52,8 @@ MonoBehaviour:
   attackStat: 
   defenseStat: 
   attackStatFromTarget: 0
-  tags: []
+  tags:
+  - bomba
   requirements: []
   typeByWeather: []
   animationSeconds: 0

@@ -40,7 +40,7 @@ MonoBehaviour:
   attack: 90
   defense: 70
   spAttack: 60
-  spDefense: 70
+  spDefense: 60
   speed: 40
   customStats: []
   learnset:

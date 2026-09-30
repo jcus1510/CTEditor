@@ -52,8 +52,8 @@ MonoBehaviour:
   evolutions:
   - target: {fileID: 11400000, guid: 8fc72c85164573a4aa2e44e0d254ac48, type: 2}
     requiredLevel: 0
-    method: 2
-    itemId: 
+    method: 3
+    itemId: prism_scale
     minFriendship: 0
     conditions: []
   machineMoves:

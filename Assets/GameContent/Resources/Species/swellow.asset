@@ -39,7 +39,7 @@ MonoBehaviour:
   hp: 60
   attack: 85
   defense: 60
-  spAttack: 75
+  spAttack: 50
   spDefense: 50
   speed: 125
   customStats: []

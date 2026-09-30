@@ -36,7 +36,7 @@ MonoBehaviour:
     solo act\xFAa en noches de luna llena."
   femalePercent: -1
   legendary: 0
-  hp: 90
+  hp: 70
   attack: 55
   defense: 65
   spAttack: 95

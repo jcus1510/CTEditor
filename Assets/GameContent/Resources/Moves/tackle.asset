@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Placaje
   type: {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
   category: 0
-  power: 40
+  power: 50
   neverMisses: 0
   accuracy: 100
   maxPp: 35

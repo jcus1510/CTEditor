@@ -36,7 +36,8 @@ MonoBehaviour:
   attackStat: 
   defenseStat: 
   attackStatFromTarget: 0
-  tags: []
+  tags:
+  - bomba
   requirements: []
   typeByWeather: []
   animationSeconds: 0

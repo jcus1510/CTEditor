@@ -36,10 +36,10 @@ MonoBehaviour:
     recorren todo su cuerpo.
   femalePercent: 50
   legendary: 0
-  hp: 60
+  hp: 50
   attack: 50
   defense: 120
-  spAttack: 90
+  spAttack: 80
   spDefense: 80
   speed: 30
   customStats: []

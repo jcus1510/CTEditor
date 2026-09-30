@@ -52,7 +52,8 @@ MonoBehaviour:
   attackStat: 
   defenseStat: 
   attackStatFromTarget: 0
-  tags: []
+  tags:
+  - pulso
   requirements: []
   typeByWeather: []
   animationSeconds: 0
