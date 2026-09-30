@@ -49,8 +49,9 @@ LAB = {1: 'dragonite@50 | alakazam@50 | gyarados@50 | gengar@50 | snorlax@50 | j
        6: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | scizor@50 | togekiss@50'}
 # Entrenadores que megaevolucionan en los juegos (desde la 6.ª gen.): (especie, megapiedra).
 MEGA_TRAINERS = {'campeona_dianta': ('gardevoir', 'gardevoirite')}
-MEMBER = re.compile(r'^(?P<sp>[^@\[\]{}~#"%]+)@(?P<lvl>\d+)(?P<g>%[mhMH])?(?:\[(?P<moves>[^\]]*)\])?'
-                    r'(?:\{(?P<held>[^}]*)\})?(?:~(?P<nat>[^#"]+))?(?P<iv>#\d+)?(?P<nick>"[^"]*")?$')
+MEMBER = re.compile(r'^(?P<sp>[^@\[\]{}~#"%!()]+)@(?P<lvl>\d+)(?P<g>%[mhMH])?(?:\[(?P<moves>[^\]]*)\])?'
+                    r'(?:\{(?P<held>[^}]*)\})?(?:~(?P<nat>[^#"!(]+))?(?:!(?P<ab>[^#"(]+))?(?P<ev>\([^)]*\))?'
+                    r'(?P<iv>#\d*(?:\([^)]*\))?)?(?P<nick>"[^"]*")?$')
 
 
 def num(x):
@@ -257,6 +258,10 @@ def build(n, verbose=True):
                 txt += '{' + m['held'] + '}'
             if m['nat'] and n >= 3:
                 txt += '~' + m['nat']
+            if m['ab'] and n >= 3:
+                txt += '!' + m['ab']
+            if m['ev'] and n >= 3:
+                txt += m['ev']
             txt += (m['iv'] or '') + (m['nick'] or '')
             team.append(txt)
         if n >= 6 and r['id'] in MEGA_TRAINERS:   # los que megaevolucionan en los juegos: su megapiedra

@@ -157,6 +157,15 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - Los efectos de movimientos y habilidades aún son los de la 6.ª gen. (ver «Aproximaciones» en el INFORME de cada
   pack). Las reglas de cada generación se ponen en **Reglas del juego → Reglas de generación** (ver abajo).
 
+## EVs, IVs y habilidad de cada miembro
+- En cada miembro de un entrenador o equipo prearmado: **Habilidad** (1.ª, 2.ª u oculta de su especie; vacío = la que le
+  toque), **EVs** («252 Atq / 4 PS / 252 Vel») e **IVs por estadística** («0 Atq / 0 Vel»; las demás, «IVs fijos» o al
+  azar). Se escriben con PS, Atq, Def, AtqE, DefE, Vel (también HP/Atk/SpA/SpD/Spe de Showdown o el id de una estadística
+  inventada). Los EVs se recortan a los topes de las reglas.
+- Vacío = automático: los niveles de IA con entrenamiento de competición (Maestro, Injusto) ponen sus EVs; «✨ Sugerir»
+  los rellena para verlos y retocarlos. La vista previa enseña las estadísticas con esos EVs.
+- Excel (columna `equipo`): `especie@nivel…~naturaleza!habilidad(252 Atq/4 PS/252 Vel)#31(0 Vel)"mote"`.
+
 ## Formas y variantes
 - **Formas de COMBATE** (dentro de la especie): cambian tipos, estadísticas (menos los PS) o habilidad EN MITAD del combate
   y al acabar vuelven a la normal. Qué las provoca (editable, se pueden combinar varias reglas):

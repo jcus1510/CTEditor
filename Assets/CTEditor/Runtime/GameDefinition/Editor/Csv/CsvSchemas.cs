@@ -568,6 +568,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
             {
                 Species = m.SpeciesKey, Level = m.level, Held = m.heldItem ?? "", Nature = m.NatureKey,
                 Iv = m.fixedIvs, Nickname = m.nickname ?? "",
+                Ability = m.abilityId ?? "", Evs = m.evs ?? "", Ivs = m.ivs ?? "",
                 Gender = m.gender == MemberGender.Male ? "m" : m.gender == MemberGender.Female ? "h" : "",
                 Moves = m.MoveKeys().ToList(),
             }));
@@ -600,6 +601,10 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 el.FindPropertyRelative("fixedIvs").intValue = p.Iv < 0 ? -1 : System.Math.Min(31, p.Iv);
                 el.FindPropertyRelative("nickname").stringValue = p.Nickname;
                 el.FindPropertyRelative("gender").enumValueIndex = p.Gender == "m" ? (int)MemberGender.Male : p.Gender == "h" ? (int)MemberGender.Female : 0;
+                if (p.Ability.Length > 0 && !c.Exists<AbilityData>(p.Ability)) c.Warnings.Add($"La habilidad '{p.Ability}' aún no existe.");
+                el.FindPropertyRelative("abilityId").stringValue = p.Ability;
+                el.FindPropertyRelative("evs").stringValue = p.Evs;
+                el.FindPropertyRelative("ivs").stringValue = p.Ivs;
             }
         }
 
@@ -637,7 +642,9 @@ namespace CTEditor.GameDefinition.Editor.Csv
             }
         }
 
-        private const string TeamHelp = "Miembros separados por |. especie@nivel y, opcional: %m / %h (macho/hembra) [mov1/mov2] {objeto} ~naturaleza #iv \"mote\". Ej.: pidgey@5%h | onix@14[tackle/rock_throw]{oran_berry}";
+        private const string TeamHelp = "Miembros separados por |. especie@nivel y, opcional: %m / %h (macho/hembra) [mov1/mov2] {objeto} ~naturaleza !habilidad " +
+            "(EVs: 252 Atq/4 PS/252 Vel) #iv (o #31(0 Atq): IVs por estadística) \"mote\". Ej.: pidgey@5%h | onix@14[tackle/rock_throw]{oran_berry} | " +
+            "garchomp@62[earthquake/dragon_claw]{choice_scarf}~jolly!rough_skin(252 Atq/4 PS/252 Vel)#31";
 
         public static CsvSchema<TrainerData> Trainers()
             => new CsvSchema<TrainerData>("entrenadores.csv", "Entrenadores", ContentFolders.Trainers, 90)

@@ -27,8 +27,10 @@ KEY = {'tipos.csv': 'types', 'estados.csv': 'status', 'climas.csv': 'weather', '
        'efectos_lado.csv': 'side', 'habilidades.csv': 'ability', 'objetos.csv': 'item', 'naturalezas.csv': 'nature',
        'curvas.csv': 'curve', 'movimientos.csv': 'move', 'especies.csv': 'species', 'grupos_huevo.csv': 'egg',
        'niveles_ia.csv': 'ai', 'entrenadores.csv': 'trainer', 'zonas.csv': 'zone', 'equipos.csv': 'team'}
-MEMBER = re.compile(r'^(?P<sp>[^@\[\]{}~#"%]+)@(?P<lvl>\d+)(?:%(?P<g>[mhMH]))?(?:\[(?P<moves>[^\]]*)\])?'
-                    r'(?:\{(?P<held>[^}]*)\})?(?:~(?P<nat>[^#"]+))?(?:#(?P<iv>\d+))?(?:"(?P<nick>[^"]*)")?$')
+# especie@nivel%g[movs]{objeto}~naturaleza!habilidad(EVs)#iv(IVs)"mote" (igual que CsvTeamCodecs.cs)
+MEMBER = re.compile(r'^(?P<sp>[^@\[\]{}~#"%!()]+)@(?P<lvl>\d+)(?:%(?P<g>[mhMH]))?(?:\[(?P<moves>[^\]]*)\])?'
+                    r'(?:\{(?P<held>[^}]*)\})?(?:~(?P<nat>[^#"!(]+))?(?:!(?P<ab>[^#"(]+))?(?:\((?P<ev>[^)]*)\))?'
+                    r'(?:#(?P<iv>\d+)?(?:\((?P<ivs>[^)]*)\))?)?(?:"(?P<nick>[^"]*)")?$')
 
 
 class Report:
@@ -175,6 +177,10 @@ def check_references(sheets, rep):
                 p = [x.strip() for x in e.split(':')]
                 if p[0] in refs and len(p) > 1 and p[1] and not p[1].isdigit():
                     need(refs[p[0]], p[1], w, soft=True)
+    species_abilities = {}
+    if 'especies.csv' in sheets:
+        for r in sheets['especies.csv'][1]:
+            species_abilities[r['id']] = {r.get(c, '') for c in ('habilidad', 'habilidad_2', 'habilidad_oculta') if r.get(c, '')}
     for sheet, col in (('entrenadores.csv', 'equipo'), ('equipos.csv', 'equipo')):
         if sheet not in sheets:
             continue
@@ -192,6 +198,21 @@ def check_references(sheets, rep):
                 for mv in (m['moves'] or '').split('/'): need('move', mv.strip(), w)
                 need('item', (m['held'] or '').strip(), w, soft=True)
                 need('nature', (m['nat'] or '').strip(), w)
+                sp = m['sp'].strip()
+                ab = (m['ab'] or '').strip()
+                if ab:
+                    need('ability', ab, w, soft=True)
+                    own = species_abilities.get(sp)
+                    if own is not None and ab not in own:
+                        rep.warn(f'{w}: {sp} no puede tener la habilidad «{ab}» (tiene: {", ".join(sorted(own)) or "ninguna"})')
+                for label, text, top, total_top in (('EVs', m['ev'], 252, 510), ('IVs', m['ivs'], 31, None)):
+                    vals, err = parse_spread(text or '')
+                    if err:
+                        rep.error(f'{w}: {label} de {sp} no válidos: {err}'); continue
+                    if any(v > top for v in vals.values()):
+                        rep.warn(f'{w}: {label} de {sp} por encima de {top} en alguna estadística (clásico)')
+                    if total_top and sum(vals.values()) > total_top:
+                        rep.warn(f'{w}: {label} de {sp} suman {sum(vals.values())} (clásico: máximo {total_top})')
             for it in split_list(r.get('mochila', '')): need('item', it.split(':')[0].strip(), w, soft=True)
             ai = r.get('nivel_ia', '')
             if ai and not (ai.isdigit() and 0 <= int(ai) <= 7):
@@ -200,6 +221,30 @@ def check_references(sheets, rep):
         _, rows, lines = sheets['zonas.csv']
         for r, ln in zip(rows, lines):
             for e in split_list(r.get('especies', '')): need('species', e.split('@')[0].strip(), f'zonas.csv:{ln} {r["id"]}')
+
+
+STAT_ALIASES = {'ps': 'hp', 'hp': 'hp', 'atq': 'attack', 'atk': 'attack', 'def': 'defense', 'atqe': 'sp_attack', 'spa': 'sp_attack',
+                'defe': 'sp_defense', 'spd': 'sp_defense', 'vel': 'speed', 'spe': 'speed'}
+
+
+def parse_spread(text):
+    """«252 Atq/4 PS/252 Vel» (como StatSpread.cs) -> ({stat: n}, error)."""
+    vals = {}
+    for part in re.split(r'[/,]', text):
+        part = part.strip()
+        if not part:
+            continue
+        tok = re.split(r'[\s:=]+', part)
+        if len(tok) != 2:
+            return {}, f'«{part}» no es «número estadística»'
+        num, name = (tok[0], tok[1]) if tok[0].isdigit() else (tok[1], tok[0])
+        if not num.isdigit():
+            return {}, f'«{part}» no tiene un número'
+        key = STAT_ALIASES.get(re.sub(r'[^a-z0-9]', '', name.lower()), name.lower())
+        if key in vals:
+            return {}, f'estadística repetida en «{part}»'
+        vals[key] = int(num)
+    return vals, None
 
 
 # ---------------- 3. Datos contra PokeAPI ----------------

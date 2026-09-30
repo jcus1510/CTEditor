@@ -61,8 +61,17 @@ namespace CTEditor.Adventure.Domain
             if (nature == null && !spec.Nature.HasValue) nature = RandomNature(data, rng);
 
             var mon = MonsterFactory.Create(id, species, spec.Level, data.Ruleset, data.Growth, moves,
-                data.CurveFor(species), rng, nature, spec.FixedIv ?? (training ? 31 : (int?)null));
-            if (training) ApplyCompetitiveEvs(mon, species, data);
+                data.CurveFor(species), rng, nature, spec.FixedIv ?? (training ? 31 : (int?)null), spec.Ivs);
+            // EVs: los escritos por el autor mandan; si no, los de su entrenamiento de competición.
+            if (!spec.Evs.IsEmpty) ApplyEvs(mon, species, data, spec.Evs, problems);
+            else if (training) ApplyCompetitiveEvs(mon, species, data);
+            // Habilidad elegida: una de las de su especie (1.ª, 2.ª u oculta).
+            if (spec.Ability.HasValue)
+            {
+                int slot = AbilitySlotOf(species, spec.Ability.Value);
+                if (slot >= 0) mon.SetAbilitySlot(slot);
+                else problems?.Add($"{species.DisplayName} no puede tener la habilidad '{spec.Ability.Value.Value}': se queda con la suya.");
+            }
             // Reglas de generación: sin objetos equipados (1.ª gen.) no se le pone ninguno.
             bool items = data.Ruleset.Generation.HeldItems;
             if (items && !string.IsNullOrWhiteSpace(spec.HeldItem)) mon.SetHeldItem(spec.HeldItem);
@@ -178,6 +187,32 @@ namespace CTEditor.Adventure.Domain
         }
 
         /// <summary>EVs de competición: 252 en su mejor ataque, 252 en Velocidad (o PS si es lento) y 4 en PS/Defensa.</summary>
+        /// <summary>Hueco de habilidad (0 = 1.ª, 1 = 2.ª, 2 = oculta) de una habilidad de la especie; -1 si no la tiene.</summary>
+        public static int AbilitySlotOf(SpeciesDef species, CTEditor.GameDefinition.Domain.Abilities.AbilityId ability)
+        {
+            if (species.Ability.HasValue && species.Ability.Value == ability) return 0;
+            if (species.SecondAbility.HasValue && species.SecondAbility.Value == ability) return 1;
+            if (species.HiddenAbility.HasValue && species.HiddenAbility.Value == ability) return 2;
+            return -1;
+        }
+
+        /// <summary>Pone los EVs escritos (recortados a los topes de las reglas) y recalcula sus estadísticas.</summary>
+        public static void ApplyEvs(MonsterInstance mon, SpeciesDef species, GameData data, StatSpread evs, List<string> problems = null)
+        {
+            if (data.Ruleset.MaxEvPerStat <= 0) return;   // juego sin EVs
+            int total = 0;
+            foreach (var kv in evs.Values)
+            {
+                int given = mon.AddEffort(kv.Key, kv.Value);
+                total += given;
+                if (given < kv.Value)
+                    problems?.Add($"{species.DisplayName}: {kv.Value} EVs de {kv.Key.Value} pasan del tope de las reglas; se quedan en {given}.");
+            }
+            if (total == 0) return;
+            mon.RecomputeStats(species.BaseStats, data.Growth);
+            mon.Heal(mon.MaxHp);
+        }
+
         public static void ApplyCompetitiveEvs(MonsterInstance mon, SpeciesDef species, GameData data)
         {
             var atk = IsPhysical(species) ? StatId.Attack : StatId.SpAttack;
@@ -271,6 +306,8 @@ namespace CTEditor.Adventure.Domain
             public IReadOnlyList<Id<Move>> Moves = Array.Empty<Id<Move>>();
             public string NatureId = "";
             public string HeldItem = "";
+            /// <summary>EVs que le pondría su entrenamiento de competición (vacío si su nivel de IA no entrena).</summary>
+            public StatSpread Evs = StatSpread.Empty;
         }
 
         /// <summary>
@@ -291,6 +328,8 @@ namespace CTEditor.Adventure.Domain
                 Moves = mon.Moves.ToList(),
                 NatureId = training && mon.Nature != null ? mon.Nature.Id.Value : "",
                 HeldItem = mon.HeldItem ?? "",
+                Evs = training ? new StatSpread(mon.Stats.Stats.Where(st => mon.EvOf(st) > 0).Select(st => new KeyValuePair<StatId, int>(st, mon.EvOf(st))))
+                               : StatSpread.Empty,
             };
         }
 

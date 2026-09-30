@@ -34,7 +34,8 @@ namespace CTEditor.Party.Domain
             GrowthCurve curve = null,
             IRng ivRng = null,
             Nature nature = null,
-            int? fixedIv = null)
+            int? fixedIv = null,
+            StatSpread ivOverrides = null)
         {
             if (species == null) throw new ArgumentNullException(nameof(species));
             if (ruleset == null) throw new ArgumentNullException(nameof(ruleset));
@@ -55,7 +56,7 @@ namespace CTEditor.Party.Domain
             //       - ninguno: sin IVs (se leen como 0). Así todo lo anterior sigue igual.
             //     Si el Ruleset tiene MaxIv = 0 (juego sin IVs), nunca se generan.
             //     EVs: nacen vacíos, con los topes del Ruleset.
-            var ivs = BuildIvs(species, ruleset, ivRng, fixedIv);
+            var ivs = BuildIvs(species, ruleset, ivRng, fixedIv, ivOverrides);
             var efforts = new EffortValues(ruleset.MaxEvPerStat, ruleset.MaxEvTotal);
 
             // 2) Stats efectivos: por cada stat base de la Species, la fórmula calcula el valor del
@@ -116,17 +117,20 @@ namespace CTEditor.Party.Domain
         }
 
         // Decide los IVs según la prioridad explicada arriba. Devuelve null si no hay IVs.
-        private static StatBlock BuildIvs(Species species, Ruleset ruleset, IRng ivRng, int? fixedIv)
+        private static StatBlock BuildIvs(Species species, Ruleset ruleset, IRng ivRng, int? fixedIv, StatSpread overrides = null)
         {
             if (ruleset.MaxIv <= 0) return null;          // juego sin IVs
-            if (!fixedIv.HasValue && ivRng == null) return null;
+            bool anyOverride = overrides != null && !overrides.IsEmpty;
+            if (!fixedIv.HasValue && ivRng == null && !anyOverride) return null;
 
             var b = new StatBlock.Builder();
             foreach (var statId in species.BaseStats.Stats)
             {
-                int value = fixedIv.HasValue
-                    ? Math.Max(0, Math.Min(ruleset.MaxIv, fixedIv.Value))
-                    : ivRng.Next(0, ruleset.MaxIv + 1);   // Next es [min, max) -> +1 para incluir MaxIv
+                int? chosen = anyOverride ? overrides.Of(statId) : null;   // IV escrito por el autor para ESTA estadística
+                int value = chosen.HasValue ? Math.Max(0, Math.Min(ruleset.MaxIv, chosen.Value))
+                    : fixedIv.HasValue ? Math.Max(0, Math.Min(ruleset.MaxIv, fixedIv.Value))
+                    : ivRng != null ? ivRng.Next(0, ruleset.MaxIv + 1)   // Next es [min, max) -> +1 para incluir MaxIv
+                    : 0;
                 b.Set(statId, value);
             }
             return b.Build();

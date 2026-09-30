@@ -20,12 +20,15 @@ namespace CTEditor.GameDefinition.Editor.Csv
         public sealed class ParsedMember
         {
             public string Species, Held = "", Nature = "", Nickname = "", Gender = "";
+            /// <summary>Habilidad elegida, EVs («252 Atq/4 PS/252 Vel») e IVs por estadística («0 Atq»). Vacío = automático.</summary>
+            public string Ability = "", Evs = "", Ivs = "";
             public int Level, Iv = -1;
             public List<string> Moves = new List<string>();
         }
 
         private static readonly Regex MemberRx = new Regex(
-            @"^(?<sp>[^@\[\]{}~#""]+)@(?<lvl>\d+)(?:%(?<g>[mhMH]))?(?:\[(?<moves>[^\]]*)\])?(?:\{(?<held>[^}]*)\})?(?:~(?<nat>[^#""]+))?(?:#(?<iv>\d+))?(?:""(?<nick>[^""]*)"")?$");
+            @"^(?<sp>[^@\[\]{}~#""!()]+)@(?<lvl>\d+)(?:%(?<g>[mhMH]))?(?:\[(?<moves>[^\]]*)\])?(?:\{(?<held>[^}]*)\})?(?:~(?<nat>[^#""!(]+))?" +
+            @"(?:!(?<ab>[^#""(]+))?(?:\((?<ev>[^)]*)\))?(?:#(?<iv>\d+)?(?:\((?<ivs>[^)]*)\))?)?(?:""(?<nick>[^""]*)"")?$");
 
         public static List<ParsedMember> ParseTeam(string cell)
         {
@@ -44,7 +47,14 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     Iv = m.Groups["iv"].Success ? int.Parse(m.Groups["iv"].Value) : -1,
                     Nickname = m.Groups["nick"].Success ? m.Groups["nick"].Value : "",
                     Gender = m.Groups["g"].Success ? m.Groups["g"].Value.ToLowerInvariant() : "",
+                    Ability = m.Groups["ab"].Success ? m.Groups["ab"].Value.Trim() : "",
+                    Evs = m.Groups["ev"].Success ? m.Groups["ev"].Value.Trim() : "",
+                    Ivs = m.Groups["ivs"].Success ? m.Groups["ivs"].Value.Trim() : "",
                 };
+                if (!CTEditor.GameDefinition.Domain.Stats.StatSpread.TryParse(p.Evs, out _, out var evError))
+                    throw new CsvCellException($"'{item}': EVs no válidos — {evError}");
+                if (!CTEditor.GameDefinition.Domain.Stats.StatSpread.TryParse(p.Ivs, out _, out var ivError))
+                    throw new CsvCellException($"'{item}': IVs no válidos — {ivError}");
                 if (p.Level < 1) throw new CsvCellException($"'{item}': el nivel debe ser al menos 1.");
                 if (m.Groups["moves"].Success)
                     p.Moves = m.Groups["moves"].Value.Split('/').Select(s => s.Trim()).Where(s => s.Length > 0).ToList();
@@ -64,10 +74,18 @@ namespace CTEditor.GameDefinition.Editor.Csv
             if (p.Moves.Count > 0) sb.Append('[').Append(string.Join("/", p.Moves)).Append(']');
             if (!string.IsNullOrEmpty(p.Held)) sb.Append('{').Append(p.Held).Append('}');
             if (!string.IsNullOrEmpty(p.Nature)) sb.Append('~').Append(p.Nature);
-            if (p.Iv >= 0) sb.Append('#').Append(p.Iv);
+            if (!string.IsNullOrEmpty(p.Ability)) sb.Append('!').Append(p.Ability);
+            if (!string.IsNullOrEmpty(p.Evs)) sb.Append('(').Append(Compact(p.Evs)).Append(')');
+            if (p.Iv >= 0 || !string.IsNullOrEmpty(p.Ivs)) sb.Append('#');
+            if (p.Iv >= 0) sb.Append(p.Iv);
+            if (!string.IsNullOrEmpty(p.Ivs)) sb.Append('(').Append(Compact(p.Ivs)).Append(')');
             if (!string.IsNullOrEmpty(p.Nickname)) sb.Append('"').Append(p.Nickname).Append('"');
             return sb.ToString();
         }
+
+        // Reparto en su forma corta y ordenada («252 Atq/4 PS/252 Vel»); si no se entiende, tal cual.
+        private static string Compact(string spread)
+            => CTEditor.GameDefinition.Domain.Stats.StatSpread.TryParse(spread, out var s, out _) ? s.Format() : spread.Trim();
 
         // ---------------- Zonas ----------------
 

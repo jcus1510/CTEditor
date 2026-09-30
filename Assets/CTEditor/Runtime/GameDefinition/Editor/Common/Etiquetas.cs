@@ -256,6 +256,8 @@ namespace CTEditor.GameDefinition.Editor
             ["moves"] = ("Movimientos", "movimientos"),
             ["nature"] = ("Naturaleza", "naturaleza"),
             ["fixedIvs"] = ("IV fijos (−1 = al azar)", "ivs"),
+            ["evs"] = ("EVs (252 Atq / 4 PS / 252 Vel)", "evs_miembro"),
+            ["ivs"] = ("IVs por estadística (0 Atq / 0 Vel)", "ivs_miembro"),
             ["heldItem"] = ("Objeto equipado", "objeto_equipado"),
             ["persistAcrossScenes"] = ("Mantener entre escenas", "persistir"),
             ["geneticsSeed"] = ("Semilla de la genética (0 = al azar)", "semilla"),

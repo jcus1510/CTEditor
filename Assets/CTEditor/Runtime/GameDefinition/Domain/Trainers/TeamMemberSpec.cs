@@ -37,10 +37,23 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         /// <summary>Género fijo. Null = al azar según su especie (una especie sin género siempre queda sin género).</summary>
         public CTEditor.GameDefinition.Domain.Species.Gender? Gender { get; }
 
+        /// <summary>IVs por estadística («0 Atq / 0 Vel»). Las no escritas: FixedIv o al azar. Vacío = ninguno fijado.</summary>
+        public StatSpread Ivs { get; }
+
+        /// <summary>EVs por estadística («252 Atq / 4 PS / 252 Vel»). Vacío = los decide su IA (entrenamiento de competición o nada).</summary>
+        public StatSpread Evs { get; }
+
+        /// <summary>Habilidad elegida (debe ser una de las de su especie; también la oculta). Null = la que le toque.</summary>
+        public CTEditor.GameDefinition.Domain.Abilities.AbilityId? Ability { get; }
+
         public TeamMemberSpec(Id<SpeciesDef> species, int level, IReadOnlyList<Id<Move>> moves = null,
             string heldItem = null, Id<Nature>? nature = null, int? fixedIv = null, string nickname = null,
-            CTEditor.GameDefinition.Domain.Species.Gender? gender = null)
+            CTEditor.GameDefinition.Domain.Species.Gender? gender = null,
+            StatSpread ivs = null, StatSpread evs = null, CTEditor.GameDefinition.Domain.Abilities.AbilityId? ability = null)
         {
+            Ivs = ivs ?? StatSpread.Empty;
+            Evs = evs ?? StatSpread.Empty;
+            Ability = ability;
             Gender = gender;
             if (string.IsNullOrWhiteSpace(species.Value)) throw new ArgumentException("El miembro necesita una especie.", nameof(species));
             Species = species;

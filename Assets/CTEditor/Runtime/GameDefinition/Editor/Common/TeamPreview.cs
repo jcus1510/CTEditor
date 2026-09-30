@@ -35,15 +35,31 @@ namespace CTEditor.GameDefinition.Editor
                 if (!string.IsNullOrWhiteSpace(m.heldItem)) pills.Add(("🎒 " + m.heldItem, EditorTheme.Items));
                 else if (profile != null && profile.HeldItems != HeldItemStyle.None)
                     pills.Add(("🎒 automático (" + (profile.HeldItems == HeldItemStyle.Competitive ? "competición" : "básico") + ")", EditorTheme.Items));
+                var evs = Spread(m.evs, out string evError);
+                var ivs = Spread(m.ivs, out string ivError);
                 if (m.fixedIvs >= 0) pills.Add(($"IV {m.fixedIvs}", EditorTheme.Tools));
-                else if (profile != null && profile.CompetitiveTraining) pills.Add(("IV 31 · EVs de competición", EditorTheme.Tools));
+                else if (profile != null && profile.CompetitiveTraining) pills.Add(("IV 31", EditorTheme.Tools));
+                if (!ivs.IsEmpty) pills.Add(("IV " + ivs.Format(" · "), EditorTheme.Tools));
+                if (!evs.IsEmpty) pills.Add(("EV " + evs.Format(" · "), EditorTheme.Tools));
+                else if (profile != null && profile.CompetitiveTraining) pills.Add(("EVs de competición", EditorTheme.Tools));
                 if (m.nature != null) pills.Add((m.nature.DisplayName, EditorTheme.Natures));
                 else pills.Add((profile != null && profile.CompetitiveTraining ? "naturaleza automática (competición)" : "naturaleza al azar", EditorTheme.Natures));
                 EditorTheme.Pills(pills.ToArray());
-                var st = EstimatedStats(s, m.level, m.fixedIvs >= 0 ? m.fixedIvs : 15);
+                var st = EstimatedStats(s, m.level, m.fixedIvs >= 0 ? m.fixedIvs : 15, ivs, evs);
                 EditorTheme.Paragraph($"≈ PS {st[0]} · Atq {st[1]} · Def {st[2]} · At.Esp {st[3]} · Def.Esp {st[4]} · Vel {st[5]}" +
-                                      (m.fixedIvs >= 0 ? "" : "  (IV medio)"));
-                if (!string.IsNullOrWhiteSpace(s.AbilityId)) EditorTheme.Paragraph("Habilidad: " + s.AbilityId);
+                                      (m.fixedIvs >= 0 || !ivs.IsEmpty ? "" : "  (IV medio)") + (evs.IsEmpty ? "" : "  (con sus EVs, sin naturaleza)"));
+                string chosen = (m.abilityId ?? "").Trim();
+                if (chosen.Length > 0)
+                {
+                    bool own = chosen == s.AbilityId || chosen == s.SecondAbilityId || chosen == s.HiddenAbilityId;
+                    EditorTheme.Paragraph("Habilidad: " + AbilityName(chosen) + (chosen == s.HiddenAbilityId ? " (oculta)" : ""));
+                    if (!own) EditorTheme.Tip($"{s.DisplayName} no tiene la habilidad «{AbilityName(chosen)}»: en el juego se quedará con la suya.", EditorTheme.Warn, "⚠");
+                }
+                else if (!string.IsNullOrWhiteSpace(s.AbilityId))
+                    EditorTheme.Paragraph("Habilidad: " + AbilityName(s.AbilityId) +
+                                          (string.IsNullOrWhiteSpace(s.SecondAbilityId) ? "" : " o " + AbilityName(s.SecondAbilityId) + " (al azar)"));
+                if (evError != null) EditorTheme.Tip("EVs mal escritos: " + evError + " (ej. 252 Atq / 4 PS / 252 Vel)", EditorTheme.Warn, "⚠");
+                if (ivError != null) EditorTheme.Tip("IVs mal escritos: " + ivError + " (ej. 0 Atq / 0 Vel)", EditorTheme.Warn, "⚠");
                 EditorTheme.Paragraph("Movimientos: " + MovesText(m, style, profile));
                 EditorTheme.EndCard();
             }
@@ -54,11 +70,28 @@ namespace CTEditor.GameDefinition.Editor
         /// Estadísticas aproximadas a su nivel (fórmula clásica, sin EVs ni naturaleza): PS, Atq, Def,
         /// At.Esp, Def.Esp y Vel. Sirven para ver de un vistazo si el equipo está equilibrado.
         /// </summary>
-        public static int[] EstimatedStats(SpeciesData s, int level, int iv)
+        public static int[] EstimatedStats(SpeciesData s, int level, int iv,
+            CTEditor.GameDefinition.Domain.Stats.StatSpread ivs = null, CTEditor.GameDefinition.Domain.Stats.StatSpread evs = null)
         {
             int L = System.Math.Max(1, level);
-            int Other(int b) => (2 * b + iv) * L / 100 + 5;
-            return new[] { (2 * s.Hp + iv) * L / 100 + L + 10, Other(s.Attack), Other(s.Defense), Other(s.SpAttack), Other(s.SpDefense), Other(s.Speed) };
+            int Iv(CTEditor.GameDefinition.Domain.Stats.StatId st) => ivs?.Of(st) ?? iv;
+            int Ev(CTEditor.GameDefinition.Domain.Stats.StatId st) => (evs?.Of(st) ?? 0) / 4;
+            int Other(int b, CTEditor.GameDefinition.Domain.Stats.StatId st) => (2 * b + Iv(st) + Ev(st)) * L / 100 + 5;
+            var hp = CTEditor.GameDefinition.Domain.Stats.StatId.Hp;
+            return new[] { (2 * s.Hp + Iv(hp) + Ev(hp)) * L / 100 + L + 10,
+                Other(s.Attack, CTEditor.GameDefinition.Domain.Stats.StatId.Attack), Other(s.Defense, CTEditor.GameDefinition.Domain.Stats.StatId.Defense),
+                Other(s.SpAttack, CTEditor.GameDefinition.Domain.Stats.StatId.SpAttack), Other(s.SpDefense, CTEditor.GameDefinition.Domain.Stats.StatId.SpDefense),
+                Other(s.Speed, CTEditor.GameDefinition.Domain.Stats.StatId.Speed) };
+        }
+
+        /// <summary>Lee un reparto de EVs/IVs de la ficha; si está mal escrito, vacío y el motivo en 'error'.</summary>
+        public static CTEditor.GameDefinition.Domain.Stats.StatSpread Spread(string text, out string error)
+            => CTEditor.GameDefinition.Domain.Stats.StatSpread.TryParse(text, out var s, out error) ? s : CTEditor.GameDefinition.Domain.Stats.StatSpread.Empty;
+
+        private static string AbilityName(string id)
+        {
+            var a = ContentAssets.FindById<AbilityData>(id);
+            return a != null ? a.DisplayName : id;
         }
 
         /// <summary>
@@ -279,6 +312,13 @@ namespace CTEditor.GameDefinition.Editor
                         did = true;
                     }
                 }
+                if ((overwrite || string.IsNullOrWhiteSpace(m.evs)) && (overwrite || !sug.Evs.IsEmpty))
+                {
+                    var evsProp = el.FindPropertyRelative("evs");
+                    string text = sug.Evs.Format(" / ");
+                    did |= evsProp.stringValue != text;
+                    evsProp.stringValue = text;
+                }
                 if (did) changed++;
             }
             return changed;
@@ -297,7 +337,7 @@ namespace CTEditor.GameDefinition.Editor
                 "los ajustes. Lo que ya escribiste no se toca. Lo que dejes vacío sigue siendo automático."), UnityEditor.EditorStyles.miniButton);
             bool all = GUILayout.Button(new GUIContent("↻ Sugerir todo de nuevo", "Sustituye movimientos, objeto y naturaleza de TODOS los miembros por la sugerencia."),
                 UnityEditor.EditorStyles.miniButton, GUILayout.Width(170));
-            bool clear = GUILayout.Button(new GUIContent("∅ Dejar en automático", "Vacía movimientos, objeto y naturaleza: el juego los elegirá al combatir."),
+            bool clear = GUILayout.Button(new GUIContent("∅ Dejar en automático", "Vacía movimientos, objeto, naturaleza y EVs: el juego los elegirá al combatir."),
                 UnityEditor.EditorStyles.miniButton, GUILayout.Width(140));
             UnityEditor.EditorGUILayout.EndHorizontal();
             if (fill || all)
@@ -308,7 +348,7 @@ namespace CTEditor.GameDefinition.Editor
                     $"{n} miembro(s) actualizados con lo que el juego les daría. Revísalos y ajusta lo que quieras.", "Vale");
                 GUIUtility.ExitGUI();
             }
-            if (clear && UnityEditor.EditorUtility.DisplayDialog("Dejar en automático", "¿Vaciar movimientos, objeto y naturaleza de todo el equipo?", "Vaciar", "Cancelar"))
+            if (clear && UnityEditor.EditorUtility.DisplayDialog("Dejar en automático", "¿Vaciar movimientos, objeto, naturaleza y EVs de todo el equipo?", "Vaciar", "Cancelar"))
             {
                 edit(so =>
                 {
@@ -321,6 +361,7 @@ namespace CTEditor.GameDefinition.Editor
                         el.FindPropertyRelative("heldItem").stringValue = "";
                         el.FindPropertyRelative("nature").objectReferenceValue = null;
                         el.FindPropertyRelative("natureId").stringValue = "";
+                        el.FindPropertyRelative("evs").stringValue = "";
                     }
                 });
                 GUIUtility.ExitGUI();

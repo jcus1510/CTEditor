@@ -95,6 +95,27 @@ namespace CTEditor.GameDefinition.Editor
                     issues.Add(Error($"{who}: {mon} no tiene movimientos elegidos ni aprende ninguno hasta el nivel {m.level}: no podría luchar.", owner));
                 if (!string.IsNullOrWhiteSpace(m.heldItem) && !itemIds.Contains(m.heldItem.Trim()))
                     issues.Add(Warning($"{who}: {mon} lleva '{m.heldItem}', que no existe.", owner));
+
+                // Habilidad elegida: tiene que ser una de las de su especie.
+                string ab = (m.abilityId ?? "").Trim();
+                if (ab.Length > 0 && ab != m.species.AbilityId && ab != m.species.SecondAbilityId && ab != m.species.HiddenAbilityId)
+                    issues.Add(Warning($"{who}: {mon} no puede tener la habilidad '{ab}' (no es de su especie): se quedará con la suya.", owner));
+
+                // EVs e IVs por estadística: bien escritos y dentro de los topes de las reglas.
+                var rules = LoadAll<RulesetData>().FirstOrDefault();
+                int evStat = rules != null ? rules.MaxEvPerStat : 252, evTotal = rules != null ? rules.MaxEvTotal : 510, ivMax = rules != null ? rules.MaxIv : 31;
+                if (!CTEditor.GameDefinition.Domain.Stats.StatSpread.TryParse(m.evs, out var evs, out var evError))
+                    issues.Add(Error($"{who}: los EVs de {mon} están mal escritos: {evError} (ej. 252 Atq / 4 PS / 252 Vel).", owner));
+                else if (!evs.IsEmpty)
+                {
+                    if (evStat <= 0) issues.Add(Warning($"{who}: {mon} tiene EVs, pero las reglas no tienen EVs (se ignoran).", owner));
+                    else if (evs.Values.Values.Any(v => v > evStat) || evs.Total > evTotal)
+                        issues.Add(Warning($"{who}: los EVs de {mon} pasan de los topes de las reglas ({evStat} por estadística, {evTotal} en total): se recortan.", owner));
+                }
+                if (!CTEditor.GameDefinition.Domain.Stats.StatSpread.TryParse(m.ivs, out var ivs, out var ivError))
+                    issues.Add(Error($"{who}: los IVs de {mon} están mal escritos: {ivError} (ej. 0 Atq / 0 Vel).", owner));
+                else if (ivs.Values.Values.Any(v => v > ivMax))
+                    issues.Add(Warning($"{who}: algún IV de {mon} pasa de {ivMax}: se recorta.", owner));
             }
         }
     }

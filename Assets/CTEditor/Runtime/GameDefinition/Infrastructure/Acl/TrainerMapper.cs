@@ -32,8 +32,15 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 d.nickname,
                 d.gender == MemberGender.Male ? CTEditor.GameDefinition.Domain.Species.Gender.Male
                 : d.gender == MemberGender.Female ? CTEditor.GameDefinition.Domain.Species.Gender.Female
-                : (CTEditor.GameDefinition.Domain.Species.Gender?)null);
+                : (CTEditor.GameDefinition.Domain.Species.Gender?)null,
+                Spread(d.ivs), Spread(d.evs),
+                string.IsNullOrWhiteSpace(d.abilityId) ? (CTEditor.GameDefinition.Domain.Abilities.AbilityId?)null
+                    : new CTEditor.GameDefinition.Domain.Abilities.AbilityId(d.abilityId.Trim()));
         }
+
+        // Un reparto mal escrito no rompe el juego: se ignora (el validador del editor lo avisa).
+        private static StatSpread Spread(string text)
+            => StatSpread.TryParse(text, out var s, out _) ? s : StatSpread.Empty;
 
         public static List<TeamMemberSpec> ToDomain(TeamMemberData[] team)
         {
