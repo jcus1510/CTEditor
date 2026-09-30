@@ -63,4 +63,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   prioridad); **movimientos Z** (mecánica con usos, Pulsera Z, tabla de potencias y 25 % a través de Protección;
   35 cristales Z como objetos con bloques `movimiento_z`; efectos Z de los movimientos de estado; botón Z; IA;
   `usa_z` en entrenadores); condiciones `mov.id` y `especie`; reglas de la 7.ª activan los movimientos Z.
+- **Aplicación CTEditor — fase 0-1**: propuesta ([PROPUESTA_APLICACION](PROPUESTA_APLICACION.md)); ensamblados
+  `CTEditor.Art.Domain` (imagen de píxeles, corte con tamaño/desplazamiento/separación, tiles vacíos y repetidos,
+  sugerencia de tamaño, hojas de personaje XP y VX/MV) y `CTEditor.Project` (PNG sin Unity, lectura y escritura;
+  catálogo de «graficos/»), con `TileSlicingTests`.
 - **Documentación** completa por capítulos (esta carpeta).

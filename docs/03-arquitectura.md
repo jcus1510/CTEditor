@@ -13,6 +13,8 @@ contextos; Unity solo aporta el almacenamiento (ScriptableObjects), la interfaz 
 | `CTEditor.Party.Domain` | `Runtime/Party/Domain` | SharedKernel, GameDefinition.Domain | Individuos y equipo ([07](07-equipo-y-progresion.md)). |
 | `CTEditor.Battle.Domain` | `Runtime/Battle/Domain` | SharedKernel, GameDefinition.Domain | Motor de combate ([06](06-combate.md)). **No conoce Party.** |
 | `CTEditor.Eventing.Domain` | `Runtime/Eventing/Domain` | SharedKernel, GameDefinition.Domain, GameContracts | Guiones de efectos del mundo. |
+| `CTEditor.Art.Domain` | `Runtime/Art/Domain` | — | Imagen de píxeles, corte de tilesets y hojas de personaje ([PROPUESTA_APLICACION](PROPUESTA_APLICACION.md)). |
+| `CTEditor.Project` | `Runtime/Project` | Art.Domain | Carpeta de proyecto: PNG sin Unity, catálogo de «graficos/». |
 | `CTEditor.Adventure.Domain` | `Runtime/Adventure/Domain` | SharedKernel, GameDefinition.Domain, Party.Domain, Battle.Domain | La partida: orquesta combate y equipo ([08](08-aventura.md)). |
 | `CTEditor.GameDefinition` | `Runtime/GameDefinition/Infrastructure` | GameDefinition.Domain, SharedKernel, Adventure.Domain | ScriptableObjects y mappers ([10](10-infraestructura-unity.md)). |
 | `CTEditor.GameDefinition.Editor` | `Runtime/GameDefinition/Editor` | todo lo anterior (menos Eventing/Contracts) | El editor (solo plataforma Editor) ([11](11-editor.md)). |

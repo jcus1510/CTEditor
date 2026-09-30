@@ -12,7 +12,9 @@
         "CTEditor.Party.Domain",
         "CTEditor.Battle.Domain",
         "CTEditor.Eventing.Domain",
-        "CTEditor.Adventure.Domain"
+        "CTEditor.Adventure.Domain",
+        "CTEditor.Art.Domain",
+        "CTEditor.Project"
     ],
     "includePlatforms": [
         "Editor"

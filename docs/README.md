@@ -30,6 +30,9 @@ interfaz del editor. El manual de uso para el AUTOR (qué hace cada botón) est�
 | 18 | [Pendientes y hoja de ruta](18-pendientes.md) | Lo que falta (paso 8 Gen 7, efectos «Al usarlo»...) y problemas conocidos. |
 | 19 | [Cómo migrar el proyecto](19-migrar.md) | Lista paso a paso para llevar el proyecto a otro sitio sin perder nada. |
 
+**Plan actual**: [`PROPUESTA_APLICACION.md`](PROPUESTA_APLICACION.md) — la aplicación CTEditor (mapas, NPC, eventos por
+nodos, recursos y corte de tilesets, editor de píxeles, jugar al instante).
+
 Documentos anteriores: [`PROPUESTA_EDITOR_OBJETOS.md`](PROPUESTA_EDITOR_OBJETOS.md) (la propuesta que dio lugar al
 capítulo 09; ya implementada) y [`CONTEXTO.md`](CONTEXTO.md) (resumen de una página).
 
