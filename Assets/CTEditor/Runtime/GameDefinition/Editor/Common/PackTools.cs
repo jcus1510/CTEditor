@@ -257,6 +257,108 @@ namespace CTEditor.GameDefinition.Editor
                 if (RestoreOne(file, id)) { _brokenStamp = default; afterRestore?.Invoke(); }
         }
 
+        // ---------------- Plantillas de entrenadores (ventana 📋) ----------------
+
+        /// <summary>
+        /// Añade al proyecto los entrenadores 'ids' de la fuente (pack o tu Excel). Antes crea, sin preguntar, lo que
+        /// necesitan: los movimientos y habilidades que falten y las especies de sus equipos CON su línea evolutiva
+        /// (las evoluciones se referencian entre sí). Guarda copia de seguridad. Devuelve el informe.
+        /// </summary>
+        public static string ImportTrainers(ICollection<string> ids, ImportMode mode)
+        {
+            if (ids == null || ids.Count == 0 || !CheckAvailable()) return null;
+            EnsureWhatTrainersNeed(ids);
+            var tr = AnalyzeStaged(new[] { TrainersFile }, ids, mode, out var ctx);
+            return CsvImporter.Apply(tr, ctx, Path.Combine(CsvImporter.DefaultFolder, "copias"));
+        }
+
+        // Movimientos y habilidades que falten + las especies de sus equipos (con su familia evolutiva).
+        private static void EnsureWhatTrainersNeed(ICollection<string> ids)
+        {
+            CreateMissingSilently(MovesFile, AbilitiesFile);
+            var needed = SpeciesForTrainers(ids);
+            if (needed.Count == 0) return;
+            var sp = AnalyzeStaged(new[] { SpeciesFile }, needed, ImportMode.CreateOnly, out var ctxSp);
+            if (sp.Sum(a => a.New) > 0) CsvImporter.Apply(sp, ctxSp, null);
+        }
+
+        /// <summary>
+        /// Rellena el entrenador 'targetId' con los datos de la plantilla 'templateId' de la fuente (equipo, IA, mochila,
+        /// frases...). El id del destino se mantiene. Devuelve el informe (null si la plantilla no existe).
+        /// </summary>
+        public static string FillTrainerFromTemplate(string templateId, string targetId)
+        {
+            if (!CheckAvailable()) return null;
+            var table = CsvTable.Load(Path.Combine(Folder, TrainersFile));
+            var row = table.Rows.FirstOrDefault(r => r.TryGetValue("id", out var id) && id.Trim() == templateId);
+            if (row == null) return null;
+            EnsureWhatTrainersNeed(new[] { templateId });
+            var copy = new Dictionary<string, string>(row, StringComparer.OrdinalIgnoreCase) { ["id"] = targetId };
+            var one = new CsvTable(table.Headers);
+            one.AddRow(copy);
+            string temp = Path.Combine(Path.GetDirectoryName(Application.dataPath) ?? ".", "Temp", "CTEditorPlantilla");
+            Directory.CreateDirectory(temp);
+            string path = Path.Combine(temp, TrainersFile);
+            one.Save(path);
+            var schema = CsvSchemas.All().First(s => s.FileName == TrainersFile);
+            var analyses = CsvImporter.AnalyzeFiles(new List<(CsvSchema, string)> { (schema, path) }, ImportMode.CreateAndUpdate, out var ctx);
+            var errors = analyses.SelectMany(a => a.Rows).SelectMany(r => r.Errors).ToList();
+            if (errors.Count > 0) return "No se pudo rellenar:\n• " + string.Join("\n• ", errors.Take(8));
+            return CsvImporter.Apply(analyses, ctx, null);
+        }
+
+        /// <summary>(id, texto) de los entrenadores de la fuente, para menús (con su nivel de IA).</summary>
+        public static List<(string id, string label, int level)> TrainerTemplates()
+        {
+            var list = new List<(string, string, int)>();
+            string path = Path.Combine(Folder ?? "", TrainersFile);
+            if (!File.Exists(path)) return list;
+            foreach (var r in CsvTable.Load(path).Rows)
+            {
+                string Get(string k) => r.TryGetValue(k, out var v) ? (v ?? "").Trim() : "";
+                if (Get("id").Length == 0) continue;
+                int.TryParse(Get("nivel_ia"), out int lvl);
+                list.Add((Get("id"), $"{Get("clase")} {Get("nombre")}".Trim(), lvl));
+            }
+            return list;
+        }
+
+        /// <summary>Las especies de los equipos de esos entrenadores y toda su línea evolutiva (en la fuente).</summary>
+        public static HashSet<string> SpeciesForTrainers(ICollection<string> ids)
+        {
+            var result = new HashSet<string>();
+            string tPath = Path.Combine(Folder, TrainersFile), sPath = Path.Combine(Folder, SpeciesFile);
+            if (!File.Exists(tPath)) return result;
+            foreach (var r in CsvTable.Load(tPath).Rows)
+            {
+                if (!r.TryGetValue("id", out var id) || !ids.Contains(id.Trim()) || !r.TryGetValue("equipo", out var team)) continue;
+                try { foreach (var m in CsvTeamCodecs.ParseTeam(team)) result.Add(m.Species); } catch (Exception) { /* el análisis lo marcará */ }
+            }
+            if (!File.Exists(sPath)) return result;
+            // Grafo de evoluciones (en ambos sentidos) para arrastrar la familia entera.
+            var links = new Dictionary<string, HashSet<string>>();
+            void Link(string a, string b)
+            {
+                if (!links.TryGetValue(a, out var set)) links[a] = set = new HashSet<string>();
+                set.Add(b);
+            }
+            foreach (var r in CsvTable.Load(sPath).Rows)
+            {
+                if (!r.TryGetValue("id", out var id) || !r.TryGetValue("evoluciona", out var evo)) continue;
+                foreach (var e in CsvCodecs.SplitList(evo))
+                {
+                    string target = e.Split('@')[0].Trim();
+                    if (target.Length == 0) continue;
+                    Link(id.Trim(), target); Link(target, id.Trim());
+                }
+            }
+            var queue = new Queue<string>(result);
+            while (queue.Count > 0)
+                if (links.TryGetValue(queue.Dequeue(), out var next))
+                    foreach (var n in next) if (result.Add(n)) queue.Enqueue(n);
+            return result;
+        }
+
         // ---------------- Por dentro ----------------
 
         // Crea (sin preguntar) las filas que FALTEN de esos archivos: nunca toca lo que ya existe.
