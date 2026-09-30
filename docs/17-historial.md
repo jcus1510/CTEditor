@@ -67,4 +67,7 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   `CTEditor.Art.Domain` (imagen de píxeles, corte con tamaño/desplazamiento/separación, tiles vacíos y repetidos,
   sugerencia de tamaño, hojas de personaje XP y VX/MV) y `CTEditor.Project` (PNG sin Unity, lectura y escritura;
   catálogo de «graficos/»), con `TileSlicingTests`.
+- **Aplicación — base del entorno**: decisiones (base RPG Maker XP / Essentials, tile de 32 px elegible al crear,
+  tema oscuro, entorno editable); JSON propio, `proyecto.json`, archivo de corte con propiedades de tile de RPG Maker XP
+  y etiquetas de Essentials; `CTEditor.Workspace` (temas, paneles acoplables, distribuciones guardadas, atajos).
 - **Documentación** completa por capítulos (esta carpeta).

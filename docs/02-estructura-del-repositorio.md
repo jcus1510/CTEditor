@@ -18,7 +18,8 @@ CTEditor/
 │  │  │  │                            PlayerSave, AiTournament, RulesReview, Interface/ (menús, input, texto)
 │  │  │  ├─ Eventing/Domain/          EventScript + EffectDispatcher (efectos del mundo)
 │  │  │  ├─ Art/Domain/               imagen de píxeles, corte de tilesets y hojas de personaje (aplicación)
-│  │  │  ├─ Project/                  carpeta de proyecto: PNG sin Unity, catálogo de recursos (aplicación)
+│  │  │  ├─ Project/                  carpeta de proyecto: proyecto.json, JSON, PNG, catálogo, corte (aplicación)
+│  │  │  ├─ Workspace/                entorno de trabajo: tema, paneles, atajos (aplicación)
 │  │  │  └─ GameContracts/            contratos entre contextos (IPartyCommands, IInventoryCommands)
 │  │  ├─ Bootstrap/                   escena y juego: GameBootstrap, ContentLibrary, BattleScreen, BattleLab,
 │  │  │                               PartyHolder, Interface/ (UI), GameFlow/, Platform/ (EventBus, SystemRng)

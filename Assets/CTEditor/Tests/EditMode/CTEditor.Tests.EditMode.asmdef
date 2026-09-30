@@ -14,7 +14,8 @@
         "CTEditor.Eventing.Domain",
         "CTEditor.Adventure.Domain",
         "CTEditor.Art.Domain",
-        "CTEditor.Project"
+        "CTEditor.Project",
+        "CTEditor.Workspace"
     ],
     "includePlatforms": [
         "Editor"

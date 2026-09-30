@@ -1,0 +1,16 @@
+{
+    "name": "CTEditor.Workspace",
+    "rootNamespace": "CTEditor.Workspace",
+    "references": [
+        "CTEditor.Project"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

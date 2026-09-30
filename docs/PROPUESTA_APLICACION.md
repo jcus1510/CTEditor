@@ -1,10 +1,14 @@
 # Propuesta — Aplicación CTEditor: mapas, NPC, eventos, recursos y editor de píxeles
 
-> Estado: **EN CURSO** (fase 0-1). Decisiones del autor: el editor será una **aplicación propia** (no solo
+> Estado: **EN CURSO** (fase 0-1 hecha; base del entorno de trabajo hecha). Decisiones del autor: el editor será una **aplicación propia** (no solo
 > herramientas dentro de Unity); las generaciones quedan en pausa; eventos **por nodos y grafos** además de lista;
 > **editar y jugar al instante**; **editor de píxeles** incorporado (tipo Aseprite) para retocar; **lectura de carpetas**
 > y **corte de tilesets** con el tamaño de tile que se elija. La protección del código (DLL) no interesa por ahora. Más
 > adelante se retomarán las herramientas de Unity para profesionales.
+>
+> Segunda ronda de decisiones: **RPG Maker XP / Pokémon Essentials como base** (tile de 32 px, pantalla 512 × 384,
+> propiedades de tile y etiquetas de terreno con sus mismos valores, para importar sin pérdidas); el tamaño del tile se
+> **elige al crear el proyecto**; **tema oscuro** por defecto; **entorno de trabajo editable** (paneles, tema, atajos).
 
 ## 1. Qué hace mejor la competencia y cómo superarla
 
@@ -65,6 +69,28 @@ MiJuego/
 - Los datos actuales (fichas de Unity) siguen funcionando; el paso a la carpeta se hace por los CSV que ya existen.
   Pendiente técnico: los esquemas CSV actuales escriben en fichas de Unity; hace falta un lector que construya el
   dominio **directamente** desde el CSV (para la aplicación).
+
+## 3b. Entorno de trabajo (de cada usuario, no del proyecto)
+
+Se guarda en `entorno.json`, en la carpeta del usuario (`WorkspaceSettings`):
+- **Tema**: Oscuro (por defecto), Claro o Alto contraste; **cualquier color** se puede cambiar (fondo, paneles, texto,
+  acento, selección, rejilla, avisos...).
+- **Paneles** (`DockLayout`): se arrastran a otro grupo (pestaña) o a un lado (divide el espacio), se cierran, se abren
+  y se redimensionan con los separadores. Distribuciones de fábrica: **Clásico (RPG Maker)**, Mapa grande, Arte,
+  Historia; el usuario puede **guardar las suyas con nombre**.
+- **Escala de la interfaz** (75 %–200 %), **tamaño de letra**, **atajos de teclado** cambiables (avisa y resuelve
+  choques) y **proyectos recientes**.
+- Si el archivo se estropea, la aplicación arranca con el de fábrica.
+
+## 3c. Base RPG Maker XP / Essentials
+
+- `proyecto.json`: nombre, **tamaño de tile (32 por defecto; 16, 48, 24 o cualquiera al crear)**, pantalla 512 × 384,
+  mapa inicial.
+- Propiedades de tile (`TileProperties` en `imagen.corte.json`): **bloqueo por dirección con los bits de RPG Maker XP**
+  (abajo 1, izquierda 2, derecha 4, arriba 8), **prioridad 0-5**, **etiqueta de terreno con los números de Essentials**
+  (1 saliente, 2 hierba, 7 agua, 10 hierba alta, 12 hielo...), **arbusto** y **mostrador**.
+- El importador (fase 9) leerá `Data/*.rxdata` (formato Marshal de Ruby: `MapInfos`, `Map###`, `Tilesets`), los PBS de
+  Essentials y las carpetas `Graphics/Tilesets`, `Autotiles`, `Characters`, `Battlers`... hacia la carpeta del proyecto.
 
 ## 4. Editar y jugar al instante
 
@@ -155,4 +181,9 @@ ficha con **línea de visión** dibujada, plantillas (enfermera, tendero, profes
 ## 9. Hecho hasta ahora
 
 - **Fase 0-1 (dominio)**: `CTEditor.Art.Domain` (`PixelImage`, `Rgba32`, `SliceSettings`, `TileSlicer`,
-  `TileSizeSuggester`, `CharacterSheetLayout`) y `CTEditor.Project` (`PngReader`, `AssetCatalog`), con tests.
+  `TileSizeSuggester`, `CharacterSheetLayout`) y `CTEditor.Project` (`Png`, `ProjectLayout`, `AssetCatalog`), con
+  `TileSlicingTests`.
+- **Base del entorno**: `Json` propio (sin dependencias, conserva el orden, errores con línea y columna),
+  `ProjectFile`/`ProjectSettings`, `SliceFile`/`TileProperties` (base RPG Maker XP / Essentials) y
+  `CTEditor.Workspace` (`Theme`, `DockLayout`, `ShortcutMap`, `WorkspaceSettings`), con `WorkspaceTests`.
+- **Siguiente**: fase 2, la primera ventana (UI Toolkit) que usa todo lo anterior.
