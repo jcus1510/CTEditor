@@ -261,6 +261,44 @@ namespace CTEditor.Adventure.Domain
             };
         }
 
+        // ---------------- Sugerencias para el EDITOR ----------------
+
+        /// <summary>Lo que el juego le pondría a un miembro: movimientos, naturaleza (vacía = al azar) y objeto (vacío = ninguno).</summary>
+        public sealed class MemberSuggestion
+        {
+            public IReadOnlyList<Id<Move>> Moves = Array.Empty<Id<Move>>();
+            public string NatureId = "";
+            public string HeldItem = "";
+        }
+
+        /// <summary>
+        /// SUGERENCIA para el editor: arma el miembro con el MISMO código que el juego en Play (Build) pero sin los
+        /// movimientos, objeto y naturaleza escritos, y devuelve lo que el juego elegiría. La naturaleza solo se sugiere si
+        /// el nivel de IA entrena como en competición (si no, en el juego sale al azar). Null si la especie no existe.
+        /// </summary>
+        public static MemberSuggestion Suggest(TeamMemberSpec spec, GameData data, AiProfile profile, MovesetStyle style)
+        {
+            if (spec == null || data == null) return null;
+            if (style == MovesetStyle.ByAi) style = profile?.Moveset ?? MovesetStyle.Classic;
+            var blank = new TeamMemberSpec(spec.Species, spec.Level, null, "", null, spec.FixedIv, spec.Nickname, spec.Gender);
+            var mon = Build(blank, new Id<MonsterInstance>("sugerencia"), data, new FirstRng(), null, style, profile);
+            if (mon == null) return null;
+            bool training = profile != null && profile.CompetitiveTraining;
+            return new MemberSuggestion
+            {
+                Moves = mon.Moves.ToList(),
+                NatureId = training && mon.Nature != null ? mon.Nature.Id.Value : "",
+                HeldItem = mon.HeldItem ?? "",
+            };
+        }
+
+        // Azar fijo (siempre el primero): una sugerencia debe ser la misma cada vez que se pide.
+        private sealed class FirstRng : IRng
+        {
+            public int Next(int minInclusive, int maxExclusive) => minInclusive;
+            public float NextFloat() => 0f;
+        }
+
         private static Nature RandomNature(GameData data, IRng rng)
         {
             if (rng == null) return null;

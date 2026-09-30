@@ -24,6 +24,7 @@ using CTEditor.Battle.Domain.Events;
 using CTEditor.Battle.Domain.Formulas;
 using CTEditor.Battle.Domain.Turn;
 using CTEditor.Adventure.Domain;
+using CTEditor.Party.Domain;
 
 namespace CTEditor.Tests.EditMode
 {
@@ -450,6 +451,24 @@ namespace CTEditor.Tests.EditMode
             Assert.AreEqual(5, ai.AiLevel);
             Assert.AreEqual("ia_prueba", ai.AiProfileId);
             Assert.AreEqual(team.Team.Count, ai.Team.Count, "mismo equipo");
+        }
+
+        [Test]
+        public void The_editor_suggestion_is_what_the_game_would_build_and_is_always_the_same()
+        {
+            var data = AiData();
+            var spec = new TeamMemberSpec(new Id<Species>("leafy"), 20);
+            var a = TeamBuilder.Suggest(spec, data, AiProfile.Classic(4), MovesetStyle.ByAi);
+            var b = TeamBuilder.Suggest(spec, data, AiProfile.Classic(4), MovesetStyle.ByAi);
+            Assert.IsNotNull(a);
+            CollectionAssert.IsNotEmpty(a.Moves, "sugiere movimientos");
+            CollectionAssert.AreEqual(a.Moves, b.Moves, "la misma sugerencia cada vez");
+            var built = TeamBuilder.Build(spec, new Id<MonsterInstance>("x"), data, new FixedRng(0f), null, AiProfile.Classic(4).Moveset, AiProfile.Classic(4));
+            CollectionAssert.AreEquivalent(built.Moves, a.Moves, "lo mismo que arma el juego");
+            // Lo ya escrito no cuenta: la sugerencia parte de cero (la ventana decide si rellena o sustituye).
+            var withMoves = new TeamMemberSpec(new Id<Species>("leafy"), 20, new[] { new Id<Move>("protect") });
+            CollectionAssert.AreEqual(a.Moves, TeamBuilder.Suggest(withMoves, data, AiProfile.Classic(4), MovesetStyle.ByAi).Moves);
+            Assert.IsNull(TeamBuilder.Suggest(new TeamMemberSpec(new Id<Species>("no_existe"), 5), data, AiProfile.Classic(1), MovesetStyle.ByAi));
         }
 
         [Test]

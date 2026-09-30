@@ -345,6 +345,12 @@ namespace CTEditor.GameDefinition.Editor
             }
             EditorGUILayout.EndHorizontal();
             DrawAiLinks(d);
+
+            // Lo que el juego le pondrá a cada miembro, visible y editable ANTES de darle a Play.
+            EditorGUILayout.LabelField("Equipo según su IA", EditorStyles.boldLabel);
+            var sugProfile = ProfileFor(d);
+            var sugStyle = d.MovesetStyle != MovesetStyle.ByAi ? d.MovesetStyle : sugProfile.Moveset;
+            TeamPreview.DrawSuggestButtons("team", d.Team, sugProfile, sugStyle, "su IA", EditSelected);
             DrawBagEditor(d);
         }
 
