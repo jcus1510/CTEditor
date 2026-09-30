@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Compila el DOMINIO puro (sin Unity) y ejecuta sus tests con .NET, fuera del editor:
+        dotnet test Tools/probar_dominio
+    Los tests que usan UnityEngine/UnityEditor o las fichas (Infrastructure/Editor) se excluyen abajo: esos solo
+    corren en el Test Runner de Unity.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <NoWarn>CS0414;CS0169;CS0649;CS0219;CS0162;CS0168;NUnit2003;NUnit2004;NUnit2005;NUnit2006;NUnit2007</NoWarn>
+    <Runtime>$(MSBuildThisFileDirectory)../../Assets/CTEditor/Runtime/</Runtime>
+    <Tests>$(MSBuildThisFileDirectory)../../Assets/CTEditor/Tests/EditMode/</Tests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(Runtime)SharedKernel/**/*.cs" />
+    <Compile Include="$(Runtime)GameContracts/**/*.cs" />
+    <Compile Include="$(Runtime)Eventing/**/*.cs" />
+    <Compile Include="$(Runtime)GameDefinition/Domain/**/*.cs" />
+    <Compile Include="$(Runtime)Battle/**/*.cs" />
+    <Compile Include="$(Runtime)Party/**/*.cs" />
+    <Compile Include="$(Runtime)Adventure/**/*.cs" />
+    <Compile Include="$(Tests)*.cs" Exclude="$(Tests)ConsoleBattleTests.cs;$(Tests)CsvTests.cs;$(Tests)EditorCatalogTests.cs;$(Tests)EvolutionConditionTests.cs;$(Tests)GrowthCurveMapperTests.cs;$(Tests)LoteFTests.cs;$(Tests)MathExpressionTests.cs;$(Tests)PokedexAndMovesetTests.cs;$(Tests)ReferenceFinderTests.cs;$(Tests)TrashTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0" />
+  </ItemGroup>
+</Project>

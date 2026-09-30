@@ -200,6 +200,31 @@ namespace CTEditor.GameDefinition.Editor
 
                 if (rs.MaxMovesPerMonster < 1)
                     issues.Add(Error($"Las reglas '{Name(rs)}' permiten menos de 1 movimiento por monstruo.", rs));
+
+                // Mecánicas especiales activas: cada id debe tener su ficha; no se repiten dos del mismo tipo.
+                var mechanics = LoadAll<MechanicData>();
+                var kinds = new HashSet<CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind>();
+                foreach (var id in rs.MechanicIds ?? new string[0])
+                {
+                    if (string.IsNullOrWhiteSpace(id)) continue;
+                    var m = mechanics.Find(x => string.Equals(x.Id, id, System.StringComparison.OrdinalIgnoreCase));
+                    if (m == null) issues.Add(Warning($"Las reglas '{Name(rs)}' activan la mecánica '{id}', que no existe: se ignora.", rs));
+                    else if (!kinds.Add(m.Kind))
+                        issues.Add(Warning($"Las reglas '{Name(rs)}' activan dos mecánicas del mismo tipo ({Etiquetas.Enum(m.Kind.ToString())}): solo cuenta la primera.", rs));
+                }
+                if (rs.CategoryByType && (rs.SpecialTypes == null || rs.SpecialTypes.Length == 0))
+                    issues.Add(Warning($"Las reglas '{Name(rs)}' deciden la categoría por tipo pero no tienen tipos especiales: todos los ataques serán físicos.", rs));
+            }
+
+            // Fichas de mecánica: el objeto clave debe existir.
+            var items = new HashSet<string>();
+            foreach (var it in LoadAll<ItemData>()) if (!string.IsNullOrWhiteSpace(it.Id)) items.Add(it.Id);
+            foreach (var m in LoadAll<MechanicData>())
+            {
+                if (string.IsNullOrWhiteSpace(m.Id)) { issues.Add(Error($"Hay una mecánica sin id (asset '{m.name}').", m)); continue; }
+                if (m.Kind == CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind.MegaEvolution
+                    && !string.IsNullOrWhiteSpace(m.MegaRequiredKeyItem) && !items.Contains(m.MegaRequiredKeyItem))
+                    issues.Add(Warning($"La mecánica '{m.Id}' pide el objeto clave '{m.MegaRequiredKeyItem}', que no existe: el jugador no podrá usarla.", m));
             }
         }
 

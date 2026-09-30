@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using CTEditor.GameDefinition.Domain.Stats;
+using CTEditor.GameDefinition.Domain.Moves;
+using CTEditor.GameDefinition.Domain.Rules;
+using CTEditor.GameDefinition.Domain.Rules.Mechanics;
 
 namespace CTEditor.Battle.Domain
 {
@@ -26,12 +29,21 @@ namespace CTEditor.Battle.Domain
         public bool ExpShareAll { get; }
         public float ExpShareOthersPercent { get; }
 
+        // --- Reglas de generación y mecánicas especiales (del Ruleset) ---
+        /// <summary>Categoría por tipo, Especial único, habilidades y objetos encendidos o no.</summary>
+        public GenerationRules Generation { get; }
+        /// <summary>Mecánicas especiales activas (Megaevolución...).</summary>
+        public IReadOnlyList<MechanicDefinition> Mechanics { get; }
+
         public BattleRules(IReadOnlyList<int> critDenominators = null, float critMultiplier = 1.5f,
             string physicalAttack = "attack", string physicalDefense = "defense",
             string specialAttack = "sp_attack", string specialDefense = "sp_defense",
             bool fleeAlwaysWorks = false, bool canFleeTrainerBattles = false, bool canCatchTrainerMonsters = false,
-            float catchRateMultiplier = 1f, bool expShareAll = false, float expShareOthersPercent = 50f)
+            float catchRateMultiplier = 1f, bool expShareAll = false, float expShareOthersPercent = 50f,
+            GenerationRules generation = null, IReadOnlyList<MechanicDefinition> mechanics = null)
         {
+            Generation = generation ?? GenerationRules.Modern;
+            Mechanics = mechanics ?? new MechanicDefinition[0];
             FleeAlwaysWorks = fleeAlwaysWorks;
             CanFleeTrainerBattles = canFleeTrainerBattles;
             CanCatchTrainerMonsters = canCatchTrainerMonsters;
@@ -49,11 +61,30 @@ namespace CTEditor.Battle.Domain
 
         public static readonly BattleRules Default = new BattleRules();
 
+        /// <summary>
+        /// La categoría con la que el movimiento hace daño bajo estas reglas: con «categoría por tipo» (1.ª-3.ª gen.)
+        /// la decide su tipo; si no, la del propio movimiento. Los de estado siempre son de estado.
+        /// </summary>
+        public MoveCategory CategoryOf(Move move, string typeId = null)
+        {
+            if (move == null) return MoveCategory.Status;
+            if (!Generation.CategoryByType || move.Category == MoveCategory.Status) return move.Category;
+            return Generation.IsSpecialType(typeId ?? move.Type.Value) ? MoveCategory.Special : MoveCategory.Physical;
+        }
+
+        /// <summary>La primera mecánica activa de este tipo (null = no se puede usar).</summary>
+        public MechanicDefinition Mechanic(MechanicKind kind)
+        {
+            foreach (var m in Mechanics) if (m.Kind == kind) return m;
+            return null;
+        }
+
         /// <summary>Traduce las reglas del autor (Ruleset) a reglas de combate.</summary>
         public static BattleRules From(CTEditor.GameDefinition.Domain.Rules.Ruleset r)
             => r == null ? Default : new BattleRules(r.CritDenominators, r.CritMultiplier,
                 r.PhysicalAttackStat, r.PhysicalDefenseStat, r.SpecialAttackStat, r.SpecialDefenseStat,
                 r.Adventure.FleeAlwaysWorks, r.Adventure.CanFleeTrainerBattles, r.Adventure.CanCatchTrainerMonsters,
-                r.Adventure.CatchRateMultiplier, r.Adventure.ExpShareAll, r.Adventure.ExpShareOthersPercent);
+                r.Adventure.CatchRateMultiplier, r.Adventure.ExpShareAll, r.Adventure.ExpShareOthersPercent,
+                r.Generation, r.Mechanics);
     }
 }

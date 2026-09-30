@@ -58,7 +58,7 @@ namespace CTEditor.Bootstrap
             ICatalog<Move> moveCatalog = new ScriptableObjectCatalog<MoveData, Move>(
                 moves, d => d.Id, MoveMapper.ToDomain);
             var chart = TypeChartMapper.ToDomain(typeChart);
-            var rules = RulesetMapper.ToDomain(ruleset);
+            var rules = RulesetMapper.ToDomain(ruleset, ContentLibrary.MechanicById);
             IRng rng = new SystemRng(seed);
             var growth = new ClassicStatGrowthFormula();
 

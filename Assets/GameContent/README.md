@@ -20,6 +20,7 @@ ningún componente.
           Weathers/   WeatherData          (climas)
           Types/      TypeChartData + ElementTypeData
           Rulesets/   RulesetData          (normalmente uno solo)
+          Mechanics/  MechanicData         (mecánicas especiales: Megaevolución...; las activa el Ruleset)
           Trainers/   TrainerData          (entrenadores rivales)
           Teams/      TeamPresetData       (equipos prearmados)
           Encounters/ EncounterZoneData    (zonas salvajes)
@@ -153,8 +154,21 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
   crean las plantillas del código; si el pack trae la hoja de una categoría, manda el pack.
 - Los packs se generan con `Tools/verificar_pack/generar_packs.py` desde `Tools/datos_fuente/` y PokeAPI, y se
   comprueban con `Tools/verificar_pack/verificar_pack.py` (ver `Tools/README.md`).
-- Los efectos de movimientos y habilidades y las reglas del motor aún son los de la 6.ª gen. (ver «Aproximaciones» en
-  el INFORME de cada pack).
+- Los efectos de movimientos y habilidades aún son los de la 6.ª gen. (ver «Aproximaciones» en el INFORME de cada
+  pack). Las reglas de cada generación se ponen en **Reglas del juego → Reglas de generación** (ver abajo).
+
+## Reglas de generación y mecánicas especiales
+- **Reglas del juego → Reglas de generación**: botones «1.ª gen.» … «9.ª gen.» / «Moderno» ponen todas las perillas de
+  golpe, y después se retoca cada una:
+  - **Categoría por tipo** (1.ª-3.ª): físico o especial lo decide el tipo del movimiento (lista de tipos especiales
+    editable); los de estado siguen siendo de estado.
+  - **Especial único** (1.ª): lo que sube o baja el Ataque Especial también mueve la Defensa Especial.
+  - **Habilidades** (desde la 3.ª), **objetos equipados** (desde la 2.ª), **naturalezas** (desde la 3.ª) y **géneros**
+    (desde la 2.ª): apagadas, el motor las ignora (nadie lleva objetos, todos neutros y sin género).
+- **Combate → 💎 Mecánicas especiales**: fichas de mecánica (hoy, Megaevolución: megas por combate —1 oficial, 0 sin
+  límite—, objeto clave del jugador —Megapulsera— y si vuelve a su forma al retirarse). Puedes tener varias fichas y
+  **activar en las Reglas** las que quieras, incluso varias a la vez (Excel: `mecanicas.csv`, columna `mecanicas` de
+  `reglas.csv`). Una ficha que no está activa no hace nada.
 
 ## Niveles de IA (Lote E + Lote F)
 Siete niveles, cada uno una ficha editable (CTEditor → Personajes → **Niveles de IA**) hecha de **4 bloques combinables**:

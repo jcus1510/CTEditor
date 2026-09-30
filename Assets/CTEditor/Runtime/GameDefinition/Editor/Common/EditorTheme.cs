@@ -26,6 +26,7 @@ namespace CTEditor.GameDefinition.Editor
         public static readonly Color Curves = new Color(0.55f, 0.85f, 0.95f);
         public static readonly Color Natures = new Color(0.95f, 0.55f, 0.75f);
         public static readonly Color Rules = new Color(0.60f, 0.62f, 0.68f);
+        public static readonly Color Mechanics = new Color(0.85f, 0.45f, 0.85f);
         public static readonly Color Tools = new Color(0.45f, 0.55f, 0.85f);
         public static readonly Color Trainers = new Color(0.85f, 0.45f, 0.55f);
         public static readonly Color Teams = new Color(0.50f, 0.70f, 0.95f);
@@ -52,6 +53,7 @@ namespace CTEditor.GameDefinition.Editor
                 case ContentFolders.Curves: return Curves;
                 case ContentFolders.Natures: return Natures;
                 case ContentFolders.Rulesets: return Rules;
+                case ContentFolders.Mechanics: return Mechanics;
                 case ContentFolders.Trainers: return Trainers;
                 case ContentFolders.Teams: return Teams;
                 case ContentFolders.Encounters: return Zones;

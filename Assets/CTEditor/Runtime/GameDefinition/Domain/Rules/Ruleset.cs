@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using CTEditor.GameDefinition.Domain.Rules.Mechanics;
 
 namespace CTEditor.GameDefinition.Domain.Rules
 {
@@ -50,9 +51,16 @@ namespace CTEditor.GameDefinition.Domain.Rules
             IReadOnlyList<int> critDenominators = null, float critMultiplier = 1.5f,
             string physicalAttackStat = "attack", string physicalDefenseStat = "defense",
             string specialAttackStat = "sp_attack", string specialDefenseStat = "sp_defense",
-            AdventureRules adventure = null)
+            AdventureRules adventure = null,
+            GenerationRules generation = null, IEnumerable<MechanicDefinition> mechanics = null)
         {
             Adventure = adventure ?? AdventureRules.Classic;
+            Generation = generation ?? GenerationRules.Modern;
+            var mech = new List<MechanicDefinition>();
+            var seen = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            if (mechanics != null)
+                foreach (var m in mechanics) if (m != null && seen.Add(m.Id)) mech.Add(m);
+            Mechanics = mech;
             CritDenominators = critDenominators == null || critDenominators.Count == 0
                 ? ModernCritTable : new List<int>(critDenominators);
             CritMultiplier = critMultiplier <= 0f ? 1.5f : critMultiplier;
@@ -81,6 +89,22 @@ namespace CTEditor.GameDefinition.Domain.Rules
 
         /// <summary>Reglas de la aventura: huir, capturar, dinero, derrota, amistad, repartir experiencia.</summary>
         public AdventureRules Adventure { get; }
+
+        /// <summary>Reglas de generación: categoría por tipo, Especial único, habilidades, objetos, naturalezas, géneros.</summary>
+        public GenerationRules Generation { get; }
+
+        /// <summary>Las MECÁNICAS ESPECIALES activas (fichas de mecánica). Vacía = ninguna. Se pueden combinar.</summary>
+        public IReadOnlyList<MechanicDefinition> Mechanics { get; }
+
+        /// <summary>¿Hay alguna mecánica activa de este tipo?</summary>
+        public bool Has(MechanicKind kind) => Find(kind) != null;
+
+        /// <summary>La primera mecánica activa de este tipo (null si no hay ninguna).</summary>
+        public MechanicDefinition Find(MechanicKind kind)
+        {
+            foreach (var m in Mechanics) if (m.Kind == kind) return m;
+            return null;
+        }
 
         /// <summary>¿Los movimientos gastan PP? (false = usos ilimitados). Clásico: true.</summary>
         public bool UsePp { get; }
@@ -145,7 +169,9 @@ namespace CTEditor.GameDefinition.Domain.Rules
             string struggleMoveId = null,
             IReadOnlyList<int> critDenominators = null,
             float? critMultiplier = null,
-            AdventureRules adventure = null)
+            AdventureRules adventure = null,
+            GenerationRules generation = null,
+            IEnumerable<MechanicDefinition> mechanics = null)
             => new Ruleset(
                 maxPartySize ?? MaxPartySize,
                 maxMovesPerMonster ?? MaxMovesPerMonster,
@@ -159,6 +185,8 @@ namespace CTEditor.GameDefinition.Domain.Rules
                 critDenominators ?? CritDenominators,
                 critMultiplier ?? CritMultiplier,
                 PhysicalAttackStat, PhysicalDefenseStat, SpecialAttackStat, SpecialDefenseStat,
-                adventure ?? Adventure);
+                adventure ?? Adventure,
+                generation ?? Generation,
+                mechanics ?? Mechanics);
     }
 }

@@ -31,6 +31,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 Items(),
                 new CsvReflectiveSchema<NatureData>("naturalezas.csv", "Naturalezas", ContentFolders.Natures, 40),
                 new CsvReflectiveSchema<GrowthCurveData>("curvas.csv", "Curvas de XP", ContentFolders.Curves, 50),
+                new CsvReflectiveSchema<MechanicData>("mecanicas.csv", "Mecánicas especiales", ContentFolders.Mechanics, 58),
                 new CsvReflectiveSchema<RulesetData>("reglas.csv", "Reglas", ContentFolders.Rulesets, 60),
                 Moves(), Species(),
                 Trainers(), Zones(), TeamPresets(),

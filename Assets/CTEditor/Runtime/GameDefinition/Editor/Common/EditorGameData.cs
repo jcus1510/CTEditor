@@ -45,7 +45,7 @@ namespace CTEditor.GameDefinition.Editor
                 Catalog<SpeciesData, SpeciesDef>(SpeciesMapper.ToDomain),
                 Catalog<MoveData, Move>(MoveMapper.ToDomain),
                 chart.Count > 0 ? TypeChartMapper.ToDomain(chart[0]) : new TypeChart.Builder().Build(),
-                rules.Count > 0 ? RulesetMapper.ToDomain(rules[0]) : Ruleset.Classic,
+                rules.Count > 0 ? RulesetMapper.ToDomain(rules[0], EditorGameData.MechanicById) : Ruleset.Classic,
                 Catalog<StatusConditionData, StatusConditionDefinition>(StatusMapper.ToDomain),
                 Catalog<AbilityData, AbilityDefinition>(AbilityMapper.ToDomain),
                 Catalog<ItemData, ItemDefinition>(ItemMapper.ToDomain),
@@ -58,6 +58,15 @@ namespace CTEditor.GameDefinition.Editor
                 aiProfiles: profiles);
             _version = ContentAssets.Version;
             return _data;
+        }
+
+        /// <summary>Una ficha de mecánica especial del proyecto por id (null si no existe o está rota).</summary>
+        public static CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicDefinition MechanicById(string id)
+        {
+            foreach (var d in ContentAssets.LoadAll<MechanicData>())
+                if (string.Equals(d.Id, id, StringComparison.OrdinalIgnoreCase))
+                    try { return MechanicMapper.ToDomain(d); } catch (Exception) { /* el validador la reporta */ }
+            return null;
         }
 
         // Catálogo tolerante: sin id, repetidas o que no se pueden traducir, se saltan.

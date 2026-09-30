@@ -65,7 +65,7 @@ namespace CTEditor.GameDefinition.Editor
             if (chart.Count == 0) s.Problems.Add("No hay Tabla de Tipos: todos los ataques serán neutros (×1).");
 
             var rules = ContentAssets.LoadAll<RulesetData>();
-            s.Rules = rules.Count > 0 ? RulesetMapper.ToDomain(rules[0]) : Ruleset.Classic;
+            s.Rules = rules.Count > 0 ? RulesetMapper.ToDomain(rules[0], EditorGameData.MechanicById) : Ruleset.Classic;
             return s;
         }
 

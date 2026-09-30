@@ -72,3 +72,14 @@ código («el pack manda»).
 - `datos_fuente/` — datos maestros (efectos, habilidades, Pokédex, entrenadores) y los INFORME de los packs antiguos.
 
 Pokémon y sus nombres son marcas de Nintendo / Game Freak / The Pokémon Company: proyecto personal y educativo.
+
+## probar_dominio — compilar el dominio y pasar sus tests sin abrir Unity
+
+```bash
+dotnet test Tools/probar_dominio
+```
+
+Compila con .NET 8 el código puro del juego (SharedKernel, GameDefinition.Domain, Battle, Party, Adventure...) y ejecuta
+los tests de `Tests/EditMode` que no dependen de Unity. Sirve para comprobar un cambio del motor en segundos. Los tests
+que usan el editor o las fichas (Excel, catálogo, papelera...) están excluidos en el `.csproj`: esos se pasan en el
+Test Runner de Unity. Si creas un test nuevo que use Unity, añádelo a la lista `Exclude`.

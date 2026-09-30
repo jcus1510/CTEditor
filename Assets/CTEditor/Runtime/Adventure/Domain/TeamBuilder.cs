@@ -63,13 +63,15 @@ namespace CTEditor.Adventure.Domain
             var mon = MonsterFactory.Create(id, species, spec.Level, data.Ruleset, data.Growth, moves,
                 data.CurveFor(species), rng, nature, spec.FixedIv ?? (training ? 31 : (int?)null));
             if (training) ApplyCompetitiveEvs(mon, species, data);
-            if (!string.IsNullOrWhiteSpace(spec.HeldItem)) mon.SetHeldItem(spec.HeldItem);
-            else if (profile != null && profile.HeldItems == HeldItemStyle.Competitive)
+            // Reglas de generación: sin objetos equipados (1.ª gen.) no se le pone ninguno.
+            bool items = data.Ruleset.Generation.HeldItems;
+            if (items && !string.IsNullOrWhiteSpace(spec.HeldItem)) mon.SetHeldItem(spec.HeldItem);
+            else if (items && profile != null && profile.HeldItems == HeldItemStyle.Competitive)
                 mon.SetHeldItem(PickCompetitiveItem(species, mon, data) ?? PickHeldItem(species, mon, data));
-            else if (profile != null && profile.AutoHeldItems) mon.SetHeldItem(PickHeldItem(species, mon, data));
+            else if (items && profile != null && profile.AutoHeldItems) mon.SetHeldItem(PickHeldItem(species, mon, data));
             if (!string.IsNullOrWhiteSpace(spec.Nickname)) mon.SetNickname(spec.Nickname);
             // Género fijado por el autor (si la especie tiene género).
-            if (spec.Gender.HasValue && !species.Dex.IsGenderless && spec.Gender.Value != CTEditor.GameDefinition.Domain.Species.Gender.Genderless)
+            if (data.Ruleset.Generation.Genders && spec.Gender.HasValue && !species.Dex.IsGenderless && spec.Gender.Value != CTEditor.GameDefinition.Domain.Species.Gender.Genderless)
                 mon.SetGender(spec.Gender.Value);
             return mon;
         }

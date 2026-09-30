@@ -604,7 +604,19 @@ namespace CTEditor.Battle.Domain
             int current = GetStage(stat);
             int next = Math.Max(MinStage, Math.Min(MaxStage, current + delta));
             _stages[stat] = next;
+            // ESPECIAL ÚNICO (1.ª gen.): las dos stats enlazadas se mueven juntas.
+            if (_linkedStages.HasValue)
+            {
+                var (a, b) = _linkedStages.Value;
+                if (stat == a) _stages[b] = next;
+                else if (stat == b) _stages[a] = next;
+            }
             return next - current;
         }
+
+        private (StatId a, StatId b)? _linkedStages;
+
+        /// <summary>Enlaza dos stats para que sus etapas cambien juntas (Especial único de la 1.ª gen.). Null = sin enlace.</summary>
+        internal void LinkStages((StatId a, StatId b)? link) => _linkedStages = link;
     }
 }
