@@ -309,7 +309,7 @@ namespace CTEditor.GameDefinition.Editor
         }
 
         /// <summary>Qué hojas trae la carpeta de un pack y qué ids hay en cada una (para no pisarlas con plantillas).</summary>
-        private sealed class PackContents
+        internal sealed class PackContents
         {
             private readonly string _folder;
             private readonly Dictionary<string, HashSet<string>> _ids = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
@@ -346,7 +346,7 @@ namespace CTEditor.GameDefinition.Editor
 
         // Crea la base clásica que falte (no toca lo existente). Devuelve el informe en 'report'.
         // Con 'pack': las categorías cuya hoja trae el pack NO se crean desde las plantillas (el pack manda).
-        private static void CreateClassicBase(List<string> report, PackContents pack = null)
+        internal static void CreateClassicBase(List<string> report, PackContents pack = null)
         {
             void Step(string file, string label, Func<int> create)
             {

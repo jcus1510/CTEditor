@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -79,18 +80,8 @@ namespace CTEditor.GameDefinition.Editor
             int gen = g1 >= 0 ? g1 + 1 : g2 >= 0 ? (g2 == 4 ? 0 : g2 + 6) : -1;
             if (gen >= 0)
             {
-                // Fiel a la generación: la Megaevolución solo en la 6.ª y la 7.ª («Moderno» no toca las mecánicas).
-                var megas = ContentAssets.LoadAll<MechanicData>().Where(m => !string.IsNullOrWhiteSpace(m.Id) && m.Kind == CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind.MegaEvolution).ToList();
-                bool withMega = gen == 6 || gen == 7;
-                if (withMega && megas.Count == 0) { MechanicEditorWindow.CreateClassicSet(); megas = ContentAssets.LoadAll<MechanicData>().Where(m => !string.IsNullOrWhiteSpace(m.Id) && m.Kind == CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind.MegaEvolution).ToList(); }
-                EditSelected(so =>
-                {
-                    ApplyGeneration(so, GenerationRules.ForGeneration(gen));
-                    if (gen == 0) return;
-                    foreach (var m in megas) MechanicEditorWindow.SetActive(so, m.Id, false);
-                    if (withMega && megas.Count > 0)
-                        MechanicEditorWindow.SetActive(so, (megas.FirstOrDefault(m => m.Id == "mega_evolution") ?? megas[0]).Id, true);
-                });
+                var edit = GenerationPreset(gen);
+                EditSelected(edit);
             }
 
             DrawMechanics(d);
@@ -100,6 +91,28 @@ namespace CTEditor.GameDefinition.Editor
             int adv = ButtonRow(AdventurePresets[0].name, AdventurePresets[1].name, AdventurePresets[2].name);
             if (adv >= 0) EditSelected(so => ApplyAdventure(so, adv));
             EditorGUILayout.Space();
+        }
+
+        /// <summary>
+        /// La plantilla COMPLETA de una generación (0 = moderno) lista para aplicar a unas reglas: sus perillas, sus críticos y,
+        /// fiel a la generación, la Megaevolución solo en la 6.ª y la 7.ª («Moderno» no toca las mecánicas). Crea la ficha de
+        /// Megaevolución si hace falta. La usan este editor y el asistente «Cambiar de generación».
+        /// </summary>
+        public static Action<SerializedObject> GenerationPreset(int gen)
+        {
+            List<MechanicData> Megas() => ContentAssets.LoadAll<MechanicData>()
+                .Where(m => !string.IsNullOrWhiteSpace(m.Id) && m.Kind == CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind.MegaEvolution).ToList();
+            var megas = Megas();
+            bool withMega = gen == 6 || gen == 7;
+            if (withMega && megas.Count == 0) { MechanicEditorWindow.CreateClassicSet(); megas = Megas(); }
+            return so =>
+            {
+                ApplyGeneration(so, GenerationRules.ForGeneration(gen));
+                if (gen == 0) return;
+                foreach (var m in megas) MechanicEditorWindow.SetActive(so, m.Id, false);
+                if (withMega && megas.Count > 0)
+                    MechanicEditorWindow.SetActive(so, (megas.FirstOrDefault(m => m.Id == "mega_evolution") ?? megas[0]).Id, true);
+            };
         }
 
         /// <summary>Pone todas las reglas de generación de golpe (plantilla por generación).</summary>

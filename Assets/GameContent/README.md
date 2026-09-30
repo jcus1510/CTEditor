@@ -157,6 +157,23 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - Los efectos de movimientos y habilidades aún son los de la 6.ª gen. (ver «Aproximaciones» en el INFORME de cada
   pack). Las reglas de cada generación se ponen en **Reglas del juego → Reglas de generación** (ver abajo).
 
+## Cambiar de generación (asistente)
+**Herramientas → Cambiar de generación** pasa TODO el proyecto a otro pack en cuatro pasos:
+1. **Pack** de destino (con su INFORME).
+2. **Qué cambia** (lista para marcar): reglas de la generación (plantilla: categoría por tipo, «Especial» único,
+   habilidades, objetos equipados, naturalezas, géneros; Megaevolución solo en 6.ª y 7.ª), tipos y tabla de tipos,
+   especies, movimientos (Forcejeo se queda siempre), habilidades, objetos (los objetos con efecto de las plantillas se
+   quedan siempre), naturalezas, grupos huevo, sets de Smogon y los entrenadores del pack. Si el pack no trae la hoja de
+   una categoría (p. ej. habilidades en la 1.ª), lo tuyo se queda y las reglas lo apagan.
+3. **Aplicar**: primero una **copia de seguridad** en `Excel/copias/antes_de_<pack>_<fecha>`. Lo que el pack no trae va,
+   a tu elección, a la **papelera en un grupo** («Cambio a Gen3 …», se recupera entero con *↩ Recuperar todo el grupo*),
+   se **borra para siempre** o se **deja**. Después se importa el pack (se reenlazan las referencias por id) y se limpian
+   de la tabla de tipos los cruces de tipos que ya no existen.
+4. **Adaptar a las reglas**: revisa tus entrenadores, equipos prearmados y zonas (que **nunca** se borran). Cada cosa que
+   ya no encaja (especie o movimiento que no existe, objeto sin objetos equipados, megapiedra sin Megaevolución,
+   naturaleza/género/habilidad/EVs que la generación no tiene) sale en una fila: **arreglar** (quitar el miembro, el
+   movimiento, el objeto…) o **dejar y avisar** (el juego no falla: ignora lo que no existe; el validador lo sigue avisando).
+
 ## EVs, IVs y habilidad de cada miembro
 - En cada miembro de un entrenador o equipo prearmado: **Habilidad** (1.ª, 2.ª u oculta de su especie; vacío = la que le
   toque), **EVs** («252 Atq / 4 PS / 252 Vel») e **IVs por estadística** («0 Atq / 0 Vel»; las demás, «IVs fijos» o al
