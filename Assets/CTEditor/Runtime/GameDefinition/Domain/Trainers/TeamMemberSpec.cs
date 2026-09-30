@@ -34,9 +34,14 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         /// <summary>Mote (nombre propio). Vacío = el nombre de la especie.</summary>
         public string Nickname { get; }
 
+        /// <summary>Género fijo. Null = al azar según su especie (una especie sin género siempre queda sin género).</summary>
+        public CTEditor.GameDefinition.Domain.Species.Gender? Gender { get; }
+
         public TeamMemberSpec(Id<SpeciesDef> species, int level, IReadOnlyList<Id<Move>> moves = null,
-            string heldItem = null, Id<Nature>? nature = null, int? fixedIv = null, string nickname = null)
+            string heldItem = null, Id<Nature>? nature = null, int? fixedIv = null, string nickname = null,
+            CTEditor.GameDefinition.Domain.Species.Gender? gender = null)
         {
+            Gender = gender;
             if (string.IsNullOrWhiteSpace(species.Value)) throw new ArgumentException("El miembro necesita una especie.", nameof(species));
             Species = species;
             Level = Math.Max(1, level);

@@ -91,7 +91,22 @@ namespace CTEditor.Party.Domain
             // (paridad del IV de PS). Así no gasta tiradas de azar y los combates grabados siguen igual.
             if (species.SecondAbility.HasValue && ivs != null)
                 created.SetAbilitySlot(ivs.Of(StatId.Hp) % 2);
+            // GÉNERO según el % de hembras de su especie. Tampoco gasta azar: sale de su id y su genética
+            // (siempre el mismo para el mismo individuo, distinto entre individuos).
+            created.SetGender(GenderText.FromRoll(species.Dex.FemalePercent, GenderRoll(id.Value, ivs)));
             return created;
+        }
+
+        /// <summary>Número 0-100 estable para decidir el género (hash del id + IVs de Ataque y Defensa).</summary>
+        public static float GenderRoll(string id, StatBlock ivs)
+        {
+            unchecked
+            {
+                uint h = 2166136261;
+                foreach (char c in id ?? "") { h ^= c; h *= 16777619; }
+                if (ivs != null) { h ^= (uint)(ivs.Of(StatId.Attack) * 31 + ivs.Of(StatId.Defense)); h *= 16777619; }
+                return (h % 10000) / 100f;
+            }
         }
 
         // Decide los IVs según la prioridad explicada arriba. Devuelve null si no hay IVs.

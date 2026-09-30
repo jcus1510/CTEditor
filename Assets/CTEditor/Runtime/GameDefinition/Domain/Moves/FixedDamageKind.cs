@@ -17,6 +17,8 @@ namespace CTEditor.GameDefinition.Domain.Moves
         Bide,           // aguanta 2 turnos y devuelve todo el daño recibido × (FixedDamageAmount %, 0 = 200 %) (Venganza)
         // --- 3.ª y 4.ª generación (solo AL FINAL) ---
         Endeavor,       // deja al objetivo con los mismos PS que el usuario (Esfuerzo)
-        ReturnAny       // devuelve el ÚLTIMO daño recibido este turno (físico o especial) × % (0 = 150 %) (Repr. Metal)
+        ReturnAny,      // devuelve el ÚLTIMO daño recibido este turno (físico o especial) × % (0 = 150 %) (Repr. Metal)
+        // --- 5.ª generación ---
+        UserHp          // tanto daño como los PS actuales del usuario (Sacrificio; el usuario se debilita con «debilitarse»)
     }
 }

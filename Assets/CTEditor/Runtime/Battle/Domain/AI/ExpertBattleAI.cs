@@ -33,6 +33,9 @@ namespace CTEditor.Battle.Domain.AI
         // Efectos de lado que ya puso (Reflejo...): no los repite.
         private readonly HashSet<string> _sidesSet = new HashSet<string>();
 
+        /// <summary>Lo que cree saber del rival (null = lo sabe todo: usa el daño real).</summary>
+        public IOpponentModel Model { get; set; }
+
         public ExpertBattleAI(IRng rng, ICatalog<Move> moves, TurnResolver resolver, Battle battle)
         {
             _rng = rng ?? throw new ArgumentNullException(nameof(rng));
@@ -69,6 +72,16 @@ namespace CTEditor.Battle.Domain.AI
 
         /// <summary>Daño esperado (media de la tirada, sin crítico, por los golpes medios) de 'move' AHORA.</summary>
         public static float ExpectedDamage(TurnResolver resolver, Battle battle, Combatant attacker, Combatant target, Move move)
+            => ExpectedDamage(resolver, battle, attacker, target, move, null);
+
+        /// <summary>Igual, pero con lo que la IA CREE (estimaciones de las estadísticas del jugador).</summary>
+        public static float ExpectedDamage(TurnResolver resolver, Battle battle, Combatant attacker, Combatant target, Move move, IOpponentModel model)
+        {
+            float belief = model?.Belief(attacker, target, move) ?? 1f;
+            return belief * RawExpected(resolver, battle, attacker, target, move);
+        }
+
+        private static float RawExpected(TurnResolver resolver, Battle battle, Combatant attacker, Combatant target, Move move)
         {
             if (!move.DealsDirectDamage) return 0f;
             var p = resolver.PreviewDamage(attacker, target, move.Id, battle);
@@ -88,8 +101,9 @@ namespace CTEditor.Battle.Domain.AI
                 if (!p.DealsDamage || p.Effectiveness <= 0f || p.ImmuneByAbility) return -1f; // no le afecta
                 float hits = Math.Max(1f, (p.MinHits + p.MaxHits) / 2f);
                 float acc = p.AccuracyPercent.HasValue ? p.AccuracyPercent.Value / 100f : 1f;
-                float minTotal = p.Min * hits;
-                float avg = (p.Min + p.Max) / 2f * hits;
+                float belief = Model?.Belief(self, target, move) ?? 1f;   // su estimación de tu Defensa
+                float minTotal = p.Min * hits * belief;
+                float avg = (p.Min + p.Max) / 2f * hits * belief;
                 // Remate seguro: con la tirada MÍNIMA ya lo debilita.
                 if (minTotal >= target.CurrentHp) return 300f + acc * 100f + move.Priority * 5f;
                 // Remate probable: con la media.

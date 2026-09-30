@@ -109,6 +109,16 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField] private bool imprisons;
         [Tooltip("En el suelo: le afecta Tierra aunque vuele o levite (Arraigo).")]
         [SerializeField] private bool grounded;
+        [Tooltip("Solo afecta a un rival del género OPUESTO al de quien lo causa (Atracción, Gran Encanto). Nunca a los sin género.")]
+        [SerializeField] private bool requiresOppositeGender;
+        [Header("Protecciones de la 6.ª gen.")]
+        [Tooltip("La protección solo para los movimientos que hacen daño (Escudo Real, Escudo Tatami).")]
+        [SerializeField] private bool protectOnlyDamaging;
+        [Tooltip("Si le golpean con contacto mientras se protege, el atacante pierde etapas de esta estadística (Escudo Real: attack).")]
+        [StatIdReference, SerializeField] private string protectContactStat = "";
+        [SerializeField, Range(-6, 0)] private int protectContactStages;
+        [Tooltip("Si le golpean con contacto mientras se protege, el atacante pierde este % de PS (Barrera Espinosa: 12,5).")]
+        [SerializeField, Range(0f, 100f)] private float protectContactDamagePercent;
 
         public bool BlocksStatusMoves => blocksStatusMoves;
         public bool BlocksRepeatedMove => blocksRepeatedMove;
@@ -131,6 +141,11 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public bool SureHit => sureHit;
         public bool Imprisons => imprisons;
         public bool Grounded => grounded;
+        public bool RequiresOppositeGender => requiresOppositeGender;
+        public bool ProtectOnlyDamaging => protectOnlyDamaging;
+        public string ProtectContactStat => protectContactStat;
+        public int ProtectContactStages => protectContactStages;
+        public float ProtectContactDamagePercent => protectContactDamagePercent;
 
         public string Id => id;
         public string DisplayName => displayName;

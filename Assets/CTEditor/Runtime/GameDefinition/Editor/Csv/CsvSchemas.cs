@@ -114,7 +114,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     d => d.DefenseStat ?? "", (so, v, c) => so.FindProperty("defenseStat").stringValue = (v ?? "").Trim())
                 .Col("ataca_con_rival", "si = usa la estadística de ataque DEL RIVAL (Juego Sucio).",
                     d => d.AttackStatFromTarget ? "si" : "no", (so, v, c) => CsvSchema<MoveData>.SetBool(so, "attackStatFromTarget", v, "ataca_con_rival"))
-                .Col("etiquetas", "Etiquetas libres: puño|sonido|mordisco.",
+                .Col("etiquetas", "Etiquetas libres: puño|sonido|mordisco. Del motor: rompe_proteccion, ignora_etapas, ignora_inmunidad, tipo_extra:flying, eficaz_contra:water.",
                     d => CsvCodecs.JoinList(d.Tags ?? new string[0]), (so, v, c) =>
                     {
                         var tags = CsvCodecs.SplitList(v);
@@ -224,7 +224,12 @@ namespace CTEditor.GameDefinition.Editor.Csv
         {
             var schema = new CsvReflectiveSchema<ItemData>("objetos.csv", "Objetos", ContentFolders.Items, 35);
             schema.Col("equipado_potencia", "Ej.: x1,2 [si mov.tipo=fire]",
-                d => ReadMods(d.HeldPowerModifiers), (so, v, c) => WriteMods(so, "heldPowerModifiers", v));
+                d => ReadMods(d.HeldPowerModifiers), (so, v, c) => WriteMods(so, "heldPowerModifiers", v))
+                  // 5.ª y 6.ª gen.: listas con condiciones.
+                  .Col("equipado_stats", "Ej.: attack:x1,5 (Cinta Elección) | sp_defense:x1,5 (Chaleco Asalto) | defense:x1,5 [si propio.puede_evolucionar]",
+                    d => ReadStatMods(d.HeldStatMultipliers), (so, v, c) => WriteStatMods(so, v, "heldStatMultipliers"))
+                  .Col("equipado_al_recibir_golpe", "Ej.: attack:+2 [si propio.eficacia>1] | sp_attack:+2 [si propio.eficacia>1] (Seguro Debilidad)",
+                    d => ReadOnHit(d.HeldOnHitStats), (so, v, c) => WriteOnHit(so, v, "heldOnHitStats"));
             return schema;
         }
 
@@ -254,10 +259,10 @@ namespace CTEditor.GameDefinition.Editor.Csv
             => string.Join(" | ", (list ?? new AbilityData.ConditionalStatData[0]).Where(m => m != null).Select(m =>
                 m.statId + ":" + ReadMods(new[] { new PowerModifierData { multiplier = m.multiplier, conditions = m.conditions } })));
 
-        private static void WriteStatMods(SerializedObject so, string cell)
+        internal static void WriteStatMods(SerializedObject so, string cell, string field = "conditionalStats")
         {
             var parts = CsvCodecs.SplitList(cell);
-            var prop = so.FindProperty("conditionalStats");
+            var prop = so.FindProperty(field);
             prop.arraySize = parts.Count;
             for (int i = 0; i < parts.Count; i++)
             {
@@ -283,10 +288,10 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 return m.statId + ":" + (m.stages > 0 ? "+" : "") + m.stages + (conds.Count > 0 ? " [si " + ConditionText.FormatAll(conds) + "]" : "");
             }));
 
-        private static void WriteOnHit(SerializedObject so, string cell)
+        internal static void WriteOnHit(SerializedObject so, string cell, string field = "onHitStats")
         {
             var parts = CsvCodecs.SplitList(cell);
-            var prop = so.FindProperty("onHitStats");
+            var prop = so.FindProperty(field);
             prop.arraySize = parts.Count;
             for (int i = 0; i < parts.Count; i++)
             {
@@ -483,6 +488,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
             {
                 Species = m.species.Id, Level = m.level, Held = m.heldItem ?? "", Nature = m.nature != null ? m.nature.Id : "",
                 Iv = m.fixedIvs, Nickname = m.nickname ?? "",
+                Gender = m.gender == MemberGender.Male ? "m" : m.gender == MemberGender.Female ? "h" : "",
                 Moves = (m.moves ?? new MoveData[0]).Where(x => x != null).Select(x => x.Id).ToList(),
             }));
 
@@ -506,6 +512,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 el.FindPropertyRelative("nature").objectReferenceValue = p.Nature.Length > 0 ? c.Require<NatureData>(p.Nature, "La naturaleza") : null;
                 el.FindPropertyRelative("fixedIvs").intValue = p.Iv < 0 ? -1 : System.Math.Min(31, p.Iv);
                 el.FindPropertyRelative("nickname").stringValue = p.Nickname;
+                el.FindPropertyRelative("gender").enumValueIndex = p.Gender == "m" ? (int)MemberGender.Male : p.Gender == "h" ? (int)MemberGender.Female : 0;
             }
         }
 
@@ -543,7 +550,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
             }
         }
 
-        private const string TeamHelp = "Miembros separados por |. especie@nivel y, opcional: [mov1/mov2] {objeto} ~naturaleza #iv \"mote\". Ej.: pidgey@5 | onix@14[tackle/rock_throw]{oran_berry}";
+        private const string TeamHelp = "Miembros separados por |. especie@nivel y, opcional: %m / %h (macho/hembra) [mov1/mov2] {objeto} ~naturaleza #iv \"mote\". Ej.: pidgey@5%h | onix@14[tackle/rock_throw]{oran_berry}";
 
         public static CsvSchema<TrainerData> Trainers()
             => new CsvSchema<TrainerData>("entrenadores.csv", "Entrenadores", ContentFolders.Trainers, 90)
@@ -560,13 +567,14 @@ namespace CTEditor.GameDefinition.Editor.Csv
                         : s.StartsWith("nov") || s.StartsWith("al") || s == "random" || s == "azar" ? 0
                         : throw new CsvCellException($"'{v}' no es una IA válida: usa novato, listo o experto.");
                 })
-                .Col("nivel_ia", "Nivel de IA 1-5: 1 novato, 2 aficionado, 3 veterano, 4 élite, 5 campeón. Vacío = según «ia».",
+                .Col("nivel_ia", "Nivel de IA 1-7: 1 novato, 2 aficionado, 3 veterano, 4 élite, 5 campeón, 6 maestro, 7 injusto. Vacío = según «ia».",
                     d => d.AiLevel > 0 ? d.AiLevel.ToString() : "", (so, v, c) =>
                     {
                         string t = (v ?? "").Trim().ToLowerInvariant();
                         int lvl = t == "" ? 0 : t.StartsWith("nov") ? 1 : t.StartsWith("afi") ? 2 : t.StartsWith("vet") ? 3 : t.StartsWith("él") || t.StartsWith("el") ? 4
-                                : t.StartsWith("cam") ? 5 : CsvTable.TryInt(t, out int n) && n >= 0 && n <= 5 ? n
-                                : throw new CsvCellException($"'{v}' no es un nivel de IA: usa 1-5 o novato, aficionado, veterano, élite, campeón.");
+                                : t.StartsWith("cam") ? 5 : t.StartsWith("mae") ? 6 : t.StartsWith("inj") ? 7
+                                : CsvTable.TryInt(t, out int n) && n >= 0 && n <= 7 ? n
+                                : throw new CsvCellException($"'{v}' no es un nivel de IA: usa 1-7 o novato, aficionado, veterano, élite, campeón, maestro, injusto.");
                         so.FindProperty("aiLevel").intValue = lvl;
                     })
                 .Col("usa_objetos", "si / no: ¿usa los objetos de su mochila?", d => d.UseItems ? "si" : "no",
@@ -589,15 +597,17 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     (so, v, c) => CsvSchema<TrainerData>.SetInt(so, "healBelowPercent", v, "curar_bajo", 1))
                 .Col("puede_cambiar", "si / no: ¿puede cambiar de monstruo? (solo la IA experta lo hace).", d => d.CanSwitch ? "si" : "no",
                     (so, v, c) => CsvSchema<TrainerData>.SetBool(so, "canSwitch", v, "puede_cambiar"))
-                .Col("movimientos_auto", "Miembros sin movimientos escritos: ia (según su IA), clasico (4 últimos), equilibrado o fuerte.",
+                .Col("movimientos_auto", "Miembros sin movimientos escritos: ia (según su IA), clasico (4 últimos), equilibrado, fuerte o competitivo.",
                     d => d.MovesetStyle == Domain.Trainers.MovesetStyle.Classic ? "clasico" : d.MovesetStyle == Domain.Trainers.MovesetStyle.Balanced ? "equilibrado"
-                       : d.MovesetStyle == Domain.Trainers.MovesetStyle.Strong ? "fuerte" : "ia",
+                       : d.MovesetStyle == Domain.Trainers.MovesetStyle.Strong ? "fuerte"
+                       : d.MovesetStyle == Domain.Trainers.MovesetStyle.Competitive ? "competitivo" : "ia",
                     (so, v, c) =>
                     {
                         string t = (v ?? "").Trim().ToLowerInvariant();
                         so.FindProperty("movesetStyle").enumValueIndex =
                             t == "" || t == "ia" || t.StartsWith("seg") ? 0 : t.StartsWith("cl") ? 1 : t.StartsWith("eq") ? 2 : t.StartsWith("fu") || t.StartsWith("dif") ? 3
-                            : throw new CsvCellException($"'{v}' no vale: usa ia, clasico, equilibrado o fuerte.");
+                            : t.StartsWith("comp") ? 4
+                            : throw new CsvCellException($"'{v}' no vale: usa ia, clasico, equilibrado, fuerte o competitivo.");
                     })
                 .Col("dinero_base", "Premio = este valor × nivel de su último monstruo.", d => d.BaseMoney.ToString(), (so, v, c) => CsvSchema<TrainerData>.SetInt(so, "baseMoney", v, "dinero base", 0))
                 .Col("equipo", TeamHelp, d => TeamText(d.Team), (so, v, c) => SetTeam(so, "team", v, c))

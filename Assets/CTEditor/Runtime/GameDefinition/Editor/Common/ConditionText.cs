@@ -60,6 +60,10 @@ namespace CTEditor.GameDefinition.Editor
                 case ConditionKind.HasItem: body = $"{whoCap} {not}lleva objeto"; break;
                 case ConditionKind.LostItem: body = $"{whoCap} {not}perdió su objeto"; break;
                 case ConditionKind.WeightKg: body = $"El peso de {who} {not}es {Cmp(c)} {Num(c.Number)} kg"; break;
+                case ConditionKind.SameGender: body = $"{(c.Negate ? "NO " : "")}son del mismo género"; break;
+                case ConditionKind.OppositeGender: body = $"{(c.Negate ? "NO " : "")}son de género opuesto"; break;
+                case ConditionKind.FieldCondition: body = $"{(c.Negate ? "NO " : "")}está activo el efecto de campo '{c.Text}'"; break;
+                case ConditionKind.CanEvolve: body = $"{whoCap} {not}puede evolucionar"; break;
                 default: body = c.Kind.ToString(); break;
             }
             return body;
@@ -189,6 +193,10 @@ namespace CTEditor.GameDefinition.Editor
                 case ConditionKind.HasItem: return $"{not}{s}.objeto";
                 case ConditionKind.LostItem: return $"{not}{s}.perdio_objeto";
                 case ConditionKind.WeightKg: return $"{not}{s}.peso{OpText(c.Comparison)}{n}";
+                case ConditionKind.SameGender: return $"{not}mismo_genero";
+                case ConditionKind.OppositeGender: return $"{not}genero_opuesto";
+                case ConditionKind.FieldCondition: return $"{not}campo={c.Text}";
+                case ConditionKind.CanEvolve: return $"{not}{s}.puede_evolucionar";
                 default: return "";
             }
         }
@@ -270,10 +278,14 @@ namespace CTEditor.GameDefinition.Editor
                 case "objeto": return new Condition(ConditionKind.HasItem, subject, Comparison.Equal, 0, null, negate);
                 case "perdio_objeto": return new Condition(ConditionKind.LostItem, subject, Comparison.Equal, 0, null, negate);
                 case "peso": return new Condition(ConditionKind.WeightKg, subject, cmp, Number(), null, negate);
+                case "mismo_genero": return new Condition(ConditionKind.SameGender, ConditionSubject.Self, Comparison.Equal, 0, null, negate);
+                case "genero_opuesto": return new Condition(ConditionKind.OppositeGender, ConditionSubject.Self, Comparison.Equal, 0, null, negate);
+                case "campo": return new Condition(ConditionKind.FieldCondition, ConditionSubject.Self, Comparison.Equal, 0, Id(), negate);
+                case "puede_evolucionar": return new Condition(ConditionKind.CanEvolve, subject, Comparison.Equal, 0, null, negate);
             }
             throw new FormatException($"'{text}': condición desconocida. Usa, por ejemplo: rival.vida<50, propio.estado, rival.estado=poison, clima=rain, " +
                                       "propio.amistad>=200, propio.nivel>=30, rival.tipo=water, mov.contacto, mov.etiqueta=puño, azar<30, " +
-                                      "propio.dañado, propio.turnos_campo<1, rival.va_a_atacar, propio.reserva>=1, rival.eficacia>1, mov.secundario, propio.objeto, rival.peso>=100.");
+                                      "propio.dañado, propio.turnos_campo<1, rival.va_a_atacar, propio.reserva>=1, rival.eficacia>1, mov.secundario, propio.objeto, rival.peso>=100, campo=grassy_terrain, propio.puede_evolucionar.");
         }
 
         // ---------------- Modificadores de potencia en texto: "x2 [si propio.estado] | x1,5 [si clima=rain]" ----------------

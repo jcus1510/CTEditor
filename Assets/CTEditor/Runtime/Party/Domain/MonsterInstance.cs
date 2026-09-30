@@ -191,6 +191,12 @@ namespace CTEditor.Party.Domain
         /// <summary>Cambia la ranura de habilidad (0, 1 o 2). Lo usan el autor (equipos) y objetos futuros (Cápsula Habilidad).</summary>
         public void SetAbilitySlot(int slot) => AbilitySlot = slot < 0 ? 0 : slot > 2 ? 2 : slot;
 
+        /// <summary>Género (macho, hembra o sin género). Lo decide la fábrica al nacer según su especie.</summary>
+        public Gender Gender { get; private set; }
+
+        /// <summary>Cambia el género (eventos, editor). Una especie sin género siempre queda sin género.</summary>
+        public void SetGender(Gender gender) => Gender = gender;
+
         /// <summary>Objeto EQUIPADO (id). Null = no lleva nada.</summary>
         public string HeldItem { get; private set; }
 

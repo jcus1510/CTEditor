@@ -85,6 +85,9 @@ namespace CTEditor.Battle.Domain.Turn
             if (move == null) return default;
             if (X(actor).NormalizeMoves) return new Id<ElementType>("normal");
             if (move.TypeByWeather.Count > 0 && WeatherIsActive && _battle.WeatherId != null) return move.TypeIn(_battle.WeatherId);
+            // Piel Feérica / Piel Celeste / Piel Helada: los movimientos Normales cambian de tipo.
+            var convert = X(actor).ConvertNormalTo;
+            if (convert.Length > 0 && string.Equals(move.Type.Value, "normal", StringComparison.OrdinalIgnoreCase)) return new Id<ElementType>(convert);
             return move.Type;
         }
 
@@ -105,7 +108,8 @@ namespace CTEditor.Battle.Domain.Turn
             abilityImmune = false;
             if (target == null) return 1f;
             var type = MoveTypeOf(actor, move);
-            bool grounded = IsGrounded(target);
+            // «ignora_inmunidad» (Mil Flechas): alcanza aunque el objetivo sea inmune por tipo, habilidad o Globo.
+            bool grounded = IsGrounded(target) || move.HasTag("ignora_inmunidad");
             var ignoreFor = X(actor).IgnoresImmunityFor;
             bool identified = false;
             IReadOnlyList<Id<ElementType>> hittableBy = null;
@@ -133,6 +137,10 @@ namespace CTEditor.Battle.Domain.Turn
             // Estados que dan inmunidad (Levitón: Tierra).
             if (!(grounded && type.Value == "ground") && HasVolatileFlag(target, d => ContainsType(d.Extras.TypeImmunities, type)))
             { abilityImmune = true; return 0f; }
+            // Globo Helio: inmune a Tierra (salvo en el suelo por Gravedad...).
+            if (type.Value == "ground" && !grounded && HeldX(target).AirBalloon) { abilityImmune = true; return 0f; }
+            // Plancha (también Volador) y Liofilización (muy eficaz contra Agua).
+            mult = TagEffectiveness(move, target, mult);
             // Superguarda: solo los muy eficaces.
             if (move.DealsDirectDamage && mult > 0f && mult <= 1f && X(target).OnlySuperEffectiveHits)
             { abilityImmune = true; return 0f; }
@@ -190,6 +198,9 @@ namespace CTEditor.Battle.Domain.Turn
             }
             foreach (var m in X(actor).AccuracyModifiers)
                 if (AllConditions(m.Conditions, actor, target, move)) acc *= m.Multiplier;
+            // Objetos: Lupa / Telescopio (atacante) y Polvo Brillo / Incienso Lax (objetivo).
+            acc *= HeldX(actor).AccuracyMultiplier;
+            if (target != null && target != actor && move.Target != MoveTarget.Self) acc *= HeldX(target).EvasionMultiplier;
             return _rng.NextFloat() < acc;
         }
 
@@ -212,6 +223,12 @@ namespace CTEditor.Battle.Domain.Turn
                         && (!_struggleMove.HasValue || moveId != _struggleMove.Value)) return v.Id.Value;
                     if (x.BlocksHealing && IsHealingMove(move)) return v.Id.Value;
                 }
+            // Objetos Elección: solo el primer movimiento que usó. Chaleco Asalto: nada de movimientos de estado.
+            bool struggle = _struggleMove.HasValue && moveId == _struggleMove.Value;
+            var hx = HeldX(actor);
+            if (!struggle && hx.ChoiceLock && actor.ChoiceLockedMove.HasValue && actor.ChoiceLockedMove.Value != moveId
+                && actor.IndexOfMove(actor.ChoiceLockedMove.Value) >= 0) return actor.HeldItem;
+            if (!struggle && hx.BlocksStatusMoves && move.Category == MoveCategory.Status) return actor.HeldItem;
             // Cerca: el rival no puede usar los movimientos que conoce quien la usó.
             var opp = OpponentOf(actor);
             if (opp != null && !opp.IsFainted && opp.IndexOfMove(moveId) >= 0 && HasVolatileFlag(opp, d => d.Extras.Imprisons))
@@ -279,7 +296,7 @@ namespace CTEditor.Battle.Domain.Turn
                 && !string.Equals(_battle.WeatherId, x.OnEntryWeather, StringComparison.OrdinalIgnoreCase))
             {
                 events.Add(new AbilityTriggeredEvent(entering.Id, id, "clima"));
-                if (x.OnEntryWeatherTurns > 0) StartWeather(x.OnEntryWeather, x.OnEntryWeatherTurns, events);
+                if (x.OnEntryWeatherTurns > 0) StartWeather(x.OnEntryWeather, WeatherTurnsFor(entering, x.OnEntryWeather, x.OnEntryWeatherTurns), events);
                 else
                 {
                     _battle.SetWeather(x.OnEntryWeather, 0);   // 0 = hasta que otro lo cambie

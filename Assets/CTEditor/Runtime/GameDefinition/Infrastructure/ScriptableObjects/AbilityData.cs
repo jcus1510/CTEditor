@@ -207,6 +207,21 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField, Tooltip("Devuelve los movimientos de estado (Espejo Mágico).")] private bool magicBounce;
         [SerializeField, Range(0.1f, 4f), Tooltip("Multiplica su peso (Metal Pesado: 2).")] private float weightMultiplier = 1f;
 
+        [Header("5.ª y 6.ª gen.")]
+        [SerializeField, Tooltip("Tipo cuyos movimientos ganan prioridad (Alas Vendaval: flying).")] private string priorityType = "";
+        [SerializeField, Range(0, 3)] private int priorityTypeBonus;
+        [SerializeField, Tooltip("Quien le golpea con contacto pierde etapas de esta estadística (Baba: speed).")] private string contactStatDrop = "";
+        [SerializeField, Range(-6, 0)] private int contactStatDropStages;
+        [SerializeField, Tooltip("Al golpear roba el objeto del rival si no lleva nada (Prestidigitador).")] private bool stealOnHit;
+        [SerializeField, Tooltip("Quien le golpea con contacto pasa a tener esta habilidad (Momia).")] private bool spreadsAbilityOnContact;
+        [SerializeField, Tooltip("Sus movimientos Normales pasan a ser de este tipo (Piel Feérica: fairy; Piel Helada: ice).")] private string convertNormalTo = "";
+        [SerializeField, Range(1f, 2f), Tooltip("Y hacen más daño (1,3).")] private float convertBoost = 1f;
+        [SerializeField, Range(0f, 100f), Tooltip("Al comer una baya recupera además este % de PS (Carrillo: 33).")] private float berryBonusHealPercent;
+        public string PriorityType => priorityType; public int PriorityTypeBonus => priorityTypeBonus;
+        public string ContactStatDrop => contactStatDrop; public int ContactStatDropStages => contactStatDropStages;
+        public bool StealOnHit => stealOnHit; public bool SpreadsAbilityOnContact => spreadsAbilityOnContact;
+        public string ConvertNormalTo => convertNormalTo; public float ConvertBoost => convertBoost; public float BerryBonusHealPercent => berryBonusHealPercent;
+
         [System.Serializable] public sealed class WeatherHpData { public string weatherId = "rain"; public float percent = 6.25f; }
         [System.Serializable] public sealed class WeatherTypeData { public string weatherId = "rain"; public ElementTypeData type; }
         [System.Serializable] public sealed class ConditionalStatData { [StatIdReference] public string statId = "speed"; public float multiplier = 2f; public ConditionData[] conditions = new ConditionData[0]; }

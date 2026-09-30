@@ -115,7 +115,7 @@ namespace CTEditor.GameDefinition.Editor
             var chosen = (m.moves ?? new MoveData[0]).Where(x => x != null).Select(x => x.DisplayName).ToList();
             if (chosen.Count > 0) return string.Join(", ", chosen);
             if (m.species == null) return "⚠ sin especie";
-            if (style == MovesetStyle.Balanced || style == MovesetStyle.Strong)
+            if (style == MovesetStyle.Balanced || style == MovesetStyle.Strong || style == MovesetStyle.Competitive)
             {
                 var key = (m.species, m.level, style, profile?.Level ?? 0);
                 double now = UnityEditor.EditorApplication.timeSinceStartup;
@@ -167,7 +167,7 @@ namespace CTEditor.GameDefinition.Editor
             if (plan == null || plan.Count == 0) return null;
             var all = learn.Select(x => x.Item1).Concat(extra).ToList();
             return string.Join(", ", plan.Select(id => { var mv = all.First(x => x.Id.Equals(id)); return mv.DisplayName + (learn.Any(x => x.Item1.Id.Equals(id)) ? "" : "*"); })) +
-                   (style == MovesetStyle.Strong ? "  (automáticos: fuertes" : "  (automáticos: equilibrados") +
+                   (style == MovesetStyle.Competitive ? "  (automáticos: de competición" : style == MovesetStyle.Strong ? "  (automáticos: fuertes" : "  (automáticos: equilibrados") +
                    (extra.Count > 0 ? "; * = de MT/tutor/huevo)" : ")");
         }
 

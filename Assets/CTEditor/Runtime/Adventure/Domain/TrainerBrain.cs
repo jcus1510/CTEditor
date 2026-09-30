@@ -15,7 +15,7 @@ namespace CTEditor.Adventure.Domain
 {
     /// <summary>
     /// EL CEREBRO de un entrenador rival: cada turno decide si usa un OBJETO de su mochila, si CAMBIA de
-    /// monstruo o qué MOVIMIENTO usa, según su NIVEL DE IA (1-5, ver AiProfile) y sus ajustes propios:
+    /// monstruo o qué MOVIMIENTO usa, según su NIVEL DE IA (1-7, ver AiProfile) y sus ajustes propios:
     ///
     ///   Cómo elige el movimiento: al azar, «el más eficaz» o experto (daño real, remates, estados).
     ///   Fallos: un % de turnos usa un movimiento al azar (el Campeón nunca).
@@ -36,11 +36,13 @@ namespace CTEditor.Adventure.Domain
         private readonly IBattleAI _moveAi;
         private readonly IBattleAI _randomAi;
         private readonly AiProfile _profile;
+        private readonly OpponentModel _model;
         private readonly Dictionary<string, int> _bag = new Dictionary<string, int>();
         private readonly HashSet<string> _boosted = new HashSet<string>();
         private int _turn, _lastSwitchTurn = -10;
 
-        public TrainerBrain(GameData data, BattleAggregate battle, TurnResolver resolver, TrainerDefinition trainer, IRng rng)
+        public TrainerBrain(GameData data, BattleAggregate battle, TurnResolver resolver, TrainerDefinition trainer, IRng rng,
+            TrainerMemory memory = null)
         {
             _data = data ?? throw new ArgumentNullException(nameof(data));
             _battle = battle ?? throw new ArgumentNullException(nameof(battle));
@@ -48,11 +50,16 @@ namespace CTEditor.Adventure.Domain
             _trainer = trainer ?? throw new ArgumentNullException(nameof(trainer));
             _rng = rng ?? throw new ArgumentNullException(nameof(rng));
             _profile = data.AiProfileFor(trainer);
+            // Lo que sabe de ti: con «Memoria» usa (y actualiza) la que guarda tu partida; si no, una nueva para este combate.
+            _model = new OpponentModel(data, battle, resolver, _profile.Knowledge,
+                _profile.Knowledge == AiKnowledge.Memory ? memory : null);
+            if (_profile.Knowledge == AiKnowledge.Memory && memory != null) memory.BattlesFought++;
             _randomAi = new SimpleBattleAI(rng) { CanUse = resolver.CanChooseMove };
             switch (_profile.Brain)
             {
                 case MoveBrain.Random: _moveAi = _randomAi; break;
-                case MoveBrain.Expert: _moveAi = new ExpertBattleAI(rng, data.Moves, resolver, battle); break;
+                case MoveBrain.Expert: _moveAi = new ExpertBattleAI(rng, data.Moves, resolver, battle) { Model = _model }; break;
+                case MoveBrain.Predictor: _moveAi = new PredictorBattleAI(rng, data.Moves, resolver, battle, _model, _profile.PredictPercent); break;
                 default: _moveAi = new AggressiveBattleAI(rng, data.Moves, data.TypeChart) { CanUse = resolver.CanChooseMove }; break;
             }
             // Su mochila; si no trae, la de su nivel de IA (si usa objetos).
@@ -63,6 +70,16 @@ namespace CTEditor.Adventure.Domain
 
         /// <summary>El nivel de IA con el que piensa.</summary>
         public AiProfile Profile => _profile;
+
+        /// <summary>Lo que sabe de ti (movimientos vistos y estadísticas estimadas).</summary>
+        public OpponentModel Model => _model;
+
+        /// <summary>Qué predijo el último turno (null = no predijo). Para el editor y los tests.</summary>
+        public string LastPrediction => (_moveAi as PredictorBattleAI)?.LastPrediction ?? _lastSwitchPrediction;
+        private string _lastSwitchPrediction;
+
+        /// <summary>Aprende de lo que pasó en el turno (tus movimientos y cuánto dañan / aguantan).</summary>
+        public void Observe(IReadOnlyList<CTEditor.SharedKernel.Events.IDomainEvent> events) => _model.Observe(events);
 
         /// <summary>Lo que le queda en la mochila (id → cantidad).</summary>
         public IReadOnlyDictionary<string, int> Bag => _bag;
@@ -140,10 +157,34 @@ namespace CTEditor.Adventure.Domain
 
         private Combatant ChooseSwitch(Combatant self, Combatant foe)
         {
+            _lastSwitchPrediction = null;
             if (!_profile.CanSwitch || !_trainer.AiSettings.CanSwitch) return null;
-            if (_turn - _lastSwitchTurn < 3 || !_resolver.CanSwitchOut(self)) return null;
+            if (!_resolver.CanSwitchOut(self)) return null;
             var reserves = _battle.EnemyTeam.Reserves();
             if (reserves.Count == 0) return null;
+
+            // PREDICTOR: si cree que tu próximo golpe le hace mucho daño, cambia al que MEJOR lo aguanta (y te pega).
+            if (_profile.Brain == MoveBrain.Predictor && _turn - _lastSwitchTurn >= 2
+                && (_profile.PredictPercent >= 100 || _rng.NextFloat() * 100f < _profile.PredictPercent))
+            {
+                var (predicted, hit) = BestMove(foe, self);
+                float hitPct = hit * 100f / Math.Max(1, self.CurrentHp);
+                bool iKoFirst = BestDamage(self, foe) >= foe.CurrentHp && _resolver.EffectiveSpeed(self) > _resolver.EffectiveSpeed(foe);
+                if (predicted != null && hitPct >= 50f && !iKoFirst)
+                {
+                    Combatant pick = null; float pickValue = float.MinValue;
+                    foreach (var r in reserves)
+                    {
+                        float taken = ExpertBattleAI.ExpectedDamage(_resolver, _battle, foe, r, predicted, _model) * 100f / Math.Max(1, r.CurrentHp);
+                        if (taken > 30f) continue;
+                        float dealt = BestDamage(r, foe) * 100f / Math.Max(1, foe.CurrentHp);
+                        float value = dealt - taken;
+                        if (value > pickValue) { pickValue = value; pick = r; }
+                    }
+                    if (pick != null) { _lastSwitchPrediction = "aguanta:" + predicted.Id.Value; return pick; }
+                }
+            }
+            if (_turn - _lastSwitchTurn < 3) return null;
 
             float myHit = BestDamage(self, foe) * 100f / Math.Max(1, foe.CurrentHp);   // % de SUS PS que le quito
             float theirHit = BestDamage(foe, self) * 100f / Math.Max(1, self.CurrentHp); // % de MIS PS que me quita
@@ -209,16 +250,29 @@ namespace CTEditor.Adventure.Domain
             return hitsAfter >= hitsNow + 1;
         }
 
-        // El mayor daño esperado de 'attacker' contra 'target' con sus movimientos (con PP).
-        private float BestDamage(Combatant attacker, Combatant target)
+        // El mayor daño esperado de 'attacker' contra 'target'. Si el atacante es tuyo, con los movimientos que la IA
+        // CONOCE (o supone) y sus estimaciones de tus estadísticas; si es suyo, con los suyos (con PP).
+        private float BestDamage(Combatant attacker, Combatant target) => BestMove(attacker, target).damage;
+
+        private (Move move, float damage) BestMove(Combatant attacker, Combatant target)
         {
-            float best = 0f;
+            Move bestMove = null; float best = 0f;
+            if (_model.IsOpponent(attacker))
+            {
+                foreach (var move in _model.KnownMoves(attacker))
+                {
+                    float d = ExpertBattleAI.ExpectedDamage(_resolver, _battle, attacker, target, move, _model);
+                    if (d > best) { best = d; bestMove = move; }
+                }
+                return (bestMove, best);
+            }
             for (int i = 0; i < attacker.Moves.Count; i++)
             {
                 if (attacker.PpAt(i) == 0 || !_data.Moves.TryGet(attacker.Moves[i], out Move move)) continue;
-                best = Math.Max(best, ExpertBattleAI.ExpectedDamage(_resolver, _battle, attacker, target, move));
+                float d = ExpertBattleAI.ExpectedDamage(_resolver, _battle, attacker, target, move, _model);
+                if (d > best) { best = d; bestMove = move; }
             }
-            return best;
+            return (bestMove, best);
         }
     }
 }

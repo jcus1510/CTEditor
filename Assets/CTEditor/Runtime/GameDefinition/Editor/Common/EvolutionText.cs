@@ -66,6 +66,7 @@ namespace CTEditor.GameDefinition.Editor
                 case EvolutionConditionKind.Nature: s = $"con naturaleza {(c.nature != null ? c.nature.DisplayName : "¿naturaleza?")}"; break;
                 case EvolutionConditionKind.Chance: s = $"solo el {c.value}% de los individuos (según su personalidad)"; break;
                 case EvolutionConditionKind.GameFlag: s = $"con la marca «{(string.IsNullOrWhiteSpace(c.text) ? "¿marca?" : c.text)}» activa"; break;
+                case EvolutionConditionKind.Gender: s = c.value == 2 ? "si es hembra" : "si es macho"; break;
                 default: s = c.check.ToString(); break;
             }
             return c.negate ? "NO " + s : s;
@@ -92,6 +93,7 @@ namespace CTEditor.GameDefinition.Editor
                 case EvolutionConditionKind.Nature: s = c.nature != null ? c.nature.DisplayName : "?"; break;
                 case EvolutionConditionKind.Chance: s = c.value + "%"; break;
                 case EvolutionConditionKind.GameFlag: s = "🚩" + c.text; break;
+                case EvolutionConditionKind.Gender: s = c.value == 2 ? "♀" : "♂"; break;
                 default: s = "?"; break;
             }
             return c.negate ? "¬" + s : s;

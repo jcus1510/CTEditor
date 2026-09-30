@@ -25,7 +25,50 @@ namespace CTEditor.GameDefinition.Editor
             ("magic_coat", "Capa Mágica"), ("snatch", "Robo"), ("charge", "Carga"), ("magnet_rise", "Levitón"),
             ("roost", "Respiro"), ("identified", "Identificado"), ("miracle_eye", "Gran Ojo"), ("lock_on", "Fijar Blanco"),
             ("imprison", "Cerca"), ("ingrain", "Arraigo"), ("aqua_ring", "Acua Aro"), ("cant_escape", "Sin escapatoria"),
+            // Lote F: 5.ª y 6.ª generación.
+            ("kings_shield", "Escudo Real"), ("spiky_shield", "Barrera Espinosa"), ("smacked_down", "Derribado"), ("fairy_lock", "Cerrojo Feérico"),
         };
+
+        // 5.ª y 6.ª gen.: protecciones con castigo y otros volátiles nuevos.
+        private static bool FillGen6(SerializedObject so, string kind)
+        {
+            string name;
+            switch (kind)
+            {
+                case "kings_shield": name = "Escudo Real"; break;
+                case "spiky_shield": name = "Barrera Espinosa"; break;
+                case "smacked_down": name = "Derribado"; break;
+                case "fairy_lock": name = "Cerrojo Feérico"; break;
+                default: return false;
+            }
+            // Base: un volátil «vacío» (se reutiliza el relleno de la 4.ª gen. con Sin escapatoria y se ajusta).
+            FillGen4(so, "cant_escape");
+            void B(string field, bool v) { var p = so.FindProperty(field); if (p != null) p.boolValue = v; }
+            void I(string field, int v) { var p = so.FindProperty(field); if (p != null) p.intValue = v; }
+            void F(string field, float v) { var p = so.FindProperty(field); if (p != null) p.floatValue = v; }
+            void S(string field, string v) { var p = so.FindProperty(field); if (p != null) p.stringValue = v; }
+            S("displayName", name);
+            B("preventsSwitch", kind == "fairy_lock");
+            I("durationTurns", kind == "fairy_lock" ? 2 : kind == "smacked_down" ? 0 : 1);
+            bool shield = kind == "kings_shield" || kind == "spiky_shield";
+            B("blocksIncomingMoves", shield); B("harderWhenRepeated", shield);
+            // Escudo Real: solo para ataques con daño; quien le toca pierde 2 de Ataque. Barrera Espinosa: 1/8 de PS.
+            B("protectOnlyDamaging", kind == "kings_shield");
+            S("protectContactStat", kind == "kings_shield" ? "attack" : "");
+            I("protectContactStages", kind == "kings_shield" ? -2 : 0);
+            F("protectContactDamagePercent", kind == "spiky_shield" ? 12.5f : 0f);
+            B("grounded", kind == "smacked_down");   // Antiaéreo / Mil Flechas: le afecta Tierra aunque vuele
+            return true;
+        }
+
+        // Pone a cero los campos de la 5.ª-6.ª gen. (una plantilla no hereda nada).
+        private static void ResetGen6(SerializedObject so)
+        {
+            var a = so.FindProperty("protectOnlyDamaging"); if (a != null) a.boolValue = false;
+            var b = so.FindProperty("protectContactStat"); if (b != null) b.stringValue = "";
+            var c = so.FindProperty("protectContactStages"); if (c != null) c.intValue = 0;
+            var d = so.FindProperty("protectContactDamagePercent"); if (d != null) d.floatValue = 0f;
+        }
 
         /// <summary>
         /// Plantillas de los volátiles de la 3.ª y 4.ª gen.: (nombre, duración, duración máx., % impide actuar,
@@ -34,7 +77,7 @@ namespace CTEditor.GameDefinition.Editor
         private static readonly Dictionary<string, (string name, int dur, float prevent, float residual, bool heals, bool noSwitch, string[] flags, string type, string[] types)> Gen4 =
             new Dictionary<string, (string, int, float, float, bool, bool, string[], string, string[])>
         {
-            ["infatuation"] = ("Enamorado", 0, 50f, 0f, false, false, new string[0], null, null),
+            ["infatuation"] = ("Enamorado", 0, 50f, 0f, false, false, new[] { "requiresOppositeGender" }, null, null),
             ["taunt"]       = ("Mofa", 3, 0f, 0f, false, false, new[] { "blocksStatusMoves" }, null, null),
             ["torment"]     = ("Tormento", 0, 0f, 0f, false, false, new[] { "blocksRepeatedMove" }, null, null),
             ["heal_block"]  = ("Anticura", 5, 0f, 0f, false, false, new[] { "blocksHealing" }, null, null),
@@ -63,7 +106,7 @@ namespace CTEditor.GameDefinition.Editor
         {
             "blocksStatusMoves", "blocksRepeatedMove", "blocksHealing", "blocksItems", "suppressesAbility", "faintsWhenEnds",
             "destinyBond", "grudge", "reflectsStatusMoves", "stealsBoostMoves", "boostConsumed", "identified", "sureHit",
-            "imprisons", "grounded",
+            "imprisons", "grounded", "requiresOppositeGender",
         };
 
         private static ElementTypeData[] TypesById(IEnumerable<string> ids)
@@ -119,7 +162,7 @@ namespace CTEditor.GameDefinition.Editor
         /// <summary>¿Es volátil en la plantilla clásica? (se usa también para avisar si una ficha antigua no lo está).</summary>
         public static bool IsClassicVolatile(string id)
             => id == "confusion" || id == "drowsy" || id == "trapped" || id == "leech_seed" || id == "protect" || id == "endure"
-               || Gen4.ContainsKey(id);
+               || Gen4.ContainsKey(id) || id == "kings_shield" || id == "spiky_shield" || id == "smacked_down" || id == "fairy_lock";
 
         /// <summary>Rellena los campos de comportamiento de un estado según la plantilla (no toca el id).</summary>
         public static bool Fill(SerializedObject so, string kind)
@@ -130,6 +173,7 @@ namespace CTEditor.GameDefinition.Editor
             int duration;
             string passiveStat = null;
             float passiveMul = 1f;
+            ResetGen6(so);
 
             switch (kind)
             {
@@ -145,7 +189,7 @@ namespace CTEditor.GameDefinition.Editor
                 case "leech_seed":display = "Drenadoras";  residual = 12.5f; progressive = false; prevention = 0f;   duration = 0; break;
                 case "protect":   display = "Protegido";   residual = 0f;    progressive = false; prevention = 0f;   duration = 1; break;
                 case "endure":    display = "Aguante";     residual = 0f;    progressive = false; prevention = 0f;   duration = 1; break;
-                default: return FillGen4(so, kind);
+                default: return FillGen4(so, kind) || FillGen6(so, kind);
             }
 
             so.FindProperty("displayName").stringValue = display;

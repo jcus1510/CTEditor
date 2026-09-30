@@ -43,7 +43,8 @@ namespace CTEditor.GameDefinition.Editor
         public static bool Available => Directory.Exists(Folder);
 
         /// <summary>Nombre corto de la fuente para botones y mensajes: «pack 1ª gen.» o «tu Excel (Kanto2)».</summary>
-        public static string SourceName => UsingCustom ? $"tu Excel ({Path.GetFileName(CustomFolder.TrimEnd('/', '\\'))})" : (ContentHubWindow.PackFolder == ContentHubWindow.Gen14PackFolder ? "pack 1ª-4ª gen."
+        public static string SourceName => UsingCustom ? $"tu Excel ({Path.GetFileName(CustomFolder.TrimEnd('/', '\\'))})" : (ContentHubWindow.PackFolder == ContentHubWindow.Gen16PackFolder ? "pack 1ª-6ª gen."
+                : ContentHubWindow.PackFolder == ContentHubWindow.Gen14PackFolder ? "pack 1ª-4ª gen."
                 : ContentHubWindow.PackFolder == ContentHubWindow.Gen12PackFolder ? "pack 1ª-2ª gen." : "pack 1ª gen.");
 
         /// <summary>Pide al autor su carpeta de Excel (con los .csv exportados). Devuelve true si eligió una válida.</summary>

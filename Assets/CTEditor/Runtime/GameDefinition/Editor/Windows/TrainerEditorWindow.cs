@@ -28,7 +28,7 @@ namespace CTEditor.GameDefinition.Editor
         {
             "Pulsa «Crear los entrenadores de ejemplo» o crea uno nuevo escribiendo su id.",
             "En «Equipo» añade miembros: especie y nivel bastan (sin movimientos elegidos, usa los que aprende a su nivel).",
-            "Elige su NIVEL DE IA (1 Novato … 5 Campeón) y, si quieres, su mochila (si no, usa la de su nivel). Los niveles se ajustan en «Niveles de IA».",
+            "Elige su NIVEL DE IA (1 Novato … 5 Campeón, 6 Maestro, 7 Injusto) y, si quieres, su mochila (si no, usa la de su nivel). Los niveles se ajustan en «Niveles de IA».",
             "¿Prisa? «🎲 Preparar un reto» genera un entrenador con equipo coherente para el nivel que digas.",
             "Pon su dinero base: el premio es ese valor × el nivel de su último monstruo. Abajo verás su equipo con estadísticas y sus puntos débiles.",
             "Pruébalo en la escena de pruebas: CTEditor → Pruebas → Crear escena de pruebas de combate.",
@@ -52,7 +52,7 @@ namespace CTEditor.GameDefinition.Editor
 
         // ---------------- Filtros y orden ----------------
 
-        private int _filterAi;                  // 0 = todos, 1-5
+        private int _filterAi;                  // 0 = todos, 1-7
         private int _filterLevelFrom, _filterLevelTo;
         private int _filterClass;               // 0 = todas
         private bool _showFilters;
@@ -77,7 +77,7 @@ namespace CTEditor.GameDefinition.Editor
             _showFilters = EditorGUILayout.Foldout(_showFilters, active > 0 ? $"Filtros ({active} activos)" : "Filtros", true);
             if (!_showFilters) return;
             EditorGUI.BeginChangeCheck();
-            _filterAi = EditorGUILayout.Popup("Nivel de IA", _filterAi, new[] { "Todos" }.Concat(Enumerable.Range(1, 5).Select(AiLevelEditorWindow.LevelLabel)).ToArray());
+            _filterAi = EditorGUILayout.Popup("Nivel de IA", _filterAi, new[] { "Todos" }.Concat(Enumerable.Range(1, AiProfile.MaxLevel).Select(AiLevelEditorWindow.LevelLabel)).ToArray());
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Nivel equipo", GUILayout.Width(80));
             _filterLevelFrom = EditorGUILayout.IntField(_filterLevelFrom, GUILayout.Width(40));
@@ -230,7 +230,7 @@ namespace CTEditor.GameDefinition.Editor
             if (!_showChallenge) return;
             EditorTheme.Paragraph("Genera un entrenador con un equipo coherente: etapa según el nivel (Ivysaur a nivel 20), sin repetir especie y " +
                                   "con los movimientos de su nivel de IA. Luego lo ajustas como quieras.");
-            _chAi = EditorGUILayout.Popup("Nivel de IA", _chAi - 1, Enumerable.Range(1, 5).Select(AiLevelEditorWindow.LevelLabel).ToArray()) + 1;
+            _chAi = EditorGUILayout.Popup("Nivel de IA", _chAi - 1, Enumerable.Range(1, AiProfile.MaxLevel).Select(AiLevelEditorWindow.LevelLabel).ToArray()) + 1;
             _chSize = EditorGUILayout.IntSlider("Monstruos", _chSize, 1, 6);
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Niveles", GUILayout.Width(60));
@@ -308,11 +308,12 @@ namespace CTEditor.GameDefinition.Editor
             }
             EditorGUILayout.EndHorizontal();
 
-            // Nivel de IA en un clic (lo más cambiado): 1 Novato … 5 Campeón.
+            // Nivel de IA en un clic (lo más cambiado): 1 Novato … 7 Injusto (en dos filas).
             EditorGUILayout.LabelField("Nivel de IA", EditorStyles.boldLabel);
             EditorGUILayout.BeginHorizontal();
-            for (int lvl = 1; lvl <= 5; lvl++)
+            for (int lvl = 1; lvl <= AiProfile.MaxLevel; lvl++)
             {
+                if (lvl == 5) { EditorGUILayout.EndHorizontal(); EditorGUILayout.BeginHorizontal(); }
                 var old = GUI.backgroundColor;
                 if (d.EffectiveAiLevel == lvl) GUI.backgroundColor = AiLevelEditorWindow.LevelColor(lvl);
                 int l = lvl;
@@ -420,6 +421,7 @@ namespace CTEditor.GameDefinition.Editor
             var style = d.MovesetStyle != MovesetStyle.ByAi ? d.MovesetStyle : profile.Moveset;
             EditorTheme.Tip(style == MovesetStyle.Classic ? "Los miembros sin movimientos escritos usan los 4 últimos que aprenden (clásico, a veces flojo)."
                           : style == MovesetStyle.Strong ? "Los miembros sin movimientos escritos eligen sus ataques MÁS FUERTES con cobertura (difícil)."
+                          : style == MovesetStyle.Competitive ? "Sets DE COMPETICIÓN: STAB + cobertura, prioridad, pivotes y sinergias (muy difícil)."
                           : "Los miembros sin movimientos escritos eligen su mejor ataque, cobertura y un apoyo (equilibrado).", EditorTheme.Tools, "🎯");
             var srcs = new List<string>();
             if (profile.UseMachineMoves) srcs.Add("MT");

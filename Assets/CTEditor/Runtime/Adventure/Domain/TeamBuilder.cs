@@ -55,13 +55,22 @@ namespace CTEditor.Adventure.Domain
             Nature nature = null;
             if (spec.Nature.HasValue && !data.Natures.TryGet(spec.Nature.Value, out nature))
                 problems?.Add($"La naturaleza '{spec.Nature.Value.Value}' no existe (en {species.DisplayName}).");
+            // ENTRENAMIENTO DE COMPETICIÓN (Maestro, Injusto): naturaleza que sube su mejor ataque y baja el que no usa.
+            bool training = profile != null && profile.CompetitiveTraining;
+            if (training && !spec.Nature.HasValue) nature = CompetitiveNature(species, data) ?? nature;
             if (nature == null && !spec.Nature.HasValue) nature = RandomNature(data, rng);
 
             var mon = MonsterFactory.Create(id, species, spec.Level, data.Ruleset, data.Growth, moves,
-                data.CurveFor(species), rng, nature, spec.FixedIv);
+                data.CurveFor(species), rng, nature, spec.FixedIv ?? (training ? 31 : (int?)null));
+            if (training) ApplyCompetitiveEvs(mon, species, data);
             if (!string.IsNullOrWhiteSpace(spec.HeldItem)) mon.SetHeldItem(spec.HeldItem);
+            else if (profile != null && profile.HeldItems == HeldItemStyle.Competitive)
+                mon.SetHeldItem(PickCompetitiveItem(species, mon, data) ?? PickHeldItem(species, mon, data));
             else if (profile != null && profile.AutoHeldItems) mon.SetHeldItem(PickHeldItem(species, mon, data));
             if (!string.IsNullOrWhiteSpace(spec.Nickname)) mon.SetNickname(spec.Nickname);
+            // Género fijado por el autor (si la especie tiene género).
+            if (spec.Gender.HasValue && !species.Dex.IsGenderless && spec.Gender.Value != CTEditor.GameDefinition.Domain.Species.Gender.Genderless)
+                mon.SetGender(spec.Gender.Value);
             return mon;
         }
 
@@ -116,7 +125,7 @@ namespace CTEditor.Adventure.Domain
         {
             var team = new List<MonsterInstance>();
             if (trainer == null) return team;
-            // Su NIVEL de IA (1-5) decide cómo arma los movimientos y a qué fuentes llega (MT, tutor, huevo).
+            // Su NIVEL de IA (1-7) decide cómo arma los movimientos y a qué fuentes llega (MT, tutor, huevo).
             var profile = data.AiProfileFor(trainer);
             var style = trainer.AiSettings.Moveset != MovesetStyle.ByAi ? trainer.AiSettings.Moveset : profile.Moveset;
             for (int i = 0; i < trainer.Team.Count && team.Count < data.Ruleset.MaxPartySize; i++)
@@ -147,6 +156,62 @@ namespace CTEditor.Adventure.Domain
             var pick = typeItem != null && mon.Moves.Any(m => data.Moves.TryGet(m, out var mv) && mv.Type == species.Types[0] && mv.Power >= 60)
                 ? typeItem : leftovers ?? berry ?? typeItem;
             return pick?.Id;
+        }
+
+        // ---------------- Competición (Maestro, Injusto) ----------------
+
+        private static bool IsPhysical(SpeciesDef s) => s.BaseStats.Attack >= s.BaseStats.SpAttack;
+
+        /// <summary>Naturaleza de competición: sube su mejor ataque y baja el que no usa (Firme / Modesta...).</summary>
+        public static Nature CompetitiveNature(SpeciesDef species, GameData data)
+        {
+            var up = IsPhysical(species) ? StatId.Attack : StatId.SpAttack;
+            var down = IsPhysical(species) ? StatId.SpAttack : StatId.Attack;
+            // Los muy rápidos prefieren Velocidad (Alegre / Miedosa).
+            if (species.BaseStats.Speed >= 90 && species.BaseStats.Speed >= Math.Max(species.BaseStats.Attack, species.BaseStats.SpAttack) - 10)
+                up = StatId.Speed;
+            foreach (var n in data.Natures.All)
+                if (n != null && n.BoostedStat.HasValue && n.HinderedStat.HasValue && n.BoostedStat.Value == up && n.HinderedStat.Value == down) return n;
+            return null;
+        }
+
+        /// <summary>EVs de competición: 252 en su mejor ataque, 252 en Velocidad (o PS si es lento) y 4 en PS/Defensa.</summary>
+        public static void ApplyCompetitiveEvs(MonsterInstance mon, SpeciesDef species, GameData data)
+        {
+            var atk = IsPhysical(species) ? StatId.Attack : StatId.SpAttack;
+            bool slow = species.BaseStats.Speed < 60;
+            mon.AddEffort(atk, 252);
+            mon.AddEffort(slow ? StatId.Hp : StatId.Speed, 252);
+            mon.AddEffort(slow ? StatId.Defense : StatId.Hp, 4);
+            mon.RecomputeStats(species.BaseStats, data.Growth);
+            mon.Heal(mon.MaxHp);
+        }
+
+        /// <summary>
+        /// Objeto de COMPETICIÓN según su papel (solo los que existan en el juego):
+        ///   puede evolucionar → Mineral Evolutivo · frágil y fuerte → Banda Focus · solo ataques y rápido → Pañuelo Elección ·
+        ///   solo ataques → Cinta / Gafas Elección · especial resistente → Chaleco Asalto · con mejoras → Vidasfera ·
+        ///   resistente → Restos (o Lodo Negro si es Veneno) · y si no, Casco Dentado / Cinturón Experto.
+        /// </summary>
+        public static string PickCompetitiveItem(SpeciesDef species, MonsterInstance mon, GameData data)
+        {
+            bool Has(string id) => data.TryGetItem(id, out _);
+            string First(params string[] ids) { foreach (var id in ids) if (Has(id)) return id; return null; }
+            var b = species.BaseStats;
+            bool physical = IsPhysical(species);
+            var moves = mon.Moves.Select(m => data.Moves.TryGet(m, out var mv) ? mv : null).Where(m => m != null).ToList();
+            bool allAttacks = moves.Count > 0 && moves.All(m => m.DealsDirectDamage);
+            bool boosts = moves.Any(m => m.Category == MoveCategory.Status && m.SecondaryEffects.Any(e =>
+                e.Kind == MoveEffectKind.ChangeStatStage && e.Target == EffectTarget.Self && e.Stages > 0));
+            int bulk = b.Hp + b.Defense + b.SpDefense;
+            if (species.Evolutions.Count > 0) return First("eviolite", "leftovers");
+            if (bulk < 200 && Math.Max(b.Attack, b.SpAttack) >= 90) return First("focus_sash", "life_orb");
+            if (allAttacks && b.Speed >= 80 && b.Speed < 110) return First("choice_scarf", physical ? "choice_band" : "choice_specs");
+            if (allAttacks && Math.Max(b.Attack, b.SpAttack) >= 100) return physical ? First("choice_band", "life_orb") : First("choice_specs", "life_orb");
+            if (allAttacks && b.SpDefense >= 80) return First("assault_vest", "leftovers");
+            if (boosts) return First("life_orb", "leftovers");
+            if (bulk >= 280) return species.Types.Any(t => t.Value == "poison") ? First("black_sludge", "leftovers") : First("leftovers", "rocky_helmet");
+            return First("expert_belt", "life_orb", "rocky_helmet", "leftovers");
         }
 
         /// <summary>

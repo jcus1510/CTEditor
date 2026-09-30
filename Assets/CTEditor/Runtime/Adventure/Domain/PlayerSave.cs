@@ -43,6 +43,23 @@ namespace CTEditor.Adventure.Domain
         /// <summary>El estado del MUNDO de esta partida: hora, lugar, clima del mapa y marcas de la historia.</summary>
         public WorldState World { get; } = new WorldState();
 
+        // Lo que cada entrenador RECUERDA de tu equipo (niveles de IA con memoria): para las revanchas.
+        private readonly Dictionary<string, TrainerMemory> _trainerMemories = new Dictionary<string, TrainerMemory>();
+
+        /// <summary>La memoria de un entrenador sobre ti (la crea vacía la primera vez).</summary>
+        public TrainerMemory MemoryOf(string trainerId)
+        {
+            string key = string.IsNullOrWhiteSpace(trainerId) ? "?" : trainerId;
+            if (!_trainerMemories.TryGetValue(key, out var m)) _trainerMemories[key] = m = new TrainerMemory();
+            return m;
+        }
+
+        /// <summary>Todas las memorias (para guardar la partida o verlas en el editor).</summary>
+        public IReadOnlyDictionary<string, TrainerMemory> TrainerMemories => _trainerMemories;
+
+        /// <summary>Olvida lo que un entrenador sabía de ti (p. ej. al reiniciar un reto).</summary>
+        public void ForgetTrainer(string trainerId) => _trainerMemories.Remove(trainerId ?? "");
+
         public PlayerSave(Ruleset rules, string playerName = "Jugador", int? money = null)
         {
             if (rules == null) throw new ArgumentNullException(nameof(rules));

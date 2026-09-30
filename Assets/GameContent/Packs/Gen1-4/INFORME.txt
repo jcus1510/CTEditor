@@ -82,9 +82,9 @@ EVOLUCIONES ESPECIALES (82):
    clamperl → huntail  (intercambio:deep_sea_tooth)
    clamperl → gorebyss  (intercambio:deep_sea_scale)
    roselia → roserade  (objeto:shiny_stone)
-   burmy → wormadam  (20 y azar:50  [solo hembras → aproximado con azar:50 (CTEditor aún no tiene sexos)])
-   burmy → mothim  (20 y !azar:50  [solo machos → aproximado con !azar:50 (CTEditor aún no tiene sexos)])
-   combee → vespiquen  (21 y azar:12  [solo hembras → aproximado con azar:12 (CTEditor aún no tiene sexos)])
+   burmy → wormadam  (20 y genero:hembra)
+   burmy → mothim  (20 y genero:macho)
+   combee → vespiquen  (21 y genero:hembra)
    aipom → ambipom  (subir y sabe:double_hit)
    buneary → lopunny  (amistad)
    misdreavus → mismagius  (objeto:dusk_stone)
@@ -104,15 +104,15 @@ EVOLUCIONES ESPECIALES (82):
    gligar → gliscor  (subir y hora:noche y lleva:razor_fang)
    piloswine → mamoswine  (subir y sabe:ancient_power)
    porygon2 → porygon_z  (intercambio:dubious_disc)
-   kirlia → gallade  (objeto:dawn_stone y !azar:50  [solo machos → aproximado con !azar:50 (CTEditor aún no tiene sexos)])
+   kirlia → gallade  (objeto:dawn_stone y genero:macho)
    nosepass → probopass  (subir y lugar:mt_coronet  [el lugar «mt_coronet» es un id: ponlo en el mapa donde quieras que ocurra])
    dusclops → dusknoir  (intercambio:reaper_cloth)
-   snorunt → froslass  (objeto:dawn_stone y azar:50  [solo hembras → aproximado con azar:50 (CTEditor aún no tiene sexos)])
+   snorunt → froslass  (objeto:dawn_stone y genero:hembra)
 
 EVOLUCIONES NO IMPORTADAS (1):
    nincada → shedinja  (Shedinja aparece en el equipo al evolucionar Nincada: créalo con un evento)
 
-MOVIMIENTOS APROXIMADOS (24) — funcionan, pero no exactamente como en los juegos:
+MOVIMIENTOS APROXIMADOS (23) — funcionan, pero no exactamente como en los juegos:
    psywave (Psicoonda): daño = nivel del usuario (el original varía entre 0,5 y 1,5 veces el nivel)
    sketch (Esquema): copia el movimiento para el combate (como Mimético), no para siempre
    triple_kick (Triple Patada): sin aumentar la potencia en cada golpe
@@ -120,7 +120,6 @@ MOVIMIENTOS APROXIMADOS (24) — funcionan, pero no exactamente como en los jueg
    belly_drum (Tambor): sube el Ataque al máximo aunque no tenga PS suficientes
    destiny_bond (Mismo Destino): dura hasta el final del turno siguiente
    false_swipe (Falso Tortazo): puede debilitar (el original deja 1 PS)
-   attract (Atracción): enamora sin mirar el sexo (CTEditor aún no tiene sexos en combate)
    present (Presente): potencia fija 40 (el original puede curar al rival)
    pursuit (Persecución): sin doble daño al que se retira
    hidden_power (Poder Oculto): Normal de potencia 60 (el original depende de los IVs)
@@ -148,7 +147,7 @@ HABILIDADES APROXIMADAS (4):
    poison_heal: cura con cualquier estado (en los juegos, solo con veneno)
    flower_gift: solo afecta al propio Cherrim (en dobles también a su aliado)
 
-HABILIDADES SIN EFECTO EN COMBATES INDIVIDUALES (11):
+HABILIDADES SIN EFECTO EN COMBATES INDIVIDUALES (10):
    friend_guard (Compiescolta): solo en combates dobles
    healer (Alma Cura): solo en combates dobles
    honey_gather (Recogemiel): solo fuera de combate (recoge Miel)
@@ -157,7 +156,6 @@ HABILIDADES SIN EFECTO EN COMBATES INDIVIDUALES (11):
    multitype (Multitipo): cambia de tipo según la tabla que lleve Arceus (aún no hay tablas)
    pickup (Recogida): solo fuera de combate (recoge objetos)
    plus (Más): solo en combates dobles
-   rivalry (Rivalidad): depende del sexo (CTEditor aún no tiene sexos)
    telepathy (Telepatía): solo en combates dobles
    wind_rider (Surcavientos): depende de movimientos de viento de la 8.ª-9.ª gen.
 

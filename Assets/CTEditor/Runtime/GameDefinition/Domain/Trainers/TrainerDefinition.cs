@@ -65,7 +65,7 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         public TrainerAi Ai { get; }
 
         private readonly int _aiLevel;
-        /// <summary>Nivel de IA 1-5 (Novato … Campeón). Si no se eligió, sale de la IA antigua (novato 1, listo 2, experto 4).</summary>
+        /// <summary>Nivel de IA 1-7 (Novato … Injusto). Si no se eligió, sale de la IA antigua (novato 1, listo 2, experto 4).</summary>
         public int AiLevel => _aiLevel > 0 ? _aiLevel : AiProfile.LevelFromLegacy(Ai);
         /// <summary>Objetos, curación y cambios de la IA.</summary>
         public TrainerAiSettings AiSettings { get; }

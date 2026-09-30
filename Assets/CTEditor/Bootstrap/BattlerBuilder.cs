@@ -52,7 +52,8 @@ namespace CTEditor.Bootstrap
             => new BattleParticipant(
                 new Id<BattleParticipant>(mon.Id.Value), mon.SpeciesId, mon.Level.Value,
                 mon.Stats, mon.CurrentHp, species.Types, mon.Moves, mon.Status, species.AbilityFor(mon.AbilitySlot),
-                species.BaseExpYield, species.EvYield, mon.CurrentPp, mon.Friendship, mon.HeldItem, species.CatchRate, species.Dex.WeightKg);
+                species.BaseExpYield, species.EvYield, mon.CurrentPp, mon.Friendship, mon.HeldItem, species.CatchRate, species.Dex.WeightKg,
+                mon.Gender, species.Evolutions.Count > 0);
 
         // Una naturaleza al azar entre las autoradas. Si no hay ninguna (o no hay azar), neutra (null).
         private static Nature RandomNature(IRng rng)

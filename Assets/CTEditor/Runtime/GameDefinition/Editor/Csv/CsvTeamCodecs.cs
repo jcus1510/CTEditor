@@ -9,7 +9,8 @@ namespace CTEditor.GameDefinition.Editor.Csv
     /// Formatos de Excel para EQUIPOS (entrenadores y equipos prearmados) y ZONAS salvajes. Todo en una
     /// sola celda, separado por | :
     ///
-    ///   Equipo:  especie@nivel[mov1/mov2]{objeto}~naturaleza#iv"mote"   (todo tras el nivel es opcional)
+    ///   Equipo:  especie@nivel%g[mov1/mov2]{objeto}~naturaleza#iv"mote"   (todo tras el nivel es opcional)
+    ///            %m = macho, %h = hembra (sin nada: al azar según su especie)
     ///            pidgey@5 | rattata@4[tackle/quick_attack]{oran_berry} | onix@14#31"Rocoso"
     ///   Zona:    especie@min-max:frecuencia
     ///            pidgey@2-5:50 | rattata@2-4:50 | pikachu@3:5
@@ -18,13 +19,13 @@ namespace CTEditor.GameDefinition.Editor.Csv
     {
         public sealed class ParsedMember
         {
-            public string Species, Held = "", Nature = "", Nickname = "";
+            public string Species, Held = "", Nature = "", Nickname = "", Gender = "";
             public int Level, Iv = -1;
             public List<string> Moves = new List<string>();
         }
 
         private static readonly Regex MemberRx = new Regex(
-            @"^(?<sp>[^@\[\]{}~#""]+)@(?<lvl>\d+)(?:\[(?<moves>[^\]]*)\])?(?:\{(?<held>[^}]*)\})?(?:~(?<nat>[^#""]+))?(?:#(?<iv>\d+))?(?:""(?<nick>[^""]*)"")?$");
+            @"^(?<sp>[^@\[\]{}~#""]+)@(?<lvl>\d+)(?:%(?<g>[mhMH]))?(?:\[(?<moves>[^\]]*)\])?(?:\{(?<held>[^}]*)\})?(?:~(?<nat>[^#""]+))?(?:#(?<iv>\d+))?(?:""(?<nick>[^""]*)"")?$");
 
         public static List<ParsedMember> ParseTeam(string cell)
         {
@@ -42,6 +43,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     Nature = m.Groups["nat"].Success ? m.Groups["nat"].Value.Trim() : "",
                     Iv = m.Groups["iv"].Success ? int.Parse(m.Groups["iv"].Value) : -1,
                     Nickname = m.Groups["nick"].Success ? m.Groups["nick"].Value : "",
+                    Gender = m.Groups["g"].Success ? m.Groups["g"].Value.ToLowerInvariant() : "",
                 };
                 if (p.Level < 1) throw new CsvCellException($"'{item}': el nivel debe ser al menos 1.");
                 if (m.Groups["moves"].Success)
@@ -58,6 +60,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
         {
             var sb = new StringBuilder();
             sb.Append(p.Species).Append('@').Append(p.Level);
+            if (p.Gender == "m" || p.Gender == "h") sb.Append('%').Append(p.Gender);
             if (p.Moves.Count > 0) sb.Append('[').Append(string.Join("/", p.Moves)).Append(']');
             if (!string.IsNullOrEmpty(p.Held)) sb.Append('{').Append(p.Held).Append('}');
             if (!string.IsNullOrEmpty(p.Nature)) sb.Append('~').Append(p.Nature);

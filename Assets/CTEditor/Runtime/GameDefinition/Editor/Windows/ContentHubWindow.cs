@@ -191,12 +191,17 @@ namespace CTEditor.GameDefinition.Editor
         /// <summary>Carpeta del pack de la 1ª a la 4ª generación (493 especies, MT, tutor, huevo, habilidades ocultas).</summary>
         public static string Gen14PackFolder => Path.Combine(Application.dataPath, "GameContent", "Packs", "Gen1-4");
 
-        /// <summary>El pack que se usa: el más completo que haya (1ª-4ª, luego 1ª-2ª, luego 1ª).</summary>
-        public static string PackFolder => Directory.Exists(Gen14PackFolder) ? Gen14PackFolder
+        /// <summary>Carpeta del pack de la 1ª a la 6ª generación (721 especies, tipo Hada, Teselia y Kalos, objetos de competición).</summary>
+        public static string Gen16PackFolder => Path.Combine(Application.dataPath, "GameContent", "Packs", "Gen1-6");
+
+        /// <summary>El pack que se usa: el más completo que haya (1ª-6ª, 1ª-4ª, 1ª-2ª y por último 1ª).</summary>
+        public static string PackFolder => Directory.Exists(Gen16PackFolder) ? Gen16PackFolder
+                                         : Directory.Exists(Gen14PackFolder) ? Gen14PackFolder
                                          : Directory.Exists(Gen12PackFolder) ? Gen12PackFolder : Gen1PackFolder;
 
         /// <summary>Nombre del pack para botones y mensajes.</summary>
-        public static string PackName => Directory.Exists(Gen14PackFolder) ? "la 1ª a la 4ª generación"
+        public static string PackName => Directory.Exists(Gen16PackFolder) ? "la 1ª a la 6ª generación"
+                                       : Directory.Exists(Gen14PackFolder) ? "la 1ª a la 4ª generación"
                                        : Directory.Exists(Gen12PackFolder) ? "la 1ª y 2ª generación" : "la 1ª generación";
 
         /// <summary>

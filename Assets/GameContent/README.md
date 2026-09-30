@@ -89,9 +89,9 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - Pestaña **? Ayuda de columnas**: qué significa cada columna y ejemplos.
 
 ## Objetos, mochila y evoluciones
-- **CTEditor → Objetos → Todos los objetos**: 42 plantillas clásicas (pociones, revivir, antídotos, éteres, bolas, piedras
+- **CTEditor → Objetos → Todos los objetos**: 119 plantillas clásicas (pociones, revivir, antídotos, éteres, bolas, piedras
   evolutivas, objetos X, Restos, Carbón y demás objetos que potencian un tipo, bayas). Pulsa
-  «Crear los 42 objetos clásicos» o «✨ Crear TODO» en el Centro de Contenido.
+  «Crear los 119 objetos clásicos» (también los de competición de la 5.ª-6.ª gen.) o «✨ Crear TODO» en el Centro de Contenido.
 - Un objeto puede: curar PS (fijos o %), curar todos los estados o solo algunos (`poison|toxic`),
   revivir con un % de PS, recuperar PP (uno o todos los movimientos), cambiar la amistad, ser una bola
   (multiplicador de captura), subir etapas en combate (Ataque X) o hacer algo **equipado**:
@@ -144,10 +144,17 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - Si una ventana es estrecha, marca **«📝 Ver la ayuda de cada campo debajo de él»** arriba del Inspector: las
   explicaciones se escriben completas bajo cada campo (además de verse al pasar el ratón).
 
-## Packs clásicos (`Packs/Gen1-4/`, `Packs/Gen1-2/` y `Packs/Gen1/`)
-- Centro de Contenido → **📦 Importar la 1ª a la 4ª generación**: crea la base clásica que falte (estados, climas, efectos de
+## Packs clásicos (`Packs/Gen1-6/`, `Packs/Gen1-4/`, `Packs/Gen1-2/` y `Packs/Gen1/`)
+- Centro de Contenido → **📦 Importar la 1ª a la 6ª generación**: crea la base clásica que falte (estados, climas, efectos de
   lado, objetos, niveles de IA, grupos huevo) y abre el importador («solo lo que falta» o «actualizar también», sin borrar nada).
-  Usa el pack más completo que encuentre (Gen1-4 → Gen1-2 → Gen1).
+  Usa el pack más completo que encuentre (Gen1-6 → Gen1-4 → Gen1-2 → Gen1).
+- **Gen1-6 (Lote F)**: 721 especies, 620 movimientos (Campos, Escudo Real, Barrera Espinosa, Zona Extraña/Mágica, Red Viscosa,
+  Escaldar, Liofilización, Plancha, Mil Flechas...), 190 habilidades con efecto (Piel Feérica, Alas Vendaval, Garra Dura,
+  Baba, Momia, Prestidigitador, Carrillo, Rivalidad...) y 152 entrenadores, ahora también de **Teselia** (Negro 2/Blanco 2)
+  y **Kalos** (X/Y). Aprendizaje de Negro 2/Blanco 2 (494-649) y Rubí Omega/Zafiro Alfa (650-721); los Pokémon antiguos que
+  pasaron a ser de tipo **Hada** reciben los movimientos Hada que aprenden en ROZA. Retos de prueba: **Benga** (Injusto) y
+  **Dana** (Injusto), **Ana María** (Maestro), Iris y Dianta (Maestro).
+- **Tipo Hada**: Centro de Contenido → Tipos → era **«Actual (6.ª gen.)»** (si tu tabla era la de la 2.ª-5.ª gen., cámbiala ahí).
 - **Gen1-4**: 493 especies, 466 movimientos con sus efectos (también Mofa, Truco, Deseo, Espacio Raro, Premonición, Sonámbulo,
   Patada Baja por peso, Meteorobola...), 161 habilidades con efecto y 108 entrenadores de Kanto, Johto, Hoenn y Sinnoh.
 - **Aprendizaje, cada generación con su juego**: Cristal (1-251), Esmeralda (252-386) y Platino (387-493): por nivel
@@ -157,19 +164,29 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - **Pokédex**: número, categoría, altura, peso, color, % de hembras, legendario y descripción en español.
 - **Evoluciones**: nivel, piedra, intercambio con objeto, amistad (+ hora), objeto llevado de día/noche (Weavile, Gliscor),
   sabiendo un movimiento (Mamoswine), con otra especie en el equipo (Mantine), en un lugar (Magnezone) y por azar (Wurmple).
-- `INFORME.txt` explica todo lo aproximado (p. ej. sexo → «personalidad») y lo poco que aún no tiene efecto.
+- `INFORME.txt` explica todo lo aproximado y lo poco que aún no tiene efecto.
 - Datos de PokeAPI. Pokémon es marca de Nintendo/Game Freak/The Pokémon Company: para aprender y uso
   personal, no para publicar.
 
-## Niveles de IA (Lote E)
-Cinco niveles, cada uno una ficha editable (CTEditor → Personajes → **Niveles de IA**):
+## Niveles de IA (Lote E + Lote F)
+Siete niveles, cada uno una ficha editable (CTEditor → Personajes → **Niveles de IA**) hecha de **4 bloques combinables**:
+🧠 **Conocimiento** (qué sabe de ti), 🎯 **Decisión** (cómo elige), 🛡️ **Gestión** (curas y cambios) y 🎒 **Equipo**
+(movimientos, objetos equipados y entrenamiento).
 | Nivel | Para | Cómo juega |
 |---|---|---|
 | 1 Novato | Joven, Cazabichos | movimientos al azar, se olvida de sus objetos, clásico (4 últimos) |
 | 2 Aficionado | entrenadores de ruta | el golpe más fuerte, 20 % de despistes, usa **MT** |
 | 3 Veterano | Entrenador guay, Team Rocket | calcula el daño real, **curación inteligente**, + **tutor**, sinergias |
 | 4 Élite | Líderes | casi sin fallos, **cambia de monstruo**, + **movimientos huevo**, objetos equipados |
-| 5 Campeón | Alto Mando, Campeón, Rojo | sin fallos, Restaurar Todo |
+| 5 Campeón | Alto Mando, Campeón, Rojo | sin fallos, Restaurar Todo, **MEMORIA**: en la revancha recuerda tus movimientos y tus IVs/EVs estimados |
+| 6 Maestro | Campeones de Teselia/Kalos, Maestros de torre | **PREDICE** (castiga tus cambios, se protege del KO, cambia al que resiste tu golpe), sets y **objetos de competición**, IVs 31 + EVs + naturaleza |
+| 7 Injusto | Retos especiales (Benga, Dana) | **lo sabe TODO desde el principio**: tus movimientos, IVs y EVs; predice siempre |
+- **Conocimiento**: *Nada* (supone el mejor ataque de tu tipo y stats normales), *Combate* (aprende mientras lucha: tus
+  movimientos y, por el daño, tus stats), *Memoria* (lo mismo, guardado en tu partida para la revancha), *Todo* (injusto).
+- **Estimación de IVs/EVs**: cada golpe limpio (sin crítico ni daño fijo) le dice si tu Ataque/Defensa es mayor o menor de lo
+  «normal» (IVs 20, EVs 85); lo guarda como un factor por estadística que sirve aunque subas de nivel.
+- **Objetos de competición** (Maestro/Injusto): Cinta/Gafas/Pañuelo Elección, Vidasfera, Banda Focus, Chaleco Asalto, Casco
+  Dentado, Mineral Evolutivo, Lodo Negro, Restos... elegidos según el Pokémon.
 - **Curación inteligente**: no se cura si puede debilitarte antes, ni si tu golpe le quita más de lo que cura; solo
   cuando la cura le da al menos un golpe más de vida.
 - **Sinergias**: Hipnosis + Comesueños, Descanso + Sonámbulo, Danza Lluvia + ataques de Agua, mejoras + Relevo...
@@ -177,6 +194,27 @@ Cinco niveles, cada uno una ficha editable (CTEditor → Personajes → **Nivele
 - **🎲 Preparar un reto**: genera un entrenador del nivel que elijas (tamaño, niveles, tipo), con la etapa de evolución
   correcta para su nivel y el «as» al final.
 - Filtros de la lista de entrenadores: nivel de IA, nivel del equipo y clase; orden por nombre, IA, nivel, clase o premio.
+
+## Género (Lote F)
+- Cada individuo es **macho, hembra o sin género** según el «% de hembras» de su especie (fijo por individuo). Se ve ♂/♀ en
+  el combate y en el resumen.
+- En entrenadores y equipos prearmados puedes fijarlo (Al azar / Macho / Hembra). En Excel: `gardevoir@50%h`, `gallade@50%m`.
+- Lo usan **Atracción** (solo entre géneros opuestos: opción «Solo al género opuesto» del estado), **Rivalidad** (condiciones
+  `mismo_genero` / `genero_opuesto`) y las **evoluciones** de un solo sexo (`gallade@objeto:dawn_stone+genero:macho`).
+
+## 5.ª y 6.ª generación: objetos, campos y más (Lote F)
+- **Objetos de competición** (plantillas en CTEditor → Objetos): multiplicar estadísticas con condiciones, bloquear en el primer
+  movimiento (Elección), perder PS al atacar (Vidasfera), aguantar desde PS llenos (Banda Focus), sin movimientos de estado
+  (Chaleco Asalto), dañar al que toca (Casco Dentado), subir etapas al recibir un golpe muy eficaz (Seguro Debilidad), Globo Helio,
+  crítico, precisión, bayas de resistencia (18 tipos), Baya Ziuela, esferas, Garra Rápida, Campana Concha, rocas de clima,
+  Refleluz, Lodo Negro, Cinta Experto... Todo combinable para inventar objetos nuevos. En Excel: `equipado_stats`
+  (`attack:x1,5`) y `equipado_al_recibir_golpe` (`attack:+2 [si propio.eficacia>1]`).
+- **Campos** (efectos de lado con grupo «campo», solo uno a la vez): Hierba (cura 1/16 y Planta ×1,5), Eléctrico (sin dormir y
+  Eléctrico ×1,5) y Niebla (sin estados). **Zona Extraña** (Defensa ↔ Def. Esp.) y **Zona Mágica** (sin objetos).
+- **Protecciones con castigo**: Escudo Real (solo ataques con daño, −2 Ataque al que toca) y Barrera Espinosa (1/8 de PS).
+- **Etiquetas del motor** para movimientos: `ignora_etapas` (Espada Santa), `ignora_inmunidad` (Mil Flechas),
+  `tipo_extra:flying` (Plancha), `eficaz_contra:water` (Liofilización), además de `rompe_proteccion`.
+- **Condiciones nuevas**: `campo=grassy_terrain` y `propio.puede_evolucionar` (Mineral Evolutivo).
 
 ## Editores: zoom, filtros y grupos huevo (Lote E)
 - **Zoom** 80 %–160 % en todos los editores: botones «A− 100 % A+» o Ctrl + rueda / Ctrl + / Ctrl − / Ctrl 0.

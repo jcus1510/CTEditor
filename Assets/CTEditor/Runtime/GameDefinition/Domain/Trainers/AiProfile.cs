@@ -8,7 +8,28 @@ namespace CTEditor.GameDefinition.Domain.Trainers
     {
         Random,      // al azar entre los que puede usar
         Aggressive,  // el que más daño hace según los tipos (evita lo que no afecta)
-        Expert       // daño real (etapas, habilidades, clima), remata, estados y mejoras con cabeza
+        Expert,      // daño real (etapas, habilidades, clima), remata, estados y mejoras con cabeza
+        Predictor    // como el experto, pero ANTICIPA tu jugada: cambia al que resiste tu golpe, castiga tus cambios
+    }
+
+    /// <summary>
+    /// QUÉ SABE DE TI (bloque «Conocimiento»). Solo se añaden valores al final.
+    /// Un buen jugador solo sabe lo que ha visto; el nivel Injusto lo sabe todo.
+    /// </summary>
+    public enum AiKnowledge
+    {
+        None,       // solo ve tu Pokémon (especie, tipos y barra de PS): supone ataques de su tipo
+        Battle,     // además recuerda lo visto EN ESTE combate: tus movimientos y cuánto daño hacen / reciben
+        Memory,     // y lo GUARDA para la revancha: movimientos vistos e IVs/EVs estimados por el daño
+        Omniscient  // lo sabe TODO desde el principio: movimientos, IVs, EVs y naturaleza (injusto)
+    }
+
+    /// <summary>Objetos equipados que reparte a su equipo (bloque «Equipo»). Solo se añaden valores al final.</summary>
+    public enum HeldItemStyle
+    {
+        None,        // ninguno (salvo los escritos por el autor)
+        Basic,       // útiles: Restos, bayas, objetos que potencian su tipo
+        Competitive  // de competición: Elección, Vidasfera, Banda Focus, Chaleco Asalto, Mineral Evolutivo...
     }
 
     /// <summary>Cuándo se cura con objetos. Solo se añaden valores al final.</summary>
@@ -20,22 +41,23 @@ namespace CTEditor.GameDefinition.Domain.Trainers
     }
 
     /// <summary>
-    /// UN NIVEL DE IA (1 a 5), editable por el autor: cómo piensa un entrenador de ese nivel y a qué
-    /// movimientos tiene acceso. Los 5 clásicos:
+    /// UN NIVEL DE IA (1 a 7), editable por el autor. Se arma con CUATRO BLOQUES que se combinan libremente:
     ///
-    ///   1 Novato      movimientos al azar, se olvida a menudo de sus objetos, no cambia.
-    ///   2 Aficionado  prefiere lo eficaz, cura simple; ya usa movimientos de MT.
-    ///   3 Veterano    tipos + estados; cura solo si sirve; + movimientos de tutor.
-    ///   4 Élite       movesets con sinergias, cambia de monstruo, lleva objetos equipados; + movimientos huevo.
-    ///   5 Campeón     todo lo anterior y sin fallos al azar.
+    ///   🧠 Conocimiento  qué sabe de ti: nada · lo visto en el combate · memoria entre combates · todo.
+    ///   🎯 Decisión      cómo elige: al azar · lo más eficaz · experto (daño real) · predictor (anticipa).
+    ///   🛡️ Gestión       curación (nunca / simple / inteligente), cambios de Pokémon, % de despistes.
+    ///   🎒 Equipo        movimientos (clásico → MT → tutor → huevo → competitivo), objetos equipados,
+    ///                    entrenamiento (IVs/EVs/naturaleza de competición) y mochila por defecto.
     ///
+    /// Las 7 plantillas clásicas:
+    ///   1 Novato · 2 Aficionado · 3 Veterano · 4 Élite · 5 Campeón · 6 Maestro · 7 Injusto.
     /// El entrenador elige su nivel y puede ajustar lo suyo (mochila, umbral de cura, si cambia...).
     /// </summary>
     public sealed class AiProfile
     {
-        public const int MinLevel = 1, MaxLevel = 5;
+        public const int MinLevel = 1, MaxLevel = 7;
 
-        /// <summary>Nivel 1-5.</summary>
+        /// <summary>Nivel 1-7.</summary>
         public int Level { get; }
         public string DisplayName { get; }
         public string Description { get; }
@@ -58,16 +80,30 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         public bool UseMachineMoves { get; }
         public bool UseTutorMoves { get; }
         public bool UseEggMoves { get; }
-        /// <summary>A los miembros sin objeto equipado les pone uno útil (Restos, bayas, objetos de tipo) si existen.</summary>
-        public bool AutoHeldItems { get; }
+        /// <summary>A los miembros sin objeto equipado les pone uno (ver HeldItems).</summary>
+        public bool AutoHeldItems => HeldItems != HeldItemStyle.None;
+        /// <summary>Qué objetos equipados reparte: ninguno, básicos o de competición.</summary>
+        public HeldItemStyle HeldItems { get; }
+        /// <summary>Qué sabe de tu equipo (ver AiKnowledge).</summary>
+        public AiKnowledge Knowledge { get; }
+        /// <summary>Entrenamiento de competición: IVs perfectos, 252 EVs en sus dos mejores estadísticas y naturaleza a juego.</summary>
+        public bool CompetitiveTraining { get; }
+        /// <summary>% de turnos en que actúa según su PREDICCIÓN de tu jugada (solo con Decisión = Predictor).</summary>
+        public int PredictPercent { get; }
         /// <summary>Mochila por defecto si el entrenador no trae la suya.</summary>
         public IReadOnlyList<(string itemId, int quantity)> DefaultBag { get; }
 
         public AiProfile(int level, string displayName, string description, MoveBrain brain, int mistakePercent, int itemUsePercent,
             HealStyle heal, int healBelowPercent, bool canSwitch, MovesetStyle moveset, bool synergies,
             bool useMachineMoves, bool useTutorMoves, bool useEggMoves, bool autoHeldItems,
-            IReadOnlyList<(string itemId, int quantity)> defaultBag = null)
+            IReadOnlyList<(string itemId, int quantity)> defaultBag = null,
+            AiKnowledge knowledge = AiKnowledge.Battle, HeldItemStyle? heldItems = null, bool competitiveTraining = false,
+            int predictPercent = 0)
         {
+            Knowledge = knowledge;
+            HeldItems = heldItems ?? (autoHeldItems ? HeldItemStyle.Basic : HeldItemStyle.None);
+            CompetitiveTraining = competitiveTraining;
+            PredictPercent = Math.Max(0, Math.Min(100, predictPercent));
             Level = Math.Max(MinLevel, Math.Min(MaxLevel, level));
             DisplayName = string.IsNullOrWhiteSpace(displayName) ? "Nivel " + Level : displayName;
             Description = description ?? "";
@@ -82,7 +118,6 @@ namespace CTEditor.GameDefinition.Domain.Trainers
             UseMachineMoves = useMachineMoves;
             UseTutorMoves = useTutorMoves;
             UseEggMoves = useEggMoves;
-            AutoHeldItems = autoHeldItems;
             var bag = new List<(string, int)>();
             if (defaultBag != null)
                 foreach (var (id, q) in defaultBag)
@@ -91,7 +126,10 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         }
 
         /// <summary>El TrainerAi antiguo (3 valores) que corresponde a este nivel: para lo que aún lo usa.</summary>
-        public TrainerAi LegacyAi => Brain == MoveBrain.Random ? TrainerAi.Random : Brain == MoveBrain.Expert ? TrainerAi.Expert : TrainerAi.Smart;
+        public TrainerAi LegacyAi => Brain == MoveBrain.Random ? TrainerAi.Random : Brain == MoveBrain.Aggressive ? TrainerAi.Smart : TrainerAi.Expert;
+
+        /// <summary>¿Piensa con el daño real (experto o predictor)?</summary>
+        public bool ThinksLikeExpert => Brain == MoveBrain.Expert || Brain == MoveBrain.Predictor;
 
         /// <summary>Nivel equivalente a una IA antigua: novato = 1, listo = 2, experto = 4.</summary>
         public static int LevelFromLegacy(TrainerAi ai) => ai == TrainerAi.Random ? 1 : ai == TrainerAi.Expert ? 4 : 2;
@@ -104,11 +142,13 @@ namespace CTEditor.GameDefinition.Domain.Trainers
                 case 2: return "Aficionado";
                 case 3: return "Veterano";
                 case 4: return "Élite";
-                default: return "Campeón";
+                case 5: return "Campeón";
+                case 6: return "Maestro";
+                default: return "Injusto";
             }
         }
 
-        /// <summary>Los 5 niveles clásicos (lo que se usa si el autor no creó sus fichas de nivel).</summary>
+        /// <summary>Los 7 niveles clásicos (lo que se usa si el autor no creó sus fichas de nivel).</summary>
         public static AiProfile Classic(int level)
         {
             level = Math.Max(MinLevel, Math.Min(MaxLevel, level));
@@ -128,11 +168,19 @@ namespace CTEditor.GameDefinition.Domain.Trainers
                 case 4:
                     return new AiProfile(4, "Élite", "Líderes de gimnasio: movesets con sinergias, cambia de monstruo, objetos equipados y movimientos huevo.",
                         MoveBrain.Expert, 4, 100, HealStyle.Smart, 40, true, MovesetStyle.Strong, true, true, true, true, true,
-                        new[] { ("hyper_potion", 2), ("full_heal", 1) });
-                default:
-                    return new AiProfile(5, "Campeón", "Alto Mando y Campeones: todo lo anterior, sin fallos al azar.",
+                        new[] { ("hyper_potion", 2), ("full_heal", 1) }, AiKnowledge.Battle, HeldItemStyle.Basic);
+                case 5:
+                    return new AiProfile(5, "Campeón", "Alto Mando y Campeones: sin fallos y te RECUERDA: en la revancha conoce tus movimientos y tus IVs/EVs estimados.",
                         MoveBrain.Expert, 0, 100, HealStyle.Smart, 45, true, MovesetStyle.Strong, true, true, true, true, true,
-                        new[] { ("full_restore", 2), ("full_heal", 1) });
+                        new[] { ("full_restore", 2), ("full_heal", 1) }, AiKnowledge.Memory, HeldItemStyle.Basic);
+                case 6:
+                    return new AiProfile(6, "Maestro", "Jugador de competición: memoria, PREDICCIONES (cambia al que resiste tu golpe y castiga tus cambios), sets y objetos de competición.",
+                        MoveBrain.Predictor, 0, 100, HealStyle.Smart, 45, true, MovesetStyle.Competitive, true, true, true, true, true,
+                        new[] { ("full_restore", 2), ("full_heal", 1) }, AiKnowledge.Memory, HeldItemStyle.Competitive, true, 60);
+                default:
+                    return new AiProfile(7, "Injusto", "Sabe TODO desde el principio: tus movimientos, IVs y EVs. Predice siempre y juega con sets y objetos de competición.",
+                        MoveBrain.Predictor, 0, 100, HealStyle.Smart, 50, true, MovesetStyle.Competitive, true, true, true, true, true,
+                        new[] { ("full_restore", 3), ("full_heal", 2) }, AiKnowledge.Omniscient, HeldItemStyle.Competitive, true, 100);
             }
         }
     }

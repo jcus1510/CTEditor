@@ -16,7 +16,17 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                     if (e != null && e.type != null && !string.IsNullOrWhiteSpace(e.type.Id)) types[e.type.Id] = e.multiplier;
             return new SideConditionDefinition(d.Id, d.DisplayName, d.Turns, d.PhysicalDamageMultiplier, d.SpecialDamageMultiplier,
                 d.BlocksStatDrops, d.BlocksStatus, d.SpeedMultiplier, d.ReversesTurnOrder, d.AccuracyMultiplier, d.GroundsTargets,
-                d.BlocksCrits, types);
+                d.BlocksCrits, types, d.SwapsDefenses, d.SuppressesItems, d.Group, d.EndOfTurnHealPercent,
+                d.GroundedStatusBlock, Map(d.TypePowerMultipliers));
+        }
+
+        private static System.Collections.Generic.Dictionary<string, float> Map(SideConditionData.TypeMultiplierEntry[] list)
+        {
+            var map = new System.Collections.Generic.Dictionary<string, float>();
+            if (list != null)
+                foreach (var e in list)
+                    if (e != null && e.type != null && !string.IsNullOrWhiteSpace(e.type.Id)) map[e.type.Id] = e.multiplier;
+            return map;
         }
     }
 }

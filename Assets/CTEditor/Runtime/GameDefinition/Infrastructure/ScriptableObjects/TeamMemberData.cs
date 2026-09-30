@@ -7,6 +7,9 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
     /// misma ficha para ambos: así un NPC se arma exactamente igual que el jugador.
     /// </summary>
     [System.Serializable]
+    /// <summary>Género de un miembro de equipo diseñado. Solo se añaden valores al final.</summary>
+    public enum MemberGender { Random, Male, Female }
+
     public sealed class TeamMemberData
     {
         [Tooltip("Especie del miembro.")]
@@ -23,5 +26,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Range(-1, 31)] public int fixedIvs = -1;
         [Tooltip("Mote (nombre propio). Vacío = el nombre de la especie.")]
         public string nickname = "";
+        [Tooltip("Género: al azar (según el % de hembras de su especie), macho o hembra. Las especies sin género lo ignoran.")]
+        public MemberGender gender = MemberGender.Random;
     }
 }

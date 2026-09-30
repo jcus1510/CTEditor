@@ -28,6 +28,10 @@ namespace CTEditor.Battle.Domain
         public Id<BattleParticipant> Id { get; }
 
         /// <summary>De qué especie es (por id). Solo informativo/para presentación.</summary>
+        /// <summary>Género (Atracción, Rivalidad, Gran Encanto...).</summary>
+        public Gender Gender { get; }
+        /// <summary>¿Puede evolucionar todavía? (Mineral Evolutivo).</summary>
+        public bool CanEvolve { get; }
         public Id<Species> SpeciesId { get; }
 
         public int Level { get; }
@@ -90,8 +94,12 @@ namespace CTEditor.Battle.Domain
             int friendship = 70,
             string heldItem = null,
             int catchRate = 45,
-            float weightKg = 0f)
+            float weightKg = 0f,
+            Gender gender = Gender.Genderless,
+            bool canEvolve = false)
         {
+            Gender = gender;
+            CanEvolve = canEvolve;
             WeightKg = Math.Max(0f, weightKg);
             CatchRate = Math.Max(1, Math.Min(255, catchRate));
             HeldItem = string.IsNullOrWhiteSpace(heldItem) ? null : heldItem;

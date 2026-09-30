@@ -98,6 +98,12 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
             SureHit = d.SureHit,
             Imprisons = d.Imprisons,
             Grounded = d.Grounded,
+            RequiresOppositeGender = d.RequiresOppositeGender,
+            ProtectOnlyDamaging = d.ProtectOnlyDamaging,
+            ProtectContactStat = string.IsNullOrWhiteSpace(d.ProtectContactStat) ? (CTEditor.GameDefinition.Domain.Stats.StatId?)null
+                                 : new CTEditor.GameDefinition.Domain.Stats.StatId(d.ProtectContactStat.Trim()),
+            ProtectContactStages = d.ProtectContactStages,
+            ProtectContactDamagePercent = d.ProtectContactDamagePercent,
         };
     }
 }

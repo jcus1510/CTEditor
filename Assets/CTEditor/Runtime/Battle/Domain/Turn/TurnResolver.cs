@@ -6,6 +6,7 @@ using CTEditor.SharedKernel.Events;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Catalog;
 using CTEditor.GameDefinition.Domain.Moves;
+using CTEditor.GameDefinition.Domain.Species;
 using CTEditor.GameDefinition.Domain.Types;
 using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Status;
@@ -60,6 +61,8 @@ namespace CTEditor.Battle.Domain.Turn
         private int _callDepth;
         // Aplicando un movimiento rebotado o robado (Capa Mágica, Robo): no rebota otra vez.
         private bool _reflecting;
+        private float _lastEffectiveness = 1f;
+        private bool _quickClawPlayer, _quickClawEnemy;   // Garra Rápida: ¿le tocó actuar el primero este turno?   // eficacia del último golpe (Seguro Debilidad)
 
         // Los que entraron al campo EXPULSANDO a otro este turno (Rugido): no actúan hasta el turno siguiente.
         private readonly HashSet<string> _forcedInThisTurn = new HashSet<string>();
@@ -343,6 +346,7 @@ namespace CTEditor.Battle.Domain.Turn
                 ApplyEndOfTurnHeldItem(battle.Enemy, events);
                 ApplyEndOfTurnBattlefield(battle, events);
                 ApplyGen4EndOfTurn(battle, events);
+                ApplyGen6EndOfTurn(battle, events);
             }
 
             // Protección: si este turno NO se protegió, el contador de "seguidas" vuelve a 0.
@@ -501,8 +505,15 @@ namespace CTEditor.Battle.Domain.Turn
         private void SetSideCondition(Combatant actor, Combatant sideOf, string id, List<IDomainEvent> events)
         {
             var team = SideOf(sideOf);
-            if (team == null || _sideConditions == null || !_sideConditions.TryGet(new Id<SideConditionDefinition>(id), out var def)
-                || !team.AddSideCondition(def.Id, def.Turns))
+            if (team == null || _sideConditions == null || !_sideConditions.TryGet(new Id<SideConditionDefinition>(id), out var def))
+            { events.Add(new MoveFailedEvent(actor.Id)); return; }
+            // CAMPOS (grupo): el nuevo quita a los demás del mismo grupo, estén en el lado que estén.
+            if (!string.IsNullOrEmpty(def.Group) && !team.HasSideCondition(def.Id)) ClearGroup(def.Group, def.Id, team, events);
+            // Refleluz: las pantallas (Reflejo, Pantalla de Luz, Velo Aurora) duran más.
+            int turns = def.Turns;
+            bool isScreen = def.PhysicalDamageMultiplier < 1f || def.SpecialDamageMultiplier < 1f;
+            if (isScreen && turns > 0 && actor != null) turns += HeldX(actor).ScreenTurnsBonus;
+            if (!team.AddSideCondition(def.Id, turns))
             { events.Add(new MoveFailedEvent(actor.Id)); return; }
             events.Add(new SideConditionStartedEvent(ReferenceEquals(team, _battle.PlayerTeam), def.Id));
         }
@@ -843,6 +854,10 @@ namespace CTEditor.Battle.Domain.Turn
             }
             if (used) actor.NoteMoveSuccess(usedMove, !failed);
 
+            // OBJETOS ELECCIÓN: se queda bloqueado en el primer movimiento que usa (hasta que se retire).
+            if (!HeldX(actor).ChoiceLock) actor.ClearChoiceLock();
+            else if (used && (!_struggleMove.HasValue || usedMove != _struggleMove.Value)) actor.LockChoice(usedMove);
+
             // CARGA: el refuerzo de tipo se gasta al usar ese tipo.
             if (used && !failed && _statuses != null && _moves.TryGet(usedMove, out var um) && um.DealsDirectDamage)
                 foreach (var v in new List<ActiveVolatileStatus>(actor.Volatiles))
@@ -923,7 +938,7 @@ namespace CTEditor.Battle.Domain.Turn
 
             // PROTECCIÓN: si el objetivo se protegió este turno, lo que se le lanza no le hace nada
             // (salvo Amago, que rompe la protección).
-            if (aimed && HasVolatileFlag(target, d => d.BlocksIncomingMoves))
+            if (aimed && IsProtectedFrom(target, move))
             {
                 if (move.HasTag("rompe_proteccion"))
                 {
@@ -933,6 +948,8 @@ namespace CTEditor.Battle.Domain.Turn
                 else
                 {
                     events.Add(new MoveBlockedEvent(target.Id));
+                    // Escudo Real / Barrera Espinosa: castigan al que les golpea con contacto.
+                    PunishProtectContact(actor, target, move, events);
                     return;
                 }
             }
@@ -1006,6 +1023,7 @@ namespace CTEditor.Battle.Domain.Turn
             // Movimientos sin daño directo (categoría Estado, como Fuego Fatuo): no calculan daño,
             // pero SÍ aplican sus efectos abajo. Por eso ya no salimos aquí.
             int damageDealt = 0;
+            _lastEffectiveness = 1f;
             bool hitSubstitute = false;
             bool lastCrit = false;
             // PREMONICIÓN / DESEO DE MUERTE: no golpea ahora; el daño llega unos turnos después (efecto retardado).
@@ -1015,6 +1033,7 @@ namespace CTEditor.Battle.Domain.Turn
                 // aparte y SIN efectos, para que la vista previa de daño del editor use exactamente lo mismo.
                 var setup = PrepareHit(actor, target, move);
                 float effectiveness = setup.effectiveness;
+                _lastEffectiveness = effectiveness;
                 bool stab = setup.stab;
                 float stabMult = setup.stabMult;
                 int attackStat = setup.attackStat;
@@ -1069,6 +1088,9 @@ namespace CTEditor.Battle.Domain.Turn
                     // Cada impacto recalcula su daño: la aleatoriedad y el crítico se tiran por golpe.
                     var result = ComputeHit(actor, target, move, effectiveness, stab, stabMult, attackStat, defenseStat, power, _rng);
                     int damage = result.Damage;
+                    // BAYAS DE RESISTENCIA: el primer golpe muy eficaz de su tipo hace la mitad.
+                    if (target != actor && !(target.HasSubstitute && !X(actor).Infiltrator))
+                        damage = ApplyResistBerry(target, MoveTypeOf(actor, move), effectiveness, damage, events);
                     anyCrit |= result.WasCritical;
                     lastCrit = anyCrit;
 
@@ -1097,6 +1119,8 @@ namespace CTEditor.Battle.Domain.Turn
                         events.Add(new AbilityTriggeredEvent(target.Id, AbilityIdOf(target), "robustez"));
                         events.Add(new EnduredEvent(target.Id));
                     }
+                    // BANDA FOCUS: igual que Robustez, pero es un objeto y se gasta.
+                    else if (target != actor) damage = ApplyFocusSash(target, damage, events);
 
                     damageDealt += damage;
 
@@ -1136,8 +1160,14 @@ namespace CTEditor.Battle.Domain.Turn
                 && !HasEffect(move, MoveEffectKind.Flinch) && !X(target).BlocksIncomingSecondaries && _rng.NextFloat() * 100f < sx.FlinchChanceOnAttack)
                 target.SetFlinched();
 
+            // OBJETOS DEL ATACANTE (Vidasfera, Campana Concha, Roca del Rey).
+            ApplyGen6AfterAttack(actor, target, move, damageDealt, hitSubstitute, events);
+
             // Reacciones al golpe (Cambio Color, Justiciero, Mismo Destino, Autoestima...).
             if (move.DealsDirectDamage && !hitSubstitute) AfterHit(actor, target, move, damageDealt, lastCrit, events);
+            // Objetos del defensor al recibir el golpe (Seguro Debilidad, Globo Helio) y Prestidigitador.
+            if (move.DealsDirectDamage && !hitSubstitute && damageDealt > 0 && target != null && target != actor)
+                ApplyGen6OnHit(actor, target, move, _lastEffectiveness, events);
 
             // DOS TURNOS (RECARGA): si el movimiento conectó, el próximo turno deberá recargar.
             if (move.TwoTurn == TwoTurnKind.Recharge)
@@ -1149,7 +1179,10 @@ namespace CTEditor.Battle.Domain.Turn
             if (move.MakesContact && damageDealt > 0 && !target.IsFainted && !actor.IsFainted)
                 ApplyContactReaction(actor, target, events);
             if (move.MakesContact && damageDealt > 0 && !actor.IsFainted && target != actor && !hitSubstitute)
+            {
                 ApplyGen4ContactEffects(actor, target, events);
+                ApplyGen6ContactEffects(actor, target, events);
+            }
         }
 
         // El objetivo, al ser golpeado por contacto, puede "devolver" un estado al atacante (su habilidad).
@@ -1198,6 +1231,7 @@ namespace CTEditor.Battle.Domain.Turn
                     continue;
                 // Efectos de la 3.ª y 4.ª generación.
                 if (ApplyGen4Effect(actor, target, move, effect, who, damageDealt, events)) continue;
+                if (ApplyGen6Effect(actor, target, move, effect, who, events)) continue;
 
                 // SUSTITUTO: lo que se lanza CONTRA el rival (estados, bajadas, retroceso, Anulación...) no le
                 // llega mientras tenga sustituto (o si el golpe dio en el sustituto).
@@ -1277,7 +1311,7 @@ namespace CTEditor.Battle.Domain.Turn
                         break;
 
                     case MoveEffectKind.SetWeather:
-                        StartWeather(effect.WeatherId, effect.WeatherTurns, events);
+                        StartWeather(effect.WeatherId, WeatherTurnsFor(actor, effect.WeatherId, effect.WeatherTurns), events);
                         break;
 
                     case MoveEffectKind.SetHazard:
@@ -1594,8 +1628,8 @@ namespace CTEditor.Battle.Domain.Turn
         {
             item = null;
             if (_items == null || c == null || string.IsNullOrEmpty(c.HeldItem)) return false;
-            // Zoquete y Embargo: el objeto equipado no hace nada.
-            if (X(c).Klutz || HasVolatileFlag(c, d => d.Extras.BlocksItems)) return false;
+            // Zoquete y Embargo: el objeto equipado no hace nada. Zona Mágica: ninguno funciona.
+            if (X(c).Klutz || HasVolatileFlag(c, d => d.Extras.BlocksItems) || ItemsSuppressed()) return false;
             return _items.TryGet(new Id<ItemDefinition>(c.HeldItem), out item);
         }
 
@@ -1622,7 +1656,10 @@ namespace CTEditor.Battle.Domain.Turn
             var nervous = OpponentOf(c);
             if (item.HeldConsumedOnTrigger && nervous != null && !nervous.IsFainted && X(nervous).Unnerve) return;
             int before = c.CurrentHp;
-            c.HealHp(item.HeldTriggerHealHp + (int)(c.MaxHp * item.HeldTriggerHealPercent / 100f));
+            int berryHeal = item.HeldTriggerHealHp + (int)(c.MaxHp * item.HeldTriggerHealPercent / 100f);
+            // CARRILLO: al comerse una baya recupera además un % de sus PS máx.
+            if (item.HeldConsumedOnTrigger && X(c).BerryBonusHealPercent > 0f) berryHeal += (int)(c.MaxHp * X(c).BerryBonusHealPercent / 100f);
+            c.HealHp(berryHeal);
             if (item.HeldConsumedOnTrigger) c.ConsumeHeldItem();
             events.Add(new HeldItemActivatedEvent(c.Id, item.Id, item.HeldConsumedOnTrigger));
             if (c.CurrentHp > before) events.Add(new HpRestoredEvent(c.Id, c.CurrentHp - before));
@@ -1704,6 +1741,20 @@ namespace CTEditor.Battle.Domain.Turn
             // Un estado PRINCIPAL no pisa a otro principal; un VOLÁTIL no se repite, pero se suma.
             if (statusDef.IsVolatile ? target.HasVolatile(statusId) : target.Status.HasValue) return;
 
+            // ATRACCIÓN / GRAN ENCANTO: solo entre géneros opuestos (y nunca con quien no tiene género).
+            if (statusDef.Extras.RequiresOppositeGender && (source == null || !GenderText.Opposite(source.Gender, target.Gender)))
+            {
+                events.Add(new StatusFailedEvent(target.Id, statusId));
+                return;
+            }
+
+            // CAMPOS: Campo de Niebla impide los estados principales; Campo Eléctrico, dormir (a los que pisan el suelo).
+            if (TerrainBlocksStatus(target, statusId) && (statusDef.IsVolatile ? statusId.Value == "confusion" || statusId.Value == "drowsy" : true))
+            {
+                events.Add(new StatusFailedEvent(target.Id, statusId));
+                return;
+            }
+
             // INMUNIDAD POR TIPO (configurable en la ficha del estado): un Fuego no se quema, etc.
             foreach (var immuneType in statusDef.ImmuneTypes)
                 if (ContainsType(target.Types, immuneType)) return;
@@ -1735,6 +1786,9 @@ namespace CTEditor.Battle.Domain.Turn
                 events.Add(new AbilityTriggeredEvent(target.Id, AbilityIdOf(target), "sincronia"));
                 TryInflictStatus(source, statusId, events, null);
             }
+
+            // BAYA ZIUELA: se cura enseguida (y se gasta).
+            CheckLum(target, statusId, events);
         }
 
         // ¿Algún estado del combatiente le impide actuar este turno? Primero el principal (sueño,
@@ -2095,9 +2149,16 @@ namespace CTEditor.Battle.Domain.Turn
             bool physical = move.Category == MoveCategory.Physical;
             var atkStatId = move.AttackStat ?? (physical ? _rules.PhysicalAttack : _rules.SpecialAttack);
             var defStatId = move.DefenseStat ?? (physical ? _rules.PhysicalDefense : _rules.SpecialDefense);
+            // Zona Extraña: la Defensa y la Def. Esp. se intercambian para el daño.
+            if (DefensesSwapped())
+            {
+                if (defStatId == _rules.PhysicalDefense) defStatId = _rules.SpecialDefense;
+                else if (defStatId == _rules.SpecialDefense) defStatId = _rules.PhysicalDefense;
+            }
             // IGNORANTE: quien la tiene ignora las etapas del otro (al atacar, la Defensa del rival; al
             // recibir, el Ataque del atacante). Un crítico también las ignora, pero eso lo hace la fórmula.
-            bool ignoreTargetStages = target != actor && X(actor).IgnoresStages;
+            // «ignora_etapas» (Guardia Baja / Espada Santa): no cuentan las etapas de defensa del objetivo.
+            bool ignoreTargetStages = target != actor && (X(actor).IgnoresStages || move.HasTag("ignora_etapas"));
             bool ignoreActorStages = target != actor && X(target).IgnoresStages;
             var attacker = move.AttackStatFromTarget ? target : actor;
             int attackStat = EffectiveStat(attacker, atkStatId, attacker == actor ? ignoreActorStages : ignoreTargetStages);
@@ -2137,6 +2198,7 @@ namespace CTEditor.Battle.Domain.Turn
                     ["reserva"] = actor.Stockpile,
                     ["pp"] = RemainingPp(actor, move),
                     ["subidas_rival"] = PositiveStages(target),
+                    ["subidas"] = PositiveStages(actor),
                     ["ps"] = actor.CurrentHp,
                     ["ps_rival"] = target.CurrentHp,
                 };
@@ -2166,6 +2228,12 @@ namespace CTEditor.Battle.Domain.Turn
 
             var realType = MoveTypeOf(actor, move);
             if (TryGetWeather(out var weather)) mult *= weather.MultiplierFor(realType);
+            // Piel Feérica y compañía: el movimiento Normal convertido pega más.
+            var ax6 = X(actor);
+            if (ax6.ConvertNormalTo.Length > 0 && ax6.ConvertBoost != 1f && string.Equals(move.Type.Value, "normal", StringComparison.OrdinalIgnoreCase)
+                && realType.Value == ax6.ConvertNormalTo) mult *= ax6.ConvertBoost;
+            // Campo Eléctrico / Hierba / Psíquico: su tipo pega más si el atacante pisa el suelo.
+            mult *= TerrainPowerMultiplier(actor, realType);
 
             // CARGA (Carga, Absorbe Fuego activado): el tipo absorbido/cargado pega más.
             if (actor.AbsorbedTypeBoost.HasValue && actor.AbsorbedTypeBoost.Value == realType) mult *= 1.5;
@@ -2249,6 +2317,10 @@ namespace CTEditor.Battle.Domain.Turn
                 case ConditionKind.HasItem: return who != null && !string.IsNullOrEmpty(who.HeldItem);
                 case ConditionKind.LostItem: return who != null && who.LostItem;
                 case ConditionKind.WeightKg: return who != null && c.Compare((float)WeightOf(who));
+                case ConditionKind.SameGender: return self != null && other != null && self.Gender != Gender.Genderless && self.Gender == other.Gender;
+                case ConditionKind.OppositeGender: return self != null && other != null && GenderText.Opposite(self.Gender, other.Gender);
+                case ConditionKind.FieldCondition: return FieldConditionActive(c.Text);
+                case ConditionKind.CanEvolve: return who != null && who.CanEvolve;
                 default: return false;
             }
         }
@@ -2275,7 +2347,7 @@ namespace CTEditor.Battle.Domain.Turn
             bool noCrit = target != actor && (X(target).CritImmune || SideBlocks(target, d => d.BlocksCrits, out _));
             var context = new DamageContext(
                 actor.Level, attackStat, defenseStat, power, effectiveness, stab, rng,
-                move.CritStage + actor.CritBonus + X(actor).CritStageBonus, stabMult,
+                move.CritStage + actor.CritBonus + X(actor).CritStageBonus + HeldX(actor).CritStageBonus, stabMult,
                 noCrit ? NoCrits : _rules.CritDenominators, _rules.CritMultiplier * X(actor).CritDamageMultiplier);
             var result = _damageFormula.Compute(context);
             int damage = result.Damage;
@@ -2293,6 +2365,8 @@ namespace CTEditor.Battle.Domain.Turn
                 if (d.TypeDamageMultipliers.TryGetValue(realType.Value ?? "", out var tm)) abMult *= tm;
             // Reflejo / Pantalla de Luz del lado del objetivo (los críticos las atraviesan).
             if (!result.WasCritical && target != actor) abMult *= ScreenMultiplier(target, move.Category);
+            // Cinta Experto: los golpes muy eficaces pegan más.
+            if (effectiveness > 1f) abMult *= HeldX(actor).SuperEffectiveBoost;
             if (abMult != 1f)
             {
                 damage = (int)(damage * abMult);
@@ -2324,6 +2398,8 @@ namespace CTEditor.Battle.Domain.Turn
                 case FixedDamageKind.UserLevel: return actor.Level;
                 case FixedDamageKind.HalfTargetHp: return Math.Max(1, target.CurrentHp / 2);
                 case FixedDamageKind.OneHitKo: return target.CurrentHp;
+                // Sacrificio: tanto como los PS que le quedan al usuario.
+                case FixedDamageKind.UserHp: return Math.Max(1, actor.CurrentHp);
                 case FixedDamageKind.ReturnPhysical: return Math.Max(1, actor.PhysicalDamageTakenThisTurn * ReturnPercent(move) / 100);
                 case FixedDamageKind.ReturnSpecial: return Math.Max(1, actor.SpecialDamageTakenThisTurn * ReturnPercent(move) / 100);
                 case FixedDamageKind.Bide: return Math.Max(1, actor.BideStored * ReturnPercent(move) / 100);
@@ -2419,6 +2495,10 @@ namespace CTEditor.Battle.Domain.Turn
                     if (cs.Stat == stat && AllConditions(cs.Conditions, c, OpponentOf(c), null)) value *= cs.Multiplier;
             }
 
+            // 1e) Objeto EQUIPADO: Cinta/Gafas/Pañuelo Elección, Chaleco Asalto, Mineral Evolutivo...
+            foreach (var cs in HeldX(c).StatMultipliers)
+                if (cs.Stat == stat && AllConditions(cs.Conditions, c, OpponentOf(c), null)) value *= cs.Multiplier;
+
             // 2) Etapas de combate (-6..+6). Multiplicador clásico: etapa>=0 -> (2+etapa)/2;
             //    etapa<0 -> 2/(2-etapa). Así +1 = x1.5, +2 = x2, -1 = x0.66, etc.
             if (!ignoreStages) value *= StageMultiplier(c.GetStage(stat));
@@ -2471,6 +2551,9 @@ namespace CTEditor.Battle.Domain.Turn
         private void OrderPlays(Battle battle, List<(bool isPlayer, BattleAction action)> plays)
         {
             if (plays.Count < 2) return;
+            // GARRA RÁPIDA: se tira UNA vez por turno para cada uno, antes de ordenar.
+            _quickClawPlayer = QuickClawRoll(battle.Player);
+            _quickClawEnemy = QuickClawRoll(battle.Enemy);
             if (FirstGoesAfter(battle, plays[0], plays[1]))
             {
                 var tmp = plays[0];
@@ -2490,6 +2573,10 @@ namespace CTEditor.Battle.Domain.Turn
 
             int pa = PriorityOf(actorA, a.action), pb = PriorityOf(actorB, b.action);
             if (pa != pb) return pa < pb; // menor prioridad -> va después
+
+            // Garra Rápida: dentro de su prioridad, actúa el primero (si le tocó este turno).
+            bool qa = a.isPlayer ? _quickClawPlayer : _quickClawEnemy, qb = b.isPlayer ? _quickClawPlayer : _quickClawEnemy;
+            if (qa != qb) return qb;
 
             // Rezagado / Cola Plúmbea: dentro de su prioridad, siempre al final.
             bool lastA = X(actorA).MovesLast, lastB = X(actorB).MovesLast;
@@ -2517,6 +2604,11 @@ namespace CTEditor.Battle.Domain.Turn
                 // Vista Lince (Prankster): +prioridad a los movimientos de ESTADO.
                 if (move.Category == MoveCategory.Status && TryGetAbility(actor, out var ab))
                     p += ab.StatusMovePriorityBonus;
+                // Alas Vendaval: +prioridad a los movimientos de un tipo (Volador).
+                var px = X(actor);
+                if (px.PriorityTypeBonus != 0 && px.PriorityType.Length > 0
+                    && string.Equals(MoveTypeOf(actor, move).Value, px.PriorityType, StringComparison.OrdinalIgnoreCase))
+                    p += px.PriorityTypeBonus;
                 return p;
             }
             return 0;

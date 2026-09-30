@@ -47,8 +47,18 @@ namespace CTEditor.GameDefinition.Domain.Battlefield
             float physicalDamageMultiplier = 1f, float specialDamageMultiplier = 1f,
             bool blocksStatDrops = false, bool blocksStatus = false, float speedMultiplier = 1f,
             bool reversesTurnOrder = false, float accuracyMultiplier = 1f, bool groundsTargets = false, bool blocksCrits = false,
-            System.Collections.Generic.IReadOnlyDictionary<string, float> typeDamageMultipliers = null)
+            System.Collections.Generic.IReadOnlyDictionary<string, float> typeDamageMultipliers = null,
+            bool swapsDefenses = false, bool suppressesItems = false, string group = null, float endOfTurnHealPercent = 0f,
+            System.Collections.Generic.IReadOnlyList<string> groundedStatusBlock = null, System.Collections.Generic.IReadOnlyDictionary<string, float> typePowerMultipliers = null)
         {
+            SwapsDefenses = swapsDefenses;
+            SuppressesItems = suppressesItems;
+            Group = (group ?? "").Trim();
+            EndOfTurnHealPercent = Math.Max(0f, endOfTurnHealPercent);
+            GroundedStatusBlock = groundedStatusBlock == null ? Array.Empty<string>() : new System.Collections.Generic.List<string>(groundedStatusBlock);
+            var pow = new System.Collections.Generic.Dictionary<string, float>(StringComparer.OrdinalIgnoreCase);
+            if (typePowerMultipliers != null) foreach (var kv in typePowerMultipliers) if (!string.IsNullOrWhiteSpace(kv.Key)) pow[kv.Key.Trim()] = Math.Max(0f, kv.Value);
+            TypePowerMultipliers = pow;
             ReversesTurnOrder = reversesTurnOrder;
             AccuracyMultiplier = accuracyMultiplier <= 0f ? 1f : accuracyMultiplier;
             GroundsTargets = groundsTargets;
@@ -67,8 +77,23 @@ namespace CTEditor.GameDefinition.Domain.Battlefield
             SpeedMultiplier = speedMultiplier <= 0f ? 1f : speedMultiplier;
         }
 
+        // --- 5.ª y 6.ª gen. (efectos de campo y campos) ---
+        /// <summary>Se intercambian Defensa y Def. Esp. para el daño (Zona Extraña).</summary>
+        public bool SwapsDefenses { get; }
+        /// <summary>Los objetos equipados no hacen nada (Zona Mágica).</summary>
+        public bool SuppressesItems { get; }
+        /// <summary>Grupo excluyente: al poner uno se quitan los demás del mismo grupo (campos: «campo»).</summary>
+        public string Group { get; }
+        /// <summary>% de PS que recuperan al final del turno los que pisan el suelo (Campo de Hierba: 6,25).</summary>
+        public float EndOfTurnHealPercent { get; }
+        /// <summary>Estados que no se pueden poner a los que pisan el suelo («*» = todos: Campo de Niebla; «sleep»: Campo Eléctrico).</summary>
+        public System.Collections.Generic.IReadOnlyList<string> GroundedStatusBlock { get; }
+        /// <summary>Potencia de los movimientos de un tipo si el atacante pisa el suelo (Campo Eléctrico: electric ×1,5).</summary>
+        public System.Collections.Generic.IReadOnlyDictionary<string, float> TypePowerMultipliers { get; }
+
         /// <summary>¿Hace algo? (para avisar en el editor de efectos vacíos).</summary>
         public bool DoesSomething => PhysicalDamageMultiplier != 1f || SpecialDamageMultiplier != 1f || BlocksStatDrops || BlocksStatus || SpeedMultiplier != 1f
-                                     || ReversesTurnOrder || AccuracyMultiplier != 1f || GroundsTargets || BlocksCrits || TypeDamageMultipliers.Count > 0;
+                                     || ReversesTurnOrder || AccuracyMultiplier != 1f || GroundsTargets || BlocksCrits || TypeDamageMultipliers.Count > 0
+                                     || SwapsDefenses || SuppressesItems || EndOfTurnHealPercent > 0f || GroundedStatusBlock.Count > 0 || TypePowerMultipliers.Count > 0;
     }
 }

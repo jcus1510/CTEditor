@@ -100,7 +100,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
         // CONDICIONES EXTRA (todas a la vez), cada una con "+":  espeon@amistad+hora:dia
         //   hitmonlee@20+stats:atq>def · weavile@subir+lleva:razor_claw+hora:noche · sylveon@subir+amistad:160+sabe_tipo:fairy
         //   nivel:N  amistad:N  lleva:objeto  sabe:movimiento  sabe_tipo:tipo  hora:dia|noche|manana|atardecer  lugar:id
-        //   clima:id  stats:atq>def|atq<def|atq=def  equipo_especie:id  equipo_tipo:id  naturaleza:id  azar:N  marca:id
+        //   clima:id  stats:atq>def|atq<def|atq=def  equipo_especie:id  equipo_tipo:id  naturaleza:id  azar:N  marca:id  genero:macho|hembra
         //   desde:N (nivel mínimo del método, si no es "por nivel").  "!" delante = al revés: +!lleva:everstone
 
         public sealed class ParsedCondition
@@ -139,6 +139,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
             ("naturaleza", CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.Nature),
             ("azar", CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.Chance),
             ("marca", CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.GameFlag),
+            ("genero", CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.Gender),
         };
 
         private static readonly (string key, CTEditor.GameDefinition.Domain.Species.DayTime time)[] TimeKeys =
@@ -218,6 +219,15 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.Chance:
                     if (!CsvTable.TryInt(arg, out c.Value)) throw new CsvCellException($"'{raw}': '{key}' necesita un número.");
                     break;
+                // Género: genero:macho / genero:hembra (1 = macho, 2 = hembra).
+                case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.Gender:
+                {
+                    string g = arg.ToLowerInvariant().Replace("é", "e");
+                    if (g.StartsWith("h") || g.StartsWith("f") || g == "♀") c.Value = 2;
+                    else if (g.StartsWith("m") || g == "♂") c.Value = 1;
+                    else throw new CsvCellException($"'{raw}': género '{arg}' no válido. Usa macho o hembra.");
+                    break;
+                }
                 case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.TimeOfDay:
                 {
                     string norm = arg.ToLowerInvariant().Replace("í", "i").Replace("ñ", "n").Replace("día", "dia");
@@ -259,6 +269,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                         case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.MinLevel:
                         case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.MinFriendship:
                         case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.Chance: val = c.Value.ToString(); break;
+                        case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.Gender: val = c.Value == 2 ? "hembra" : "macho"; break;
                         case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.TimeOfDay: val = TimeKeys.First(k => k.time == c.Time).key; break;
                         case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.StatRelation: val = RelationKeys.First(k => k.rel == c.Relation).key; break;
                         default: val = c.Id; break;
@@ -402,6 +413,15 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     case "yo_primero": e.Kind = MoveEffectKind.CallTargetMove; break;
                     case "curar_equipo": e.Kind = MoveEffectKind.TeamCureStatus; e.Target = EffectTarget.Self; break;
                     case "sonambulo": e.Kind = MoveEffectKind.CallOwnMove; e.Target = EffectTarget.Self; break;
+                    // --- 5.ª y 6.ª generación ---
+                    case "dar_habilidad": e.Kind = MoveEffectKind.GiveAbility; break;
+                    case "copiar_tipos": e.Kind = MoveEffectKind.CopyTypes; break;
+                    case "dar_objeto": e.Kind = MoveEffectKind.GiveItem; break;
+                    case "anadir_tipo": case "añadir_tipo":
+                        if (p.Length != 2 || p[1].Length == 0) throw new CsvCellException($"'{raw}': usa añadir_tipo:idDelTipo (ej. añadir_tipo:ghost).");
+                        e.Kind = MoveEffectKind.AddType; e.TypeId = p[1]; break;
+                    case "invertir_etapas": e.Kind = MoveEffectKind.InvertStages; break;
+                    case "cambiar_tipo_rival": e.Kind = MoveEffectKind.ChangeType; e.Target = EffectTarget.Opponent; e.TypeId = p.Length > 1 ? p[1] : ""; break;
                     default:
                         throw new CsvCellException($"'{raw}': efecto desconocido '{p[0]}'. Usa: estado, estado_propio, drenar, retroceso, retroceso_ps, curar, curar_rival, curar_estado, curar_estado_rival, clima, stat, stat_propio, amedrentar, trampa, quitar_trampas, quitar_trampas_rival, forzar_cambio, lado, lado_rival, reiniciar_etapas, reiniciar_etapas_rival, foco, sustituto, anular, otra_vez, desenfreno, furia, metronomo, espejo, mimetico, transformarse, cambiar_tipo, cambio_propio, relevo, teletransporte, quitar_lado, quitar_objeto, robar_objeto, cambiar_objetos, comer_baya, reciclar, copiar_habilidad, cambiar_habilidades, poner_habilidad, deseo, premonicion, reserva, usar_reserva, pasar_estado, stat_al_azar, cambiar_stats, intercambiar_etapas, copiar_etapas, debilitarse, deseo_cura, dividir_dolor, ayuda, usar, yo_primero, curar_equipo.");
                 }
@@ -471,7 +491,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     case MoveEffectKind.CallLastMove: return $"espejo{C(e.Chance)}";
                     case MoveEffectKind.CopyLastMove: return $"mimetico{C(e.Chance)}";
                     case MoveEffectKind.Transform: return $"transformarse{C(e.Chance)}";
-                    case MoveEffectKind.ChangeType: return $"cambiar_tipo{(string.IsNullOrEmpty(e.TypeId) ? "" : ":" + e.TypeId)}{C(e.Chance)}";
+                    case MoveEffectKind.ChangeType: return $"{(e.Target == EffectTarget.Opponent ? "cambiar_tipo_rival" : "cambiar_tipo")}{(string.IsNullOrEmpty(e.TypeId) ? "" : ":" + e.TypeId)}{C(e.Chance)}";
                     case MoveEffectKind.SwitchSelf: return $"{(e.Stages > 0 ? "relevo" : "cambio_propio")}{C(e.Chance)}";
                     case MoveEffectKind.Teleport: return $"teletransporte{C(e.Chance)}";
                     case MoveEffectKind.ClearSideConditions: return $"quitar_lado{(string.IsNullOrEmpty(e.Text) ? "" : ":" + e.Text.Replace("|", ":"))}{C(e.Chance)}";
@@ -500,6 +520,11 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     case MoveEffectKind.CallTargetMove: return $"yo_primero{C(e.Chance)}";
                     case MoveEffectKind.TeamCureStatus: return $"curar_equipo{C(e.Chance)}";
                     case MoveEffectKind.CallOwnMove: return $"sonambulo{C(e.Chance)}";
+                    case MoveEffectKind.GiveAbility: return $"dar_habilidad{C(e.Chance)}";
+                    case MoveEffectKind.CopyTypes: return $"copiar_tipos{C(e.Chance)}";
+                    case MoveEffectKind.GiveItem: return $"dar_objeto{C(e.Chance)}";
+                    case MoveEffectKind.AddType: return $"añadir_tipo:{e.TypeId}{C(e.Chance)}";
+                    case MoveEffectKind.InvertStages: return $"invertir_etapas{C(e.Chance)}";
                     default: return "";
                 }
             }
@@ -569,6 +594,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
             if (v == "mitad") return (FixedDamageKind.HalfTargetHp, 0);
             if (v == "ko") return (FixedDamageKind.OneHitKo, 0);
             if (v == "esfuerzo") return (FixedDamageKind.Endeavor, 0);
+            if (v == "ps_propios") return (FixedDamageKind.UserHp, 0);
             if (v == "devolver") return (FixedDamageKind.ReturnAny, 0);
             if (v.StartsWith("devolver:") && CsvTable.TryInt(v.Substring(9), out int pa) && pa >= 0) return (FixedDamageKind.ReturnAny, pa);
             if (v.StartsWith("fijo:") && CsvTable.TryInt(v.Substring(5), out int n) && n >= 0) return (FixedDamageKind.Fixed, n);
@@ -589,6 +615,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 case FixedDamageKind.HalfTargetHp: return "mitad";
                 case FixedDamageKind.OneHitKo: return "ko";
                 case FixedDamageKind.Endeavor: return "esfuerzo";
+                case FixedDamageKind.UserHp: return "ps_propios";
                 case FixedDamageKind.ReturnAny: return "devolver" + (amount > 0 && amount != 150 ? ":" + amount : "");
                 case FixedDamageKind.ReturnPhysical: return "devolver_fisico" + (amount > 0 && amount != 200 ? ":" + amount : "");
                 case FixedDamageKind.ReturnSpecial: return "devolver_especial" + (amount > 0 && amount != 200 ? ":" + amount : "");

@@ -9,8 +9,9 @@ using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 namespace CTEditor.GameDefinition.Editor
 {
     /// <summary>
-    /// Editor de NIVELES DE IA (menú CTEditor → Personajes → Niveles de IA). Los 5 niveles clásicos
-    /// (Novato, Aficionado, Veterano, Élite, Campeón) listos para usar o ajustar. Cada entrenador elige su
+    /// Editor de NIVELES DE IA (menú CTEditor → Personajes → Niveles de IA). Los 7 niveles clásicos
+    /// (Novato, Aficionado, Veterano, Élite, Campeón, Maestro, Injusto) listos para usar o ajustar, en 4 bloques:
+    /// Conocimiento, Decisión, Gestión y Equipo. Cada entrenador elige su
     /// nivel; lo que cambies aquí vale para TODOS los entrenadores de ese nivel.
     /// </summary>
     public sealed class AiLevelEditorWindow : ContentEditorWindow<AiLevelData>
@@ -22,14 +23,14 @@ namespace CTEditor.GameDefinition.Editor
         protected override string Noun => "nivel de IA";
         protected override string Title => "Niveles de IA";
         protected override string Intro =>
-            "Cómo piensa cada nivel de entrenador, del 1 (Novato) al 5 (Campeón). Cada entrenador elige su nivel y así " +
-            "puedes repartir la dificultad por el mapa sin configurar la IA uno a uno.";
+            "Cómo piensa cada nivel de entrenador, del 1 (Novato) al 7 (Injusto), en 4 bloques: 🧠 qué sabe de ti, 🎯 cómo elige, " +
+            "🛡️ objetos y cambios, y 🎒 su equipo. Cada entrenador elige su nivel y así repartes la dificultad por el mapa.";
 
         public override string[] GuideSteps => new[]
         {
-            "Pulsa «Crear los 5 niveles clásicos» (si no, el juego usa esos mismos valores por defecto).",
-            "Ajusta cada nivel: cuánto se equivoca, si se cura con cabeza, si cambia de monstruo y a qué movimientos llega (MT, tutor, huevo).",
-            "En cada entrenador elige su nivel (1-5). Puedes darle su propia mochila o dejar la del nivel.",
+            "Pulsa «Crear los 7 niveles clásicos» (si no, el juego usa esos mismos valores por defecto).",
+            "Ajusta cada bloque: qué sabe de ti (nada, lo visto, memoria, todo), cómo elige (al azar … predictor), cómo se cura y cambia, y su equipo (MT, tutor, huevo, objetos, entrenamiento).",
+            "En cada entrenador elige su nivel (1-7). Puedes darle su propia mochila o dejar la del nivel.",
         };
 
         protected override Color? RowMark(AiLevelData d) => LevelColor(d.Level);
@@ -39,13 +40,15 @@ namespace CTEditor.GameDefinition.Editor
         /// <summary>Color de cada nivel (verde fácil → rojo difícil). Lo usan también los entrenadores.</summary>
         public static Color LevelColor(int level)
         {
-            switch (Mathf.Clamp(level, 1, 5))
+            switch (Mathf.Clamp(level, 1, AiProfile.MaxLevel))
             {
                 case 1: return new Color(0.45f, 0.8f, 0.45f);
                 case 2: return new Color(0.55f, 0.75f, 0.95f);
                 case 3: return new Color(0.95f, 0.8f, 0.35f);
                 case 4: return new Color(0.95f, 0.55f, 0.3f);
-                default: return new Color(0.85f, 0.3f, 0.35f);
+                case 5: return new Color(0.85f, 0.3f, 0.35f);
+                case 6: return new Color(0.65f, 0.35f, 0.85f);
+                default: return new Color(0.25f, 0.2f, 0.3f);
             }
         }
 
@@ -56,7 +59,7 @@ namespace CTEditor.GameDefinition.Editor
         public static int CreateClassicSet()
         {
             int created = 0;
-            for (int lvl = 1; lvl <= 5; lvl++)
+            for (int lvl = 1; lvl <= AiProfile.MaxLevel; lvl++)
             {
                 int l = lvl;
                 var p = AiProfile.Classic(l);
@@ -84,6 +87,11 @@ namespace CTEditor.GameDefinition.Editor
             so.FindProperty("useTutorMoves").boolValue = p.UseTutorMoves;
             so.FindProperty("useEggMoves").boolValue = p.UseEggMoves;
             so.FindProperty("autoHeldItems").boolValue = p.AutoHeldItems;
+            so.FindProperty("heldItems").enumValueIndex = (int)p.HeldItems;
+            so.FindProperty("heldItemsMigrated").boolValue = true;
+            so.FindProperty("knowledge").enumValueIndex = (int)p.Knowledge;
+            so.FindProperty("competitiveTraining").boolValue = p.CompetitiveTraining;
+            so.FindProperty("predictPercent").intValue = p.Brain == MoveBrain.Predictor ? p.PredictPercent : 60;
             var bag = so.FindProperty("defaultBag");
             bag.arraySize = p.DefaultBag.Count;
             for (int i = 0; i < p.DefaultBag.Count; i++)
@@ -94,7 +102,7 @@ namespace CTEditor.GameDefinition.Editor
         }
 
         protected override IReadOnlyList<(string id, string name, string group)> Templates
-            => Enumerable.Range(1, 5).Select(l => ("nivel_" + l, AiProfile.ClassicName(l), "Niveles clásicos")).ToList();
+            => Enumerable.Range(1, AiProfile.MaxLevel).Select(l => ("nivel_" + l, AiProfile.ClassicName(l), "Niveles clásicos")).ToList();
 
         protected override void ApplyTemplate(SerializedObject so, string id)
         {
@@ -105,7 +113,7 @@ namespace CTEditor.GameDefinition.Editor
 
         protected override void DrawBulkPresets()
         {
-            if (GUILayout.Button("Crear los 5 niveles clásicos")) FinishBulk(CreateClassicSet(), "niveles de IA");
+            if (GUILayout.Button("Crear los 7 niveles clásicos")) FinishBulk(CreateClassicSet(), "niveles de IA");
         }
 
         // ---------------- Vista previa ----------------
@@ -116,22 +124,31 @@ namespace CTEditor.GameDefinition.Editor
             EditorTheme.Section($"Nivel {d.Level}: {d.DisplayName}", c);
             EditorTheme.BeginCard(c);
             if (!string.IsNullOrWhiteSpace(d.Description)) EditorTheme.Paragraph(d.Description, false);
+            string know = d.Knowledge == AiKnowledge.None ? "solo ve tu Pokémon y sus tipos (supone ataques de su tipo)"
+                : d.Knowledge == AiKnowledge.Battle ? "recuerda lo que ve EN ESTE combate: tus movimientos y cuánto dañan"
+                : d.Knowledge == AiKnowledge.Memory ? "te RECUERDA entre combates: tus movimientos y tus IVs/EVs estimados por el daño"
+                : "lo sabe TODO desde el principio: tus movimientos, IVs, EVs y naturaleza (injusto)";
+            EditorTheme.Paragraph($"🧠 Conocimiento: {know}.", false);
             string brain = d.Brain == MoveBrain.Random ? "movimientos al azar"
                 : d.Brain == MoveBrain.Aggressive ? "el movimiento más eficaz según los tipos"
-                : "cálculo de daño real: remata, pone estados y mejoras con cabeza";
-            EditorTheme.Paragraph($"• Elige: {brain}" + (d.MistakePercent > 0 ? $" (se equivoca un {d.MistakePercent} % de las veces)." : ", sin fallos."), false);
+                : d.Brain == MoveBrain.Expert ? "cálculo de daño real: remata, pone estados y mejoras con cabeza"
+                : $"predictor: calcula el daño real y un {d.PredictPercent} % de los turnos juega según lo que cree que harás " +
+                  "(cambia al que resiste tu golpe, castiga tus cambios con el ataque que mejor le da a tu reserva)";
+            EditorTheme.Paragraph($"🎯 Decisión: {brain}" + (d.MistakePercent > 0 ? $" (se equivoca un {d.MistakePercent} % de las veces)." : ", sin fallos."), false);
             string heal = d.Heal == HealStyle.Never ? "nunca se cura"
                 : d.Heal == HealStyle.Simple ? $"se cura en cuanto baja del {d.HealBelowPercent} %"
                 : $"se cura (desde el {d.HealBelowPercent} %) solo si le sirve: si el rival lo tumba igual o le quita más de lo que cura, ataca";
-            EditorTheme.Paragraph($"• Objetos: se acuerda un {d.ItemUsePercent} % de las veces; {heal}.", false);
-            EditorTheme.Paragraph("• " + (d.CanSwitch ? "Cambia de monstruo si pierde claramente el duelo." : "Nunca cambia de monstruo."), false);
+            EditorTheme.Paragraph($"🛡️ Gestión: se acuerda de sus objetos un {d.ItemUsePercent} % de las veces; {heal}. " +
+                                  (d.CanSwitch ? "Cambia de monstruo si pierde el duelo." : "Nunca cambia de monstruo."), false);
             var sources = new List<string> { "por nivel" };
             if (d.UseMachineMoves) sources.Add("MT");
             if (d.UseTutorMoves) sources.Add("tutor");
             if (d.UseEggMoves) sources.Add("huevo");
-            EditorTheme.Paragraph($"• Movimientos automáticos: {Etiquetas.Enum(d.Moveset.ToString())} ({string.Join(", ", sources)})" +
-                                  (d.Synergies ? ", buscando sinergias." : "."), false);
-            if (d.AutoHeldItems) EditorTheme.Paragraph("• Pone objetos equipados a los que no llevan (Restos, bayas, objetos de tipo).", false);
+            string held = d.HeldItems == HeldItemStyle.None ? "sin objetos equipados automáticos"
+                : d.HeldItems == HeldItemStyle.Basic ? "objetos básicos (Restos, bayas, de tipo)" : "objetos DE COMPETICIÓN (Elección, Vidasfera, Banda Focus...)";
+            EditorTheme.Paragraph($"🎒 Equipo: movimientos {Etiquetas.Enum(d.Moveset.ToString()).ToLowerInvariant()} ({string.Join(", ", sources)})" +
+                                  (d.Synergies ? " con sinergias" : "") + $"; {held}" +
+                                  (d.CompetitiveTraining ? "; entrenamiento de competición (IVs 31, 252 EVs, naturaleza)." : "."), false);
             EditorTheme.EndCard();
 
             // Cuántos entrenadores usan este nivel.

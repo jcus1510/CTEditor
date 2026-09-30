@@ -157,6 +157,10 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 StickyHold = d.StickyHold, Pickpocket = d.Pickpocket, OnKoStat = Stat(d.OnKoStat), OnKoStages = d.OnKoStages,
                 OnStatDroppedStat = Stat(d.OnStatDroppedStat), OnStatDroppedStages = d.OnStatDroppedStages, HarvestChance = d.HarvestChance, Moody = d.Moody,
                 Infiltrator = d.Infiltrator, MagicBounce = d.MagicBounce, WeightMultiplier = d.WeightMultiplier <= 0f ? 1f : d.WeightMultiplier,
+                PriorityType = (d.PriorityType ?? "").Trim(), PriorityTypeBonus = d.PriorityTypeBonus,
+                ContactStatDrop = Stat(d.ContactStatDrop), ContactStatDropStages = d.ContactStatDropStages, StealOnHit = d.StealOnHit,
+                SpreadsAbilityOnContact = d.SpreadsAbilityOnContact, ConvertNormalTo = (d.ConvertNormalTo ?? "").Trim(),
+                ConvertBoost = d.ConvertBoost <= 0f ? 1f : d.ConvertBoost, BerryBonusHealPercent = d.BerryBonusHealPercent,
             };
         }
     }

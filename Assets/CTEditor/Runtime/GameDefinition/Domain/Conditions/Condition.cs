@@ -36,7 +36,13 @@ namespace CTEditor.GameDefinition.Domain.Conditions
         MoveHasSecondary,     // el movimiento tiene algún efecto secundario (Potencia Bruta)
         HasItem,              // lleva un objeto equipado
         LostItem,             // perdió (o gastó) su objeto en este combate (Liviano)
-        WeightKg              // peso en kilos (comparado con Number)
+        WeightKg,             // peso en kilos (comparado con Number)
+        // --- Lote F (género) ---
+        SameGender,           // los dos tienen el MISMO género (Rivalidad ×1,25)
+        OppositeGender,       // tienen géneros OPUESTOS (Seducción, Rivalidad ×0,75); los sin género nunca
+        // --- Lote F (5.ª-6.ª gen.) ---
+        FieldCondition,       // hay activo el efecto de campo Text en cualquier lado ("grassy_terrain", "trick_room")
+        CanEvolve             // aún puede evolucionar (Mineral Evolutivo)
     }
 
     /// <summary>De quién se pregunta: el dueño de la ficha o el otro.</summary>
@@ -98,12 +104,13 @@ namespace CTEditor.GameDefinition.Domain.Conditions
         /// <summary>¿Usa el texto (un id)?</summary>
         public static bool UsesText(ConditionKind k) => k == ConditionKind.HasStatus || k == ConditionKind.IsType
             || k == ConditionKind.Weather || k == ConditionKind.StatStage || k == ConditionKind.MoveType
-            || k == ConditionKind.MoveCategory || k == ConditionKind.MoveHasTag;
+            || k == ConditionKind.MoveCategory || k == ConditionKind.MoveHasTag || k == ConditionKind.FieldCondition;
 
         /// <summary>¿Tiene sentido "propio/rival"? (el clima o el movimiento no son de nadie).</summary>
         public static bool UsesSubject(ConditionKind k) => !(k == ConditionKind.Weather || k == ConditionKind.RandomChance
             || k == ConditionKind.MoveType || k == ConditionKind.MoveCategory || k == ConditionKind.MovePower
-            || k == ConditionKind.MoveMakesContact || k == ConditionKind.MoveHasTag);
+            || k == ConditionKind.MoveMakesContact || k == ConditionKind.MoveHasTag || k == ConditionKind.FieldCondition
+            || k == ConditionKind.SameGender || k == ConditionKind.OppositeGender);
     }
 
     /// <summary>

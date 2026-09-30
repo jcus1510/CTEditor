@@ -110,6 +110,7 @@ namespace CTEditor.Party.Domain
                 case EvolutionConditionKind.Nature: return mon.Nature != null && mon.Nature.Id.Value == c.Id;
                 case EvolutionConditionKind.Chance: return Personality(mon) < c.Value;
                 case EvolutionConditionKind.GameFlag: return c.Id.Length > 0 && ctx.HasFlag != null && ctx.HasFlag(c.Id);
+                case EvolutionConditionKind.Gender: return mon.Gender == (c.Value == 2 ? Gender.Female : Gender.Male);
                 default: return false;
             }
         }

@@ -41,6 +41,14 @@ namespace CTEditor.Battle.Domain
     public sealed partial class Combatant
     {
         public Id<BattleParticipant> Id { get; }
+
+        /// <summary>De qué especie es (la que se ve en combate; Transformación no la cambia).</summary>
+        public Id<Species> SpeciesId { get; }
+
+        /// <summary>Género (Atracción solo funciona entre géneros opuestos).</summary>
+        public Gender Gender { get; }
+        /// <summary>¿Puede evolucionar todavía? (Mineral Evolutivo).</summary>
+        public bool CanEvolve { get; }
         /// <summary>Nivel. Puede SUBIR en mitad del combate (al ganar experiencia), como en los juegos.</summary>
         public int Level { get; private set; }
         private StatBlock _stats;
@@ -320,6 +328,9 @@ namespace CTEditor.Battle.Domain
             if (snapshot == null) throw new ArgumentNullException(nameof(snapshot));
 
             Id = snapshot.Id;
+            SpeciesId = snapshot.SpeciesId;
+            Gender = snapshot.Gender;
+            CanEvolve = snapshot.CanEvolve;
             Level = snapshot.Level;
             _stats = snapshot.Stats;      // StatBlock ya es inmutable
             _types = snapshot.Types;      // ya vienen como listas de solo lectura copiadas

@@ -278,6 +278,13 @@ namespace CTEditor.GameDefinition.Editor
                 foreach (var m in d.DefensivePowerModifiers)
                     if (m != null) l.Add($"Al recibir: potencia del golpe ×{m.multiplier:0.##} {ConditionText.Describe(System.Linq.Enumerable.Select(m.conditions ?? new ConditionData[0], ConditionText.FromData))}.");
             if (d.NegatesStatusDamage) l.Add("No sufre daño residual por estados.");
+            // 5.ª y 6.ª gen.
+            if (!string.IsNullOrWhiteSpace(d.PriorityType) && d.PriorityTypeBonus != 0) l.Add($"Movimientos de tipo '{d.PriorityType}' con +{d.PriorityTypeBonus} de prioridad (Alas Vendaval).");
+            if (!string.IsNullOrWhiteSpace(d.ContactStatDrop) && d.ContactStatDropStages != 0) l.Add($"Quien le golpea con contacto: {StatLabels.NameOf(d.ContactStatDrop)} {d.ContactStatDropStages} (Baba).");
+            if (d.StealOnHit) l.Add("Al golpear roba el objeto del rival si no lleva ninguno (Prestidigitador).");
+            if (d.SpreadsAbilityOnContact) l.Add("Quien le golpea con contacto se queda con esta habilidad (Momia).");
+            if (!string.IsNullOrWhiteSpace(d.ConvertNormalTo)) l.Add($"Sus movimientos Normales pasan a ser de tipo '{d.ConvertNormalTo}'" + (d.ConvertBoost != 1f ? $" y pegan ×{d.ConvertBoost:0.##}." : "."));
+            if (d.BerryBonusHealPercent > 0) l.Add($"Al comer una baya recupera además el {d.BerryBonusHealPercent:0.##}% de sus PS (Carrillo).");
             return l;
         }
 

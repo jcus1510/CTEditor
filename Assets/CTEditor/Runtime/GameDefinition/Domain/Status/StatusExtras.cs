@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Types;
+using CTEditor.GameDefinition.Domain.Stats;
 
 namespace CTEditor.GameDefinition.Domain.Status
 {
@@ -54,5 +55,14 @@ namespace CTEditor.GameDefinition.Domain.Status
         public bool Imprisons { get; set; }
         /// <summary>Queda en el suelo: le afectan los movimientos de Tierra aunque sea Volador o levite (Arraigo).</summary>
         public bool Grounded { get; set; }
+        /// <summary>Solo se le puede poner a un rival del género OPUESTO al de quien lo causa (Atracción, Gran Encanto).</summary>
+        public bool RequiresOppositeGender { get; set; }
+        /// <summary>Protección que solo para los movimientos que hacen daño (Escudo Real, Escudo Tatami).</summary>
+        public bool ProtectOnlyDamaging { get; set; }
+        /// <summary>Si le golpean con contacto mientras se protege, el atacante pierde etapas (Escudo Real: attack -2).</summary>
+        public StatId? ProtectContactStat { get; set; }
+        public int ProtectContactStages { get; set; }
+        /// <summary>Si le golpean con contacto mientras se protege, el atacante pierde este % de PS (Barrera Espinosa: 12,5).</summary>
+        public float ProtectContactDamagePercent { get; set; }
     }
 }

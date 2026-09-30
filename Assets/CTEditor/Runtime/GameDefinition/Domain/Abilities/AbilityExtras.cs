@@ -216,5 +216,22 @@ namespace CTEditor.GameDefinition.Domain.Abilities
         public bool MagicBounce { get; set; }
         /// <summary>Multiplica su peso (Metal Pesado ×2, Metal Liviano ×0,5).</summary>
         public float WeightMultiplier { get; set; } = 1f;
+
+        // --- 5.ª y 6.ª generación ---
+        /// <summary>Tipo cuyos movimientos ganan prioridad (Alas Vendaval: flying).</summary>
+        public string PriorityType { get; set; } = "";
+        public int PriorityTypeBonus { get; set; }
+        /// <summary>Quien le golpea con contacto pierde etapas de esta estadística (Baba: speed -1).</summary>
+        public StatId? ContactStatDrop { get; set; }
+        public int ContactStatDropStages { get; set; }
+        /// <summary>Al golpear roba el objeto del rival si no lleva nada (Prestidigitador).</summary>
+        public bool StealOnHit { get; set; }
+        /// <summary>Quien le golpea con contacto recibe esta habilidad (Momia).</summary>
+        public bool SpreadsAbilityOnContact { get; set; }
+        /// <summary>Sus movimientos Normales pasan a ser de este tipo y ×ConvertBoost (Piel Feérica: fairy ×1,3).</summary>
+        public string ConvertNormalTo { get; set; } = "";
+        public float ConvertBoost { get; set; } = 1f;
+        /// <summary>Al comer una baya recupera además este % de PS (Carrillo: 33).</summary>
+        public float BerryBonusHealPercent { get; set; }
     }
 }

@@ -253,6 +253,8 @@ namespace CTEditor.Adventure.Domain
         public List<StatLine> Stats { get; } = new List<StatLine>();
         public List<MoveLine> Moves { get; } = new List<MoveLine>();
         public int EvTotal { get; private set; }
+        /// <summary>Género del individuo.</summary>
+        public CTEditor.GameDefinition.Domain.Species.Gender Gender { get; private set; }
 
         private static readonly (StatId id, string name)[] StatNames =
         {
@@ -267,6 +269,7 @@ namespace CTEditor.Adventure.Domain
             var s = new MonsterSummary
             {
                 Name = data.NameOf(mon),
+                Gender = mon.Gender,
                 SpeciesName = species != null ? species.DisplayName : mon.SpeciesId.Value,
                 Level = mon.Level.Value,
                 Hp = mon.CurrentHp,
@@ -326,7 +329,7 @@ namespace CTEditor.Adventure.Domain
         {
             var l = new List<string>
             {
-                $"{Name}{(Name != SpeciesName ? $" ({SpeciesName})" : "")} · Nv. {Level} · {string.Join("/", Types)}",
+                $"{Name}{(Name != SpeciesName ? $" ({SpeciesName})" : "")} {CTEditor.GameDefinition.Domain.Species.GenderText.Symbol(Gender)} · Nv. {Level} · {string.Join("/", Types)}",
                 $"PS {Hp}/{MaxHp}{(StatusName.Length > 0 ? $" · {StatusName}" : "")}",
                 ExperienceToNext > 0 ? $"Experiencia {Experience} · le faltan {ExperienceToNext} para subir" : $"Experiencia {Experience} · nivel máximo",
                 $"Naturaleza {NatureName} · Habilidad {AbilityName} · Amistad {Friendship}",

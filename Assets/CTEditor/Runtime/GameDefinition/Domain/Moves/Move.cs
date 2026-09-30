@@ -124,7 +124,9 @@ namespace CTEditor.GameDefinition.Domain.Moves
         public static readonly string[] PowerFormulaVariables =
             { "potencia", "nivel", "nivel_rival", "vida", "vida_rival", "amistad", "velocidad", "velocidad_rival",
               // 3.ª y 4.ª generación
-              "peso", "peso_rival", "seguidos", "reserva", "pp", "subidas_rival", "ps", "ps_rival", "azar" };
+              "peso", "peso_rival", "seguidos", "reserva", "pp", "subidas_rival", "ps", "ps_rival", "azar",
+              // 5.ª y 6.ª generación
+              "subidas" };
 
         /// <summary>
         /// TIPO SEGÚN EL CLIMA (Meteorobola: lluvia → Agua, sol → Fuego...). Vacío = siempre su tipo.

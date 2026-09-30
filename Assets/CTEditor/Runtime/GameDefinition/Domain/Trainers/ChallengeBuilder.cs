@@ -15,7 +15,7 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         public string Id = "reto";
         public string Name = "";
         public string TrainerClass = "";
-        /// <summary>Nivel de IA 1-5.</summary>
+        /// <summary>Nivel de IA 1-7.</summary>
         public int AiLevel = 2;
         public int TeamSize = 3;
         public int MinLevel = 10, MaxLevel = 14;
@@ -82,7 +82,7 @@ namespace CTEditor.GameDefinition.Domain.Trainers
 
             string cls = string.IsNullOrWhiteSpace(req.TrainerClass) ? ClassFor(req.AiLevel) : req.TrainerClass;
             string name = string.IsNullOrWhiteSpace(req.Name) ? "Reto" : req.Name;
-            int money = req.BaseMoney > 0 ? req.BaseMoney : new[] { 16, 24, 36, 60, 100 }[Math.Max(1, Math.Min(5, req.AiLevel)) - 1];
+            int money = req.BaseMoney > 0 ? req.BaseMoney : new[] { 16, 24, 36, 60, 100, 120, 150 }[Math.Max(1, Math.Min(AiProfile.MaxLevel, req.AiLevel)) - 1];
             return new TrainerDefinition(req.Id, name, team, cls, AiProfile.Classic(req.AiLevel).LegacyAi, money,
                 "¡Te reto a un combate!", "¡Me has ganado!", "¡Esta vez gano yo!", new TrainerAiSettings(), req.AiLevel);
         }
@@ -112,13 +112,15 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         /// <summary>Clase por defecto según el nivel de IA.</summary>
         public static string ClassFor(int aiLevel)
         {
-            switch (Math.Max(1, Math.Min(5, aiLevel)))
+            switch (Math.Max(1, Math.Min(AiProfile.MaxLevel, aiLevel)))
             {
                 case 1: return "Joven";
                 case 2: return "Entrenador";
                 case 3: return "Entrenador guay";
                 case 4: return "Experto";
-                default: return "As del combate";
+                case 5: return "As del combate";
+                case 6: return "Maestro";
+                default: return "Leyenda";
             }
         }
     }

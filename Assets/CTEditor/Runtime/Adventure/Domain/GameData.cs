@@ -54,14 +54,14 @@ namespace CTEditor.Adventure.Domain
 
         private readonly Dictionary<int, AiProfile> _aiProfiles = new Dictionary<int, AiProfile>();
 
-        /// <summary>El nivel de IA 1-5 del autor (sus fichas «Niveles de IA») o el clásico si no lo definió.</summary>
+        /// <summary>El nivel de IA 1-7 del autor (sus fichas «Niveles de IA») o el clásico si no lo definió.</summary>
         public AiProfile AiProfileFor(int level)
         {
             level = Math.Max(AiProfile.MinLevel, Math.Min(AiProfile.MaxLevel, level));
             return _aiProfiles.TryGetValue(level, out var p) ? p : AiProfile.Classic(level);
         }
 
-        /// <summary>El perfil de IA de un entrenador (según su nivel 1-5).</summary>
+        /// <summary>El perfil de IA de un entrenador (según su nivel 1-7).</summary>
         public AiProfile AiProfileFor(TrainerDefinition trainer) => AiProfileFor(trainer?.AiLevel ?? 1);
 
         public GameData(
@@ -205,7 +205,8 @@ namespace CTEditor.Adventure.Domain
             return new BattleParticipant(
                 new Id<BattleParticipant>(mon.Id.Value), mon.SpeciesId, mon.Level.Value,
                 mon.Stats, mon.CurrentHp, species.Types, mon.Moves, mon.Status, species.AbilityFor(mon.AbilitySlot),
-                species.BaseExpYield, species.EvYield, mon.CurrentPp, mon.Friendship, mon.HeldItem, species.CatchRate, species.Dex.WeightKg);
+                species.BaseExpYield, species.EvYield, mon.CurrentPp, mon.Friendship, mon.HeldItem, species.CatchRate, species.Dex.WeightKg,
+                mon.Gender, species.Evolutions.Count > 0);
         }
     }
 

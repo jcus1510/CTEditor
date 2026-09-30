@@ -558,6 +558,9 @@ namespace CTEditor.GameDefinition.Editor
                     c.FindPropertyRelative("value").intValue = EditorGUILayout.IntSlider(new GUIContent("% de individuos",
                         "Cada monstruo tiene una 'personalidad' fija: el mismo individuo siempre evoluciona igual."), c.FindPropertyRelative("value").intValue, 1, 99); break;
                 case EvolutionConditionKind.HoldsItem: ItemPopup(c.FindPropertyRelative("itemId"), "Objeto equipado", false); break;
+                case EvolutionConditionKind.Gender:
+                    c.FindPropertyRelative("value").intValue = EditorGUILayout.Popup("Género", c.FindPropertyRelative("value").intValue == 2 ? 1 : 0,
+                        new[] { "♂ Macho", "♀ Hembra" }) == 1 ? 2 : 1; break;
                 case EvolutionConditionKind.KnowsMove: ObjectRow<MoveData>(c.FindPropertyRelative("move"), "Movimiento"); break;
                 case EvolutionConditionKind.KnowsMoveOfType: case EvolutionConditionKind.PartyHasType: ObjectRow<ElementTypeData>(c.FindPropertyRelative("type"), "Tipo"); break;
                 case EvolutionConditionKind.PartyHasSpecies: ObjectRow<SpeciesData>(c.FindPropertyRelative("species"), "Especie"); break;

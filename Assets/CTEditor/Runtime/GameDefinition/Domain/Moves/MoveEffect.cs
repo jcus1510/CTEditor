@@ -67,7 +67,13 @@ namespace CTEditor.GameDefinition.Domain.Moves
         CallMove,         // usa el movimiento Text (Adaptación: tri_attack)
         CallTargetMove,   // usa antes el movimiento que el objetivo iba a usar, ×1,5 (Yo Primero)
         TeamCureStatus,   // cura el estado principal de TODO el equipo del usuario (Cascabel Cura, Aromaterapia)
-        CallOwnMove       // usa al azar OTRO de sus movimientos (Sonámbulo)
+        CallOwnMove,      // usa al azar OTRO de sus movimientos (Sonámbulo)
+        // --- 5.ª y 6.ª generación (solo AL FINAL) ---
+        GiveAbility,      // el objetivo pasa a tener la habilidad del usuario (Danza Amiga)
+        CopyTypes,        // el usuario copia los tipos del objetivo (Clonatipo)
+        GiveItem,         // el usuario le da su objeto al objetivo si no lleva (Ofrenda)
+        AddType,          // añade un tipo al objetivo (Halloween: ghost; Condena Silvana: grass)
+        InvertStages      // invierte las etapas del objetivo (Reversión)
     }
 
     /// <summary>A quién afecta el efecto.</summary>

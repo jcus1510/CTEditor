@@ -783,6 +783,8 @@ namespace CTEditor.Bootstrap
                 case "nervios": return $"¡El rival está demasiado nervioso para comer bayas! ({ab})";
                 case "presion": return $"¡{who} ejerce presión!";
                 case "rompemoldes": return $"¡{who} rompe los moldes!";
+                case "roba": return $"¡{who} robó el objeto del rival con {ab}!";
+                case "baba": return $"¡{ab} de {Who(at.Combatant)} frenó al atacante!";
                 case "": return $"¡{ab} de {Who(at.Combatant)} se activó!";
                 default: return $"¡{ab} de {Who(at.Combatant)}!";
             }
@@ -794,8 +796,15 @@ namespace CTEditor.Bootstrap
             var data = Session.Data;
             if (string.IsNullOrEmpty(reason)) return "bloqueado";
             if (data.Abilities.TryGet(new Id<CTEditor.GameDefinition.Domain.Abilities.AbilityDefinition>(reason), out var a)) return a.DisplayName;
+            // Objetos Elección / Chaleco Asalto: el motivo es el objeto equipado.
+            if (data.TryGetItem(reason, out var it)) return it.DisplayName;
             return StatusName(new StatusId(reason));
         }
+
+        // ♂ azul / ♀ rosa junto al nombre (nada si no tiene género).
+        private static string GenderMark(Combatant c)
+            => c.Gender == CTEditor.GameDefinition.Domain.Species.Gender.Male ? " <color=#4A90E2>♂</color>"
+             : c.Gender == CTEditor.GameDefinition.Domain.Species.Gender.Female ? " <color=#E86AA8>♀</color>" : "";
 
         private IEnumerator PlayEvent(IDomainEvent e)
         {
@@ -1151,14 +1160,14 @@ namespace CTEditor.Bootstrap
             string status = active.Status.HasValue ? $"  <size=70%>[{StatusName(active.Status.Value)}]</size>" : "";
             if (playerSide)
             {
-                if (playerNameText) playerNameText.text = Session.NameOf(active.Id) + status;
+                if (playerNameText) playerNameText.text = Session.NameOf(active.Id) + GenderMark(active) + status;
                 if (playerLevelText) playerLevelText.text = $"Nv.{active.Level}";
                 _shownP = _hpShown.TryGetValue(active.Id, out var hpP) ? hpP : active.CurrentHp;
                 SetBar(playerHpBar, playerHpText, _shownP, active.MaxHp);
             }
             else
             {
-                if (enemyNameText) enemyNameText.text = Session.NameOf(active.Id) + status;
+                if (enemyNameText) enemyNameText.text = Session.NameOf(active.Id) + GenderMark(active) + status;
                 if (enemyLevelText) enemyLevelText.text = $"Nv.{active.Level}";
                 _shownE = _hpShown.TryGetValue(active.Id, out var hpE) ? hpE : active.CurrentHp;
                 SetBar(enemyHpBar, enemyHpText, _shownE, active.MaxHp);

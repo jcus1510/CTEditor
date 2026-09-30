@@ -21,7 +21,8 @@ namespace CTEditor.GameDefinition.Domain.Species
         PartyHasType,     // hay un monstruo de ese tipo en el equipo (Id) — Pancham con Siniestro
         Nature,           // tiene esa naturaleza (Id)
         Chance,           // según su "personalidad": el Value % de los individuos (siempre el mismo para cada uno) — Wurmple
-        GameFlag          // una marca de la partida está activa (Id) — para eventos de la historia
+        GameFlag,         // una marca de la partida está activa (Id) — para eventos de la historia
+        Gender            // es de ese género (Value: 1 = macho, 2 = hembra) — Gallade, Froslass, Vespiquen
     }
 
     /// <summary>Momentos del día (hora de 0 a 23).</summary>

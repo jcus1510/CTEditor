@@ -102,8 +102,14 @@ namespace CTEditor.Battle.Domain
         // (lo guarda el equipo; aquí nada)
 
         // Lo que se olvida al retirarse (además de lo que ya limpia OnSwitchedOut).
+        /// <summary>Movimiento al que le ata un objeto Elección (se suelta al retirarse).</summary>
+        public Id<Move>? ChoiceLockedMove { get; private set; }
+        internal void LockChoice(Id<Move> move) { if (!ChoiceLockedMove.HasValue) ChoiceLockedMove = move; }
+        internal void ClearChoiceLock() => ChoiceLockedMove = null;
+
         private void ResetFieldState()
         {
+            ChoiceLockedMove = null;
             _abilityChanged = false;
             _abilityOverride = null;
             TurnsOnField = 0;

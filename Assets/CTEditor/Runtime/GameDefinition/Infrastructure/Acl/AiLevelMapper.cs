@@ -17,7 +17,8 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                     if (it != null && !string.IsNullOrWhiteSpace(it.itemId)) bag.Add((it.itemId.Trim(), Math.Max(1, it.quantity)));
             return new AiProfile(d.Level, d.DisplayName, d.Description, d.Brain, d.MistakePercent, d.ItemUsePercent, d.Heal,
                 d.HealBelowPercent, d.CanSwitch, d.Moveset, d.Synergies, d.UseMachineMoves, d.UseTutorMoves, d.UseEggMoves,
-                d.AutoHeldItems, bag);
+                d.HeldItems != HeldItemStyle.None, bag, d.Knowledge, d.HeldItems, d.CompetitiveTraining,
+                d.Brain == MoveBrain.Predictor ? d.PredictPercent : 0);
         }
     }
 }

@@ -25,7 +25,10 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 (d.heldItem ?? "").Trim(),
                 d.nature != null && !string.IsNullOrWhiteSpace(d.nature.Id) ? new Id<Nature>(d.nature.Id) : (Id<Nature>?)null,
                 d.fixedIvs >= 0 ? d.fixedIvs : (int?)null,
-                d.nickname);
+                d.nickname,
+                d.gender == MemberGender.Male ? CTEditor.GameDefinition.Domain.Species.Gender.Male
+                : d.gender == MemberGender.Female ? CTEditor.GameDefinition.Domain.Species.Gender.Female
+                : (CTEditor.GameDefinition.Domain.Species.Gender?)null);
         }
 
         public static List<TeamMemberSpec> ToDomain(TeamMemberData[] team)

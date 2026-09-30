@@ -79,7 +79,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Tooltip("Ataca con la estadística del RIVAL en vez de la propia (Juego Sucio).")]
         [SerializeField] private bool attackStatFromTarget = false;
 
-        [Tooltip("Etiquetas libres para agrupar movimientos: puño, sonido, mordisco, polvo... Las habilidades pueden potenciarlas.")]
+        [Tooltip("Etiquetas libres para agrupar movimientos: puño, sonido, mordisco, polvo... Las habilidades pueden potenciarlas. Especiales del motor: rompe_proteccion, semiinvulnerable, ignora_etapas (Espada Santa), ignora_inmunidad (Mil Flechas), tipo_extra:flying (Plancha), eficaz_contra:water (Liofilización).")]
         [SerializeField] private string[] tags = new string[0];
 
         [Header("Requisitos (vacío = siempre funciona)")]

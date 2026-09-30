@@ -47,6 +47,27 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Tooltip("Daño recibido según el tipo del movimiento. Ej.: electric ×0,33 (Chapoteo Lodo).")]
         [SerializeField] private TypeMultiplierEntry[] typeDamageMultipliers = new TypeMultiplierEntry[0];
 
+        [Header("Efectos de campo y campos (5.ª y 6.ª gen.)")]
+        [Tooltip("Se intercambian Defensa y Def. Esp. para el daño (Zona Extraña).")]
+        [SerializeField] private bool swapsDefenses;
+        [Tooltip("Los objetos equipados no hacen nada (Zona Mágica).")]
+        [SerializeField] private bool suppressesItems;
+        [Tooltip("Grupo excluyente: al ponerse, quita los demás del mismo grupo en los dos lados (los campos usan «campo»).")]
+        [SerializeField] private string group = "";
+        [Tooltip("% de PS que recuperan al final del turno los que pisan el suelo (Campo de Hierba: 6,25).")]
+        [SerializeField, Range(0f, 100f)] private float endOfTurnHealPercent;
+        [Tooltip("Estados que no se pueden poner a los que pisan el suelo: * = todos (Campo de Niebla), sleep (Campo Eléctrico).")]
+        [SerializeField] private string[] groundedStatusBlock = new string[0];
+        [Tooltip("Potencia de los movimientos de un tipo si el atacante pisa el suelo (Campo Eléctrico: electric ×1,5).")]
+        [SerializeField] private TypeMultiplierEntry[] typePowerMultipliers = new TypeMultiplierEntry[0];
+
+        public bool SwapsDefenses => swapsDefenses;
+        public bool SuppressesItems => suppressesItems;
+        public string Group => group;
+        public float EndOfTurnHealPercent => endOfTurnHealPercent;
+        public string[] GroundedStatusBlock => groundedStatusBlock;
+        public TypeMultiplierEntry[] TypePowerMultipliers => typePowerMultipliers;
+
         [System.Serializable]
         public sealed class TypeMultiplierEntry
         {

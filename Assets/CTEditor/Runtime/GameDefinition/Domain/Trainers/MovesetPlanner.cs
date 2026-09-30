@@ -17,7 +17,8 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         ByAi,      // según su IA: novato = clásico, listo = equilibrado, experto = fuerte
         Classic,   // los 4 últimos que aprende por nivel (como un salvaje: a veces flojo)
         Balanced,  // su mejor ataque con STAB + cobertura de otro tipo + un buen movimiento de apoyo
-        Strong     // los ataques que más daño hacen (con cobertura) y solo apoyo si es muy bueno (dormir, Danza Espada)
+        Strong,    // los ataques que más daño hacen (con cobertura) y solo apoyo si es muy bueno (dormir, Danza Espada)
+        Competitive // de competición: STAB + cobertura, una mejora o un pivote (Ida y Vuelta), y sinergias
     }
 
     /// <summary>
@@ -78,7 +79,20 @@ namespace CTEditor.GameDefinition.Domain.Trainers
             var offense = candidates.ToDictionary(m => m.Id, m => Offense(m, types, attack / best, spAttack / best, level));
             var support = candidates.ToDictionary(m => m.Id, m => Support(m, attack >= spAttack));
 
-            bool strong = style == MovesetStyle.Strong;
+            // COMPETITIVO: como Fuerte, pero siempre con sinergias y valorando la prioridad y los pivotes (Ida y Vuelta).
+            bool competitive = style == MovesetStyle.Competitive;
+            bool strong = style == MovesetStyle.Strong || competitive;
+            if (competitive)
+            {
+                foreach (var m in candidates)
+                {
+                    if (offense[m.Id] <= 0) continue;
+                    if (m.Priority > 0) offense[m.Id] *= 1.25;
+                    if (m.SecondaryEffects.Any(e => e.Kind == MoveEffectKind.SwitchSelf)) offense[m.Id] *= 1.2;
+                }
+                options = options ?? new PlanOptions();
+                options.Synergies = true;
+            }
             var chosen = new List<Move>();
             var coveredTypes = new HashSet<Id<ElementType>>();
 

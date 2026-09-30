@@ -113,7 +113,7 @@ namespace CTEditor.Adventure.Domain
             Battle = new BattleAggregate(playerSnaps, enemySnaps, kind == BattleKind.Trainer);
             Resolver = data.CreateResolver(rng);
             _ai = new SimpleBattleAI(rng) { CanUse = Resolver.CanChooseMove };
-            if (kind == BattleKind.Trainer) _brain = new TrainerBrain(data, Battle, Resolver, trainer, rng);
+            if (kind == BattleKind.Trainer) _brain = new TrainerBrain(data, Battle, Resolver, trainer, rng, save.MemoryOf(trainer.Id));
             Phase = SessionPhase.ChooseAction;
         }
 
@@ -423,6 +423,7 @@ namespace CTEditor.Adventure.Domain
         // experiencia AL MOMENTO (subidas de nivel y movimientos nuevos en mitad del combate).
         private void Process(IReadOnlyList<IDomainEvent> raw, List<IDomainEvent> output)
         {
+            _brain?.Observe(raw);   // el entrenador aprende de lo que ve (tus movimientos, cuánto dañan)
             foreach (var e in raw)
             {
                 output.Add(e);

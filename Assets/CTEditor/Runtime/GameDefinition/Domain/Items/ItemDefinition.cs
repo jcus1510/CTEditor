@@ -68,8 +68,9 @@ namespace CTEditor.GameDefinition.Domain.Items
             bool restorePpAllMoves = false, int friendshipChange = 0, float catchMultiplier = 0f,
             string battleStatId = null, int battleStages = 0, IReadOnlyList<PowerModifier> heldPowerModifiers = null,
             float heldEndOfTurnHealPercent = 0f, float heldTriggerHpPercent = 0f, int heldTriggerHealHp = 0,
-            float heldTriggerHealPercent = 0f, bool heldConsumedOnTrigger = true)
+            float heldTriggerHealPercent = 0f, bool heldConsumedOnTrigger = true, ItemExtras extras = null)
         {
+            Extras = extras ?? ItemExtras.None;
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("El objeto necesita un id.", nameof(id));
             Id = id;
             DisplayName = string.IsNullOrWhiteSpace(displayName) ? id : displayName;
@@ -113,6 +114,9 @@ namespace CTEditor.GameDefinition.Domain.Items
             return false;
         }
         public bool HealsHp => HealHp > 0 || HealPercent > 0f;
-        public bool HasHeldEffect => HeldPowerModifiers.Count > 0 || HeldEndOfTurnHealPercent > 0f || HeldTriggerHpPercent > 0f;
+        public bool HasHeldEffect => HeldPowerModifiers.Count > 0 || HeldEndOfTurnHealPercent > 0f || HeldTriggerHpPercent > 0f || Extras.DoesSomething;
+
+        /// <summary>Efectos de competición al llevarlo equipado (Elección, Vidasfera, Banda Focus...).</summary>
+        public ItemExtras Extras { get; }
     }
 }

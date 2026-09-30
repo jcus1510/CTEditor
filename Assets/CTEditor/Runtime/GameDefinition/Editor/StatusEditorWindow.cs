@@ -79,7 +79,13 @@ namespace CTEditor.GameDefinition.Editor
             var l = new List<string>();
             if (d.DurationMaxTurns > d.DurationTurns) l.Add($"• Duración al azar entre {d.DurationTurns} y {d.DurationMaxTurns} turnos.");
             if (d.PreventsSwitch) l.Add("• No puede cambiarse ni huir mientras dure.");
-            if (d.BlocksIncomingMoves) l.Add("• Los movimientos del rival contra él fallan (protección).");
+            if (d.BlocksIncomingMoves) l.Add(d.ProtectOnlyDamaging ? "• Le protege de los ataques con daño; los de estado sí le afectan (Escudo Real)."
+                                                                    : "• Los movimientos del rival contra él fallan (protección).");
+            if (d.BlocksIncomingMoves && !string.IsNullOrEmpty(d.ProtectContactStat) && d.ProtectContactStages != 0)
+                l.Add($"• Quien le golpea con contacto mientras se protege: {StatLabels.NameOf(d.ProtectContactStat)} {d.ProtectContactStages}.");
+            if (d.BlocksIncomingMoves && d.ProtectContactDamagePercent > 0)
+                l.Add($"• Quien le golpea con contacto mientras se protege pierde el {d.ProtectContactDamagePercent:0.#}% de sus PS (Barrera Espinosa).");
+            if (d.RequiresOppositeGender) l.Add("• Solo funciona entre géneros opuestos (Atracción).");
             if (d.SurvivesLethalHit) l.Add("• Aguanta con 1 PS un golpe que lo debilitaría.");
             if (d.ResidualHealsOpponent) l.Add("• Lo que pierde por turno lo recupera el rival (drenadoras).");
             if (d.HarderWhenRepeated) l.Add("• Si se aplica turnos seguidos, cada vez es más difícil (1/3, 1/9...).");
