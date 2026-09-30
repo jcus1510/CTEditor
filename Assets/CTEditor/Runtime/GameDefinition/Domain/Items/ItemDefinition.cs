@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CTEditor.GameDefinition.Domain.Conditions;
+using CTEditor.GameDefinition.Domain.Effects;
 
 namespace CTEditor.GameDefinition.Domain.Items
 {
@@ -17,13 +19,15 @@ namespace CTEditor.GameDefinition.Domain.Items
         Held,         // se equipan (Restos, Carbón, bayas)
         Vitamin,      // cambian amistad u otros valores fuera de combate
         Key,          // objetos clave (bicicleta, mapa...)
-        Other
+        Other,
+        Machine,      // MT / MO (enseñan un movimiento)
+        Berry,        // bayas
     }
 
     /// <summary>
-    /// La FICHA de un objeto: TODO lo que hace sale de aquí (curar, revivir, capturar, subir stats,
-    /// evolucionar, efectos al llevarlo equipado...). Un objeto puede combinar varias cosas: por ejemplo,
-    /// "Poción Máxima" = curar 100% + nada más; "Restaurar Todo" = curar 100% + curar estados.
+    /// An ITEM: identity + where it can be used + a list of EFFECT BLOCKS («when / if / then»). Everything it does comes from
+    /// <see cref="Effects"/>. The old per-feature constructor parameters (healHp, heldTriggerHpPercent, extras...) are still
+    /// accepted and converted to blocks, and the old properties are read-only VIEWS of the blocks, so existing callers work.
     /// </summary>
     public sealed class ItemDefinition
     {
@@ -34,32 +38,12 @@ namespace CTEditor.GameDefinition.Domain.Items
         public int Price { get; }
         public bool UsableInBattle { get; }
         public bool UsableOutsideBattle { get; }
-        /// <summary>¿Se gasta al usarlo? (las piedras y medicinas sí; los objetos clave no).</summary>
+        /// <summary>¿Se gasta al usarlo desde la mochila? (las MT dependen además de las reglas).</summary>
         public bool Consumable { get; }
-
-        // --- Uso sobre un monstruo (dentro o fuera del combate) ---
-        public int HealHp { get; }             // PS fijos (Poción = 20)
-        public float HealPercent { get; }      // % de PS máx (Poción Máxima = 100)
-        public bool CuresAllStatus { get; }    // Cura Total
-        public string CuresStatusId { get; }   // un estado concreto (Antídoto = "poison"). Vacío = ninguno
-        public bool Revives { get; }
-        public float ReviveHpPercent { get; }  // Revivir = 50, Revivir Máximo = 100
-        public int RestorePp { get; }          // PP a recuperar (Éter = 10). 0 = nada
-        public bool RestorePpAllMoves { get; } // false = solo el primer movimiento gastado (Éter); true = todos (Elixir)
-        public int FriendshipChange { get; }   // +/- amistad (bayas, vitaminas)
-
-        // --- En combate ---
-        public float CatchMultiplier { get; }  // 0 = no es una bola; 1 = Poké Ball, 1,5 = Super Ball, 255 = Master Ball
-        public string BattleStatId { get; }    // Ataque X: "attack"
-        public int BattleStages { get; }       // +1, +2...
-
-        // --- Equipado (lo lleva un monstruo) ---
-        public IReadOnlyList<PowerModifier> HeldPowerModifiers { get; }   // Carbón: ×1,2 a Fuego
-        public float HeldEndOfTurnHealPercent { get; }                     // Restos: 6,25 por turno
-        public float HeldTriggerHpPercent { get; }                         // Bayas: se activan con este % de PS o menos (0 = no)
-        public int HeldTriggerHealHp { get; }                              // Baya Aranja: +10 PS
-        public float HeldTriggerHealPercent { get; }                       // Baya Zidra: +25% PS máx
-        public bool HeldConsumedOnTrigger { get; }                         // las bayas se consumen
+        /// <summary>Is it a berry? (Unnerve stops eating it, Harvest/Pluck/Ripen/Gluttony work with it).</summary>
+        public bool IsBerry { get; }
+        /// <summary>Everything the item does.</summary>
+        public IReadOnlyList<EffectBlock> Effects { get; }
 
         public ItemDefinition(string id, string displayName, ItemCategory category,
             string description = "", int price = 0, bool usableInBattle = false, bool usableOutsideBattle = false,
@@ -68,9 +52,9 @@ namespace CTEditor.GameDefinition.Domain.Items
             bool restorePpAllMoves = false, int friendshipChange = 0, float catchMultiplier = 0f,
             string battleStatId = null, int battleStages = 0, IReadOnlyList<PowerModifier> heldPowerModifiers = null,
             float heldEndOfTurnHealPercent = 0f, float heldTriggerHpPercent = 0f, int heldTriggerHealHp = 0,
-            float heldTriggerHealPercent = 0f, bool heldConsumedOnTrigger = true, ItemExtras extras = null)
+            float heldTriggerHealPercent = 0f, bool heldConsumedOnTrigger = true, ItemExtras extras = null,
+            IReadOnlyList<EffectBlock> effects = null, bool? isBerry = null)
         {
-            Extras = extras ?? ItemExtras.None;
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("El objeto necesita un id.", nameof(id));
             Id = id;
             DisplayName = string.IsNullOrWhiteSpace(displayName) ? id : displayName;
@@ -80,43 +64,58 @@ namespace CTEditor.GameDefinition.Domain.Items
             UsableInBattle = usableInBattle;
             UsableOutsideBattle = usableOutsideBattle;
             Consumable = consumable;
-            HealHp = Math.Max(0, healHp);
-            HealPercent = Clamp(healPercent);
-            CuresAllStatus = curesAllStatus;
-            CuresStatusId = curesStatusId ?? "";
-            Revives = revives;
-            ReviveHpPercent = Clamp(reviveHpPercent);
-            RestorePp = Math.Max(0, restorePp);
-            RestorePpAllMoves = restorePpAllMoves;
-            FriendshipChange = friendshipChange;
-            CatchMultiplier = Math.Max(0f, catchMultiplier);
-            BattleStatId = battleStatId ?? "";
-            BattleStages = battleStages;
-            HeldPowerModifiers = heldPowerModifiers == null ? Array.Empty<PowerModifier>() : new List<PowerModifier>(heldPowerModifiers);
-            HeldEndOfTurnHealPercent = Clamp(heldEndOfTurnHealPercent);
-            HeldTriggerHpPercent = Clamp(heldTriggerHpPercent);
-            HeldTriggerHealHp = Math.Max(0, heldTriggerHealHp);
-            HeldTriggerHealPercent = Clamp(heldTriggerHealPercent);
-            HeldConsumedOnTrigger = heldConsumedOnTrigger;
+            Effects = effects != null
+                ? new List<EffectBlock>(effects.Where(e => e != null))
+                : ItemLegacy.ToBlocks(healHp, healPercent, curesAllStatus, curesStatusId, revives, reviveHpPercent, restorePp,
+                    restorePpAllMoves, friendshipChange, catchMultiplier, battleStatId, battleStages, heldPowerModifiers,
+                    heldEndOfTurnHealPercent, heldTriggerHpPercent, heldTriggerHealHp, heldTriggerHealPercent, heldConsumedOnTrigger, extras);
+            IsBerry = isBerry ?? (category == ItemCategory.Berry || ItemLegacy.LooksLikeBerry(Effects));
         }
+
+        // ---------------- Views of the blocks (for the bag, the AI and the old callers) ----------------
+
+        private EffectBlock Use(EffectAction a) => Effects.FirstOrDefault(e => e.Trigger == EffectTrigger.OnUse && e.Action == a);
+        private float UseAmount(EffectAction a) => Use(a)?.Amount ?? 0f;
+
+        public int HealHp => (int)UseAmount(EffectAction.HealHp);
+        public float HealPercent => Clamp(UseAmount(EffectAction.HealPercent));
+        public bool CuresAllStatus => Use(EffectAction.CureStatus) is EffectBlock b && b.Ref.Length == 0;
+        public string CuresStatusId => Use(EffectAction.CureStatus)?.Ref ?? "";
+        public bool Revives => Use(EffectAction.Revive) != null;
+        public float ReviveHpPercent => Clamp(UseAmount(EffectAction.Revive));
+        public int RestorePp => (int)((Use(EffectAction.RestorePp) ?? Use(EffectAction.RestorePpAll))?.Amount ?? 0f);
+        public bool RestorePpAllMoves => Use(EffectAction.RestorePp) == null && Use(EffectAction.RestorePpAll) != null;
+        public int FriendshipChange => (int)UseAmount(EffectAction.Friendship);
+        public float CatchMultiplier => Math.Max(0f, UseAmount(EffectAction.Catch));
+        public string BattleStatId => Use(EffectAction.ChangeStage)?.Ref ?? "";
+        public int BattleStages => (int)UseAmount(EffectAction.ChangeStage);
+
+        /// <summary>Unconditional-trigger power multipliers (Charcoal: ×1.2 to Fire).</summary>
+        public IReadOnlyList<PowerModifier> HeldPowerModifiers => Effects
+            .Where(e => e.Trigger == EffectTrigger.Passive && e.Action == EffectAction.PowerMultiplier)
+            .Select(e => new PowerModifier(e.Amount, e.Conditions)).ToList();
+
+        public float HeldEndOfTurnHealPercent => Effects.FirstOrDefault(e => e.Trigger == EffectTrigger.EndOfTurn
+            && e.Action == EffectAction.HealPercent && e.Conditions.Count == 0)?.Amount ?? 0f;
+
+        private EffectBlock LowHpHeal => Effects.FirstOrDefault(e => e.Trigger == EffectTrigger.LowHp
+            && (e.Action == EffectAction.HealHp || e.Action == EffectAction.HealPercent));
+        public float HeldTriggerHpPercent => LowHpHeal?.Threshold ?? 0f;
+        public int HeldTriggerHealHp => LowHpHeal is EffectBlock b && b.Action == EffectAction.HealHp ? (int)b.Amount : 0;
+        public float HeldTriggerHealPercent => LowHpHeal is EffectBlock b && b.Action == EffectAction.HealPercent ? b.Amount : 0f;
+        public bool HeldConsumedOnTrigger => LowHpHeal?.Consumes ?? true;
 
         private static float Clamp(float v) => v < 0f ? 0f : (v > 100f ? 100f : v);
 
         public bool IsBall => CatchMultiplier > 0f;
-        public bool CuresStatus => CuresAllStatus || CuresStatusId.Length > 0;
+        public bool CuresStatus => Use(EffectAction.CureStatus) != null;
 
-        /// <summary>¿Cura este estado? (CuresStatusId admite varios separados por '|': "poison|toxic").</summary>
-        public bool CuresThis(string statusId)
-        {
-            if (CuresAllStatus) return true;
-            foreach (var s in CuresStatusId.Split('|'))
-                if (s.Trim().Length > 0 && s.Trim() == statusId) return true;
-            return false;
-        }
+        /// <summary>¿Cura este estado al usarlo? (CuresStatusId admite varios separados por '|': "poison|toxic").</summary>
+        public bool CuresThis(string statusId) => Use(EffectAction.CureStatus)?.Cures(statusId) ?? false;
         public bool HealsHp => HealHp > 0 || HealPercent > 0f;
-        public bool HasHeldEffect => HeldPowerModifiers.Count > 0 || HeldEndOfTurnHealPercent > 0f || HeldTriggerHpPercent > 0f || Extras.DoesSomething;
-
-        /// <summary>Efectos de competición al llevarlo equipado (Elección, Vidasfera, Banda Focus...).</summary>
-        public ItemExtras Extras { get; }
+        /// <summary>Does it do anything while HELD?</summary>
+        public bool HasHeldEffect => Effects.Any(e => e.Trigger != EffectTrigger.OnUse && e.Trigger != EffectTrigger.OnWalk);
+        /// <summary>Blocks for one trigger.</summary>
+        public IEnumerable<EffectBlock> On(EffectTrigger t) => Effects.Where(e => e.Trigger == t);
     }
 }

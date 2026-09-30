@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CTEditor.SharedKernel.Events;
+using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Abilities;
 using CTEditor.GameDefinition.Domain.Battlefield;
@@ -138,7 +139,7 @@ namespace CTEditor.Battle.Domain.Turn
             if (!(grounded && type.Value == "ground") && HasVolatileFlag(target, d => ContainsType(d.Extras.TypeImmunities, type)))
             { abilityImmune = true; return 0f; }
             // Globo Helio: inmune a Tierra (salvo en el suelo por Gravedad...).
-            if (type.Value == "ground" && !grounded && HeldX(target).AirBalloon) { abilityImmune = true; return 0f; }
+            if (!(grounded && type.Value == "ground") && HeldImmuneTo(target, type, actor, move)) { abilityImmune = true; return 0f; }
             // Plancha (también Volador) y Liofilización (muy eficaz contra Agua).
             mult = TagEffectiveness(move, target, mult);
             // Superguarda: solo los muy eficaces.
@@ -199,8 +200,8 @@ namespace CTEditor.Battle.Domain.Turn
             foreach (var m in X(actor).AccuracyModifiers)
                 if (AllConditions(m.Conditions, actor, target, move)) acc *= m.Multiplier;
             // Objetos: Lupa / Telescopio (atacante) y Polvo Brillo / Incienso Lax (objetivo).
-            acc *= HeldX(actor).AccuracyMultiplier;
-            if (target != null && target != actor && move.Target != MoveTarget.Self) acc *= HeldX(target).EvasionMultiplier;
+            acc *= HeldProduct(actor, EffectAction.AccuracyMultiplier, target, move);
+            if (target != null && target != actor && move.Target != MoveTarget.Self) acc *= HeldProduct(target, EffectAction.EvasionMultiplier, actor, move);
             return _rng.NextFloat() < acc;
         }
 
@@ -225,10 +226,10 @@ namespace CTEditor.Battle.Domain.Turn
                 }
             // Objetos Elección: solo el primer movimiento que usó. Chaleco Asalto: nada de movimientos de estado.
             bool struggle = _struggleMove.HasValue && moveId == _struggleMove.Value;
-            var hx = HeldX(actor);
-            if (!struggle && hx.ChoiceLock && actor.ChoiceLockedMove.HasValue && actor.ChoiceLockedMove.Value != moveId
+            var foeOf = OpponentOf(actor);
+            if (!struggle && HeldHas(actor, EffectAction.ChoiceLock, foeOf, move) && actor.ChoiceLockedMove.HasValue && actor.ChoiceLockedMove.Value != moveId
                 && actor.IndexOfMove(actor.ChoiceLockedMove.Value) >= 0) return actor.HeldItem;
-            if (!struggle && hx.BlocksStatusMoves && move.Category == MoveCategory.Status) return actor.HeldItem;
+            if (!struggle && move.Category == MoveCategory.Status && HeldHas(actor, EffectAction.BlockStatusMoves, foeOf, move)) return actor.HeldItem;
             // Cerca: el rival no puede usar los movimientos que conoce quien la usó.
             var opp = OpponentOf(actor);
             if (opp != null && !opp.IsFainted && opp.IndexOfMove(moveId) >= 0 && HasVolatileFlag(opp, d => d.Extras.Imprisons))
@@ -539,12 +540,7 @@ namespace CTEditor.Battle.Domain.Turn
                 }
                 case MoveEffectKind.ConsumeTargetBerry:
                 {
-                    if (who == null || who.IsFainted || actor.IsFainted || !TryGetHeldItem(who, out var berry) || berry.HeldTriggerHpPercent <= 0f) return true;
-                    who.TakeHeldItem();
-                    events.Add(new ItemTransferredEvent(who.Id, actor.Id, berry.Id));
-                    int before = actor.CurrentHp;
-                    actor.HealHp(berry.HeldTriggerHealHp + (int)(actor.MaxHp * berry.HeldTriggerHealPercent / 100f));
-                    if (actor.CurrentHp > before) events.Add(new HpRestoredEvent(actor.Id, actor.CurrentHp - before));
+                    EatTargetBerry(actor, who, events);
                     return true;
                 }
                 case MoveEffectKind.RestoreItem:

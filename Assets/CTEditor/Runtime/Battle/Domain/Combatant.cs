@@ -191,6 +191,12 @@ namespace CTEditor.Battle.Domain
 
         /// <summary>Objeto equipado. Null = ninguno (o ya lo consumió, como una baya).</summary>
         public string HeldItem { get; private set; }
+
+        // How many times each effect block fired this battle (key = source id + block index), for «N times per battle».
+        private readonly Dictionary<string, int> _effectUses = new Dictionary<string, int>();
+        internal int EffectUses(string key) => _effectUses.TryGetValue(key, out var n) ? n : 0;
+        internal void NoteEffectUse(string key) => _effectUses[key] = EffectUses(key) + 1;
+
         internal void ConsumeHeldItem()
         {
             if (HeldItem == null) return;

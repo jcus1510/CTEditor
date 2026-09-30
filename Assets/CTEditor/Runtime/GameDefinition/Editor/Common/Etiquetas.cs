@@ -227,6 +227,7 @@ namespace CTEditor.GameDefinition.Editor
             ["heldItemsEnabled"] = ("Se pueden equipar objetos", "hay_objetos_equipados"),
             ["naturesEnabled"] = ("Hay naturalezas", "hay_naturalezas"),
             ["gendersEnabled"] = ("Hay géneros", "hay_generos"),
+            ["machinesConsumable"] = ("Las MT se gastan", "mt_se_gastan"),
             ["mechanicIds"] = ("Mecánicas especiales activas", "mecanicas"),
             // Mecánicas especiales
             ["mechanicKind"] = ("Tipo de mecánica", "tipo_mecanica"),
@@ -253,6 +254,8 @@ namespace CTEditor.GameDefinition.Editor
             ["restorePpAllMoves"] = ("A todos los movimientos", "pp_todos"),
             ["friendshipChange"] = ("Cambio de amistad", "amistad"),
             ["catchMultiplier"] = ("Multiplicador de captura (0 = no es bola)", "captura"),
+            ["isBerry"] = ("Es una baya", "es_baya"),
+            ["effects"] = ("Efectos", "efectos"),
             ["battleStatId"] = ("En combate: estadística", "combate_stat"),
             ["battleStages"] = ("En combate: etapas", "combate_etapas"),
             ["heldPowerModifiers"] = ("Equipado: potencia", "equipado_potencia"),
@@ -700,7 +703,7 @@ namespace CTEditor.GameDefinition.Editor
             // Objetos
             ["Medicine"] = "Medicina", ["Revive"] = "Revivir", ["StatusCure"] = "Cura de estado", ["PpRestore"] = "Recuperar PP",
             ["Ball"] = "Bola", ["Evolution"] = "Evolución", ["BattleBoost"] = "Objeto de combate", ["Held"] = "Equipable",
-            ["Vitamin"] = "Amistad / vitaminas", ["Key"] = "Objeto clave",
+            ["Vitamin"] = "Amistad / vitaminas", ["Key"] = "Objeto clave", ["Machine"] = "MT / MO", ["Berry"] = "Baya",
             // Evolución
             ["Level"] = "Por nivel", ["Item"] = "Con un objeto", ["Friendship"] = "Por amistad (al subir de nivel)",
             ["Trade"] = "Por intercambio", ["LevelUp"] = "Al subir de nivel (con condiciones)",

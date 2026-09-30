@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using CTEditor.GameDefinition.Domain.Conditions;
+using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Domain.Items;
 using CTEditor.GameDefinition.Infrastructure.Catalog;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
@@ -23,15 +24,17 @@ namespace CTEditor.GameDefinition.Editor
         protected override string Category => ContentFolders.Items;
         protected override string Noun => "objeto";
         protected override string Intro =>
-            "Medicinas, bolas, piedras evolutivas, objetos de combate y objetos para equipar. Un objeto puede combinar varios efectos.";
+            "Cada objeto es una lista de EFECTOS: «cuándo» (al usarlo, mientras lo lleva, al recibir un golpe, con poca vida...), " +
+            "«si» (condiciones) y «qué» (curar, curar estados, multiplicar, resistir un tipo...). Combínalos para crear cualquier objeto.";
 
         public override string[] GuideSteps => new[]
         {
-            "Pulsa «Crear los objetos clásicos» para tener una base (Poción, Poké Ball, Piedra Fuego, Restos…).",
-            "Elige una ficha y cambia lo que quieras: precio, cuánto cura, qué estado cura…",
-            "Para inventar uno, parte de una plantilla parecida y combina efectos (p. ej. curar + curar estado).",
+            "Pulsa «Crear los objetos clásicos» para tener una base (Poción, Poké Ball, Piedra Fuego, Restos, bayas…).",
+            "Elige una ficha: arriba lo común (nombre, bolsillo, precio, dónde se usa) y abajo sus EFECTOS en tarjetas.",
+            "«+ Añadir efecto» elige primero CUÁNDO y luego QUÉ; los tipos, estados y estadísticas se eligen de un desplegable.",
+            "«✨ Plantillas por piezas» añade efectos hechos: «Baya que resiste un ataque de tipo ▸ Fuego», «Cura el estado ▸ Parálisis»...",
+            "Cada efecto puede tener condiciones, probabilidad, veces por combate y gastar el objeto.",
             "Las piedras evolutivas se conectan desde la especie: en su evolución elige «Objeto» y este objeto.",
-            "Los objetos equipables se asignan a cada monstruo (PartyHolder / rival) en «Objeto equipado».",
         };
 
         // Color de cada categoría (chips del editor y de la lista).
@@ -57,7 +60,8 @@ namespace CTEditor.GameDefinition.Editor
             }
         }
 
-        public static string NameOf(ItemCategory c) => Etiquetas.Enum(c.ToString());
+        // «Other» is also a target label («Rival») in Etiquetas: items need their own word.
+        public static string NameOf(ItemCategory c) => c == ItemCategory.Other ? "Otros" : Etiquetas.Enum(c.ToString());
 
         // ---------------- Biblioteca clásica ----------------
 
@@ -232,21 +236,9 @@ namespace CTEditor.GameDefinition.Editor
         /// <summary>Deja la ficha "en blanco" (sin efectos) antes de aplicar una plantilla.</summary>
         private static void Reset(SerializedObject so)
         {
-            Int(so, "healHp", 0); Flt(so, "healPercent", 0); Bool(so, "curesAllStatus", false); Str(so, "curesStatusId", "");
-            Bool(so, "revives", false); Flt(so, "reviveHpPercent", 50); Int(so, "restorePp", 0); Bool(so, "restorePpAllMoves", false);
-            Int(so, "friendshipChange", 0); Flt(so, "catchMultiplier", 0); Str(so, "battleStatId", ""); Int(so, "battleStages", 0);
-            so.FindProperty("heldPowerModifiers").arraySize = 0;
-            Flt(so, "heldEndOfTurnHealPercent", 0); Flt(so, "heldTriggerHpPercent", 0); Int(so, "heldTriggerHealHp", 0);
-            Flt(so, "heldTriggerHealPercent", 0); Bool(so, "heldConsumedOnTrigger", true);
-            // 5.ª y 6.ª gen.: todo a cero (así una plantilla no hereda nada de lo que hubiera).
-            so.FindProperty("heldStatMultipliers").arraySize = 0; so.FindProperty("heldOnHitStats").arraySize = 0;
-            Bool(so, "heldChoiceLock", false); Flt(so, "heldAttackRecoilPercent", 0); Bool(so, "heldSurviveFromFullHp", false);
-            Flt(so, "heldContactDamagePercent", 0); Bool(so, "heldOnHitConsumed", false); Bool(so, "heldAirBalloon", false);
-            Bool(so, "heldBlocksStatusMoves", false); Int(so, "heldCritStageBonus", 0); Flt(so, "heldAccuracyMultiplier", 1f);
-            Flt(so, "heldEvasionMultiplier", 1f); Str(so, "heldResistBerryType", ""); Bool(so, "heldCuresAnyStatus", false);
-            Str(so, "heldSelfStatusEndOfTurn", ""); Flt(so, "heldFlinchChance", 0); Flt(so, "heldHealOnDamagePercent", 0);
-            Int(so, "heldWeatherTurnsBonus", 0); Int(so, "heldScreenTurnsBonus", 0); Bool(so, "heldBlackSludge", false);
-            Flt(so, "heldQuickClawChance", 0); Flt(so, "heldSuperEffectiveBoost", 1f);
+            so.FindProperty("effects").arraySize = 0;
+            so.FindProperty("isBerry").boolValue = false;
+            ItemEffectsEditing.ClearLegacy(so);
             Bool(so, "usableInBattle", true); Bool(so, "usableOutsideBattle", true); Bool(so, "consumable", true);
         }
 
@@ -257,6 +249,13 @@ namespace CTEditor.GameDefinition.Editor
             so.FindProperty("price").intValue = p.Price;
             so.FindProperty("description").stringValue = p.Summary;
             p.Fill(so);
+            // The presets are written with the classic fields; they become EFFECT BLOCKS right away (same behaviour).
+            so.ApplyModifiedPropertiesWithoutUndo();
+            so.Update();
+            var d = (ItemData)so.targetObject;
+            var blocks = CTEditor.GameDefinition.Infrastructure.Acl.ItemMapper.LegacyBlocks(d);
+            ItemEffectsEditing.SetBlocks(so, blocks);
+            so.FindProperty("isBerry").boolValue = ItemLegacy.LooksLikeBerry(blocks);
         }
 
         private static void Int(SerializedObject so, string f, int v) => so.FindProperty(f).intValue = v;
@@ -335,8 +334,8 @@ namespace CTEditor.GameDefinition.Editor
             EditorTheme.Chip($"{NameOf(d.Category).ToUpperInvariant()} · {d.Price} ₽", ColorOf(d.Category));
             var lines = Describe(d);
             EditorGUILayout.LabelField("Qué hace", EditorStyles.boldLabel);
-            EditorGUILayout.HelpBox(lines.Count == 0 ? "Todavía no hace nada (todos sus efectos están en cero)." : "• " + string.Join("\n• ", lines),
-                lines.Count == 0 ? MessageType.Warning : MessageType.Info);
+            EditorGUILayout.HelpBox(lines.Count <= 1 ? "Todavía no hace nada: añade efectos abajo (o una plantilla por piezas)." : string.Join("\n", lines),
+                lines.Count <= 1 ? MessageType.Warning : MessageType.Info);
 
             foreach (var w in Check(d)) EditorGUILayout.HelpBox(w, MessageType.Warning);
 
@@ -350,60 +349,22 @@ namespace CTEditor.GameDefinition.Editor
             }
         }
 
-        /// <summary>El objeto en frases.</summary>
+        /// <summary>
+        /// The item in sentences, GROUPED by moment («Al usarlo», «Mientras lo lleva», «Con poca vida»...): the heading
+        /// says when, so the sentences do not repeat «Equipado:».
+        /// </summary>
         public static List<string> Describe(ItemData d)
         {
             var l = new List<string>();
-            if (d.HealHp > 0) l.Add($"Cura {d.HealHp} PS.");
-            if (d.HealPercent > 0) l.Add(d.HealPercent >= 100 ? "Cura todos los PS." : $"Cura el {d.HealPercent:0.#}% de los PS.");
-            if (d.CuresAllStatus) l.Add("Cura cualquier estado.");
-            else if (!string.IsNullOrWhiteSpace(d.CuresStatusId)) l.Add($"Cura: {d.CuresStatusId.Replace("|", ", ")}.");
-            if (d.Revives) l.Add($"Revive con el {d.ReviveHpPercent:0}% de los PS.");
-            if (d.RestorePp > 0) l.Add($"Recupera {(d.RestorePp >= 99 ? "todos los" : d.RestorePp.ToString())} PP de {(d.RestorePpAllMoves ? "todos los movimientos" : "un movimiento")}.");
-            if (d.FriendshipChange != 0) l.Add($"{(d.FriendshipChange > 0 ? "Sube" : "Baja")} la amistad {Math.Abs(d.FriendshipChange)} puntos.");
-            if (d.CatchMultiplier > 0) l.Add(d.CatchMultiplier >= 255 ? "Bola: captura siempre." : $"Bola: probabilidad de captura ×{d.CatchMultiplier:0.##}.");
-            if (!string.IsNullOrWhiteSpace(d.BattleStatId) && d.BattleStages != 0)
-                l.Add($"En combate: {(d.BattleStages > 0 ? "+" : "")}{d.BattleStages} a {StatLabels.NameOf(d.BattleStatId)}.");
-            if (d.HeldPowerModifiers != null)
-                foreach (var m in d.HeldPowerModifiers.Where(m => m != null))
-                    l.Add($"Equipado: potencia ×{m.multiplier:0.##} {ConditionText.Describe((m.conditions ?? new ConditionData[0]).Select(ConditionText.FromData))}.");
-            if (d.HeldEndOfTurnHealPercent > 0) l.Add($"Equipado: recupera el {d.HeldEndOfTurnHealPercent:0.##}% de PS al final de cada turno.");
-            if (d.HeldTriggerHpPercent > 0)
-                l.Add($"Equipado: con el {d.HeldTriggerHpPercent:0}% de PS o menos, recupera " +
-                      (d.HeldTriggerHealHp > 0 ? $"{d.HeldTriggerHealHp} PS" : $"el {d.HeldTriggerHealPercent:0.#}% de PS") +
-                      (d.HeldConsumedOnTrigger ? " y se consume." : "."));
-            // 5.ª y 6.ª gen.
-            if (d.HeldStatMultipliers != null)
-                foreach (var m in d.HeldStatMultipliers.Where(m => m != null))
-                    l.Add($"Equipado: {StatLabels.NameOf(m.statId)} ×{m.multiplier:0.##}" +
-                          (m.conditions != null && m.conditions.Length > 0 ? $" {ConditionText.Describe(m.conditions.Select(ConditionText.FromData))}" : "") + ".");
-            if (d.HeldChoiceLock) l.Add("Equipado: solo puede usar el primer movimiento que elija hasta que se retire.");
-            if (d.HeldAttackRecoilPercent > 0) l.Add($"Equipado: pierde el {d.HeldAttackRecoilPercent:0.##}% de sus PS cada vez que hace daño.");
-            if (d.HeldSurviveFromFullHp) l.Add("Equipado: con los PS al máximo aguanta con 1 PS un golpe mortal (se gasta).");
-            if (d.HeldContactDamagePercent > 0) l.Add($"Equipado: quien le golpea con contacto pierde el {d.HeldContactDamagePercent:0.##}% de sus PS.");
-            if (d.HeldOnHitStats != null)
-                foreach (var h in d.HeldOnHitStats.Where(h => h != null))
-                    l.Add($"Equipado: al recibir un golpe, {StatLabels.NameOf(h.statId)} {(h.stages > 0 ? "+" : "")}{h.stages}" +
-                          (h.conditions != null && h.conditions.Length > 0 ? $" {ConditionText.Describe(h.conditions.Select(ConditionText.FromData))}" : "") +
-                          (d.HeldOnHitConsumed ? " (se gasta)." : "."));
-            if (d.HeldAirBalloon) l.Add("Equipado: inmune a Tierra hasta que le golpean (revienta).");
-            if (d.HeldBlocksStatusMoves) l.Add("Equipado: no puede usar movimientos de estado.");
-            if (d.HeldCritStageBonus > 0) l.Add($"Equipado: +{d.HeldCritStageBonus} al índice de crítico.");
-            if (d.HeldAccuracyMultiplier != 1f) l.Add($"Equipado: precisión de sus movimientos ×{d.HeldAccuracyMultiplier:0.##}.");
-            if (d.HeldEvasionMultiplier != 1f) l.Add($"Equipado: los que le atacan tienen precisión ×{d.HeldEvasionMultiplier:0.##}.");
-            if (!string.IsNullOrWhiteSpace(d.HeldResistBerryType)) l.Add($"Equipado: reduce a la mitad un golpe muy eficaz de tipo '{d.HeldResistBerryType}' (se gasta).");
-            if (d.HeldCuresAnyStatus) l.Add("Equipado: se cura de cualquier estado al sufrirlo (se gasta).");
-            if (!string.IsNullOrWhiteSpace(d.HeldSelfStatusEndOfTurn)) l.Add($"Equipado: al final del turno se pone el estado '{d.HeldSelfStatusEndOfTurn}'.");
-            if (d.HeldFlinchChance > 0) l.Add($"Equipado: {d.HeldFlinchChance:0.#}% de hacer retroceder con sus ataques.");
-            if (d.HeldHealOnDamagePercent > 0) l.Add($"Equipado: recupera el {d.HeldHealOnDamagePercent:0.##}% del daño que hace.");
-            if (d.HeldWeatherTurnsBonus > 0) l.Add($"Equipado: el clima que pone dura {d.HeldWeatherTurnsBonus} turnos más.");
-            if (d.HeldScreenTurnsBonus > 0) l.Add($"Equipado: sus pantallas duran {d.HeldScreenTurnsBonus} turnos más.");
-            if (d.HeldBlackSludge) l.Add("Equipado: si es de tipo Veneno recupera 1/16 por turno; si no, pierde 1/8.");
-            if (d.HeldQuickClawChance > 0) l.Add($"Equipado: {d.HeldQuickClawChance:0.#}% de actuar el primero.");
-            if (d.HeldSuperEffectiveBoost != 1f) l.Add($"Equipado: sus golpes muy eficaces ×{d.HeldSuperEffectiveBoost:0.##}.");
+            var blocks = ItemEffectsEditing.Blocks(d);
+            foreach (var group in blocks.GroupBy(b => b.Trigger).OrderBy(g => (int)g.Key))
+            {
+                l.Add(EffectText.Label(group.Key).ToUpperInvariant() + ":");
+                foreach (var b in group) l.Add("  • " + EffectText.Describe(b, EffectBlocksGui.Name));
+            }
             if (d.Category == ItemCategory.Evolution) l.Add("Hace evolucionar a las especies que lo indiquen en su evolución.");
             l.Add($"Se usa {(d.UsableInBattle && d.UsableOutsideBattle ? "dentro y fuera del combate" : d.UsableInBattle ? "solo en combate" : d.UsableOutsideBattle ? "solo fuera del combate" : "solo equipado o como objeto clave")}" +
-                  (d.Consumable ? " y se gasta." : " y no se gasta."));
+                  (d.Consumable ? " y se gasta." : " y no se gasta.") + (d.IsBerry ? " Es una baya." : ""));
             return l;
         }
 
@@ -430,19 +391,29 @@ namespace CTEditor.GameDefinition.Editor
         public static List<string> Check(ItemData d)
         {
             var w = new List<string>();
-            if (d.CatchMultiplier > 0 && !d.UsableInBattle) w.Add("Es una bola pero no se puede usar en combate: nunca servirá para capturar.");
-            // Los objetos que hacen EVOLUCIONAR (al llevarlos o al intercambiar: Roca del Rey, Revestimiento Metálico, Escama
-            // Bella, Saquito Fragante...) no necesitan efecto en combate: su efecto es la evolución.
-            if (d.Category == ItemCategory.Held && !(d.HeldPowerModifiers?.Length > 0 || d.HeldEndOfTurnHealPercent > 0 || d.HeldTriggerHpPercent > 0
-                                                     || CTEditor.GameDefinition.Infrastructure.Acl.ItemMapper.Extras(d).DoesSomething)
-                && !EvolutionItems().Contains(d.Id ?? ""))
-                w.Add("Es de categoría «Equipable» pero no tiene efectos al llevarlo (ni hace evolucionar a ninguna especie).");
-            if (d.HeldTriggerHpPercent > 0 && d.HeldTriggerHealHp <= 0 && d.HeldTriggerHealPercent <= 0)
-                w.Add("Se activa con poca vida pero no cura nada.");
-            if (!string.IsNullOrWhiteSpace(d.CuresStatusId))
-                foreach (var s in d.CuresStatusId.Split('|'))
-                    if (s.Trim().Length > 0 && ContentAssets.FindById<StatusConditionData>(s.Trim()) == null)
-                        w.Add($"Cura el estado '{s.Trim()}', que no existe.");
+            var blocks = ItemEffectsEditing.Blocks(d);
+            bool isBall = blocks.Any(b => b.Trigger == EffectTrigger.OnUse && b.Action == EffectAction.Catch && b.Amount > 0);
+            if (isBall && !d.UsableInBattle) w.Add("Es una bola pero no se puede usar en combate: nunca servirá para capturar.");
+            bool held = blocks.Any(b => b.Trigger != EffectTrigger.OnUse && b.Trigger != EffectTrigger.OnWalk);
+            // Los objetos que hacen EVOLUCIONAR (al llevarlos o al intercambiar) no necesitan efecto en combate: su efecto es la evolución.
+            if ((d.Category == ItemCategory.Held || d.Category == ItemCategory.Berry) && !held && !EvolutionItems().Contains(d.Id ?? ""))
+                w.Add("Es para llevar equipado pero no tiene efectos al llevarlo (ni hace evolucionar a ninguna especie).");
+            if (blocks.Any(b => b.Trigger == EffectTrigger.OnUse) && !d.UsableInBattle && !d.UsableOutsideBattle)
+                w.Add("Tiene efectos «Al usarlo», pero no se puede usar ni en combate ni fuera.");
+            foreach (var b in blocks)
+            {
+                if (!EffectRules.IsSupported(b)) w.Add($"«{EffectText.Label(b.Trigger)} → {EffectText.Label(b.Action)}» se guarda, pero el motor aún no lo aplica.");
+                var kind = EffectText.RefOf(b.Action);
+                if (kind == EffectRefKind.Status || kind == EffectRefKind.StatusList)
+                    foreach (var s in b.RefList)
+                        if (ContentAssets.FindById<StatusConditionData>(s) == null) w.Add($"Usa el estado '{s}', que no existe.");
+                if (kind == EffectRefKind.Type && b.Ref.Length > 0 && ContentAssets.FindById<ElementTypeData>(b.Ref) == null) w.Add($"Usa el tipo '{b.Ref}', que no existe.");
+                if (kind == EffectRefKind.Move && b.Ref.Length > 0 && ContentAssets.FindById<MoveData>(b.Ref) == null) w.Add($"Enseña '{b.Ref}', que no existe.");
+                if (kind != EffectRefKind.None && kind != EffectRefKind.StatusList && kind != EffectRefKind.Weather && b.Ref.Length == 0)
+                    w.Add($"«{EffectText.Label(b.Action)}»: falta elegir {(kind == EffectRefKind.Stat ? "la estadística" : kind == EffectRefKind.Type ? "el tipo" : "qué")}.");
+                foreach (var c in b.Conditions)
+                    if (c.Kind == ConditionKind.MoveType && ContentAssets.FindById<ElementTypeData>(c.Text) == null) w.Add($"Una condición usa el tipo '{c.Text}', que no existe.");
+            }
             return w;
         }
     }

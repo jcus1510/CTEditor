@@ -23,7 +23,7 @@
     <Compile Include="$(Runtime)Battle/**/*.cs" />
     <Compile Include="$(Runtime)Party/**/*.cs" />
     <Compile Include="$(Runtime)Adventure/**/*.cs" />
-    <Compile Include="$(Tests)*.cs" Exclude="$(Tests)ConsoleBattleTests.cs;$(Tests)CsvTests.cs;$(Tests)EditorCatalogTests.cs;$(Tests)EvolutionConditionTests.cs;$(Tests)GrowthCurveMapperTests.cs;$(Tests)LoteFTests.cs;$(Tests)MathExpressionTests.cs;$(Tests)PokedexAndMovesetTests.cs;$(Tests)ReferenceFinderTests.cs;$(Tests)TrashTests.cs" />
+    <Compile Include="$(Tests)*.cs" Exclude="$(Tests)ConsoleBattleTests.cs;$(Tests)CsvTests.cs;$(Tests)EditorCatalogTests.cs;$(Tests)EvolutionConditionTests.cs;$(Tests)GrowthCurveMapperTests.cs;$(Tests)LoteFTests.cs;$(Tests)MathExpressionTests.cs;$(Tests)PokedexAndMovesetTests.cs;$(Tests)ReferenceFinderTests.cs;$(Tests)TrashTests.cs;$(Tests)EffectTextTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />

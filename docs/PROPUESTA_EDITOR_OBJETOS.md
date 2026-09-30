@@ -1,6 +1,8 @@
 # Propuesta — Editor de objetos por bloques (para todas las generaciones)
 
-> Estado: **propuesta para discutir** (no implementada). Autor: sesión de Claude Code, tras el paso 7.
+> Estado: **IMPLEMENTADA** (salvo los bolsillos como fichas y algunos efectos «Al usarlo»). La referencia actual es
+> [09 · Efectos por bloques](09-efectos-por-bloques.md). Decisiones del autor: probabilidad y veces por combate en todos
+> los bloques; el gasto de las MT es una regla; las habilidades se harán con el mismo sistema.
 
 ## 1. Qué falla hoy
 

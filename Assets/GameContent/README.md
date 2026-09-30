@@ -93,11 +93,26 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - **CTEditor → Objetos → Todos los objetos**: 119 plantillas clásicas (pociones, revivir, antídotos, éteres, bolas, piedras
   evolutivas, objetos X, Restos, Carbón y demás objetos que potencian un tipo, bayas). Pulsa
   «Crear los 119 objetos clásicos» (también los de competición de la 5.ª-6.ª gen.) o «✨ Crear TODO» en el Centro de Contenido.
-- Un objeto puede: curar PS (fijos o %), curar todos los estados o solo algunos (`poison|toxic`),
-  revivir con un % de PS, recuperar PP (uno o todos los movimientos), cambiar la amistad, ser una bola
-  (multiplicador de captura), subir etapas en combate (Ataque X) o hacer algo **equipado**:
-  potenciar movimientos con condiciones, curar al final de cada turno o activarse (y consumirse)
-  al bajar de cierto % de PS.
+- **Un objeto = una lista de EFECTOS** «cuándo → si → qué» (sin secciones por generación):
+  - **Cuándo**: al usarlo · mientras lo lleva · al entrar al combate · al final de cada turno · antes de recibir un golpe ·
+    tras recibir un golpe · al recibir un golpe con contacto · tras hacer daño · al sufrir un estado · con poca vida (umbral %) ·
+    al caminar.
+  - **Si**: las condiciones de siempre (tipo del movimiento, eficacia, PS, clima, estado, contacto...), con desplegables.
+  - **Qué**: curar PS/%, perder %, curar estados (desplegable, o «cualquiera»), poner un estado, revivir, PP, cambiar o
+    multiplicar una estadística, crítico, precisión, potencia, daño que hace o recibe, aguantar con 1 PS, inmunidad a un
+    tipo, actuar el primero, bloqueo Elección, sin movimientos de estado, alargar clima o pantallas, retroceso, capturar,
+    amistad, EVs, nivel, enseñar un movimiento (MT), huir, repelente, cambiar de forma, permitir una mecánica...
+  - Cada efecto: **probabilidad**, **veces por combate** y **se gasta** (el objeto). «Es una baya» activa Nerviosismo,
+    Cosecha, Picotazo, Carrillo y Gula.
+  - **✨ Plantillas por piezas**: «Baya que resiste un ataque de tipo ▸ Fuego», «Cura el estado ▸ Parálisis», «Potencia
+    los movimientos de tipo ▸ Agua», «Sube una estadística con poca vida ▸ Ataque»... Luego se retoca todo.
+  - Si un efecto aún no lo aplica el motor, el editor lo avisa («se guarda, pero aún no tiene efecto»).
+  - Excel: columna `efectos`, p. ej. `fin_de_turno: curar 6,25% | antes_de_golpe [si mov.tipo=fire & propio.eficacia>1]:
+    daño_recibido x0,5; se_gasta | poca_vida@25: etapa attack +1; se_gasta`. Opciones: `se_gasta`, `al_rival`, `prob=N`,
+    `veces=N`. La columna `captura` sigue funcionando (es el efecto «al usarlo: captura»).
+  - Los objetos antiguos se convierten solos al abrirlos (o todos en **Objetos → Convertir objetos antiguos a efectos**);
+    funcionan exactamente igual.
+- **MT que se gastan**: es una regla (Reglas → «Las MT se gastan»; 1.ª-4.ª gen. sí, desde la 5.ª no), no del objeto.
 - **Mochila**: el `PartyHolder` trae la `Mochila inicial` (por defecto 5 Pociones y 10 Poké Balls). Los
   botones Mochila y Capturar de la pantalla de combate usan los objetos que elijas.
 - **Evoluciones** (ficha de especie o ventana de cadenas evolutivas): por **nivel**, por **objeto**

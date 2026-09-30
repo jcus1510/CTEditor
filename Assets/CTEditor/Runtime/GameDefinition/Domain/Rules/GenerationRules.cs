@@ -44,12 +44,16 @@ namespace CTEditor.GameDefinition.Domain.Rules
         /// <summary>¿Hay géneros? (desde 2.ª gen.). Apagado = todos sin género.</summary>
         public bool Genders { get; }
 
+        /// <summary>¿Las MT se gastan al usarlas? (1.ª-4.ª gen.: sí; desde la 5.ª: no). Las MO nunca se gastan.</summary>
+        public bool MachinesConsumable { get; }
+
         /// <summary>Los tipos especiales clásicos (1.ª-3.ª gen.).</summary>
         public static readonly IReadOnlyList<string> ClassicSpecialTypes =
             new[] { "fire", "water", "grass", "electric", "ice", "psychic", "dragon", "dark" };
 
         public GenerationRules(int generation = 0, bool categoryByType = false, IEnumerable<string> specialTypes = null,
-            bool singleSpecialStat = false, bool abilities = true, bool heldItems = true, bool natures = true, bool genders = true)
+            bool singleSpecialStat = false, bool abilities = true, bool heldItems = true, bool natures = true, bool genders = true,
+            bool machinesConsumable = false)
         {
             Generation = generation < 0 ? 0 : generation;
             CategoryByType = categoryByType;
@@ -62,6 +66,7 @@ namespace CTEditor.GameDefinition.Domain.Rules
             HeldItems = heldItems;
             Natures = natures;
             Genders = genders;
+            MachinesConsumable = machinesConsumable;
         }
 
         /// <summary>Moderno: todo encendido, categoría por movimiento.</summary>
@@ -79,17 +84,20 @@ namespace CTEditor.GameDefinition.Domain.Rules
             switch (generation)
             {
                 case 1: return new GenerationRules(1, categoryByType: true, singleSpecialStat: true,
-                    abilities: false, heldItems: false, natures: false, genders: false);
-                case 2: return new GenerationRules(2, categoryByType: true, abilities: false, natures: false);
-                case 3: return new GenerationRules(3, categoryByType: true);
-                default: return new GenerationRules(generation >= 4 && generation <= 9 ? generation : 0);
+                    abilities: false, heldItems: false, natures: false, genders: false, machinesConsumable: true);
+                case 2: return new GenerationRules(2, categoryByType: true, abilities: false, natures: false, machinesConsumable: true);
+                case 3: return new GenerationRules(3, categoryByType: true, machinesConsumable: true);
+                case 4: return new GenerationRules(4, machinesConsumable: true);
+                default: return new GenerationRules(generation >= 5 && generation <= 9 ? generation : 0);
             }
         }
 
         /// <summary>Copia cambiando solo lo indicado.</summary>
         public GenerationRules With(int? generation = null, bool? categoryByType = null, IEnumerable<string> specialTypes = null,
-            bool? singleSpecialStat = null, bool? abilities = null, bool? heldItems = null, bool? natures = null, bool? genders = null)
+            bool? singleSpecialStat = null, bool? abilities = null, bool? heldItems = null, bool? natures = null, bool? genders = null,
+            bool? machinesConsumable = null)
             => new GenerationRules(generation ?? Generation, categoryByType ?? CategoryByType, specialTypes ?? SpecialTypes,
-                singleSpecialStat ?? SingleSpecialStat, abilities ?? Abilities, heldItems ?? HeldItems, natures ?? Natures, genders ?? Genders);
+                singleSpecialStat ?? SingleSpecialStat, abilities ?? Abilities, heldItems ?? HeldItems, natures ?? Natures, genders ?? Genders,
+                machinesConsumable ?? MachinesConsumable);
     }
 }

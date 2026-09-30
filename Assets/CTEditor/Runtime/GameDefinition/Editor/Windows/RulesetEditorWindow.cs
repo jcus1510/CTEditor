@@ -125,6 +125,7 @@ namespace CTEditor.GameDefinition.Editor
             so.FindProperty("heldItemsEnabled").boolValue = g.HeldItems;
             so.FindProperty("naturesEnabled").boolValue = g.Natures;
             so.FindProperty("gendersEnabled").boolValue = g.Genders;
+            so.FindProperty("machinesConsumable").boolValue = g.MachinesConsumable;
             var arr = so.FindProperty("specialTypes");
             var types = GenerationRules.ClassicSpecialTypes;
             arr.arraySize = types.Count;
@@ -291,7 +292,7 @@ namespace CTEditor.GameDefinition.Editor
                                   : "• Físico o Especial lo decide cada movimiento.\n") +
                 (d.SingleSpecialStat ? "• Especial único: lo que sube o baja el Ataque Especial también mueve la Defensa Especial.\n" : "") +
                 $"• Habilidades: {(d.Abilities ? "sí" : "NO")} · Objetos equipados: {(d.HeldItems ? "sí" : "NO")} · " +
-                $"Naturalezas: {(d.Natures ? "sí" : "NO")} · Géneros: {(d.Genders ? "sí" : "NO")}.\n" +
+                $"Naturalezas: {(d.Natures ? "sí" : "NO")} · Géneros: {(d.Genders ? "sí" : "NO")} · MT: {(d.MachinesConsumable ? "se gastan" : "no se gastan")}.\n" +
                 (mechNames.Count > 0 ? $"• Mecánicas especiales activas: {string.Join(", ", mechNames)}." : "• Sin mecánicas especiales."),
                 MessageType.Info);
 

@@ -5,8 +5,8 @@ using CTEditor.GameDefinition.Domain.Abilities;
 namespace CTEditor.GameDefinition.Domain.Items
 {
     /// <summary>
-    /// Efectos de un objeto EQUIPADO de competición (5.ª y 6.ª gen.). Todo es opcional y se combina: así el autor
-    /// puede inventar objetos nuevos. Se rellena al construir la ficha (mapper) y después no se toca.
+    /// LEGACY input: the old per-feature held-item fields. Only used to build items the old way (old assets, old code);
+    /// <see cref="ItemLegacy"/> turns them into effect blocks, which is what the engine runs.
     /// </summary>
     public sealed class ItemExtras
     {

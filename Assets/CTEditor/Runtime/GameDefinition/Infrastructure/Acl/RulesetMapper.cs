@@ -41,7 +41,7 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                     data.FriendshipLostOnFaint, data.StartingMoney, data.MoneyLostOnBlackoutPercent,
                     data.HealOnBlackout),
                 new GenerationRules(data.Generation, data.CategoryByType, data.SpecialTypes, data.SingleSpecialStat,
-                    data.Abilities, data.HeldItems, data.Natures, data.Genders),
+                    data.Abilities, data.HeldItems, data.Natures, data.Genders, data.MachinesConsumable),
                 ResolveMechanics(data.MechanicIds, mechanics));
         }
 

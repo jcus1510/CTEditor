@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Domain.Conditions;
+using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Infrastructure.Catalog;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 
@@ -264,18 +265,40 @@ namespace CTEditor.GameDefinition.Editor.Csv
             ConditionText.WriteModifiers(so.FindProperty(field), mods);
         }
 
-        // ---------------- Objetos: automático + columna de potencia equipada ----------------
+        // ---------------- Objetos: automático + EFECTOS (bloques «cuándo / si / entonces») ----------------
 
         public static CsvSchema Items()
         {
             var schema = new CsvReflectiveSchema<ItemData>("objetos.csv", "Objetos", ContentFolders.Items, 35);
-            schema.Col("equipado_potencia", "Ej.: x1,2 [si mov.tipo=fire]",
-                d => ReadMods(d.HeldPowerModifiers), (so, v, c) => WriteMods(so, "heldPowerModifiers", v))
-                  // 5.ª y 6.ª gen.: listas con condiciones.
-                  .Col("equipado_stats", "Ej.: attack:x1,5 (Cinta Elección) | sp_defense:x1,5 (Chaleco Asalto) | defense:x1,5 [si propio.puede_evolucionar]",
-                    d => ReadStatMods(d.HeldStatMultipliers), (so, v, c) => WriteStatMods(so, v, "heldStatMultipliers"))
-                  .Col("equipado_al_recibir_golpe", "Ej.: attack:+2 [si propio.eficacia>1] | sp_attack:+2 [si propio.eficacia>1] (Seguro Debilidad)",
-                    d => ReadOnHit(d.HeldOnHitStats), (so, v, c) => WriteOnHit(so, v, "heldOnHitStats"));
+            schema.Col("efectos", "Lo que hace el objeto, bloques separados por |. Formato: cuándo [si condiciones]: acción valores; opciones. " +
+                    "Ej.: fin_de_turno: curar 6,25% | antes_de_golpe [si mov.tipo=fire & propio.eficacia>1]: daño_recibido x0,5; se_gasta | " +
+                    "poca_vida@25: etapa attack +1; se_gasta. Opciones: se_gasta, al_rival, prob=N, veces=N.",
+                    d => EffectText.Format(ItemEffectsEditing.Blocks(d)),
+                    (so, v, c) =>
+                    {
+                        List<EffectBlock> blocks;
+                        try { blocks = EffectText.Parse(v); }
+                        catch (FormatException e) { throw new CsvCellException(e.Message); }
+                        ItemEffectsEditing.SetBlocks(so, blocks);
+                    })
+                  // Compatibilidad con los packs: «captura» es el multiplicador de la bola (un bloque «al usarlo: captura»).
+                  .Col("captura", "Multiplicador de captura si es una bola (0 = no es bola). Es lo mismo que «al_usar: captura xN» en efectos.",
+                    d => { var b = ItemEffectsEditing.Blocks(d).FirstOrDefault(x => x.Trigger == EffectTrigger.OnUse && x.Action == EffectAction.Catch); return b == null ? "0" : EffectText.N(b.Amount); },
+                    (so, v, c) =>
+                    {
+                        if (string.IsNullOrWhiteSpace(v)) return;
+                        if (!CsvTable.TryNumber(v, out float mult) || mult < 0) throw new CsvCellException($"'{v}' no es un multiplicador de captura válido.");
+                        var arr = so.FindProperty("effects");
+                        int found = -1;
+                        for (int i = 0; i < arr.arraySize; i++)
+                        {
+                            var el = arr.GetArrayElementAtIndex(i);
+                            if (el.FindPropertyRelative("trigger").intValue == (int)EffectTrigger.OnUse && el.FindPropertyRelative("action").intValue == (int)EffectAction.Catch) { found = i; break; }
+                        }
+                        if (mult <= 0f) { if (found >= 0) arr.DeleteArrayElementAtIndex(found); return; }
+                        if (found < 0) { found = arr.arraySize; arr.arraySize++; EffectText.Write(arr.GetArrayElementAtIndex(found), new EffectBlock(EffectTrigger.OnUse, EffectAction.Catch, mult)); }
+                        else arr.GetArrayElementAtIndex(found).FindPropertyRelative("amount").floatValue = mult;
+                    });
             return schema;
         }
 

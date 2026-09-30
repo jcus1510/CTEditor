@@ -103,7 +103,12 @@ Test Runner de Unity. Si creas un test nuevo que use Unity, añádelo a la lista
 
 ```bash
 dotnet build Tools/compilar_unity      # Runtime completo (dominio, fichas, editor) + tests, contra las DLL de Unity
+dotnet test Tools/compilar_unity       # y además EJECUTA todos los tests (también los del editor que no tocan escenas)
 ```
+
+Al ejecutar los tests, 8 fallan SIEMPRE fuera de Unity porque necesitan el motor de verdad (crean ScriptableObjects o
+escriben en la Consola): `GrowthCurveMapperTests` (4), `ReferenceFinderTests` (3) y `ConsoleBattleTests` (1). Esos se
+prueban en el Test Runner de Unity. Cualquier OTRO fallo es real.
 
 Usa las DLL de referencia de Unity del paquete NuGet `Unity3D.SDK` (se descargan solas). **Si el editor no compila,
 Unity se queda con el último código que sí compiló** y parece que los cambios no han llegado (p. ej. `sets.csv` se

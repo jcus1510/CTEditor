@@ -71,11 +71,19 @@ namespace CTEditor.GameDefinition.Editor
                 if (it.name == "m_Script") continue;
                 var p = it.Copy();
                 if (!IsVisible(p.name, n => serializedObject.FindProperty(n))) continue;
+                if (DrawsItself(p.name)) continue;
                 DrawProperty(p, target.GetType(), 0);
             }
+            DrawCustom();
             serializedObject.ApplyModifiedProperties();
             EditorGUIUtility.labelWidth = oldLabel;
         }
+
+        /// <summary>Fields a subclass draws on its own (in <see cref="DrawCustom"/>) instead of the generic drawing.</summary>
+        protected virtual bool DrawsItself(string propertyName) => false;
+
+        /// <summary>Extra drawing after the generic fields (e.g. the item's effect cards).</summary>
+        protected virtual void DrawCustom() { }
 
         // Ayuda escrita bajo el campo (si el autor lo pidió y el campo tiene ayuda).
         private static void DrawHelp(string tooltip)
