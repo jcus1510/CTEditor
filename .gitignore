@@ -105,3 +105,7 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Caché de datos descargados por Tools/ (PokeAPI)
+/Tools/.cache/
+__pycache__/
