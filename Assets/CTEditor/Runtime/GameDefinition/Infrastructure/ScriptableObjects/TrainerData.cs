@@ -25,6 +25,10 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Tooltip("NIVEL DE IA (1-7): 1 Novato, 2 Aficionado, 3 Veterano, 4 Élite, 5 Campeón, 6 Maestro, 7 Injusto. Cada nivel se ajusta en CTEditor → Entrenadores → Niveles de IA. " +
                  "0 = el de la IA antigua (novato 1, listo 2, experto 4).")]
         [SerializeField, Range(0, 7)] private int aiLevel = 0;
+        [Tooltip("IA PERSONALIZADA (opcional): id de una ficha de «Niveles de IA» marcada como personalizada (ia_brock...). " +
+                 "Si existe, manda sobre el nivel. Vacío = la IA de su nivel.")]
+        [ContentIdReference(typeof(AiLevelData))]
+        [SerializeField] private string aiProfileId = "";
         [Tooltip("IA antigua (solo se usa si «Nivel de IA» está en 0).")]
         [SerializeField] private TrainerAi ai = TrainerAi.Smart;
         [Tooltip("¿Usa los objetos de su mochila en combate (pociones, curas de estado, Ataque X...)?")]
@@ -57,6 +61,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public TrainerAi Ai => ai;
         /// <summary>Nivel de IA 1-7 (0 = sacarlo de la IA antigua).</summary>
         public int AiLevel => aiLevel;
+        /// <summary>Id de su IA personalizada (vacío = la de su nivel).</summary>
+        public string AiProfileId => aiProfileId;
         /// <summary>El nivel efectivo (1-7).</summary>
         public int EffectiveAiLevel => aiLevel > 0 ? aiLevel : AiProfile.LevelFromLegacy(ai);
         public bool UseItems => useItems;

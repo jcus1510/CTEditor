@@ -41,10 +41,27 @@ namespace CTEditor.GameDefinition.Editor
 
         private static int MaxLevel(TrainerData d) => (d.Team ?? new TeamMemberData[0]).Where(m => m != null && m.species != null).Select(m => m.level).DefaultIfEmpty(0).Max();
 
+        /// <summary>La ficha de IA que usa un entrenador: su IA personalizada (si existe) o la de su nivel.</summary>
+        public static AiLevelData AiDataFor(TrainerData d)
+        {
+            var all = ContentAssets.LoadAll<AiLevelData>();
+            var custom = string.IsNullOrWhiteSpace(d.AiProfileId) ? null : all.FirstOrDefault(a => a.Id == d.AiProfileId.Trim());
+            return custom ?? all.FirstOrDefault(a => !a.Custom && a.Level == d.EffectiveAiLevel);
+        }
+
+        /// <summary>La IA de un entrenador tal como la verá el juego (personalizada, la de su nivel, o la clásica).</summary>
+        public static AiProfile ProfileFor(TrainerData d)
+        {
+            var data = AiDataFor(d);
+            if (data != null)
+                try { return CTEditor.GameDefinition.Infrastructure.Acl.AiLevelMapper.ToDomain(data); } catch (System.Exception) { }
+            return AiProfile.Classic(d.EffectiveAiLevel);
+        }
+
         /// <summary>El nivel de IA tal como lo verá el juego (la ficha del autor, o el clásico).</summary>
         public static AiProfile ProfileFor(int level)
         {
-            var data = ContentAssets.LoadAll<AiLevelData>().FirstOrDefault(a => a.Level == level);
+            var data = ContentAssets.LoadAll<AiLevelData>().FirstOrDefault(a => !a.Custom && a.Level == level);
             if (data != null)
                 try { return CTEditor.GameDefinition.Infrastructure.Acl.AiLevelMapper.ToDomain(data); } catch (System.Exception) { }
             return AiProfile.Classic(level);
@@ -322,11 +339,43 @@ namespace CTEditor.GameDefinition.Editor
                     {
                         so.FindProperty("aiLevel").intValue = l;
                         so.FindProperty("ai").enumValueIndex = (int)AiProfile.Classic(l).LegacyAi;
+                        so.FindProperty("aiProfileId").stringValue = "";   // elegir un nivel quita la IA personalizada
                     });
                 GUI.backgroundColor = old;
             }
             EditorGUILayout.EndHorizontal();
+            DrawAiLinks(d);
             DrawBagEditor(d);
+        }
+
+        // ---------------- IA: abrirla y personalizarla ----------------
+
+        private void DrawAiLinks(TrainerData d)
+        {
+            var data = AiDataFor(d);
+            bool custom = data != null && data.Custom;
+            if (custom) EditorTheme.Tip($"Usa su IA PERSONALIZADA «{data.DisplayName}» ({data.Id}). Solo la usa este entrenador (y los que la elijan).", AiLevelEditorWindow.LevelColor(data.Level), "✨");
+            else if (!string.IsNullOrWhiteSpace(d.AiProfileId))
+                EditorGUILayout.HelpBox($"Su IA personalizada '{d.AiProfileId}' no existe: usa la de su nivel.", MessageType.Warning);
+
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(new GUIContent(custom ? "🧠 Abrir su IA personalizada" : "🧠 Abrir su nivel de IA",
+                    custom ? "Abre el editor de Niveles de IA en la IA de este entrenador."
+                           : "Abre el editor de Niveles de IA en su nivel. OJO: lo que cambies ahí vale para TODOS los entrenadores de ese nivel."), EditorStyles.miniButton))
+            {
+                if (data == null) { AiLevelEditorWindow.CreateClassicSet(); data = AiDataFor(d); }
+                AiLevelEditorWindow.OpenAt(data);
+            }
+            if (!custom && GUILayout.Button(new GUIContent("✨ Personalizar la IA de este entrenador",
+                    "Copia su nivel en una IA propia (ia_" + d.Id + ") que solo usa él: así lo ajustas sin cambiar a los demás."), EditorStyles.miniButton))
+            {
+                var copy = AiLevelEditorWindow.CreateCustomFor(d.Id, d.DisplayName, d.EffectiveAiLevel);
+                EditSelected(so => so.FindProperty("aiProfileId").stringValue = copy.Id);
+                AiLevelEditorWindow.OpenAt(copy);
+            }
+            if (custom && GUILayout.Button(new GUIContent("↩ Volver a la IA de su nivel", "Deja de usar la IA personalizada (la ficha no se borra)."), EditorStyles.miniButton))
+                EditSelected(so => so.FindProperty("aiProfileId").stringValue = "");
+            EditorGUILayout.EndHorizontal();
         }
 
         // ---------------- Mochila ----------------
@@ -386,9 +435,10 @@ namespace CTEditor.GameDefinition.Editor
 
             // --- Cómo piensa ---
             int level = d.EffectiveAiLevel;
-            var profile = ProfileFor(level);
+            var profile = ProfileFor(d);
             var lc = AiLevelEditorWindow.LevelColor(level);
-            EditorTheme.Section($"Cómo piensa: nivel {AiLevelEditorWindow.LevelLabel(level)}", lc);
+            EditorTheme.Section(profile.IsCustom ? $"Cómo piensa: IA personalizada «{profile.DisplayName}» (base nivel {level})"
+                                                 : $"Cómo piensa: nivel {AiLevelEditorWindow.LevelLabel(level)}", lc);
             EditorTheme.Tip(profile.Description, lc, "🧠");
             var bag = (d.Items ?? new BagEntryData[0]).Where(b => b != null && !string.IsNullOrWhiteSpace(b.itemId)).ToList();
             if (!d.UseItems)

@@ -57,8 +57,18 @@ namespace CTEditor.GameDefinition.Domain.Trainers
     {
         public const int MinLevel = 1, MaxLevel = 7;
 
-        /// <summary>Nivel 1-7.</summary>
+        /// <summary>Nivel 1-7 (en una IA personalizada, el nivel del que parte: sirve para ordenar y colorear).</summary>
         public int Level { get; }
+        /// <summary>Id de la ficha (nivel_4, ia_brock...). Vacío en los perfiles clásicos creados por código.</summary>
+        public string Id { get; private set; } = "";
+        /// <summary>
+        /// IA PERSONALIZADA: no sustituye a su nivel; solo la usan los entrenadores que la eligen por id
+        /// (p. ej. Brock = Veterano pero con Predictor).
+        /// </summary>
+        public bool IsCustom { get; private set; }
+
+        /// <summary>Le pone id y marca de personalizada (lo usa el mapper de fichas).</summary>
+        public AiProfile WithIdentity(string id, bool custom) { Id = (id ?? "").Trim(); IsCustom = custom; return this; }
         public string DisplayName { get; }
         public string Description { get; }
 

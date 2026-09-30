@@ -17,6 +17,9 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField] private string displayName;
         [Tooltip("Qué nivel es (1 = el más fácil, 7 = injusto). Cada entrenador elige uno.")]
         [SerializeField, Range(1, 7)] private int level = 1;
+        [Tooltip("IA PERSONALIZADA: no sustituye a su nivel; solo la usan los entrenadores que la eligen (campo «IA personalizada» " +
+                 "del entrenador o columna nivel_ia del Excel con este id). Desmarcada = es LA ficha de su nivel.")]
+        [SerializeField] private bool custom;
         [Tooltip("Para quién es (texto de ayuda en el editor).")]
         [SerializeField, TextArea(2, 3)] private string description = "";
 
@@ -76,6 +79,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public string Id => id;
         public string DisplayName => displayName;
         public int Level => level;
+        public bool Custom => custom;
         public string Description => description;
         public MoveBrain Brain => brain;
         public int MistakePercent => mistakePercent;

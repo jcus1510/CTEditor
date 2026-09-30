@@ -35,6 +35,43 @@ namespace CTEditor.GameDefinition.Editor
 
         protected override Color? RowMark(AiLevelData d) => LevelColor(d.Level);
 
+        /// <summary>Abre el editor con esa ficha seleccionada (desde el editor de entrenadores).</summary>
+        public static void OpenAt(AiLevelData data)
+        {
+            var w = OpenWindow<AiLevelEditorWindow>("Niveles de IA");
+            if (data != null) w.FocusOn(data);
+        }
+
+        /// <summary>
+        /// Crea (o devuelve, si ya existe) la IA PERSONALIZADA de un entrenador: una copia de su nivel con id
+        /// ia_&lt;entrenador&gt;, marcada como personalizada para que no sustituya al nivel.
+        /// </summary>
+        public static AiLevelData CreateCustomFor(string trainerId, string trainerName, int level)
+        {
+            string id = "ia_" + trainerId;
+            var existing = ContentAssets.FindById<AiLevelData>(id);
+            if (existing != null) return existing;
+            var src = ContentAssets.LoadAll<AiLevelData>().FirstOrDefault(a => !a.Custom && a.Level == level);
+            AiLevelData copy;
+            if (src != null)
+            {
+                string path = AssetDatabase.GenerateUniqueAssetPath($"{ContentFolders.PathOf(ContentFolders.AiLevels)}/{id}.asset");
+                AssetDatabase.CopyAsset(AssetDatabase.GetAssetPath(src), path);
+                ContentAssets.ClearCache();
+                copy = AssetDatabase.LoadAssetAtPath<AiLevelData>(path);
+            }
+            else copy = ContentAssets.Create<AiLevelData>(ContentFolders.AiLevels, id, id, so => Fill(so, level));
+            ContentAssets.Edit(copy, so =>
+            {
+                so.FindProperty("id").stringValue = id;
+                so.FindProperty("displayName").stringValue = "IA de " + (string.IsNullOrWhiteSpace(trainerName) ? trainerId : trainerName);
+                so.FindProperty("custom").boolValue = true;
+                so.FindProperty("level").intValue = level;
+            });
+            AssetDatabase.SaveAssets();
+            return copy;
+        }
+
         protected override int CompareItems(AiLevelData a, AiLevelData b) => a.Level.CompareTo(b.Level);
 
         /// <summary>Color de cada nivel (verde fácil → rojo difícil). Lo usan también los entrenadores.</summary>
@@ -121,7 +158,7 @@ namespace CTEditor.GameDefinition.Editor
         protected override void DrawPreview(AiLevelData d)
         {
             var c = LevelColor(d.Level);
-            EditorTheme.Section($"Nivel {d.Level}: {d.DisplayName}", c);
+            EditorTheme.Section(d.Custom ? $"IA personalizada: {d.DisplayName} (base nivel {d.Level})" : $"Nivel {d.Level}: {d.DisplayName}", c);
             EditorTheme.BeginCard(c);
             if (!string.IsNullOrWhiteSpace(d.Description)) EditorTheme.Paragraph(d.Description, false);
             string know = d.Knowledge == AiKnowledge.None ? "solo ve tu Pokémon y sus tipos (supone ataques de su tipo)"
@@ -152,8 +189,8 @@ namespace CTEditor.GameDefinition.Editor
             EditorTheme.EndCard();
 
             // Cuántos entrenadores usan este nivel.
-            var trainers = ContentAssets.LoadAll<TrainerData>().Where(t => t.EffectiveAiLevel == d.Level).ToList();
-            EditorTheme.Paragraph(trainers.Count == 0 ? "Ningún entrenador usa este nivel todavía."
+            var trainers = ContentAssets.LoadAll<TrainerData>().Where(t => TrainerEditorWindow.AiDataFor(t) == d).ToList();
+            EditorTheme.Paragraph(trainers.Count == 0 ? (d.Custom ? "Ningún entrenador usa esta IA todavía (elígela en «IA personalizada» del entrenador)." : "Ningún entrenador usa este nivel todavía.")
                 : $"Lo usan {trainers.Count} entrenador(es): " + string.Join(", ", trainers.Take(12).Select(t => t.DisplayName)) + (trainers.Count > 12 ? "…" : ""));
         }
     }

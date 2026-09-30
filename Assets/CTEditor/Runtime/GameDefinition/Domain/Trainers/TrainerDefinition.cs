@@ -69,6 +69,8 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         public int AiLevel => _aiLevel > 0 ? _aiLevel : AiProfile.LevelFromLegacy(Ai);
         /// <summary>Objetos, curación y cambios de la IA.</summary>
         public TrainerAiSettings AiSettings { get; }
+        /// <summary>Id de una IA PERSONALIZADA (ia_brock...). Vacío = la de su nivel.</summary>
+        public string AiProfileId { get; }
         public int BaseMoney { get; }
 
         /// <summary>Lo que dice al empezar ("¡Mis bichos son los mejores!").</summary>
@@ -81,9 +83,10 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         public TrainerDefinition(string id, string displayName, IReadOnlyList<TeamMemberSpec> team,
             string trainerClass = "", TrainerAi ai = TrainerAi.Smart, int baseMoney = 20,
             string introLine = "", string defeatLine = "", string victoryLine = "", TrainerAiSettings aiSettings = null,
-            int aiLevel = 0)
+            int aiLevel = 0, string aiProfileId = "")
         {
             _aiLevel = Math.Max(0, Math.Min(AiProfile.MaxLevel, aiLevel));
+            AiProfileId = (aiProfileId ?? "").Trim();
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("El entrenador necesita un id.", nameof(id));
             Id = id;
             DisplayName = string.IsNullOrWhiteSpace(displayName) ? id : displayName;

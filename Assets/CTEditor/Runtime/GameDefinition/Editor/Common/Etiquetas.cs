@@ -388,6 +388,8 @@ namespace CTEditor.GameDefinition.Editor
             ["knowledge"] = ("Qué sabe de ti", "conocimiento"),
             ["heldItems"] = ("Objetos equipados", "objetos_equipados"),
             ["competitiveTraining"] = ("Entrenamiento de competición (IVs 31, EVs, naturaleza)", "entrenamiento"),
+            ["custom"] = ("IA personalizada (solo para los entrenadores que la eligen)", "personalizada"),
+            ["aiProfileId"] = ("IA personalizada (id)", "ia_personalizada"),
             ["predictPercent"] = ("% de turnos que juega por predicción", "prediccion"),
             ["gender"] = ("Género", "genero"),
             ["requiresOppositeGender"] = ("Solo al género opuesto (Atracción)", "genero_opuesto"),

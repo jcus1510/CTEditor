@@ -53,6 +53,7 @@ namespace CTEditor.Adventure.Domain
         public IStatGrowthFormula Growth { get; }
 
         private readonly Dictionary<int, AiProfile> _aiProfiles = new Dictionary<int, AiProfile>();
+        private readonly Dictionary<string, AiProfile> _customAi = new Dictionary<string, AiProfile>();
 
         /// <summary>El nivel de IA 1-7 del autor (sus fichas «Niveles de IA») o el clásico si no lo definió.</summary>
         public AiProfile AiProfileFor(int level)
@@ -61,8 +62,13 @@ namespace CTEditor.Adventure.Domain
             return _aiProfiles.TryGetValue(level, out var p) ? p : AiProfile.Classic(level);
         }
 
-        /// <summary>El perfil de IA de un entrenador (según su nivel 1-7).</summary>
-        public AiProfile AiProfileFor(TrainerDefinition trainer) => AiProfileFor(trainer?.AiLevel ?? 1);
+        /// <summary>Una IA por su id (personalizada o de nivel). Null si no existe.</summary>
+        public AiProfile AiProfileById(string id)
+            => !string.IsNullOrWhiteSpace(id) && _customAi.TryGetValue(id.Trim(), out var p) ? p : null;
+
+        /// <summary>El perfil de IA de un entrenador: su IA personalizada si la tiene (y existe); si no, la de su nivel 1-7.</summary>
+        public AiProfile AiProfileFor(TrainerDefinition trainer)
+            => AiProfileById(trainer?.AiProfileId) ?? AiProfileFor(trainer?.AiLevel ?? 1);
 
         public GameData(
             ICatalog<SpeciesDef> species,
@@ -82,7 +88,12 @@ namespace CTEditor.Adventure.Domain
             IEnumerable<AiProfile> aiProfiles = null)
         {
             if (aiProfiles != null)
-                foreach (var p in aiProfiles) if (p != null) _aiProfiles[p.Level] = p;
+                foreach (var p in aiProfiles)
+                {
+                    if (p == null) continue;
+                    if (!string.IsNullOrEmpty(p.Id)) _customAi[p.Id] = p;   // cualquier IA se puede pedir por id
+                    if (!p.IsCustom) _aiProfiles[p.Level] = p;              // las personalizadas NO sustituyen a su nivel
+                }
             Species = species ?? throw new ArgumentNullException(nameof(species));
             Moves = moves ?? throw new ArgumentNullException(nameof(moves));
             TypeChart = typeChart ?? throw new ArgumentNullException(nameof(typeChart));

@@ -575,15 +575,25 @@ namespace CTEditor.GameDefinition.Editor.Csv
                         : s.StartsWith("nov") || s.StartsWith("al") || s == "random" || s == "azar" ? 0
                         : throw new CsvCellException($"'{v}' no es una IA válida: usa novato, listo o experto.");
                 })
-                .Col("nivel_ia", "Nivel de IA 1-7: 1 novato, 2 aficionado, 3 veterano, 4 élite, 5 campeón, 6 maestro, 7 injusto. Vacío = según «ia».",
-                    d => d.AiLevel > 0 ? d.AiLevel.ToString() : "", (so, v, c) =>
+                .Col("nivel_ia", "Nivel de IA 1-7: 1 novato, 2 aficionado, 3 veterano, 4 élite, 5 campeón, 6 maestro, 7 injusto. " +
+                                 "O el id de una IA PERSONALIZADA (ia_brock...). Vacío = según «ia».",
+                    d => !string.IsNullOrWhiteSpace(d.AiProfileId) ? d.AiProfileId.Trim() : d.AiLevel > 0 ? d.AiLevel.ToString() : "", (so, v, c) =>
                     {
-                        string t = (v ?? "").Trim().ToLowerInvariant();
+                        string raw = (v ?? "").Trim(), t = raw.ToLowerInvariant();
+                        // ¿Es el id de una IA (personalizada)? Manda sobre el nivel; el nivel se toma de esa IA.
+                        if (t.Length > 0 && !CsvTable.TryInt(t, out _) && c.Exists<AiLevelData>(raw))
+                        {
+                            var ai = c.Find<AiLevelData>(raw);
+                            so.FindProperty("aiProfileId").stringValue = raw;
+                            if (ai != null) so.FindProperty("aiLevel").intValue = ai.Level;
+                            return;
+                        }
                         int lvl = t == "" ? 0 : t.StartsWith("nov") ? 1 : t.StartsWith("afi") ? 2 : t.StartsWith("vet") ? 3 : t.StartsWith("él") || t.StartsWith("el") ? 4
                                 : t.StartsWith("cam") ? 5 : t.StartsWith("mae") ? 6 : t.StartsWith("inj") ? 7
                                 : CsvTable.TryInt(t, out int n) && n >= 0 && n <= 7 ? n
-                                : throw new CsvCellException($"'{v}' no es un nivel de IA: usa 1-7 o novato, aficionado, veterano, élite, campeón, maestro, injusto.");
+                                : throw new CsvCellException($"'{v}' no es un nivel de IA: usa 1-7, novato … injusto, o el id de una IA personalizada.");
                         so.FindProperty("aiLevel").intValue = lvl;
+                        so.FindProperty("aiProfileId").stringValue = "";
                     })
                 .Col("usa_objetos", "si / no: ¿usa los objetos de su mochila?", d => d.UseItems ? "si" : "no",
                     (so, v, c) => CsvSchema<TrainerData>.SetBool(so, "useItems", v, "usa_objetos"))
