@@ -6,6 +6,8 @@
         "CTEditor.GameDefinition",
         "CTEditor.GameDefinition.Editor",
         "CTEditor.Adventure.Domain",
+        "CTEditor.GameDefinition.Domain",
+        "CTEditor.SharedKernel",
         "UnityEngine.UI",
         "Unity.TextMeshPro"
     ],

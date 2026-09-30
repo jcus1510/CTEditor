@@ -437,6 +437,37 @@ namespace CTEditor.Tests.EditMode
             => new TeamMemberSpec(new Id<Species>(species), level, moves.Select(m => new Id<Move>(m)).ToList(), fixedIv: 31);
 
         [Test]
+        public void The_ai_tournament_plays_whole_mirror_battles_on_both_sides()
+        {
+            var data = AiData();
+            var team = new TrainerDefinition("espejo", "Espejo", new[] { Member("hero", 30, "tackle"), Member("leafy", 30, "tackle", "protect") });
+            var r = AiTournament.Duel(data, team, (1, ""), (7, ""), 6, 42);
+            Assert.AreEqual(6, r.Games, "juega todos los combates pedidos");
+            CollectionAssert.IsEmpty(r.Problems, string.Join(" | ", r.Problems));
+            Assert.Greater(r.Wins + r.Losses, 0, "al menos un combate termina con ganador");
+            Assert.Greater(r.AverageTurns, 0);
+            var ai = AiTournament.WithAi(team, "B", 5, "ia_prueba");
+            Assert.AreEqual(5, ai.AiLevel);
+            Assert.AreEqual("ia_prueba", ai.AiProfileId);
+            Assert.AreEqual(team.Team.Count, ai.Team.Count, "mismo equipo");
+        }
+
+        [Test]
+        public void A_custom_ai_is_used_by_id_and_does_not_replace_its_level()
+        {
+            var custom = new AiProfile(4, "IA de Brock", "", MoveBrain.Predictor, 0, 100, HealStyle.Smart, 25, true,
+                MovesetStyle.Strong, true, true, true, true, false, predictPercent: 80).WithIdentity("ia_brock", true);
+            var data = new GameData(AiData().Species, AiData().Moves, AiData().TypeChart, Ruleset.Classic, aiProfiles: new[] { custom });
+            var brock = new TrainerDefinition("brock", "Brock", new[] { Member("leafy", 12, "tackle") }, aiLevel: 4, aiProfileId: "ia_brock");
+            var other = new TrainerDefinition("otro", "Otro", new[] { Member("leafy", 12, "tackle") }, aiLevel: 4);
+            Assert.AreSame(custom, data.AiProfileFor(brock), "Brock usa su IA personalizada");
+            Assert.AreNotSame(custom, data.AiProfileFor(other), "los demás de nivel 4 siguen con la del nivel");
+            Assert.AreEqual(MoveBrain.Predictor, data.AiProfileFor(brock).Brain);
+            var missing = new TrainerDefinition("x", "X", new[] { Member("leafy", 12, "tackle") }, aiLevel: 2, aiProfileId: "no_existe");
+            Assert.AreEqual(2, data.AiProfileFor(missing).Level, "si la IA personalizada no existe, usa la de su nivel");
+        }
+
+        [Test]
         public void Levels_6_and_7_are_the_master_and_the_unfair_one()
         {
             var master = AiProfile.Classic(6);
