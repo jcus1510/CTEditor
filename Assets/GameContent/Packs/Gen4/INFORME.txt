@@ -1,0 +1,23 @@
+﻿PACK 4.ª GENERACIÓN — fiel a su generación (generado por Tools/verificar_pack/generar_packs.py)
+========================================================================================
+
+• 493 especies (hasta la n.º 493) con los datos QUE TENÍAN EN LA 4.ª GENERACIÓN (PokeAPI):
+  tipos, estadísticas base,
+  aprendizaje por nivel de Platino y MT/tutor/huevo de los juegos de la generación.
+• 466 movimientos: solo los que existen en la 4.ª gen., con su tipo, potencia, precisión, PP y prioridad
+  de entonces.
+• 123 habilidades (sin ocultas: llegaron en la 5.ª gen.).
+• Tipos y TABLA DE TIPOS de la generación (sin Hada).
+• Naturalezas y grupos huevo.
+• 129 entrenadores con su nivel de IA: nivel 1: 13, nivel 2: 20, nivel 3: 33, nivel 4: 39, nivel 5: 22, nivel 6: 1, nivel 7: 1.
+  Incluye el Laboratorio de IA (prueba_nivel_1 … 7: el mismo equipo en cada nivel) para el Torneo de IAs.
+
+APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):
+  • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.
+  • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.
+
+ENTRENADORES CON MIEMBROS DE GENERACIONES POSTERIORES (QUITADOS) (13):
+   especialista_dark, especialista_dragon, especialista_electric, especialista_fairy, especialista_flying, especialista_ghost, especialista_grass, especialista_ground, especialista_ice, especialista_normal, especialista_poison, especialista_steel, especialista_water
+
+Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
+The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.

@@ -43,9 +43,10 @@ namespace CTEditor.GameDefinition.Editor
         public static bool Available => Directory.Exists(Folder);
 
         /// <summary>Nombre corto de la fuente para botones y mensajes: «pack 1ª gen.» o «tu Excel (Kanto2)».</summary>
-        public static string SourceName => UsingCustom ? $"tu Excel ({Path.GetFileName(CustomFolder.TrimEnd('/', '\\'))})" : (ContentHubWindow.PackFolder == ContentHubWindow.Gen16PackFolder ? "pack 1ª-6ª gen."
-                : ContentHubWindow.PackFolder == ContentHubWindow.Gen14PackFolder ? "pack 1ª-4ª gen."
-                : ContentHubWindow.PackFolder == ContentHubWindow.Gen12PackFolder ? "pack 1ª-2ª gen." : "pack 1ª gen.");
+        public static string SourceName => UsingCustom ? $"tu Excel ({Path.GetFileName(CustomFolder.TrimEnd('/', '\\'))})" : ContentHubWindow.ShortNameOf(ContentHubWindow.PackFolder);
+
+        /// <summary>Olvida la caché de ids (al cambiar de pack o de fuente).</summary>
+        public static void ForgetCache() => IdCache.Clear();
 
         /// <summary>Pide al autor su carpeta de Excel (con los .csv exportados). Devuelve true si eligió una válida.</summary>
         public static bool ChooseCustomFolder()
@@ -226,7 +227,12 @@ namespace CTEditor.GameDefinition.Editor
                 menu.AddItem(new GUIContent($"Importar {noun} que FALTAN (lo tuyo no se toca)"), false, () => importMissing());
                 menu.AddItem(new GUIContent($"Actualizar TODOS los {noun} desde {SourceName} (revisar cambios)…"), false, () => updateAll());
                 menu.AddSeparator("");
-                menu.AddItem(new GUIContent("Fuente de datos/Pack clásico (" + ContentHubWindow.PackName + ")"), !UsingCustom, () => CustomFolder = null);
+                foreach (var pack in ContentHubWindow.AvailablePacks())
+                {
+                    var p = pack;
+                    menu.AddItem(new GUIContent("Fuente de datos/" + Path.GetFileName(p) + " · " + ContentHubWindow.NameOf(p)),
+                        !UsingCustom && p == ContentHubWindow.PackFolder, () => { CustomFolder = null; ContentHubWindow.PackFolder = p; });
+                }
                 menu.AddItem(new GUIContent("Fuente de datos/Mi carpeta de Excel…"), UsingCustom, () => ChooseCustomFolder());
                 menu.ShowAsContext();
             }

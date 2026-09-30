@@ -144,29 +144,17 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - Si una ventana es estrecha, marca **«📝 Ver la ayuda de cada campo debajo de él»** arriba del Inspector: las
   explicaciones se escriben completas bajo cada campo (además de verse al pasar el ratón).
 
-## Packs clásicos (`Packs/Gen1-6/`, `Packs/Gen1-4/`, `Packs/Gen1-2/` y `Packs/Gen1/`)
-- Centro de Contenido → **📦 Importar la 1ª a la 6ª generación**: crea la base clásica que falte (estados, climas, efectos de
-  lado, objetos, niveles de IA, grupos huevo) y abre el importador («solo lo que falta» o «actualizar también», sin borrar nada).
-  Usa el pack más completo que encuentre (Gen1-6 → Gen1-4 → Gen1-2 → Gen1).
-- **Gen1-6 (Lote F)**: 721 especies, 620 movimientos (Campos, Escudo Real, Barrera Espinosa, Zona Extraña/Mágica, Red Viscosa,
-  Escaldar, Liofilización, Plancha, Mil Flechas...), 190 habilidades con efecto (Piel Feérica, Alas Vendaval, Garra Dura,
-  Baba, Momia, Prestidigitador, Carrillo, Rivalidad...) y 152 entrenadores, ahora también de **Teselia** (Negro 2/Blanco 2)
-  y **Kalos** (X/Y). Aprendizaje de Negro 2/Blanco 2 (494-649) y Rubí Omega/Zafiro Alfa (650-721); los Pokémon antiguos que
-  pasaron a ser de tipo **Hada** reciben los movimientos Hada que aprenden en ROZA. Retos de prueba: **Benga** (Injusto) y
-  **Dana** (Injusto), **Ana María** (Maestro), Iris y Dianta (Maestro).
-- **Tipo Hada**: Centro de Contenido → Tipos → era **«Actual (6.ª gen.)»** (si tu tabla era la de la 2.ª-5.ª gen., cámbiala ahí).
-- **Gen1-4**: 493 especies, 466 movimientos con sus efectos (también Mofa, Truco, Deseo, Espacio Raro, Premonición, Sonámbulo,
-  Patada Baja por peso, Meteorobola...), 161 habilidades con efecto y 108 entrenadores de Kanto, Johto, Hoenn y Sinnoh.
-- **Aprendizaje, cada generación con su juego**: Cristal (1-251), Esmeralda (252-386) y Platino (387-493): por nivel
-  (`aprende`), por **MT/MO** (`mt`), por **tutor** (`tutor`) y **movimientos huevo** (`huevo`).
-- **Habilidades**: 1.ª, 2.ª (`habilidad_2`, la mitad de los individuos) y **oculta** (`habilidad_oculta`, solo si la pones a mano).
-- **Grupos huevo** (`grupos_huevo`) listos para la futura crianza.
-- **Pokédex**: número, categoría, altura, peso, color, % de hembras, legendario y descripción en español.
-- **Evoluciones**: nivel, piedra, intercambio con objeto, amistad (+ hora), objeto llevado de día/noche (Weavile, Gliscor),
-  sabiendo un movimiento (Mamoswine), con otra especie en el equipo (Mantine), en un lugar (Magnezone) y por azar (Wurmple).
-- `INFORME.txt` explica todo lo aproximado y lo poco que aún no tiene efecto.
-- Datos de PokeAPI. Pokémon es marca de Nintendo/Game Freak/The Pokémon Company: para aprender y uso
-  personal, no para publicar.
+## Packs por generación (`Packs/Gen1/` … `Packs/Gen6/`)
+- Un pack por generación, **fiel a ella**: especies, estadísticas, tipos, movimientos (tipo, potencia, precisión, PP,
+  prioridad; físico/especial según el tipo hasta la 3.ª), habilidades (desde la 3.ª), aprendizaje de su juego, tabla de
+  tipos, naturalezas y grupos huevo cuando existían, y sus entrenadores. Cada uno trae un `INFORME.txt`.
+- Centro de Contenido → desplegable **Pack** para elegirlo y **📦 Importar** («solo lo que falta» o «actualizar también»,
+  sin borrar nada). La base que el pack no trae (estados, climas, efectos de lado, objetos, niveles de IA, Forcejeo) la
+  crean las plantillas del código; si el pack trae la hoja de una categoría, manda el pack.
+- Los packs se generan con `Tools/verificar_pack/generar_packs.py` desde `Tools/datos_fuente/` y PokeAPI, y se
+  comprueban con `Tools/verificar_pack/verificar_pack.py` (ver `Tools/README.md`).
+- Los efectos de movimientos y habilidades y las reglas del motor aún son los de la 6.ª gen. (ver «Aproximaciones» en
+  el INFORME de cada pack).
 
 ## Niveles de IA (Lote E + Lote F)
 Siete niveles, cada uno una ficha editable (CTEditor → Personajes → **Niveles de IA**) hecha de **4 bloques combinables**:

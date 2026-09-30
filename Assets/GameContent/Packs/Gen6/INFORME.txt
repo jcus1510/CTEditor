@@ -1,0 +1,20 @@
+﻿PACK 6.ª GENERACIÓN — fiel a su generación (generado por Tools/verificar_pack/generar_packs.py)
+========================================================================================
+
+• 721 especies (hasta la n.º 721) con los datos QUE TENÍAN EN LA 6.ª GENERACIÓN (PokeAPI):
+  tipos, estadísticas base,
+  aprendizaje por nivel de Rubí Omega/Zafiro Alfa y MT/tutor/huevo de los juegos de la generación.
+• 620 movimientos: solo los que existen en la 6.ª gen., con su tipo, potencia, precisión, PP y prioridad
+  de entonces.
+• 186 habilidades (con ocultas).
+• Tipos y TABLA DE TIPOS de la generación (con Hada).
+• Naturalezas y grupos huevo.
+• 181 entrenadores con su nivel de IA: nivel 1: 17, nivel 2: 22, nivel 3: 41, nivel 4: 56, nivel 5: 29, nivel 6: 12, nivel 7: 4.
+  Incluye el Laboratorio de IA (prueba_nivel_1 … 7: el mismo equipo en cada nivel) para el Torneo de IAs.
+
+APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):
+  • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.
+  • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.
+
+Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
+The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.

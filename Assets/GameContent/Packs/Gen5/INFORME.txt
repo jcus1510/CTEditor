@@ -1,0 +1,23 @@
+﻿PACK 5.ª GENERACIÓN — fiel a su generación (generado por Tools/verificar_pack/generar_packs.py)
+========================================================================================
+
+• 649 especies (hasta la n.º 649) con los datos QUE TENÍAN EN LA 5.ª GENERACIÓN (PokeAPI):
+  tipos, estadísticas base,
+  aprendizaje por nivel de Negro 2/Blanco 2 y MT/tutor/huevo de los juegos de la generación.
+• 558 movimientos: solo los que existen en la 5.ª gen., con su tipo, potencia, precisión, PP y prioridad
+  de entonces.
+• 164 habilidades (con ocultas).
+• Tipos y TABLA DE TIPOS de la generación (sin Hada).
+• Naturalezas y grupos huevo.
+• 174 entrenadores con su nivel de IA: nivel 1: 15, nivel 2: 21, nivel 3: 40, nivel 4: 55, nivel 5: 29, nivel 6: 11, nivel 7: 3.
+  Incluye el Laboratorio de IA (prueba_nivel_1 … 7: el mismo equipo en cada nivel) para el Torneo de IAs.
+
+APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):
+  • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.
+  • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.
+
+ENTRENADORES CON MIEMBROS DE GENERACIONES POSTERIORES (QUITADOS) (21):
+   alto_mando_drasina, alto_mando_malva, alto_mando_narciso, alto_mando_tileo, especialista_dark, especialista_dragon, especialista_electric, especialista_fairy, especialista_fighting, especialista_fire, especialista_ghost, especialista_steel, jefe_lysson, lider_amaro, lider_astra, lider_corelia, lider_edel, lider_lem, lider_valeria, lider_violeta, rival_serena_liga
+
+Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
+The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.

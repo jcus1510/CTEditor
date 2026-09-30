@@ -1,0 +1,24 @@
+﻿PACK 2.ª GENERACIÓN — fiel a su generación (generado por Tools/verificar_pack/generar_packs.py)
+========================================================================================
+
+• 251 especies (hasta la n.º 251) con los datos QUE TENÍAN EN LA 2.ª GENERACIÓN (PokeAPI):
+  tipos, estadísticas base,
+  aprendizaje por nivel de Cristal y MT/tutor/huevo de los juegos de la generación.
+• 250 movimientos: solo los que existen en la 2.ª gen., con su tipo, potencia, precisión, PP y prioridad
+  de entonces. Categoría FÍSICA/ESPECIAL SEGÚN EL TIPO (así era hasta la 3.ª gen.).
+• SIN habilidades (llegaron en la 3.ª generación).
+• Tipos y TABLA DE TIPOS de la generación (sin Hada).
+• Grupos huevo (sin naturalezas: llegaron en la 3.ª gen.).
+• 66 entrenadores con su nivel de IA: nivel 1: 7, nivel 2: 13, nivel 3: 15, nivel 4: 17, nivel 5: 9, nivel 6: 3, nivel 7: 2.
+  Incluye el Laboratorio de IA (prueba_nivel_1 … 7: el mismo equipo en cada nivel) para el Torneo de IAs.
+
+APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):
+  • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.
+  • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.
+  • El motor aún da naturaleza aleatoria si existen fichas de naturaleza en el proyecto.
+
+ENTRENADORES CON MIEMBROS DE GENERACIONES POSTERIORES (QUITADOS) (3):
+   especialista_electric, especialista_fairy, especialista_steel
+
+Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
+The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.
