@@ -65,6 +65,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField] private bool naturesEnabled = true;
         [Tooltip("¿Hay géneros? (desde 2.ª gen.). Desmarcado: todos sin género.")]
         [SerializeField] private bool gendersEnabled = true;
+        [Tooltip("¿Las MT se gastan al usarlas? (1.ª-4.ª gen.: sí; desde la 5.ª: no). Las MO nunca se gastan.")]
+        [SerializeField] private bool machinesConsumable = false;
 
         [Header("Mecánicas especiales")]
         [Tooltip("Las fichas de mecánica ACTIVAS en tu juego (Megaevolución...). Se pueden combinar. Vacío = ninguna.")]
@@ -131,6 +133,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public bool HeldItems => heldItemsEnabled;
         public bool Natures => naturesEnabled;
         public bool Genders => gendersEnabled;
+        public bool MachinesConsumable => machinesConsumable;
         public string[] MechanicIds => mechanicIds;
         public bool FleeAlwaysWorks => fleeAlwaysWorks;
         public bool CanFleeTrainerBattles => canFleeTrainerBattles;

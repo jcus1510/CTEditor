@@ -4,6 +4,7 @@ using System.Linq;
 using CTEditor.SharedKernel.Events;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Battlefield;
+using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Domain.Items;
 using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Domain.Stats;
@@ -24,9 +25,6 @@ namespace CTEditor.Battle.Domain.Turn
     {
         // ================================================================= OBJETOS
 
-        /// <summary>Efectos del objeto equipado que FUNCIONA ahora (Zoquete, Embargo y Zona Mágica lo anulan).</summary>
-        private ItemExtras HeldX(Combatant c) => c != null && TryGetHeldItem(c, out var it) ? it.Extras : ItemExtras.None;
-
         // El objeto se gasta (Banda Focus, bayas, Seguro Debilidad, Globo Helio...).
         private void UseUpItem(Combatant c, List<IDomainEvent> events)
         {
@@ -39,100 +37,19 @@ namespace CTEditor.Battle.Domain.Turn
         /// <summary>Turnos del clima que pone 'actor' (las rocas de clima añaden turnos).</summary>
         private int WeatherTurnsFor(Combatant actor, string weatherId, int turns)
         {
-            int bonus = HeldX(actor).WeatherTurnsBonus;
+            int bonus = HeldWeatherBonus(actor, weatherId);
             if (bonus <= 0) return turns;
             int baseTurns = turns > 0 ? turns
                 : _weathers != null && _weathers.TryGet(new Id<GameDefinition.Domain.Weather.WeatherDefinition>(weatherId), out var w) ? w.DefaultTurns : 5;
             return baseTurns <= 0 ? 0 : baseTurns + bonus;   // 0 = permanente: se queda así
         }
 
-        /// <summary>Banda Focus: con los PS al máximo aguanta con 1 PS (y se gasta). Devuelve el daño final.</summary>
-        private int ApplyFocusSash(Combatant target, int damage, List<IDomainEvent> events)
-        {
-            if (damage < target.CurrentHp || target.CurrentHp <= 1 || target.CurrentHp != target.MaxHp || !HeldX(target).SurviveFromFullHp) return damage;
-            UseUpItem(target, events);
-            events.Add(new EnduredEvent(target.Id));
-            return target.CurrentHp - 1;
-        }
-
-        /// <summary>Bayas de resistencia: un golpe MUY EFICAZ de su tipo hace la mitad (y la baya se gasta).</summary>
-        private int ApplyResistBerry(Combatant target, Id<ElementType> type, float effectiveness, int damage, List<IDomainEvent> events)
-        {
-            var x = HeldX(target);
-            if (damage <= 0 || x.ResistBerryType.Length == 0 || !string.Equals(x.ResistBerryType, type.Value, StringComparison.OrdinalIgnoreCase)) return damage;
-            bool normalBerry = string.Equals(type.Value, "normal", StringComparison.OrdinalIgnoreCase);
-            if (!normalBerry && effectiveness <= 1f) return damage;
-            // Nerviosismo: no puede comerse la baya.
-            var foe = OpponentOf(target);
-            if (foe != null && !foe.IsFainted && X(foe).Unnerve) return damage;
-            UseUpItem(target, events);
-            return Math.Max(1, damage / 2);
-        }
-
-        /// <summary>Tras atacar: Vidasfera (pierde 10 %), Campana Concha (recupera) y Roca del Rey (retroceso).</summary>
-        private void ApplyGen6AfterAttack(Combatant actor, Combatant target, Move move, int damageDealt, bool hitSubstitute, List<IDomainEvent> events)
-        {
-            if (actor == null || actor.IsFainted || damageDealt <= 0 || !move.DealsDirectDamage) return;
-            var x = HeldX(actor);
-            if (x.HealOnDamagePercent > 0f && actor.CurrentHp < actor.MaxHp && !HasVolatileFlag(actor, d => d.Extras.BlocksHealing))
-            {
-                int heal = Math.Max(1, (int)(damageDealt * x.HealOnDamagePercent / 100f));
-                int before = actor.CurrentHp;
-                actor.HealHp(heal);
-                if (actor.CurrentHp > before) events.Add(new HpRestoredEvent(actor.Id, actor.CurrentHp - before));
-            }
-            if (x.AttackRecoilPercent > 0f && !X(actor).NoIndirectDamage)
-            {
-                int loss = Math.Max(1, (int)(actor.MaxHp * x.AttackRecoilPercent / 100f));
-                actor.TakeDamage(loss);
-                events.Add(new RecoilDamageEvent(actor.Id, loss));
-                if (actor.IsFainted) events.Add(new MonsterFaintedEvent(actor.Id));
-            }
-            if (x.FlinchChance > 0f && target != null && target != actor && !target.IsFainted && !hitSubstitute
-                && !HasEffect(move, MoveEffectKind.Flinch) && !X(target).BlocksIncomingSecondaries && _rng.NextFloat() * 100f < x.FlinchChance)
-                target.SetFlinched();
-        }
-
-        /// <summary>Al recibir un golpe: Seguro Debilidad (si es muy eficaz), Globo Helio (revienta) y Prestidigitador del atacante.</summary>
-        private void ApplyGen6OnHit(Combatant actor, Combatant target, Move move, float effectiveness, List<IDomainEvent> events)
-        {
-            if (target == null || target == actor) return;
-            var x = HeldX(target);
-            if (!target.IsFainted && x.AirBalloon) UseUpItem(target, events);
-            else if (!target.IsFainted && x.OnHitStats.Count > 0)
-            {
-                bool any = false;
-                foreach (var h in x.OnHitStats)
-                    if (AllConditions(h.Conditions, target, actor, move))
-                    {
-                        if (!any && x.OnHitConsumed) UseUpItem(target, events);
-                        any = true;
-                        ChangeStageFrom(target, target, h.Stat, h.Stages, events);
-                    }
-            }
-            // Prestidigitador: el atacante le roba el objeto si él no lleva ninguno.
-            if (!actor.IsFainted && X(actor).StealOnHit && actor.HeldItem == null && target.HeldItem != null && !X(target).StickyHold)
-            {
-                var item = target.TakeHeldItem();
-                actor.SetHeldItem(item);
-                events.Add(new AbilityTriggeredEvent(actor.Id, AbilityIdOf(actor), "roba"));
-                events.Add(new ItemTransferredEvent(target.Id, actor.Id, item));
-            }
-        }
-
         /// <summary>Contacto (lado del defensor): Casco Dentado, Baba y Momia.</summary>
-        private void ApplyGen6ContactEffects(Combatant attacker, Combatant defender, List<IDomainEvent> events)
+        private void ApplyGen6ContactEffects(Combatant attacker, Combatant defender, Move move, List<IDomainEvent> events)
         {
             if (attacker == null || defender == null || attacker.IsFainted) return;
-            var hx = HeldX(defender);
-            if (hx.ContactDamagePercent > 0f && !X(attacker).NoIndirectDamage)
-            {
-                int dmg = Math.Max(1, (int)(attacker.MaxHp * hx.ContactDamagePercent / 100f));
-                attacker.TakeDamage(dmg);
-                events.Add(new HeldItemActivatedEvent(defender.Id, defender.HeldItem, false));
-                events.Add(new StatusDamageEvent(attacker.Id, InjuryStatus, dmg));
-                if (attacker.IsFainted) { events.Add(new MonsterFaintedEvent(attacker.Id)); return; }
-            }
+            RunHeld(defender, EffectTrigger.ContactTaken, attacker, move, events, hitType: move == null ? (Id<ElementType>?)null : MoveTypeOf(attacker, move));
+            if (attacker.IsFainted) return;
             var dx = X(defender);
             if (dx.ContactStatDrop.HasValue && dx.ContactStatDropStages != 0)
             {
@@ -175,26 +92,6 @@ namespace CTEditor.Battle.Domain.Turn
             return false;
         }
 
-        /// <summary>Baya Ziuela: se cura de un estado recién puesto y se gasta.</summary>
-        private void CheckLum(Combatant target, StatusId statusId, List<IDomainEvent> events)
-        {
-            if (target == null || target.IsFainted || !HeldX(target).CuresAnyStatus) return;
-            bool has = target.Status.HasValue && target.Status.Value == statusId || target.HasVolatile(statusId) && statusId.Value == "confusion";
-            if (!has) return;
-            var foe = OpponentOf(target);
-            if (foe != null && !foe.IsFainted && X(foe).Unnerve) return;
-            UseUpItem(target, events);
-            if (target.Status.HasValue && target.Status.Value == statusId) target.ClearStatus(); else target.RemoveVolatile(statusId);
-            events.Add(new StatusFadedEvent(target.Id, statusId));
-        }
-
-        /// <summary>Garra Rápida: ¿le toca actuar el primero este turno? (una tirada por turno).</summary>
-        private bool QuickClawRoll(Combatant c)
-        {
-            float chance = c == null || c.IsFainted ? 0f : HeldX(c).QuickClawChance;
-            return chance > 0f && _rng.NextFloat() * 100f < chance;
-        }
-
         // ================================================================= CAMPOS Y EFECTOS DE CAMPO
 
         /// <summary>¿Pisa el suelo para los CAMPOS? (no si es Volador, levita, lleva Globo o está bajo Levitón), salvo Gravedad.</summary>
@@ -204,7 +101,7 @@ namespace CTEditor.Battle.Domain.Turn
             if (IsGrounded(c)) return true;
             if (ContainsType(TypesOf(c), new Id<ElementType>("flying"))) return false;
             if (TryGetAbility(c, out var ab) && ab.IsImmuneToType(new Id<ElementType>("ground"))) return false;
-            if (HeldX(c).AirBalloon) return false;
+            if (HeldImmuneTo(c, new Id<ElementType>("ground"))) return false;
             if (HasVolatileFlag(c, d => ContainsType(d.Extras.TypeImmunities, new Id<ElementType>("ground")))) return false;
             return true;
         }
@@ -282,36 +179,6 @@ namespace CTEditor.Battle.Domain.Turn
                         c.HealHp(Math.Max(1, (int)(c.MaxHp * d.EndOfTurnHealPercent / 100f)));
                         if (c.CurrentHp > before) events.Add(new HpRestoredEvent(c.Id, c.CurrentHp - before));
                     }
-                var x = HeldX(c);
-                // Lodo Negro: cura a los Veneno y daña a los demás.
-                if (x.BlackSludge)
-                {
-                    if (ContainsType(TypesOf(c), new Id<ElementType>("poison")))
-                    {
-                        if (c.CurrentHp < c.MaxHp && !HasVolatileFlag(c, s => s.Extras.BlocksHealing))
-                        {
-                            int before = c.CurrentHp;
-                            c.HealHp(Math.Max(1, c.MaxHp / 16));
-                            events.Add(new HeldItemActivatedEvent(c.Id, c.HeldItem, false));
-                            if (c.CurrentHp > before) events.Add(new HpRestoredEvent(c.Id, c.CurrentHp - before));
-                        }
-                    }
-                    else if (!X(c).NoIndirectDamage)
-                    {
-                        int dmg = Math.Max(1, c.MaxHp / 8);
-                        c.TakeDamage(dmg);
-                        events.Add(new HeldItemActivatedEvent(c.Id, c.HeldItem, false));
-                        events.Add(new StatusDamageEvent(c.Id, InjuryStatus, dmg));
-                        if (c.IsFainted) { events.Add(new MonsterFaintedEvent(c.Id)); continue; }
-                    }
-                }
-                // Llamasfera / Toxisfera: se pone el estado (Agallas, Antídoto...).
-                if (x.SelfStatusEndOfTurn.Length > 0 && !c.Status.HasValue && _statuses != null)
-                {
-                    var id = c.HeldItem;
-                    TryInflictStatus(c, new StatusId(x.SelfStatusEndOfTurn), events, null);
-                    if (c.Status.HasValue) events.Insert(events.Count - 1, new HeldItemActivatedEvent(c.Id, id, false));
-                }
             }
         }
 

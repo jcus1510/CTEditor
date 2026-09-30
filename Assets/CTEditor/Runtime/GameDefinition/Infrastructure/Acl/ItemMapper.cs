@@ -1,28 +1,48 @@
 using System;
 using System.Collections.Generic;
 using CTEditor.GameDefinition.Domain.Abilities;
+using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Items;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 
 namespace CTEditor.GameDefinition.Infrastructure.Acl
 {
-    /// <summary>ACL de objetos: ItemData (Unity) → ItemDefinition (dominio).</summary>
+    /// <summary>ACL for items: ItemData (Unity) → ItemDefinition (domain), effect blocks included.</summary>
     public static class ItemMapper
     {
         public static ItemDefinition ToDomain(ItemData d)
         {
             if (d == null) throw new ArgumentNullException(nameof(d));
+            var effects = Effects(d);
             return new ItemDefinition(d.Id, d.DisplayName, d.Category, d.Description, d.Price,
-                d.UsableInBattle, d.UsableOutsideBattle, d.Consumable, d.HealHp, d.HealPercent, d.CuresAllStatus,
+                d.UsableInBattle, d.UsableOutsideBattle, d.Consumable, effects: effects,
+                isBerry: d.IsBerry || d.Category == ItemCategory.Berry || ItemLegacy.LooksLikeBerry(effects));
+        }
+
+        /// <summary>All the item's blocks: its effects plus whatever is still in the OLD fields (converted, same behaviour).</summary>
+        public static List<EffectBlock> Effects(ItemData d)
+        {
+            var list = new List<EffectBlock>();
+            foreach (var e in d.Effects ?? new EffectBlockData[0])
+                if (e != null) list.Add(ToDomain(e));
+            if (d.HasLegacyEffects) list.AddRange(LegacyBlocks(d));
+            return list;
+        }
+
+        public static EffectBlock ToDomain(EffectBlockData e)
+            => new EffectBlock(e.trigger, e.action, e.amount, (e.reference ?? "").Trim(), ConditionMapper.ToDomain(e.conditions),
+                e.target, e.threshold, e.consumes, e.chance, e.maxPerBattle);
+
+        /// <summary>The OLD fields as blocks (what the editor writes when it converts an old item).</summary>
+        public static List<EffectBlock> LegacyBlocks(ItemData d)
+            => ItemLegacy.ToBlocks(d.HealHp, d.HealPercent, d.CuresAllStatus,
                 (d.CuresStatusId ?? "").Trim(), d.Revives, d.ReviveHpPercent, d.RestorePp, d.RestorePpAllMoves,
                 d.FriendshipChange, d.CatchMultiplier, (d.BattleStatId ?? "").Trim(), d.BattleStages,
                 ConditionMapper.ToDomain(d.HeldPowerModifiers), d.HeldEndOfTurnHealPercent, d.HeldTriggerHpPercent,
                 d.HeldTriggerHealHp, d.HeldTriggerHealPercent, d.HeldConsumedOnTrigger, Extras(d));
-        }
 
-        /// <summary>Los efectos de competición del objeto (público: el editor lo usa para avisar si un equipable no hace nada).</summary>
-        public static ItemExtras Extras(ItemData d)
+        private static ItemExtras Extras(ItemData d)
         {
             var cond = new List<ConditionalStat>();
             if (d.HeldStatMultipliers != null) foreach (var c in d.HeldStatMultipliers)

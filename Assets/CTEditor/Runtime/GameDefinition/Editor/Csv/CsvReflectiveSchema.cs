@@ -33,6 +33,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
         {
             foreach (var field in SerializedFields(typeof(TData)))
             {
+                if (field.IsDefined(typeof(LegacyFieldAttribute), false)) continue; // campo antiguo: solo para convertir fichas viejas
                 var codec = CodecFor(field);
                 if (codec == null) continue; // campo no representable en una celda
                 var f = field;

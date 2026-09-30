@@ -15,7 +15,7 @@ namespace CTEditor.GameDefinition.Editor
     [CustomEditor(typeof(GrowthCurveData))] public sealed class CurveDataInspector : SpanishInspector { }
     [CustomEditor(typeof(RulesetData))] public sealed class RulesetDataInspector : SpanishInspector { }
     [CustomEditor(typeof(WeatherData))] public sealed class WeatherDataInspector : SpanishInspector { }
-    [CustomEditor(typeof(ItemData))] public sealed class ItemDataInspector : SpanishInspector { }
+    // ItemData: ItemDataInspector (ItemInspector.cs) draws its effects as cards.
     [CustomEditor(typeof(HazardData))] public sealed class HazardDataInspector : SpanishInspector { }
     [CustomEditor(typeof(SideConditionData))] public sealed class SideConditionDataInspector : SpanishInspector { }
     [CustomEditor(typeof(TrainerData))] public sealed class TrainerDataInspector : SpanishInspector { }
