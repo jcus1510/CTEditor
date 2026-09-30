@@ -276,6 +276,7 @@ namespace CTEditor.GameDefinition.Editor
                 case EffectRefKind.Weather: case EffectRefKind.WeatherList: return typeof(WeatherData);
                 case EffectRefKind.Move: return typeof(MoveData);
                 case EffectRefKind.Mechanic: return typeof(MechanicData);
+                case EffectRefKind.SideCondition: return typeof(SideConditionData);
                 default: return null;
             }
         }

@@ -129,7 +129,7 @@ def effect_vocabulary():
 
 EFFECT_TRIGGERS, EFFECT_ACTIONS, EFFECT_SPECIALS = effect_vocabulary()
 REF_KIND = {'Type': 'types', 'TypeList': 'types', 'Status': 'status', 'StatusList': 'status', 'Stat': 'stat', 'StatList': 'stat',
-            'Weather': 'weather', 'WeatherList': 'weather', 'Move': 'move'}
+            'Weather': 'weather', 'WeatherList': 'weather', 'Move': 'move', 'SideCondition': 'side'}
 
 
 def check_effects(text, w, need, rep):

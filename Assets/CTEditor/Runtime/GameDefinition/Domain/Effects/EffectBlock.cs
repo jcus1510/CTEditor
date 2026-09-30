@@ -87,6 +87,7 @@ namespace CTEditor.GameDefinition.Domain.Effects
         BlockMoveTag,           // Ref = move tags «a|b» NOBODY can use while it is on the field
         DisableMove,            // disables the move that hit it (use Chance)
         Special,                // Ref = a one-of-a-kind behaviour (see AbilityEffects.Specials); Amount if it needs one
+        SetSideCondition,       // Ref = side / field condition id (terrains, screens...); on the holder's side (field ones: both)
     }
 
     /// <summary>Who an action affects: the holder or the other combatant.</summary>
@@ -170,7 +171,7 @@ namespace CTEditor.GameDefinition.Domain.Effects
                         case EffectAction.EvasionMultiplier: case EffectAction.PowerMultiplier: case EffectAction.DamageDealtMultiplier:
                         case EffectAction.ImmuneToType: case EffectAction.ActFirst: case EffectAction.ChoiceLock:
                         case EffectAction.BlockStatusMoves: case EffectAction.ExtendWeather: case EffectAction.ExtendScreens:
-                        case EffectAction.EnableMechanic:
+                        case EffectAction.EnableMechanic: case EffectAction.PriorityBonus: case EffectAction.ImmuneToStatus:
                             return true;
                         default: return false;
                     }
@@ -188,6 +189,7 @@ namespace CTEditor.GameDefinition.Domain.Effects
         {
             EffectAction.HealHp, EffectAction.HealPercent, EffectAction.LoseHpPercent, EffectAction.HealFromDamagePercent,
             EffectAction.CureStatus, EffectAction.InflictStatus, EffectAction.ChangeStage, EffectAction.Flinch, EffectAction.ConsumeItem,
+            EffectAction.SetSideCondition,
         };
     }
 }

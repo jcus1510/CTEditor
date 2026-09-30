@@ -53,6 +53,7 @@ namespace CTEditor.GameDefinition.Editor
                 case EffectRefKind.StatList: return StatOptions(true);
                 case EffectRefKind.TypeList: return Options<ElementTypeData>();
                 case EffectRefKind.Weather: case EffectRefKind.WeatherList: return Options<WeatherData>();
+                case EffectRefKind.SideCondition: return Options<SideConditionData>();
                 case EffectRefKind.Announce: return (AnnounceIds, AnnounceNames);
                 case EffectRefKind.Special: return (AbilityEffects.Specials.Select(x => x.Key).ToArray(), AbilityEffects.Specials.Select(x => x.Label).ToArray());
                 case EffectRefKind.Move: return Options<MoveData>();
@@ -73,6 +74,7 @@ namespace CTEditor.GameDefinition.Editor
                 case EffectRefKind.Stat: case EffectRefKind.StatList: return StatLabels.NameOf(id);
                 case EffectRefKind.Type: case EffectRefKind.TypeList: return NameOf<ElementTypeData>(id);
                 case EffectRefKind.WeatherList: return id == "*" ? "todos" : NameOf<WeatherData>(id);
+                case EffectRefKind.SideCondition: return NameOf<SideConditionData>(id);
                 case EffectRefKind.Status: case EffectRefKind.StatusList: return NameOf<StatusConditionData>(id);
                 case EffectRefKind.Weather: return NameOf<WeatherData>(id);
                 case EffectRefKind.Move: return NameOf<MoveData>(id);
@@ -330,7 +332,7 @@ namespace CTEditor.GameDefinition.Editor
             var (ids, names) = OptionsFor(kind, action);
             string label = kind == EffectRefKind.Type ? "Tipo" : kind == EffectRefKind.Status ? "Estado" : kind == EffectRefKind.Stat ? "Estadística"
                 : kind == EffectRefKind.Weather ? "Clima" : kind == EffectRefKind.Mechanic ? "Mecánica" : kind == EffectRefKind.Special ? "Comportamiento"
-                : kind == EffectRefKind.Announce ? "Avisa de" : "Qué";
+                : kind == EffectRefKind.Announce ? "Avisa de" : kind == EffectRefKind.SideCondition ? "Efecto / campo" : "Qué";
             bool allowAny = kind == EffectRefKind.Weather && action != EffectAction.SetWeather;
             var shownIds = (allowAny ? new[] { "" } : new string[0]).Concat(ids).ToList();
             var shownNames = (allowAny ? new[] { "(cualquiera)" } : new string[0]).Concat(names).ToList();

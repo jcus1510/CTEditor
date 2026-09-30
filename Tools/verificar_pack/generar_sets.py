@@ -149,9 +149,9 @@ def build(n, verbose=True):
 
 def main():
     ap = argparse.ArgumentParser(description='Genera sets.csv (sets de Smogon) para los packs.')
-    ap.add_argument('--gen', type=int, choices=range(1, 7))
+    ap.add_argument('--gen', type=int, choices=range(1, 8))
     args = ap.parse_args()
-    for n in ([args.gen] if args.gen else range(1, 7)):
+    for n in ([args.gen] if args.gen else range(1, 8)):
         build(n)
 
 

@@ -12,7 +12,7 @@ namespace CTEditor.GameDefinition.Editor
 {
     /// <summary>What kind of id an action needs (the editor shows the matching dropdown).</summary>
     public enum EffectRefKind { None, Type, StatusList, Status, Stat, Weather, Move, Form, Mechanic,
-        TypeList, StatList, WeatherList, TagList, Announce, Special }
+        TypeList, StatList, WeatherList, TagList, Announce, Special, SideCondition }
 
     /// <summary>What the action's number means (the editor shows the matching field).</summary>
     public enum EffectAmountKind { None, Hp, Percent, Multiplier, Stages, Turns, Steps, Levels, Points, Ball, Duration }
@@ -128,6 +128,7 @@ namespace CTEditor.GameDefinition.Editor
             A(EffectAction.BlockMoveTag, "bloquea_etiqueta", "Nadie puede usar movimientos con etiqueta", EffectRefKind.TagList),
             A(EffectAction.DisableMove, "anular", "Anular el movimiento que le golpeó"),
             A(EffectAction.Special, "especial", "Comportamiento especial", EffectRefKind.Special),
+            A(EffectAction.SetSideCondition, "poner_lado", "Poner un efecto de lado o un campo", EffectRefKind.SideCondition),
         };
 
         /// <summary>Is the reference a list («a,b»)?</summary>
@@ -161,7 +162,7 @@ namespace CTEditor.GameDefinition.Editor
                 case EffectTrigger.BeforeHit:
                     return new[] { EffectAction.DamageTakenMultiplier, EffectAction.SurviveAt1Hp };
                 case EffectTrigger.OnEntry:
-                    return instant.Concat(new[] { EffectAction.SetWeather, EffectAction.Announce, EffectAction.Special }).ToArray();
+                    return instant.Concat(new[] { EffectAction.SetWeather, EffectAction.SetSideCondition, EffectAction.Announce, EffectAction.Special }).ToArray();
                 case EffectTrigger.AfterHit:
                     return instant.Concat(new[] { EffectAction.DisableMove, EffectAction.Special }).ToArray();
                 default:
@@ -281,6 +282,7 @@ namespace CTEditor.GameDefinition.Editor
                 case EffectAction.ImmuneToMoveTag: what = $"no le afectan los movimientos: {Ref(EffectRefKind.TagList)}"; break;
                 case EffectAction.BlockMoveTag: what = $"nadie puede usar movimientos: {Ref(EffectRefKind.TagList)}"; break;
                 case EffectAction.DisableMove: what = "anula el movimiento que le golpeó"; break;
+                case EffectAction.SetSideCondition: what = $"pone {Ref(EffectRefKind.SideCondition)}"; break;
                 case EffectAction.Special:
                 {
                     var sp = AbilityEffects.Special(b.Ref);

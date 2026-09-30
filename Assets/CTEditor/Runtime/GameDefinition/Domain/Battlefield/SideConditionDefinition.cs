@@ -49,8 +49,10 @@ namespace CTEditor.GameDefinition.Domain.Battlefield
             bool reversesTurnOrder = false, float accuracyMultiplier = 1f, bool groundsTargets = false, bool blocksCrits = false,
             System.Collections.Generic.IReadOnlyDictionary<string, float> typeDamageMultipliers = null,
             bool swapsDefenses = false, bool suppressesItems = false, string group = null, float endOfTurnHealPercent = 0f,
-            System.Collections.Generic.IReadOnlyList<string> groundedStatusBlock = null, System.Collections.Generic.IReadOnlyDictionary<string, float> typePowerMultipliers = null)
+            System.Collections.Generic.IReadOnlyList<string> groundedStatusBlock = null, System.Collections.Generic.IReadOnlyDictionary<string, float> typePowerMultipliers = null,
+            bool blocksPriorityOnGrounded = false)
         {
+            BlocksPriorityOnGrounded = blocksPriorityOnGrounded;
             SwapsDefenses = swapsDefenses;
             SuppressesItems = suppressesItems;
             Group = (group ?? "").Trim();
@@ -90,10 +92,12 @@ namespace CTEditor.GameDefinition.Domain.Battlefield
         public System.Collections.Generic.IReadOnlyList<string> GroundedStatusBlock { get; }
         /// <summary>Potencia de los movimientos de un tipo si el atacante pisa el suelo (Campo Eléctrico: electric ×1,5).</summary>
         public System.Collections.Generic.IReadOnlyDictionary<string, float> TypePowerMultipliers { get; }
+        /// <summary>Moves with priority fail against whoever touches the ground (Psychic Terrain).</summary>
+        public bool BlocksPriorityOnGrounded { get; }
 
         /// <summary>¿Hace algo? (para avisar en el editor de efectos vacíos).</summary>
         public bool DoesSomething => PhysicalDamageMultiplier != 1f || SpecialDamageMultiplier != 1f || BlocksStatDrops || BlocksStatus || SpeedMultiplier != 1f
                                      || ReversesTurnOrder || AccuracyMultiplier != 1f || GroundsTargets || BlocksCrits || TypeDamageMultipliers.Count > 0
-                                     || SwapsDefenses || SuppressesItems || EndOfTurnHealPercent > 0f || GroundedStatusBlock.Count > 0 || TypePowerMultipliers.Count > 0;
+                                     || SwapsDefenses || SuppressesItems || EndOfTurnHealPercent > 0f || GroundedStatusBlock.Count > 0 || TypePowerMultipliers.Count > 0 || BlocksPriorityOnGrounded;
     }
 }

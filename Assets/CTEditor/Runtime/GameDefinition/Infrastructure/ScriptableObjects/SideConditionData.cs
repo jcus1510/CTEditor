@@ -60,6 +60,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField] private string[] groundedStatusBlock = new string[0];
         [Tooltip("Potencia de los movimientos de un tipo si el atacante pisa el suelo (Campo Eléctrico: electric ×1,5).")]
         [SerializeField] private TypeMultiplierEntry[] typePowerMultipliers = new TypeMultiplierEntry[0];
+        [Tooltip("Los movimientos con prioridad fallan contra quien pisa el suelo (Campo Psíquico).")]
+        [SerializeField] private bool blocksPriorityOnGrounded;
 
         public bool SwapsDefenses => swapsDefenses;
         public bool SuppressesItems => suppressesItems;
@@ -67,6 +69,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public float EndOfTurnHealPercent => endOfTurnHealPercent;
         public string[] GroundedStatusBlock => groundedStatusBlock;
         public TypeMultiplierEntry[] TypePowerMultipliers => typePowerMultipliers;
+        public bool BlocksPriorityOnGrounded => blocksPriorityOnGrounded;
 
         [System.Serializable]
         public sealed class TypeMultiplierEntry

@@ -484,10 +484,12 @@ namespace CTEditor.GameDefinition.Editor
             ["protectContactStat"] = ("Al bloquear contacto: estadística que baja al atacante", "protege_baja_stat"),
             ["protectContactStages"] = ("Al bloquear contacto: etapas que baja", "protege_baja_etapas"),
             ["protectContactDamagePercent"] = ("Al bloquear contacto: % de PS que pierde el atacante", "protege_daño"),
+            ["protectContactStatus"] = ("Al bloquear contacto: estado que sufre el atacante", "protege_estado"),
             ["swapsDefenses"] = ("Intercambia Defensa y Def. Esp. (Zona Extraña)", "intercambia_defensas"),
             ["suppressesItems"] = ("Anula los objetos equipados (Zona Mágica)", "anula_objetos"),
             ["group"] = ("Grupo (solo uno activo: campos)", "grupo"),
             ["groundedStatusBlock"] = ("Estados que impide a quien pisa el suelo (* = todos)", "impide_estados"),
+            ["blocksPriorityOnGrounded"] = ("Bloquea la prioridad contra quien pisa el suelo", "bloquea_prioridad"),
             // --- 3.ª y 4.ª generación: habilidades, estados y efectos de lado ---
             ["onEntryWeather"] = ("Al entrar: clima que pone", "clima_al_entrar"),
             ["onEntryWeatherTurns"] = ("Al entrar: turnos del clima (0 = permanente)", "clima_al_entrar_turnos"),

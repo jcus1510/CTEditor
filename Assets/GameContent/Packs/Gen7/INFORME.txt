@@ -1,0 +1,35 @@
+﻿PACK 7.ª GENERACIÓN — fiel a su generación (generado por Tools/verificar_pack/generar_packs.py)
+========================================================================================
+
+• 858 especies (hasta la n.º 807) con los datos QUE TENÍAN EN LA 7.ª GENERACIÓN (PokeAPI):
+  tipos, estadísticas base,
+  aprendizaje por nivel de Ultrasol/Ultraluna y MT/tutor/huevo de los juegos de la generación.
+• 674 movimientos: solo los que existen en la 7.ª gen., con su tipo, potencia, precisión, PP y prioridad
+  de entonces.
+• 231 habilidades (con ocultas).
+• Tipos y TABLA DE TIPOS de la generación (con Hada).
+• Naturalezas y grupos huevo.
+• 195 entrenadores con su nivel de IA: nivel 1: 17, nivel 2: 22, nivel 3: 43, nivel 4: 58, nivel 5: 36, nivel 6: 15, nivel 7: 4.
+  Incluye el Laboratorio de IA (prueba_nivel_1 … 7: el mismo equipo en cada nivel) para el Torneo de IAs.
+
+APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):
+  • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.
+  • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.
+
+FORMAS DE COMBATE (SE CAMBIAN EN MITAD DEL COMBATE) (59):
+   abomasnow, absol, aegislash, aerodactyl, aggron, alakazam, altaria, ampharos, arceus, audino, banette, beedrill, blastoise, blaziken, camerupt, castform, charizard, cherrim, darmanitan, diancie, gallade, garchomp, gardevoir, gengar, giratina, glalie, groudon, gyarados, heracross, houndoom, kangaskhan, kyogre, latias, latios, lopunny, lucario, manectric, mawile, medicham, meloetta, metagross, mewtwo, minior, pidgeot, pinsir, rayquaza, sableye, salamence, sceptile, scizor, sharpedo, silvally, slowbro, steelix, swampert, tyranitar, venusaur, wishiwashi, zygarde
+
+VARIANTES (ESPECIES CON «FORMA_DE») (51):
+   basculin_blue_striped → basculin, deoxys_attack → deoxys, deoxys_defense → deoxys, deoxys_speed → deoxys, diglett_alola → diglett, dugtrio_alola → dugtrio, exeggutor_alola → exeggutor, geodude_alola → geodude, golem_alola → golem, gourgeist_large → gourgeist, gourgeist_small → gourgeist, gourgeist_super → gourgeist, graveler_alola → graveler, grimer_alola → grimer, hoopa_unbound → hoopa (prison_bottle), keldeo_resolute → keldeo, kyurem_black → kyurem (dna_splicers), kyurem_white → kyurem (dna_splicers), landorus_therian → landorus (reveal_glass), lycanroc_dusk → lycanroc, lycanroc_midnight → lycanroc, marowak_alola → marowak, meowth_alola → meowth, muk_alola → muk, necrozma_dawn → necrozma, necrozma_dusk → necrozma, ninetales_alola → ninetales, oricorio_pau → oricorio (pink_nectar), oricorio_pom_pom → oricorio (yellow_nectar), oricorio_sensu → oricorio (purple_nectar), persian_alola → persian, pumpkaboo_large → pumpkaboo, pumpkaboo_small → pumpkaboo, pumpkaboo_super → pumpkaboo, raichu_alola → raichu, raticate_alola → raticate, rattata_alola → rattata, rotom_fan → rotom, rotom_frost → rotom, rotom_heat → rotom, rotom_mow → rotom, rotom_wash → rotom, sandshrew_alola → sandshrew, sandslash_alola → sandslash, shaymin_sky → shaymin (gracidea), thundurus_therian → thundurus (reveal_glass), tornadus_therian → tornadus (reveal_glass), vulpix_alola → vulpix, wormadam_sandy → wormadam, wormadam_trash → wormadam, zygarde_10 → zygarde
+
+HABILIDADES SOLO CON NOMBRE (SIN EFECTO CONFIGURADO) (5):
+   aerilate, delta_stream, desolate_land, parental_bond, primordial_sea
+
+ENTRENADORES CON MIEMBROS DE GENERACIONES POSTERIORES (QUITADOS) (6):
+   alto_mando_molayne, alto_mando_olivia, campeon_kukui, kahuna_hapu, kahuna_nanu, rival_hau_liga
+
+OBJETOS SOLO CON SUS DATOS (SIN EFECTOS TODAVÍA), POR CATEGORÍA (5):
+   Evolution: 10, Held: 13, Key: 220, Other: 449, Vitamin: 34
+
+Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
+The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.

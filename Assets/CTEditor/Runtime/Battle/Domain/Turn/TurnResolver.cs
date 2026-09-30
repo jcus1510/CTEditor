@@ -223,9 +223,13 @@ namespace CTEditor.Battle.Domain.Turn
             return false;
         }
 
+        /// <summary>Priority of the play being resolved (Psychic Terrain makes priority moves fail against grounded targets).</summary>
+        private int _currentPriority;
+
         // Una jugada: cargas y recargas, movimientos encadenados, estados que impiden actuar y la acción elegida.
         private void ResolvePlay(Battle battle, (bool isPlayer, BattleAction action) play, Combatant actor, Combatant target, List<IDomainEvent> events)
         {
+            _currentPriority = play.action is UseMove ? PriorityOf(actor, play.action) : 0;
             // RECARGA: tras un movimiento de recarga, este turno se pierde por completo.
             if (actor.MustRecharge)
             {
@@ -967,6 +971,13 @@ namespace CTEditor.Battle.Domain.Turn
                         RunHeld(target, EffectTrigger.OnAbsorb, actor, move, events);
                         return;
                     }
+
+            // CAMPO PSÍQUICO: los movimientos con prioridad fallan contra quien pisa el suelo.
+            if (aimed && _currentPriority > 0 && TerrainBlocksPriority(target))
+            {
+                events.Add(new MoveFailedEvent(actor.Id));
+                return;
+            }
 
             // PROTECCIÓN: si el objetivo se protegió este turno, lo que se le lanza no le hace nada
             // (salvo Amago, que rompe la protección).
@@ -1739,6 +1750,15 @@ namespace CTEditor.Battle.Domain.Turn
             if (!statusDef.IsVolatile && !string.IsNullOrEmpty(tx.StatusImmuneInWeather) && WeatherIsActive
                 && string.Equals(tx.StatusImmuneInWeather, _battle.WeatherId, StringComparison.OrdinalIgnoreCase))
                 return;
+
+            // Blocks «inmune a estados» with conditions (Escudo Limitado con más de la mitad de vida...). Empty list = every
+            // MAIN status.
+            if (HeldHas(target, EffectAction.ImmuneToStatus, source, null, b => b.Ref.Length == 0 ? !statusDef.IsVolatile
+                    : b.RefList.Any(r => string.Equals(r, statusId.Value, StringComparison.OrdinalIgnoreCase))))
+            {
+                events.Add(new StatusFailedEvent(target.Id, statusId));
+                return;
+            }
 
             // Un estado PRINCIPAL no pisa a otro principal; un VOLÁTIL no se repite, pero se suma.
             if (statusDef.IsVolatile ? target.HasVolatile(statusId) : target.Status.HasValue) return;
@@ -2609,6 +2629,8 @@ namespace CTEditor.Battle.Domain.Turn
                 if (px.PriorityTypeBonus != 0 && px.PriorityType.Length > 0
                     && string.Equals(MoveTypeOf(actor, move).Value, px.PriorityType, StringComparison.OrdinalIgnoreCase))
                     p += px.PriorityTypeBonus;
+                // Blocks «prioridad» with conditions (items and abilities: Alas Vendaval con vida llena, Primer Auxilio...).
+                p += (int)HeldSum(actor, EffectAction.PriorityBonus, OpponentOf(actor), move);
                 return p;
             }
             return 0;

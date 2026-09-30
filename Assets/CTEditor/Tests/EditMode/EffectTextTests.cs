@@ -94,8 +94,9 @@ namespace CTEditor.Tests.EditMode
                     var blocks = EffectText.Parse(r["efectos"]);
                     Assert.AreEqual(r["efectos"], EffectText.Format(blocks), $"{file}: {r["id"]} no se reescribe igual");
                     var ability = new AbilityDefinition(new AbilityId(r["id"]), r["nombre"], blocks);
-                    // Every block of the classic abilities is an ability shape (nothing left to the generic runner).
-                    Assert.AreEqual(0, ability.GenericEffects.Count, $"{r["id"]}: {EffectText.Format(ability.GenericEffects)}");
+                    // The abilities of the 6th gen. and before are all ability shapes (nothing left to the generic runner); newer
+                    // ones may also use free blocks, which run like a held item's.
+                    if (file.Contains("Packs") && !file.Contains("Gen7")) Assert.AreEqual(0, ability.GenericEffects.Count, $"{r["id"]}: {EffectText.Format(ability.GenericEffects)}");
                     foreach (var b in blocks) Assert.IsTrue(AbilityEffects.IsSupported(b), $"{r["id"]}: {EffectText.Format(b)}");
                 }
             }

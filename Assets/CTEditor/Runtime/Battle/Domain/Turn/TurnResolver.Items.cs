@@ -232,6 +232,11 @@ namespace CTEditor.Battle.Domain.Turn
                     return;
                 case EffectAction.ConsumeItem:
                     return;   // the item was already used up (Consumes)
+                case EffectAction.SetSideCondition:
+                    if (b.Ref.Length == 0) return;
+                    announce();
+                    SetSideCondition(holder, who, b.Ref, events);   // Electrogénesis: al entrar pone el Campo Eléctrico
+                    return;
             }
         }
 

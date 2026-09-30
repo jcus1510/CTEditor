@@ -38,6 +38,9 @@ namespace CTEditor.GameDefinition.Editor
                     case EffectRefKind.Move:
                         if (b.Ref.Length > 0 && ContentAssets.FindById<MoveData>(b.Ref) == null) w.Add($"Enseña '{b.Ref}', que no existe.");
                         break;
+                    case EffectRefKind.SideCondition:
+                        if (b.Ref.Length > 0 && ContentAssets.FindById<SideConditionData>(b.Ref) == null) w.Add($"Usa el efecto de lado '{b.Ref}', que no existe.");
+                        break;
                     case EffectRefKind.Special:
                         if (AbilityEffects.Special(b.Ref) == null) w.Add($"El comportamiento especial '{b.Ref}' no existe.");
                         break;

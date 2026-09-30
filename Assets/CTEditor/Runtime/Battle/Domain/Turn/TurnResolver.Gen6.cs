@@ -80,6 +80,8 @@ namespace CTEditor.Battle.Domain.Turn
                     events.Add(new StatusDamageEvent(attacker.Id, v.Id, dmg));
                     if (attacker.IsFainted) events.Add(new MonsterFaintedEvent(attacker.Id));
                 }
+                if (x.ProtectContactStatus.Length > 0 && !attacker.IsFainted)
+                    TryInflictStatus(attacker, new StatusId(x.ProtectContactStatus), events, defender);
             }
         }
 
@@ -104,6 +106,14 @@ namespace CTEditor.Battle.Domain.Turn
             if (HeldImmuneTo(c, new Id<ElementType>("ground"))) return false;
             if (HasVolatileFlag(c, d => ContainsType(d.Extras.TypeImmunities, new Id<ElementType>("ground")))) return false;
             return true;
+        }
+
+        /// <summary>¿Un campo hace fallar la prioridad contra él? (Campo Psíquico, a quien pisa el suelo).</summary>
+        private bool TerrainBlocksPriority(Combatant target)
+        {
+            if (!TouchesGround(target)) return false;
+            foreach (var d in FieldConditions()) if (d.BlocksPriorityOnGrounded) return true;
+            return false;
         }
 
         /// <summary>¿Un campo impide ponerle este estado? (Niebla: todos; Eléctrico: dormir).</summary>

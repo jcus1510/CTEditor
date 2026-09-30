@@ -54,6 +54,8 @@ namespace CTEditor.GameDefinition.Editor
             ("grassy_terrain", "Campo de Hierba", 5, 1f, 1f, false, false, 1f, new Color(0.45f, 0.80f, 0.40f)),
             ("misty_terrain", "Campo de Niebla", 5, 1f, 1f, false, false, 1f, new Color(0.95f, 0.70f, 0.90f)),
             ("electric_terrain", "Campo Eléctrico", 5, 1f, 1f, false, false, 1f, new Color(0.98f, 0.85f, 0.25f)),
+            // 7.ª generación
+            ("psychic_terrain", "Campo Psíquico", 5, 1f, 1f, false, false, 1f, new Color(0.90f, 0.45f, 0.75f)),
         };
 
         public static int CreateClassicSet()
@@ -91,6 +93,7 @@ namespace CTEditor.GameDefinition.Editor
                 // 5.ª y 6.ª generación.
                 B("swapsDefenses", c.id == "wonder_room");
                 B("suppressesItems", c.id == "magic_room");
+                B("blocksPriorityOnGrounded", c.id == "psychic_terrain");
                 bool terrain = c.id.EndsWith("_terrain");
                 var gp = so.FindProperty("group"); if (gp != null) gp.stringValue = terrain ? "campo" : "";
                 F("endOfTurnHealPercent", c.id == "grassy_terrain" ? 6.25f : 0f);
@@ -105,7 +108,8 @@ namespace CTEditor.GameDefinition.Editor
                 if (power != null)
                 {
                     // Campo Eléctrico: Eléctrico ×1,5; de Hierba: Planta ×1,5; de Niebla: Dragón ×0,5 (a quien pisa el suelo).
-                    string pt = c.id == "electric_terrain" ? "electric" : c.id == "grassy_terrain" ? "grass" : c.id == "misty_terrain" ? "dragon" : null;
+                    string pt = c.id == "electric_terrain" ? "electric" : c.id == "grassy_terrain" ? "grass" : c.id == "misty_terrain" ? "dragon"
+                        : c.id == "psychic_terrain" ? "psychic" : null;
                     var pty = pt != null ? ContentAssets.FindById<ElementTypeData>(pt) : null;
                     power.arraySize = pty != null ? 1 : 0;
                     if (pty != null)
@@ -190,6 +194,7 @@ namespace CTEditor.GameDefinition.Editor
             if (d.SuppressesItems) l.Add("Ningún objeto equipado funciona (en todo el campo).");
             if (!string.IsNullOrWhiteSpace(d.Group)) l.Add($"Grupo «{d.Group}»: al ponerse, quita los demás efectos de ese grupo (solo un campo a la vez).");
             if (d.EndOfTurnHealPercent > 0) l.Add($"Quien pisa el suelo recupera el {d.EndOfTurnHealPercent:0.##}% de sus PS al final del turno.");
+            if (d.BlocksPriorityOnGrounded) l.Add("Los movimientos con prioridad fallan contra quien pisa el suelo.");
             if (d.GroundedStatusBlock != null && d.GroundedStatusBlock.Length > 0)
                 l.Add(System.Array.IndexOf(d.GroundedStatusBlock, "*") >= 0 ? "Nadie que pise el suelo puede sufrir estados principales ni confusión."
                     : $"Nadie que pise el suelo puede sufrir: {string.Join(", ", d.GroundedStatusBlock)}.");
