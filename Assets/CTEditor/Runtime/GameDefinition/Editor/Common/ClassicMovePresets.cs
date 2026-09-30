@@ -323,13 +323,17 @@ namespace CTEditor.GameDefinition.Editor
             return missing;
         }
 
-        /// <summary>Crea las plantillas que falten. Devuelve cuántas creó y los tipos que faltaban.</summary>
-        public static int CreateAll(out List<string> missingTypes)
+        /// <summary>
+        /// Crea las plantillas que falten. Devuelve cuántas creó y los tipos que faltaban.
+        /// 'skipIds': ids que NO se crean desde la plantilla (los trae un pack: sus datos mandan).
+        /// </summary>
+        public static int CreateAll(out List<string> missingTypes, ICollection<string> skipIds = null)
         {
             int created = 0;
             var missing = new List<string>();
             foreach (var p in All)
             {
+                if (skipIds != null && skipIds.Contains(p.Id)) continue;
                 var preset = p;
                 if (ContentAssets.CreateIfMissing<MoveData>(ContentFolders.Moves, p.Id, p.Name,
                         so => missing.AddRange(Fill(so, preset))))

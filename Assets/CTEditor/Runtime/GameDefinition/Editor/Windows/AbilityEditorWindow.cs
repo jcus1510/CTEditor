@@ -163,12 +163,14 @@ namespace CTEditor.GameDefinition.Editor
         /// <summary>Crea las habilidades clásicas que falten. Devuelve cuántas creó.</summary>
         public static int CreateClassicSet() => CreateClassicSet(out _);
 
-        public static int CreateClassicSet(out List<string> missingTypes)
+        /// <summary>Igual, pero sin crear los ids de 'skipIds' (los trae un pack: sus datos mandan).</summary>
+        public static int CreateClassicSet(out List<string> missingTypes, ICollection<string> skipIds = null)
         {
             int created = 0;
             var ctx = new Ctx();
             foreach (var p in Library)
             {
+                if (skipIds != null && skipIds.Contains(p.Id)) continue;
                 var preset = p;
                 if (ContentAssets.CreateIfMissing<AbilityData>(ContentFolders.Abilities, p.Id, p.Name,
                         so => { Reset(so); preset.Fill(so, ctx); }))

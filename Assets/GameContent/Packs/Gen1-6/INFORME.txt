@@ -35,8 +35,28 @@
   Nivel 7 (Injusto): conoce TODO tu equipo desde el principio (movimientos, IVs, EVs) y lleva objetos de competición.
   Pruébalos con Benga (Torre Negra) y Dana (Palacio Batalla).
 
-ANTES DE IMPORTAR: el Centro de Contenido crea la base clásica (estados como Escudo Real o Mofa, climas, efectos de
-lado como los Campos o Zona Extraña, objetos de competición, niveles de IA y grupos huevo). Hazlo con «📦 Importar».
+CÓMO SE IMPORTA (Centro de Contenido → «📦 Importar»)
+  1. Base: lo que el pack referencia y no trae en sus hojas (estados como Escudo Real o Mofa, climas, efectos de lado
+     como los Campos o Zona Extraña, objetos de competición, niveles de IA, grupos huevo, Forcejeo) se crea desde las
+     plantillas clásicas del código. EL PACK MANDA: si esta carpeta trae la hoja de una categoría, esa categoría sale
+     de la hoja y su plantilla NO se usa:
+        tipos.csv (+ tabla_tipos.csv)  estados.csv  climas.csv  trampas.csv  efectos_lado.csv  objetos.csv
+        naturalezas.csv  curvas.csv  reglas.csv  niveles_ia.csv  grupos_huevo.csv
+     En movimientos y habilidades solo se crean las plantillas cuyo id NO está en el pack (p. ej. Forcejeo).
+  2. Hojas del pack, en este orden (lo que otros referencian va antes): tipos → grupos huevo / tabla de tipos →
+     estados → climas → trampas → efectos de lado → habilidades → objetos → naturalezas → curvas → reglas →
+     movimientos → especies → niveles de IA → entrenadores → zonas → equipos. Antes de validar se registran los ids de TODAS las hojas:
+     una fila puede nombrar algo que crea otra hoja de este mismo pack.
+  3. Revisa el análisis (nuevas · cambios · errores · avisos) y pulsa Aplicar. Antes se guarda una copia en Excel/copias.
+
+  Modos:
+     • Solo lo que falta: crea lo que no existe; lo que ya tienes (mismo id) no se toca. En la tabla de tipos solo se
+       rellenan las casillas vacías.
+     • Actualizar también: además pone los datos del pack en lo que ya existe. Úsalo para CAMBIAR de generación
+       (p. ej. de 1.ª-4.ª a 1.ª-6.ª): tabla de tipos con Hada, valores nuevos de movimientos, objetos, estados...
+     • Importar nunca borra: si pasas a un pack de menos generaciones, lo que sobra se queda (bórralo en su editor).
+
+  Si al preparar la base algo falla, se avisa y NO se importa nada del pack (ya no quedan fichas en blanco, sin id).
 
 ESPECIES SIN DATOS EN SU JUEGO (se usa el más cercano): deoxys (Rubí/Zafiro)
 

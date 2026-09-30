@@ -720,7 +720,10 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     float after = 1f;
                     if (cell.Length > 0 && !CsvTable.TryNumber(cell, out after)) { plan.Errors.Add($"[{h}] '{cell}' no es un número."); continue; }
                     var def = ctx.Find<ElementTypeData>(h);
-                    float before = atk != null && def != null && map.TryGetValue((atk, def), out var m) ? m : 1f;
+                    bool written = atk != null && def != null && map.TryGetValue((atk, def), out _);
+                    // «Solo lo que falta»: las casillas que ya tienes escritas no se tocan (solo se rellenan las vacías).
+                    if (written && mode == ImportMode.CreateOnly) continue;
+                    float before = written ? map[(atk, def)] : 1f;
                     if (Math.Abs(before - after) > 1e-4) plan.Changes.Add((h, CsvTable.Number(before), CsvTable.Number(after)));
                 }
             }

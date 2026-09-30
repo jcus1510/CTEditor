@@ -106,23 +106,33 @@ namespace CTEditor.GameDefinition.Editor
         /// Crea una ficha nueva en GameContent/Resources/&lt;categoría&gt;, con id y nombre ya puestos, y
         /// deja que 'init' rellene el resto de campos (así los presets crean fichas completas).
         /// Si ya existe un archivo con ese nombre, Unity genera uno único ("fire 1.asset").
+        ///
+        /// La ficha se rellena ENTERA en memoria y solo al final se guarda como archivo: si 'init' falla
+        /// (o algo se interrumpe), no queda en el proyecto una ficha en blanco, sin id ni nombre.
         /// </summary>
         public static T Create<T>(string category, string id, string displayName, Action<SerializedObject> init = null)
             where T : ScriptableObject
         {
+            var asset = ScriptableObject.CreateInstance<T>();
+            try
+            {
+                var so = new SerializedObject(asset);
+                SetString(so, "id", id);
+                SetString(so, "displayName", displayName);
+                init?.Invoke(so);
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
+            catch
+            {
+                Object.DestroyImmediate(asset);
+                throw;
+            }
+
             string folder = ContentFolders.PathOf(category);
             EnsureFolder(folder);
             string path = AssetDatabase.GenerateUniqueAssetPath($"{folder}/{SafeFileName(id)}.asset");
-
-            var asset = ScriptableObject.CreateInstance<T>();
             AssetDatabase.CreateAsset(asset, path);
             ClearCache();
-
-            var so = new SerializedObject(asset);
-            SetString(so, "id", id);
-            SetString(so, "displayName", displayName);
-            init?.Invoke(so);
-            so.ApplyModifiedPropertiesWithoutUndo();
 
             EditorUtility.SetDirty(asset);
             return asset;

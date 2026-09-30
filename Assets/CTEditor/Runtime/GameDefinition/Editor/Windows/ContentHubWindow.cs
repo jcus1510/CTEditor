@@ -205,9 +205,15 @@ namespace CTEditor.GameDefinition.Editor
                                        : Directory.Exists(Gen12PackFolder) ? "la 1ª y 2ª generación" : "la 1ª generación";
 
         /// <summary>
-        /// PACK 1ª GENERACIÓN: primero asegura la base clásica (tipos, estados, curvas, Forcejeo...), que es
-        /// lo que el pack referencia; luego abre la ventana de Excel sobre el pack, ya analizado y en modo
-        /// "solo crear lo que falta", para que el autor vea lo que entra y pulse Aplicar.
+        /// IMPORTAR EL PACK: primero asegura la base que el pack referencia (tipos, estados, climas, objetos,
+        /// Forcejeo...) y luego abre la ventana de Excel sobre el pack, ya analizado, para que el autor vea lo
+        /// que entra y pulse Aplicar.
+        ///
+        /// EL PACK MANDA: si la carpeta del pack trae la hoja de una categoría (estados.csv, objetos.csv...),
+        /// esa categoría sale del pack y NO se crea desde las plantillas del código (cada generación trae sus
+        /// propios datos). Las plantillas solo cubren lo que el pack no trae. En movimientos y habilidades se
+        /// crean solo las plantillas cuyo id NO está en el pack (p. ej. Forcejeo), para que una plantilla nunca
+        /// gane a los datos del pack en el modo «solo lo que falta».
         /// </summary>
         private void ImportGen1Pack()
         {
@@ -227,39 +233,100 @@ namespace CTEditor.GameDefinition.Editor
             if (choice == 1) return;
             var mode = choice == 2 ? ImportMode.CreateAndUpdate : ImportMode.CreateOnly;
 
-            CreateClassicBase(new List<string>());
-            ItemEditorWindow.CreateClassicSet();          // las piedras que usan las evoluciones del pack
-            AbilityEditorWindow.CreateClassicSet(out _); // las habilidades con efecto real, antes que las del pack
+            var pack = new PackContents(PackFolder);
+            var report = new List<string>();
+            try
+            {
+                CreateClassicBase(report, pack);
+                report.Add($"Habilidades-plantilla: {AbilityEditorWindow.CreateClassicSet(out _, pack.Ids(PackTools.AbilitiesFile))} nuevas");
+            }
+            catch (Exception e)
+            {
+                // Antes de este arreglo, un fallo aquí dejaba fichas EN BLANCO (sin id). Ahora no se crea nada a medias:
+                // se avisa y no se abre la importación, porque al pack le faltaría la base que referencia.
+                Debug.LogException(e);
+                AssetDatabase.SaveAssets();
+                EditorUtility.DisplayDialog("Pack de " + PackName,
+                    "No se pudo preparar la base que necesita el pack:\n\n" + e.Message +
+                    "\n\nNo se ha importado nada del pack. El detalle está en la Consola.", "Vale");
+                RecountIssues();
+                return;
+            }
             AssetDatabase.SaveAssets();
             RecountIssues();
+
+            string fromPack = pack.Files.Count > 0 ? string.Join(", ", pack.Files.OrderBy(f => f)) : "(ninguna)";
             CsvWindow.OpenFolder(PackFolder, mode,
-                "PACK DE " + PackName.ToUpperInvariant() + ": especies con sus datos de Pokédex (número, altura, peso, descripción), evoluciones (nivel, piedra, " +
-                "intercambio, amistad y hora), movimientos (por nivel, MT, tutor y huevo), habilidades (1ª, 2ª y oculta), grupos huevo y entrenadores " +
-                "(líderes, Alto Mando y de ruta) con su nivel de IA. Ya se creó la base clásica que necesita (tipos, estados, climas, efectos de lado, " +
-                "curvas, objetos, niveles de IA, grupos huevo, Forcejeo).\n\n" +
+                "PACK DE " + PackName.ToUpperInvariant() + ". Hojas que trae el pack: " + fromPack + ".\n" +
+                "Lo que el pack no trae se ha creado desde las plantillas clásicas:\n  • " + string.Join("\n  • ", report) + "\n\n" +
                 (mode == ImportMode.CreateOnly
                     ? "Modo \"solo crear las que faltan\": no se toca nada que ya exista con el mismo id. Revisa el análisis "
                     : "Modo \"actualizar también\": lo que ya existe recibe los datos del pack (el id y las referencias se mantienen). Revisa los cambios ") +
                 "y pulsa Aplicar. Lo que se ha aproximado o aún no tiene efecto está explicado en INFORME.txt del pack.");
         }
 
-        // Crea la base clásica que falte (no toca lo existente). Devuelve el informe en 'report'.
-        private static void CreateClassicBase(List<string> report)
+        /// <summary>Qué hojas trae la carpeta de un pack y qué ids hay en cada una (para no pisarlas con plantillas).</summary>
+        private sealed class PackContents
         {
-            report.Add($"Tipos: {TypeChartTools.CreateClassicSet()} nuevos (tabla completada)");
-            report.Add($"Estados: {ClassicStatusPresets.CreateClassicSet()} nuevos");
-            report.Add($"Climas: {WeatherEditorWindow.CreateClassicSet()} nuevos");
-            report.Add($"Objetos: {ItemEditorWindow.CreateClassicSet()} nuevos");
-            report.Add($"Trampas de campo: {HazardEditorWindow.CreateClassicSet()} nuevas");
-            report.Add($"Efectos de lado: {SideConditionEditorWindow.CreateClassicSet()} nuevos");
-            report.Add($"Movimientos-plantilla (incluye Forcejeo): {ClassicMovePresets.CreateAll(out _)} nuevos");
-            report.Add($"Naturalezas: {NatureEditorWindow.CreateClassicSet()} nuevas");
-            report.Add($"Curvas: {GrowthCurveEditorWindow.CreateClassicSet()} nuevas");
-            report.Add($"Reglas: {RulesetEditorWindow.CreateClassicSet()} nuevas");
+            private readonly string _folder;
+            private readonly Dictionary<string, HashSet<string>> _ids = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+            public readonly HashSet<string> Files = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+            public PackContents(string folder)
+            {
+                _folder = folder;
+                if (folder == null || !Directory.Exists(folder)) return;
+                foreach (var path in Directory.GetFiles(folder, "*.csv")) Files.Add(Path.GetFileName(path));
+            }
+
+            /// <summary>¿El pack trae esta hoja? (entonces esa categoría sale del pack, no de las plantillas)</summary>
+            public bool Has(string file) => Files.Contains(file);
+
+            /// <summary>Ids de una hoja del pack (vacío si no la trae o no se puede leer).</summary>
+            public HashSet<string> Ids(string file)
+            {
+                if (_ids.TryGetValue(file, out var set)) return set;
+                set = new HashSet<string>();
+                if (Has(file))
+                {
+                    try
+                    {
+                        foreach (var row in CsvTable.Load(Path.Combine(_folder, file)).Rows)
+                            if (row.TryGetValue("id", out var id) && !string.IsNullOrWhiteSpace(id)) set.Add(id.Trim());
+                    }
+                    catch (Exception e) { Debug.LogWarning($"No se pudo leer {file} del pack: {e.Message}"); }
+                }
+                _ids[file] = set;
+                return set;
+            }
+        }
+
+        // Crea la base clásica que falte (no toca lo existente). Devuelve el informe en 'report'.
+        // Con 'pack': las categorías cuya hoja trae el pack NO se crean desde las plantillas (el pack manda).
+        private static void CreateClassicBase(List<string> report, PackContents pack = null)
+        {
+            void Step(string file, string label, Func<int> create)
+            {
+                if (pack != null && pack.Has(file)) { report.Add($"{label}: del pack ({file})"); return; }
+                report.Add($"{label}: {create()} nuevos");
+            }
+
+            // Tipos: la tabla va con ellos (la plantilla la completa); si el pack trae tipos.csv, trae también su tabla.
+            Step("tipos.csv", "Tipos", TypeChartTools.CreateClassicSet);
+            Step("estados.csv", "Estados", ClassicStatusPresets.CreateClassicSet);
+            Step("climas.csv", "Climas", WeatherEditorWindow.CreateClassicSet);
+            Step("objetos.csv", "Objetos", ItemEditorWindow.CreateClassicSet);
+            Step("trampas.csv", "Trampas de campo", HazardEditorWindow.CreateClassicSet);
+            Step("efectos_lado.csv", "Efectos de lado", SideConditionEditorWindow.CreateClassicSet);
+            // Movimientos: siempre las plantillas que el pack NO trae (Forcejeo lo necesita el motor).
+            report.Add($"Movimientos-plantilla (incluye Forcejeo): {ClassicMovePresets.CreateAll(out _, pack?.Ids(PackTools.MovesFile))} nuevos");
+            Step("naturalezas.csv", "Naturalezas", NatureEditorWindow.CreateClassicSet);
+            Step("curvas.csv", "Curvas", GrowthCurveEditorWindow.CreateClassicSet);
+            Step("reglas.csv", "Reglas", RulesetEditorWindow.CreateClassicSet);
             report.Add($"Menús: {MenuEditorWindow.CreateClassicSet()} nuevos");
             report.Add($"Controles y caja de texto: {ControlsEditorWindow.CreateClassicSet()} nuevos");
-            report.Add($"Niveles de IA: {AiLevelEditorWindow.CreateClassicSet()} nuevos");
-            report.Add($"Grupos huevo: {EggGroupEditorWindow.CreateClassicSet()} nuevos");
+            Step("niveles_ia.csv", "Niveles de IA", AiLevelEditorWindow.CreateClassicSet);
+            Step("grupos_huevo.csv", "Grupos huevo", EggGroupEditorWindow.CreateClassicSet);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
