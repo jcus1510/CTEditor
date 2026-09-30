@@ -44,7 +44,9 @@ namespace CTEditor.GameDefinition.Editor
                 case FormTrigger.HpBelow: when = $"al final del turno con menos del {c.hpPercent} % de PS"; break;
                 case FormTrigger.HpAtLeast: when = $"al final del turno con el {c.hpPercent} % de PS o más"; break;
                 case FormTrigger.Weather: when = string.IsNullOrWhiteSpace(c.weather) ? "cuando no hay clima" : $"con {Name<WeatherData>(c.weather)}"; break;
-                case FormTrigger.MegaEvolution: when = $"al megaevolucionar con {Name<ItemData>(c.item)}"; break;
+                case FormTrigger.MegaEvolution:
+                    when = string.IsNullOrWhiteSpace(c.item) ? $"al megaevolucionar sabiendo {Name<MoveData>(c.move)}" : $"al megaevolucionar con {Name<ItemData>(c.item)}";
+                    break;
                 default: when = c.trigger.ToString(); break;
             }
             string ability = string.IsNullOrWhiteSpace(c.requiredAbility) ? "" : $" (necesita {Name<AbilityData>(c.requiredAbility)})";
@@ -70,8 +72,10 @@ namespace CTEditor.GameDefinition.Editor
                         list.Add($"Un cambio de forma usa '{fid}', que no es una forma de {s.DisplayName}.");
                 if (string.Equals(c.from ?? "", c.to ?? "", StringComparison.OrdinalIgnoreCase))
                     list.Add($"Un cambio de forma va de «{FormName(s, c.from)}» a sí misma.");
-                if ((c.trigger == FormTrigger.HeldItem || c.trigger == FormTrigger.MegaEvolution) && string.IsNullOrWhiteSpace(c.item))
+                if (c.trigger == FormTrigger.HeldItem && string.IsNullOrWhiteSpace(c.item))
                     list.Add($"El cambio a «{FormName(s, c.to)}» necesita un objeto.");
+                if (c.trigger == FormTrigger.MegaEvolution && string.IsNullOrWhiteSpace(c.item) && string.IsNullOrWhiteSpace(c.move))
+                    list.Add($"La megaevolución a «{FormName(s, c.to)}» necesita su megapiedra (o un movimiento, como Rayquaza).");
                 if (c.trigger == FormTrigger.UseMove && string.IsNullOrWhiteSpace(c.move))
                     list.Add($"El cambio a «{FormName(s, c.to)}» necesita un movimiento.");
             }

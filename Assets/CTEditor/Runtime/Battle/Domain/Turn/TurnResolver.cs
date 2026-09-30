@@ -133,6 +133,9 @@ namespace CTEditor.Battle.Domain.Turn
             // --- FASE: ORDEN ---
             // Cada "jugada" guarda solo el BANDO y la acción; el actor y el objetivo se calculan en
             // VIVO durante la resolución, para que un cambio de monstruo recoloque el objetivo del rival.
+            // --- FASE: MEGAEVOLUCIÓN (antes de ordenar: cuenta ya la nueva Velocidad) ---
+            ApplyMegaEvolutions(battle, playerAction, enemyAction, events);
+
             var plays = new List<(bool isPlayer, BattleAction action)>
             {
                 (true, playerAction),

@@ -187,6 +187,29 @@ namespace CTEditor.Adventure.Domain
         // ---------------- Decisiones del jugador ----------------
 
         /// <summary>El jugador elige su acción del turno. Si las reglas no lo permiten, no se gasta el turno.</summary>
+        /// <summary>
+        /// ¿Puede el jugador megaevolucionar a su activo este turno? (mecánica activa, le quedan megas, lleva su megapiedra y
+        /// el jugador tiene el objeto clave que pide la ficha de mecánica).
+        /// </summary>
+        public bool CanPlayerMegaEvolve => WhyNoMega == null;
+
+        /// <summary>Por qué no puede megaevolucionar (null = sí puede). Sirve para el botón de la interfaz.</summary>
+        public string WhyNoMega
+        {
+            get
+            {
+                if (Phase != SessionPhase.ChooseAction || Battle.IsOver) return "Ahora no.";
+                var mech = Resolver.MegaMechanic;
+                if (mech == null) return "En este juego no hay megaevolución.";
+                if (Resolver.MegaRuleFor(Battle.Player) == null) return $"{NameOf(Battle.Player.Id)} no puede megaevolucionar.";
+                if (!Resolver.CanMegaEvolve(Battle, true)) return "Ya no te quedan megaevoluciones en este combate.";
+                string key = mech.Mega.RequiredKeyItem;
+                if (key.Length > 0 && !Save.Bag.Has(key))
+                    return $"Necesitas {(Data.TryGetItem(key, out var it) ? it.DisplayName : key)} para megaevolucionar.";
+                return null;
+            }
+        }
+
         public SessionStep Submit(PlayerChoice choice)
         {
             if (Phase != SessionPhase.ChooseAction) return SessionStep.Rejected("Ahora no toca elegir una acción.");
@@ -336,7 +359,8 @@ namespace CTEditor.Adventure.Domain
                     if (active.EncoreMove.HasValue && active.EncoreMove.Value != picked && active.IndexOfMove(active.EncoreMove.Value) >= 0)
                     { reason = $"¡{NameOf(active.Id)} tiene que repetir {Data.MoveName(active.EncoreMove.Value)}!"; return false; }
                     if (active.IsDisabled(picked)) { reason = $"¡{Data.MoveName(picked)} está anulado!"; return false; }
-                    action = new UseMove(picked);
+                    if (f.MegaEvolve && !CanPlayerMegaEvolve) { reason = WhyNoMega ?? "No puede megaevolucionar."; return false; }
+                    action = new UseMove(picked, f.MegaEvolve);
                     return true;
                 }
 

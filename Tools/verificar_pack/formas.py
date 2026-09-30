@@ -6,9 +6,10 @@
 - VARIANTES (filas propias con `forma_de`): especies completas enlazadas a su base. Deoxys, Wormadam, Rotom, Shaymin,
   Basculin, los Tótem, Kyurem, Keldeo, Pumpkaboo/Gourgeist, Hoopa. `objeto_variante` = el objeto que cambia a ella fuera
   del combate (vacío = con un personaje del mapa).
-Las megaevoluciones van aparte (paso de la megaevolución).
+- MEGAEVOLUCIONES (6.ª gen.): formas «mega» / «mega_x» / «mega_y» con la regla `>mega:mega:<megapiedra>` (Rayquaza:
+  `;sabe=dragon_ascent`). La megapiedra de cada una se saca del texto de PokeAPI («Have Venusaur hold it...»).
 """
-import collections
+import collections, re
 from pokeapi import table, pack_id, SPANISH
 
 WEATHERS = ['sun', 'rain', 'sandstorm', 'hail']
@@ -64,6 +65,7 @@ class Forms:
         for r in table('pokemon_form_types'):
             self.form_types[r['pokemon_form_id']].append((int(r['slot']), g.api.type_name[r['type_id']]))
         self.pokemon = {r['id']: r for r in table('pokemon')}
+        self._megas = None
 
     def name_of(self, identifier):
         f = self.form.get(identifier)
@@ -103,11 +105,56 @@ class Forms:
                 rules.append(f'*>:clima{con}')
             else:
                 rules.extend(how.split('|'))
-        else:
+        for ident, fid, stone, move in (self.megas().get(sp, []) if n >= 6 else []):
+            entries.append(self._form_entry(s, ident, fid, False, used_abilities, n))
+            rules.append(f'>{fid}:mega:{stone}' if stone else f'>{fid}:mega;sabe={move}')
+        if not entries:
             return False
         s['formas'] = '|'.join(entries)
         s['cambios_forma'] = '|'.join(rules)
         return True
+
+    def megas(self):
+        """{especie: [(forma de PokeAPI, id de la forma, megapiedra, movimiento)]} de las megas de la 6.ª gen."""
+        if self._megas is not None:
+            return self._megas
+        vg_gen = {r['id']: int(r['generation_id']) for r in table('version_groups')}
+        cats = {r['id']: r['identifier'] for r in table('item_categories')}
+        stones = {r['id']: r['identifier'] for r in table('items') if cats.get(r['category_id']) == 'mega-stones'}
+        text = {}
+        for r in table('item_flavor_text'):
+            if r['language_id'] == '9' and r['item_id'] in stones:
+                text[stones[r['item_id']]] = r['flavor_text'].replace('\n', ' ')
+        en = {r['pokemon_species_id']: r['name'] for r in table('pokemon_species_names') if r['local_language_id'] == '9'}
+        spc = {r['id']: r['identifier'] for r in table('pokemon_species')}
+        out = collections.defaultdict(list)
+        for f in table('pokemon_forms'):
+            if f['is_mega'] != '1' or vg_gen.get(f['introduced_in_version_group_id'], 99) > 6:
+                continue
+            sid = self.pokemon[f['pokemon_id']]['species_id']
+            suffix = f['identifier'].split('-mega', 1)[1]          # '', '-x', '-y'
+            fid = 'mega' + suffix.replace('-', '_')
+            found = [st for st, t in text.items() if re.search(r'\b' + re.escape(en[sid]) + r'\b', t)
+                     and (st.endswith(suffix) if suffix else not re.search(r'-[xy]$', st))
+                     and self._item_gen(st) <= 6]
+            stone = pack_id(found[0]) if len(found) == 1 else ''
+            move = 'dragon_ascent' if spc[sid] == 'rayquaza' else ''
+            if stone or move:
+                out[pack_id(spc[sid])].append((f['identifier'], fid, stone, move))
+        self._megas = out
+        return out
+
+    def _item_gen(self, identifier):
+        """Primera generación en que existe el objeto (índices de juego de PokeAPI): para no coger las megapiedras de Z-A."""
+        if not hasattr(self, '_item_first'):
+            ids = {r['id']: r['identifier'] for r in table('items')}
+            first = {}
+            for r in table('item_game_indices'):
+                ident = ids.get(r['item_id'])
+                if ident:
+                    first[ident] = min(first.get(ident, 99), int(r['generation_id']))
+            self._item_first = first
+        return self._item_first.get(identifier, 99)
 
     def _form_entry(self, s, ident, fid, reverts, used_abilities, n):
         pid, v = self.vals(ident)

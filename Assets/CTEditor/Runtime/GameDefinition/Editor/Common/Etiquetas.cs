@@ -186,6 +186,9 @@ namespace CTEditor.GameDefinition.Editor
             ["specialAttackStat"] = ("Especial: estadística de ataque", "especial_ataque"),
             ["specialDefenseStat"] = ("Especial: estadística de defensa", "especial_defensa"),
 
+            // Megaevolución (entrenadores y niveles de IA)
+            ["canMegaEvolve"] = ("Puede megaevolucionar", "megaevoluciona"),
+            ["megaTiming"] = ("Cuándo megaevoluciona", "cuando_mega"),
             // Formas y variantes
             ["formOf"] = ("Es forma de (variante)", "forma_de"),
             ["variantItem"] = ("Objeto que cambia a esta variante", "objeto_variante"),
@@ -655,6 +658,7 @@ namespace CTEditor.GameDefinition.Editor
         {
             // Categoría de movimiento
             ["MegaEvolution"] = "Megaevolución",
+            ["ByLevel"] = "Según su nivel", ["AsSoonAsPossible"] = "En cuanto puede",
             ["HeldItem"] = "Lleva un objeto", ["UseMove"] = "Usa un movimiento", ["DamagingMove"] = "Usa un ataque",
             ["HpBelow"] = "PS por debajo de un %", ["HpAtLeast"] = "PS desde un %", ["Weather"] = "Clima",
             ["Physical"] = "Físico", ["Special"] = "Especial", ["Status"] = "Estado",

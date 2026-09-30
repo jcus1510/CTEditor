@@ -21,6 +21,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
     ///   >blade:ataque;con=stance_change       (al usar cualquier ataque, antes de golpear)
     ///   >pirouette:movimiento:relic_song;despues
     ///   >origin:objeto:griseous_orb     >sun:clima:sun     >mega_x:mega:charizardite_x
+    ///   >mega:mega;sabe=dragon_ascent          (megaevolución sin piedra: sabiendo un movimiento, como Rayquaza)
     ///   Disparadores: objeto, movimiento, ataque, ps_bajo, ps_desde, clima, mega. «*» en desde = cualquier forma.
     /// </summary>
     public static class CsvFormCodecs
@@ -94,6 +95,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     default: value = ""; break;
                 }
                 string s = $"{c.from}>{c.to}:{WordOf(c.trigger)}" + (string.IsNullOrEmpty(value) ? "" : ":" + value);
+                if (c.trigger == FormTrigger.MegaEvolution && !string.IsNullOrWhiteSpace(c.move)) s += ";sabe=" + c.move;
                 if (!string.IsNullOrWhiteSpace(c.requiredAbility)) s += ";con=" + c.requiredAbility;
                 if (c.afterMove) s += ";despues";
                 return s;
@@ -117,10 +119,14 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 if (w.word == null)
                     throw new CsvCellException($"El cambio '{raw}': «{rest[1]}» no es un disparador ({string.Join(", ", Words.Select(x => x.word))}).");
                 c.trigger = w.trigger;
+                string knows = parts.Skip(1).FirstOrDefault(o => o.StartsWith("sabe=", StringComparison.OrdinalIgnoreCase));
                 switch (c.trigger)
                 {
-                    case FormTrigger.HeldItem:
                     case FormTrigger.MegaEvolution:
+                        if (value.Length == 0 && knows == null)
+                            throw new CsvCellException($"El cambio '{raw}' necesita la megapiedra (:mega:charizardite_x) o un movimiento (;sabe=dragon_ascent).");
+                        c.item = value; break;
+                    case FormTrigger.HeldItem:
                         if (value.Length == 0) throw new CsvCellException($"El cambio '{raw}' necesita el objeto (ej. :objeto:griseous_orb).");
                         c.item = value; break;
                     case FormTrigger.UseMove:
@@ -140,6 +146,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     if (o.StartsWith("con=")) c.requiredAbility = opt.Substring(4).Trim();
                     else if (o == "despues" || o == "después") c.afterMove = true;
                     else if (o == "antes") c.afterMove = false;
+                    else if (o.StartsWith("sabe=") && c.trigger == FormTrigger.MegaEvolution) c.move = opt.Substring(5).Trim();
                     else throw new CsvCellException($"El cambio '{raw}': opción desconocida «{opt}» (con=habilidad, despues).");
                 }
                 list.Add(c);

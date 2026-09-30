@@ -53,9 +53,10 @@ namespace CTEditor.Battle.Domain
         /// Cambia a la forma 'formId' ("" = la normal). Devuelve false si no existe o ya estaba en ella. Los PS máximos no
         /// cambian; una habilidad cambiada por un movimiento (Imitación...) se pierde: manda la de la forma.
         /// </summary>
-        internal bool ChangeForm(string formId)
+        internal bool ChangeForm(string formId, bool? revertOnSwitch = null)
         {
             formId = formId ?? "";
+            _revertOverride = revertOnSwitch;
             if (string.Equals(formId, FormId, StringComparison.OrdinalIgnoreCase)) return false;
             if (formId.Length == 0)
             {
@@ -78,12 +79,19 @@ namespace CTEditor.Battle.Domain
             return true;
         }
 
+        // Si no es null, manda sobre «vuelve al retirarse» de la forma (la megaevolución lo decide su ficha de mecánica).
+        private bool? _revertOverride;
+
         // Al retirarse: las formas que lo piden vuelven a la normal.
         private void RevertFormOnSwitch()
         {
             var f = CurrentForm;
-            if (f != null && f.RevertsOnSwitch) ChangeForm("");
+            if (f != null && (_revertOverride ?? f.RevertsOnSwitch)) ChangeForm("");
         }
+
+        /// <summary>¿Ya megaevolucionó en este combate? (un monstruo solo megaevoluciona una vez).</summary>
+        public bool HasMegaEvolved { get; private set; }
+        internal void NoteMegaEvolved() => HasMegaEvolved = true;
 
         // Subida de nivel en mitad del combate: la forma normal toma las nuevas estadísticas y, si está en otra forma, sus
         // estadísticas crecen en la misma proporción (aproximación: la foto no guarda IVs ni EVs).

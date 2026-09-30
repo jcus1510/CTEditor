@@ -77,7 +77,7 @@ namespace CTEditor.Adventure.Domain
         /// <summary>Una copia del entrenador con otra IA (mismo equipo). 'profileId' vacío = la de su nivel.</summary>
         public static TrainerDefinition WithAi(TrainerDefinition t, string suffix, int level, string profileId)
             => new TrainerDefinition(t.Id + "_" + suffix, t.DisplayName, t.Team, t.TrainerClass, t.Ai, t.BaseMoney,
-                t.IntroLine, t.DefeatLine, t.VictoryLine, t.AiSettings, level, profileId ?? "");
+                t.IntroLine, t.DefeatLine, t.VictoryLine, t.AiSettings, level, profileId ?? "", t.CanMegaEvolve);
 
         /// <summary>
         /// Un combate: 'player' lo pilota su decisión de movimientos; 'rival' es un TrainerBrain completo.

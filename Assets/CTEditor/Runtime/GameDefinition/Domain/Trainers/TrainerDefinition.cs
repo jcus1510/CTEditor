@@ -83,8 +83,9 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         public TrainerDefinition(string id, string displayName, IReadOnlyList<TeamMemberSpec> team,
             string trainerClass = "", TrainerAi ai = TrainerAi.Smart, int baseMoney = 20,
             string introLine = "", string defeatLine = "", string victoryLine = "", TrainerAiSettings aiSettings = null,
-            int aiLevel = 0, string aiProfileId = "")
+            int aiLevel = 0, string aiProfileId = "", bool canMegaEvolve = true)
         {
+            CanMegaEvolve = canMegaEvolve;
             _aiLevel = Math.Max(0, Math.Min(AiProfile.MaxLevel, aiLevel));
             AiProfileId = (aiProfileId ?? "").Trim();
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("El entrenador necesita un id.", nameof(id));
@@ -99,6 +100,9 @@ namespace CTEditor.GameDefinition.Domain.Trainers
             DefeatLine = defeatLine ?? "";
             VictoryLine = victoryLine ?? "";
         }
+
+        /// <summary>¿Puede megaevolucionar? (si las reglas tienen la mecánica y un miembro lleva su megapiedra). Por defecto, sí.</summary>
+        public bool CanMegaEvolve { get; }
 
         /// <summary>"Cazabichos Pepe" (o solo el nombre si no tiene clase).</summary>
         public string FullName => string.IsNullOrWhiteSpace(TrainerClass) ? DisplayName : TrainerClass + " " + DisplayName;

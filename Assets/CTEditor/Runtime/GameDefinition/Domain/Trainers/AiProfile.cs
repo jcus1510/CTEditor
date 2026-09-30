@@ -33,6 +33,14 @@ namespace CTEditor.GameDefinition.Domain.Trainers
     }
 
     /// <summary>Cuándo se cura con objetos. Solo se añaden valores al final.</summary>
+    /// <summary>Cuándo megaevoluciona (si su entrenador puede y lleva megapiedra).</summary>
+    public enum MegaTiming
+    {
+        Never,            // nunca
+        AsSoonAsPossible, // en cuanto puede
+        Smart             // cuando le conviene: si la mega pega más de lo que arriesga (tipos); con pocos PS, ya
+    }
+
     public enum HealStyle
     {
         Never,   // nunca se cura
@@ -103,13 +111,20 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         /// <summary>Mochila por defecto si el entrenador no trae la suya.</summary>
         public IReadOnlyList<(string itemId, int quantity)> DefaultBag { get; }
 
+        /// <summary>Cuándo megaevoluciona. Por defecto: Novato y Aficionado nunca; Veterano y Élite en cuanto pueden; del Campeón arriba, con cabeza.</summary>
+        public MegaTiming MegaTiming { get; }
+
+        public static MegaTiming DefaultMegaTiming(int level)
+            => level <= 2 ? MegaTiming.Never : level <= 4 ? MegaTiming.AsSoonAsPossible : MegaTiming.Smart;
+
         public AiProfile(int level, string displayName, string description, MoveBrain brain, int mistakePercent, int itemUsePercent,
             HealStyle heal, int healBelowPercent, bool canSwitch, MovesetStyle moveset, bool synergies,
             bool useMachineMoves, bool useTutorMoves, bool useEggMoves, bool autoHeldItems,
             IReadOnlyList<(string itemId, int quantity)> defaultBag = null,
             AiKnowledge knowledge = AiKnowledge.Battle, HeldItemStyle? heldItems = null, bool competitiveTraining = false,
-            int predictPercent = 0)
+            int predictPercent = 0, MegaTiming? megaTiming = null)
         {
+            MegaTiming = megaTiming ?? DefaultMegaTiming(level);
             Knowledge = knowledge;
             HeldItems = heldItems ?? (autoHeldItems ? HeldItemStyle.Basic : HeldItemStyle.None);
             CompetitiveTraining = competitiveTraining;

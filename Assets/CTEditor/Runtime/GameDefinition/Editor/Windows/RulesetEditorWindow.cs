@@ -77,7 +77,21 @@ namespace CTEditor.GameDefinition.Editor
             int g1 = ButtonRow("1.ª gen.", "2.ª gen.", "3.ª gen.", "4.ª gen.", "5.ª gen.");
             int g2 = ButtonRow("6.ª gen.", "7.ª gen.", "8.ª gen.", "9.ª gen.", "Moderno (todo)");
             int gen = g1 >= 0 ? g1 + 1 : g2 >= 0 ? (g2 == 4 ? 0 : g2 + 6) : -1;
-            if (gen >= 0) EditSelected(so => ApplyGeneration(so, GenerationRules.ForGeneration(gen)));
+            if (gen >= 0)
+            {
+                // Fiel a la generación: la Megaevolución solo en la 6.ª y la 7.ª («Moderno» no toca las mecánicas).
+                var megas = ContentAssets.LoadAll<MechanicData>().Where(m => !string.IsNullOrWhiteSpace(m.Id) && m.Kind == CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind.MegaEvolution).ToList();
+                bool withMega = gen == 6 || gen == 7;
+                if (withMega && megas.Count == 0) { MechanicEditorWindow.CreateClassicSet(); megas = ContentAssets.LoadAll<MechanicData>().Where(m => !string.IsNullOrWhiteSpace(m.Id) && m.Kind == CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind.MegaEvolution).ToList(); }
+                EditSelected(so =>
+                {
+                    ApplyGeneration(so, GenerationRules.ForGeneration(gen));
+                    if (gen == 0) return;
+                    foreach (var m in megas) MechanicEditorWindow.SetActive(so, m.Id, false);
+                    if (withMega && megas.Count > 0)
+                        MechanicEditorWindow.SetActive(so, (megas.FirstOrDefault(m => m.Id == "mega_evolution") ?? megas[0]).Id, true);
+                });
+            }
 
             DrawMechanics(d);
 

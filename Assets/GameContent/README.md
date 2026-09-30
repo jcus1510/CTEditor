@@ -186,6 +186,13 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
   límite—, objeto clave del jugador —Megapulsera— y si vuelve a su forma al retirarse). Puedes tener varias fichas y
   **activar en las Reglas** las que quieras, incluso varias a la vez (Excel: `mecanicas.csv`, columna `mecanicas` de
   `reglas.csv`). Una ficha que no está activa no hace nada.
+- **Megaevolución**: un monstruo con una forma «mega» y la regla `>mega:mega:<megapiedra>` (Rayquaza: `;sabe=dragon_ascent`)
+  megaevoluciona al principio del turno si la pide su entrenador: el jugador con el botón «💎 Megaevolucionar» del panel
+  de movimientos (necesita el objeto clave de la ficha, la Megapulsera/Mega-Aro), el rival según su nivel de IA
+  («Cuándo megaevoluciona»: Novato y Aficionado nunca, Veterano y Élite en cuanto pueden, de Campeón arriba con cabeza;
+  editable) y solo si su ficha dice «Puede megaevolucionar» (Excel: `megaevoluciona`). Megas por combate, objeto clave
+  y volver al retirarse se cambian en la ficha de mecánica. Las plantillas «6.ª gen.» y «7.ª gen.» de las reglas la
+  activan; las demás generaciones la quitan. El pack Gen6 trae las 48 megas y a Dianta con su Gardevoirita.
 
 ## Niveles de IA (Lote E + Lote F)
 Siete niveles, cada uno una ficha editable (CTEditor → Personajes → **Niveles de IA**) hecha de **4 bloques combinables**:

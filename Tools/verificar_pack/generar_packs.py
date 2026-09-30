@@ -28,7 +28,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from csvlib import load, save, split_list  # noqa: E402
 from pokeapi import PokeApi, table, pack_id, SPANISH  # noqa: E402
 import generar_base  # noqa: E402
-from formas import Forms  # noqa: E402
+from formas import Forms, VARIANTS  # noqa: E402
+
+VARIANT_ITEMS = {item for _, _, item in VARIANTS.values() if item}   # se usan fuera del combate para cambiar de variante
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 SRC = os.path.join(ROOT, 'Tools', 'datos_fuente')
@@ -45,6 +47,8 @@ LAB = {1: 'dragonite@50 | alakazam@50 | gyarados@50 | gengar@50 | snorlax@50 | j
        4: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | scizor@50 | togekiss@50',
        5: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | scizor@50 | togekiss@50',
        6: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | scizor@50 | togekiss@50'}
+# Entrenadores que megaevolucionan en los juegos (desde la 6.ª gen.): (especie, megapiedra).
+MEGA_TRAINERS = {'campeona_dianta': ('gardevoir', 'gardevoirite')}
 MEMBER = re.compile(r'^(?P<sp>[^@\[\]{}~#"%]+)@(?P<lvl>\d+)(?P<g>%[mhMH])?(?:\[(?P<moves>[^\]]*)\])?'
                     r'(?:\{(?P<held>[^}]*)\})?(?:~(?P<nat>[^#"]+))?(?P<iv>#\d+)?(?P<nick>"[^"]*")?$')
 
@@ -255,6 +259,14 @@ def build(n, verbose=True):
                 txt += '~' + m['nat']
             txt += (m['iv'] or '') + (m['nick'] or '')
             team.append(txt)
+        if n >= 6 and r['id'] in MEGA_TRAINERS:   # los que megaevolucionan en los juegos: su megapiedra
+            sp_mega, stone = MEGA_TRAINERS[r['id']]
+            for i, t in enumerate(team):
+                if t.startswith(sp_mega + '@'):
+                    team[i] = re.sub(r'\{[^}]*\}', '', t)
+                    head = re.match(r'^[^\[{~#"]+(?:\[[^\]]*\])?', team[i]).group(0)
+                    team[i] = head + '{' + stone + '}' + team[i][len(head):]
+                    break
         if len(team) < max(1, len(split_list(r.get('equipo', ''))) // 2) or not team:
             continue   # le faltan la mayoría de sus especies en esta generación
         if dropped:
@@ -311,10 +323,12 @@ def items_for(n):
     vg_gen = {r['id']: int(r['generation_id']) for r in table('version_groups')}
     flavor = {}
     for r in table('item_flavor_text'):
-        if r['language_id'] != SPANISH or vg_gen.get(r['version_group_id'], 99) > max(n, 5):
-            continue   # los textos en español empiezan en la 5.ª gen.
+        # Los textos en español de PokeAPI para X/Y y ROZA (grupos 15-16) están DESCOLOCADOS (la Venusaurita habla de
+        # Charizard, el Mega-Aro de una gema): se usa el primer texto en español correcto, de Sol/Luna en adelante.
+        if r['language_id'] != SPANISH or int(r['version_group_id']) < 17:
+            continue
         prev = flavor.get(r['item_id'])
-        if prev is None or int(r['version_group_id']) > prev[0]:
+        if prev is None or int(r['version_group_id']) < prev[0]:
             flavor[r['item_id']] = (int(r['version_group_id']), ' '.join(r['flavor_text'].split()))
     rows = []
     for it in table('items'):
@@ -326,7 +340,7 @@ def items_for(n):
         row = {'id': iid, 'nombre': names.get(it['id'], iid), 'descripcion': flavor.get(it['id'], (0, ''))[1],
                'categoria': category, 'precio': it['cost'] or '0',
                'en_combate': 'si' if category == 'Ball' else 'no',
-               'fuera_combate': 'si' if category in ('Evolution', 'Vitamin') else 'no',
+               'fuera_combate': 'si' if category in ('Evolution', 'Vitamin') or iid in VARIANT_ITEMS else 'no',
                'se_gasta': 'si' if category in ('Ball', 'Evolution', 'Vitamin') else 'no'}
         if category == 'Ball':
             row['captura'] = '1'   # aproximado: como una Poké Ball (el efecto especial se configura en el editor)

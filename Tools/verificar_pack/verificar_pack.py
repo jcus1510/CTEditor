@@ -151,13 +151,18 @@ def check_references(sheets, rep):
                 for fid in (frm, to):
                     if fid and fid != '*' and fid not in form_ids:
                         rep.error(f'{w}: el cambio «{c}» usa la forma «{fid}», que no está en formas')
-                if trig in ('objeto', 'mega'): need('item', val, w, soft=True)
+                if trig == 'objeto': need('item', val, w, soft=True)
+                elif trig == 'mega':
+                    need('item', val, w, soft=True)
+                    if not val and not any(o.startswith('sabe=') for o in parts[1:]):
+                        rep.error(f'{w}: la megaevolución «{c}» necesita megapiedra o ;sabe=movimiento')
                 elif trig == 'movimiento': need('move', val, w)
                 elif trig == 'clima': need('weather', val, w, soft=True)
                 elif trig not in ('ataque', 'ps_bajo', 'ps_desde'):
                     rep.error(f'{w}: disparador desconocido «{trig}» en «{c}»')
                 for o in parts[1:]:
                     if o.startswith('con='): need('ability', o[4:], w, soft=True)
+                    elif o.startswith('sabe='): need('move', o[5:], w)
     if 'movimientos.csv' in sheets:
         _, rows, lines = sheets['movimientos.csv']
         refs = {'estado': 'status', 'estado_propio': 'status', 'clima': 'weather', 'trampa': 'hazard',

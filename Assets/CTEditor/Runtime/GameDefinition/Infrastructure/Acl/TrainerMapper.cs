@@ -52,7 +52,7 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                     if (it != null && !string.IsNullOrWhiteSpace(it.itemId)) bag.Add((it.itemId.Trim(), Math.Max(1, it.quantity)));
             var ai = new TrainerAiSettings(d.UseItems, bag, d.HealBelowPercent, d.CanSwitch, d.MovesetStyle);
             return new TrainerDefinition(d.Id, d.DisplayName, ToDomain(d.Team), d.TrainerClass, d.Ai, d.BaseMoney,
-                d.IntroLine, d.DefeatLine, d.VictoryLine, ai, d.AiLevel, d.AiProfileId);
+                d.IntroLine, d.DefeatLine, d.VictoryLine, ai, d.AiLevel, d.AiProfileId, d.CanMegaEvolve);
         }
 
         public static TeamPreset ToDomain(TeamPresetData d)

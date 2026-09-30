@@ -694,6 +694,9 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     (so, v, c) => CsvSchema<TrainerData>.SetInt(so, "healBelowPercent", v, "curar_bajo", 1))
                 .Col("puede_cambiar", "si / no: ¿puede cambiar de monstruo? (solo la IA experta lo hace).", d => d.CanSwitch ? "si" : "no",
                     (so, v, c) => CsvSchema<TrainerData>.SetBool(so, "canSwitch", v, "puede_cambiar"))
+                .Col("megaevoluciona", "si / no: ¿puede megaevolucionar? (si las reglas tienen la Megaevolución y lleva megapiedra). Vacío = sí.",
+                    d => d.CanMegaEvolve ? "si" : "no",
+                    (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<TrainerData>.SetBool(so, "canMegaEvolve", v, "megaevoluciona"); })
                 .Col("movimientos_auto", "Miembros sin movimientos escritos: ia (según su IA), clasico (4 últimos), equilibrado, fuerte o competitivo.",
                     d => d.MovesetStyle == Domain.Trainers.MovesetStyle.Classic ? "clasico" : d.MovesetStyle == Domain.Trainers.MovesetStyle.Balanced ? "equilibrado"
                        : d.MovesetStyle == Domain.Trainers.MovesetStyle.Strong ? "fuerte"

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using CTEditor.SharedKernel.Abstractions;
+using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Items;
+using CTEditor.GameDefinition.Domain.Types;
 using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Trainers;
@@ -86,6 +88,70 @@ namespace CTEditor.Adventure.Domain
 
         /// <summary>La decisión del turno: la acción y, si es un objeto, cuál (para narrarlo).</summary>
         public (BattleAction action, string itemId) Decide()
+        {
+            var choice = DecideCore();
+            return choice.action is UseMove um && !um.MegaEvolve && WantsMega(_battle.Enemy, _battle.Player)
+                ? (new UseMove(um.Move, true), choice.itemId)
+                : choice;
+        }
+
+        // ---------------- Megaevolución ----------------
+
+        /// <summary>¿Megaevoluciona este turno? Solo si su entrenador puede, el motor lo permite y su nivel de IA quiere.</summary>
+        private bool WantsMega(Combatant self, Combatant foe)
+        {
+            if (_trainer == null || !_trainer.CanMegaEvolve || self.ChargingMove.HasValue || self.MustRecharge) return false;
+            if (!_resolver.CanMegaEvolve(_battle, false)) return false;
+            switch (_profile.MegaTiming)
+            {
+                case MegaTiming.Never: return false;
+                case MegaTiming.AsSoonAsPossible: return true;
+                default: return SmartMega(self, foe);
+            }
+        }
+
+        /// <summary>
+        /// CON CABEZA: compara «lo que pega entre lo que arriesga» con y sin la mega (mejor ataque con STAB y eficacia contra
+        /// los tipos del rival, entre la peor eficacia de los tipos del rival contra los suyos). Si la mega sale igual o mejor,
+        /// megaevoluciona; si no, espera a un rival mejor. Con menos del 30 % de PS, megaevoluciona ya (última ocasión).
+        /// </summary>
+        public bool SmartMega(Combatant self, Combatant foe)
+        {
+            var rule = _resolver.MegaRuleFor(self);
+            var form = rule == null ? null : self.FindForm(rule.To);
+            if (form == null || foe == null) return false;
+            if (self.CurrentHp * 100 < self.MaxHp * 30) return true;
+            var megaTypes = form.Types.Count > 0 ? form.Types : self.Types;
+            double now = Power(self, self.Stats, self.Types, foe) / Math.Max(0.25, Risk(self.Types, foe));
+            double mega = Power(self, form.Stats ?? self.Stats, megaTypes, foe) / Math.Max(0.25, Risk(megaTypes, foe));
+            return mega >= now;
+        }
+
+        private double Power(Combatant self, StatBlock stats, IReadOnlyList<Id<ElementType>> types, Combatant foe)
+        {
+            double best = 0;
+            foreach (var id in self.Moves)
+            {
+                if (!_data.Moves.TryGet(id, out var m) || m.Power <= 0) continue;
+                var cat = _resolver.Rules.CategoryOf(m);
+                if (cat == MoveCategory.Status) continue;
+                bool stab = false;
+                foreach (var t in types) if (t == m.Type) stab = true;
+                double eff = _data.TypeChart.Effectiveness(m.Type, foe.Types).Multiplier;
+                double atk = stats.Of(cat == MoveCategory.Physical ? StatId.Attack : StatId.SpAttack);
+                best = Math.Max(best, m.Power * (stab ? 1.5 : 1.0) * eff * atk);
+            }
+            return best;
+        }
+
+        private double Risk(IReadOnlyList<Id<ElementType>> types, Combatant foe)
+        {
+            double worst = 0;
+            foreach (var t in foe.Types) worst = Math.Max(worst, _data.TypeChart.Effectiveness(t, types).Multiplier);
+            return worst;
+        }
+
+        private (BattleAction action, string itemId) DecideCore()
         {
             _turn++;
             var self = _battle.Enemy;

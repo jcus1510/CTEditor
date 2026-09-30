@@ -100,6 +100,9 @@ namespace CTEditor.Bootstrap
         [SerializeField] private Button catchButton;
         [SerializeField] private Button fleeButton;
         [SerializeField] private Button backButton;
+        [Tooltip("Botón de MEGAEVOLUCIÓN en el panel de movimientos (se enciende/apaga antes de elegir el movimiento). " +
+                 "Si lo dejas vacío, se crea solo al lado de «Atrás».")]
+        [SerializeField] private Button megaButton;
         [SerializeField] private Button[] moveButtons;
         [SerializeField] private Button[] switchButtons;
         [SerializeField] private Button[] bagButtons;
@@ -484,6 +487,8 @@ namespace CTEditor.Bootstrap
             Wire(catchButton, QuickBall);
             Wire(fleeButton, () => _choice = PlayerChoice.Run());
             Wire(backButton, OnBack);
+            EnsureMegaButton();
+            Wire(megaButton, () => { _megaArmed = !_megaArmed; RefreshMegaButton(); });
             Wire(advanceButton, () => _advance = true);
             Wire(yesButton, () => _yesNo = true);
             Wire(noButton, () => _yesNo = false);
@@ -513,7 +518,32 @@ namespace CTEditor.Bootstrap
         private void OnMoveButton(int i)
         {
             if (_mode == Mode.LearnMove) { _index = i; return; }
-            _choice = PlayerChoice.Fight(i);
+            _choice = PlayerChoice.Fight(i, _megaArmed && Session.CanPlayerMegaEvolve);
+            _megaArmed = false;
+        }
+
+        // ---------------- Megaevolución ----------------
+
+        private bool _megaArmed;
+
+        // Escenas antiguas sin botón de mega: se crea uno copiando «Atrás», a su izquierda.
+        private void EnsureMegaButton()
+        {
+            if (megaButton || !backButton) return;
+            megaButton = Instantiate(backButton, backButton.transform.parent);
+            megaButton.name = "Megaevolución";
+            var rt = (RectTransform)megaButton.transform;
+            rt.anchoredPosition += new Vector2(-(((RectTransform)backButton.transform).sizeDelta.x + 10f), 0f);
+            megaButton.gameObject.SetActive(false);
+        }
+
+        private void RefreshMegaButton()
+        {
+            if (!megaButton) return;
+            bool can = Session != null && _mode == Mode.Moves && Session.CanPlayerMegaEvolve;
+            megaButton.gameObject.SetActive(can);
+            if (!can) { _megaArmed = false; return; }
+            SetButtonLabel(megaButton, _megaArmed ? "💎 Mega: ¡SÍ!" : "💎 Megaevolucionar");
         }
 
         private void OnSwitchButton(int i)
@@ -597,6 +627,7 @@ namespace CTEditor.Bootstrap
                                            : (!Session.Resolver.UsesPp || pp > 0 || !active.HasAnyPp);
             }
             if (backButton) { backButton.gameObject.SetActive(true); backButton.interactable = true; SetButtonLabel(backButton, "Atrás"); }
+            RefreshMegaButton();
         }
 
         private void OpenLearnPanel(MonsterInstance mon)
@@ -679,6 +710,7 @@ namespace CTEditor.Bootstrap
             SetPanel(bagPanel, panel == bagPanel);
             SetPanel(confirmPanel, panel == confirmPanel);
             if (backButton) backButton.gameObject.SetActive(panel != actionPanel && panel != confirmPanel && panel != null);
+            if (megaButton) megaButton.gameObject.SetActive(false);   // solo lo enciende el panel de movimientos
         }
 
         private void HideMenus()
@@ -690,6 +722,7 @@ namespace CTEditor.Bootstrap
             SetPanel(bagPanel, false);
             SetPanel(confirmPanel, false);
             if (backButton) backButton.gameObject.SetActive(false);
+            if (megaButton) megaButton.gameObject.SetActive(false);
         }
 
         private static void SetPanel(GameObject go, bool on) { if (go) go.SetActive(on); }
@@ -957,6 +990,15 @@ namespace CTEditor.Bootstrap
                     yield return Say($"¡{Cap(Who(tc.Combatant))} ahora es de tipo {string.Join("/", tc.Types.Select(data.TypeName))}!");
                     break;
                 case SelfSwitchRequiredEvent _: break; // lo gestiona la sesión (elegir quién entra)
+                case MegaEvolvedEvent me:
+                {
+                    string who = Cap(Who(me.Combatant));
+                    string stone = !string.IsNullOrEmpty(me.StoneId) && Session.Data.TryGetItem(me.StoneId, out var st) ? st.DisplayName : "";
+                    if (stone.Length > 0) yield return Say($"¡{stone} de {who} está reaccionando!");
+                    yield return Say($"¡{who} megaevolucionó en {(string.IsNullOrEmpty(me.FormName) ? "su megaforma" : me.FormName)}!");
+                    RefreshActiveVisuals(Session.IsPlayerSide(me.Combatant));
+                    break;
+                }
                 case FormChangedEvent fc:
                     yield return Say(fc.To.Length == 0
                         ? $"¡{Cap(Who(fc.Combatant))} volvió a su forma normal!"

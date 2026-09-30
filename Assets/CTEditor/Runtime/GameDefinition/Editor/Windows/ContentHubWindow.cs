@@ -371,6 +371,7 @@ namespace CTEditor.GameDefinition.Editor
             report.Add($"Movimientos-plantilla (Forcejeo{(skipMoves == null ? " y los clásicos" : "")}): {ClassicMovePresets.CreateAll(out _, skipMoves)} nuevos");
             Step("naturalezas.csv", "Naturalezas", NatureEditorWindow.CreateClassicSet);
             Step("curvas.csv", "Curvas", GrowthCurveEditorWindow.CreateClassicSet);
+            Step("mecanicas.csv", "Mecánicas especiales", MechanicEditorWindow.CreateClassicSet);
             Step("reglas.csv", "Reglas", RulesetEditorWindow.CreateClassicSet);
             report.Add($"Menús: {MenuEditorWindow.CreateClassicSet()} nuevos");
             report.Add($"Controles y caja de texto: {ControlsEditorWindow.CreateClassicSet()} nuevos");
