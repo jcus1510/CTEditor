@@ -385,6 +385,13 @@ namespace CTEditor.Battle.Domain.Turn
                 int b = who.ChangeStage(x.OnStatDroppedStat.Value, x.OnStatDroppedStages);
                 if (b != 0) events.Add(new StatStageChangedEvent(who.Id, x.OnStatDroppedStat.Value, b));
             }
+            // Blocks «si el rival le baja una estadística» (guarded: two of them facing each other must not loop).
+            if (applied < 0 && fromOpponent && _statDropDepth < 2)
+            {
+                _statDropDepth++;
+                try { RunHeld(who, EffectTrigger.OnStatDropped, source, null, events); }
+                finally { _statDropDepth--; }
+            }
             return applied;
         }
 
@@ -461,6 +468,7 @@ namespace CTEditor.Battle.Domain.Turn
                     int applied = actor.ChangeStage(ax.OnKoStat.Value, ax.OnKoStages);
                     if (applied != 0) events.Add(new StatStageChangedEvent(actor.Id, ax.OnKoStat.Value, applied));
                 }
+                if (!actor.IsFainted) RunHeld(actor, EffectTrigger.OnKo, target, move, events);
             }
         }
 

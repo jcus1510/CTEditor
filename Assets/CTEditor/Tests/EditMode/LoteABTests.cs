@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.SharedKernel.Abstractions;
 using CTEditor.SharedKernel.Events;
 using CTEditor.SharedKernel.ValueObjects;
@@ -105,12 +106,9 @@ namespace CTEditor.Tests.EditMode
 
         private static readonly AbilityDefinition[] Abilities =
         {
-            new AbilityDefinition(new AbilityId("technician"), "Experto",
-                offensivePowerModifiers: new[] { new PowerModifier(1.5f, new[] { new Condition(ConditionKind.MovePower, comparison: Comparison.LessOrEqual, number: 60) }) }),
-            new AbilityDefinition(new AbilityId("iron_fist"), "Puño Férreo",
-                offensivePowerModifiers: new[] { new PowerModifier(1.2f, new[] { new Condition(ConditionKind.MoveHasTag, text: "puño") }) }),
-            new AbilityDefinition(new AbilityId("fluffy"), "Peluche",
-                defensivePowerModifiers: new[] { new PowerModifier(0.5f, new[] { new Condition(ConditionKind.MoveMakesContact) }) }),
+            new AbilityDefinition(new AbilityId("technician"), "Experto", new[] { TestItems.Power(1.5f, new Condition(ConditionKind.MovePower, comparison: Comparison.LessOrEqual, number: 60)) }),
+            new AbilityDefinition(new AbilityId("iron_fist"), "Puño Férreo", new[] { TestItems.Power(1.2f, new Condition(ConditionKind.MoveHasTag, text: "puño")) }),
+            new AbilityDefinition(new AbilityId("fluffy"), "Peluche", new[] { new EffectBlock(EffectTrigger.Passive, EffectAction.PowerTakenMultiplier, 0.5f, conditions: new[] { new Condition(ConditionKind.MoveMakesContact) }) }),
         };
 
         private static BattleParticipant Mon(string id, string move = "wait", string type = "normal", int speed = 50, int hp = 400,

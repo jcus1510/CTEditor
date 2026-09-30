@@ -37,9 +37,9 @@ namespace CTEditor.GameDefinition.Domain.Abilities
     }
 
     /// <summary>
-    /// Los ganchos de las habilidades de la 3.ª y 4.ª generación (y las ocultas). Todo es opcional y se
-    /// combina: por defecto, nada. Así cada habilidad es una ficha de datos y el autor puede inventar las suyas.
-    /// Se rellena al construir la ficha (mapper) y después no se toca.
+    /// Los ganchos de las habilidades de la 3.ª a la 6.ª generación (y las ocultas). Todo es opcional y se
+    /// combina: por defecto, nada. Los rellena AbilityEffects.Read a partir de los BLOQUES de la habilidad
+    /// y después no se tocan.
     /// </summary>
     public sealed class AbilityExtras
     {

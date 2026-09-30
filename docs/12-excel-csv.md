@@ -13,7 +13,7 @@ Google Sheets) y se vuelve a importar. Sirve para editar en bloque, compartir y 
 ## Esquemas (`CsvSchemas`)
 
 - `CsvSchema<T>`: columnas escritas a mano (`.Col(cabecera, ayuda, leer, escribir, diferido, alias)`) — especies,
-  movimientos, tipos, sets, entrenadores, zonas, equipos y columnas especiales de objetos/habilidades.
+  movimientos, tipos, sets, entrenadores, zonas, equipos y columnas especiales de objetos/habilidades (`efectos`: los mismos bloques en texto, ver [09](09-efectos-por-bloques.md)).
 - `CsvReflectiveSchema<T>`: automático, **una columna por campo** serializado de la ficha (cabecera de `Etiquetas`, el
   nombre del campo en inglés vale como alias). Si se añade un campo a una ficha,
   aparece solo en Excel.

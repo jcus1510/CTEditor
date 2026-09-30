@@ -1,77 +1,77 @@
-﻿id;nombre;nombre_en;stab;resquicio;anula_clima;potencia_al_atacar;irascible;avisa_al_entrar;atrapa;atrapa_en_suelo;mal_sueño;sin_criticos;no_bajan;poca_vida_tipo;poca_vida_umbral;poca_vida_mult;stats_condicionales;inmune_climas;impide_bajadas;cambio_color;si_bajan_stat;si_bajan_etapas;precision_mod;invierte_etapas;anula_al_recibir;estado_por_contacto;prob_contacto;bloquea_etiquetas;descarga;clima_al_entrar;clima_al_entrar_turnos;ps_por_clima;inmune_tipos;cura_al_absorber;potencia_al_recibir;madrugar;estados_por_contacto;potencia_absorbido;tipo_por_clima;umbral_bayas;con_estado_stat;con_estado_mult;cosecha;peso_mult;modificadores;cura_con_clima;inmune_estados;impostor;allanamiento;sin_retroceder;entrada_stat;entrada_etapas;al_recibir_golpe;zoquete;sin_estados_con_clima;al_absorber_stat;al_absorber_etapas;lodo_liquido;espejo_magico;solo_daño_directo;atrapa_tipos;rompemoldes;veleta;al_debilitar_stat;al_debilitar_etapas;cura_al_retirarse;cura_ps_al_retirarse;gas_reactivo;indefenso;normalidad;inmune_etiquetas;hurto;fin_turno_cura;fin_turno_con_estado;anula_daño_estado;estado_al_golpear;prob_al_golpear;prioridad_estado;presion;mutatipo;sin_retroceso;daño_por_contacto;siempre_escapa;evasion_mod;ignora_inmunidad;secundarios_mult;fin_turno_curar_estado;sin_secundarios;bloquea_secundarios;etapas_mult;encadenado;daño_critico;critico_extra;fin_turno_stat;fin_turno_etapas;rezagado;al_retroceder_stat;al_retroceder_etapas;hace_retroceder;viscosidad;sin_ko_directo;robustez;no_cambio_forzado;sincronia;daño_recibido_tipo;rastro;ausente;ignorante;nerviosismo;superguarda;contagia_habilidad;baya_extra;roba_objeto;normal_a_tipo;normal_a_tipo_x;tipo_prioridad;prioridad_tipo;contacto_baja_stat;contacto_baja_etapas
-air_lock;Bucle Aire;Air Lock;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-arena_trap;Trampa Arena;Arena Trap;;;;;;;si;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-battle_armor;Armadura Batalla;Battle Armor;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-blaze;Mar Llamas;Blaze;;;;;;;;;;;;fire;33;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-chlorophyll;Clorofila;Chlorophyll;;;;;;;;;;;;;;;speed:x2 [si clima=sun];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-clear_body;Cuerpo Puro;Clear Body;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-cloud_nine;Aclimatación;Cloud Nine;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-color_change;Cambio Color;Color Change;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-compound_eyes;Ojo Compuesto;Compound Eyes;;;;;;;;;;;;;;;;;;;;;x1,3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-cute_charm;Gran Encanto;Cute Charm;;;;;;;;;;;;;;;;;;;;;;;;infatuation;30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-damp;Humedad;Damp;;;;;;;;;;;;;;;;;;;;;;;;;;explosion;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-drizzle;Llovizna;Drizzle;;;;;;;;;;;;;;;;;;;;;;;;;;;;rain;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-drought;Sequía;Drought;;;;;;;;;;;;;;;;;;;;;;;;;;;;sun;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-early_bird;Madrugar;Early Bird;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-effect_spore;Efecto Espora;Effect Spore;;;;;;;;;;;;;;;;;;;;;;;;;30;;;;;;;;;;poison|paralysis|sleep;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-flame_body;Cuerpo Llama;Flame Body;;;;;;;;;;;;;;;;;;;;;;;;burn;30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-flash_fire;Absorbe Fuego;Flash Fire;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;fire;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-forecast;Predicción;Forecast;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;rain:water|sun:fire|hail:ice;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-guts;Agallas;Guts;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;attack;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-huge_power;Potencia;Huge Power;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;attack:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-hustle;Entusiasmo;Hustle;;;;;;;;;;;;;;;;;;;;;x0,8 [si mov.categoria=fisico];;;;;;;;;;;;;;;;;;;;;;attack:1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-hyper_cutter;Corte Fuerte;Hyper Cutter;;;;;;;;;;;attack;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-illuminate;Iluminación;Illuminate;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-immunity;Inmunidad;Immunity;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;poison|toxic;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-inner_focus;Fuerza Mental;Inner Focus;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-insomnia;Insomnio;Insomnia;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sleep|drowsy;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-intimidate;Intimidación;Intimidate;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;attack;-1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-keen_eye;Vista Lince;Keen Eye;;;;;;;;;;;accuracy;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-levitate;Levitación;Levitate;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ground;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-lightning_rod;Pararrayos;Lightning Rod;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;electric;;;;;;;;;;;;;;;;;;;;;;;sp_attack;1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-limber;Flexibilidad;Limber;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;paralysis;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-liquid_ooze;Lodo Líquido;Liquid Ooze;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-magma_armor;Escudo Magma;Magma Armor;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;freeze;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-magnet_pull;Imán;Magnet Pull;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;steel;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-marvel_scale;Escama Especial;Marvel Scale;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;defense;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-minus;Menos;Minus;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-natural_cure;Cura Natural;Natural Cure;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-oblivious;Despiste;Oblivious;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;infatuation;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-overgrow;Espesura;Overgrow;;;;;;;;;;;;grass;33;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-own_tempo;Ritmo Propio;Own Tempo;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;confusion;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-pickup;Recogida;Pickup;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-plus;Más;Plus;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-poison_point;Punto Tóxico;Poison Point;;;;;;;;;;;;;;;;;;;;;;;;poison;30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-pressure;Presión;Pressure;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-pure_power;Energía Pura;Pure Power;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;attack:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-rain_dish;Cura Lluvia;Rain Dish;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;rain:6,25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-rock_head;Cabeza Roca;Rock Head;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-rough_skin;Piel Tosca;Rough Skin;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;12,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-run_away;Fuga;Run Away;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sand_stream;Chorro Arena;Sand Stream;;;;;;;;;;;;;;;;sandstorm;;;;;;;;;;;;sandstorm;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sand_veil;Velo Arena;Sand Veil;;;;;;;;;;;;;;;;sandstorm;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;x0,8 [si clima=sandstorm];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-serene_grace;Dicha;Serene Grace;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-shadow_tag;Sombra Trampa;Shadow Tag;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-shed_skin;Mudar;Shed Skin;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;33,33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-shell_armor;Caparazón;Shell Armor;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-shield_dust;Polvo Escudo;Shield Dust;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-soundproof;Insonorizar;Soundproof;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sonido;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-speed_boost;Impulso;Speed Boost;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;speed;1;;;;;;;;;;;;;;;;;;;;;;;;
-static;Electricidad Estática;Static;;;;;;;;;;;;;;;;;;;;;;;;paralysis;30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-stench;Hedor;Stench;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;10;;;;;;;;;;;;;;;;;;;;
-sticky_hold;Viscosidad;Sticky Hold;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;
-sturdy;Robustez;Sturdy;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;si;;;;;;;;;;;;;;;;;
-suction_cups;Ventosas;Suction Cups;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;
-swarm;Enjambre;Swarm;;;;;;;;;;;;bug;33;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-swift_swim;Nado Rápido;Swift Swim;;;;;;;;;;;;;;;speed:x2 [si clima=rain];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-synchronize;Sincronía;Synchronize;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;
-thick_fat;Sebo;Thick Fat;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;fire:0,5|ice:0,5;;;;;;;;;;;;;;
-torrent;Torrente;Torrent;;;;;;;;;;;;water;33;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-trace;Calco;Trace;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;
-truant;Ausente;Truant;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;
-vital_spirit;Espíritu Vital;Vital Spirit;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sleep|drowsy;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-volt_absorb;Absorbe Electricidad;Volt Absorb;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;electric;25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-water_absorb;Absorbe Agua;Water Absorb;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;water;25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-water_veil;Velo Agua;Water Veil;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;burn;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-white_smoke;Humo Blanco;White Smoke;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-wonder_guard;Superguarda;Wonder Guard;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;
+﻿id;nombre;nombre_en;efectos
+air_lock;Bucle Aire;Air Lock;siempre: anula_clima
+arena_trap;Trampa Arena;Arena Trap;siempre: atrapar | siempre: atrapar_en_suelo
+battle_armor;Armadura Batalla;Battle Armor;siempre: sin_criticos
+blaze;Mar Llamas;Blaze;siempre [si mov.tipo=fire & propio.vida<=33]: daño x1,5
+chlorophyll;Clorofila;Chlorophyll;siempre [si clima=sun]: stat speed x2
+clear_body;Cuerpo Puro;Clear Body;siempre: sin_bajadas
+cloud_nine;Aclimatación;Cloud Nine;siempre: anula_clima
+color_change;Cambio Color;Color Change;siempre: cambio_color
+compound_eyes;Ojo Compuesto;Compound Eyes;siempre: precision x1,3
+cute_charm;Gran Encanto;Cute Charm;"contacto: poner_estado infatuation; al_rival; prob=30"
+damp;Humedad;Damp;siempre: bloquea_etiqueta explosion
+drizzle;Llovizna;Drizzle;al_entrar: poner_clima rain 0
+drought;Sequía;Drought;al_entrar: poner_clima sun 0
+early_bird;Madrugar;Early Bird;siempre: madrugar
+effect_spore;Efecto Espora;Effect Spore;"contacto: poner_estado poison,paralysis,sleep; al_rival; prob=30"
+flame_body;Cuerpo Llama;Flame Body;"contacto: poner_estado burn; al_rival; prob=30"
+flash_fire;Absorbe Fuego;Flash Fire;siempre: inmune fire | al_absorber: potencia_absorbido
+forecast;Predicción;Forecast;siempre [si clima=rain]: cambiar_tipo water | siempre [si clima=sun]: cambiar_tipo fire | siempre [si clima=hail]: cambiar_tipo ice
+guts;Agallas;Guts;siempre [si propio.estado]: stat attack x1,5
+huge_power;Potencia;Huge Power;siempre: stat attack x2
+hustle;Entusiasmo;Hustle;siempre: stat attack x1,5 | siempre [si mov.categoria=fisico]: precision x0,8
+hyper_cutter;Corte Fuerte;Hyper Cutter;siempre: sin_bajadas attack
+illuminate;Iluminación;Illuminate;
+immunity;Inmunidad;Immunity;siempre: inmune_estado poison,toxic
+inner_focus;Fuerza Mental;Inner Focus;siempre: sin_retroceder
+insomnia;Insomnio;Insomnia;siempre: inmune_estado sleep,drowsy
+intimidate;Intimidación;Intimidate;"al_entrar: etapa attack -1; al_rival"
+keen_eye;Vista Lince;Keen Eye;siempre: sin_bajadas accuracy
+levitate;Levitación;Levitate;siempre: inmune ground
+lightning_rod;Pararrayos;Lightning Rod;siempre: inmune electric | al_absorber: etapa sp_attack +1
+limber;Flexibilidad;Limber;siempre: inmune_estado paralysis
+liquid_ooze;Lodo Líquido;Liquid Ooze;siempre: lodo_liquido
+magma_armor;Escudo Magma;Magma Armor;siempre: inmune_estado freeze
+magnet_pull;Imán;Magnet Pull;siempre: atrapar steel
+marvel_scale;Escama Especial;Marvel Scale;siempre [si propio.estado]: stat defense x1,5
+minus;Menos;Minus;
+natural_cure;Cura Natural;Natural Cure;al_retirarse: curar_estado
+oblivious;Despiste;Oblivious;siempre: inmune_estado infatuation
+overgrow;Espesura;Overgrow;siempre [si mov.tipo=grass & propio.vida<=33]: daño x1,5
+own_tempo;Ritmo Propio;Own Tempo;siempre: inmune_estado confusion
+pickup;Recogida;Pickup;
+plus;Más;Plus;
+poison_point;Punto Tóxico;Poison Point;"contacto: poner_estado poison; al_rival; prob=30"
+pressure;Presión;Pressure;siempre: presion
+pure_power;Energía Pura;Pure Power;siempre: stat attack x2
+rain_dish;Cura Lluvia;Rain Dish;fin_de_turno [si clima=rain]: curar 6,25%
+rock_head;Cabeza Roca;Rock Head;siempre: sin_retroceso
+rough_skin;Piel Tosca;Rough Skin;"contacto: perder 12,5%; al_rival"
+run_away;Fuga;Run Away;siempre: siempre_escapa
+sand_stream;Chorro Arena;Sand Stream;siempre: inmune_clima sandstorm | al_entrar: poner_clima sandstorm 0
+sand_veil;Velo Arena;Sand Veil;siempre: inmune_clima sandstorm | siempre [si clima=sandstorm]: evasion x0,8
+serene_grace;Dicha;Serene Grace;siempre: prob_secundarios x2
+shadow_tag;Sombra Trampa;Shadow Tag;siempre: atrapar
+shed_skin;Mudar;Shed Skin;"fin_de_turno: curar_estado; prob=33,33"
+shell_armor;Caparazón;Shell Armor;siempre: sin_criticos
+shield_dust;Polvo Escudo;Shield Dust;siempre: bloquea_secundarios
+soundproof;Insonorizar;Soundproof;siempre: inmune_etiqueta sonido
+speed_boost;Impulso;Speed Boost;fin_de_turno: etapa speed +1
+static;Electricidad Estática;Static;"contacto: poner_estado paralysis; al_rival; prob=30"
+stench;Hedor;Stench;"al_hacer_daño: retroceso; prob=10"
+sticky_hold;Viscosidad;Sticky Hold;siempre: viscosidad
+sturdy;Robustez;Sturdy;antes_de_golpe [si propio.vida>=100]: aguantar | siempre: sin_ko_directo
+suction_cups;Ventosas;Suction Cups;siempre: no_cambio_forzado
+swarm;Enjambre;Swarm;siempre [si mov.tipo=bug & propio.vida<=33]: daño x1,5
+swift_swim;Nado Rápido;Swift Swim;siempre [si clima=rain]: stat speed x2
+synchronize;Sincronía;Synchronize;al_sufrir_estado: sincronia
+thick_fat;Sebo;Thick Fat;antes_de_golpe [si mov.tipo=fire]: daño_recibido x0,5 | antes_de_golpe [si mov.tipo=ice]: daño_recibido x0,5
+torrent;Torrente;Torrent;siempre [si mov.tipo=water & propio.vida<=33]: daño x1,5
+trace;Calco;Trace;al_entrar: rastro
+truant;Ausente;Truant;siempre: ausente
+vital_spirit;Espíritu Vital;Vital Spirit;siempre: inmune_estado sleep,drowsy
+volt_absorb;Absorbe Electricidad;Volt Absorb;siempre: inmune electric | al_absorber: curar 25%
+water_absorb;Absorbe Agua;Water Absorb;siempre: inmune water | al_absorber: curar 25%
+water_veil;Velo Agua;Water Veil;siempre: inmune_estado burn
+white_smoke;Humo Blanco;White Smoke;siempre: sin_bajadas
+wonder_guard;Superguarda;Wonder Guard;siempre: superguarda

@@ -294,8 +294,6 @@ namespace CTEditor.GameDefinition.Editor
                 EditorUtility.DisplayProgressBar("Cambiar de generación", "Preparando la base…", 0.35f);
                 var baseReport = new List<string>();
                 ContentHubWindow.CreateClassicBase(baseReport, pack);
-                if (pack.Has(PackTools.AbilitiesFile))
-                    AbilityEditorWindow.CreateClassicSet(out _, pack.Ids(PackTools.AbilitiesFile));
 
                 var files = _categories.Where(c => c.Selected && c.InPack).SelectMany(c => c.Files).ToList();
                 if (_importTrainers) files.Add("entrenadores.csv");

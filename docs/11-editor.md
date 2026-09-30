@@ -8,7 +8,7 @@ Todo en español; los textos de campos y opciones salen de `Common/Etiquetas.cs`
 | Categoría | Ventanas |
 |---|---|
 | **Centro de Contenido** | Puerta de entrada: catálogo de todos los editores con recuento, elegir **pack** e **importar** («solo lo que falta» / «actualizar también»), «✨ Crear TODO» (contenido clásico), errores del validador. |
-| **Criaturas** | Especies (stats con barras, calculadora de stats reales, formas y variantes, Pokédex) · **Árbol de familia** (evoluciones, formas ⚔, variantes punteadas, «+ Forma», «+ Variante») · Habilidades (37 plantillas) · Naturalezas (tabla 5×5) · Grupos huevo · Curvas de experiencia (gráfico, fórmulas propias). |
+| **Criaturas** | Especies (stats con barras, calculadora de stats reales, formas y variantes, Pokédex) · **Árbol de familia** (evoluciones, formas ⚔, variantes punteadas, «+ Forma», «+ Variante») · Habilidades (efectos por bloques en tarjetas; plantillas = las habilidades del pack) · Naturalezas (tabla 5×5) · Grupos huevo · Curvas de experiencia (gráfico, fórmulas propias). |
 | **Combate** | Movimientos (plantillas por mecánica) · Tipos + **Tabla de tipos** (matriz, por épocas) · Estados · Climas · Trampas de campo · Efectos de lado · **Mecánicas especiales** (Megaevolución) · **Reglas del juego** (plantillas por generación, mecánicas activas, aventura). |
 | **Objetos** | Todos los objetos (efectos por bloques, [09](09-efectos-por-bloques.md)); plantillas = los objetos del pack o Excel elegido como fuente. |
 | **Personajes** | Entrenadores (equipo, IA, mochila, frases, «✨ Sugerir según la IA», «🏆 Set de Smogon…», Showdown) · Plantillas de entrenadores (del pack) · Niveles de IA (7 clásicos) · Sets de competición · Equipos prearmados. |

@@ -34,7 +34,7 @@ ningún componente.
 ## Cómo crear contenido (sin programar)
 Abre **CTEditor → Centro de Contenido**. Desde ahí:
 - **"Crear el contenido clásico completo"**: crea de una vez los 18 tipos con su tabla, los 8 estados,
-  las 25 naturalezas, las 6 curvas de XP, las reglas clásicas y 30 habilidades. Lo que ya exista (por id)
+  las 25 naturalezas, las 6 curvas de XP, las reglas clásicas y las habilidades del pack elegido (con todos sus efectos). Lo que ya exista (por id)
   no se toca, así que puedes pulsarlo sin miedo.
 - Cada categoría tiene su **editor** (Tipos, Tabla de Tipos, Estados, Movimientos, Habilidades, Especies,
   Curvas de Experiencia, Naturalezas, Reglas): lista con buscador, crear escribiendo un id, duplicar,
@@ -112,6 +112,10 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
     `veces=N`.
   - Las **plantillas** son los objetos del pack elegido (o de tu Excel): no hay hoja aparte. Los **packs** traen
     todos los objetos de su generación con todos sus efectos: importar con «Actualizar también» los deja completos.
+- **Habilidades**: el mismo sistema de efectos que los objetos (tarjetas «cuándo / si / qué» y la columna `efectos` en
+  Excel). Ej.: Intimidación = `al_entrar: etapa attack -1; al_rival`; Mar Llamas = `siempre [si mov.tipo=fire &
+  propio.vida<=33]: daño x1,5`. Lo único de cada una (Rastro, Ausente, Gula...) está en «Especial». Las plantillas son
+  las habilidades del pack elegido; puedes inventar las tuyas combinando piezas.
 - **MT que se gastan**: es una regla (Reglas → «Las MT se gastan»; 1.ª-4.ª gen. sí, desde la 5.ª no), no del objeto.
 - **Mochila**: el `PartyHolder` trae la `Mochila inicial` (por defecto 5 Pociones y 10 Poké Balls). Los
   botones Mochila y Capturar de la pantalla de combate usan los objetos que elijas.

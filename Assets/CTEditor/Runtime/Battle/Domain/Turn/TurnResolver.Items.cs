@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CTEditor.SharedKernel.Events;
 using CTEditor.SharedKernel.ValueObjects;
+using CTEditor.GameDefinition.Domain.Abilities;
 using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Domain.Items;
 using CTEditor.GameDefinition.Domain.Moves;
@@ -13,6 +14,17 @@ using CTEditor.Battle.Domain.Events;
 
 namespace CTEditor.Battle.Domain.Turn
 {
+    /// <summary>Where a block comes from: the held item, or an ability's blocks that are not an ability shape (they run like
+    /// a held item's: «al entrar: curar 10 %»...). Abilities are never used up.</summary>
+    internal sealed class EffectSource
+    {
+        public ItemDefinition Item;
+        public AbilityDefinition Ability;
+        public string Id => Item != null ? Item.Id : Ability.Id.Value;
+        public bool IsBerry => Item != null && Item.IsBerry;
+        public string Key(int index) => (Item != null ? "item:" + Item.Id : "ability:" + Ability.Id.Value) + "#" + index;
+    }
+
     /// <summary>
     /// HELD ITEMS as EFFECT BLOCKS. Every held item is a list of «when / if / then» blocks; the turn calls these helpers at
     /// each trigger point (end of turn, before/after a hit, on contact, on status, low HP...) and for the passive queries
@@ -24,23 +36,40 @@ namespace CTEditor.Battle.Domain.Turn
         /// <summary>Real type of the hit while a DEFENDER's blocks are evaluated (MoveType conditions use the attacker's type).</summary>
         private Id<ElementType>? _hitTypeOverride;
 
-        private static string UseKey(ItemDefinition item, int index) => "item:" + item.Id + "#" + index;
+        /// <summary>Nesting of «si le bajan una estadística» blocks (they can answer each other).</summary>
+        private int _statDropDepth;
 
-        /// <summary>The working held item's blocks for one trigger (none if items are off, suppressed or missing).</summary>
-        private List<(ItemDefinition item, int index, EffectBlock block)> HeldBlocks(Combatant c, EffectTrigger trigger, EffectAction? action = null)
+        private static string UseKey(EffectSource src, int index) => src.Key(index);
+
+        /// <summary>The blocks for one trigger of the working held item (none if items are off, suppressed or missing) and of
+        /// the ability's generic blocks (the ones that are not an ability shape).</summary>
+        private List<(EffectSource item, int index, EffectBlock block)> HeldBlocks(Combatant c, EffectTrigger trigger, EffectAction? action = null)
         {
-            var list = new List<(ItemDefinition, int, EffectBlock)>();
-            if (c == null || !TryGetHeldItem(c, out var item)) return list;
-            for (int i = 0; i < item.Effects.Count; i++)
+            var list = new List<(EffectSource, int, EffectBlock)>();
+            if (c == null) return list;
+            if (TryGetHeldItem(c, out var item))
             {
-                var b = item.Effects[i];
-                if (b.Trigger == trigger && (!action.HasValue || b.Action == action.Value)) list.Add((item, i, b));
+                var src = new EffectSource { Item = item };
+                for (int i = 0; i < item.Effects.Count; i++)
+                {
+                    var b = item.Effects[i];
+                    if (b.Trigger == trigger && (!action.HasValue || b.Action == action.Value)) list.Add((src, i, b));
+                }
+            }
+            if (TryGetAbility(c, out var ab) && ab.GenericEffects.Count > 0)
+            {
+                var src = new EffectSource { Ability = ab };
+                for (int i = 0; i < ab.GenericEffects.Count; i++)
+                {
+                    var b = ab.GenericEffects[i];
+                    if (b.Trigger == trigger && !b.Consumes && (!action.HasValue || b.Action == action.Value)) list.Add((src, i, b));
+                }
             }
             return list;
         }
 
         /// <summary>Does this block fire now? Uses left, berry allowed, conditions and — last, only if needed — its chance roll.</summary>
-        private bool Fires(Combatant holder, ItemDefinition item, int index, EffectBlock b, Combatant other, Move move, Id<ElementType>? hitType = null)
+        private bool Fires(Combatant holder, EffectSource item, int index, EffectBlock b, Combatant other, Move move, Id<ElementType>? hitType = null)
         {
             if (b.MaxPerBattle > 0 && holder.EffectUses(UseKey(item, index)) >= b.MaxPerBattle) return false;
             // Nerviosismo: the foe does not let it eat berries.
@@ -57,7 +86,7 @@ namespace CTEditor.Battle.Domain.Turn
             return true;
         }
 
-        private void NoteFired(Combatant holder, ItemDefinition item, int index, EffectBlock b)
+        private void NoteFired(Combatant holder, EffectSource item, int index, EffectBlock b)
         {
             if (b.MaxPerBattle > 0) holder.NoteEffectUse(UseKey(item, index));
         }
@@ -117,7 +146,7 @@ namespace CTEditor.Battle.Domain.Turn
         private bool RunHeld(Combatant holder, EffectTrigger trigger, Combatant other, Move move, List<IDomainEvent> events,
             int damageDealt = 0, StatusId? justGot = null, Func<EffectBlock, bool> applies = null, Id<ElementType>? hitType = null)
         {
-            var fired = new List<(ItemDefinition item, int index, EffectBlock block)>();
+            var fired = new List<(EffectSource item, int index, EffectBlock block)>();
             foreach (var (item, i, b) in HeldBlocks(holder, trigger))
             {
                 if (!EffectRules.InstantActions.Contains(b.Action)) continue;
@@ -126,26 +155,27 @@ namespace CTEditor.Battle.Domain.Turn
             }
             if (fired.Count == 0) return false;
 
-            var itemDef = fired[0].item;
-            bool announced = false;
-            void Announce()
+            // Announced once per source (the item, then the ability).
+            var announced = new HashSet<EffectSource>();
+            Action AnnounceFor(EffectSource src) => () =>
             {
-                if (announced) return;
-                announced = true;
-                events.Add(new HeldItemActivatedEvent(holder.Id, itemDef.Id, false));
-            }
-            if (fired.Any(f => f.block.Consumes)) { UseUpItem(holder, events); announced = true; }
+                if (!announced.Add(src)) return;
+                if (src.Item != null) events.Add(new HeldItemActivatedEvent(holder.Id, src.Item.Id, false));
+                else events.Add(new AbilityTriggeredEvent(holder.Id, src.Ability.Id.Value));
+            };
+            var usedUp = fired.FirstOrDefault(f => f.block.Consumes && f.item.Item != null).item;
+            if (usedUp != null) { UseUpItem(holder, events); announced.Add(usedUp); }
 
             foreach (var (item, i, b) in fired)
             {
                 NoteFired(holder, item, i, b);
                 var who = b.Target == BlockTarget.Self ? holder : other;
-                Execute(holder, who, item, trigger, b, move, damageDealt, justGot, events, Announce);
+                Execute(holder, who, item, trigger, b, move, damageDealt, justGot, events, AnnounceFor(item));
             }
             return true;
         }
 
-        private void Execute(Combatant holder, Combatant who, ItemDefinition item, EffectTrigger trigger, EffectBlock b, Move move,
+        private void Execute(Combatant holder, Combatant who, EffectSource item, EffectTrigger trigger, EffectBlock b, Move move,
             int damageDealt, StatusId? justGot, List<IDomainEvent> events, Action announce)
         {
             if (who == null) return;
@@ -189,7 +219,8 @@ namespace CTEditor.Battle.Domain.Turn
                     int at = events.Count;
                     TryInflictStatus(who, def.Id, events, who == holder ? null : holder);
                     bool applied = def.IsVolatile ? who.HasVolatile(def.Id) : who.Status.HasValue;
-                    if (applied) events.Insert(at, new HeldItemActivatedEvent(holder.Id, item.Id, false));
+                    if (applied) events.Insert(at, item.Item != null ? (IDomainEvent)new HeldItemActivatedEvent(holder.Id, item.Id, false)
+                        : new AbilityTriggeredEvent(holder.Id, item.Id));
                     return;
                 }
                 case EffectAction.ChangeStage:
@@ -246,7 +277,7 @@ namespace CTEditor.Battle.Domain.Turn
             if (fired.Count == 0) return damage;
             float mult = 1f;
             foreach (var (item, i, b) in fired) { mult *= b.Amount; NoteFired(target, item, i, b); }
-            if (fired.Any(f => f.block.Consumes)) UseUpItem(target, events);
+            if (fired.Any(f => f.block.Consumes && f.item.Item != null)) UseUpItem(target, events);
             return Math.Max(1, (int)(damage * mult));
         }
 
@@ -258,7 +289,7 @@ namespace CTEditor.Battle.Domain.Turn
                 if (Fires(target, item, i, b, attacker, move, MoveTypeOf(attacker, move)))
                 {
                     NoteFired(target, item, i, b);
-                    if (b.Consumes) UseUpItem(target, events);
+                    if (b.Consumes && item.Item != null) UseUpItem(target, events);
                     events.Add(new EnduredEvent(target.Id));
                     return target.CurrentHp - 1;
                 }
@@ -335,7 +366,7 @@ namespace CTEditor.Battle.Domain.Turn
                 if ((b.Trigger == EffectTrigger.LowHp || b.Trigger == EffectTrigger.OnStatus) && EffectRules.InstantActions.Contains(b.Action))
                 {
                     var target = b.Target == BlockTarget.Self ? actor : who;
-                    Execute(actor, target, berry, b.Trigger, b, null, 0, null, events, () => { });
+                    Execute(actor, target, new EffectSource { Item = berry }, b.Trigger, b, null, 0, null, events, () => { });
                 }
             return true;
         }

@@ -31,15 +31,15 @@ Rama de trabajo: `develop`. La historia completa (PR #1-#16 y los pasos) va incl
 3. Esperar la compilación: **la Consola no debe tener errores rojos**. Si los hay, Unity usaría código viejo ([15](15-pruebas-y-verificacion.md)).
 4. **CTEditor → Centro de Contenido**: si el proyecto está vacío, elegir pack e importar (o «✨ Crear TODO»).
 5. **Herramientas → Validar contenido** y **Test Runner → EditMode → Run All**.
-6. Si los objetos vienen de una versión antigua (sin efectos): Centro de Contenido → Pack → Importar → **«Actualizar
-   también»**, o en el editor de objetos «↻ Actualizar desde las plantillas» (usa el pack elegido como fuente).
+6. Si los objetos o las habilidades vienen de una versión antigua (sin efectos): Centro de Contenido → Pack → Importar →
+   **«Actualizar también»**, o en el editor de objetos «↻ Actualizar desde las plantillas» (usa el pack elegido como fuente).
 
 ## 4. Entorno sin Unity (CI, otra persona, una IA)
 
 ```bash
 apt-get update && apt-get install -y dotnet-sdk-8.0 python3
 dotnet test Tools/probar_dominio          # dominio: todo verde
-dotnet test Tools/compilar_unity          # todo Runtime + tests: solo los 8 fallos conocidos
+dotnet test Tools/compilar_unity          # todo Runtime + tests: solo los 9 fallos conocidos
 python3 Tools/verificar_pack/verificar_pack.py Assets/GameContent/Packs/Gen6 --pokeapi --gen 6
 ```
 `compilar_unity` descarga `Unity3D.SDK`, NUnit y el SDK de tests de NuGet (necesita red la primera vez).

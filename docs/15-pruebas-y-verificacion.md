@@ -15,8 +15,8 @@ generación (`GenerationRulesTests`), progresión (`GeneticsTests`, `GrowthCurve
 | Cómo | Qué cubre | Cuándo |
 |---|---|---|
 | **Unity → Test Runner (EditMode)** | Todo. | Referencia final, con Unity abierto. |
-| `dotnet test Tools/probar_dominio` | Dominio puro + tests puros (excluye los que usan editor o fichas; lista `Exclude` en el `.csproj`). Hoy: **218 / 218**. | Tras tocar el motor, en segundos. |
-| `dotnet test Tools/compilar_unity` | **Compila TODO Runtime (incluido el editor)** contra las DLL de Unity (NuGet `Unity3D.SDK`) y ejecuta TODOS los tests. Hoy: **294 pasan; 8 fallan siempre fuera de Unity** (`GrowthCurveMapperTests` ×4, `ReferenceFinderTests` ×3, `ConsoleBattleTests` ×1: necesitan el motor de Unity). Cualquier otro fallo es real. | **Antes de cada commit que toque el editor.** |
+| `dotnet test Tools/probar_dominio` | Dominio puro + tests puros (excluye los que usan editor o fichas; lista `Exclude` en el `.csproj`). Hoy: **221 / 221**. | Tras tocar el motor, en segundos. |
+| `dotnet test Tools/compilar_unity` | **Compila TODO Runtime (incluido el editor)** contra las DLL de Unity (NuGet `Unity3D.SDK`) y ejecuta TODOS los tests. Hoy: **300 pasan; 9 fallan siempre fuera de Unity** (`GrowthCurveMapperTests` ×4, `ReferenceFinderTests` ×4, `ConsoleBattleTests` ×1: necesitan el motor de Unity). Cualquier otro fallo es real. | **Antes de cada commit que toque el editor.** |
 
 Requisito: .NET 8 SDK (`apt-get install -y dotnet-sdk-8.0` en Debian/Ubuntu). La primera vez se descargan los paquetes.
 
@@ -42,7 +42,7 @@ y `TMPro` en un proyecto aparte; los únicos errores esperables son las APIs de 
 ## Lista antes de un commit
 
 1. `dotnet test Tools/probar_dominio` → todo verde.
-2. `dotnet test Tools/compilar_unity` → solo los 8 fallos conocidos.
+2. `dotnet test Tools/compilar_unity` → solo los 9 fallos conocidos.
 3. Si se tocaron packs: `verificar_pack.py` → 0 errores.
 4. Archivos nuevos en `Assets/` con su `.meta`.
 5. Releer el diff: enums solo crecen al final; textos de interfaz en español; identificadores en inglés.

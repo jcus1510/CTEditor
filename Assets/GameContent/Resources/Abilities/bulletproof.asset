@@ -14,122 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.AbilityData
   id: bulletproof
   displayName: Antibalas
-  passiveModifiers: []
-  statusImmunities: []
-  typeImmunities: []
-  absorbImmuneHealPercent: 0
-  contactReactionStatus: 
-  contactReactionChance: 0
-  onEntryStatId: 
-  onEntryStages: 0
-  onEntryTargetsSelf: 0
-  statusStatBoostStatId: 
-  statusStatBoostMultiplier: 1
-  lowHpBoostType: {fileID: 0}
-  lowHpThresholdPercent: 33
-  lowHpBoostMultiplier: 1
-  incomingTypeMultipliers: []
-  stabMultiplierOverride: 0
-  statusMovePriorityBonus: 0
-  preventsStatReduction: 0
-  curesStatusOnSwitchOut: 0
-  healPercentOnSwitchOut: 0
-  endOfTurnStatId: 
-  endOfTurnStages: 0
-  endOfTurnHealPercent: 0
-  endOfTurnHealRequiresStatus: 0
-  endOfTurnCureStatusChance: 0
-  negatesStatusDamage: 0
-  offensivePowerModifiers: []
-  defensivePowerModifiers: []
-  onEntryWeather: 
-  onEntryWeatherTurns: 0
-  suppressesWeather: 0
-  weatherHpChanges: []
-  weatherImmunities: []
-  curesStatusInWeather: 
-  statusImmuneInWeather: 
-  typeByWeather: []
-  conditionalStats: []
-  accuracyModifiers: []
-  evasionModifiers: []
-  noRecoil: 0
-  noIndirectDamage: 0
-  critImmune: 0
-  critStageBonus: 0
-  critDamageMultiplier: 1
-  preventedStatDrops: []
-  flinchImmune: 0
-  onFlinchStat: 
-  onFlinchStages: 0
-  secondaryChanceMultiplier: 1
-  blocksIncomingSecondaries: 0
-  removesOwnSecondaries: 0
-  flinchChanceOnAttack: 0
-  forcedSwitchImmune: 0
-  trapsOpponent: 0
-  trapOnlyTypes: []
-  trapOnlyGrounded: 0
-  alwaysEscapes: 0
-  sleepAgesTwice: 0
-  synchronizeStatus: 0
-  contactReactionStatuses: []
-  contactDamagePercent: 0
-  offensiveContactStatus: 
-  offensiveContactChance: 0
-  aftermathPercent: 0
-  disableOnHitChance: 0
-  onHitStats: []
-  critMaxesAttack: 0
-  ohkoImmune: 0
-  survivesFromFullHp: 0
-  immuneToMoveTags:
-  - bomba
-  blocksMoveTagsForAll: []
-  onlySuperEffectiveHits: 0
-  onImmuneStat: 
-  onImmuneStages: 0
-  boostsAbsorbedType: 0
-  traceOnEntry: 0
-  transformOnEntry: 0
-  downloadOnEntry: 0
-  announceOnEntry: 
-  neutralizingGas: 0
-  unnerve: 0
-  colorChange: 0
-  protean: 0
-  pressure: 0
-  truant: 0
-  ignoresStages: 0
-  stageMultiplier: 1
-  invertsStages: 0
-  liquidOoze: 0
-  normalizeMoves: 0
-  ignoresImmunityFor: []
-  moldBreaker: 0
-  skillLink: 0
-  badDreamsPercent: 0
-  noGuard: 0
-  movesLast: 0
-  klutz: 0
-  berryThresholdPercent: 0
-  stickyHold: 0
-  pickpocket: 0
-  onKoStat: 
-  onKoStages: 0
-  onStatDroppedStat: 
-  onStatDroppedStages: 0
-  harvestChance: 0
-  moody: 0
-  infiltrator: 0
-  magicBounce: 0
-  weightMultiplier: 1
-  priorityType: 
-  priorityTypeBonus: 0
-  contactStatDrop: 
-  contactStatDropStages: 0
-  stealOnHit: 0
-  spreadsAbilityOnContact: 0
-  convertNormalTo: 
-  convertBoost: 1
-  berryBonusHealPercent: 0
+  englishName: Bulletproof
+  effects:
+  - trigger: 1
+    conditions: []
+    action: 52
+    target: 0
+    reference: bomba
+    amount: 0
+    threshold: 0
+    consumes: 0
+    chance: 100
+    maxPerBattle: 0

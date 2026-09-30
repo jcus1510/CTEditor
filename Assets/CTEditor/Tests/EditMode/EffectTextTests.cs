@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
+using CTEditor.GameDefinition.Domain.Abilities;
 using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Domain.Items;
@@ -78,6 +79,54 @@ namespace CTEditor.Tests.EditMode
                     Assert.DoesNotThrow(() => EffectText.Parse(r["efectos"]), $"{file}: {r["id"]}");
             }
             Assert.Greater(files, 0);
+        }
+
+        [Test]
+        public void Every_ability_of_every_pack_is_read_and_fully_understood_by_the_engine()
+        {
+            int files = 0;
+            foreach (var file in Directory.GetFiles(RepoFile("Assets/GameContent/Packs"), "habilidades.csv", SearchOption.AllDirectories)
+                         .Concat(new[] { RepoFile("Tools/datos_fuente/habilidades.csv") }))
+            {
+                files++;
+                foreach (var r in CsvTable.Load(file).Rows)
+                {
+                    var blocks = EffectText.Parse(r["efectos"]);
+                    Assert.AreEqual(r["efectos"], EffectText.Format(blocks), $"{file}: {r["id"]} no se reescribe igual");
+                    var ability = new AbilityDefinition(new AbilityId(r["id"]), r["nombre"], blocks);
+                    // Every block of the classic abilities is an ability shape (nothing left to the generic runner).
+                    Assert.AreEqual(0, ability.GenericEffects.Count, $"{r["id"]}: {EffectText.Format(ability.GenericEffects)}");
+                    foreach (var b in blocks) Assert.IsTrue(AbilityEffects.IsSupported(b), $"{r["id"]}: {EffectText.Format(b)}");
+                }
+            }
+            Assert.Greater(files, 1);
+        }
+
+        [Test]
+        public void Ability_blocks_are_read_into_what_the_engine_uses()
+        {
+            var blaze = new AbilityDefinition(new AbilityId("blaze"), "Mar Llamas", EffectText.Parse("siempre [si mov.tipo=fire & propio.vida<=33]: daño x1,5"));
+            Assert.AreEqual("fire", blaze.LowHpBoostType.Value.Value);
+            Assert.AreEqual(1.5f, blaze.LowHpBoostMultiplier, 0.001f);
+            Assert.AreEqual(33f, blaze.LowHpThreshold.Value, 0.001f);
+
+            var intimidate = new AbilityDefinition(new AbilityId("intimidate"), "Intimidación", EffectText.Parse("al_entrar: etapa attack -1; al_rival"));
+            Assert.AreEqual("attack", intimidate.OnEntryStat.Value.Value);
+            Assert.AreEqual(-1, intimidate.OnEntryStages);
+            Assert.IsFalse(intimidate.OnEntryTargetsSelf);
+
+            var spore = new AbilityDefinition(new AbilityId("effect_spore"), "Efecto Espora", EffectText.Parse("contacto: poner_estado poison,paralysis,sleep; al_rival; prob=30"));
+            Assert.AreEqual(3, spore.Extras.ContactReactionStatuses.Count);
+            Assert.AreEqual(30f, spore.ContactReactionChance.Value, 0.001f);
+
+            var trace = new AbilityDefinition(new AbilityId("trace"), "Rastro", EffectText.Parse("al_entrar: rastro"));
+            Assert.IsTrue(trace.Extras.TraceOnEntry);
+            Assert.AreEqual("al_entrar: rastro", EffectText.Format(trace.Effects));
+
+            // A combination that is not a classic shape is kept for the generic runner (like a held item).
+            var custom = new AbilityDefinition(new AbilityId("x"), "X", EffectText.Parse("al_entrar: curar 10%"));
+            Assert.AreEqual(1, custom.GenericEffects.Count);
+            Assert.IsTrue(AbilityEffects.IsSupported(custom.GenericEffects[0]));
         }
 
         [Test]

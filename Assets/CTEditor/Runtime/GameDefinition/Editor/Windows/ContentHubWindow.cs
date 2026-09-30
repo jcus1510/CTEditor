@@ -278,10 +278,8 @@ namespace CTEditor.GameDefinition.Editor
             try
             {
                 CreateClassicBase(report, pack);
-                // Habilidades: las del pack mandan. Un pack SIN habilidades (1.ª y 2.ª gen.: aún no existían) no recibe ninguna.
-                if (pack.Has(PackTools.AbilitiesFile))
-                    report.Add($"Habilidades-plantilla: {AbilityEditorWindow.CreateClassicSet(out _, pack.Ids(PackTools.AbilitiesFile))} nuevas");
-                else report.Add("Habilidades: ninguna (en esta generación no existen)");
+                // Habilidades: las trae el pack, con todos sus efectos. Un pack SIN habilidades (1.ª y 2.ª gen.) no recibe ninguna.
+                report.Add(pack.Has(PackTools.AbilitiesFile) ? "Habilidades: del pack (habilidades.csv)" : "Habilidades: ninguna (en esta generación no existen)");
             }
             catch (Exception e)
             {
@@ -385,14 +383,14 @@ namespace CTEditor.GameDefinition.Editor
         {
             var report = new List<string>();
             CreateClassicBase(report);
-            report.Add($"Habilidades: {AbilityEditorWindow.CreateClassicSet(out var missing)} nuevas");
+            report.Add($"Habilidades: {AbilityEditorWindow.CreateClassicSet()} nuevas");
             if (ContentAssets.LoadAll<SpeciesData>().Count > 0) report.Add(CreateBattleExamples(false));
             else report.Add("Entrenadores, equipos y zonas: se crean cuando tengas especies (importa el pack y vuelve a pulsar)");
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             RecountIssues();
 
-            string extra = missing.Count > 0 ? "\n\nAviso: faltan tipos para algunas habilidades: " + string.Join(", ", missing) : "";
+            string extra = "";
             EditorUtility.DisplayDialog("Contenido clásico",
                 "Listo. Lo que ya existía (por id) no se tocó.\n\n• " + string.Join("\n• ", report) + extra +
                 "\n\nSiguiente paso: crea tus especies y movimientos, o importa " + PackName + ".", "Genial");

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: razor_fang
   displayName: Colmillo Agudo
+  englishName: Razor Fang
   description: "Llev\xE1ndolo al subir de nivel de noche: Gligar evoluciona."
   category: 7
   icon: {fileID: 0}
@@ -21,21 +22,15 @@ MonoBehaviour:
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0
-  healHp: 0
-  healPercent: 0
-  curesAllStatus: 0
-  curesStatusId: 
-  revives: 0
-  reviveHpPercent: 50
-  restorePp: 0
-  restorePpAllMoves: 0
-  friendshipChange: 0
-  catchMultiplier: 0
-  battleStatId: 
-  battleStages: 0
-  heldPowerModifiers: []
-  heldEndOfTurnHealPercent: 0
-  heldTriggerHpPercent: 0
-  heldTriggerHealHp: 0
-  heldTriggerHealPercent: 0
-  heldConsumedOnTrigger: 1
+  isBerry: 0
+  effects:
+  - trigger: 7
+    conditions: []
+    action: 24
+    target: 1
+    reference: 
+    amount: 0
+    threshold: 0
+    consumes: 0
+    chance: 10
+    maxPerBattle: 0

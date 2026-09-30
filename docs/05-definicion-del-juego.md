@@ -60,12 +60,10 @@ HarderWhenRepeated, CatchMultiplier` + `StatusExtras` (volátiles de 3.ª-4.ª: 
 
 ## Habilidades (`Abilities/`)
 
-`AbilityDefinition` — también DATOS: modificadores pasivos, inmunidades a estados y tipos (con absorción y curación),
-reacción por contacto, cambio de etapas al entrar, refuerzos con estado o poca vida, multiplicadores de tipo recibido,
-STAB, prioridad de estado, «no le bajan stats», curas al retirarse, efectos de fin de turno, potencia ofensiva y
-defensiva con condiciones + `AbilityExtras` (≈60 perillas de 3.ª-6.ª gen.: `ConditionalStats`, `OnHitStats`, clima al
-entrar, Intimidación, Nerviosismo, Gula, Carrillo, Prestidigitador, Piel Feérica...). **Pendiente**: pasarlas al sistema
-de bloques como los objetos ([09](09-efectos-por-bloques.md), [18](18-pendientes.md)).
+`AbilityDefinition(id, nombre, bloques)` — una habilidad es una lista de **efectos por bloques**, como un objeto
+([09](09-efectos-por-bloques.md)). `AbilityEffects.Read` traduce los bloques con forma clásica a las propiedades que
+consulta el motor (inmunidades, reacción por contacto, al entrar, poca vida, fin de turno, potencia con condiciones y
+`AbilityExtras`: clima, Rastro, Gula...); el resto queda en `GenericEffects` y se ejecuta como los bloques de un objeto.
 
 ## Objetos (`Items/`) y efectos (`Effects/`)
 

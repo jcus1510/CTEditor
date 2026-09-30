@@ -1,5 +1,7 @@
 using System.Reflection;
 using NUnit.Framework;
+using CTEditor.GameDefinition.Domain.Conditions;
+using CTEditor.GameDefinition.Domain.Effects;
 using UnityEngine;
 using CTEditor.GameDefinition.Editor;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
@@ -28,26 +30,40 @@ namespace CTEditor.Tests.EditMode
             var poisonStatus = Make<StatusConditionData>("poison");
             var poisonType = Make<ElementTypeData>("poison");
             var immunity = Make<AbilityData>("immunity");
-            Set(immunity, "statusImmunities", new[] { "poison", "toxic" });
+            Set(immunity, "effects", new[] { new EffectBlockData { trigger = EffectTrigger.Passive, action = EffectAction.ImmuneToStatus, reference = "poison|toxic" } });
 
             var toStatus = ReferenceFinder.FindIn(immunity, poisonStatus);
             Assert.AreEqual(1, toStatus.Count);
             Assert.IsTrue(toStatus[0].ById);
-            Assert.AreEqual("statusImmunities.Array.data[0]", toStatus[0].PropertyPath);
-            Assert.AreEqual("statusImmunities[1]", toStatus[0].Field);
+            Assert.AreEqual("effects.Array.data[0].reference", toStatus[0].PropertyPath);
 
             // El texto "poison" de las inmunidades de ESTADO no es una referencia al TIPO "poison".
             Assert.AreEqual(0, ReferenceFinder.FindIn(immunity, poisonType).Count);
         }
 
         [Test]
+        public void Finds_types_in_effect_references_and_conditions()
+        {
+            var fire = Make<ElementTypeData>("fire");
+            var blaze = Make<AbilityData>("blaze");
+            Set(blaze, "effects", new[]
+            {
+                new EffectBlockData { trigger = EffectTrigger.Passive, action = EffectAction.ImmuneToType, reference = "fire" },
+                new EffectBlockData { trigger = EffectTrigger.Passive, action = EffectAction.DamageDealtMultiplier, amount = 1.5f,
+                    conditions = new[] { new ConditionData { kind = ConditionKind.MoveType, text = "fire" } } },
+            });
+            var refs = ReferenceFinder.FindIn(blaze, fire);
+            Assert.AreEqual(2, refs.Count);
+        }
+
+        [Test]
         public void Finds_object_references_inside_arrays()
         {
             var ground = Make<ElementTypeData>("ground");
-            var levitate = Make<AbilityData>("levitate");
-            Set(levitate, "typeImmunities", new[] { ground });
+            var species = Make<SpeciesData>("diglett");
+            Set(species, "types", new[] { ground });
 
-            var refs = ReferenceFinder.FindIn(levitate, ground);
+            var refs = ReferenceFinder.FindIn(species, ground);
             Assert.AreEqual(1, refs.Count);
             Assert.IsFalse(refs[0].ById); // por objeto: sobrevive a renombrados sin tocarla
         }

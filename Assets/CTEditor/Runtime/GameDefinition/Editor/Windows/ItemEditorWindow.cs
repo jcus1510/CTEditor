@@ -277,20 +277,7 @@ namespace CTEditor.GameDefinition.Editor
                 w.Add("Es para llevar equipado pero no tiene efectos al llevarlo (ni hace evolucionar a ninguna especie).");
             if (blocks.Any(b => b.Trigger == EffectTrigger.OnUse) && !d.UsableInBattle && !d.UsableOutsideBattle)
                 w.Add("Tiene efectos «Al usarlo», pero no se puede usar ni en combate ni fuera.");
-            foreach (var b in blocks)
-            {
-                if (!EffectRules.IsSupported(b)) w.Add($"«{EffectText.Label(b.Trigger)} → {EffectText.Label(b.Action)}» se guarda, pero el motor aún no lo aplica.");
-                var kind = EffectText.RefOf(b.Action);
-                if (kind == EffectRefKind.Status || kind == EffectRefKind.StatusList)
-                    foreach (var s in b.RefList)
-                        if (ContentAssets.FindById<StatusConditionData>(s) == null) w.Add($"Usa el estado '{s}', que no existe.");
-                if (kind == EffectRefKind.Type && b.Ref.Length > 0 && ContentAssets.FindById<ElementTypeData>(b.Ref) == null) w.Add($"Usa el tipo '{b.Ref}', que no existe.");
-                if (kind == EffectRefKind.Move && b.Ref.Length > 0 && ContentAssets.FindById<MoveData>(b.Ref) == null) w.Add($"Enseña '{b.Ref}', que no existe.");
-                if (kind != EffectRefKind.None && kind != EffectRefKind.StatusList && kind != EffectRefKind.Weather && b.Ref.Length == 0)
-                    w.Add($"«{EffectText.Label(b.Action)}»: falta elegir {(kind == EffectRefKind.Stat ? "la estadística" : kind == EffectRefKind.Type ? "el tipo" : "qué")}.");
-                foreach (var c in b.Conditions)
-                    if (c.Kind == ConditionKind.MoveType && ContentAssets.FindById<ElementTypeData>(c.Text) == null) w.Add($"Una condición usa el tipo '{c.Text}', que no existe.");
-            }
+            w.AddRange(EffectChecks.Warnings(blocks, false));
             return w;
         }
     }

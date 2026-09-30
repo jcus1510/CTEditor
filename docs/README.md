@@ -27,7 +27,7 @@ interfaz del editor. El manual de uso para el AUTOR (qué hace cada botón) est�
 | 15 | [Pruebas y verificación](15-pruebas-y-verificacion.md) | Tests, cómo compilar y probar sin Unity, qué se revisa antes de cada commit. |
 | 16 | [Convenciones](16-convenciones.md) | Idiomas, nombres, enums, etiquetas, .meta, commits, cómo añadir cosas nuevas. |
 | 17 | [Historial](17-historial.md) | Qué se construyó y en qué orden (lotes, pasos 1-7, efectos por bloques). |
-| 18 | [Pendientes y hoja de ruta](18-pendientes.md) | Lo que falta (paso 8 Gen 7, habilidades por bloques...) y problemas conocidos. |
+| 18 | [Pendientes y hoja de ruta](18-pendientes.md) | Lo que falta (paso 8 Gen 7, efectos «Al usarlo»...) y problemas conocidos. |
 | 19 | [Cómo migrar el proyecto](19-migrar.md) | Lista paso a paso para llevar el proyecto a otro sitio sin perder nada. |
 
 Documentos anteriores: [`PROPUESTA_EDITOR_OBJETOS.md`](PROPUESTA_EDITOR_OBJETOS.md) (la propuesta que dio lugar al

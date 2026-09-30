@@ -53,4 +53,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
 - **Sin carpeta de Plantillas**: las plantillas del editor de objetos son los objetos del pack/Excel elegido; la fuente de
   efectos para generar packs pasa a `Tools/datos_fuente/objetos.csv`.
 - **Árbol de familia rápido**: grafo (padres, bases, variantes, cadenas) en caché por cambio de contenido y lista virtual.
+- **Habilidades por bloques**: `AbilityData` = nombre + efectos; momentos, acciones y comportamientos especiales nuevos;
+  las 190 habilidades convertidas y comparadas propiedad a propiedad con las antiguas (idénticas); bloques libres
+  ejecutados como los de un objeto; editor con tarjetas y plantillas del pack; `efectos` en Excel y en los packs;
+  «¿quién usa esto?» mira dentro de los efectos.
 - **Documentación** completa por capítulos (esta carpeta).

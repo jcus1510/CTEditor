@@ -274,6 +274,7 @@ namespace CTEditor.Battle.Domain.Turn
                 // Impasible: al retroceder, sube su Velocidad.
                 var fx = X(actor);
                 if (fx.OnFlinchStat.HasValue && fx.OnFlinchStages != 0) ChangeStageFrom(actor, actor, fx.OnFlinchStat.Value, fx.OnFlinchStages, events);
+                RunHeld(actor, EffectTrigger.OnFlinch, OpponentOf(actor), null, events);
                 return;
             }
 
@@ -645,6 +646,7 @@ namespace CTEditor.Battle.Domain.Turn
         private void ApplyOnSwitchOut(Combatant leaving, List<IDomainEvent> events)
         {
             if (leaving == null || leaving.IsFainted) return;
+            RunHeld(leaving, EffectTrigger.OnSwitchOut, OpponentOf(leaving), null, events);
             if (!TryGetAbility(leaving, out var ability)) return;
 
             if (ability.CuresStatusOnSwitchOut && leaving.Status.HasValue)
@@ -962,6 +964,7 @@ namespace CTEditor.Battle.Domain.Turn
                         events.Add(new MoveHadNoEffectEvent(actor.Id, target.Id, move.Id));
                         var ix = X(target);
                         if (ix.OnImmuneStat.HasValue && ix.OnImmuneStages != 0) ChangeStageFrom(target, target, ix.OnImmuneStat.Value, ix.OnImmuneStages, events);
+                        RunHeld(target, EffectTrigger.OnAbsorb, actor, move, events);
                         return;
                     }
 
@@ -1083,6 +1086,7 @@ namespace CTEditor.Battle.Domain.Turn
                         target.SetAbsorbedTypeBoost(MoveTypeOf(actor, move));
                         events.Add(new AbilityTriggeredEvent(target.Id, absorbAb.Id.Value, "absorbe_potencia"));
                     }
+                    RunHeld(target, EffectTrigger.OnAbsorb, actor, move, events);
                 }
 
                 // Si ABSORBE el tipo (Absorbe Agua), cura un % de PS máx en vez de solo anular.

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using UnityEditor;
+using CTEditor.GameDefinition.Domain.Abilities;
 using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
@@ -10,15 +11,16 @@ using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 namespace CTEditor.GameDefinition.Editor
 {
     /// <summary>What kind of id an action needs (the editor shows the matching dropdown).</summary>
-    public enum EffectRefKind { None, Type, StatusList, Status, Stat, Weather, Move, Form, Mechanic }
+    public enum EffectRefKind { None, Type, StatusList, Status, Stat, Weather, Move, Form, Mechanic,
+        TypeList, StatList, WeatherList, TagList, Announce, Special }
 
     /// <summary>What the action's number means (the editor shows the matching field).</summary>
-    public enum EffectAmountKind { None, Hp, Percent, Multiplier, Stages, Turns, Steps, Levels, Points, Ball }
+    public enum EffectAmountKind { None, Hp, Percent, Multiplier, Stages, Turns, Steps, Levels, Points, Ball, Duration }
 
     /// <summary>
     /// EFFECT BLOCKS for people: Spanish labels, which parameters each action needs, a sentence for each block and the
     /// Excel text format («antes_de_golpe [si mov.tipo=fire & propio.eficacia>1]: daño_recibido x0,5; se_gasta»).
-    /// Shared by the item editor and (later) the ability editor. UI text lives here so it can be translated in one place.
+    /// Shared by the item editor and the ability editor. UI text lives here so it can be translated in one place.
     /// </summary>
     public static class EffectText
     {
@@ -37,7 +39,18 @@ namespace CTEditor.GameDefinition.Editor
             (EffectTrigger.OnStatus, "al_sufrir_estado", "Al sufrir un estado", "En cuanto le ponen un estado."),
             (EffectTrigger.LowHp, "poca_vida", "Con poca vida", "Cuando sus PS bajan del umbral."),
             (EffectTrigger.OnWalk, "al_caminar", "Al caminar", "Cada paso fuera del combate."),
+            (EffectTrigger.OnSwitchOut, "al_retirarse", "Al retirarse", "Cuando sale del campo (cambio)."),
+            (EffectTrigger.OnAbsorb, "al_absorber", "Al absorber un golpe", "Cuando una inmunidad anula un golpe que le iba a dar."),
+            (EffectTrigger.OnKo, "al_debilitar", "Al debilitar a un rival", ""),
+            (EffectTrigger.OnStatDropped, "al_bajarle_stat", "Si el rival le baja una estadística", ""),
+            (EffectTrigger.OnFlinch, "al_retroceder", "Al retroceder", ""),
         };
+
+        /// <summary>Triggers that make sense for abilities (no «use from the bag» nor «walking»).</summary>
+        public static EffectTrigger[] AbilityTriggers => AllTriggers.Where(t => t != EffectTrigger.OnUse && t != EffectTrigger.OnWalk).ToArray();
+
+        /// <summary>The trigger's label; for abilities «Passive» reads «Siempre».</summary>
+        public static string Label(EffectTrigger t, bool ability) => ability && t == EffectTrigger.Passive ? "Siempre" : Label(t);
 
         public static string Label(EffectTrigger t) => Triggers.First(x => x.t == t).label;
         public static string Help(EffectTrigger t) => Triggers.First(x => x.t == t).help;
@@ -93,7 +106,33 @@ namespace CTEditor.GameDefinition.Editor
             A(EffectAction.Repel, "repelente", "Repelente", n: EffectAmountKind.Steps),
             A(EffectAction.ChangeForm, "forma", "Cambiar de forma", EffectRefKind.Form),
             A(EffectAction.EnableMechanic, "mecanica", "Permite una mecánica", EffectRefKind.Mechanic),
+            // --- abilities ---
+            A(EffectAction.ImmuneToStatus, "inmune_estado", "Inmune a estados", EffectRefKind.StatusList),
+            A(EffectAction.PowerTakenMultiplier, "potencia_recibida", "Potencia de los golpes que recibe", n: EffectAmountKind.Multiplier),
+            A(EffectAction.StabMultiplier, "stab", "Bonus por mismo tipo (STAB)", n: EffectAmountKind.Multiplier),
+            A(EffectAction.PriorityBonus, "prioridad", "Prioridad de sus movimientos", n: EffectAmountKind.Stages),
+            A(EffectAction.BlockStatDrops, "sin_bajadas", "El rival no le baja estadísticas", EffectRefKind.StatList),
+            A(EffectAction.SetWeather, "poner_clima", "Poner un clima", EffectRefKind.Weather, EffectAmountKind.Duration),
+            A(EffectAction.ImmuneToWeather, "inmune_clima", "El clima no le daña", EffectRefKind.WeatherList),
+            A(EffectAction.SetType, "cambiar_tipo", "Cambiar su tipo", EffectRefKind.Type),
+            A(EffectAction.CritDamageMultiplier, "daño_critico", "Daño de sus críticos", n: EffectAmountKind.Multiplier),
+            A(EffectAction.SecondaryChanceMultiplier, "prob_secundarios", "Probabilidad de sus efectos secundarios", n: EffectAmountKind.Multiplier),
+            A(EffectAction.StageMultiplier, "etapas_x", "Multiplica sus cambios de etapa", n: EffectAmountKind.Multiplier),
+            A(EffectAction.WeightMultiplier, "peso", "Multiplica su peso", n: EffectAmountKind.Multiplier),
+            A(EffectAction.ConvertNormalType, "normal_a_tipo", "Sus movimientos Normales cambian de tipo", EffectRefKind.Type, EffectAmountKind.Multiplier),
+            A(EffectAction.Announce, "avisar", "Avisar al entrar", EffectRefKind.Announce),
+            A(EffectAction.Trap, "atrapar", "El rival no puede huir ni cambiarse", EffectRefKind.TypeList),
+            A(EffectAction.TrapGrounded, "atrapar_en_suelo", "Solo atrapa a los que pisan el suelo"),
+            A(EffectAction.IgnoreImmunity, "ignora_inmunidad", "Sus movimientos de estos tipos alcanzan a los inmunes", EffectRefKind.TypeList),
+            A(EffectAction.ImmuneToMoveTag, "inmune_etiqueta", "Inmune a movimientos con etiqueta", EffectRefKind.TagList),
+            A(EffectAction.BlockMoveTag, "bloquea_etiqueta", "Nadie puede usar movimientos con etiqueta", EffectRefKind.TagList),
+            A(EffectAction.DisableMove, "anular", "Anular el movimiento que le golpeó"),
+            A(EffectAction.Special, "especial", "Comportamiento especial", EffectRefKind.Special),
         };
+
+        /// <summary>Is the reference a list («a,b»)?</summary>
+        public static bool IsList(EffectRefKind k) => k == EffectRefKind.StatusList || k == EffectRefKind.TypeList
+            || k == EffectRefKind.StatList || k == EffectRefKind.WeatherList || k == EffectRefKind.TagList;
 
         private static ActionInfo Info(EffectAction a) => Actions.First(x => x.Action == a);
         public static string Label(EffectAction a) => Info(a).Label;
@@ -103,6 +142,32 @@ namespace CTEditor.GameDefinition.Editor
         public static bool UsesTarget(EffectAction a) => Info(a).UsesTarget;
         public static BlockTarget DefaultTarget(EffectAction a) => Info(a).DefaultTarget;
         public static EffectAction[] AllActions => Actions.Select(x => x.Action).ToArray();
+
+        /// <summary>Actions that make sense with this trigger for an ABILITY (for the dropdown).</summary>
+        public static EffectAction[] AbilityActionsFor(EffectTrigger t)
+        {
+            var instant = new[] { EffectAction.HealPercent, EffectAction.LoseHpPercent, EffectAction.CureStatus, EffectAction.InflictStatus,
+                EffectAction.ChangeStage, EffectAction.Flinch, EffectAction.HealFromDamagePercent };
+            switch (t)
+            {
+                case EffectTrigger.Passive:
+                    return new[] { EffectAction.MultiplyStat, EffectAction.PowerMultiplier, EffectAction.PowerTakenMultiplier,
+                        EffectAction.DamageDealtMultiplier, EffectAction.StabMultiplier, EffectAction.CritStage, EffectAction.CritDamageMultiplier,
+                        EffectAction.AccuracyMultiplier, EffectAction.EvasionMultiplier, EffectAction.PriorityBonus, EffectAction.ImmuneToType,
+                        EffectAction.ImmuneToStatus, EffectAction.ImmuneToWeather, EffectAction.ImmuneToMoveTag, EffectAction.BlockStatDrops,
+                        EffectAction.SetType, EffectAction.ConvertNormalType, EffectAction.SecondaryChanceMultiplier, EffectAction.StageMultiplier,
+                        EffectAction.WeightMultiplier, EffectAction.Trap, EffectAction.TrapGrounded, EffectAction.IgnoreImmunity,
+                        EffectAction.BlockMoveTag, EffectAction.Special };
+                case EffectTrigger.BeforeHit:
+                    return new[] { EffectAction.DamageTakenMultiplier, EffectAction.SurviveAt1Hp };
+                case EffectTrigger.OnEntry:
+                    return instant.Concat(new[] { EffectAction.SetWeather, EffectAction.Announce, EffectAction.Special }).ToArray();
+                case EffectTrigger.AfterHit:
+                    return instant.Concat(new[] { EffectAction.DisableMove, EffectAction.Special }).ToArray();
+                default:
+                    return instant.Concat(new[] { EffectAction.Special }).ToArray();
+            }
+        }
 
         /// <summary>Actions that make sense with this trigger (for the dropdown).</summary>
         public static EffectAction[] ActionsFor(EffectTrigger t)
@@ -145,6 +210,7 @@ namespace CTEditor.GameDefinition.Editor
                 case EffectAmountKind.Levels: return "Niveles";
                 case EffectAmountKind.Points: return "Cantidad";
                 case EffectAmountKind.Ball: return "× captura (255 = siempre)";
+                case EffectAmountKind.Duration: return "Turnos (0 = hasta que otro lo cambie)";
                 default: return "";
             }
         }
@@ -152,7 +218,7 @@ namespace CTEditor.GameDefinition.Editor
         // ---------------- Sentences ----------------
 
         /// <summary>A block in one Spanish sentence, WITHOUT the trigger (the editor groups by trigger as a heading).</summary>
-        public static string Describe(EffectBlock b, Func<EffectRefKind, string, string> name = null)
+        public static string Describe(EffectBlock b, Func<EffectRefKind, string, string> name = null, bool ability = false)
         {
             name = name ?? ((k, id) => id);
             string who = b.Target == BlockTarget.Other ? "el rival" : "él";
@@ -195,6 +261,33 @@ namespace CTEditor.GameDefinition.Editor
                 case EffectAction.Repel: what = $"los salvajes más débiles no aparecen durante {N(b.Amount)} pasos"; break;
                 case EffectAction.ChangeForm: what = $"cambia a la forma {Ref(EffectRefKind.Form)}"; break;
                 case EffectAction.EnableMechanic: what = $"permite {Ref(EffectRefKind.Mechanic)}"; break;
+                case EffectAction.ImmuneToStatus: what = b.Ref.Length == 0 ? "no le pueden poner estados" : $"no le pueden poner: {Ref(EffectRefKind.StatusList)}"; break;
+                case EffectAction.PowerTakenMultiplier: what = $"los golpes que recibe tienen potencia ×{N(b.Amount)}"; break;
+                case EffectAction.StabMultiplier: what = $"el bonus por mismo tipo es ×{N(b.Amount)}"; break;
+                case EffectAction.PriorityBonus: what = $"prioridad {Signed(b.Amount)}"; break;
+                case EffectAction.BlockStatDrops: what = b.Ref.Length == 0 ? "el rival no le puede bajar estadísticas" : $"el rival no le puede bajar: {Ref(EffectRefKind.StatList)}"; break;
+                case EffectAction.SetWeather: what = $"pone el clima {Ref(EffectRefKind.Weather)}" + (b.Amount > 0 ? $" durante {N(b.Amount)} turnos" : ""); break;
+                case EffectAction.ImmuneToWeather: what = b.Ref == "*" ? "ningún clima le daña" : $"no le daña el clima: {Ref(EffectRefKind.WeatherList)}"; break;
+                case EffectAction.SetType: what = $"pasa a ser de tipo {Ref(EffectRefKind.Type)}"; break;
+                case EffectAction.CritDamageMultiplier: what = $"sus críticos hacen ×{N(b.Amount)}"; break;
+                case EffectAction.SecondaryChanceMultiplier: what = $"la probabilidad de sus efectos secundarios es ×{N(b.Amount)}"; break;
+                case EffectAction.StageMultiplier: what = $"sus cambios de etapa valen ×{N(b.Amount)}"; break;
+                case EffectAction.WeightMultiplier: what = $"pesa ×{N(b.Amount)}"; break;
+                case EffectAction.ConvertNormalType: what = $"sus movimientos Normales pasan a ser de tipo {Ref(EffectRefKind.Type)} (×{N(b.Amount)})"; break;
+                case EffectAction.Announce: what = $"avisa: {Ref(EffectRefKind.Announce)}"; break;
+                case EffectAction.Trap: what = b.Ref.Length == 0 ? "el rival no puede huir ni cambiarse" : $"los rivales de tipo {Ref(EffectRefKind.TypeList)} no pueden huir ni cambiarse"; break;
+                case EffectAction.TrapGrounded: what = "solo atrapa a los que pisan el suelo"; break;
+                case EffectAction.IgnoreImmunity: what = $"sus movimientos de tipo {Ref(EffectRefKind.TypeList)} alcanzan a los inmunes"; break;
+                case EffectAction.ImmuneToMoveTag: what = $"no le afectan los movimientos: {Ref(EffectRefKind.TagList)}"; break;
+                case EffectAction.BlockMoveTag: what = $"nadie puede usar movimientos: {Ref(EffectRefKind.TagList)}"; break;
+                case EffectAction.DisableMove: what = "anula el movimiento que le golpeó"; break;
+                case EffectAction.Special:
+                {
+                    var sp = AbilityEffects.Special(b.Ref);
+                    what = sp == null ? $"especial «{b.Ref}» (desconocido)" : char.ToLowerInvariant(sp.Label[0]) + sp.Label.Substring(1)
+                        + (sp.UsesAmount ? $": {N(b.Amount)}" : "");
+                    break;
+                }
                 default: what = b.Action.ToString(); break;
             }
             var parts = new List<string>();
@@ -206,7 +299,7 @@ namespace CTEditor.GameDefinition.Editor
             if (b.MaxPerBattle > 0) extra.Add(b.MaxPerBattle == 1 ? "una vez por combate" : $"{b.MaxPerBattle} veces por combate");
             if (b.Consumes) extra.Add("se gasta");
             if (extra.Count > 0) s += " (" + string.Join(", ", extra) + ")";
-            if (!EffectRules.IsSupported(b)) s += " — aún sin efecto en el motor";
+            if (!(ability ? AbilityEffects.IsSupported(b) : EffectRules.IsSupported(b))) s += " — aún sin efecto en el motor";
             return char.ToUpperInvariant(s[0]) + s.Substring(1) + ".";
         }
 
@@ -224,24 +317,38 @@ namespace CTEditor.GameDefinition.Editor
             {
                 case EffectAction.HealPercent: args = " " + N(b.Amount) + "%"; info = Info(EffectAction.HealHp); break;
                 case EffectAction.CureStatus: args = b.Ref.Length > 0 ? " " + string.Join(",", b.RefList) : ""; break;
+                case EffectAction.Special:
+                {
+                    // «siempre: rastro» / «siempre: umbral_bayas 50%»: the special's key IS the action word.
+                    var sp = AbilityEffects.Special(b.Ref);
+                    string word = b.Ref.Length > 0 ? b.Ref : "especial";
+                    return head + ": " + word + (sp != null && sp.UsesAmount ? " " + N(b.Amount) + "%" : "") + Options(b, info);
+                }
                 default:
-                    if (info.Ref != EffectRefKind.None && b.Ref.Length > 0) args += " " + b.Ref;
+                    // Lists are written with commas: «|» separates blocks.
+                    if (info.Ref != EffectRefKind.None && b.Ref.Length > 0) args += " " + string.Join(",", b.RefList);
                     switch (info.Amount)
                     {
                         case EffectAmountKind.None: break;
                         case EffectAmountKind.Multiplier: case EffectAmountKind.Ball: args += " x" + N(b.Amount); break;
                         case EffectAmountKind.Percent: args += " " + N(b.Amount) + "%"; break;
                         case EffectAmountKind.Stages: case EffectAmountKind.Turns: args += " " + Signed(b.Amount); break;
+                        case EffectAmountKind.Duration: args += " " + N(b.Amount); break;
                         default: args += " " + N(b.Amount); break;
                     }
                     break;
             }
+            return head + ": " + info.Key + args + Options(b, info);
+        }
+
+        private static string Options(EffectBlock b, ActionInfo info)
+        {
             var opts = new List<string>();
             if (b.Consumes) opts.Add("se_gasta");
             if (b.Target != info.DefaultTarget && info.UsesTarget) opts.Add(b.Target == BlockTarget.Other ? "al_rival" : "a_si_mismo");
             if (b.Chance < 100f) opts.Add("prob=" + N(b.Chance));
             if (b.MaxPerBattle > 0) opts.Add("veces=" + b.MaxPerBattle);
-            return head + ": " + info.Key + args + (opts.Count > 0 ? "; " + string.Join("; ", opts) : "");
+            return opts.Count > 0 ? "; " + string.Join("; ", opts) : "";
         }
 
         /// <summary>Reads «bloque | bloque». Throws FormatException with a clear Spanish message.</summary>
@@ -285,10 +392,16 @@ namespace CTEditor.GameDefinition.Editor
                 var words = pieces[0].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
                 string key = words[0].ToLowerInvariant();
                 var act = Actions.FirstOrDefault(x => x.Key == key);
-                if (act == null) throw new FormatException($"'{raw}': «{key}» no es una acción válida. Usa: {string.Join(", ", Actions.Where(x => x.Action != EffectAction.HealPercent).Select(x => x.Key))}.");
-                var action = act.Action;
                 var args = words.Skip(1).ToList();
                 string reference = "";
+                if (act == null && AbilityEffects.Special(key) != null)
+                {
+                    // «siempre: rastro»: a special behaviour written by its own key.
+                    act = Info(EffectAction.Special);
+                    args.Insert(0, key);
+                }
+                if (act == null) throw new FormatException($"'{raw}': «{key}» no es una acción válida. Usa: {string.Join(", ", Actions.Where(x => x.Action != EffectAction.HealPercent).Select(x => x.Key))} o un comportamiento especial ({string.Join(", ", AbilityEffects.Specials.Select(x => x.Key))}).");
+                var action = act.Action;
                 float amount = 0f;
 
                 bool TakeNumber(string w, out float v)
@@ -309,7 +422,7 @@ namespace CTEditor.GameDefinition.Editor
                     }
                     else reference = reference.Length == 0 ? w : reference + "|" + w;
                 }
-                if (action == EffectAction.CureStatus) reference = string.Join("|", reference.Split(',', '|').Select(s => s.Trim()).Where(s => s.Length > 0));
+                reference = string.Join("|", reference.Split(',', '|').Select(s => s.Trim()).Where(s => s.Length > 0));
 
                 var target = DefaultTarget(action);
                 bool consumes = false; float chance = 100f; int times = 0;
@@ -366,6 +479,7 @@ namespace CTEditor.GameDefinition.Editor
                 case EffectAmountKind.Levels: amount = 1f; break;
                 case EffectAmountKind.Points: amount = 10f; break;
                 case EffectAmountKind.Ball: amount = 1f; break;
+                case EffectAmountKind.Duration: amount = 0f; break;
                 default: amount = 0f; break;
             }
             return new EffectBlock(t, a, amount, target: DefaultTarget(a), threshold: t == EffectTrigger.LowHp ? 50f : 0f,

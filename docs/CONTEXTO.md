@@ -7,15 +7,15 @@
 - **Arquitectura**: DDD estricto; dominios puros sin Unity (SharedKernel, GameDefinition.Domain, Battle, Party,
   Adventure, Eventing) + Infrastructure (ScriptableObjects y mappers) + Editor + Bootstrap ([03](03-arquitectura.md)).
 - **Datos**: fichas `*Data` → mapper (ACL) → dominio → `GameData` → `BattleSession` → `TurnResolver` → eventos → UI.
-- **Objetos**: listas de **efectos por bloques** «cuándo / si / qué» con probabilidad, veces por combate y gasto
-  ([09](09-efectos-por-bloques.md)). Las habilidades pasarán al mismo sistema.
+- **Objetos y habilidades**: listas de **efectos por bloques** «cuándo / si / qué» con probabilidad, veces por combate y
+  gasto, guardadas DENTRO de cada ficha ([09](09-efectos-por-bloques.md)).
 - **Excel**: todo se exporta/importa en CSV (`;`, coma decimal), con análisis previo y copia de seguridad ([12](12-excel-csv.md)).
 - **Packs**: Gen1…Gen6 fieles, generados con Python desde PokeAPI y Smogon y verificados ([13](13-packs-y-herramientas.md)).
-- **Verificar sin Unity**: `dotnet test Tools/probar_dominio` (218 ✔) y `dotnet test Tools/compilar_unity`
-  (294 ✔, 8 fallos conocidos que necesitan Unity) ([15](15-pruebas-y-verificacion.md)).
+- **Verificar sin Unity**: `dotnet test Tools/probar_dominio` (221 ✔) y `dotnet test Tools/compilar_unity`
+  (300 ✔, 9 fallos conocidos que necesitan Unity) ([15](15-pruebas-y-verificacion.md)).
 - **Idiomas**: interfaz en español; código (identificadores y comentarios nuevos) en inglés; textos de interfaz
   centralizados (`Etiquetas`, `EffectText`) para traducir ([16](16-convenciones.md)).
 - **Git**: rama `develop`, sin PR salvo que se pidan, commits en español ([16](16-convenciones.md)).
-- **Siguiente**: habilidades por bloques, efectos «Al usarlo» pendientes (MT, vitaminas, Caramelo Raro, repelentes),
+- **Siguiente**: paso 8 (7.ª gen.), efectos «Al usarlo» pendientes (MT, vitaminas, Caramelo Raro, repelentes),
   paso 8 (7.ª gen.) ([18](18-pendientes.md)).
 - **Migrar**: [19](19-migrar.md).

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Abilities;
 using CTEditor.GameDefinition.Domain.Items;
@@ -43,7 +44,7 @@ namespace CTEditor.Tests.EditMode
 
         private static readonly AbilityDefinition[] Abilities =
         {
-            new AbilityDefinition(new AbilityId("pixilate"), "Piel Feérica", extras: new AbilityExtras { ConvertNormalTo = "fairy", ConvertBoost = 1.3f }),
+            new AbilityDefinition(new AbilityId("pixilate"), "Piel Feérica", new[] { new EffectBlock(EffectTrigger.Passive, EffectAction.ConvertNormalType, 1.3f, "fairy") }),
         };
 
         private static readonly ItemDefinition[] Items =

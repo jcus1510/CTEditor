@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: pomeg_berry
   displayName: Baya Grana
+  englishName: Pomeg Berry
   description: Sube la amistad.
   category: 8
   icon: {fileID: 0}
@@ -21,21 +22,15 @@ MonoBehaviour:
   usableInBattle: 0
   usableOutsideBattle: 1
   consumable: 1
-  healHp: 0
-  healPercent: 0
-  curesAllStatus: 0
-  curesStatusId: 
-  revives: 0
-  reviveHpPercent: 50
-  restorePp: 0
-  restorePpAllMoves: 0
-  friendshipChange: 10
-  catchMultiplier: 0
-  battleStatId: 
-  battleStages: 0
-  heldPowerModifiers: []
-  heldEndOfTurnHealPercent: 0
-  heldTriggerHpPercent: 0
-  heldTriggerHealHp: 0
-  heldTriggerHealPercent: 0
-  heldConsumedOnTrigger: 1
+  isBerry: 1
+  effects:
+  - trigger: 0
+    conditions: []
+    action: 27
+    target: 0
+    reference: 
+    amount: 10
+    threshold: 0
+    consumes: 0
+    chance: 100
+    maxPerBattle: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: black_sludge
   displayName: Lodo Negro
+  englishName: Black Sludge
   description: Si es de tipo Veneno recupera 1/16 de PS por turno; si no, pierde
     1/8.
   category: 7
@@ -22,43 +23,37 @@ MonoBehaviour:
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0
-  healHp: 0
-  healPercent: 0
-  curesAllStatus: 0
-  curesStatusId: 
-  revives: 0
-  reviveHpPercent: 50
-  restorePp: 0
-  restorePpAllMoves: 0
-  friendshipChange: 0
-  catchMultiplier: 0
-  battleStatId: 
-  battleStages: 0
-  heldPowerModifiers: []
-  heldEndOfTurnHealPercent: 0
-  heldTriggerHpPercent: 0
-  heldTriggerHealHp: 0
-  heldTriggerHealPercent: 0
-  heldConsumedOnTrigger: 1
-  heldStatMultipliers: []
-  heldChoiceLock: 0
-  heldAttackRecoilPercent: 0
-  heldSurviveFromFullHp: 0
-  heldContactDamagePercent: 0
-  heldOnHitStats: []
-  heldOnHitConsumed: 0
-  heldAirBalloon: 0
-  heldBlocksStatusMoves: 0
-  heldCritStageBonus: 0
-  heldAccuracyMultiplier: 1
-  heldEvasionMultiplier: 1
-  heldResistBerryType: 
-  heldCuresAnyStatus: 0
-  heldSelfStatusEndOfTurn: 
-  heldFlinchChance: 0
-  heldHealOnDamagePercent: 0
-  heldWeatherTurnsBonus: 0
-  heldScreenTurnsBonus: 0
-  heldBlackSludge: 1
-  heldQuickClawChance: 0
-  heldSuperEffectiveBoost: 1
+  isBerry: 0
+  effects:
+  - trigger: 3
+    conditions:
+    - kind: 3
+      subject: 0
+      comparison: 2
+      number: 0
+      text: poison
+      negate: 0
+    action: 1
+    target: 0
+    reference: 
+    amount: 6.25
+    threshold: 0
+    consumes: 0
+    chance: 100
+    maxPerBattle: 0
+  - trigger: 3
+    conditions:
+    - kind: 3
+      subject: 0
+      comparison: 2
+      number: 0
+      text: poison
+      negate: 1
+    action: 2
+    target: 0
+    reference: 
+    amount: 12.5
+    threshold: 0
+    consumes: 0
+    chance: 100
+    maxPerBattle: 0
