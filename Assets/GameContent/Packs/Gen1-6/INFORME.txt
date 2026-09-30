@@ -9,14 +9,16 @@
   Los 14 Pokémon antiguos que ahora son de tipo HADA (Clefairy, Togepi, Marill, Ralts...) reciben
   además los movimientos Hada que aprenden por nivel en ROZA (Beso Drenaje, Brillo Mágico, Fuerza Lunar...).
   Las evoluciones sin lista de huevo propia heredan la de la base de su familia (como en la crianza).
-• TIPOS: tabla de la 6.ª gen. con el tipo HADA (Centro de Contenido → Tipos → era «Actual»).
+• TIPOS: tipos.csv y tabla_tipos.csv (tabla de la 6.ª gen. con el tipo HADA), sacados de PokeAPI y comprobados
+  casilla a casilla contra la plantilla del editor (Centro de Contenido → Tipos → era «Actual»).
+• NATURALEZAS (naturalezas.csv) y GRUPOS HUEVO (grupos_huevo.csv): nombres y estadísticas de PokeAPI.
 • GÉNERO: cada individuo es macho, hembra o sin género según el % de su especie (columna "hembras"). Atracción,
   Rivalidad, Gran Encanto y las evoluciones de un solo sexo (Gallade, Froslass, Vespiquen...) lo usan.
 • HABILIDADES: 1.ª, 2.ª y OCULTA (638 especies con oculta, de juegos posteriores). 190 habilidades con
   su efecto configurado en habilidades.csv (editable en CTEditor → Criaturas → Habilidades). La 2.ª habilidad
   sale en la mitad de los individuos; la oculta solo si se la pones a mano (o en un evento).
 • GRUPOS HUEVO de cada especie (columna "grupos_huevo"), listos para la futura crianza.
-• 620 movimientos con sus valores actuales y sus EFECTOS, también los de la 3.ª a la 6.ª gen. (Campos,
+• 620 movimientos con sus valores de la 6.ª GENERACIÓN (potencia, precisión, PP, prioridad) y sus EFECTOS, también los de la 3.ª a la 6.ª gen. (Campos,
   Escudo Real, Barrera Espinosa, Zona Extraña, Red Viscosa, Liofilización, Plancha, Mil Flechas...).
 • OBJETOS DE COMPETICIÓN (plantillas del editor de Objetos): Elección, Vidasfera, Banda Focus, Chaleco Asalto,
   Casco Dentado, Seguro Debilidad, Globo Helio, Mineral Evolutivo, Lodo Negro, esferas, bayas de resistencia...
@@ -57,6 +59,18 @@ CÓMO SE IMPORTA (Centro de Contenido → «📦 Importar»)
      • Importar nunca borra: si pasas a un pack de menos generaciones, lo que sobra se queda (bórralo en su editor).
 
   Si al preparar la base algo falla, se avisa y NO se importa nada del pack (ya no quedan fichas en blanco, sin id).
+
+VALORES DE LA 6.ª GENERACIÓN (verificado contra PokeAPI, deshaciendo los cambios posteriores con su historial)
+  Movimientos corregidos (antes tenían el valor de la 7.ª gen. o posterior):
+     Placaje 50 · Chupavidas 20 (15 PP) · Giro Rápido 20 · Bola Neblina 70 · Golpe Bajo 80 · Plancha 80 ·
+     Aguijón Letal 30 · Carga Parábola 50 · Llama Embrujada 65 · Onda Trueno 100 % · Contoneo 90 % ·
+     Brecha Negra 80 % · Teletransporte prioridad 0.
+  Especies corregidas (estadísticas base de la 6.ª gen., antes de los cambios de la 7.ª y 8.ª): Arbok, Dugtrio,
+     Farfetch'd, Dodrio, Electrode, Exeggutor, Noctowl, Ariados, Qwilfish, Magcargo, Corsola, Mantine, Swellow,
+     Pelipper, Masquerain, Delcatty, Volbeat, Illumise, Lunatone, Solrock, Chimecho, Cresselia, Woobat, Crustle,
+     Beartic, Cryogonal y Aegislash.
+  Los movimientos de potencia variable (Patada Baja, Giro Bola, Retribución...) llevan potencia 1 y su fórmula.
+  Las habilidades OCULTAS siguen siendo las de juegos posteriores (ver arriba).
 
 ESPECIES SIN DATOS EN SU JUEGO (se usa el más cercano): deoxys (Rubí/Zafiro)
 
