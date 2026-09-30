@@ -217,6 +217,20 @@ def check_references(sheets, rep):
             ai = r.get('nivel_ia', '')
             if ai and not (ai.isdigit() and 0 <= int(ai) <= 7):
                 need('ai', ai, w)
+    if 'sets.csv' in sheets:
+        _, rows, lines = sheets['sets.csv']
+        for r, ln in zip(rows, lines):
+            w = f'sets.csv:{ln} {r["id"]}'
+            need('species', r.get('especie', ''), w)
+            for slot in (r.get('movimientos', '') or '').split('/'):
+                for mv in slot.split(','): need('move', mv.strip(), w)
+            for it in (r.get('objeto', '') or '').split(','): need('item', it.strip(), w, soft=True)
+            for ab in (r.get('habilidad', '') or '').split(','): need('ability', ab.strip(), w, soft=True)
+            for nat in (r.get('naturaleza', '') or '').split(','): need('nature', nat.strip(), w)
+            for label, col in (('EVs', 'evs'), ('IVs', 'ivs')):
+                _, err = parse_spread(r.get(col, '') or '')
+                if err:
+                    rep.error(f'{w}: {label} no válidos: {err}')
     if 'zonas.csv' in sheets:
         _, rows, lines = sheets['zonas.csv']
         for r, ln in zip(rows, lines):

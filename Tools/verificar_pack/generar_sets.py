@@ -94,7 +94,7 @@ def build(n, verbose=True):
     it_names.add_ids(base['item'])          # los objetos con efecto los crean siempre las plantillas del código
     if n >= 3:
         na_names.add_ids(base.get('nature', []))
-    rows, dropped = [], collections.Counter()
+    rows, dropped, counter = [], collections.Counter(), collections.Counter()
     for fmt in FORMATS:
         sets = fetch('sets', f'gen{n}{fmt}')
         if not sets:
@@ -129,7 +129,9 @@ def build(n, verbose=True):
                 item_use = max((st.get('items', {}).get(v, 0) for v in options(s.get('item'))), default=0)
                 ab_use = max((st.get('abilities', {}).get(v, 0) for v in options(s.get('ability'))), default=0)
                 score = (sum(move_use) / max(1, len(move_use))) * 0.6 + item_use * 0.25 + ab_use * 0.15
-                rows.append({'id': f'{sp}_{fmt}_{i + 1}', 'especie': sp, 'formato': fmt, 'nombre': set_name,
+                # Numerado por especie y formato («Camerupt» y «Camerupt-Mega» son la misma especie aquí).
+                counter[(sp, fmt)] += 1
+                rows.append({'id': f'{sp}_{fmt}_{counter[(sp, fmt)]}', 'especie': sp, 'formato': fmt, 'nombre': set_name,
                              'puntuacion': str(round(score * 100)), 'objeto': ','.join(items), 'habilidad': ','.join(abilities),
                              'naturaleza': ','.join(natures), 'evs': spread(s.get('evs')) if n >= 3 else '',
                              'ivs': spread(s.get('ivs')), 'movimientos': '/'.join(','.join(sl) for sl in slots)})

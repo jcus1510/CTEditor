@@ -644,13 +644,13 @@ medicham_ru_2;medicham;ru;Life Orb;47;life_orb;;jolly;252 Atq/4 Def/252 Vel;;hig
 manectric_ru_1;manectric;ru;Special Attacker;63;life_orb,expert_belt;lightning_rod;timid;4 Def/252 AtqE/252 Vel;;volt_switch/thunderbolt/flamethrower,overheat/hidden_power
 roselia_ru_1;roselia;ru;Bulky Spiker;68;eviolite;;calm;248 PS/172 Def/88 DefE;;spikes/synthesis/giga_drain/sludge_bomb
 camerupt_ru_1;camerupt;ru;Tank;35;cameruptite;solid_rock;modest;248 PS/176 AtqE/84 Vel;;fire_blast/earth_power/stealth_rock/toxic,hidden_power
-camerupt_ru_1;camerupt;ru;Tank;60;cameruptite;solid_rock;modest;248 PS/176 AtqE/84 Vel;;fire_blast/earth_power/stealth_rock/toxic,hidden_power
+camerupt_ru_2;camerupt;ru;Tank;60;cameruptite;solid_rock;modest;248 PS/176 AtqE/84 Vel;;fire_blast/earth_power/stealth_rock/toxic,hidden_power
 banette_ru_1;banette;ru;Offensive;63;banettite;insomnia,frisk;adamant;228 PS/252 Atq/28 Vel;;knock_off/will_o_wisp/shadow_claw/shadow_sneak,sucker_punch,destiny_bond
-banette_ru_1;banette;ru;Offensive;63;banettite;insomnia,frisk;adamant;228 PS/252 Atq/28 Vel;;knock_off/will_o_wisp/shadow_claw/shadow_sneak,sucker_punch,destiny_bond
+banette_ru_2;banette;ru;Offensive;63;banettite;insomnia,frisk;adamant;228 PS/252 Atq/28 Vel;;knock_off/will_o_wisp/shadow_claw/shadow_sneak,sucker_punch,destiny_bond
 absol_ru_1;absol;ru;All-Out Attacker;58;life_orb;super_luck;adamant,naughty;252 Atq/4 DefE/252 Vel;;knock_off/sucker_punch/superpower,fire_blast/play_rough,iron_tail,pursuit
 absol_ru_2;absol;ru;Swords Dance;57;life_orb,dread_plate;super_luck;adamant,jolly;252 Atq/4 DefE/252 Vel;;swords_dance/knock_off/sucker_punch/superpower
 glalie_ru_1;glalie;ru;Wallbreaker;21;glalitite;;naive;252 Atq/4 Def/252 Vel;;double_edge,return/freeze_dry/ice_shard/spikes,earthquake,explosion
-glalie_ru_1;glalie;ru;Wallbreaker;63;glalitite;inner_focus;naive;252 Atq/4 Def/252 Vel;;double_edge,return/freeze_dry/ice_shard/spikes,earthquake,explosion
+glalie_ru_2;glalie;ru;Wallbreaker;63;glalitite;inner_focus;naive;252 Atq/4 Def/252 Vel;;double_edge,return/freeze_dry/ice_shard/spikes,earthquake,explosion
 registeel_ru_1;registeel;ru;Specially Defensive;64;leftovers;;calm;252 PS/24 AtqE/232 DefE;;seismic_toss/stealth_rock/toxic/protect,thunderbolt
 registeel_ru_2;registeel;ru;Curse;42;leftovers;;careful;252 PS/4 Def/252 DefE;;curse/iron_head/rest/sleep_talk,toxic
 torterra_ru_1;torterra;ru;Bulky Swords Dance;51;leftovers;;careful;252 PS/180 DefE/76 Vel;;wood_hammer/earthquake/swords_dance/synthesis
