@@ -1,6 +1,6 @@
 # Propuesta — Aplicación CTEditor: mapas, NPC, eventos, recursos y editor de píxeles
 
-> Estado: **EN CURSO** (fase 0-1 hecha; base del entorno de trabajo hecha). Decisiones del autor: el editor será una **aplicación propia** (no solo
+> Estado: **EN CURSO** (fases 0-1-2 hechas; la aplicación se describe en [20](20-aplicacion.md)). Decisiones del autor: el editor será una **aplicación propia** (no solo
 > herramientas dentro de Unity); las generaciones quedan en pausa; eventos **por nodos y grafos** además de lista;
 > **editar y jugar al instante**; **editor de píxeles** incorporado (tipo Aseprite) para retocar; **lectura de carpetas**
 > y **corte de tilesets** con el tamaño de tile que se elija. La protección del código (DLL) no interesa por ahora. Más
@@ -91,6 +91,19 @@ Se guarda en `entorno.json`, en la carpeta del usuario (`WorkspaceSettings`):
   (1 saliente, 2 hierba, 7 agua, 10 hierba alta, 12 hielo...), **arbusto** y **mostrador**.
 - El importador (fase 9) leerá `Data/*.rxdata` (formato Marshal de Ruby: `MapInfos`, `Map###`, `Tilesets`), los PBS de
   Essentials y las carpetas `Graphics/Tilesets`, `Autotiles`, `Characters`, `Battlers`... hacia la carpeta del proyecto.
+
+## 3d. Ventana y exportación (decisiones de la tercera ronda)
+
+- **Una sola ventana a pantalla completa con la resolución del monitor**; las secciones se redimensionan arrastrando
+  los separadores (como el Inspector y el Hierarchy de Unity); los diálogos y paneles flotantes viven dentro.
+- **Juego final**: sigue siendo un juego hecho con Unity, pero el usuario **no necesita Unity**:
+  1. **Motor listo + datos** (vía principal): la aplicación lleva el motor del juego ya compilado y al exportar lo
+     copia con los datos del proyecto empaquetados (imágenes agrupadas, **un archivo con cifrado opcional**), el
+     nombre y el icono. **Windows primero**; luego Web, Mac/Linux y Android.
+  2. **Exportar a proyecto Unity** (después, para profesionales): genera un proyecto de Unity con el motor y los datos
+     para añadir lo que quieran y compilar para cualquier plataforma, consolas incluidas.
+- El juego se dibuja a su resolución (512 × 384 por defecto) y se amplía en múltiplos exactos; partidas en la carpeta
+  del usuario; la pantalla «Made with Unity» depende de la licencia con la que se compile el motor.
 
 ## 4. Editar y jugar al instante
 
@@ -186,4 +199,7 @@ ficha con **línea de visión** dibujada, plantillas (enfermera, tendero, profes
 - **Base del entorno**: `Json` propio (sin dependencias, conserva el orden, errores con línea y columna),
   `ProjectFile`/`ProjectSettings`, `SliceFile`/`TileProperties` (base RPG Maker XP / Essentials) y
   `CTEditor.Workspace` (`Theme`, `DockLayout`, `ShortcutMap`, `WorkspaceSettings`), con `WorkspaceTests`.
-- **Siguiente**: fase 2, la primera ventana (UI Toolkit) que usa todo lo anterior.
+- **Fase 2 (aplicación)**: `Assets/CTEditor/App` — ventana única, pantalla de inicio, menús, paneles acoplables con
+  separadores y pestañas arrastrables, panel Recursos, asistente de corte visual (con vista previa andando para
+  personajes), explorador de carpetas y personalización del entorno. Ver [20](20-aplicacion.md).
+- **Siguiente**: pintar las propiedades de tile sobre el tileset y la fase 3 (editor de mapas y ▶ Jugar).

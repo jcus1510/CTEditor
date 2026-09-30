@@ -70,4 +70,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
 - **Aplicación — base del entorno**: decisiones (base RPG Maker XP / Essentials, tile de 32 px elegible al crear,
   tema oscuro, entorno editable); JSON propio, `proyecto.json`, archivo de corte con propiedades de tile de RPG Maker XP
   y etiquetas de Essentials; `CTEditor.Workspace` (temas, paneles acoplables, distribuciones guardadas, atajos).
+- **Aplicación — fase 2** ([20](20-aplicacion.md)): decisiones de exportación (motor listo + datos, Windows primero,
+  datos empaquetados con cifrado opcional; después proyecto Unity). `Assets/CTEditor/App` con UI Toolkit: ventana
+  única a pantalla completa, inicio, menús, paneles acoplables, Recursos, asistente de corte, explorador,
+  personalización; `Tools/compilar_app` para compilarla sin Unity.
 - **Documentación** completa por capítulos (esta carpeta).

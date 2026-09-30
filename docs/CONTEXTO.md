@@ -18,5 +18,6 @@
 - **Git**: rama `develop`, sin PR salvo que se pidan, commits en español ([16](16-convenciones.md)).
 - **Siguiente**: la **aplicación CTEditor** (hecha con Unity): recursos y corte de tilesets, editor de mapas con
   ▶ jugar al instante, editor de píxeles, NPC y eventos por nodos ([PROPUESTA_APLICACION](PROPUESTA_APLICACION.md)).
+  La aplicación ya abre (fase 2): CTEditor → Aplicación → Abrir la aplicación ([20](20-aplicacion.md)).
   Las generaciones quedan en pausa ([18](18-pendientes.md)).
 - **Migrar**: [19](19-migrar.md).

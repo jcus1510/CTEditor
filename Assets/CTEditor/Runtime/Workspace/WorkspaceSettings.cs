@@ -26,6 +26,7 @@ namespace CTEditor.Workspace
             new ShortcutAction("jugar", "Jugar desde el principio", "F5"),
             new ShortcutAction("probar_aqui", "Probar desde aquí", "Ctrl+F5"),
             new ShortcutAction("depurador", "Depurador (durante el juego)", "F9"),
+            new ShortcutAction("pantalla_completa", "Pantalla completa / ventana", "F11"),
             new ShortcutAction("guardar", "Guardar", "Ctrl+S"),
             new ShortcutAction("deshacer", "Deshacer", "Ctrl+Z"),
             new ShortcutAction("rehacer", "Rehacer", "Ctrl+Y"),

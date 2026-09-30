@@ -117,3 +117,6 @@ __pycache__/
 /Tools/compilar_unity/bin/
 /Tools/compilar_unity/obj/
 !/Tools/compilar_unity/*.csproj
+/Tools/compilar_app/bin/
+/Tools/compilar_app/obj/
+!/Tools/compilar_app/*.csproj
