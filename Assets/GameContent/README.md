@@ -166,6 +166,18 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
   los rellena para verlos y retocarlos. La vista previa enseña las estadísticas con esos EVs.
 - Excel (columna `equipo`): `especie@nivel…~naturaleza!habilidad(252 Atq/4 PS/252 Vel)#31(0 Vel)"mote"`.
 
+## Importar y exportar equipos en formato Showdown
+- En el editor de **entrenadores** y en el de **equipos prearmados**: «📤 Exportar a Showdown» copia el equipo al
+  portapapeles en el formato estándar (nombres en inglés) y «📥 Importar de Showdown…» abre una ventana para pegar un
+  equipo de Showdown o Smogon, analizarlo (avisa de lo que no existe en tu juego y lo deja automático) y reemplazar el
+  equipo o añadirlo al final. «Nivel si no lo dice»: Showdown da por hecho el 100.
+- Los nombres se reconocen por el **nombre en inglés** de cada ficha (campo «Nombre en inglés», columna `nombre_en`) o,
+  si no lo tiene, por su id sin guiones ni espacios («U-turn» = `u_turn`, «Rotom-Wash» = `rotom_wash`). Los packs traen
+  los nombres en inglés de PokeAPI (especies, variantes al estilo Showdown, movimientos, habilidades, objetos y
+  naturalezas).
+- Se importan especie, mote, género, objeto, habilidad, nivel, EVs, naturaleza, IVs (lo no escrito = 31) y movimientos;
+  Tera Type, Shiny, Happiness y demás se ignoran.
+
 ## Formas y variantes
 - **Formas de COMBATE** (dentro de la especie): cambian tipos, estadísticas (menos los PS) o habilidad EN MITAD del combate
   y al acabar vuelven a la normal. Qué las provoca (editable, se pueden combinar varias reglas):

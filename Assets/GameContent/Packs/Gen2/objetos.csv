@@ -1,101 +1,101 @@
-﻿id;nombre;descripcion;categoria;precio;en_combate;fuera_combate;se_gasta;captura
-safari_ball;Safari Ball;Poké Ball con un diseño de camuflaje que se utiliza únicamente en la Zona Safari.;Ball;0;si;no;si;1
-fresh_water;Agua Fresca;Agua de alto contenido mineral que restaura 30 PS de un Pokémon.;Other;200;no;no;no;
-soda_pop;Refresco;Chispeante bebida gaseosa que restaura 50 PS de un Pokémon.;Other;300;no;no;no;
-lemonade;Limonada;Bebida muy dulce que restaura 70 PS de un Pokémon.;Other;400;no;no;no;
-moomoo_milk;Leche Mu-mu;Leche de alto valor nutritivo que restaura 100 PS de un Pokémon.;Other;600;no;no;no;
-energy_powder;Polvo Energía;Polvo medicinal muy amargo que restaura 60 PS de un Pokémon.;Other;500;no;no;no;
-energy_root;Raíz Energía;Raíz muy amarga que restaura 120 PS de un Pokémon.;Other;1200;no;no;no;
-heal_powder;Polvo Curación;Polvos medicinales muy amargos que curan todos los problemas de estado de un Pokémon.;Other;300;no;no;no;
-revival_herb;Hierba Revivir;Hierba muy amarga que reanima a un Pokémon debilitado y restaura todos sus PS.;Other;2800;no;no;no;
-berry_juice;Zumo de Baya;Zumo de bayas 100% natural que restaura 20 PS de un Pokémon.;Other;200;no;no;no;
-sacred_ash;Ceniza Sagrada;Reanima completamente a todos los Pokémon debilitados y restaura todos sus PS.;Other;50000;no;no;no;
-hp_up;Más PS;Nutritiva bebida que potencia los PS de base de un Pokémon.;Vitamin;10000;no;si;si;
-protein;Proteína;Nutritiva bebida que potencia el Ataque de base de un Pokémon.;Vitamin;10000;no;si;si;
-iron;Hierro;Nutritiva bebida que potencia la Defensa de base de un Pokémon.;Vitamin;10000;no;si;si;
-carbos;Carburante;Nutritiva bebida que potencia la Velocidad de base de un Pokémon.;Vitamin;10000;no;si;si;
-calcium;Calcio;Nutritiva bebida que potencia el Ataque Especial de base de un Pokémon.;Vitamin;10000;no;si;si;
-rare_candy;Caramelo Raro;Caramelo energético que sube a un Pokémon de nivel.;Vitamin;10000;no;si;si;
-pp_up;Más PP;Aumenta ligeramente los PP máximos del movimiento elegido de un Pokémon.;Vitamin;10000;no;si;si;
-guard_spec;Protección X;Evita que bajen las características del equipo Pokémon durante cinco turnos.;Other;1500;no;no;no;
-dire_hit;Crítico X;Aumenta el índice de golpe crítico en combate. Solo se puede usar una vez y, al cambiar de Pokémon, el efecto desaparece.;Other;1000;no;no;no;
-poke_doll;Poké Muñeco;Un muñeco que atrae a los Pokémon. Es útil para huir de un combate contra un Pokémon salvaje.;Other;300;no;no;no;
-super_repel;Superrepelente;Evita encuentros con Pokémon salvajes débiles durante más tiempo que un Repelente normal.;Other;700;no;no;no;
-max_repel;Repelente Máximo;Evita encuentros con Pokémon salvajes débiles durante más tiempo que un Superrepelente.;Other;900;no;no;no;
-escape_rope;Cuerda Huida;Cuerda larga y resistente que sirve para huir de cuevas y sitios cerrados en general.;Other;300;no;no;no;
-repel;Repelente;Evita encuentros con Pokémon salvajes débiles durante un corto período de tiempo.;Other;400;no;no;no;
-tiny_mushroom;Miniseta;Una pequeña seta que es poco común y bastante popular entre determinados grupos de gourmets.;Other;500;no;no;no;
-big_mushroom;Seta Grande;Una gran seta que es poco común y muy popular entre determinados grupos de gourmets.;Other;5000;no;no;no;
-pearl;Perla;Brillante perla pequeña y plateada que no alcanza un buen precio en las tiendas.;Other;2000;no;no;no;
-big_pearl;Perla Grande;Brillante perla plateada de gran tamaño que puede venderse a buen precio en las tiendas.;Other;8000;no;no;no;
-stardust;Polvo Estelar;Bonita arena roja de tacto sedoso que no alcanza un buen precio en las tiendas.;Other;3000;no;no;no;
-star_piece;Trozo Estrella;Fragmento de una bonita gema roja que puede venderse muy caro en las tiendas.;Other;12000;no;no;no;
-nugget;Pepita;Pepita de oro puro que desprende un brillo espectacular. Puede venderse a un precio muy alto en las tiendas.;Other;10000;no;no;no;
-helix_fossil;Fósil Hélix;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser un fragmento de concha marina.;Other;7000;no;no;no;
-dome_fossil;Fósil Domo;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser un fragmento de caparazón.;Other;7000;no;no;no;
-old_amber;Ámbar Viejo;Fragmento de ámbar que contiene información genética de un Pokémon prehistórico. Es de color amarillo.;Other;10000;no;no;no;
-cheri_berry;Baya Zreza;Los Pokémon pueden llevarla o usarla para recuperarse de la parálisis.;Other;80;no;no;no;
-chesto_berry;Baya Atania;Los Pokémon pueden llevarla o usarla para despertar del sueño.;Other;80;no;no;no;
-pecha_berry;Baya Meloc;Los Pokémon pueden llevarla o usarla para curarse del envenenamiento.;Other;80;no;no;no;
-rawst_berry;Baya Safre;Los Pokémon pueden llevarla o usarla para curarse las quemaduras.;Other;80;no;no;no;
-aspear_berry;Baya Perasi;Los Pokémon pueden llevarla o usarla para descongelarse.;Other;80;no;no;no;
-leppa_berry;Baya Zanama;Los Pokémon pueden llevarla o usarla para restaurar 10 PP de un movimiento.;Other;80;no;no;no;
-persim_berry;Baya Caquic;Los Pokémon pueden llevarla o usarla para librarse de la confusión.;Other;80;no;no;no;
-exp_share;Repartir Exp;Al activar el dispositivo, todos los Pokémon de tu equipo ganan Puntos de Experiencia tras los combates, aunque no salgan a luchar.;Other;0;no;no;no;
-amulet_coin;Moneda Amuleto;Si el Pokémon que la lleva lucha en un combate, duplica las ganancias.;Other;10000;no;no;no;
-cleanse_tag;Amuleto;Si lo lleva el primer Pokémon del equipo, se reduce la probabilidad de que se acerquen Pokémon salvajes.;Other;5000;no;no;no;
-smoke_ball;Bola de Humo;Debe llevarla un Pokémon. Permite huir siempre de combates contra Pokémon salvajes.;Other;4000;no;no;no;
-everstone;Piedra Eterna;El Pokémon que lleva esta piedra mágica no evoluciona.;Other;3000;no;no;no;
-focus_band;Cinta Aguante;El Pokémon que la lleva puede resistir un golpe que potencialmente lo dejaría K. O. y se queda con 1 PS.;Other;4000;no;no;no;
-lucky_egg;Huevo Suerte;Es un huevo lleno de felicidad que te hace ganar Puntos de Experiencia extra en combate. Debe llevarlo un Pokémon.;Other;10000;no;no;no;
-light_ball;Bola Luminosa;Asombrosa esfera que debe llevar Pikachu y que aumenta su Ataque y su Ataque Especial.;Other;1000;no;no;no;
-lucky_punch;Puño Suerte;Un par de guantes que debe llevar Chansey. Potencian mucho su índice de golpe crítico.;Other;1000;no;no;no;
-metal_powder;Polvo Metálico;Debe llevarlo Ditto. Es un polvo muy fino, pero a la vez poderoso, que aumenta su Defensa.;Other;1000;no;no;no;
-thick_club;Hueso Grueso;Un extraño tipo de hueso que potencia los ataques físicos de Cubone y Marowak cuando lo llevan.;Other;1000;no;no;no;
-stick;Puerro;Es un puerro muy largo que debe llevar Farfetch’d. Aumenta mucho la probabilidad de que logre un golpe crítico.;Other;1000;no;no;no;
-town_map;Mapa;Un mapa muy útil que puede consultarse en cualquier momento y que, además, te indica dónde te encuentras.;Key;0;no;no;no;
-coin_case;Monedero;Puedes obtenerlo en el Casino. Tiene capacidad para 50 000 Fichas.;Key;0;no;no;no;
-old_rod;Caña Vieja;Caña de pescar bastante usada y desgastada. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;
-good_rod;Caña Buena;Caña de pescar nuevecita y de gran calidad. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;
-super_rod;Supercaña;Increíble caña de pescar de alta tecnología. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;
-bicycle;Bici;;Key;0;no;no;no;
-ss_ticket;Ticket Barco;Es el billete válido para embarcar en el Ferry S.S. Aqua. Tiene dibujado un barco.;Key;0;no;no;no;
-parcel;Paquete;Paquete encomendado a tu cuidado que tienes que entregar a tu amigo de la infancia que dejó Pueblo Hojaverde.;Key;0;no;no;no;
-secret_potion;Poción Secreta;Fantástico medicamento vendido en la farmacia de Ciudad Orquídea. Cura completamente a un Pokémon.;Key;0;no;no;no;
-secret_key;Llave Secreta;Una llave de alta tecnología que debe usarse en un lugar concreto. Emite una señal eléctrica que abre una puerta.;Key;0;no;no;no;
-squirt_bottle;Regadera;Objeto que contiene agua y se usa para regar las bayas del Plantabayas.;Key;0;no;no;no;
-lure_ball;Cebo Ball;Poké Ball algo distinta, especialmente indicada para capturar los Pokémon que se han pescado con una caña.;Ball;0;si;no;si;1
-level_ball;Nivel Ball;Poké Ball algo distinta que funciona especialmente bien con Pokémon de nivel inferior a los que se posee.;Ball;0;si;no;si;1
-moon_ball;Luna Ball;Poké Ball algo distinta que atrapa con más facilidad los Pokémon que evolucionan con la Piedra Lunar.;Ball;0;si;no;si;1
-heavy_ball;Peso Ball;Poké Ball algo distinta que funciona especialmente bien a la hora de atrapar Pokémon de mucho peso.;Ball;0;si;no;si;1
-fast_ball;Rapid Ball;Poké Ball algo distinta, especialmente indicada para capturar Pokémon evasivos.;Ball;0;si;no;si;1
-friend_ball;Amigo Ball;Poké Ball algo distinta que hace más amistosos a los Pokémon salvajes que se capturan con ella.;Ball;0;si;no;si;1
-love_ball;Amor Ball;Poké Ball algo distinta que atrapa mejor Pokémon de la misma especie que los que se posee, pero de sexo diferente.;Ball;0;si;no;si;1
-park_ball;Parque Ball;Poké Ball que se utiliza dentro del Parque Compi.;Ball;0;si;no;si;1
-red_apricorn;Bonguri Rojo;Bonguri de color rojo y aroma muy penetrante.;Key;200;no;no;no;
-blue_apricorn;Bonguri Azul;Bonguri de color azul y aroma tierno.;Key;200;no;no;no;
-yellow_apricorn;Bonguri Amarillo;Bonguri de color amarillo y aroma refrescante.;Key;200;no;no;no;
-green_apricorn;Bonguri Verde;Bonguri de color verde y aroma peculiar que recuerda al café tostado.;Key;200;no;no;no;
-pink_apricorn;Bonguri Rosa;Bonguri de color rosa y aroma dulce.;Key;200;no;no;no;
-white_apricorn;Bonguri Blanco;Bonguri de color blanco que no desprende aroma alguno.;Key;200;no;no;no;
-black_apricorn;Bonguri Negro;Bonguri de color negro y aroma indescriptible.;Key;200;no;no;no;
-dowsing_machine;Zahorí;Aparato de precisión que reacciona ante objetos que no se ven. Para usarlo, es necesario colocárselo en la cabeza.;Key;0;no;no;no;
-rage_candy_bar;Caramelo Furia;Caramelo típico de Pueblo Caoba. Cura todos los problemas de estado de un Pokémon.;Key;350;no;no;no;
-blue_card;Tarjeta Azul;Tarjeta para conseguir puntos con el programa de radio Las contraseñas de Buena.;Key;0;no;no;no;
-clear_bell;Cascabel Claro;Campana de aspecto antiguo que emite un sonido que calma el espíritu.;Key;0;no;no;no;
-card_key;Llave Magnética;Llave con forma de tarjeta que abre las puertas de la Torre Radio.;Key;0;no;no;no;
-basement_key;Llave Sótano;Llave que abre la puerta que hay en el Túnel Trigal.;Key;0;no;no;no;
-red_scale;Escama Roja;Escama del Gyarados aparecido en el Lago de la Furia. Es de un rojo tan intenso como las llamas.;Key;0;no;no;no;
-lost_item;Objeto Perdido;El muñeco Mime Jr. que perdió la Copiona.;Key;0;no;no;no;
-pass;Magnetopase;Billete necesario para poder montar todas las veces que se desee en el Magnetotrén.;Key;0;no;no;no;
-machine_part;Maquinaria;Valiosa pieza robada de una máquina de la Central Energía.;Key;0;no;no;no;
-silver_wing;Ala Plateada;Misteriosa ala de un brillante color plateado.;Key;0;no;no;no;
-rainbow_wing;Ala Arcoíris;Misteriosa ala de un brillante color arcoíris.;Key;0;no;no;no;
-mystery_egg;Huevo Misterioso;Misterioso Huevo con dibujos que obtienes del Sr. Pokémon. Nadie sabe qué contiene.;Key;0;no;no;no;
-poke_flute;Poké Flauta;Una flauta con un timbre tan dulce y hermoso que despierta hasta al Pokémon más profundamente dormido.;Key;0;no;no;no;
-bike_voucher;Bono Bici;;Key;0;no;no;no;
-gold_teeth;Dentadura de Oro;Unos dientes de oro que perdió el Guarda de la Zona Safari con los que tiene una sonrisa deslumbrante.;Key;0;no;no;no;
-lift_key;Llave Ascensor;Llave que permite acceder al ascensor de la Guarida del Team Rocket. Lleva grabado el símbolo del Team Rocket.;Key;0;no;no;no;
-silph_scope;Visor Silph;Dispositivo que permite ver cosas que, de otra forma, resultarían invisibles para el ojo humano. Fabricado por Silph S. A.;Key;0;no;no;no;
-gold_leaf;Hoja de Oro;Extraña hoja de color dorado. Se desconoce de qué árbol procede.;Other;1000;no;no;no;
-silver_leaf;Hoja de Plata;Extraña hoja de color plateado. Se desconoce de qué árbol procede.;Other;1000;no;no;no;
+﻿id;nombre;nombre_en;descripcion;categoria;precio;en_combate;fuera_combate;se_gasta;captura
+safari_ball;Safari Ball;Safari Ball;Poké Ball con un diseño de camuflaje que se utiliza únicamente en la Zona Safari.;Ball;0;si;no;si;1
+fresh_water;Agua Fresca;Fresh Water;Agua de alto contenido mineral que restaura 30 PS de un Pokémon.;Other;200;no;no;no;
+soda_pop;Refresco;Soda Pop;Chispeante bebida gaseosa que restaura 50 PS de un Pokémon.;Other;300;no;no;no;
+lemonade;Limonada;Lemonade;Bebida muy dulce que restaura 70 PS de un Pokémon.;Other;400;no;no;no;
+moomoo_milk;Leche Mu-mu;Moomoo Milk;Leche de alto valor nutritivo que restaura 100 PS de un Pokémon.;Other;600;no;no;no;
+energy_powder;Polvo Energía;Energy Powder;Polvo medicinal muy amargo que restaura 60 PS de un Pokémon.;Other;500;no;no;no;
+energy_root;Raíz Energía;Energy Root;Raíz muy amarga que restaura 120 PS de un Pokémon.;Other;1200;no;no;no;
+heal_powder;Polvo Curación;Heal Powder;Polvos medicinales muy amargos que curan todos los problemas de estado de un Pokémon.;Other;300;no;no;no;
+revival_herb;Hierba Revivir;Revival Herb;Hierba muy amarga que reanima a un Pokémon debilitado y restaura todos sus PS.;Other;2800;no;no;no;
+berry_juice;Zumo de Baya;Berry Juice;Zumo de bayas 100% natural que restaura 20 PS de un Pokémon.;Other;200;no;no;no;
+sacred_ash;Ceniza Sagrada;Sacred Ash;Reanima completamente a todos los Pokémon debilitados y restaura todos sus PS.;Other;50000;no;no;no;
+hp_up;Más PS;HP Up;Nutritiva bebida que potencia los PS de base de un Pokémon.;Vitamin;10000;no;si;si;
+protein;Proteína;Protein;Nutritiva bebida que potencia el Ataque de base de un Pokémon.;Vitamin;10000;no;si;si;
+iron;Hierro;Iron;Nutritiva bebida que potencia la Defensa de base de un Pokémon.;Vitamin;10000;no;si;si;
+carbos;Carburante;Carbos;Nutritiva bebida que potencia la Velocidad de base de un Pokémon.;Vitamin;10000;no;si;si;
+calcium;Calcio;Calcium;Nutritiva bebida que potencia el Ataque Especial de base de un Pokémon.;Vitamin;10000;no;si;si;
+rare_candy;Caramelo Raro;Rare Candy;Caramelo energético que sube a un Pokémon de nivel.;Vitamin;10000;no;si;si;
+pp_up;Más PP;PP Up;Aumenta ligeramente los PP máximos del movimiento elegido de un Pokémon.;Vitamin;10000;no;si;si;
+guard_spec;Protección X;Guard Spec.;Evita que bajen las características del equipo Pokémon durante cinco turnos.;Other;1500;no;no;no;
+dire_hit;Crítico X;Dire Hit;Aumenta el índice de golpe crítico en combate. Solo se puede usar una vez y, al cambiar de Pokémon, el efecto desaparece.;Other;1000;no;no;no;
+poke_doll;Poké Muñeco;Poké Doll;Un muñeco que atrae a los Pokémon. Es útil para huir de un combate contra un Pokémon salvaje.;Other;300;no;no;no;
+super_repel;Superrepelente;Super Repel;Evita encuentros con Pokémon salvajes débiles durante más tiempo que un Repelente normal.;Other;700;no;no;no;
+max_repel;Repelente Máximo;Max Repel;Evita encuentros con Pokémon salvajes débiles durante más tiempo que un Superrepelente.;Other;900;no;no;no;
+escape_rope;Cuerda Huida;Escape Rope;Cuerda larga y resistente que sirve para huir de cuevas y sitios cerrados en general.;Other;300;no;no;no;
+repel;Repelente;Repel;Evita encuentros con Pokémon salvajes débiles durante un corto período de tiempo.;Other;400;no;no;no;
+tiny_mushroom;Miniseta;Tiny Mushroom;Una pequeña seta que es poco común y bastante popular entre determinados grupos de gourmets.;Other;500;no;no;no;
+big_mushroom;Seta Grande;Big Mushroom;Una gran seta que es poco común y muy popular entre determinados grupos de gourmets.;Other;5000;no;no;no;
+pearl;Perla;Pearl;Brillante perla pequeña y plateada que no alcanza un buen precio en las tiendas.;Other;2000;no;no;no;
+big_pearl;Perla Grande;Big Pearl;Brillante perla plateada de gran tamaño que puede venderse a buen precio en las tiendas.;Other;8000;no;no;no;
+stardust;Polvo Estelar;Stardust;Bonita arena roja de tacto sedoso que no alcanza un buen precio en las tiendas.;Other;3000;no;no;no;
+star_piece;Trozo Estrella;Star Piece;Fragmento de una bonita gema roja que puede venderse muy caro en las tiendas.;Other;12000;no;no;no;
+nugget;Pepita;Nugget;Pepita de oro puro que desprende un brillo espectacular. Puede venderse a un precio muy alto en las tiendas.;Other;10000;no;no;no;
+helix_fossil;Fósil Hélix;Helix Fossil;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser un fragmento de concha marina.;Other;7000;no;no;no;
+dome_fossil;Fósil Domo;Dome Fossil;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser un fragmento de caparazón.;Other;7000;no;no;no;
+old_amber;Ámbar Viejo;Old Amber;Fragmento de ámbar que contiene información genética de un Pokémon prehistórico. Es de color amarillo.;Other;10000;no;no;no;
+cheri_berry;Baya Zreza;Cheri Berry;Los Pokémon pueden llevarla o usarla para recuperarse de la parálisis.;Other;80;no;no;no;
+chesto_berry;Baya Atania;Chesto Berry;Los Pokémon pueden llevarla o usarla para despertar del sueño.;Other;80;no;no;no;
+pecha_berry;Baya Meloc;Pecha Berry;Los Pokémon pueden llevarla o usarla para curarse del envenenamiento.;Other;80;no;no;no;
+rawst_berry;Baya Safre;Rawst Berry;Los Pokémon pueden llevarla o usarla para curarse las quemaduras.;Other;80;no;no;no;
+aspear_berry;Baya Perasi;Aspear Berry;Los Pokémon pueden llevarla o usarla para descongelarse.;Other;80;no;no;no;
+leppa_berry;Baya Zanama;Leppa Berry;Los Pokémon pueden llevarla o usarla para restaurar 10 PP de un movimiento.;Other;80;no;no;no;
+persim_berry;Baya Caquic;Persim Berry;Los Pokémon pueden llevarla o usarla para librarse de la confusión.;Other;80;no;no;no;
+exp_share;Repartir Exp;Exp. Share;Al activar el dispositivo, todos los Pokémon de tu equipo ganan Puntos de Experiencia tras los combates, aunque no salgan a luchar.;Other;0;no;no;no;
+amulet_coin;Moneda Amuleto;Amulet Coin;Si el Pokémon que la lleva lucha en un combate, duplica las ganancias.;Other;10000;no;no;no;
+cleanse_tag;Amuleto;Cleanse Tag;Si lo lleva el primer Pokémon del equipo, se reduce la probabilidad de que se acerquen Pokémon salvajes.;Other;5000;no;no;no;
+smoke_ball;Bola de Humo;Smoke Ball;Debe llevarla un Pokémon. Permite huir siempre de combates contra Pokémon salvajes.;Other;4000;no;no;no;
+everstone;Piedra Eterna;Everstone;El Pokémon que lleva esta piedra mágica no evoluciona.;Other;3000;no;no;no;
+focus_band;Cinta Aguante;Focus Band;El Pokémon que la lleva puede resistir un golpe que potencialmente lo dejaría K. O. y se queda con 1 PS.;Other;4000;no;no;no;
+lucky_egg;Huevo Suerte;Lucky Egg;Es un huevo lleno de felicidad que te hace ganar Puntos de Experiencia extra en combate. Debe llevarlo un Pokémon.;Other;10000;no;no;no;
+light_ball;Bola Luminosa;Light Ball;Asombrosa esfera que debe llevar Pikachu y que aumenta su Ataque y su Ataque Especial.;Other;1000;no;no;no;
+lucky_punch;Puño Suerte;Lucky Punch;Un par de guantes que debe llevar Chansey. Potencian mucho su índice de golpe crítico.;Other;1000;no;no;no;
+metal_powder;Polvo Metálico;Metal Powder;Debe llevarlo Ditto. Es un polvo muy fino, pero a la vez poderoso, que aumenta su Defensa.;Other;1000;no;no;no;
+thick_club;Hueso Grueso;Thick Club;Un extraño tipo de hueso que potencia los ataques físicos de Cubone y Marowak cuando lo llevan.;Other;1000;no;no;no;
+stick;Puerro;Leek;Es un puerro muy largo que debe llevar Farfetch’d. Aumenta mucho la probabilidad de que logre un golpe crítico.;Other;1000;no;no;no;
+town_map;Mapa;Town Map;Un mapa muy útil que puede consultarse en cualquier momento y que, además, te indica dónde te encuentras.;Key;0;no;no;no;
+coin_case;Monedero;Coin Case;Puedes obtenerlo en el Casino. Tiene capacidad para 50 000 Fichas.;Key;0;no;no;no;
+old_rod;Caña Vieja;Old Rod;Caña de pescar bastante usada y desgastada. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;
+good_rod;Caña Buena;Good Rod;Caña de pescar nuevecita y de gran calidad. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;
+super_rod;Supercaña;Super Rod;Increíble caña de pescar de alta tecnología. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;
+bicycle;Bici;Bicycle;;Key;0;no;no;no;
+ss_ticket;Ticket Barco;S.S. Ticket;Es el billete válido para embarcar en el Ferry S.S. Aqua. Tiene dibujado un barco.;Key;0;no;no;no;
+parcel;Paquete;Parcel;Paquete encomendado a tu cuidado que tienes que entregar a tu amigo de la infancia que dejó Pueblo Hojaverde.;Key;0;no;no;no;
+secret_potion;Poción Secreta;Secret Potion;Fantástico medicamento vendido en la farmacia de Ciudad Orquídea. Cura completamente a un Pokémon.;Key;0;no;no;no;
+secret_key;Llave Secreta;Secret Key;Una llave de alta tecnología que debe usarse en un lugar concreto. Emite una señal eléctrica que abre una puerta.;Key;0;no;no;no;
+squirt_bottle;Regadera;Squirt Bottle;Objeto que contiene agua y se usa para regar las bayas del Plantabayas.;Key;0;no;no;no;
+lure_ball;Cebo Ball;Lure Ball;Poké Ball algo distinta, especialmente indicada para capturar los Pokémon que se han pescado con una caña.;Ball;0;si;no;si;1
+level_ball;Nivel Ball;Level Ball;Poké Ball algo distinta que funciona especialmente bien con Pokémon de nivel inferior a los que se posee.;Ball;0;si;no;si;1
+moon_ball;Luna Ball;Moon Ball;Poké Ball algo distinta que atrapa con más facilidad los Pokémon que evolucionan con la Piedra Lunar.;Ball;0;si;no;si;1
+heavy_ball;Peso Ball;Heavy Ball;Poké Ball algo distinta que funciona especialmente bien a la hora de atrapar Pokémon de mucho peso.;Ball;0;si;no;si;1
+fast_ball;Rapid Ball;Fast Ball;Poké Ball algo distinta, especialmente indicada para capturar Pokémon evasivos.;Ball;0;si;no;si;1
+friend_ball;Amigo Ball;Friend Ball;Poké Ball algo distinta que hace más amistosos a los Pokémon salvajes que se capturan con ella.;Ball;0;si;no;si;1
+love_ball;Amor Ball;Love Ball;Poké Ball algo distinta que atrapa mejor Pokémon de la misma especie que los que se posee, pero de sexo diferente.;Ball;0;si;no;si;1
+park_ball;Parque Ball;Park Ball;Poké Ball que se utiliza dentro del Parque Compi.;Ball;0;si;no;si;1
+red_apricorn;Bonguri Rojo;Red Apricorn;Bonguri de color rojo y aroma muy penetrante.;Key;200;no;no;no;
+blue_apricorn;Bonguri Azul;Blue Apricorn;Bonguri de color azul y aroma tierno.;Key;200;no;no;no;
+yellow_apricorn;Bonguri Amarillo;Yellow Apricorn;Bonguri de color amarillo y aroma refrescante.;Key;200;no;no;no;
+green_apricorn;Bonguri Verde;Green Apricorn;Bonguri de color verde y aroma peculiar que recuerda al café tostado.;Key;200;no;no;no;
+pink_apricorn;Bonguri Rosa;Pink Apricorn;Bonguri de color rosa y aroma dulce.;Key;200;no;no;no;
+white_apricorn;Bonguri Blanco;White Apricorn;Bonguri de color blanco que no desprende aroma alguno.;Key;200;no;no;no;
+black_apricorn;Bonguri Negro;Black Apricorn;Bonguri de color negro y aroma indescriptible.;Key;200;no;no;no;
+dowsing_machine;Zahorí;Dowsing Machine;Aparato de precisión que reacciona ante objetos que no se ven. Para usarlo, es necesario colocárselo en la cabeza.;Key;0;no;no;no;
+rage_candy_bar;Caramelo Furia;Rage Candy Bar;Caramelo típico de Pueblo Caoba. Cura todos los problemas de estado de un Pokémon.;Key;350;no;no;no;
+blue_card;Tarjeta Azul;Blue Card;Tarjeta para conseguir puntos con el programa de radio Las contraseñas de Buena.;Key;0;no;no;no;
+clear_bell;Cascabel Claro;Clear Bell;Campana de aspecto antiguo que emite un sonido que calma el espíritu.;Key;0;no;no;no;
+card_key;Llave Magnética;Card Key;Llave con forma de tarjeta que abre las puertas de la Torre Radio.;Key;0;no;no;no;
+basement_key;Llave Sótano;Basement Key;Llave que abre la puerta que hay en el Túnel Trigal.;Key;0;no;no;no;
+red_scale;Escama Roja;Red Scale;Escama del Gyarados aparecido en el Lago de la Furia. Es de un rojo tan intenso como las llamas.;Key;0;no;no;no;
+lost_item;Objeto Perdido;Lost Item;El muñeco Mime Jr. que perdió la Copiona.;Key;0;no;no;no;
+pass;Magnetopase;Pass;Billete necesario para poder montar todas las veces que se desee en el Magnetotrén.;Key;0;no;no;no;
+machine_part;Maquinaria;Machine Part;Valiosa pieza robada de una máquina de la Central Energía.;Key;0;no;no;no;
+silver_wing;Ala Plateada;Silver Wing;Misteriosa ala de un brillante color plateado.;Key;0;no;no;no;
+rainbow_wing;Ala Arcoíris;Rainbow Wing;Misteriosa ala de un brillante color arcoíris.;Key;0;no;no;no;
+mystery_egg;Huevo Misterioso;Mystery Egg;Misterioso Huevo con dibujos que obtienes del Sr. Pokémon. Nadie sabe qué contiene.;Key;0;no;no;no;
+poke_flute;Poké Flauta;Poké Flute;Una flauta con un timbre tan dulce y hermoso que despierta hasta al Pokémon más profundamente dormido.;Key;0;no;no;no;
+bike_voucher;Bono Bici;Bike Voucher;;Key;0;no;no;no;
+gold_teeth;Dentadura de Oro;Gold Teeth;Unos dientes de oro que perdió el Guarda de la Zona Safari con los que tiene una sonrisa deslumbrante.;Key;0;no;no;no;
+lift_key;Llave Ascensor;Lift Key;Llave que permite acceder al ascensor de la Guarida del Team Rocket. Lleva grabado el símbolo del Team Rocket.;Key;0;no;no;no;
+silph_scope;Visor Silph;Silph Scope;Dispositivo que permite ver cosas que, de otra forma, resultarían invisibles para el ojo humano. Fabricado por Silph S. A.;Key;0;no;no;no;
+gold_leaf;Hoja de Oro;Gold Leaf;Extraña hoja de color dorado. Se desconoce de qué árbol procede.;Other;1000;no;no;no;
+silver_leaf;Hoja de Plata;Silver Leaf;Extraña hoja de color plateado. Se desconoce de qué árbol procede.;Other;1000;no;no;no;

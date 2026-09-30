@@ -12,6 +12,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
     {
         [SerializeField] private string id;
         [SerializeField] private string displayName;
+        [Tooltip("Nombre en INGLÉS (el de Showdown): sirve para importar y exportar equipos. Vacío = se deduce del id.")]
+        [SerializeField] private string englishName = "";
 
         // NOVEDAD 1 — referencia a OTRA ficha. El autor arrastra aquí el asset del tipo (Fuego, etc.).
         // En el Inspector esto es cómodo (drag & drop) y Unity mantiene la referencia aunque renombres
@@ -103,6 +105,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
 
         public string Id => id;
         public string DisplayName => displayName;
+        public string EnglishName => englishName;
         public ElementTypeData Type => type;
         public MoveCategory Category => category;
         public int Power => power;

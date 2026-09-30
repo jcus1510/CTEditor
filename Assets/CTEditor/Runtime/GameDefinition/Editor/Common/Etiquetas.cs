@@ -24,6 +24,7 @@ namespace CTEditor.GameDefinition.Editor
             // Comunes
             ["id"] = ("Id (único, sin espacios)", "id"),
             ["displayName"] = ("Nombre visible", "nombre"),
+            ["englishName"] = ("Nombre en inglés (Showdown)", "nombre_en"),
             ["description"] = ("Descripción", "descripcion"),
             ["color"] = ("Color", "color"),
             ["icon"] = ("Icono", "icono"),

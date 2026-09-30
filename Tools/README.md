@@ -37,6 +37,7 @@ que tenían entonces (PokeAPI, deshaciendo los cambios posteriores):
 |---|---|
 | Especies | Tipos, estadísticas (1.ª gen.: una sola Especial), habilidades (desde la 3.ª; ocultas desde la 5.ª), aprendizaje por nivel del juego de referencia (Rojo/Azul, Cristal, Esmeralda, Platino, N2/B2, ROZA) y MT/tutor/huevo de sus juegos, grupos huevo (desde la 2.ª), sin géneros en la 1.ª. |
 | Movimientos | Solo los que existen, con tipo, potencia, precisión, PP y prioridad de entonces; físico/especial **según el tipo** hasta la 3.ª gen.; Maldición «???» (typeless) en la 2.ª-4.ª. |
+| Nombres en inglés | Columna `nombre_en` (el nombre de Showdown) en especies —variantes al estilo «Rotom-Wash», «Nidoran-F»—, movimientos, habilidades, objetos y naturalezas: sirve para importar y exportar equipos en formato Showdown. |
 | Formas y variantes | Formas de combate (Castform, Cherrim, Darmanitan, Meloetta, Aegislash, Giratina, Arceus, Kyogre/Groudon primigenios) con qué las provoca, y variantes como especies con `forma_de` (Deoxys, Wormadam, Rotom, Shaymin, Basculin, Tótem, Kyurem, Keldeo, Pumpkaboo/Gourgeist, Hoopa) con sus datos de PokeAPI (`formas.py`). |
 | Tabla de tipos | La de la generación (sin Siniestro/Acero en la 1.ª, sin Hada hasta la 6.ª, Fantasma→Acero ×0,5 hasta la 5.ª...). |
 | Objetos | Todos los de la generación (nombre, descripción y precio oficiales) salvo las MT y los que ya tienen efecto en las plantillas del código: Balls, objetos clave, bayas, placas, Megapiedras, mails... (los nuevos, solo con sus datos). |

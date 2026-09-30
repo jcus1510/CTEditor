@@ -14,6 +14,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
     {
         [SerializeField] private string id;
         [SerializeField] private string displayName;
+        [Tooltip("Nombre en INGLÉS (el de Showdown): sirve para importar y exportar equipos. Vacío = se deduce del id.")]
+        [SerializeField] private string englishName = "";
         [Tooltip("Texto que verá el jugador en la mochila.")]
         [SerializeField, TextArea(2, 4)] private string description = "";
         [SerializeField] private ItemCategory category = ItemCategory.Medicine;
@@ -92,6 +94,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
 
         public string Id => id;
         public string DisplayName => displayName;
+        public string EnglishName => englishName;
         public string Description => description;
         public ItemCategory Category => category;
         public Sprite Icon => icon;

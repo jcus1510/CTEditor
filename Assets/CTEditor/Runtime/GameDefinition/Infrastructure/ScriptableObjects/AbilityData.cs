@@ -14,6 +14,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField] private string id;
 
         [SerializeField] private string displayName;
+        [Tooltip("Nombre en INGLÉS (el de Showdown): sirve para importar y exportar equipos. Vacío = se deduce del id.")]
+        [SerializeField] private string englishName = "";
 
         [Tooltip("Multiplica estadísticas mientras el portador está en combate (p.ej. ataque ×2). Se combina en EffectiveStat.")]
         [SerializeField] private PassiveStatModifierData[] passiveModifiers;
@@ -253,6 +255,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
 
         public string Id => id;
         public string DisplayName => displayName;
+        public string EnglishName => englishName;
         public PassiveStatModifierData[] PassiveModifiers => passiveModifiers;
         public string[] StatusImmunities => statusImmunities;
         public ElementTypeData[] TypeImmunities => typeImmunities;

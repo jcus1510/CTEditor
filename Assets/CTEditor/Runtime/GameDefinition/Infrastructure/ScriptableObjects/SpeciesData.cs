@@ -13,6 +13,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
     {
         [SerializeField] private string id;
         [SerializeField] private string displayName;
+        [Tooltip("Nombre en INGLÉS (el de Showdown): sirve para importar y exportar equipos. Vacío = se deduce del id.")]
+        [SerializeField] private string englishName = "";
 
         // Lista de tipos (arrastrables). El '[]' es un arreglo serializable: Unity lo muestra como
         // una lista editable. Soporta mono, doble o más tipos: la libertad de la que hablamos.
@@ -107,6 +109,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
 
         public string Id => id;
         public string DisplayName => displayName;
+        public string EnglishName => englishName;
         public ElementTypeData[] Types => types;
         public string AbilityId => abilityId;
         public string SecondAbilityId => secondAbilityId;

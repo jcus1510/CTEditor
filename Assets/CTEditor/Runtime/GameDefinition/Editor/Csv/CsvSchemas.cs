@@ -64,6 +64,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
             => new CsvSchema<MoveData>("movimientos.csv", "Movimientos", ContentFolders.Moves, 70)
                 .Col("id", "Id único (ej. ember).", d => d.Id, (so, v, c) => so.FindProperty("id").stringValue = v)
                 .Col("nombre", "Nombre visible.", d => d.DisplayName, (so, v, c) => so.FindProperty("displayName").stringValue = v)
+                .Col("nombre_en", "Nombre en inglés (Showdown). Vacío = se deduce del id.", d => d.EnglishName, (so, v, c) => so.FindProperty("englishName").stringValue = (v ?? "").Trim())
                 .Col("tipo", "Id del tipo (ej. fire).", d => d.Type != null ? d.Type.Id : "",
                     (so, v, c) => so.FindProperty("type").objectReferenceValue = c.Require<ElementTypeData>(v, "El tipo"))
                 .Col("categoria", "fisico, especial o estado.", d => CsvCodecs.FormatCategory(d.Category),
@@ -323,6 +324,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
             => new CsvSchema<SpeciesData>("especies.csv", "Especies", ContentFolders.Species, 80)
                 .Col("id", "Id único (ej. bulbasaur).", d => d.Id, (so, v, c) => so.FindProperty("id").stringValue = v)
                 .Col("nombre", "Nombre visible.", d => d.DisplayName, (so, v, c) => so.FindProperty("displayName").stringValue = v)
+                .Col("nombre_en", "Nombre en inglés (Showdown): Garchomp, Rotom-Wash... Vacío = se deduce del id.", d => d.EnglishName, (so, v, c) => so.FindProperty("englishName").stringValue = (v ?? "").Trim())
                 .Col("tipos", "Uno o dos ids de tipo: grass|poison.", d => CsvCodecs.JoinList((d.Types ?? new ElementTypeData[0]).Where(t => t != null).Select(t => t.Id)), (so, v, c) =>
                 {
                     var ids = CsvCodecs.SplitList(v);

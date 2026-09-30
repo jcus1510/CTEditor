@@ -286,6 +286,9 @@ def build(n, verbose=True):
                          'equipo': LAB[n], 'frase_inicio': f'Soy la IA de nivel {lv}: mismo equipo que todos, distinta cabeza.',
                          'frase_derrota': 'Anotado en el laboratorio.', 'frase_victoria': 'La cabeza también cuenta.'})
 
+    # ---------------- Nombres en inglés (para importar/exportar en formato Showdown) ----------------
+    english_names(species, moves, abil, sh, mh, ah)
+
     # ---------------- Escribir ----------------
     save(os.path.join(out, 'especies.csv'), sh, species)
     save(os.path.join(out, 'movimientos.csv'), mh, moves)
@@ -295,7 +298,7 @@ def build(n, verbose=True):
         os.remove(os.path.join(out, 'habilidades.csv'))
     save(os.path.join(out, 'entrenadores.csv'), th, trainers)
     items = items_for(n)
-    save(os.path.join(out, 'objetos.csv'), ['id', 'nombre', 'descripcion', 'categoria', 'precio', 'en_combate', 'fuera_combate',
+    save(os.path.join(out, 'objetos.csv'), ['id', 'nombre', 'nombre_en', 'descripcion', 'categoria', 'precio', 'en_combate', 'fuera_combate',
                                           'se_gasta', 'captura'], items)
     notes_items = collections.Counter(r['categoria'] for r in items)
     notes['objetos añadidos solo con sus datos (sin efecto en combate todavía), por categoría'] = [f'{k}: {v}' for k, v in sorted(notes_items.items())]
@@ -313,6 +316,38 @@ def build(n, verbose=True):
 ITEM_CATEGORY = {'evolution': 'Evolution', 'vitamins': 'Vitamin'}
 
 
+ENGLISH = '9'   # local_language_id del inglés (los nombres de Showdown)
+
+
+def english_names(species, moves, abil, sh, mh, ah):
+    """Columna nombre_en (el nombre de Showdown) en especies, movimientos y habilidades. Variantes al estilo Showdown:
+    «Rotom-Wash», «Deoxys-Attack» (el nombre de la especie base + la parte de su forma)."""
+    sp_en = {pack_id(s['identifier']): None for s in table('pokemon_species')}
+    ids = {r['id']: pack_id(r['identifier']) for r in table('pokemon_species')}
+    for r in table('pokemon_species_names'):
+        if r['local_language_id'] == ENGLISH and r['pokemon_species_id'] in ids:
+            # Showdown: Nidoran♀ = «Nidoran-F», Nidoran♂ = «Nidoran-M».
+            sp_en[ids[r['pokemon_species_id']]] = r['name'].replace('♀', '-F').replace('♂', '-M')
+    for s in species:
+        base = s.get('forma_de') or ''
+        if base:
+            suffix = s['id'][len(base):].strip('_')
+            s['nombre_en'] = (sp_en.get(base) or base) + ''.join('-' + p.capitalize() for p in suffix.split('_') if p)
+        else:
+            s['nombre_en'] = sp_en.get(s['id']) or ''
+    mv = {r['id']: pack_id(r['identifier']) for r in table('moves')}
+    mv_en = {mv[r['move_id']]: r['name'] for r in table('move_names') if r['local_language_id'] == ENGLISH and r['move_id'] in mv}
+    for m in moves:
+        m['nombre_en'] = mv_en.get(m['id'], '')
+    ab = {r['id']: pack_id(r['identifier']) for r in table('abilities')}
+    ab_en = {ab[r['ability_id']]: r['name'] for r in table('ability_names') if r['local_language_id'] == ENGLISH and r['ability_id'] in ab}
+    for a in abil:
+        a['nombre_en'] = ab_en.get(a['id'], '')
+    for headers in (sh, mh, ah):
+        if 'nombre_en' not in headers:
+            headers.insert(headers.index('nombre') + 1 if 'nombre' in headers else 1, 'nombre_en')
+
+
 def items_for(n):
     """Filas de objetos.csv: todos los objetos que existen en la generación n, salvo las MT y los que ya crean (con su
     efecto) las plantillas del código. Categoría del editor según el bolsillo de PokeAPI; nombre, descripción y precio
@@ -325,6 +360,7 @@ def items_for(n):
         first_gen[r['item_id']] = min(first_gen.get(r['item_id'], 99), g)
     cats = {r['id']: (r['pocket_id'], r['identifier']) for r in table('item_categories')}
     names = {r['item_id']: r['name'] for r in table('item_names') if r['local_language_id'] == SPANISH}
+    english = {r['item_id']: r['name'] for r in table('item_names') if r['local_language_id'] == ENGLISH}
     vg_gen = {r['id']: int(r['generation_id']) for r in table('version_groups')}
     flavor = {}
     for r in table('item_flavor_text'):
@@ -342,7 +378,8 @@ def items_for(n):
         if first_gen.get(it['id'], 99) > n or pocket == '4' or iid in preset or cat in ('unused', 'all-machines'):
             continue
         category = 'Ball' if pocket == '3' else 'Key' if pocket == '8' else ITEM_CATEGORY.get(cat, 'Other')
-        row = {'id': iid, 'nombre': names.get(it['id'], iid), 'descripcion': flavor.get(it['id'], (0, ''))[1],
+        row = {'id': iid, 'nombre': names.get(it['id'], iid), 'nombre_en': english.get(it['id'], ''),
+               'descripcion': flavor.get(it['id'], (0, ''))[1],
                'categoria': category, 'precio': it['cost'] or '0',
                'en_combate': 'si' if category == 'Ball' else 'no',
                'fuera_combate': 'si' if category in ('Evolution', 'Vitamin') or iid in VARIANT_ITEMS else 'no',
