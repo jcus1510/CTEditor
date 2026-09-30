@@ -455,6 +455,84 @@ namespace CTEditor.GameDefinition.Editor.Csv
                         }
                         arr.arraySize = found.Count;
                         for (int i = 0; i < found.Count; i++) arr.GetArrayElementAtIndex(i).objectReferenceValue = found[i];
+                    }, true)
+                // --- Formas y variantes (columnas opcionales) ---
+                .Col("forma_de", "VARIANTE: id de la especie de la que es forma (rotom_wash → rotom). Vacío = no es variante.", d => d.FormOf,
+                    (so, v, c) =>
+                    {
+                        v = (v ?? "").Trim();
+                        if (v.Length > 0 && !c.Exists<SpeciesData>(v)) c.Warnings.Add($"La especie '{v}' (forma_de) aún no existe.");
+                        so.FindProperty("formOf").stringValue = v;
+                    }, true)
+                .Col("objeto_variante", "Objeto que cambia a esta variante fuera del combate (gracidea). Vacío = solo con un personaje.", d => d.VariantItem,
+                    (so, v, c) =>
+                    {
+                        v = (v ?? "").Trim();
+                        if (v.Length > 0 && !c.Exists<ItemData>(v)) c.Warnings.Add($"El objeto '{v}' (objeto_variante) aún no existe.");
+                        so.FindProperty("variantItem").stringValue = v;
+                    })
+                .Col("formas", "Formas de combate: id;nombre;tipo1/tipo2;atq/def/atq_esp/def_esp/vel;habilidad;vuelve  (vacío o 0 = igual). " +
+                               "Ej.: zen;Modo Daruma;fire/psychic;30/105/140/105/55;zen_mode;vuelve", d => CsvFormCodecs.FormatForms(d.Forms),
+                    (so, v, c) =>
+                    {
+                        var forms = CsvFormCodecs.ParseForms(v);
+                        foreach (var f in forms)
+                        {
+                            foreach (var t in new[] { f.type1, f.type2 })
+                                if (!string.IsNullOrWhiteSpace(t) && !c.Exists<ElementTypeData>(t)) c.Warnings.Add($"El tipo '{t}' (forma {f.id}) no existe.");
+                            if (!string.IsNullOrWhiteSpace(f.ability) && !c.Exists<AbilityData>(f.ability)) c.Warnings.Add($"La habilidad '{f.ability}' (forma {f.id}) aún no existe.");
+                        }
+                        var arr = so.FindProperty("forms");
+                        arr.arraySize = forms.Count;
+                        for (int i = 0; i < forms.Count; i++)
+                        {
+                            var el = arr.GetArrayElementAtIndex(i); var f = forms[i];
+                            el.FindPropertyRelative("id").stringValue = f.id;
+                            el.FindPropertyRelative("displayName").stringValue = f.displayName ?? "";
+                            el.FindPropertyRelative("type1").stringValue = f.type1 ?? "";
+                            el.FindPropertyRelative("type2").stringValue = f.type2 ?? "";
+                            el.FindPropertyRelative("attack").intValue = f.attack;
+                            el.FindPropertyRelative("defense").intValue = f.defense;
+                            el.FindPropertyRelative("spAttack").intValue = f.spAttack;
+                            el.FindPropertyRelative("spDefense").intValue = f.spDefense;
+                            el.FindPropertyRelative("speed").intValue = f.speed;
+                            el.FindPropertyRelative("ability").stringValue = f.ability ?? "";
+                            el.FindPropertyRelative("revertsOnSwitch").boolValue = f.revertsOnSwitch;
+                        }
+                    })
+                .Col("cambios_forma", "Qué cambia la forma en combate: desde>hasta:disparador[:valor][;con=habilidad][;despues]. " +
+                                      "Disparadores: objeto, movimiento, ataque, ps_bajo, ps_desde, clima, mega. Ej.: >zen:ps_bajo:50;con=zen_mode|zen>:ps_desde:50;con=zen_mode",
+                    d => CsvFormCodecs.FormatChanges(d.FormChanges),
+                    (so, v, c) =>
+                    {
+                        var changes = CsvFormCodecs.ParseChanges(v);
+                        var formIds = new List<string>();
+                        var formsProp = so.FindProperty("forms");
+                        for (int i = 0; i < formsProp.arraySize; i++) formIds.Add(formsProp.GetArrayElementAtIndex(i).FindPropertyRelative("id").stringValue);
+                        foreach (var ch in changes)
+                        {
+                            foreach (var fid in new[] { ch.from, ch.to })
+                                if (!string.IsNullOrEmpty(fid) && fid != "*" && !formIds.Any(x => string.Equals(x, fid, StringComparison.OrdinalIgnoreCase)))
+                                    c.Warnings.Add($"El cambio de forma usa la forma '{fid}', que no está en la columna formas.");
+                            if (ch.item.Length > 0 && !c.Exists<ItemData>(ch.item)) c.Warnings.Add($"El objeto '{ch.item}' (cambio de forma) aún no existe.");
+                            if (ch.move.Length > 0 && !c.Exists<MoveData>(ch.move)) c.Warnings.Add($"El movimiento '{ch.move}' (cambio de forma) aún no existe.");
+                            if (ch.requiredAbility.Length > 0 && !c.Exists<AbilityData>(ch.requiredAbility)) c.Warnings.Add($"La habilidad '{ch.requiredAbility}' (cambio de forma) aún no existe.");
+                        }
+                        var arr = so.FindProperty("formChanges");
+                        arr.arraySize = changes.Count;
+                        for (int i = 0; i < changes.Count; i++)
+                        {
+                            var el = arr.GetArrayElementAtIndex(i); var ch = changes[i];
+                            el.FindPropertyRelative("from").stringValue = ch.from;
+                            el.FindPropertyRelative("to").stringValue = ch.to;
+                            el.FindPropertyRelative("trigger").enumValueIndex = (int)ch.trigger;
+                            el.FindPropertyRelative("item").stringValue = ch.item;
+                            el.FindPropertyRelative("move").stringValue = ch.move;
+                            el.FindPropertyRelative("hpPercent").intValue = ch.hpPercent;
+                            el.FindPropertyRelative("weather").stringValue = ch.weather;
+                            el.FindPropertyRelative("requiredAbility").stringValue = ch.requiredAbility;
+                            el.FindPropertyRelative("afterMove").boolValue = ch.afterMove;
+                        }
                     }, true);
 
         private static void SetAbility(SerializedObject so, string field, string v, ImportContext c)

@@ -47,7 +47,7 @@ namespace CTEditor.Tests.EditMode
         [Test]
         public void Search_finds_editors_by_what_they_do()
         {
-            Assert.IsTrue(EditorCatalog.All.Any(e => e.Title == "Cadenas evolutivas" && e.Matches("evolucion")));
+            Assert.IsTrue(EditorCatalog.All.Any(e => e.Title == "Árbol de familia" && e.Matches("evolucion")));
             Assert.IsTrue(EditorCatalog.All.Any(e => e.Title == "Entrenadores" && e.Matches("ia")));
             Assert.IsFalse(EditorCatalog.All.Single(e => e.Title == "Climas").Matches("zzzz"));
         }

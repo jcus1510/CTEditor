@@ -28,6 +28,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from csvlib import load, save, split_list  # noqa: E402
 from pokeapi import PokeApi, table, pack_id, SPANISH  # noqa: E402
 import generar_base  # noqa: E402
+from formas import Forms  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 SRC = os.path.join(ROOT, 'Tools', 'datos_fuente')
@@ -110,7 +111,9 @@ class Gen:
         self.gen_vgs = gen_vgs
 
     def learnset(self, sp):
-        pid = self.pid.get(sp)
+        return self.learnset_of_pid(self.pid.get(sp))
+
+    def learnset_of_pid(self, pid):
         by_vg = self.level_moves.get(pid, {})
         # El juego de referencia; si la especie no está en él, el primero de la generación que la tenga.
         order = [self.ref_vg] + sorted(v for v in self.gen_vgs if v != self.ref_vg)
@@ -194,6 +197,24 @@ def build(n, verbose=True):
                 notes['evolución con un método posterior a la 1.ª gen. (se deja)'].append(f'{sp}→{tgt}')
             evos.append(e)
         s['evoluciona'] = ' | '.join(evos) if evos else ''
+    # ---------------- Formas de combate y variantes ----------------
+    for col in ('forma_de', 'objeto_variante', 'formas', 'cambios_forma'):
+        if col not in sh:
+            sh.append(col)
+    fm = Forms(g)
+    with_forms = []
+    for s in species:
+        for col in ('forma_de', 'objeto_variante', 'formas', 'cambios_forma'):
+            s.setdefault(col, '')
+        if n >= 3 and fm.battle_forms(s, n, used_abilities):
+            with_forms.append(s['id'])
+    variants = fm.variants({s['id']: s for s in species}, n, move_ids, used_abilities) if n >= 3 else []
+    species.extend(variants)
+    if with_forms:
+        notes['formas de combate (se cambian en mitad del combate)'] = with_forms
+    if variants:
+        notes['variantes (especies con «forma_de»)'] = [f"{v['id']} → {v['forma_de']}" + (f" ({v['objeto_variante']})" if v['objeto_variante'] else '') for v in variants]
+
     # ---------------- Habilidades ----------------
     ah, arows, _, _ = load(os.path.join(SRC, 'habilidades.csv'))
     abil = [r for r in arows if r['id'] in used_abilities]

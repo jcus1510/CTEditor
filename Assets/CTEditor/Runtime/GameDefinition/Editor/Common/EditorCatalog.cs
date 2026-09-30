@@ -154,7 +154,7 @@ namespace CTEditor.GameDefinition.Editor
 
             // Criaturas
             Add(EditorCategory.Creatures, 1, "Especies", "🐾", "Estadísticas, tipos, movimientos que aprende y evoluciones (con calculadora).", EditorTheme.Species, SpeciesEditorWindow.Open, Count<SpeciesData>, "pokemon monstruos");
-            Add(EditorCategory.Creatures, 2, "Cadenas evolutivas", "🌱", "Árbol visual: métodos y CONDICIONES combinadas (amistad + de día, nivel + Ataque > Defensa...).", EditorTheme.Species, EvolutionChainWindow.Open, null, "evolucion evoluciones");
+            Add(EditorCategory.Creatures, 2, "Árbol de familia", "🌳", "Evoluciones (con CONDICIONES combinadas), formas de combate (Modo Daruma, megas...) y variantes (Rotom, Deoxys, regionales).", EditorTheme.Species, EvolutionChainWindow.Open, null, "evolucion evoluciones cadenas formas variantes mega");
             Add(EditorCategory.Creatures, 3, "Habilidades", "✨", "Efectos pasivos: inmunidades, potenciadores, al entrar, al final del turno...", EditorTheme.Abilities, AbilityEditorWindow.Open, Count<AbilityData>);
             Add(EditorCategory.Creatures, 4, "Naturalezas", "🎭", "Las 25 clásicas o las tuyas: qué estadística sube y cuál baja.", EditorTheme.Natures, NatureEditorWindow.Open, Count<NatureData>);
             Add(EditorCategory.Creatures, 6, "Grupos huevo", "🥚", "Los 15 grupos clásicos y qué especies hay en cada uno (para la crianza).", EditorTheme.Species, EggGroupEditorWindow.Open, Count<EggGroupData>, "crianza huevo");

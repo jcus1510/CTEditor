@@ -156,6 +156,8 @@ namespace CTEditor.GameDefinition.Editor
             {
                 if (sp.Types == null || sp.Types.Length == 0)
                     issues.Add(Warning($"La especie '{Name(sp)}' no tiene tipos asignados.", sp));
+                foreach (var problem in FormEditing.Problems(sp))
+                    issues.Add(Warning($"Formas de '{Name(sp)}': {problem}", sp));
 
                 if (sp.Learnset != null)
                 {

@@ -78,6 +78,12 @@ namespace CTEditor.Battle.Domain
         /// <summary>Peso en kilos (de su Pokédex): Patada Baja, Hierba Lazo...</summary>
         public float WeightKg { get; }
 
+        /// <summary>Formas de combate ya calculadas para este individuo (Modo Daruma, megas...). Vacía = ninguna.</summary>
+        public IReadOnlyList<BattleForm> Forms { get; }
+
+        /// <summary>Reglas de cambio de forma de su especie.</summary>
+        public IReadOnlyList<FormChange> FormChanges { get; }
+
         public BattleParticipant(
             Id<BattleParticipant> id,
             Id<Species> speciesId,
@@ -96,8 +102,12 @@ namespace CTEditor.Battle.Domain
             int catchRate = 45,
             float weightKg = 0f,
             Gender gender = Gender.Genderless,
-            bool canEvolve = false)
+            bool canEvolve = false,
+            IReadOnlyList<BattleForm> forms = null,
+            IReadOnlyList<FormChange> formChanges = null)
         {
+            Forms = forms == null ? Array.Empty<BattleForm>() : new List<BattleForm>(forms);
+            FormChanges = formChanges == null ? Array.Empty<FormChange>() : new List<FormChange>(formChanges);
             Gender = gender;
             CanEvolve = canEvolve;
             WeightKg = Math.Max(0f, weightKg);

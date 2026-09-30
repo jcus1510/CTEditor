@@ -106,7 +106,7 @@ namespace CTEditor.Battle.Domain
             if (newStats == null) return;
             int oldMax = MaxHp;
             Level = newLevel;
-            Stats = newStats;
+            GrowForm(newStats);
             if (!IsFainted) CurrentHp = Math.Max(1, Math.Min(MaxHp, CurrentHp + (MaxHp - oldMax)));
         }
 
@@ -137,7 +137,7 @@ namespace CTEditor.Battle.Domain
 
         /// <summary>La habilidad del combatiente (la de su especie, salvo que un movimiento la cambie: Imitación, Abatidoras...).</summary>
         public AbilityId? Ability => _abilityChanged ? _abilityOverride : _baseAbility;
-        private readonly AbilityId? _baseAbility;
+        private AbilityId? _baseAbility;   // la de su forma actual (ver Combatant.Forms)
 
         /// <summary>Cuántos turnos lleva activo el estado actual (para tóxico progresivo y duraciones).</summary>
         public int StatusTurns { get; private set; }
@@ -345,6 +345,7 @@ namespace CTEditor.Battle.Domain
             Friendship = snapshot.Friendship;
             HeldItem = snapshot.HeldItem;
             EvYield = snapshot.EvYield;
+            InitForms(snapshot);
         }
 
         /// <summary>Rendimiento base de XP de su especie (cuánto "vale" derrotarlo).</summary>
@@ -419,6 +420,7 @@ namespace CTEditor.Battle.Domain
             _transformMoves = null;
             _typesOverride = null;
             _statsOverride = null;
+            RevertFormOnSwitch();
             LastMoveUsed = null;
             ResetTurnDamage();
             ResetFieldState();

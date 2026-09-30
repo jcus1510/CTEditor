@@ -186,6 +186,23 @@ namespace CTEditor.GameDefinition.Editor
             ["specialAttackStat"] = ("Especial: estadística de ataque", "especial_ataque"),
             ["specialDefenseStat"] = ("Especial: estadística de defensa", "especial_defensa"),
 
+            // Formas y variantes
+            ["formOf"] = ("Es forma de (variante)", "forma_de"),
+            ["variantItem"] = ("Objeto que cambia a esta variante", "objeto_variante"),
+            ["forms"] = ("Formas de combate", "formas"),
+            ["formChanges"] = ("Cambios de forma", "cambios_forma"),
+            ["type1"] = ("Tipo 1", "tipo1"),
+            ["type2"] = ("Tipo 2", "tipo2"),
+            ["ability"] = ("Habilidad", "habilidad"),
+            ["revertsOnSwitch"] = ("Vuelve a la normal al retirarse", "vuelve_al_retirarse"),
+            ["from"] = ("Desde la forma", "desde"),
+            ["to"] = ("A la forma", "a"),
+            ["trigger"] = ("Qué lo provoca", "disparador"),
+            ["item"] = ("Objeto", "objeto"),
+            ["hpPercent"] = ("% de PS", "pct_ps"),
+            ["weather"] = ("Clima", "clima"),
+            ["requiredAbility"] = ("Con la habilidad", "con_habilidad"),
+            ["afterMove"] = ("Después del movimiento", "tras_movimiento"),
             // Reglas de generación
             ["generation"] = ("Generación de referencia (0 = personalizada)", "generacion"),
             ["categoryByType"] = ("Categoría por tipo (1.ª-3.ª gen.)", "categoria_por_tipo"),
@@ -638,6 +655,8 @@ namespace CTEditor.GameDefinition.Editor
         {
             // Categoría de movimiento
             ["MegaEvolution"] = "Megaevolución",
+            ["HeldItem"] = "Lleva un objeto", ["UseMove"] = "Usa un movimiento", ["DamagingMove"] = "Usa un ataque",
+            ["HpBelow"] = "PS por debajo de un %", ["HpAtLeast"] = "PS desde un %", ["Weather"] = "Clima",
             ["Physical"] = "Físico", ["Special"] = "Especial", ["Status"] = "Estado",
             // Objetivo
             ["SingleEnemy"] = "Un rival", ["Self"] = "Uno mismo", ["AllEnemies"] = "Todos los rivales",

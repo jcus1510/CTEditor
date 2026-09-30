@@ -125,6 +125,39 @@ def check_references(sheets, rep):
                 need('species', e.split('@')[0].strip(), w)
                 for it in re.findall(r'(?:objeto|lleva|intercambio):(\w+)', e): need('item', it, w, soft=True)
                 for mv in re.findall(r'sabe:(\w+)', e): need('move', mv, w)
+            # Formas y variantes
+            need('species', r.get('forma_de', ''), w)
+            if r.get('forma_de') == r['id']:
+                rep.error(f'{w}: es forma de sí misma')
+            need('item', r.get('objeto_variante', ''), w, soft=True)
+            form_ids = set()
+            for f in split_list(r.get('formas', '')):
+                p = [x.strip() for x in f.split(';')] + [''] * 6
+                if not p[0]:
+                    rep.error(f'{w}: forma sin id «{f}»'); continue
+                form_ids.add(p[0])
+                for t in [x for x in p[2].split('/') if x]: need('types', t, w)
+                if p[3] and (len(p[3].split('/')) != 5 or not all(x.strip().isdigit() for x in p[3].split('/'))):
+                    rep.error(f'{w}: forma {p[0]}: las estadísticas son 5 números atq/def/atq_esp/def_esp/vel')
+                need('ability', p[4], w, soft=True)
+            for c in split_list(r.get('cambios_forma', '')):
+                parts = [x.strip() for x in c.split(';') if x.strip()]
+                main = parts[0]
+                if '>' not in main or ':' not in main.split('>', 1)[1]:
+                    rep.error(f'{w}: cambio de forma no válido «{c}» (desde>hasta:disparador[:valor])'); continue
+                frm, rest = main.split('>', 1)
+                to, trig, *val = rest.split(':')
+                val = ':'.join(val)
+                for fid in (frm, to):
+                    if fid and fid != '*' and fid not in form_ids:
+                        rep.error(f'{w}: el cambio «{c}» usa la forma «{fid}», que no está en formas')
+                if trig in ('objeto', 'mega'): need('item', val, w, soft=True)
+                elif trig == 'movimiento': need('move', val, w)
+                elif trig == 'clima': need('weather', val, w, soft=True)
+                elif trig not in ('ataque', 'ps_bajo', 'ps_desde'):
+                    rep.error(f'{w}: disparador desconocido «{trig}» en «{c}»')
+                for o in parts[1:]:
+                    if o.startswith('con='): need('ability', o[4:], w, soft=True)
     if 'movimientos.csv' in sheets:
         _, rows, lines = sheets['movimientos.csv']
         refs = {'estado': 'status', 'estado_propio': 'status', 'clima': 'weather', 'trampa': 'hazard',
@@ -172,8 +205,12 @@ def check_pokeapi(sheets, gen, rep):
     if 'especies.csv' in sheets:
         ref = api.species()
         _, rows, lines = sheets['especies.csv']
+        from pokeapi import table, pack_id
+        form_pid = {pack_id(p['identifier']): p['id'] for p in table('pokemon') if p['is_default'] == '0'}
         for r, ln in zip(rows, lines):
             a = ref.get(r['id'])
+            if not a and r.get('forma_de') and r['id'] in form_pid:   # variante: sus datos de PokeAPI son los de su forma
+                a = api.pokemon_vals({form_pid[r['id']]: r['id']})[form_pid[r['id']]]
             if not a:
                 rep.warn(f'especies.csv:{ln} {r["id"]}: no está en PokeAPI (¿especie inventada?)'); continue
             for col in ('ps', 'ataque', 'defensa', 'atq_esp', 'def_esp', 'velocidad', 'tipos'):

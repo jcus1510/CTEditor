@@ -1,7 +1,7 @@
 ﻿PACK 5.ª GENERACIÓN — fiel a su generación (generado por Tools/verificar_pack/generar_packs.py)
 ========================================================================================
 
-• 649 especies (hasta la n.º 649) con los datos QUE TENÍAN EN LA 5.ª GENERACIÓN (PokeAPI):
+• 667 especies (hasta la n.º 649) con los datos QUE TENÍAN EN LA 5.ª GENERACIÓN (PokeAPI):
   tipos, estadísticas base,
   aprendizaje por nivel de Negro 2/Blanco 2 y MT/tutor/huevo de los juegos de la generación.
 • 558 movimientos: solo los que existen en la 5.ª gen., con su tipo, potencia, precisión, PP y prioridad
@@ -15,6 +15,12 @@
 APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):
   • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.
   • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.
+
+FORMAS DE COMBATE (SE CAMBIAN EN MITAD DEL COMBATE) (6):
+   arceus, castform, cherrim, darmanitan, giratina, meloetta
+
+VARIANTES (ESPECIES CON «FORMA_DE») (18):
+   basculin_blue_striped → basculin, deoxys_attack → deoxys, deoxys_defense → deoxys, deoxys_speed → deoxys, keldeo_resolute → keldeo, kyurem_black → kyurem (dna_splicers), kyurem_white → kyurem (dna_splicers), landorus_therian → landorus (reveal_glass), rotom_fan → rotom, rotom_frost → rotom, rotom_heat → rotom, rotom_mow → rotom, rotom_wash → rotom, shaymin_sky → shaymin (gracidea), thundurus_therian → thundurus (reveal_glass), tornadus_therian → tornadus (reveal_glass), wormadam_sandy → wormadam, wormadam_trash → wormadam
 
 ENTRENADORES CON MIEMBROS DE GENERACIONES POSTERIORES (QUITADOS) (21):
    alto_mando_drasina, alto_mando_malva, alto_mando_narciso, alto_mando_tileo, especialista_dark, especialista_dragon, especialista_electric, especialista_fairy, especialista_fighting, especialista_fire, especialista_ghost, especialista_steel, jefe_lysson, lider_amaro, lider_astra, lider_corelia, lider_edel, lider_lem, lider_valeria, lider_violeta, rival_serena_liga

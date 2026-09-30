@@ -125,4 +125,16 @@ namespace CTEditor.Battle.Domain.Events
         public int Count { get; }
         public PerishCountEvent(Id<BattleParticipant> combatant, int count) { Combatant = combatant; Count = count; }
     }
+
+    /// <summary>Un combatiente CAMBIA DE FORMA: «¡Darmanitan activó el Modo Daruma!». To = "" → vuelve a la forma normal.</summary>
+    public sealed class FormChangedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public string From { get; }
+        public string To { get; }
+        /// <summary>Nombre de la forma nueva ("" = la normal).</summary>
+        public string FormName { get; }
+        public FormChangedEvent(Id<BattleParticipant> combatant, string from, string to, string formName)
+        { Combatant = combatant; From = from ?? ""; To = to ?? ""; FormName = formName ?? ""; }
+    }
 }

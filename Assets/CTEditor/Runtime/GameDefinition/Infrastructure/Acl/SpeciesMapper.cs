@@ -126,7 +126,48 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 OptionalAbility(data.SecondAbilityId),
                 OptionalAbility(data.HiddenAbilityId),
                 MoveIds(data.MachineMoves), MoveIds(data.TutorMoves), MoveIds(data.EggMoves),
-                EggGroupIds(data.EggGroups));
+                EggGroupIds(data.EggGroups),
+                Forms(data, baseStats), FormChanges(data),
+                string.IsNullOrWhiteSpace(data.FormOf) ? (Id<Species>?)null : new Id<Species>(data.FormOf.Trim()),
+                data.VariantItem);
+        }
+
+        // Formas de combate: lo vacío (tipos, estadística 0, habilidad) se queda como en la especie.
+        private static List<SpeciesForm> Forms(SpeciesData data, StatBlock baseStats)
+        {
+            var list = new List<SpeciesForm>();
+            if (data.Forms == null) return list;
+            foreach (var f in data.Forms)
+            {
+                if (f == null || string.IsNullOrWhiteSpace(f.id)) continue;
+                var types = new List<Id<ElementType>>();
+                if (!string.IsNullOrWhiteSpace(f.type1)) types.Add(new Id<ElementType>(f.type1.Trim()));
+                if (!string.IsNullOrWhiteSpace(f.type2) && f.type2.Trim() != (f.type1 ?? "").Trim()) types.Add(new Id<ElementType>(f.type2.Trim()));
+                StatBlock stats = null;
+                if (f.attack > 0 || f.defense > 0 || f.spAttack > 0 || f.spDefense > 0 || f.speed > 0)
+                {
+                    var b = new StatBlock.Builder();
+                    foreach (var s in baseStats.Stats) b.Set(s, baseStats.Of(s));
+                    if (f.attack > 0) b.Set(StatId.Attack, f.attack);
+                    if (f.defense > 0) b.Set(StatId.Defense, f.defense);
+                    if (f.spAttack > 0) b.Set(StatId.SpAttack, f.spAttack);
+                    if (f.spDefense > 0) b.Set(StatId.SpDefense, f.spDefense);
+                    if (f.speed > 0) b.Set(StatId.Speed, f.speed);
+                    stats = b.Build();
+                }
+                list.Add(new SpeciesForm(f.id, f.displayName, types, stats, OptionalAbility(f.ability), f.revertsOnSwitch));
+            }
+            return list;
+        }
+
+        private static List<FormChange> FormChanges(SpeciesData data)
+        {
+            var list = new List<FormChange>();
+            if (data.FormChanges == null) return list;
+            foreach (var c in data.FormChanges)
+                if (c != null)
+                    list.Add(new FormChange(c.from, c.to, c.trigger, c.item, c.move, c.hpPercent, c.weather, c.requiredAbility, c.afterMove));
+            return list;
         }
 
         private static AbilityId? OptionalAbility(string id)

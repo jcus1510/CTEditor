@@ -957,6 +957,12 @@ namespace CTEditor.Bootstrap
                     yield return Say($"¡{Cap(Who(tc.Combatant))} ahora es de tipo {string.Join("/", tc.Types.Select(data.TypeName))}!");
                     break;
                 case SelfSwitchRequiredEvent _: break; // lo gestiona la sesión (elegir quién entra)
+                case FormChangedEvent fc:
+                    yield return Say(fc.To.Length == 0
+                        ? $"¡{Cap(Who(fc.Combatant))} volvió a su forma normal!"
+                        : $"¡{Cap(Who(fc.Combatant))} cambió a {(string.IsNullOrEmpty(fc.FormName) ? fc.To : fc.FormName)}!");
+                    RefreshActiveVisuals(Session.IsPlayerSide(fc.Combatant));
+                    break;
                 case SelfSwitchedEvent ssw:
                     yield return Say(ssw.PassesBoosts ? $"¡{Cap(Who(ssw.Combatant))} pasa el relevo!" : $"¡{Cap(Who(ssw.Combatant))} vuelve con los suyos!");
                     break;

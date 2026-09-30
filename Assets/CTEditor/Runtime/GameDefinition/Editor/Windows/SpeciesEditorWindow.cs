@@ -47,7 +47,7 @@ namespace CTEditor.GameDefinition.Editor
             "Rellena tipos y estadísticas base; la calculadora te enseña cómo quedan a cada nivel.",
             "Añade los movimientos que aprende (nivel + movimiento) y sus evoluciones (por nivel, objeto, amistad o intercambio).",
             "Elige su habilidad, su curva de experiencia y cuánta experiencia y EV da al derrotarla.",
-            "Pulsa «Ver su cadena evolutiva» para revisar el árbol completo.",
+            "Pulsa «Ver su árbol de familia» para revisar evoluciones, formas de combate y variantes.",
         };
 
         private static readonly ClassicStatGrowthFormula Formula = new ClassicStatGrowthFormula();
@@ -75,7 +75,7 @@ namespace CTEditor.GameDefinition.Editor
         protected override void DrawPresets(SpeciesData d)
         {
             EditorGUILayout.LabelField("Asistentes", EditorStyles.boldLabel);
-            int b = ButtonRow("Ordenar learnset por nivel", "Sugerir EV (1 en su estadística más alta)", "Ver su cadena evolutiva");
+            int b = ButtonRow("Ordenar learnset por nivel", "Sugerir EV (1 en su estadística más alta)", "Ver su árbol de familia");
             if (b == 0) SortLearnset();
             if (b == 1) SuggestEvYield(d);
             if (b == 2) EvolutionChainWindow.OpenFor(d);
@@ -270,10 +270,95 @@ namespace CTEditor.GameDefinition.Editor
                                   "Los entrenadores Aficionado usan los de MT, los Veteranos también tutor y los de Élite y Campeón los huevo.", false);
         }
 
+        private int _formTemplate;
+
+        // FORMAS DE COMBATE (cambian en mitad del combate) y VARIANTES (especies enlazadas con «es forma de»).
+        private void DrawForms(SpeciesData d)
+        {
+            EditorTheme.Section("Formas y variantes", Accent);
+            if (!string.IsNullOrWhiteSpace(d.FormOf))
+            {
+                var baseSpecies = ContentAssets.FindById<SpeciesData>(d.FormOf);
+                EditorGUILayout.BeginHorizontal();
+                EditorTheme.Paragraph($"Es una VARIANTE de {(baseSpecies != null ? baseSpecies.DisplayName : d.FormOf + " (no existe)")}. " +
+                    (string.IsNullOrWhiteSpace(d.VariantItem)
+                        ? "Cambia a ella con un personaje del mapa."
+                        : $"Cambia a ella (y vuelve) usando {ItemLabel(d.VariantItem)} fuera del combate."), false);
+                if (baseSpecies != null && GUILayout.Button("Abrir la base", EditorStyles.miniButton, GUILayout.Width(90))) OpenAndSelect(baseSpecies);
+                EditorGUILayout.EndHorizontal();
+            }
+
+            var variants = FormEditing.VariantsOf(d);
+            if (variants.Count > 0)
+            {
+                EditorGUILayout.LabelField("Variantes", EditorStyles.miniBoldLabel);
+                EditorGUILayout.BeginHorizontal();
+                foreach (var v in variants.Take(6))
+                    if (GUILayout.Button(new GUIContent(v.DisplayName, string.IsNullOrWhiteSpace(v.VariantItem) ? "Con un personaje" : "Con " + ItemLabel(v.VariantItem)),
+                            EditorStyles.miniButton)) OpenAndSelect(v);
+                if (variants.Count > 6) GUILayout.Label($"+{variants.Count - 6}", EditorStyles.miniLabel);
+                EditorGUILayout.EndHorizontal();
+            }
+
+            var forms = (d.Forms ?? new SpeciesData.FormEntry[0]).Where(f => f != null).ToList();
+            if (forms.Count == 0)
+                EditorTheme.Paragraph("Sin formas de combate. Una forma de combate cambia tipos, estadísticas o habilidad EN MITAD del combate " +
+                                      "(Modo Daruma, Aegislash, megas) y al acabar vuelve a la normal.");
+            foreach (var f in forms)
+            {
+                EditorGUILayout.BeginHorizontal();
+                string types = string.Join("/", new[] { f.type1, f.type2 }.Where(t => !string.IsNullOrWhiteSpace(t)));
+                string stats = f.attack + f.defense + f.spAttack + f.spDefense + f.speed > 0
+                    ? $"{Or(f.attack, d.Attack)}/{Or(f.defense, d.Defense)}/{Or(f.spAttack, d.SpAttack)}/{Or(f.spDefense, d.SpDefense)}/{Or(f.speed, d.Speed)}"
+                    : "mismas estadísticas";
+                EditorTheme.Paragraph($"⚔ {FormEditing.FormName(d, f.id)}  ·  {(types.Length > 0 ? types : "mismos tipos")}  ·  {stats}" +
+                                      (string.IsNullOrWhiteSpace(f.ability) ? "" : $"  ·  {f.ability}") + (f.revertsOnSwitch ? "  ·  vuelve al retirarse" : ""), false);
+                if (GUILayout.Button(new GUIContent("✕", "Quitar esta forma y sus cambios"), EditorStyles.miniButton, GUILayout.Width(22))
+                    && EditorUtility.DisplayDialog("Quitar forma", $"¿Quitar la forma «{FormEditing.FormName(d, f.id)}» y sus cambios de forma?", "Quitar", "Cancelar"))
+                {
+                    FormEditing.RemoveForm(d, f.id);
+                    Revalidate();
+                    GUIUtility.ExitGUI();
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+            foreach (var c in (d.FormChanges ?? new SpeciesData.FormChangeEntry[0]).Where(c => c != null))
+                EditorTheme.Paragraph("   ↪ " + FormEditing.Describe(d, c));
+            foreach (var p in FormEditing.Problems(d)) EditorGUILayout.HelpBox(p, MessageType.Warning);
+
+            EditorGUILayout.BeginHorizontal();
+            var names = new[] { "Sin cambios (los pongo yo)" }.Concat(FormEditing.Templates.Select(t => t.name)).ToArray();
+            _formTemplate = EditorGUILayout.Popup(_formTemplate, names);
+            if (GUILayout.Button("+ Forma de combate", GUILayout.Width(140)))
+            {
+                FormEditing.AddForm(d, _formTemplate - 1);
+                Revalidate();
+            }
+            if (GUILayout.Button(new GUIContent("+ Variante", "Crea otra especie (copia de esta) enlazada con «es forma de»: Rotom Lavado, Deoxys Ataque, formas regionales..."),
+                    GUILayout.Width(90)))
+            {
+                var v = FormEditing.CreateVariant(d);
+                if (v != null) { Refresh(); Select(v); GUIUtility.ExitGUI(); }
+            }
+            if (GUILayout.Button("🌳 Árbol de familia", GUILayout.Width(130))) EvolutionChainWindow.OpenFor(d);
+            EditorGUILayout.EndHorizontal();
+            EditorTheme.Paragraph("Rellena los detalles (tipos, estadísticas, objeto o movimiento que la provoca) más abajo, en «Formas y variantes» de los datos. " +
+                                  "Estadística 0 o tipo vacío = igual que la especie; los PS no cambian en combate.");
+        }
+
+        private static int Or(int v, int fallback) => v > 0 ? v : fallback;
+
+        private static string ItemLabel(string id)
+        {
+            var it = string.IsNullOrWhiteSpace(id) ? null : ContentAssets.FindById<ItemData>(id);
+            return it != null ? it.DisplayName : id;
+        }
+
         protected override void DrawPreview(SpeciesData d)
         {
             DrawDex(d);
             DrawAbilitiesAndBreeding(d);
+            DrawForms(d);
             var stats = BaseStats(d);
             DrawBaseStats(stats);
             DrawCalculator(d, stats);

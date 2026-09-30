@@ -82,6 +82,18 @@ namespace CTEditor.Adventure.Domain
             if (!save.Bag.Has(item.Id)) return FieldResult.Fail($"No te quedan {item.DisplayName}.");
 
             var species = data.SpeciesOf(mon);
+
+            // VARIANTES: un objeto que cambia de variante (Gracídea, Espejo Veraz...) no se gasta.
+            var variant = VariantTargetFor(data, species, item.Id);
+            if (variant != null)
+            {
+                var vr = new FieldResult { Done = true };
+                string vn = data.NameOf(mon);
+                vr.Messages.Add($"Usaste {item.DisplayName} en {vn}.");
+                ChangeInto(data, mon, variant, vr, vn);
+                return vr;
+            }
+
             var use = ItemUse.UseOn(item, mon, save.Bag, species, slot => slot < mon.Moves.Count ? data.MaxPpOf(mon.Moves[slot]) : 1,
                 data.EvolutionContextFor(save));
 
@@ -104,6 +116,62 @@ namespace CTEditor.Adventure.Domain
                 Evolve(data, mon, target, r, name);
             }
             return r;
+        }
+
+        /// <summary>
+        /// ¿A qué variante cambia 'species' con este objeto? Sobre la especie base (o otra variante de su familia) → la
+        /// variante que se activa con ese objeto; sobre esa misma variante → vuelve a la base. Null = el objeto no cambia
+        /// de variante a esta especie.
+        /// </summary>
+        public static SpeciesDef VariantTargetFor(GameData data, SpeciesDef species, string itemId)
+        {
+            if (species == null || string.IsNullOrWhiteSpace(itemId)) return null;
+            var root = species.FormOf ?? species.Id;
+            if (species.FormOf.HasValue && string.Equals(species.VariantItem, itemId, StringComparison.OrdinalIgnoreCase))
+                return data.TryGetSpecies(root, out var baseSpecies) ? baseSpecies : null;
+            foreach (var s in data.Species.All)
+                if (s.FormOf.HasValue && s.FormOf.Value == root && s.Id != species.Id
+                    && string.Equals(s.VariantItem, itemId, StringComparison.OrdinalIgnoreCase))
+                    return s;
+            return null;
+        }
+
+        /// <summary>Las variantes de la familia de 'species' (la base incluida), para elegir una con un personaje.</summary>
+        public static List<SpeciesDef> VariantsOf(GameData data, SpeciesDef species)
+        {
+            var list = new List<SpeciesDef>();
+            if (species == null) return list;
+            var root = species.FormOf ?? species.Id;
+            if (data.TryGetSpecies(root, out var baseSpecies)) list.Add(baseSpecies);
+            foreach (var s in data.Species.All)
+                if (s.FormOf.HasValue && s.FormOf.Value == root) list.Add(s);
+            return list;
+        }
+
+        /// <summary>
+        /// Cambia al miembro a otra VARIANTE de su familia (Rotom → Rotom Lavado al hablar con un personaje). Falla si la
+        /// especie destino no es de su familia.
+        /// </summary>
+        public static FieldResult ChangeVariant(GameData data, PlayerSave save, int partyIndex, string speciesId)
+        {
+            if (!TryMember(save, partyIndex, out var mon, out var fail)) return fail;
+            var species = data.SpeciesOf(mon);
+            SpeciesDef target = null;
+            foreach (var v in VariantsOf(data, species))
+                if (string.Equals(v.Id.Value, speciesId, StringComparison.OrdinalIgnoreCase)) target = v;
+            string name = data.NameOf(mon);
+            if (target == null) return FieldResult.Fail($"{name} no puede cambiar a '{speciesId}'.");
+            if (target.Id == species.Id) return FieldResult.Fail($"{name} ya es {target.DisplayName}.");
+            var r = new FieldResult { Done = true };
+            ChangeInto(data, mon, target, r, name);
+            return r;
+        }
+
+        // Cambio de variante: misma genética, datos de la otra especie.
+        private static void ChangeInto(GameData data, MonsterInstance mon, SpeciesDef target, FieldResult r, string oldName)
+        {
+            mon.Evolve(target.Id, target.BaseStats, data.Growth);
+            r.Messages.Add($"¡{oldName} cambió a {target.DisplayName}!");
         }
 
         // Evoluciona YA (las piedras no se cancelan) y aprende lo de su nivel en la especie nueva.

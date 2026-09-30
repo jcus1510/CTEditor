@@ -157,6 +157,23 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - Los efectos de movimientos y habilidades aún son los de la 6.ª gen. (ver «Aproximaciones» en el INFORME de cada
   pack). Las reglas de cada generación se ponen en **Reglas del juego → Reglas de generación** (ver abajo).
 
+## Formas y variantes
+- **Formas de COMBATE** (dentro de la especie): cambian tipos, estadísticas (menos los PS) o habilidad EN MITAD del combate
+  y al acabar vuelven a la normal. Qué las provoca (editable, se pueden combinar varias reglas):
+  llevar un objeto (Giratina, Arceus, Kyogre/Groudon primigenios), usar un movimiento (Meloetta, antes o después),
+  usar cualquier ataque (Aegislash), PS por debajo / desde un % (Modo Daruma), un clima (Castform, Cherrim) y la
+  megaevolución (la pide el entrenador). Cada regla puede pedir una habilidad. «Vuelve al retirarse» = la forma se pierde
+  al cambiar.
+- **VARIANTES**: especies completas enlazadas con «Es forma de» (Rotom Lavado, Deoxys Ataque, Shaymin Cielo, los Tótem,
+  Kyurem Negro/Blanco, Hoopa Desatado...). «Objeto que cambia a esta variante»: usado fuera del combate la cambia (y la
+  devuelve a la base); vacío = con un personaje del mapa (`FieldActions.ChangeVariant`, para los eventos).
+- Editores: ficha de especie → «Formas y variantes» (+ Forma de combate con plantilla, + Variante); **Criaturas →
+  🌳 Árbol de familia**: evoluciones, insignias ⚔ de las formas (se editan en el panel) y variantes punteadas debajo de su
+  base.
+- Excel (`especies.csv`): `forma_de`, `objeto_variante`, `formas` (`id;nombre;tipo1/tipo2;atq/def/atq_esp/def_esp/vel;habilidad;vuelve`)
+  y `cambios_forma` (`desde>hasta:disparador[:valor][;con=habilidad][;despues]`; disparadores objeto, movimiento, ataque,
+  ps_bajo, ps_desde, clima, mega). Los packs Gen3-Gen6 las traen de PokeAPI.
+
 ## Reglas de generación y mecánicas especiales
 - **Reglas del juego → Reglas de generación**: botones «1.ª gen.» … «9.ª gen.» / «Moderno» ponen todas las perillas de
   golpe, y después se retoca cada una:

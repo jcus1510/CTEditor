@@ -217,7 +217,19 @@ namespace CTEditor.Adventure.Domain
                 new Id<BattleParticipant>(mon.Id.Value), mon.SpeciesId, mon.Level.Value,
                 mon.Stats, mon.CurrentHp, species.Types, mon.Moves, mon.Status, species.AbilityFor(mon.AbilitySlot),
                 species.BaseExpYield, species.EvYield, mon.CurrentPp, mon.Friendship, mon.HeldItem, species.CatchRate, species.Dex.WeightKg,
-                mon.Gender, species.Evolutions.Count > 0);
+                mon.Gender, species.Evolutions.Count > 0, FormsFor(mon, species), species.FormChanges);
+        }
+
+        /// <summary>Las formas de combate de la especie, calculadas para este individuo (nivel, IVs, EVs, naturaleza).</summary>
+        public List<BattleForm> FormsFor(MonsterInstance mon, SpeciesDef species)
+        {
+            var list = new List<BattleForm>();
+            foreach (var f in species.Forms)
+            {
+                var stats = f.BaseStats != null ? mon.StatsFor(f.BaseStats, Growth) : mon.Stats;
+                list.Add(new BattleForm(f.Id, f.DisplayName, stats, f.Types, f.Ability, f.RevertsOnSwitch));
+            }
+            return list;
         }
     }
 

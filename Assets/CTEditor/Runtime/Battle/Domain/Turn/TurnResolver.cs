@@ -349,6 +349,8 @@ namespace CTEditor.Battle.Domain.Turn
                 ApplyEndOfTurnBattlefield(battle, events);
                 ApplyGen4EndOfTurn(battle, events);
                 ApplyGen6EndOfTurn(battle, events);
+                CheckEndOfTurnForms(battle.Player, events);
+                CheckEndOfTurnForms(battle.Enemy, events);
             }
 
             // Protección: si este turno NO se protegió, el contador de "seguidas" vuelve a 0.
@@ -433,6 +435,7 @@ namespace CTEditor.Battle.Domain.Turn
         {
             ApplyHazardsOnEntry(entering, isPlayer, events);
             if (entering.IsFainted) return;
+            CheckEntryForms(entering, events);
             var opponent = isPlayer ? _battle.Enemy : _battle.Player;
             ApplyOnEntry(entering, opponent, events);
             ApplyGen4OnEntry(entering, opponent, events);
@@ -688,6 +691,8 @@ namespace CTEditor.Battle.Domain.Turn
             if (battle == null) return events;
             _battle = battle;
             ApplyGenerationRules(battle);
+            CheckEntryForms(battle.Player, events);
+            CheckEntryForms(battle.Enemy, events);
             ApplyOnEntry(battle.Player, battle.Enemy, events);
             ApplyOnEntry(battle.Enemy, battle.Player, events);
             ApplyGen4OnEntry(battle.Player, battle.Enemy, events);
@@ -869,6 +874,8 @@ namespace CTEditor.Battle.Domain.Turn
                     || e is MoveBlockedEvent || e is MoveHadNoEffectEvent) failed = true;
             }
             if (used) actor.NoteMoveSuccess(usedMove, !failed);
+            // Meloetta: cambia DESPUÉS de usar su movimiento.
+            if (used && !actor.IsFainted && _moves.TryGet(usedMove, out var formMove)) CheckMoveForms(actor, formMove, true, events);
 
             // OBJETOS ELECCIÓN: se queda bloqueado en el primer movimiento que usa (hasta que se retire).
             if (!HeldX(actor).ChoiceLock) actor.ClearChoiceLock();
@@ -899,6 +906,7 @@ namespace CTEditor.Battle.Domain.Turn
                 return;
             }
 
+            CheckMoveForms(actor, move, false, events);   // Aegislash: cambia ANTES de golpear
             events.Add(new MoveUsedEvent(actor.Id, move.Id));
             actor.NoteMoveUsed(move.Id);
 
