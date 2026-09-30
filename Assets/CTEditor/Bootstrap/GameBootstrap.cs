@@ -31,7 +31,7 @@ namespace CTEditor.Bootstrap
     /// </summary>
     public sealed class GameBootstrap : MonoBehaviour
     {
-        [Header("Contenido — arrastra aquí tus assets (Create > CTEditor > ...)")]
+        [Header("Contenido — arrastra aquí tus fichas (Crear > CTEditor > ...)")]
         [SerializeField] private MoveData[] moves;
         [SerializeField] private SpeciesData playerSpecies;
         [SerializeField] private SpeciesData enemySpecies;

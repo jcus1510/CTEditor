@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Status;
+using CTEditor.GameDefinition.Domain.Stats;
 
 namespace CTEditor.Battle.Domain
 {
@@ -29,12 +30,49 @@ namespace CTEditor.Battle.Domain
         /// <summary>Estado alterado con el que terminó (null = sano). Party decide si persiste.</summary>
         public StatusId? FinalStatus { get; }
 
-        public ParticipantResult(Id<BattleParticipant> participantId, int finalHp, bool fainted, StatusId? finalStatus = null)
+        /// <summary>PP que le quedaron a cada movimiento (mismo orden). Null = no cambiaron.</summary>
+        public IReadOnlyList<int> FinalPp { get; }
+
+        /// <summary>Objeto equipado al terminar (null = ninguno; p. ej. si se comió la baya).</summary>
+        public string FinalHeldItem { get; }
+
+        public ParticipantResult(Id<BattleParticipant> participantId, int finalHp, bool fainted, StatusId? finalStatus = null,
+            IReadOnlyList<int> finalPp = null, string finalHeldItem = null)
         {
+            FinalHeldItem = finalHeldItem;
             ParticipantId = participantId;
             FinalHp = finalHp;
             Fainted = fainted;
             FinalStatus = finalStatus;
+            FinalPp = finalPp;
+        }
+    }
+
+    /// <summary>XP ganada por un participante del jugador durante el combate.</summary>
+    public readonly struct XpAward
+    {
+        public Id<BattleParticipant> ParticipantId { get; }
+        public int Amount { get; }
+
+        public XpAward(Id<BattleParticipant> participantId, int amount)
+        {
+            ParticipantId = participantId;
+            Amount = amount;
+        }
+    }
+
+    /// <summary>EVs ganados por un participante del jugador en UNA stat (Party los aplica con sus topes).</summary>
+    public readonly struct EvAward
+    {
+        public Id<BattleParticipant> ParticipantId { get; }
+        public StatId Stat { get; }
+        public int Amount { get; }
+
+        public EvAward(Id<BattleParticipant> participantId, StatId stat, int amount)
+        {
+            ParticipantId = participantId;
+            Stat = stat;
+            Amount = amount;
         }
     }
 
@@ -48,12 +86,25 @@ namespace CTEditor.Battle.Domain
         public BattleOutcome Outcome { get; }
         public IReadOnlyList<ParticipantResult> Participants { get; }
 
-        public BattleResult(BattleOutcome outcome, IReadOnlyList<ParticipantResult> participants)
+        /// <summary>XP ganada por cada participante del jugador (Party la aplicará con su curva).</summary>
+        public IReadOnlyList<XpAward> XpAwards { get; }
+
+        /// <summary>EVs ganados por cada participante del jugador, por stat. Party respeta los topes.</summary>
+        public IReadOnlyList<EvAward> EvAwards { get; }
+
+        public BattleResult(BattleOutcome outcome, IReadOnlyList<ParticipantResult> participants, IReadOnlyList<XpAward> xpAwards = null,
+            IReadOnlyList<EvAward> evAwards = null)
         {
             Outcome = outcome;
             Participants = participants == null
                 ? Array.Empty<ParticipantResult>()
                 : new List<ParticipantResult>(participants);
+            XpAwards = xpAwards == null
+                ? Array.Empty<XpAward>()
+                : new List<XpAward>(xpAwards);
+            EvAwards = evAwards == null
+                ? Array.Empty<EvAward>()
+                : new List<EvAward>(evAwards);
         }
     }
 }

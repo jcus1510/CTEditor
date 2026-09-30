@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_giovanni
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_giovanni
+  displayName: Giovanni
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 3329ed16d767ae64385f3a1141560ee2, type: 2}
+    level: 45
+    moves:
+    - {fileID: 11400000, guid: 95c0d63a4a28c9f4a82a3da9fecf1712, type: 2}
+    - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+    - {fileID: 11400000, guid: a5b45aaafa9ab3a46bb9c9a44e5e9a04, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 7fac91a3249ee0e4fb7c45f8578efb65, type: 2}
+    level: 42
+    moves:
+    - {fileID: 11400000, guid: 288b2a76bf19e5646b2fc8d79382d1dc, type: 2}
+    - {fileID: 11400000, guid: 41fecb803ec631c42ae3e13be0a7d87f, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 34cc99783d94cc14a8ac87f62ffb7ff7, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 3e090d00ea04b2541b49369bd5a5fdb2, type: 2}
+    level: 44
+    moves:
+    - {fileID: 11400000, guid: ee44701bbc792004f8c744056ac5452d, type: 2}
+    - {fileID: 11400000, guid: eadf095108fdd03448a22a2499ac4318, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: c34ac3e2d8b672c4584847084d883763, type: 2}
+    level: 45
+    moves:
+    - {fileID: 11400000, guid: 3ecd363c4c5be3140a81b39e13fb6c9e, type: 2}
+    - {fileID: 11400000, guid: eadf095108fdd03448a22a2499ac4318, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 3329ed16d767ae64385f3a1141560ee2, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 95c0d63a4a28c9f4a82a3da9fecf1712, type: 2}
+    - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: c29a8063b28c2b94c9e1f7a2b33b1d44, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 4
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: hyper_potion
+    quantity: 2
+  - itemId: full_heal
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "As\xED que has llegado hasta aqu\xED..."
+  defeatLine: Ja... toma la Medalla Tierra.
+  victoryLine: El Team Rocket no perdona.

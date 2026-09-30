@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: kakuna
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: kakuna
+  displayName: Kakuna
+  types:
+  - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
+  - {fileID: 11400000, guid: beba3a9ac208f3c43a7bda5d61c338cd, type: 2}
+  abilityId: shed_skin
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: medium_fast
+  baseExpYield: 72
+  evYield:
+  - statId: defense
+    amount: 2
+  baseFriendship: 70
+  catchRate: 120
+  dexNumber: 14
+  category: Capullo
+  heightM: 0.6
+  weightKg: 10
+  dexColor: amarillo
+  dexDescription: "Casi incapaz de moverse, este Pok\xE9mon solo puede endurecer
+    su caparaz\xF3n para protegerse."
+  femalePercent: 50
+  legendary: 0
+  hp: 45
+  attack: 25
+  defense: 50
+  spAttack: 25
+  spDefense: 25
+  speed: 35
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 0a7589ec211131d45b8c65c725894de0, type: 2}
+    level: 1
+  evolutions:
+  - target: {fileID: 11400000, guid: 6d080628734b6de45b781f94449b5124, type: 2}
+    requiredLevel: 10
+    method: 0
+    itemId: 
+    minFriendship: 0
+    conditions: []
+  machineMoves: []
+  tutorMoves: []
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 1db6d26df99d9ca4180072eb358a7436, type: 2}

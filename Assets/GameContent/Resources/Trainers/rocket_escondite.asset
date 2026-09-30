@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: rocket_escondite
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: rocket_escondite
+  displayName: Soldado Rocket
+  trainerClass: Team Rocket
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 05768652771cc2344affe9218065b11c, type: 2}
+    level: 21
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 4660fdc6a7cf3d74aa8953b36872ecf5, type: 2}
+    level: 21
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: b8cf11e0451606e41b8a6a3f41a6cc71, type: 2}
+    level: 23
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 3
+  ai: 1
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 0
+  movesetStyle: 0
+  baseMoney: 30
+  introLine: "\xA1Intruso!"
+  defeatLine: "\xA1Ay! \xA1Se lo dir\xE9 al jefe!"
+  victoryLine: "\xA1Fuera de aqu\xED!"

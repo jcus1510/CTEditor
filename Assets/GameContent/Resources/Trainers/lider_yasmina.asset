@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_yasmina
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_yasmina
+  displayName: Yasmina
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 7e85960e09af29548b1a27ee87106cc6, type: 2}
+    level: 30
+    moves:
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: 3e9034391b20cc249ad2ece60d793edf, type: 2}
+    - {fileID: 11400000, guid: 27c67f7db39357b49815c7060d90a0f2, type: 2}
+    - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 7e85960e09af29548b1a27ee87106cc6, type: 2}
+    level: 30
+    moves:
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: 3e9034391b20cc249ad2ece60d793edf, type: 2}
+    - {fileID: 11400000, guid: 27c67f7db39357b49815c7060d90a0f2, type: 2}
+    - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: d69c2b6a5851da24a9590aeae639fcfd, type: 2}
+    level: 35
+    moves:
+    - {fileID: 11400000, guid: ec6a5f145f8a7cc419fa06a9ff9e1076, type: 2}
+    - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
+    - {fileID: 11400000, guid: 463d0914b67fe0e49bb7496ee377b881, type: 2}
+    - {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
+    heldItem: metal_coat
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 4
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: Mis monstruos de acero son muy duros...
+  defeatLine: Muy bien... toma la Medalla Mineral.
+  victoryLine: El acero no se dobla.

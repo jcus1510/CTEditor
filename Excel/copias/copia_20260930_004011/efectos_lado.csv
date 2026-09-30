@@ -1,0 +1,17 @@
+﻿id;nombre;color;turnos;mult_fisico;mult_especial;sin_bajadas;sin_estados;mult_velocidad;espacio_raro;precision_mult;gravedad;bloquea_criticos;daño_tipo_mult;intercambia_defensas;anula_objetos;grupo;fin_turno_cura;impide_estados;potencia_por_tipo
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+electric_terrain;Campo Eléctrico;FAD940;5;1;1;no;no;1;no;1;no;no;;no;no;campo;0;sleep;
+grassy_terrain;Campo de Hierba;73CC66;5;1;1;no;no;1;no;1;no;no;;no;no;campo;6,25;;
+magic_room;Zona Mágica;F28CBF;5;1;1;no;no;1;no;1;no;no;;no;si;;0;;
+misty_terrain;Campo de Niebla;F2B2E6;5;1;1;no;no;1;no;1;no;no;;no;no;campo;0;*;
+wonder_room;Zona Extraña;CC8CF2;5;1;1;no;no;1;no;1;no;no;;si;no;;0;;

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: wobbuffet
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: wobbuffet
+  displayName: Wobbuffet
+  types:
+  - {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
+  abilityId: shadow_tag
+  secondAbilityId: 
+  hiddenAbilityId: telepathy
+  growthCurveId: medium_fast
+  baseExpYield: 142
+  evYield:
+  - statId: hp
+    amount: 2
+  baseFriendship: 70
+  catchRate: 45
+  dexNumber: 202
+  category: Paciente
+  heightM: 1.3
+  weightKg: 28.5
+  dexColor: azul
+  dexDescription: Odia la luz y las sacudidas. Si le atacan, infla su cuerpo para
+    aumentar su contraataque.
+  femalePercent: 50
+  legendary: 0
+  hp: 190
+  attack: 33
+  defense: 58
+  spAttack: 33
+  spDefense: 58
+  speed: 33
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 2d976539caa5f634fb6ae04f1eef9ab1, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: aa227febb56c30e44903499d5c32999f, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
+    level: 1
+  evolutions: []
+  machineMoves: []
+  tutorMoves: []
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 9d53a19e52921834a83345100ec4a2a8, type: 2}

@@ -1,0 +1,2 @@
+Aquí van los MENÚS (MenuData): pausa, combate, Sí/No, equipo, mochila y los tuyos.
+Créalos con CTEditor → Interfaz → Menús (botón «Crear los menús clásicos»). Si no hay ninguno, el juego usa los clásicos.

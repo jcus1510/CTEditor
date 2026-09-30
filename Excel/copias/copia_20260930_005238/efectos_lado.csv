@@ -1,0 +1,12 @@
+﻿id;nombre;color;turnos;mult_fisico;mult_especial;sin_bajadas;sin_estados;mult_velocidad;espacio_raro;precision_mult;gravedad;bloquea_criticos;daño_tipo_mult
+aurora_veil;Velo Aurora;99E6F2;5;0,5;0,5;no;no;1;no;1;no;no;
+gravity;Gravedad;8C73CC;5;1;1;no;no;1;no;1,67;si;no;
+light_screen;Pantalla de Luz;F28CD9;5;1;0,5;no;no;1;no;1;no;no;
+lucky_chant;Conjuro;F2E680;5;1;1;no;no;1;no;1;no;si;
+mist;Neblina;BFD9E6;5;1;1;si;no;1;no;1;no;no;
+mud_sport;Chapoteo Lodo;BF9959;5;1;1;no;no;1;no;1;no;no;electric:0,33
+reflect;Reflejo;F2CC59;5;0,5;1;no;no;1;no;1;no;no;
+safeguard;Velo Sagrado;B299F2;5;1;1;no;si;1;no;1;no;no;
+tailwind;Viento Afín;8CD9B2;4;1;1;no;no;2;no;1;no;no;
+trick_room;Espacio Raro;D973D9;5;1;1;no;no;1;si;1;no;no;
+water_sport;Hidrochorro;66A6F2;5;1;1;no;no;1;no;1;no;no;fire:0,33

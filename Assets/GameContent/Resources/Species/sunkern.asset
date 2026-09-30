@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: sunkern
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: sunkern
+  displayName: Sunkern
+  types:
+  - {fileID: 11400000, guid: 50792a937522d2e4ab6bd6a520a1534f, type: 2}
+  abilityId: chlorophyll
+  secondAbilityId: solar_power
+  hiddenAbilityId: early_bird
+  growthCurveId: medium_slow
+  baseExpYield: 36
+  evYield:
+  - statId: sp_attack
+    amount: 1
+  baseFriendship: 70
+  catchRate: 235
+  dexNumber: 191
+  category: Semilla
+  heightM: 0.3
+  weightKg: 1.8
+  dexColor: amarillo
+  dexDescription: "Puede caer del cielo de repente. Si le ataca un Spearow, mover\xE1
+    violentamente sus hojas."
+  femalePercent: 50
+  legendary: 0
+  hp: 30
+  attack: 30
+  defense: 30
+  spAttack: 30
+  spDefense: 30
+  speed: 30
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 36bfb8286b5281b42b15716b99496dde, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 8ce8218b5414e0443948bdad7e6671c3, type: 2}
+    level: 4
+  - move: {fileID: 11400000, guid: 58b3bb2d11a3dd74689abe52955d6f02, type: 2}
+    level: 10
+  - move: {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
+    level: 19
+  - move: {fileID: 11400000, guid: 7b31ca7e65ab8664298f232da45d96ca, type: 2}
+    level: 31
+  - move: {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+    level: 46
+  evolutions:
+  - target: {fileID: 11400000, guid: bc9be2cb026bfaa40814a08ab4d53356, type: 2}
+    requiredLevel: 0
+    method: 1
+    itemId: sun_stone
+    minFriendship: 0
+    conditions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
+  - {fileID: 11400000, guid: bcc1d78857f00f041a19fbc5a4d58a00, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 0ebb2337b3b88994fb66c3d0757615e6, type: 2}
+  - {fileID: 11400000, guid: 37a3de89e28b39a4ea28ca945b07fb13, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
+  - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 359f2bdcc3c908741b97a2374dbfe96a, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  tutorMoves: []
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: b4975cfbd49fba741b038059ce01f1b2, type: 2}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CTEditor.SharedKernel.ValueObjects;
+using CTEditor.GameDefinition.Domain.Types;
 
 namespace CTEditor.GameDefinition.Domain.Status
 {
@@ -53,6 +54,51 @@ namespace CTEditor.GameDefinition.Domain.Status
         /// <summary>Al terminar, en vez de curarse se CONVIERTE en este estado (somnoliento -&gt; dormido). Null = se cura.</summary>
         public StatusId? TransformsToStatus { get; }
 
+        /// <summary>
+        /// Tipos que NO pueden sufrir este estado (clásico: Fuego no se quema, Eléctrico no se paraliza,
+        /// Veneno y Acero no se envenenan, Hielo no se congela). Vacío = cualquiera puede sufrirlo.
+        /// </summary>
+        public IReadOnlyList<Id<ElementType>> ImmuneTypes { get; }
+
+        // ---------------- Lote B: estados VOLÁTILES y comportamientos especiales ----------------
+
+        /// <summary>
+        /// false = estado PRINCIPAL (quemado, parálisis, sueño...): solo uno a la vez y no se pisan.
+        /// true = VOLÁTIL (confusión, atrapado, drenadoras...): se apila con el principal y con otros
+        /// volátiles distintos. Al retirarse del combate, los volátiles se van.
+        /// </summary>
+        public bool IsVolatile { get; }
+
+        /// <summary>Si &gt; DurationTurns, la duración se sortea entre DurationTurns y este valor (Atadura: 4-5).</summary>
+        public int DurationMaxTurns { get; }
+
+        /// <summary>El portador no puede cambiarse ni huir (Atadura, Mal de Ojo).</summary>
+        public bool PreventsSwitch { get; }
+
+        /// <summary>Los movimientos del RIVAL dirigidos al portador fallan (Protección). Se usa con duración 1.</summary>
+        public bool BlocksIncomingMoves { get; }
+
+        /// <summary>Un golpe que lo debilitaría lo deja con 1 PS (Aguante).</summary>
+        public bool SurvivesLethalHit { get; }
+
+        /// <summary>El daño residual CURA al rival que está en el campo (Drenadoras).</summary>
+        public bool ResidualHealsOpponent { get; }
+
+        /// <summary>
+        /// Si se aplica turnos SEGUIDOS, cada vez es más difícil (Protección clásica: 1/3, 1/9...).
+        /// Solo para estados que el portador se pone a sí mismo.
+        /// </summary>
+        public bool HarderWhenRepeated { get; }
+
+        /// <summary>
+        /// Cuánto facilita la CAPTURA tener este estado (×1 = nada). Clásico: dormido y congelado ×2,5;
+        /// paralizado, envenenado y quemado ×1,5.
+        /// </summary>
+        public float CatchMultiplier { get; }
+
+        /// <summary>Comportamientos de la 3.ª y 4.ª generación (Mofa, Canto Mortal, Carga...). Nunca null.</summary>
+        public StatusExtras Extras { get; }
+
         public StatusConditionDefinition(
             StatusId id,
             string displayName,
@@ -65,8 +111,28 @@ namespace CTEditor.GameDefinition.Domain.Status
             Percentage recoveryChancePerTurn = default,
             Percentage selfDamageOnPreventedPercent = default,
             StatusId? transformsToStatus = null,
-            bool residualHeals = false)
+            bool residualHeals = false,
+            IReadOnlyList<Id<ElementType>> immuneTypes = null,
+            bool isVolatile = false,
+            int durationMaxTurns = 0,
+            bool preventsSwitch = false,
+            bool blocksIncomingMoves = false,
+            bool survivesLethalHit = false,
+            bool residualHealsOpponent = false,
+            bool harderWhenRepeated = false,
+            float catchMultiplier = 1f,
+            StatusExtras extras = null)
         {
+            Extras = extras ?? StatusExtras.None;
+            IsVolatile = isVolatile;
+            DurationMaxTurns = durationMaxTurns;
+            PreventsSwitch = preventsSwitch;
+            BlocksIncomingMoves = blocksIncomingMoves;
+            SurvivesLethalHit = survivesLethalHit;
+            ResidualHealsOpponent = residualHealsOpponent;
+            HarderWhenRepeated = harderWhenRepeated;
+            CatchMultiplier = catchMultiplier <= 0f ? 1f : catchMultiplier;
+            ImmuneTypes = immuneTypes == null ? Array.Empty<Id<ElementType>>() : new List<Id<ElementType>>(immuneTypes);
             Id = id;
             DisplayName = string.IsNullOrWhiteSpace(displayName) ? id.Value : displayName;
             ResidualDamagePercent = residualDamagePercent;

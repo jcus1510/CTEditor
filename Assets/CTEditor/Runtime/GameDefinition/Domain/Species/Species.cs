@@ -4,6 +4,7 @@ using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Types;
 using CTEditor.GameDefinition.Domain.Abilities;
+using CTEditor.GameDefinition.Domain.Growth;
 
 namespace CTEditor.GameDefinition.Domain.Species
 {
@@ -49,6 +50,62 @@ namespace CTEditor.GameDefinition.Domain.Species
         /// <summary>La habilidad de la especie (null = ninguna). Rasgo pasivo que se aplica en combate.</summary>
         public AbilityId? Ability { get; }
 
+        /// <summary>Curva de experiencia de la especie (id de un GrowthCurve). Null = usar la de por defecto.</summary>
+        public Id<GrowthCurve>? GrowthCurveId { get; }
+
+        /// <summary>
+        /// Rendimiento base de experiencia: cuánta XP "vale" derrotar a un ejemplar de esta especie
+        /// (la fórmula lo escala por nivel). En los clásicos, cada especie tiene el suyo (p. ej. 64).
+        /// </summary>
+        public int BaseExpYield { get; }
+
+        /// <summary>EVs que otorga derrotar a esta especie (clásico: 1-3 puntos en 1-2 stats).</summary>
+        public IReadOnlyList<EvYieldEntry> EvYield { get; }
+
+        /// <summary>
+        /// Ratio de captura (1-255). Cuanto más alto, más fácil de capturar: Caterpie 255, Pikachu 190,
+        /// iniciales 45, legendarios 3. Es la "a" de la fórmula clásica de captura.
+        /// </summary>
+        public int CatchRate { get; }
+
+        /// <summary>Amistad con la que empieza un individuo recién obtenido (0-255, clásico 70).</summary>
+        public int BaseFriendship { get; }
+
+        /// <summary>Datos de la Pokédex (número, categoría, altura, peso...). Nunca null.</summary>
+        public PokedexEntry Dex { get; }
+
+        /// <summary>Segunda habilidad posible (null = solo tiene una). Cada individuo sale con la 1.ª o la 2.ª al azar.</summary>
+        public AbilityId? SecondAbility { get; }
+
+        /// <summary>Habilidad OCULTA (null = ninguna). Solo la tienen los individuos que el autor elija.</summary>
+        public AbilityId? HiddenAbility { get; }
+
+        /// <summary>Movimientos que puede aprender por MT/MO.</summary>
+        public IReadOnlyList<Id<Moves.Move>> MachineMoves { get; }
+
+        /// <summary>Movimientos que le puede enseñar un tutor.</summary>
+        public IReadOnlyList<Id<Moves.Move>> TutorMoves { get; }
+
+        /// <summary>Movimientos HUEVO: los hereda al nacer (para la crianza futura) y los usan los entrenadores de élite.</summary>
+        public IReadOnlyList<Id<Moves.Move>> EggMoves { get; }
+
+        /// <summary>Grupos huevo (ids: "monster", "dragon"...). Vacío = no definido; "no_eggs" = no puede criar.</summary>
+        public IReadOnlyList<string> EggGroups { get; }
+
+        /// <summary>La habilidad de un individuo según su «ranura»: 0 = la primera, 1 = la segunda, 2 = la oculta.</summary>
+        public AbilityId? AbilityFor(int slot)
+            => slot == 2 ? (HiddenAbility ?? Ability) : slot == 1 ? (SecondAbility ?? Ability) : Ability;
+
+        /// <summary>¿Puede aprender este movimiento de alguna forma (nivel, MT, tutor o huevo)?</summary>
+        public bool CanLearn(Id<Moves.Move> move)
+        {
+            foreach (var l in Learnset) if (l.Move == move) return true;
+            foreach (var m in MachineMoves) if (m == move) return true;
+            foreach (var m in TutorMoves) if (m == move) return true;
+            foreach (var m in EggMoves) if (m == move) return true;
+            return false;
+        }
+
         public Species(
             Id<Species> id,
             string displayName,
@@ -56,8 +113,29 @@ namespace CTEditor.GameDefinition.Domain.Species
             StatBlock baseStats,
             IReadOnlyList<LearnableMove> learnset,
             IReadOnlyList<Evolution> evolutions,
-            AbilityId? ability = null)
+            AbilityId? ability = null,
+            Id<GrowthCurve>? growthCurveId = null,
+            int baseExpYield = 64,
+            IReadOnlyList<EvYieldEntry> evYield = null,
+            int baseFriendship = 70,
+            int catchRate = 45,
+            PokedexEntry dex = null,
+            AbilityId? secondAbility = null,
+            AbilityId? hiddenAbility = null,
+            IReadOnlyList<Id<Moves.Move>> machineMoves = null,
+            IReadOnlyList<Id<Moves.Move>> tutorMoves = null,
+            IReadOnlyList<Id<Moves.Move>> eggMoves = null,
+            IReadOnlyList<string> eggGroups = null)
         {
+            SecondAbility = secondAbility;
+            HiddenAbility = hiddenAbility;
+            MachineMoves = CopyOrEmpty(machineMoves);
+            TutorMoves = CopyOrEmpty(tutorMoves);
+            EggMoves = CopyOrEmpty(eggMoves);
+            EggGroups = CopyOrEmpty(eggGroups);
+            Dex = dex ?? PokedexEntry.Empty;
+            CatchRate = Math.Max(1, Math.Min(255, catchRate));
+            BaseFriendship = Math.Max(0, Math.Min(255, baseFriendship));
             // Una criatura sin ningún tipo no tiene sentido en el modelo de combate.
             if (types is null || types.Count == 0)
                 throw new ArgumentException("Una especie necesita al menos un tipo.", nameof(types));
@@ -79,6 +157,9 @@ namespace CTEditor.GameDefinition.Domain.Species
             Learnset = CopyOrEmpty(learnset);
             Evolutions = CopyOrEmpty(evolutions);
             Ability = ability;
+            GrowthCurveId = growthCurveId;
+            BaseExpYield = baseExpYield < 1 ? 1 : baseExpYield;
+            EvYield = CopyOrEmpty(evYield);
         }
 
         /// <summary>¿Tiene más de un tipo?</summary>

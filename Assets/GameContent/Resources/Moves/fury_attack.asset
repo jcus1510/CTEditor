@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af2ff6f36485864784eac3bda8601c8, type: 3}
+  m_Name: fury_attack
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
+  id: fury_attack
+  displayName: Ataque Furia
+  type: {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
+  category: 0
+  power: 15
+  neverMisses: 0
+  accuracy: 85
+  maxPp: 20
+  priority: 0
+  target: 0
+  secondaryEffects: []
+  minHits: 2
+  maxHits: 5
+  critStage: 0
+  twoTurn: 0
+  makesContact: 1
+  fixedDamage: 0
+  fixedDamageAmount: 0
+  respectsTypeImmunity: 0
+  powerModifiers: []
+  powerFormula: 
+  attackStat: 
+  defenseStat: 
+  attackStatFromTarget: 0
+  tags: []
+  requirements: []
+  typeByWeather: []
+  animationSeconds: 0

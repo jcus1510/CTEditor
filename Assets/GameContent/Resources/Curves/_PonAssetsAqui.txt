@@ -1,0 +1,4 @@
+Crea aquí tus curvas de XP (Create > CTEditor > Growth Curve).
+Cada GrowthCurveData necesita un Id único (p. ej. "medium_fast", "slow").
+Luego, en cada Species, escribe ese Id en el campo "Growth Curve Id".
+Presets disponibles: Fast, MediumFast, MediumSlow, Slow (generan la tabla hasta maxLevel).

@@ -1,0 +1,23 @@
+{
+    "name": "CTEditor.Bootstrap.Editor",
+    "rootNamespace": "CTEditor.Bootstrap.Editor",
+    "references": [
+        "CTEditor.Bootstrap",
+        "CTEditor.GameDefinition",
+        "CTEditor.GameDefinition.Editor",
+        "CTEditor.Adventure.Domain",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

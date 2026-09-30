@@ -1,0 +1,21 @@
+﻿id;nombre;color;turnos;mult_fisico;mult_especial;sin_bajadas;sin_estados;mult_velocidad;espacio_raro;precision_mult;gravedad;bloquea_criticos;daño_tipo_mult;intercambia_defensas;anula_objetos;grupo;fin_turno_cura;impide_estados;potencia_por_tipo
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+;;8CBFF2;5;1;1;no;no;1;no;1;no;no;;no;no;;0;;
+aurora_veil;Velo Aurora;99E6F2;5;0,5;0,5;no;no;1;no;1;no;no;;no;no;;0;;
+electric_terrain;Campo Eléctrico;FAD940;5;1;1;no;no;1;no;1;no;no;;no;no;campo;0;sleep;electric:1,5
+grassy_terrain;Campo de Hierba;73CC66;5;1;1;no;no;1;no;1;no;no;;no;no;campo;6,25;;grass:1,5
+gravity;Gravedad;8C73CC;5;1;1;no;no;1;no;1,67;si;no;;no;no;;0;;
+light_screen;Pantalla de Luz;F28CD9;5;1;0,5;no;no;1;no;1;no;no;;no;no;;0;;
+lucky_chant;Conjuro;F2E680;5;1;1;no;no;1;no;1;no;si;;no;no;;0;;
+magic_room;Zona Mágica;F28CBF;5;1;1;no;no;1;no;1;no;no;;no;si;;0;;
+mist;Neblina;BFD9E6;5;1;1;si;no;1;no;1;no;no;;no;no;;0;;
+misty_terrain;Campo de Niebla;F2B2E6;5;1;1;no;no;1;no;1;no;no;;no;no;campo;0;*;dragon:0,5
+mud_sport;Chapoteo Lodo;BF9959;5;1;1;no;no;1;no;1;no;no;electric:0,33;no;no;;0;;
+reflect;Reflejo;F2CC59;5;0,5;1;no;no;1;no;1;no;no;;no;no;;0;;
+safeguard;Velo Sagrado;B299F2;5;1;1;no;si;1;no;1;no;no;;no;no;;0;;
+tailwind;Viento Afín;8CD9B2;4;1;1;no;no;2;no;1;no;no;;no;no;;0;;
+trick_room;Espacio Raro;D973D9;5;1;1;no;no;1;si;1;no;no;;no;no;;0;;
+water_sport;Hidrochorro;66A6F2;5;1;1;no;no;1;no;1;no;no;fire:0,33;no;no;;0;;
+wonder_room;Zona Extraña;CC8CF2;5;1;1;no;no;1;no;1;no;no;;si;no;;0;;

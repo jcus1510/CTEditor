@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: galactico_soldado
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: galactico_soldado
+  displayName: "Soldado Gal\xE1ctico"
+  trainerClass: "Team Gal\xE1ctico"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 7fcfed547bc47b34d8e862a34728ce2f, type: 2}
+    level: 18
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 64366fa9d41ecc746a548cfe2834b596, type: 2}
+    level: 18
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 0e81feb5212a75d48a9ca8d256004333, type: 2}
+    level: 18
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 3
+  ai: 1
+  useItems: 1
+  items: []
+  healBelowPercent: 25
+  canSwitch: 0
+  movesetStyle: 0
+  baseMoney: 30
+  introLine: "\xA1El Team Gal\xE1ctico crear\xE1 un mundo nuevo!"
+  defeatLine: "\xA1Qu\xE9 verg\xFCenza!"
+  victoryLine: "\xA1Por el Team Gal\xE1ctico!"

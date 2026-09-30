@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: alto_mando_lance
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: alto_mando_lance
+  displayName: Lance
+  trainerClass: Alto Mando
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: ae9fd7d998bc49a4ea5829d7a235ced9, type: 2}
+    level: 56
+    moves:
+    - {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+    - {fileID: 11400000, guid: 6003803a959d2bc4b9157ff08a110dc1, type: 2}
+    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+    - {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 9c5fd62bc8be5f44dae872cff7d5db61, type: 2}
+    level: 54
+    moves:
+    - {fileID: 11400000, guid: 0d7166cfef7ef3a4cb2e264e320038c8, type: 2}
+    - {fileID: 11400000, guid: c475a06b2286c0543961aec8fb9e8749, type: 2}
+    - {fileID: 11400000, guid: 6003803a959d2bc4b9157ff08a110dc1, type: 2}
+    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 9c5fd62bc8be5f44dae872cff7d5db61, type: 2}
+    level: 54
+    moves:
+    - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+    - {fileID: 11400000, guid: c475a06b2286c0543961aec8fb9e8749, type: 2}
+    - {fileID: 11400000, guid: 6003803a959d2bc4b9157ff08a110dc1, type: 2}
+    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: d466aec97053dd84582f5ccf4c454e38, type: 2}
+    level: 58
+    moves:
+    - {fileID: 11400000, guid: 3e9034391b20cc249ad2ece60d793edf, type: 2}
+    - {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+    - {fileID: 11400000, guid: 95c0d63a4a28c9f4a82a3da9fecf1712, type: 2}
+    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 79469bbd6417e3d448e4f41069216d91, type: 2}
+    level: 60
+    moves:
+    - {fileID: 11400000, guid: 3eb85418a456a4941a852f0af3d1a28a, type: 2}
+    - {fileID: 11400000, guid: c475a06b2286c0543961aec8fb9e8749, type: 2}
+    - {fileID: 11400000, guid: 0d7166cfef7ef3a4cb2e264e320038c8, type: 2}
+    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 5
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "\xA1Los dragones son invencibles!"
+  defeatLine: "Incre\xEDble... eres el mejor."
+  victoryLine: "Los dragones jam\xE1s caen."

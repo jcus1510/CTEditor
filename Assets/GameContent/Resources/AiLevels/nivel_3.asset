@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a524c0c1215c914980dd316ea83611c, type: 3}
+  m_Name: nivel_3
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.AiLevelData
+  id: nivel_3
+  displayName: Veterano
+  level: 3
+  description: 'Entrenadores guay y Team Rocket: tipos y estados, cura solo si le
+    sirve. MT y tutor.'
+  brain: 2
+  mistakePercent: 10
+  itemUsePercent: 100
+  heal: 2
+  healBelowPercent: 35
+  canSwitch: 0
+  defaultBag:
+  - itemId: super_potion
+    quantity: 2
+  moveset: 2
+  synergies: 1
+  useMachineMoves: 1
+  useTutorMoves: 1
+  useEggMoves: 0
+  autoHeldItems: 0

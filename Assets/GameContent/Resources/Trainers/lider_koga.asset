@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_koga
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_koga
+  displayName: Koga
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: b8cf11e0451606e41b8a6a3f41a6cc71, type: 2}
+    level: 37
+    moves:
+    - {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    - {fileID: 11400000, guid: 67a15338148b37f4c82e6dc0c8da95df, type: 2}
+    - {fileID: 11400000, guid: b534a3ce77aca3749999543c4d8a2d15, type: 2}
+    - {fileID: 11400000, guid: 086b0bf63b44f0f4c8ead69ce6291aa8, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 41c955b95fd49f64b89a5399e820b5de, type: 2}
+    level: 39
+    moves:
+    - {fileID: 11400000, guid: ec4c48dd89ec80941b9a74b4b20fd92d, type: 2}
+    - {fileID: 11400000, guid: b534a3ce77aca3749999543c4d8a2d15, type: 2}
+    - {fileID: 11400000, guid: 90488b54355181a40bef89d9dd57ed14, type: 2}
+    - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: b8cf11e0451606e41b8a6a3f41a6cc71, type: 2}
+    level: 37
+    moves:
+    - {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    - {fileID: 11400000, guid: 67a15338148b37f4c82e6dc0c8da95df, type: 2}
+    - {fileID: 11400000, guid: b534a3ce77aca3749999543c4d8a2d15, type: 2}
+    - {fileID: 11400000, guid: 086b0bf63b44f0f4c8ead69ce6291aa8, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 68ba0a53327458043b1af266965e358b, type: 2}
+    level: 43
+    moves:
+    - {fileID: 11400000, guid: b534a3ce77aca3749999543c4d8a2d15, type: 2}
+    - {fileID: 11400000, guid: 086b0bf63b44f0f4c8ead69ce6291aa8, type: 2}
+    - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+    - {fileID: 11400000, guid: f9393ac71e402e94d92eba2ed456c563, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 4
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: hyper_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "\xA1Un ninja no teme al veneno!"
+  defeatLine: "Has demostrado tu val\xEDa. Toma la Medalla Alma."
+  victoryLine: El veneno siempre gana a la larga.

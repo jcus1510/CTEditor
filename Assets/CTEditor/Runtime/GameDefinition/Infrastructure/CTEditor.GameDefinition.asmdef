@@ -3,7 +3,8 @@
     "rootNamespace": "CTEditor.GameDefinition.Infrastructure",
     "references": [
         "CTEditor.GameDefinition.Domain",
-        "CTEditor.SharedKernel"
+        "CTEditor.SharedKernel",
+        "CTEditor.Adventure.Domain"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -8,8 +8,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
     /// de autoría a la vez. La clave conceptual: aquí el autor disfruta de COMODIDAD (campos con
     /// nombre, listas arrastrables), y el mapper la colapsa luego al dominio UNIFORME y puro.
     /// </summary>
-    [CreateAssetMenu(menuName = "CTEditor/Species", fileName = "NewSpecies")]
-    public sealed class SpeciesData : ScriptableObject
+    [CreateAssetMenu(menuName = "CTEditor/Especie", fileName = "NuevaEspecie")]
+    public sealed class SpeciesData : ScriptableObject, IContentAsset
     {
         [SerializeField] private string id;
         [SerializeField] private string displayName;
@@ -19,7 +19,46 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField] private ElementTypeData[] types;
 
         [Tooltip("Id de la habilidad de la especie (debe existir como AbilityData). Vacío = ninguna.")]
-        [SerializeField] private string abilityId;
+        [ContentIdReference(typeof(AbilityData)), SerializeField] private string abilityId;
+
+        [Tooltip("Segunda habilidad posible (vacío = solo tiene una). Cada individuo sale con la 1.ª o la 2.ª.")]
+        [ContentIdReference(typeof(AbilityData)), SerializeField] private string secondAbilityId;
+
+        [Tooltip("Habilidad OCULTA (vacío = ninguna). Solo la tienen los individuos que tú elijas.")]
+        [ContentIdReference(typeof(AbilityData)), SerializeField] private string hiddenAbilityId;
+
+        [Tooltip("Id de la curva de XP (debe existir como GrowthCurveData en GameContent/Curves). Vacío = por defecto.")]
+        [ContentIdReference(typeof(GrowthCurveData)), SerializeField] private string growthCurveId;
+
+        [Tooltip("Rendimiento base de XP: cuánta experiencia 'vale' derrotar a esta especie (clásico: 50-300).")]
+        [SerializeField, Min(1)] private int baseExpYield = 64;
+
+        [Tooltip("EVs que otorga derrotarla: id de la estadística (hp, attack, defense, sp_attack, sp_defense, speed) + puntos (clásico: 1-3).")]
+        [SerializeField] private EvYieldEntryData[] evYield;
+
+        [Tooltip("Amistad con la que empieza un individuo recién obtenido (0-255). Clásico: 70. La usan las condiciones de los movimientos (p. ej. Retribución).")]
+        [SerializeField, Range(0, 255)] private int baseFriendship = 70;
+
+        [Tooltip("Ratio de captura (1-255): cuanto más alto, más fácil de capturar. Caterpie 255, Pikachu 190, iniciales 45, legendarios 3.")]
+        [SerializeField, Range(1, 255)] private int catchRate = 45;
+
+        [Header("Pokédex")]
+        [Tooltip("Número en la Pokédex (0 = sin número). Ordena la lista de especies.")]
+        [SerializeField, Min(0)] private int dexNumber = 0;
+        [Tooltip("Categoría: «Semilla» → se ve «Pokémon Semilla».")]
+        [SerializeField] private string category = "";
+        [Tooltip("Altura en metros (Bulbasaur: 0,7).")]
+        [SerializeField, Min(0f)] private float heightM = 0f;
+        [Tooltip("Peso en kilos (Bulbasaur: 6,9).")]
+        [SerializeField, Min(0f)] private float weightKg = 0f;
+        [Tooltip("Color principal para buscar en la Pokédex: verde, rojo, azul...")]
+        [SerializeField] private string dexColor = "";
+        [Tooltip("Descripción de la Pokédex.")]
+        [SerializeField, TextArea(2, 5)] private string dexDescription = "";
+        [Tooltip("% de hembras (0-100). -1 = sin género (Magnemite, legendarios...).")]
+        [SerializeField, Range(-1f, 100f)] private float femalePercent = 50f;
+        [Tooltip("Legendaria o singular.")]
+        [SerializeField] private bool legendary = false;
 
         // --- STATS BASE ---
         // Aquí está la idea importante: en el dominio los stats son UNIFORMES por clave (StatBlock).
@@ -27,7 +66,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         // FICHA los 6 clásicos son campos con nombre (cómodos), y los inventados van en una lista.
         // El mapper junta ambos en el StatBlock único. Misma idea que los accesores .Attack del
         // dominio: una comodidad encima del almacenamiento uniforme, sin dos caminos de verdad.
-        [Header("Stats base — clásicos")]
+        [Header("Estadísticas base — clásicas")]
         [SerializeField, Min(0)] private int hp = 1;
         [SerializeField, Min(0)] private int attack = 1;
         [SerializeField, Min(0)] private int defense = 1;
@@ -35,18 +74,49 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField, Min(0)] private int spDefense = 1;
         [SerializeField, Min(0)] private int speed = 1;
 
-        [Header("Stats base — inventados (opcional)")]
+        [Header("Estadísticas base — inventadas (opcional)")]
         [SerializeField] private CustomStatValue[] customStats;
 
         [Header("Aprendizaje y evolución")]
         [SerializeField] private LearnableMoveEntry[] learnset;
         [SerializeField] private EvolutionEntry[] evolutions;
 
+        [Header("Otros movimientos (MT, tutor y huevo)")]
+        [Tooltip("Movimientos que puede aprender por MT/MO.")]
+        [SerializeField] private MoveData[] machineMoves = new MoveData[0];
+        [Tooltip("Movimientos que le puede enseñar un tutor.")]
+        [SerializeField] private MoveData[] tutorMoves = new MoveData[0];
+        [Tooltip("Movimientos HUEVO: los hereda al nacer (crianza futura) y los usan los entrenadores Élite y Campeón.")]
+        [SerializeField] private MoveData[] eggMoves = new MoveData[0];
+
+        [Header("Crianza")]
+        [Tooltip("Sus grupos huevo (hasta 2). Dos especies pueden criar si comparten alguno.")]
+        [SerializeField] private EggGroupData[] eggGroups = new EggGroupData[0];
+
         // --- Getters de solo lectura ---
         public string Id => id;
         public string DisplayName => displayName;
         public ElementTypeData[] Types => types;
         public string AbilityId => abilityId;
+        public string SecondAbilityId => secondAbilityId;
+        public string HiddenAbilityId => hiddenAbilityId;
+        public MoveData[] MachineMoves => machineMoves;
+        public MoveData[] TutorMoves => tutorMoves;
+        public MoveData[] EggMoves => eggMoves;
+        public EggGroupData[] EggGroups => eggGroups;
+        public string GrowthCurveId => growthCurveId;
+        public int BaseExpYield => baseExpYield;
+        public EvYieldEntryData[] EvYield => evYield;
+        public int BaseFriendship => baseFriendship;
+        public int CatchRate => catchRate;
+        public int DexNumber => dexNumber;
+        public string Category => category;
+        public float HeightM => heightM;
+        public float WeightKg => weightKg;
+        public string DexColor => dexColor;
+        public string DexDescription => dexDescription;
+        public float FemalePercent => femalePercent;
+        public bool Legendary => legendary;
         public int Hp => hp;
         public int Attack => attack;
         public int Defense => defense;
@@ -70,6 +140,14 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
             public int value;
         }
 
+        /// <summary>Una entrada de rendimiento de EVs: id de la stat y cuántos puntos otorga.</summary>
+        [Serializable]
+        public struct EvYieldEntryData
+        {
+            [StatIdReference] public string statId;
+            public int amount;
+        }
+
         /// <summary>Una entrada del learnset: el movimiento (arrastrado) y a qué nivel se aprende.</summary>
         [Serializable]
         public struct LearnableMoveEntry
@@ -78,12 +156,63 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
             public int level;
         }
 
-        /// <summary>Una evolución: la especie destino (arrastrada) y el nivel requerido.</summary>
+        /// <summary>
+        /// Una evolución: la especie destino (arrastrada), CÓMO evoluciona (nivel, objeto, amistad o
+        /// intercambio) y sus requisitos. Con "nivel" se usa el nivel; con los demás, el nivel es un
+        /// mínimo opcional (0 = cualquiera).
+        /// </summary>
         [Serializable]
         public struct EvolutionEntry
         {
             public SpeciesData target;
             public int requiredLevel;
+            public CTEditor.GameDefinition.Domain.Species.EvolutionMethod method;
+            [ContentIdReference(typeof(ItemData))] public string itemId;
+            [Range(0, 255)] public int minFriendship;
+            [Tooltip("Condiciones EXTRA: todas deben cumplirse a la vez (de día, llevando un objeto, sabiendo un movimiento...).")]
+            public EvolutionConditionData[] conditions;
+        }
+
+        /// <summary>
+        /// Una condición extra de evolución. Solo se usan los campos que pide su "Qué comprueba" (el
+        /// Inspector esconde el resto). "Al revés" la invierte: "y SIN llevar la Piedra Eterna".
+        /// </summary>
+        [Serializable]
+        public sealed class EvolutionConditionData
+        {
+            public CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind check;
+            [Tooltip("Número: nivel, amistad (0-255) o porcentaje (1-99) según lo que compruebe.")]
+            public int value;
+            [ContentIdReference(typeof(ItemData))] public string itemId;
+            public MoveData move;
+            public ElementTypeData type;
+            public SpeciesData species;
+            public NatureData nature;
+            [ContentIdReference(typeof(WeatherData))] public string weatherId;
+            [Tooltip("Lugar del mapa o marca de la partida (texto libre, ej. monte_plateado o vencio_alto_mando).")]
+            public string text;
+            public CTEditor.GameDefinition.Domain.Species.DayTime time;
+            public CTEditor.GameDefinition.Domain.Species.StatRelation relation;
+            [Tooltip("Al revés: se cumple cuando NO pasa.")]
+            public bool negate;
+
+            /// <summary>El id que usa el dominio según lo que compruebe.</summary>
+            public string IdFor()
+            {
+                switch (check)
+                {
+                    case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.HoldsItem: return itemId ?? "";
+                    case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.KnowsMove: return move != null ? move.Id : "";
+                    case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.KnowsMoveOfType:
+                    case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.PartyHasType: return type != null ? type.Id : "";
+                    case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.PartyHasSpecies: return species != null ? species.Id : "";
+                    case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.Nature: return nature != null ? nature.Id : "";
+                    case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.MapWeather: return weatherId ?? "";
+                    case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.AtLocation:
+                    case CTEditor.GameDefinition.Domain.Species.EvolutionConditionKind.GameFlag: return text ?? "";
+                    default: return "";
+                }
+            }
         }
     }
 }

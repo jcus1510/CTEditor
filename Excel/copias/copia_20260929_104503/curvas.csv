@@ -1,0 +1,7 @@
+﻿id;nombre;forma;nivel_max;multiplicador_xp;tabla;tramos
+erratic;Errática;Errática;100;100;;2:n^3
+fast;Rápida;Rápida;100;100;;2:n^3
+fluctuating;Fluctuante;Fluctuante;100;100;;2:n^3
+medium_fast;Media (normal);Media;100;100;;2:n^3
+medium_slow;Parabólica;Parabólica;100;100;;2:n^3
+slow;Lenta;Lenta;100;100;;2:n^3

@@ -17,14 +17,17 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
     /// </summary>
     // [CreateAssetMenu] añade una opción al menú "Create" de Unity para que el autor genere este
     // asset con clic derecho en el Project. menuName = dónde aparece; fileName = nombre por defecto.
-    [CreateAssetMenu(menuName = "CTEditor/Element Type", fileName = "NewElementType")]
-    public sealed class ElementTypeData : ScriptableObject
+    [CreateAssetMenu(menuName = "CTEditor/Tipo", fileName = "NuevoTipo")]
+    public sealed class ElementTypeData : ScriptableObject, IContentAsset
     {
         // [SerializeField] + private = el campo se EDITA en el Inspector pero queda privado al código.
         // Es el patrón limpio: editable por el autor, de solo lectura para el resto del programa
         // (lo exponemos con una propiedad 'get' más abajo).
         [SerializeField] private string id;
         [SerializeField] private string displayName;
+
+        [Tooltip("Color del tipo (lo usan los editores y la interfaz: chips de tipo, tabla de tipos).")]
+        [SerializeField] private Color color = new Color(0.62f, 0.62f, 0.62f, 1f);
 
         /// <summary>
         /// Id ESTABLE del tipo (M.4). Es DISTINTO del nombre del archivo .asset: el archivo se puede
@@ -34,5 +37,6 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public string Id => id;
 
         public string DisplayName => displayName;
+        public Color Color => color;
     }
 }

@@ -1,0 +1,2 @@
+Aquí van los equipos prearmados del jugador (CTEditor → Personajes → Equipos prearmados).
+Sirven para empezar una partida o probar combates con un equipo listo, su dinero y su mochila.

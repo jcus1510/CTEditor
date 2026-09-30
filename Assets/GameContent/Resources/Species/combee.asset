@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: combee
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: combee
+  displayName: Combee
+  types:
+  - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
+  - {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
+  abilityId: honey_gather
+  secondAbilityId: 
+  hiddenAbilityId: hustle
+  growthCurveId: medium_slow
+  baseExpYield: 49
+  evYield:
+  - statId: speed
+    amount: 1
+  baseFriendship: 70
+  catchRate: 120
+  dexNumber: 415
+  category: Abejita
+  heightM: 0.3
+  weightKg: 5.5
+  dexColor: amarillo
+  dexDescription: "El tr\xEDo se forma al nacer y se pasa la vida recogiendo miel
+    de las flores para satisfacer a Vespiquen."
+  femalePercent: 12.5
+  legendary: 0
+  hp: 30
+  attack: 30
+  defense: 42
+  spAttack: 30
+  spDefense: 42
+  speed: 70
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 359f2bdcc3c908741b97a2374dbfe96a, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: a104d95bb4f50a742a792b72a428b9ac, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
+    level: 13
+  evolutions:
+  - target: {fileID: 11400000, guid: 8d377b0d6cc4f8c4c90eb9055428a238, type: 2}
+    requiredLevel: 21
+    method: 0
+    itemId: 
+    minFriendship: 0
+    conditions:
+    - check: 12
+      value: 12
+      itemId: 
+      move: {fileID: 0}
+      type: {fileID: 0}
+      species: {fileID: 0}
+      nature: {fileID: 0}
+      weatherId: 
+      text: 
+      time: 0
+      relation: 0
+      negate: 0
+  machineMoves: []
+  tutorMoves:
+  - {fileID: 11400000, guid: 3e2de162939d6f3408ccbe81ab6abca3, type: 2}
+  - {fileID: 11400000, guid: 13ca1e152dccf554aa16ad9bfcd9ae56, type: 2}
+  - {fileID: 11400000, guid: f050730ea6b643346a1bd3c76ba306a1, type: 2}
+  - {fileID: 11400000, guid: fcd420fd41769334a997d9b3c9e2a7a2, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 36afc492c55a0744fbfa3fb385bebc1d, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 1db6d26df99d9ca4180072eb358a7436, type: 2}

@@ -1,0 +1,6 @@
+﻿id;nombre;clase;ia;usa_objetos;mochila;curar_bajo;puede_cambiar;dinero_base;equipo;frase_inicio;frase_derrota;frase_victoria
+cazabichos_rick;Rick;Cazabichos;novato;si;potion:1;25;si;12;caterpie@6|weedle@6|metapod@7;¡Mira lo que he atrapado en el bosque!;¡Mis bichos...!;¡Los bichos mandan!
+joven_joaquin;Joaquín;Joven;novato;si;;25;si;16;rattata@4|pidgey@5;¡Eh, tú! ¡Mis monstruos son los más rápidos!;¡Jo! Ha sido mala suerte...;¡Te lo dije! ¡Son los mejores!
+lider_brock;Brock;Líder de gimnasio;listo;si;super_potion:1;25;si;100;geodude@12|onix@14;¡Mi voluntad es firme como una roca! ¡Demuéstrame lo que vales!;Te he subestimado. Toma la Medalla Roca.;Tus monstruos necesitan más entrenamiento.
+lider_misty;Misty;Líder de gimnasio;listo;si;super_potion:1|x_defense:1;25;si;100;staryu@18|starmie@21{sitrus_berry};¡Mi política es un ataque total con monstruos de agua!;Vaya, eres fuerte. Toma la Medalla Cascada.;¿Lo ves? ¡El agua lo arrasa todo!
+rival_azul;Azul;Rival;experto;si;potion:2|full_heal:1;25;si;35;pidgeotto@17|abra@16|rattata@15|squirtle@18{oran_berry};¡Llegas tarde! Ya te estaba esperando. ¡Veamos cuánto has mejorado!;¡¿Qué?! ¡No puede ser!;¡Ja! ¡Como siempre, soy el mejor!

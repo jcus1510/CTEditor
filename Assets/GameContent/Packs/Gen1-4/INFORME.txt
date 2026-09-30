@@ -1,0 +1,165 @@
+﻿PACK 1ª A 4ª GENERACIÓN — qué incluye, qué se ha aproximado y por qué
+======================================================================
+
+• 493 especies (Bulbasaur…Arceus): tipos, stats, EVs, XP, curva, captura y POKÉDEX
+  (número, categoría, altura, peso, color, % de hembras, legendario y descripción).
+• APRENDIZAJE (cada generación, su juego): por NIVEL, por MT/MO, por TUTOR y movimientos HUEVO de
+  Cristal (1-251), Esmeralda (252-386) y Platino (387-493). Columnas "aprende", "mt", "tutor" y "huevo".
+  Las evoluciones sin lista de huevo propia heredan la de la base de su familia (como en la crianza).
+• HABILIDADES: 1.ª, 2.ª y OCULTA (446 especies con oculta, de juegos posteriores). 161 habilidades con
+  su efecto configurado en habilidades.csv (editable en CTEditor → Criaturas → Habilidades). La 2.ª habilidad
+  sale en la mitad de los individuos; la oculta solo si se la pones a mano (o en un evento).
+• GRUPOS HUEVO de cada especie (columna "grupos_huevo"), listos para la futura crianza.
+• 466 movimientos con sus valores actuales y sus EFECTOS, también los de la 3.ª y 4.ª gen.
+• 108 ENTRENADORES de Kanto, Johto, Hoenn y Sinnoh con su NIVEL DE IA:
+     nivel 1: 12 entrenadores
+     nivel 2: 19 entrenadores
+     nivel 3: 18 entrenadores
+     nivel 4: 38 entrenadores
+     nivel 5: 21 entrenadores
+  Los movimientos que no están escritos los elige su nivel de IA (MT desde Aficionado, tutor desde Veterano,
+  huevo desde Élite, con sinergias). Cambia el nivel en la columna "nivel_ia" o en el editor de Entrenadores.
+
+ANTES DE IMPORTAR: el Centro de Contenido crea la base clásica (estados como Mofa o Canto Mortal, climas como
+Granizo, efectos de lado como Espacio Raro, objetos, niveles de IA y grupos huevo). Hazlo con «📦 Importar».
+
+ESPECIES SIN DATOS EN SU JUEGO (se usa el más cercano): deoxys (Rubí/Zafiro)
+
+EVOLUCIONES ESPECIALES (82):
+   pichu → pikachu  (amistad)
+   pikachu → raichu  (objeto:thunder_stone)
+   nidorina → nidoqueen  (objeto:moon_stone)
+   nidorino → nidoking  (objeto:moon_stone)
+   cleffa → clefairy  (amistad)
+   clefairy → clefable  (objeto:moon_stone)
+   vulpix → ninetales  (objeto:fire_stone)
+   igglybuff → jigglypuff  (amistad)
+   jigglypuff → wigglytuff  (objeto:moon_stone)
+   gloom → vileplume  (objeto:leaf_stone)
+   growlithe → arcanine  (objeto:fire_stone)
+   poliwhirl → poliwrath  (objeto:water_stone)
+   kadabra → alakazam  (intercambio)
+   machoke → machamp  (intercambio)
+   weepinbell → victreebel  (objeto:leaf_stone)
+   graveler → golem  (intercambio)
+   shellder → cloyster  (objeto:water_stone)
+   haunter → gengar  (intercambio)
+   exeggcute → exeggutor  (objeto:leaf_stone)
+   tyrogue → hitmonlee  (20 y stats:atq>def)
+   tyrogue → hitmonchan  (20 y stats:atq<def)
+   happiny → chansey  (subir y hora:dia y lleva:oval_stone)
+   staryu → starmie  (objeto:water_stone)
+   mime_jr → mr_mime  (subir y sabe:mimic)
+   eevee → vaporeon  (objeto:water_stone)
+   eevee → jolteon  (objeto:thunder_stone)
+   eevee → flareon  (objeto:fire_stone)
+   munchlax → snorlax  (amistad)
+   golbat → crobat  (amistad)
+   togepi → togetic  (amistad)
+   gloom → bellossom  (objeto:sun_stone)
+   azurill → marill  (amistad)
+   bonsly → sudowoodo  (subir y sabe:mimic)
+   poliwhirl → politoed  (intercambio:kings_rock)
+   sunkern → sunflora  (objeto:sun_stone)
+   eevee → espeon  (amistad y hora:dia)
+   eevee → umbreon  (amistad y hora:noche)
+   slowpoke → slowking  (intercambio:kings_rock)
+   onix → steelix  (intercambio:metal_coat)
+   scyther → scizor  (intercambio:metal_coat)
+   mantyke → mantine  (subir y equipo_especie:remoraid)
+   seadra → kingdra  (intercambio:dragon_scale)
+   porygon → porygon2  (intercambio:up_grade)
+   tyrogue → hitmontop  (20 y stats:atq=def)
+   chansey → blissey  (amistad)
+   wurmple → silcoon  (7 y azar:50)
+   wurmple → cascoon  (7 y !azar:50)
+   lombre → ludicolo  (objeto:water_stone)
+   nuzleaf → shiftry  (objeto:leaf_stone)
+   skitty → delcatty  (objeto:moon_stone)
+   budew → roselia  (amistad y hora:dia)
+   feebas → milotic  (amistad  [por belleza → aproximado con amistad (CTEditor no tiene concursos)])
+   chingling → chimecho  (amistad y hora:noche)
+   clamperl → huntail  (intercambio:deep_sea_tooth)
+   clamperl → gorebyss  (intercambio:deep_sea_scale)
+   roselia → roserade  (objeto:shiny_stone)
+   burmy → wormadam  (20 y azar:50  [solo hembras → aproximado con azar:50 (CTEditor aún no tiene sexos)])
+   burmy → mothim  (20 y !azar:50  [solo machos → aproximado con !azar:50 (CTEditor aún no tiene sexos)])
+   combee → vespiquen  (21 y azar:12  [solo hembras → aproximado con azar:12 (CTEditor aún no tiene sexos)])
+   aipom → ambipom  (subir y sabe:double_hit)
+   buneary → lopunny  (amistad)
+   misdreavus → mismagius  (objeto:dusk_stone)
+   murkrow → honchkrow  (objeto:dusk_stone)
+   riolu → lucario  (amistad y hora:dia)
+   sneasel → weavile  (subir y hora:noche y lleva:razor_claw)
+   magneton → magnezone  (subir y lugar:mt_coronet  [el lugar «mt_coronet» es un id: ponlo en el mapa donde quieras que ocurra])
+   lickitung → lickilicky  (subir y sabe:rollout)
+   rhydon → rhyperior  (intercambio:protector)
+   tangela → tangrowth  (subir y sabe:ancient_power)
+   electabuzz → electivire  (intercambio:electirizer)
+   magmar → magmortar  (intercambio:magmarizer)
+   togetic → togekiss  (objeto:shiny_stone)
+   yanma → yanmega  (subir y sabe:ancient_power)
+   eevee → leafeon  (subir y lugar:eterna_forest  [el lugar «eterna_forest» es un id: ponlo en el mapa donde quieras que ocurra])
+   eevee → glaceon  (subir y lugar:sinnoh_route_217  [el lugar «sinnoh_route_217» es un id: ponlo en el mapa donde quieras que ocurra])
+   gligar → gliscor  (subir y hora:noche y lleva:razor_fang)
+   piloswine → mamoswine  (subir y sabe:ancient_power)
+   porygon2 → porygon_z  (intercambio:dubious_disc)
+   kirlia → gallade  (objeto:dawn_stone y !azar:50  [solo machos → aproximado con !azar:50 (CTEditor aún no tiene sexos)])
+   nosepass → probopass  (subir y lugar:mt_coronet  [el lugar «mt_coronet» es un id: ponlo en el mapa donde quieras que ocurra])
+   dusclops → dusknoir  (intercambio:reaper_cloth)
+   snorunt → froslass  (objeto:dawn_stone y azar:50  [solo hembras → aproximado con azar:50 (CTEditor aún no tiene sexos)])
+
+EVOLUCIONES NO IMPORTADAS (1):
+   nincada → shedinja  (Shedinja aparece en el equipo al evolucionar Nincada: créalo con un evento)
+
+MOVIMIENTOS APROXIMADOS (24) — funcionan, pero no exactamente como en los juegos:
+   psywave (Psicoonda): daño = nivel del usuario (el original varía entre 0,5 y 1,5 veces el nivel)
+   sketch (Esquema): copia el movimiento para el combate (como Mimético), no para siempre
+   triple_kick (Triple Patada): sin aumentar la potencia en cada golpe
+   curse (Maldición): un solo movimiento que cambia según el usuario sea Fantasma o no (igual que en los juegos)
+   belly_drum (Tambor): sube el Ataque al máximo aunque no tenga PS suficientes
+   destiny_bond (Mismo Destino): dura hasta el final del turno siguiente
+   false_swipe (Falso Tortazo): puede debilitar (el original deja 1 PS)
+   attract (Atracción): enamora sin mirar el sexo (CTEditor aún no tiene sexos en combate)
+   present (Presente): potencia fija 40 (el original puede curar al rival)
+   pursuit (Persecución): sin doble daño al que se retira
+   hidden_power (Poder Oculto): Normal de potencia 60 (el original depende de los IVs)
+   beat_up (Paliza): un solo golpe de potencia 10 por miembro... aquí un golpe de 10 (el original golpea con todo el equipo)
+   uproar (Alboroto): ataca 3 turnos seguidos, pero no impide dormir
+   follow_me (Señuelo): sin efecto en combates individuales (sirve en dobles)
+   nature_power (Adaptación): usa Triataque (en los juegos depende del terreno)
+   helping_hand (Refuerzo): sin efecto en combates individuales (sirve en dobles)
+   grudge (Rabia): dura hasta el final del turno siguiente
+   secret_power (Daño Secreto): 30 % de paralizar (en los juegos el efecto depende del terreno)
+   camouflage (Camuflaje): se vuelve de tipo Normal (en los juegos depende del terreno)
+   natural_gift (Don Natural): Normal de potencia 60 (en los juegos depende de la baya que lleve)
+   feint (Amago): atraviesa Protección siempre (en la 4.ª gen. solo funcionaba si el rival se protegía)
+   fling (Lanzamiento): potencia fija 40 (en los juegos depende del objeto que lanza)
+   copycat (Copión): copia el último movimiento que le lanzaron (como Espejo)
+   judgment (Sentencia): de tipo Normal (en los juegos depende de la tabla que lleve Arceus)
+
+MOVIMIENTOS SIN SU EFECTO (2) — se importan con su precisión y PP, sin el efecto:
+   conversion_2 (Conversión 2): falta cambiar a un tipo que resista el último ataque recibido
+   spite (Rencor): falta quitar PP al último movimiento del rival
+
+HABILIDADES APROXIMADAS (4):
+   lightning_rod: comportamiento de la 5.ª gen. (absorbe Eléctrico y sube Atq. Esp.); en la 4.ª solo atraía ataques en dobles
+   storm_drain: comportamiento de la 5.ª gen. (absorbe Agua y sube Atq. Esp.); en la 4.ª solo atraía ataques en dobles
+   poison_heal: cura con cualquier estado (en los juegos, solo con veneno)
+   flower_gift: solo afecta al propio Cherrim (en dobles también a su aliado)
+
+HABILIDADES SIN EFECTO EN COMBATES INDIVIDUALES (11):
+   friend_guard (Compiescolta): solo en combates dobles
+   healer (Alma Cura): solo en combates dobles
+   honey_gather (Recogemiel): solo fuera de combate (recoge Miel)
+   illuminate (Iluminación): solo fuera de combate (encuentros)
+   minus (Menos): solo en combates dobles
+   multitype (Multitipo): cambia de tipo según la tabla que lleve Arceus (aún no hay tablas)
+   pickup (Recogida): solo fuera de combate (recoge objetos)
+   plus (Más): solo en combates dobles
+   rivalry (Rivalidad): depende del sexo (CTEditor aún no tiene sexos)
+   telepathy (Telepatía): solo en combates dobles
+   wind_rider (Surcavientos): depende de movimientos de viento de la 8.ª-9.ª gen.
+
+Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
+The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.

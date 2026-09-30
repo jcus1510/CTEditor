@@ -14,6 +14,9 @@ namespace CTEditor.Battle.Domain.Formulas
     /// </summary>
     public sealed class ClassicDamageFormula : IDamageFormula
     {
+        /// <summary>Tabla de críticos moderna (7ª gen.+), la que se usa si el Ruleset no dice otra.</summary>
+        public static readonly System.Collections.Generic.IReadOnlyList<int> DefaultCritTable = new[] { 24, 8, 2, 1 };
+
         public DamageResult Compute(DamageContext c)
         {
             // Sin potencia (movimientos de estado) no hay daño directo.
@@ -31,12 +34,18 @@ namespace CTEditor.Battle.Domain.Formulas
             // --- MODIFICADORES ---
             float stab = c.StabMultiplier > 0f ? c.StabMultiplier : (c.Stab ? 1.5f : 1f);
 
-            // Crítico: la probabilidad sube con el "crit stage" del movimiento. Denominadores clásicos:
-            // etapa 0 -> 1/16, 1 -> 1/8, 2 -> 1/4, 3 -> 1/3, 4+ -> 1/2. Usa el azar INYECTADO.
-            int[] denominators = { 16, 8, 4, 3, 2 };
-            int idx = c.CritStage < 0 ? 0 : (c.CritStage >= denominators.Length ? denominators.Length - 1 : c.CritStage);
-            bool isCrit = c.Rng.Next(0, denominators[idx]) == 0;
-            float crit = isCrit ? 1.5f : 1f;
+            // Crítico: la probabilidad sube con el "crit stage" del movimiento. La TABLA la decide el
+            // Ruleset (configurable). Moderna: etapa 0 -> 1/24, 1 -> 1/8, 2 -> 1/2, 3+ -> siempre.
+            // Un 0 en la tabla = nunca crítico. Usa el azar INYECTADO.
+            var denominators = c.CritDenominators ?? DefaultCritTable;
+            bool isCrit = false;
+            if (denominators.Count > 0)
+            {
+                int idx = c.CritStage < 0 ? 0 : (c.CritStage >= denominators.Count ? denominators.Count - 1 : c.CritStage);
+                int n = denominators[idx];
+                isCrit = n > 0 && c.Rng.Next(0, n) == 0;
+            }
+            float crit = isCrit ? c.CritMultiplier : 1f;
 
             // Variación aleatoria: entre 0.85 y 1.00, para que no todo golpe sea idéntico.
             float random = 0.85f + c.Rng.NextFloat() * 0.15f;

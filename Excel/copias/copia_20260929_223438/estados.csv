@@ -1,0 +1,37 @@
+﻿id;nombre;volatil;daño_por_turno;daño_creciente;cura_por_turno;prob_no_actuar;se_cura_al_retirarse;duracion;prob_recuperarse;autodaño;se_convierte_en;modificadores;tipos_inmunes;duracion_max;impide_cambio;bloquea_ataques;aguanta;cura_al_rival;mas_dificil_si_repite;captura_x;bloquea_estado;bloquea_repetir;bloquea_curar;bloquea_objetos;anula_habilidad;daño_si_estado;debilita_al_acabar;mismo_destino;rabia;devuelve_estado;robo;tipo_potenciado;tipo_potenciado_mult;refuerzo_se_gasta;inmune_tipos_extra;pierde_tipo;identificado;alcanzable_por;no_falla;cerca;en_suelo
+aqua_ring;Acua Aro;si;6,25;no;si;0;si;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+burn;Quemado;no;6,25;no;no;0;no;0;0;0;;attack:0,5;fire;0;no;no;no;no;no;1,5;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+cant_escape;Sin escapatoria;si;0;no;no;0;si;0;0;0;;;;0;si;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+charge;Carga;si;0;no;no;0;si;2;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;electric;2;si;;;no;;no;no;no
+confusion;Confusión;si;0;no;no;33;no;4;33;12,5;;;;5;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+curse;Maldición;si;25;no;no;0;si;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+destiny_bond;Mismo Destino;si;0;no;no;0;si;2;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;si;no;no;no;;1;no;;;no;;no;no;no
+drowsy;Somnoliento;si;0;no;no;0;no;1;0;0;sleep;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+embargo;Embargo;si;0;no;no;0;si;5;0;0;;;;0;no;no;no;no;no;1;no;no;no;si;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+endure;Aguante;si;0;no;no;0;si;1;0;0;;;;0;no;no;si;no;si;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+freeze;Congelado;no;0;no;no;100;no;0;20;0;;;ice;0;no;no;no;no;no;2,5;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+gastro_acid;Bilis;si;0;no;no;0;si;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;si;;no;no;no;no;no;;1;no;;;no;;no;no;no
+grudge;Rabia;si;0;no;no;0;si;2;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;si;no;no;;1;no;;;no;;no;no;no
+heal_block;Anticura;si;0;no;no;0;si;5;0;0;;;;0;no;no;no;no;no;1;no;no;si;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+identified;Identificado;si;0;no;no;0;si;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;si;normal|fighting;no;no;no
+imprison;Cerca;si;0;no;no;0;si;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;si;no
+infatuation;Enamorado;si;0;no;no;50;si;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+ingrain;Arraigo;si;6,25;no;si;0;si;0;0;0;;;;0;si;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;si
+leech_seed;Drenadoras;si;12,5;no;no;0;si;0;0;0;;;grass;0;no;no;no;si;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+lock_on;Fijar Blanco;si;0;no;no;0;si;2;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;si;no;no
+magic_coat;Capa Mágica;si;0;no;no;0;si;1;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;si;no;;1;no;;;no;;no;no;no
+magnet_rise;Levitón;si;0;no;no;0;si;5;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;ground;;no;;no;no;no
+miracle_eye;Gran Ojo;si;0;no;no;0;si;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;si;psychic;no;no;no
+nightmare;Pesadilla;si;25;no;no;0;si;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;sleep;no;no;no;no;no;;1;no;;;no;;no;no;no
+Paralisis;Parálisis;no;0;no;no;25;no;0;0;0;;speed:0,5;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+paralysis;Parálisis;no;0;no;no;25;no;0;0;0;;speed:0,5;electric;0;no;no;no;no;no;1,5;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+perish_song;Canto Mortal;si;0;no;no;0;si;4;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;si;no;no;no;no;;1;no;;;no;;no;no;no
+poison;Veneno;no;12,5;no;no;0;no;0;0;0;;;poison|steel;0;no;no;no;no;no;1,5;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+protect;Protegido;si;0;no;no;0;si;1;0;0;;;;0;no;si;no;no;si;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+roost;Respiro;si;0;no;no;0;si;1;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;flying;no;;no;no;no
+sleep;Dormido;no;0;no;no;100;no;3;33;0;;;;0;no;no;no;no;no;2,5;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+snatch;Robo;si;0;no;no;0;si;1;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;si;;1;no;;;no;;no;no;no
+taunt;Mofa;si;0;no;no;0;si;3;0;0;;;;0;no;no;no;no;no;1;si;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+torment;Tormento;si;0;no;no;0;si;0;0;0;;;;0;no;no;no;no;no;1;no;si;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+toxic;Tóxico;no;6,25;si;no;0;no;0;0;0;;;poison|steel;0;no;no;no;no;no;1,5;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no
+trapped;Atrapado;si;12,5;no;no;0;si;4;0;0;;;;5;si;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no

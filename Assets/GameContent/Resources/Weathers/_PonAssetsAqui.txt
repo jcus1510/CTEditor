@@ -1,0 +1,2 @@
+Aquí van los climas (CTEditor → Combate → Climas → «Crear los 4 climas clásicos»).
+Cada clima puede potenciar o debilitar tipos y dañar cada turno a todos salvo a los inmunes.

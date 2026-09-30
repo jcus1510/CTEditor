@@ -1,0 +1,47 @@
+﻿id;nombre;tipo;categoria;potencia;precision;pp;prioridad;objetivo;golpes;critico;dos_turnos;contacto;daño_especial;respeta_inmunidad;potencia_mod;formula_potencia;stat_ataque;stat_defensa;ataca_con_rival;etiquetas;efectos;animacion
+ancient_power;Poder Pasado;rock;especial;60;100;5;0;rival;1;0;no;no;;no;;;;;no;;stat_propio:attack:+1@10|&stat_propio:defense:+1@10|&stat_propio:sp_attack:+1@10|&stat_propio:sp_defense:+1@10|&stat_propio:speed:+1@10;0
+bite;Mordisco;dark;fisico;60;100;25;0;rival;1;0;no;si;;no;;;;;no;;amedrentar@30;0
+confuse_ray;Rayo Confuso;ghost;estado;0;100;10;0;rival;1;0;no;no;;no;;;;;no;;estado:confusion;0
+double_edge;Doble Filo;normal;fisico;120;100;15;0;rival;1;0;no;si;;no;;;;;no;;retroceso:33;0
+double_kick;Doble Patada;fighting;fisico;30;100;30;0;rival;2;0;no;si;;no;;;;;no;;;0
+double_team;Doble Equipo;normal;estado;0;nunca;15;0;propio;1;0;no;no;;no;;;;;no;;stat_propio:evasion:+1;0
+ember;Ascuas;fire;especial;40;100;25;0;rival;1;0;no;no;;no;;;;;no;;estado:burn@10;0
+endure;Aguante;normal;estado;0;nunca;10;4;propio;1;0;no;no;;no;;;;;no;;estado_propio:endure;0
+eruption;Estallido;fire;especial;150;100;5;0;rival;1;0;no;no;;no;;max(1, floor(150 * vida / 100));;;no;;;0
+facade;Fachada;normal;fisico;70;100;20;0;rival;1;0;no;si;;no;x2 [si propio.estado];;;;no;;;0
+fire_punch;Puño Fuego;fire;fisico;75;100;15;0;rival;1;0;no;si;;no;;;;;no;puño;estado:burn@10;0
+fly;Vuelo;flying;fisico;90;95;15;0;rival;1;0;carga;si;;no;;;;;no;;;0
+foul_play;Juego Sucio;dark;fisico;95;100;15;0;rival;1;0;no;si;;no;;;;;si;;;0
+fury_attack;Ataque Furia;normal;fisico;15;85;20;0;rival;2-5;0;no;si;;no;;;;;no;;;0
+growl;Gruñido;normal;estado;0;100;40;0;rival;1;0;no;no;;no;;;;;no;;stat:attack:-1;0
+guillotine;Guillotina;normal;fisico;0;30;5;0;rival;1;0;no;si;ko;no;;;;;no;;;0
+heal_pulse;Pulso Cura;psychic;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;curar_rival:50;0
+hex;Infortunio;ghost;especial;65;100;10;0;rival;1;0;no;no;;no;x2 [si rival.estado];;;;no;;;0
+hyper_beam;Hiperrayo;normal;especial;150;90;5;0;rival;1;0;recarga;no;;no;;;;;no;;;0
+leech_seed;Drenadoras;grass;estado;0;90;10;0;rival;1;0;no;no;;no;;;;;no;;estado:leech_seed;0
+mega_drain;Megaagotar;grass;especial;40;100;15;0;rival;1;0;no;no;;no;;;;;no;;drenar:50;0
+payback;Vendetta;dark;fisico;50;100;10;0;rival;1;0;no;si;;no;x2 [si rival.ya_actuo];;;;no;;;0
+protect;Protección;normal;estado;0;nunca;10;4;propio;1;0;no;no;;no;;;;;no;;estado_propio:protect;0
+psyshock;Psicocarga;psychic;especial;80;100;10;0;rival;1;0;no;no;;no;;;;defense;no;;;0
+quick_attack;Ataque Rápido;normal;fisico;40;100;30;1;rival;1;0;no;si;;no;;;;;no;;;0
+rain_dance;Danza Lluvia;water;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;clima:rain;0
+recover;Recuperación;normal;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;curar:50;0
+refresh;Alivio;normal;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;curar_estado;0
+return;Retribución;normal;fisico;102;100;20;0;rival;1;0;no;si;;no;;max(1, floor(amistad / 2.5));;;no;;;0
+sandstorm;Tormenta Arena;rock;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;clima:sandstorm;0
+sand_attack;Ataque Arena;ground;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;;stat:accuracy:-1;0
+seismic_toss;Sísmico;fighting;fisico;0;100;20;0;rival;1;0;no;si;nivel;no;;;;;no;;;0
+slash;Cuchillada;normal;fisico;70;100;20;0;rival;1;1;no;si;;no;;;;;no;;;0
+sleep_powder;Somnífero;grass;estado;0;75;15;0;rival;1;0;no;no;;no;;;;;no;;estado:sleep;0
+sonic_boom;Bomba Sónica;normal;especial;0;90;20;0;rival;1;0;no;no;fijo:20;no;;;;;no;;;0
+struggle;Forcejeo;typeless;fisico;50;nunca;1;0;rival;1;0;no;si;;no;;;;;no;;retroceso_ps:25;0
+sunny_day;Día Soleado;fire;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;clima:sun;0
+super_fang;Superdiente;normal;fisico;0;90;10;0;rival;1;0;no;si;mitad;no;;;;;no;;;0
+swords_dance;Danza Espada;normal;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;stat_propio:attack:+2;0
+tackle;Placaje;normal;fisico;40;100;35;0;rival;1;0;no;si;;no;;;;;no;;;0
+thunder_shock;Impactrueno;electric;especial;40;100;30;0;rival;1;0;no;no;;no;;;;;no;;estado:paralysis@10;0
+thunder_wave;Onda Trueno;electric;estado;0;90;20;0;rival;1;0;no;no;;si;;;;;no;;estado:paralysis;0
+toxic;Tóxico;poison;estado;0;90;10;0;rival;1;0;no;no;;no;;;;;no;;estado:toxic;0
+venoshock;Carga Tóxica;poison;especial;65;100;10;0;rival;1;0;no;no;;no;x2 [si rival.estado=poison] | x2 [si rival.estado=toxic];;;;no;;;0
+water_gun;Pistola Agua;water;especial;40;100;25;0;rival;1;0;no;no;;no;;;;;no;;;0
+wrap;Constricción;normal;fisico;15;90;20;0;rival;1;0;no;si;;no;;;;;no;;estado:trapped;0

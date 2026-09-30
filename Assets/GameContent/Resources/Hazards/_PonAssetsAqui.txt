@@ -1,0 +1,2 @@
+Aquí van las TRAMPAS DE CAMPO (HazardData): Púas, Trampa Rocas, Púas Tóxicas, Red Viscosa y las tuyas.
+Créalas con CTEditor → Combate → Trampas de campo (botón «Crear las 4 trampas clásicas»).

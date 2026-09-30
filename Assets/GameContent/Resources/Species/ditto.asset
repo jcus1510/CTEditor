@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: ditto
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: ditto
+  displayName: Ditto
+  types:
+  - {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
+  abilityId: limber
+  secondAbilityId: 
+  hiddenAbilityId: imposter
+  growthCurveId: medium_fast
+  baseExpYield: 101
+  evYield:
+  - statId: hp
+    amount: 1
+  baseFriendship: 70
+  catchRate: 35
+  dexNumber: 132
+  category: "Transformaci\xF3n"
+  heightM: 0.3
+  weightKg: 4
+  dexColor: morado
+  dexDescription: Puede alterar por completo su estructura celular para emular cualquier
+    objeto que vea.
+  femalePercent: -1
+  legendary: 0
+  hp: 48
+  attack: 48
+  defense: 48
+  spAttack: 48
+  spDefense: 48
+  speed: 48
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 475282a4e69e39a4d821c1f4d232810d, type: 2}
+    level: 1
+  evolutions: []
+  machineMoves: []
+  tutorMoves: []
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: e3eee8b94546dbc47a8b9f589a41aff2, type: 2}

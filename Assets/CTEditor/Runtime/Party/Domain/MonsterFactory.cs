@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using CTEditor.SharedKernel.ValueObjects;
+using CTEditor.SharedKernel.Abstractions;
 using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Domain.Species;
+using CTEditor.GameDefinition.Domain.Growth;
 using CTEditor.GameDefinition.Domain.Rules;
 
 namespace CTEditor.Party.Domain
@@ -28,7 +30,11 @@ namespace CTEditor.Party.Domain
             int level,
             Ruleset ruleset,
             IStatGrowthFormula growth,
-            IReadOnlyList<Id<Move>> chosenMoves = null)
+            IReadOnlyList<Id<Move>> chosenMoves = null,
+            GrowthCurve curve = null,
+            IRng ivRng = null,
+            Nature nature = null,
+            int? fixedIv = null)
         {
             if (species == null) throw new ArgumentNullException(nameof(species));
             if (ruleset == null) throw new ArgumentNullException(nameof(ruleset));
@@ -37,14 +43,28 @@ namespace CTEditor.Party.Domain
             // 1) Nivel recortado al tope de las reglas.
             var lvl = Level.Clamped(level, ruleset.LevelCap);
 
+            // 1b) GENÉTICA (Lote 3).
+            //     IVs, por prioridad:
+            //       - fixedIv: el autor fijó un valor para TODAS las stats (típico de un entrenador
+            //         diseñado: "este Gyarados tiene IVs perfectos"). Se recorta a [0, MaxIv].
+            //       - ivRng: se tiran al azar 0..MaxIv por stat, como al nacer en los clásicos. El azar
+            //         se INYECTA (IRng), así el dominio sigue puro y un test puede fijar la semilla.
+            //       - ninguno: sin IVs (se leen como 0). Así todo lo anterior sigue igual.
+            //     Si el Ruleset tiene MaxIv = 0 (juego sin IVs), nunca se generan.
+            //     EVs: nacen vacíos, con los topes del Ruleset.
+            var ivs = BuildIvs(species, ruleset, ivRng, fixedIv);
+            var efforts = new EffortValues(ruleset.MaxEvPerStat, ruleset.MaxEvTotal);
+
             // 2) Stats efectivos: por cada stat base de la Species, la fórmula calcula el valor del
-            //    individuo a este nivel. Recorremos el StatBlock base (clásicos + inventados por igual)
-            //    y construimos un StatBlock nuevo con los resultados.
+            //    individuo a este nivel CON su genética (IVs recién decididos, EVs a 0, naturaleza).
+            //    Recorremos el StatBlock base (clásicos + inventados por igual).
             var statsBuilder = new StatBlock.Builder();
             foreach (var statId in species.BaseStats.Stats)
             {
                 int baseValue = species.BaseStats.Of(statId);
-                int computed = growth.Compute(statId, baseValue, lvl.Value);
+                int iv = ivs != null ? ivs.Of(statId) : 0;
+                int naturePct = nature != null ? nature.PercentFor(statId) : 100;
+                int computed = growth.Compute(statId, baseValue, lvl.Value, iv, 0, naturePct);
                 statsBuilder.Set(statId, computed);
             }
             var stats = statsBuilder.Build();
@@ -59,7 +79,36 @@ namespace CTEditor.Party.Domain
             // 4) Nace con los PS llenos.
             int maxHp = stats.Of(StatId.Hp);
 
-            return new MonsterInstance(id, species.Id, lvl, stats, maxHp, moves);
+            // 5) XP inicial coherente con el nivel: si conocemos la curva, arranca justo en el umbral
+            //    de su nivel; si no, en 0 (AddExperience se autocorrige luego sin bajar de nivel).
+            var startXp = curve != null
+                ? new Experience(curve.XpToReachLevel(lvl.Value))
+                : Experience.Zero;
+
+            var created = new MonsterInstance(id, species.Id, lvl, stats, maxHp, moves, startXp, ivs, efforts, nature);
+            created.SetFriendship(species.BaseFriendship); // amistad inicial de su especie
+            // Habilidad 1.ª o 2.ª: como en la 3.ª gen. (que la decidía un número interno), sale de su genética
+            // (paridad del IV de PS). Así no gasta tiradas de azar y los combates grabados siguen igual.
+            if (species.SecondAbility.HasValue && ivs != null)
+                created.SetAbilitySlot(ivs.Of(StatId.Hp) % 2);
+            return created;
+        }
+
+        // Decide los IVs según la prioridad explicada arriba. Devuelve null si no hay IVs.
+        private static StatBlock BuildIvs(Species species, Ruleset ruleset, IRng ivRng, int? fixedIv)
+        {
+            if (ruleset.MaxIv <= 0) return null;          // juego sin IVs
+            if (!fixedIv.HasValue && ivRng == null) return null;
+
+            var b = new StatBlock.Builder();
+            foreach (var statId in species.BaseStats.Stats)
+            {
+                int value = fixedIv.HasValue
+                    ? Math.Max(0, Math.Min(ruleset.MaxIv, fixedIv.Value))
+                    : ivRng.Next(0, ruleset.MaxIv + 1);   // Next es [min, max) -> +1 para incluir MaxIv
+                b.Set(statId, value);
+            }
+            return b.Build();
         }
 
         // Toma del learnset los movimientos cuyo nivel de aprendizaje es <= nivel actual, los ordena
@@ -75,10 +124,11 @@ namespace CTEditor.Party.Domain
             // Ordena ascendente por nivel. La lambda (a, b) => ... es el criterio de comparación.
             eligible.Sort((a, b) => a.Level.CompareTo(b.Level));
 
+            // Recorre de más reciente a más antiguo, sin repetir movimientos (un learnset puede listar
+            // el mismo movimiento a dos niveles), y se queda con los últimos N en orden de aprendizaje.
             var result = new List<Id<Move>>();
-            int start = Math.Max(0, eligible.Count - maxMoves); // ventana de los últimos N
-            for (int i = start; i < eligible.Count; i++)
-                result.Add(eligible[i].Move);
+            for (int i = eligible.Count - 1; i >= 0 && result.Count < maxMoves; i--)
+                if (!result.Contains(eligible[i].Move)) result.Insert(0, eligible[i].Move);
 
             return result;
         }

@@ -76,7 +76,13 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 foreach (var e in data.Evolutions)
                 {
                     if (e.target == null) continue;
-                    evolutions.Add(new Evolution(new Id<Species>(e.target.Id), e.requiredLevel));
+                    // Un método "nivel" sin nivel (0) no tiene sentido: se trata como nivel 1.
+                    int lvl = e.method == EvolutionMethod.Level ? Math.Max(1, e.requiredLevel) : e.requiredLevel;
+                    var conditions = new List<EvolutionCondition>();
+                    if (e.conditions != null)
+                        foreach (var c in e.conditions)
+                            if (c != null) conditions.Add(new EvolutionCondition(c.check, c.value, c.IdFor(), c.time, c.relation, c.negate));
+                    evolutions.Add(new Evolution(new Id<Species>(e.target.Id), e.method, lvl, (e.itemId ?? "").Trim(), e.minFriendship, conditions));
                 }
             }
 
@@ -85,6 +91,23 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 ? (AbilityId?)null
                 : new AbilityId(data.AbilityId);
 
+            // Curva de XP por id (si el autor la dejó vacía, queda null = por defecto).
+            CTEditor.SharedKernel.ValueObjects.Id<CTEditor.GameDefinition.Domain.Growth.GrowthCurve>? growthCurve =
+                string.IsNullOrWhiteSpace(data.GrowthCurveId)
+                    ? (CTEditor.SharedKernel.ValueObjects.Id<CTEditor.GameDefinition.Domain.Growth.GrowthCurve>?)null
+                    : new CTEditor.SharedKernel.ValueObjects.Id<CTEditor.GameDefinition.Domain.Growth.GrowthCurve>(data.GrowthCurveId);
+
+            // 5) EVs que otorga derrotarla. Se ignoran filas a medio llenar (sin stat o con 0 puntos).
+            var evYield = new List<EvYieldEntry>();
+            if (data.EvYield != null)
+            {
+                foreach (var e in data.EvYield)
+                {
+                    if (string.IsNullOrWhiteSpace(e.statId) || e.amount <= 0) continue;
+                    evYield.Add(new EvYieldEntry(new StatId(e.statId.Trim()), e.amount));
+                }
+            }
+
             return new Species(
                 new Id<Species>(data.Id),
                 data.DisplayName,
@@ -92,7 +115,39 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 baseStats,
                 learnset,
                 evolutions,
-                ability);
+                ability,
+                growthCurve,
+                data.BaseExpYield,
+                evYield,
+                data.BaseFriendship,
+                data.CatchRate,
+                new PokedexEntry(data.DexNumber, data.Category, data.HeightM, data.WeightKg, data.DexColor, data.DexDescription,
+                    data.FemalePercent, data.Legendary),
+                OptionalAbility(data.SecondAbilityId),
+                OptionalAbility(data.HiddenAbilityId),
+                MoveIds(data.MachineMoves), MoveIds(data.TutorMoves), MoveIds(data.EggMoves),
+                EggGroupIds(data.EggGroups));
+        }
+
+        private static AbilityId? OptionalAbility(string id)
+            => string.IsNullOrWhiteSpace(id) ? (AbilityId?)null : new AbilityId(id.Trim());
+
+        private static List<Id<Move>> MoveIds(MoveData[] moves)
+        {
+            var list = new List<Id<Move>>();
+            if (moves == null) return list;
+            foreach (var m in moves)
+                if (m != null && !string.IsNullOrWhiteSpace(m.Id)) { var id = new Id<Move>(m.Id); if (!list.Contains(id)) list.Add(id); }
+            return list;
+        }
+
+        private static List<string> EggGroupIds(EggGroupData[] groups)
+        {
+            var list = new List<string>();
+            if (groups == null) return list;
+            foreach (var g in groups)
+                if (g != null && !string.IsNullOrWhiteSpace(g.Id) && !list.Contains(g.Id)) list.Add(g.Id);
+            return list;
         }
     }
 }

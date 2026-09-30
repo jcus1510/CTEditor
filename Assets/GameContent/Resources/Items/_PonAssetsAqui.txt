@@ -1,0 +1,1 @@
+Pon aqui tus assets de Items (clic derecho -> Create -> CTEditor -> ...). Se indexan por su campo Id, no por el nombre de archivo.

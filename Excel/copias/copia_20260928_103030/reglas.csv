@@ -1,0 +1,2 @@
+﻿id;nombre;equipo_max;movimientos_max;nivel_max;formula_daño;iv_max;ev_max_stat;ev_max_total;usa_pp;forcejeo;tabla_criticos;multiplicador_critico;fisico_ataque;fisico_defensa;especial_ataque;especial_defensa
+classic;Clásico;6;4;100;classic;31;252;510;si;struggle;24|8|2|1;1,5;attack;defense;sp_attack;sp_defense

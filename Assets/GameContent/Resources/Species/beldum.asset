@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: beldum
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: beldum
+  displayName: Beldum
+  types:
+  - {fileID: 11400000, guid: bf405ce6e8c187d4eb662c226bd3ab72, type: 2}
+  - {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
+  abilityId: clear_body
+  secondAbilityId: 
+  hiddenAbilityId: light_metal
+  growthCurveId: slow
+  baseExpYield: 60
+  evYield:
+  - statId: defense
+    amount: 1
+  baseFriendship: 70
+  catchRate: 3
+  dexNumber: 374
+  category: Bola Hierro
+  heightM: 0.6
+  weightKg: 95.2
+  dexColor: azul
+  dexDescription: "Los pulsos magn\xE9ticos de su cuerpo repelen la gravedad, lo
+    que le permite flotar en el aire."
+  femalePercent: -1
+  legendary: 0
+  hp: 40
+  attack: 55
+  defense: 80
+  spAttack: 35
+  spDefense: 60
+  speed: 30
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 95c0d63a4a28c9f4a82a3da9fecf1712, type: 2}
+    level: 1
+  evolutions:
+  - target: {fileID: 11400000, guid: 47b5b8af6f496dd4f9f815928c26aa2a, type: 2}
+    requiredLevel: 20
+    method: 0
+    itemId: 
+    minFriendship: 0
+    conditions: []
+  machineMoves: []
+  tutorMoves: []
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 2a9396fa90416b64f84c4a3cdedb4711, type: 2}

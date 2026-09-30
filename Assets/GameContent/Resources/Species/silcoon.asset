@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: silcoon
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: silcoon
+  displayName: Silcoon
+  types:
+  - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
+  abilityId: shed_skin
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: medium_fast
+  baseExpYield: 72
+  evYield:
+  - statId: defense
+    amount: 2
+  baseFriendship: 70
+  catchRate: 120
+  dexNumber: 266
+  category: Capullo
+  heightM: 0.6
+  weightKg: 10
+  dexColor: blanco
+  dexDescription: "Se agarra con su seda a las ramas de un \xE1rbol y espera su evoluci\xF3n
+    bebiendo agua de lluvia."
+  femalePercent: 50
+  legendary: 0
+  hp: 50
+  attack: 35
+  defense: 55
+  spAttack: 25
+  spDefense: 25
+  speed: 15
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 0a7589ec211131d45b8c65c725894de0, type: 2}
+    level: 1
+  evolutions:
+  - target: {fileID: 11400000, guid: 16b55d6e08fc6724387f0cce3fe04746, type: 2}
+    requiredLevel: 10
+    method: 0
+    itemId: 
+    minFriendship: 0
+    conditions: []
+  machineMoves: []
+  tutorMoves: []
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 1db6d26df99d9ca4180072eb358a7436, type: 2}

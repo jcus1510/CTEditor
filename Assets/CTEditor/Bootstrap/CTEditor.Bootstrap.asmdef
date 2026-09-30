@@ -10,7 +10,9 @@
         "CTEditor.Battle.Domain",
         "CTEditor.Eventing.Domain",
         "UnityEngine.UI",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "CTEditor.Adventure.Domain",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -19,6 +21,12 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "1.0.0",
+            "define": "CTEDITOR_INPUT_SYSTEM"
+        }
+    ],
     "noEngineReferences": false
 }

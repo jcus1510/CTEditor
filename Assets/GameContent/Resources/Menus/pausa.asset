@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71c352d24ca6284faa1ca3345f90f52, type: 3}
+  m_Name: pausa
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MenuData
+  id: pausa
+  displayName: "Men\xFA de pausa (cl\xE1sico)"
+  title: 
+  options:
+  - id: pokedex
+    label: "POK\xE9DEX"
+    action: 5
+    target: 
+    requiredFlag: tiene_pokedex
+    hiddenByFlag: 
+    help: Las especies que has visto y capturado.
+  - id: equipo
+    label: "POK\xE9MON"
+    action: 2
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 'Tu equipo: resumen, orden y objetos.'
+  - id: mochila
+    label: MOCHILA
+    action: 3
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: Tus objetos.
+  - id: ficha
+    label: '{jugador}'
+    action: 6
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: Tu ficha de entrenador.
+  - id: guardar
+    label: GUARDAR
+    action: 7
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: Guarda la partida.
+  - id: opciones
+    label: OPCIONES
+    action: 8
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: "Velocidad del texto y m\xE1s."
+  - id: salir
+    label: SALIR
+    action: 0
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: "Cierra este men\xFA."
+  columns: 1
+  wrap: 1
+  rememberCursor: 1
+  cancelCloses: 1
+  cancelOptionId: 
+  anchor: 0

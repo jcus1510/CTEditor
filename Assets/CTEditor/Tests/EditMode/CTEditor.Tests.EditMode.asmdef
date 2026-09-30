@@ -7,9 +7,12 @@
         "CTEditor.SharedKernel",
         "CTEditor.GameContracts",
         "CTEditor.GameDefinition.Domain",
+        "CTEditor.GameDefinition",
+        "CTEditor.GameDefinition.Editor",
         "CTEditor.Party.Domain",
         "CTEditor.Battle.Domain",
-        "CTEditor.Eventing.Domain"
+        "CTEditor.Eventing.Domain",
+        "CTEditor.Adventure.Domain"
     ],
     "includePlatforms": [
         "Editor"

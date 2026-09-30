@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: alto_mando_agatha
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: alto_mando_agatha
+  displayName: Agatha
+  trainerClass: Alto Mando
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: bc0caf2b3ee63b540acec34fe72ee456, type: 2}
+    level: 56
+    moves:
+    - {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
+    - {fileID: 11400000, guid: 16b091bddc2c69c4caf47ebb9fc70281, type: 2}
+    - {fileID: 11400000, guid: 57b6a36f57133a848a8e6f2372fe652c, type: 2}
+    - {fileID: 11400000, guid: 88aea8fc365bb0f438f437d235048d68, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 57a9b4deca86cc547958c1a00b6d44f5, type: 2}
+    level: 56
+    moves:
+    - {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+    - {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
+    - {fileID: 11400000, guid: dd8887e1ce438d547a8d865bd70a8ed7, type: 2}
+    - {fileID: 11400000, guid: 25c737bace85c664989731b45995b0fc, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 9f8050426d9ce95438006f82732fc8a8, type: 2}
+    level: 55
+    moves:
+    - {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
+    - {fileID: 11400000, guid: 16b091bddc2c69c4caf47ebb9fc70281, type: 2}
+    - {fileID: 11400000, guid: 57b6a36f57133a848a8e6f2372fe652c, type: 2}
+    - {fileID: 11400000, guid: 88aea8fc365bb0f438f437d235048d68, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: da1a0cdada5431a4585f61e226a97698, type: 2}
+    level: 58
+    moves:
+    - {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+    - {fileID: 11400000, guid: 7109fca7337deef409398e6496f772a8, type: 2}
+    - {fileID: 11400000, guid: 9736104cee34b11448d721dd65cfd988, type: 2}
+    - {fileID: 11400000, guid: b8e0ae1c2ab2a7d46b91339f304564be, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: bc0caf2b3ee63b540acec34fe72ee456, type: 2}
+    level: 60
+    moves:
+    - {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
+    - {fileID: 11400000, guid: 16b091bddc2c69c4caf47ebb9fc70281, type: 2}
+    - {fileID: 11400000, guid: 57b6a36f57133a848a8e6f2372fe652c, type: 2}
+    - {fileID: 11400000, guid: 88aea8fc365bb0f438f437d235048d68, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 5
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: Los fantasmas no perdonan, jovencito.
+  defeatLine: "Bah... ganas t\xFA."
+  victoryLine: Jijiji...

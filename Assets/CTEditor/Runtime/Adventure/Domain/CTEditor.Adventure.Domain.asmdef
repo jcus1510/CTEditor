@@ -1,0 +1,19 @@
+{
+    "name": "CTEditor.Adventure.Domain",
+    "rootNamespace": "CTEditor.Adventure.Domain",
+    "references": [
+        "CTEditor.SharedKernel",
+        "CTEditor.GameDefinition.Domain",
+        "CTEditor.Party.Domain",
+        "CTEditor.Battle.Domain"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee19aa4ab1cff5b43851b67f83edecbf, type: 3}
+  m_Name: classic
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.RulesetData
+  id: classic
+  displayName: "Cl\xE1sico"
+  maxPartySize: 6
+  maxMovesPerMonster: 4
+  levelCap: 100
+  damageFormulaId: classic
+  maxIv: 31
+  maxEvPerStat: 252
+  maxEvTotal: 510
+  usePp: 1
+  struggleMoveId: struggle
+  critDenominators: 18000000080000000200000001000000
+  critMultiplier: 1.5
+  physicalAttackStat: attack
+  physicalDefenseStat: defense
+  specialAttackStat: sp_attack
+  specialDefenseStat: sp_defense
+  fleeAlwaysWorks: 0
+  canFleeTrainerBattles: 0
+  canCatchTrainerMonsters: 0
+  catchRateMultiplier: 1
+  sendToBoxWhenFull: 1
+  expShareAll: 0
+  expShareOthersPercent: 50
+  learnMovesOnLevelUp: 1
+  evolveAfterBattle: 1
+  friendshipPerLevelUp: 3
+  friendshipLostOnFaint: 1
+  startingMoney: 3000
+  moneyLostOnBlackoutPercent: 50
+  healOnBlackout: 1

@@ -7,8 +7,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
     /// La ficha que rellena el autor para un movimiento. Igual que ElementTypeData, vive en
     /// Infrastructure y la traduce su mapper. Aquí aparecen dos cosas nuevas que vale la pena ver.
     /// </summary>
-    [CreateAssetMenu(menuName = "CTEditor/Move", fileName = "NewMove")]
-    public sealed class MoveData : ScriptableObject
+    [CreateAssetMenu(menuName = "CTEditor/Movimiento", fileName = "NuevoMovimiento")]
+    public sealed class MoveData : ScriptableObject, IContentAsset
     {
         [SerializeField] private string id;
         [SerializeField] private string displayName;
@@ -56,8 +56,49 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Tooltip("¿Hace contacto físico? Lo usan habilidades como Estática o Cuerpo Llama.")]
         [SerializeField] private bool makesContact = false;
 
-        [Header("Presentacion (lo lee solo la UI; el dominio lo ignora)")]
-        [Tooltip("Segundos que la UI espera para la animacion de este movimiento (0 = sin pausa de animacion).")]
+        [Header("Daño especial (ignora potencia y estadísticas)")]
+        [Tooltip("None = daño normal. Fixed = siempre la cantidad de abajo (Bomba Sónica). UserLevel = el nivel del usuario (Sísmico). HalfTargetHp = mitad de los PS actuales (Superdiente). OneHitKo = KO directo si el objetivo no tiene más nivel (Guillotina).")]
+        [SerializeField] private FixedDamageKind fixedDamage = FixedDamageKind.None;
+        [Tooltip("PS exactos que quita si el daño especial es Fixed.")]
+        [SerializeField, Min(0)] private int fixedDamageAmount = 0;
+
+        [Tooltip("Solo movimientos de ESTADO: si se marca, no afecta a quien es inmune por tipo (Onda Trueno no afecta a Tierra).")]
+        [SerializeField] private bool respectsTypeImmunity = false;
+
+        [Header("Potencia avanzada (opcional: vacío = potencia normal)")]
+        [Tooltip("Multiplicadores de potencia con condiciones. Ej.: ×2 si propio tiene estado (Fachada). Sin condiciones = siempre.")]
+        [SerializeField] private PowerModifierData[] powerModifiers = new PowerModifierData[0];
+        [Tooltip("Fórmula que REEMPLAZA la potencia (vacío = usar 'Power'). Variables: potencia, nivel, nivel_rival, vida, vida_rival (0-100), amistad, velocidad, velocidad_rival. Ej.: 150 * vida / 100")]
+        [SerializeField] private string powerFormula = "";
+
+        [Header("Estadísticas del daño (vacío = las de su categoría)")]
+        [Tooltip("Stat con la que ATACA. Vacío = Ataque (físico) o Atq. Esp. (especial).")]
+        [StatIdReference, SerializeField] private string attackStat = "";
+        [Tooltip("Stat con la que se DEFIENDE el rival. Vacío = Defensa (físico) o Def. Esp. (especial). Psicocarga: 'defense'.")]
+        [StatIdReference, SerializeField] private string defenseStat = "";
+        [Tooltip("Ataca con la estadística del RIVAL en vez de la propia (Juego Sucio).")]
+        [SerializeField] private bool attackStatFromTarget = false;
+
+        [Tooltip("Etiquetas libres para agrupar movimientos: puño, sonido, mordisco, polvo... Las habilidades pueden potenciarlas.")]
+        [SerializeField] private string[] tags = new string[0];
+
+        [Header("Requisitos (vacío = siempre funciona)")]
+        [Tooltip("Solo funciona si se cumplen TODAS. Si no: «¡Pero falló!». Comesueños: el rival está dormido (rival · tiene el estado · sleep).")]
+        [SerializeField] private ConditionData[] requirements = new ConditionData[0];
+
+        [Header("Tipo según el clima (vacío = siempre el suyo)")]
+        [Tooltip("Meteorobola: rain → Agua, sun → Fuego, hail → Hielo, sandstorm → Roca.")]
+        [SerializeField] private WeatherTypeEntry[] typeByWeather = new WeatherTypeEntry[0];
+
+        [System.Serializable]
+        public sealed class WeatherTypeEntry
+        {
+            [ContentIdReference(typeof(WeatherData))] public string weatherId = "rain";
+            public ElementTypeData type;
+        }
+
+        [Header("Presentación (solo la usa la interfaz; no afecta al combate)")]
+        [Tooltip("Segundos que la interfaz espera para la animación de este movimiento (0 = sin pausa de animación).")]
         [SerializeField] private float animationSeconds = 0f;
 
         public string Id => id;
@@ -76,7 +117,18 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public int CritStage => critStage;
         public TwoTurnKind TwoTurn => twoTurn;
         public bool MakesContact => makesContact;
+        public FixedDamageKind FixedDamage => fixedDamage;
+        public int FixedDamageAmount => fixedDamageAmount;
+        public bool RespectsTypeImmunity => respectsTypeImmunity;
+        public PowerModifierData[] PowerModifiers => powerModifiers;
+        public string PowerFormula => powerFormula;
+        public string AttackStat => attackStat;
+        public string DefenseStat => defenseStat;
+        public bool AttackStatFromTarget => attackStatFromTarget;
+        public string[] Tags => tags;
+        public ConditionData[] Requirements => requirements ?? new ConditionData[0];
         public float AnimationSeconds => animationSeconds;
+        public WeatherTypeEntry[] TypeByWeather => typeByWeather ?? new WeatherTypeEntry[0];
 
         /// <summary>
         /// Sub-ficha de un efecto secundario, editable en el Inspector (Unity sabe dibujar clases
@@ -90,8 +142,22 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
             public EffectTarget target = EffectTarget.Opponent;
             [StatusIdReference] public string statusId;     // si kind == InflictStatus
             [Range(0f, 100f)] public float amountPercent;   // si kind == Drain/Recoil/HealSelf (% del daño o de PS máx)
-            public string statStatId;                       // si kind == ChangeStatStage (id de la stat: ej. "attack")
+            [StatIdReference] public string statStatId;                       // si kind == ChangeStatStage (id de la stat: ej. "attack")
             [Range(-6, 6)] public int statStages;           // si kind == ChangeStatStage (delta de etapas, p.ej. +2 o -1)
+            [ContentIdReference(typeof(WeatherData))] public string weatherId = ""; // si kind == SetWeather (id del clima)
+            [Min(0)] public int weatherTurns = 0;           // si kind == SetWeather (0 = los de la ficha del clima)
+            [ContentIdReference(typeof(HazardData))] public string hazardId = ""; // si kind == SetHazard / ClearHazards (vacío al quitar = todas)
+            [ContentIdReference(typeof(SideConditionData))] public string sideConditionId = ""; // si kind == SetSideCondition (Reflejo, Pantalla de Luz...)
+            [Tooltip("Turnos: Anulación (4), Otra Vez (3), máximo de Saña (3). 0 = los clásicos.")]
+            [Min(0)] public int turns = 0;
+            [Tooltip("Cambiar tipo: el tipo nuevo. Vacío = el de su primer movimiento que no tenga ya (Conversión).")]
+            [ContentIdReference(typeof(ElementTypeData))] public string typeId = "";
+            [Tooltip("Texto según el efecto: habilidad (Abatidoras: insomnia), movimiento (Adaptación: tri_attack), estadísticas (Cambia Fuerza: attack,sp_attack)...")]
+            public string text = "";
+            [Tooltip("Usa el MISMO dado que el efecto anterior: o salen los dos o ninguno (Poder Pasado).")]
+            public bool sharesPreviousRoll = false;
+            [Tooltip("El efecto solo ocurre si se cumplen TODAS. Vacío = siempre.")]
+            public ConditionData[] conditions = new ConditionData[0];
         }
     }
 }

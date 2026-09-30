@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: alto_mando_karen
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: alto_mando_karen
+  displayName: Karen
+  trainerClass: Alto Mando
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 20ea613583088054295dd6d32f71fa6a, type: 2}
+    level: 42
+    moves:
+    - {fileID: 11400000, guid: 34cc99783d94cc14a8ac87f62ffb7ff7, type: 2}
+    - {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
+    - {fileID: 11400000, guid: c5e1db74b3925d74da4b7f669af8a601, type: 2}
+    - {fileID: 11400000, guid: 1e9502e238640da499f3cfa87629b763, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 2ad8f294dc6a06f45b6ad7cdc0c03f49, type: 2}
+    level: 42
+    moves:
+    - {fileID: 11400000, guid: de7425f38b0577848a9def95bac54fe2, type: 2}
+    - {fileID: 11400000, guid: 9736104cee34b11448d721dd65cfd988, type: 2}
+    - {fileID: 11400000, guid: ee7bb48825a8b33489118d59f2df2c22, type: 2}
+    - {fileID: 11400000, guid: 08e98f5a8f6cf05419ab6404e1405864, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: bc0caf2b3ee63b540acec34fe72ee456, type: 2}
+    level: 45
+    moves:
+    - {fileID: 11400000, guid: 1db0d9d53ad30444492b07249c08d483, type: 2}
+    - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
+    - {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
+    - {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 23be15b7206f2714c811ea1e3dd9ca2b, type: 2}
+    level: 44
+    moves:
+    - {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
+    - {fileID: 11400000, guid: bcccef566519fe44c8d5402f12197963, type: 2}
+    - {fileID: 11400000, guid: 23c41488587880a41af470a39ef66e7a, type: 2}
+    - {fileID: 11400000, guid: c5e1db74b3925d74da4b7f669af8a601, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 81aa7bf166a64c8409d1fbc7490f6280, type: 2}
+    level: 47
+    moves:
+    - {fileID: 11400000, guid: 034c48472772d604caaa172d102c6f0c, type: 2}
+    - {fileID: 11400000, guid: 23c41488587880a41af470a39ef66e7a, type: 2}
+    - {fileID: 11400000, guid: a69a5906d0943504fb50821889185528, type: 2}
+    - {fileID: 11400000, guid: b2c063ae9f8542b4a946e7619d7bc4b6, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 5
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: Los fuertes usan a sus favoritos.
+  defeatLine: Bien hecho. Me gusta tu estilo.
+  victoryLine: "As\xED se gana."

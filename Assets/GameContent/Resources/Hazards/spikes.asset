@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10925a483f74f264084b1dde3e11462a, type: 3}
+  m_Name: spikes
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.HazardData
+  id: spikes
+  displayName: "P\xFAas"
+  color: {r: 0.65, g: 0.55, b: 0.4, a: 1}
+  maxLayers: 3
+  damagePercentByLayer:
+  - 12.5
+  - 16.67
+  - 25
+  damageScalesWithType: {fileID: 0}
+  statusByLayer: []
+  statId: 
+  stages: 0
+  immuneTypes:
+  - {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
+  immuneIfAbilityBlocksType: {fileID: 11400000, guid: 3a52b6aa5b301834ab86591d9e18d79a, type: 2}
+  absorbedByTypes: []

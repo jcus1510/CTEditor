@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: domador_toni
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: domador_toni
+  displayName: Toni
+  trainerClass: Domador
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: da1a0cdada5431a4585f61e226a97698, type: 2}
+    level: 40
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 662b60dd1124c7b4ebc1c93751ae7c75, type: 2}
+    level: 42
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 2
+  ai: 1
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 0
+  movesetStyle: 0
+  baseMoney: 40
+  introLine: "\xA1Mis fieras est\xE1n hambrientas!"
+  defeatLine: "\xA1Ay! \xA1Me han mordido!"
+  victoryLine: "\xA1Buen chico!"

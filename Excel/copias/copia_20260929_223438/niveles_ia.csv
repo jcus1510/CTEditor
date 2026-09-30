@@ -1,0 +1,6 @@
+﻿id;nombre;nivel;descripcion;cerebro;fallos;uso_objetos;curacion;curar_bajo;puede_cambiar;mochila;movimientos_auto;sinergias;usa_mt;usa_tutor;usa_huevo;objetos_equipados
+nivel_1;Novato;1;Jóvenes y Cazabichos: movimientos al azar, casi no usa objetos y nunca cambia.;Al azar (novato);0;40;Simple (en cuanto baja del umbral);20;no;;Clásico (los 4 últimos que aprende);no;no;no;no;no
+nivel_2;Aficionado;2;Entrenadores de ruta: prefiere lo eficaz, a veces se equivoca, cura simple. Usa movimientos de MT.;El más eficaz según los tipos;20;80;Simple (en cuanto baja del umbral);25;no;potion:1;Equilibrado (ataque + cobertura + apoyo);no;si;no;no;no
+nivel_3;Veterano;3;Entrenadores guay y Team Rocket: tipos y estados, cura solo si le sirve. MT y tutor.;Experto;10;100;Listo / inteligente;35;no;super_potion:2;Equilibrado (ataque + cobertura + apoyo);si;si;si;no;no
+nivel_4;Élite;4;Líderes de gimnasio: movesets con sinergias, cambia de monstruo, objetos equipados y movimientos huevo.;Experto;4;100;Listo / inteligente;40;si;hyper_potion:2|full_heal:1;Fuerte (los que más daño hacen: difícil);si;si;si;si;si
+nivel_5;Campeón;5;Alto Mando y Campeones: todo lo anterior, sin fallos al azar.;Experto;0;100;Listo / inteligente;45;si;full_restore:2|full_heal:1;Fuerte (los que más daño hacen: difícil);si;si;si;si;si

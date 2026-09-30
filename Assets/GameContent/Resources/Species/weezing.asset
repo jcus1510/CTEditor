@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: weezing
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: weezing
+  displayName: Weezing
+  types:
+  - {fileID: 11400000, guid: beba3a9ac208f3c43a7bda5d61c338cd, type: 2}
+  abilityId: levitate
+  secondAbilityId: neutralizing_gas
+  hiddenAbilityId: stench
+  growthCurveId: medium_fast
+  baseExpYield: 172
+  evYield:
+  - statId: defense
+    amount: 2
+  baseFriendship: 70
+  catchRate: 60
+  dexNumber: 110
+  category: Gas Venenoso
+  heightM: 1.2
+  weightKg: 9.5
+  dexColor: morado
+  dexDescription: Si uno de los gemelos Koffing se infla, el otro se desinfla. Mezclan
+    constantemente sus venenosos gases.
+  femalePercent: 50
+  legendary: 0
+  hp: 65
+  attack: 90
+  defense: 120
+  spAttack: 85
+  spDefense: 70
+  speed: 60
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 0c8bcfaa4829aa64fbe3908bf314c4db, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 67a15338148b37f4c82e6dc0c8da95df, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: f9393ac71e402e94d92eba2ed456c563, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: b534a3ce77aca3749999543c4d8a2d15, type: 2}
+    level: 21
+  - move: {fileID: 11400000, guid: 086b0bf63b44f0f4c8ead69ce6291aa8, type: 2}
+    level: 25
+  - move: {fileID: 11400000, guid: 25c737bace85c664989731b45995b0fc, type: 2}
+    level: 33
+  - move: {fileID: 11400000, guid: 17db9758688531a4a91b48d9e2079c07, type: 2}
+    level: 44
+  - move: {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
+    level: 51
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 0ebb2337b3b88994fb66c3d0757615e6, type: 2}
+  - {fileID: 11400000, guid: 67e39177df7f57a4cb582344e81b4f4b, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: 0636291e4eae3b146b1112aca9b448df, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: b08a11a32d7c09f4db0c89ad242fbbad, type: 2}
+  - {fileID: 11400000, guid: 62c6a97d50c2ff54dacf531594dd4df0, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 26d7833d84ead1340b06881753e72e48, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: a69a5906d0943504fb50821889185528, type: 2}
+  - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+  eggMoves:
+  - {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
+  - {fileID: 11400000, guid: d8e92f9a08c72494da330a1912c78045, type: 2}
+  - {fileID: 11400000, guid: 8bd907a69824a5347ade2a787659e959, type: 2}
+  - {fileID: 11400000, guid: 1d38223dcfcba794ba0c7a6a28e3847b, type: 2}
+  - {fileID: 11400000, guid: ec6a5f145f8a7cc419fa06a9ff9e1076, type: 2}
+  eggGroups:
+  - {fileID: 11400000, guid: 9d53a19e52921834a83345100ec4a2a8, type: 2}

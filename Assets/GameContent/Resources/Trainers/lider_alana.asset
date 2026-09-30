@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_alana
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_alana
+  displayName: Alana
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 76a3a351495508347bf135eacf7b7345, type: 2}
+    level: 29
+    moves:
+    - {fileID: 11400000, guid: 6eb4be8e90915974d8951abd7c4f8d79, type: 2}
+    - {fileID: 11400000, guid: a1b2f5b10f7c17a4e905736abdf02e9d, type: 2}
+    - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+    - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: ca87729a931460c4ca4261ad66534311, type: 2}
+    level: 29
+    moves:
+    - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
+    - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
+    - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
+    - {fileID: 11400000, guid: 7b31ca7e65ab8664298f232da45d96ca, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 370ac3ec1a357c5429243f163a7fecdf, type: 2}
+    level: 30
+    moves:
+    - {fileID: 11400000, guid: 6e3903fff8a8e9147800ea4859c2420a, type: 2}
+    - {fileID: 11400000, guid: 3e9034391b20cc249ad2ece60d793edf, type: 2}
+    - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+    - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 1fdeebc48b4832347ba76f2dd6ebaa0e, type: 2}
+    level: 31
+    moves:
+    - {fileID: 11400000, guid: 34cc99783d94cc14a8ac87f62ffb7ff7, type: 2}
+    - {fileID: 11400000, guid: dd75bb1c5f91e7d408ecdf21c195ba48, type: 2}
+    - {fileID: 11400000, guid: edda7cbc2f438144bbfa2e483946d695, type: 2}
+    - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: edb702e45bf39ba4aa75438971cfd2fd, type: 2}
+    level: 33
+    moves:
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
+    - {fileID: 11400000, guid: bb2a46c3e900da44e86313655582e86b, type: 2}
+    - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 4
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: hyper_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "Mis Pok\xE9mon p\xE1jaro y yo surcamos el cielo juntos."
+  defeatLine: "Nunca hab\xEDa visto a nadie volar tan alto. Toma la Medalla Pluma."
+  victoryLine: El cielo es nuestro.

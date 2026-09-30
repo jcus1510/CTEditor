@@ -50,6 +50,30 @@ namespace CTEditor.Battle.Domain
         /// <summary>La habilidad del monstruo (de su especie). Null = ninguna.</summary>
         public AbilityId? Ability { get; }
 
+        /// <summary>Rendimiento base de XP de su especie (cuánto "vale" derrotarlo).</summary>
+        public int BaseExpYield { get; }
+
+        /// <summary>EVs que otorga derrotarlo (el rendimiento de EVs de su especie).</summary>
+        public IReadOnlyList<EvYieldEntry> EvYield { get; }
+
+        /// <summary>
+        /// PP ACTUALES de cada movimiento, en el mismo orden que Moves (lo que le quedaba al entrar al
+        /// combate). Null = todos al máximo (el motor los llena con el MaxPp de cada movimiento).
+        /// </summary>
+        public IReadOnlyList<int> InitialPp { get; }
+
+        /// <summary>Amistad del monstruo (0-255; clásico 70 al capturarlo). La usan las condiciones.</summary>
+        public int Friendship { get; }
+
+        /// <summary>Ratio de captura de su especie (1-255; más alto = más fácil).</summary>
+        public int CatchRate { get; }
+
+        /// <summary>Objeto equipado (id) al entrar al combate. Null = ninguno.</summary>
+        public string HeldItem { get; }
+
+        /// <summary>Peso en kilos (de su Pokédex): Patada Baja, Hierba Lazo...</summary>
+        public float WeightKg { get; }
+
         public BattleParticipant(
             Id<BattleParticipant> id,
             Id<Species> speciesId,
@@ -59,8 +83,19 @@ namespace CTEditor.Battle.Domain
             IReadOnlyList<Id<ElementType>> types,
             IReadOnlyList<Id<Move>> moves,
             StatusId? initialStatus = null,
-            AbilityId? ability = null)
+            AbilityId? ability = null,
+            int baseExpYield = 64,
+            IReadOnlyList<EvYieldEntry> evYield = null,
+            IReadOnlyList<int> initialPp = null,
+            int friendship = 70,
+            string heldItem = null,
+            int catchRate = 45,
+            float weightKg = 0f)
         {
+            WeightKg = Math.Max(0f, weightKg);
+            CatchRate = Math.Max(1, Math.Min(255, catchRate));
+            HeldItem = string.IsNullOrWhiteSpace(heldItem) ? null : heldItem;
+            Friendship = Math.Max(0, Math.Min(255, friendship));
             if (stats == null) throw new ArgumentNullException(nameof(stats));
 
             Id = id;
@@ -73,6 +108,9 @@ namespace CTEditor.Battle.Domain
             Moves = moves == null ? Array.Empty<Id<Move>>() : new List<Id<Move>>(moves);
             InitialStatus = initialStatus;
             Ability = ability;
+            BaseExpYield = baseExpYield < 1 ? 1 : baseExpYield;
+            EvYield = evYield == null ? Array.Empty<EvYieldEntry>() : new List<EvYieldEntry>(evYield);
+            InitialPp = initialPp == null ? null : new List<int>(initialPp);
         }
     }
 }

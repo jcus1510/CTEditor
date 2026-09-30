@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: campeon_azul
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: campeon_azul
+  displayName: Azul
+  trainerClass: "Campe\xF3n"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 919d3ae3cf6ea9844b95775f46c2ac99, type: 2}
+    level: 61
+    moves:
+    - {fileID: 11400000, guid: dd8887e1ce438d547a8d865bd70a8ed7, type: 2}
+    - {fileID: 11400000, guid: a1b2f5b10f7c17a4e905736abdf02e9d, type: 2}
+    - {fileID: 11400000, guid: b864c07923f73a54caa267bc31a7c34d, type: 2}
+    - {fileID: 11400000, guid: bcccef566519fe44c8d5402f12197963, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 3493c02ee4939854899a97e2a720d872, type: 2}
+    level: 59
+    moves:
+    - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+    - {fileID: 11400000, guid: 0eb8b27313372d04b914fe06dab256f8, type: 2}
+    - {fileID: 11400000, guid: 8bd907a69824a5347ade2a787659e959, type: 2}
+    - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: fd5f576bbed3f404da95db8ffca7af2b, type: 2}
+    level: 61
+    moves:
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+    - {fileID: 11400000, guid: dd75bb1c5f91e7d408ecdf21c195ba48, type: 2}
+    - {fileID: 11400000, guid: c29a8063b28c2b94c9e1f7a2b33b1d44, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 7b43ab56c52edee4c959f6fcf0b6658e, type: 2}
+    level: 61
+    moves:
+    - {fileID: 11400000, guid: 57b6a36f57133a848a8e6f2372fe652c, type: 2}
+    - {fileID: 11400000, guid: 12ccc34268807ab44a6b74882d69fed6, type: 2}
+    - {fileID: 11400000, guid: 2632c41e82bdf1a459998bfa40b14c21, type: 2}
+    - {fileID: 11400000, guid: 9a515c34c94d9f846a43fbb08b64617b, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: ae9fd7d998bc49a4ea5829d7a235ced9, type: 2}
+    level: 63
+    moves:
+    - {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+    - {fileID: 11400000, guid: 6003803a959d2bc4b9157ff08a110dc1, type: 2}
+    - {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 2ca17a2317036b2469359a38a07a614a, type: 2}
+    level: 65
+    moves:
+    - {fileID: 11400000, guid: 67e39177df7f57a4cb582344e81b4f4b, type: 2}
+    - {fileID: 11400000, guid: 41fecb803ec631c42ae3e13be0a7d87f, type: 2}
+    - {fileID: 11400000, guid: c77de5c4f73123949bb608823bc41a5b, type: 2}
+    - {fileID: 11400000, guid: dd8887e1ce438d547a8d865bd70a8ed7, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 5
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 3
+  - itemId: full_heal
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 150
+  introLine: "\xA1Por fin! \xA1Soy el campe\xF3n y no pienso perder contra ti!"
+  defeatLine: "\xA1\xBFC\xF3mo?! \xA1Mi reinado ha terminado!"
+  victoryLine: "\xA1Ja! \xA1Soy el mejor del mundo!"

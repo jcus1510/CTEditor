@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af2ff6f36485864784eac3bda8601c8, type: 3}
+  m_Name: sheer_cold
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
+  id: sheer_cold
+  displayName: "Fr\xEDo Polar"
+  type: {fileID: 11400000, guid: fa23c32d4260662419de99a9c5528a38, type: 2}
+  category: 1
+  power: 0
+  neverMisses: 0
+  accuracy: 30
+  maxPp: 5
+  priority: 0
+  target: 0
+  secondaryEffects: []
+  minHits: 1
+  maxHits: 1
+  critStage: 0
+  twoTurn: 0
+  makesContact: 0
+  fixedDamage: 4
+  fixedDamageAmount: 0
+  respectsTypeImmunity: 0
+  powerModifiers: []
+  powerFormula: 
+  attackStat: 
+  defenseStat: 
+  attackStatFromTarget: 0
+  tags: []
+  requirements: []
+  typeByWeather: []
+  animationSeconds: 0

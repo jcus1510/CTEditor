@@ -1,0 +1,7 @@
+Crea aquí tus naturalezas (Create > CTEditor > Nature).
+Cada NatureData necesita:
+  - Id único (p. ej. "adamant").
+  - Stat que SUBE y stat que BAJA, por id: hp, attack, defense, sp_attack, sp_defense, speed (o una inventada).
+  - Porcentaje (clásico: 10 = x1.1 / x0.9).
+Deja ambas vacías (o pon la misma) para una naturaleza NEUTRA.
+Si esta carpeta está vacía, todos los monstruos nacen con naturaleza neutra.

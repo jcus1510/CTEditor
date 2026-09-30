@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Types;
+using CTEditor.GameDefinition.Domain.Stats;
+using CTEditor.GameDefinition.Domain.Conditions;
+using CTEditor.GameDefinition.Domain.Formulas;
 
 namespace CTEditor.GameDefinition.Domain.Moves
 {
@@ -77,6 +80,67 @@ namespace CTEditor.GameDefinition.Domain.Moves
         /// (Estática, Cuerpo Llama, Piel Tosca...). El autor lo marca; típico en físicos.</summary>
         public bool MakesContact { get; }
 
+        /// <summary>Daño especial que ignora la fórmula (ver FixedDamageKind). None = daño normal.</summary>
+        public FixedDamageKind FixedDamage { get; }
+
+        /// <summary>PS exactos que quita cuando FixedDamage == Fixed.</summary>
+        public int FixedDamageAmount { get; }
+
+        /// <summary>
+        /// Solo para movimientos de ESTADO: si es true, no afecta a un objetivo inmune por tipo (Onda
+        /// Trueno contra Tierra). Los de daño siempre respetan la tabla de tipos.
+        /// </summary>
+        public bool RespectsTypeImmunity { get; }
+
+        // ---------------- Lote A: potencia y stats configurables ----------------
+
+        /// <summary>Multiplicadores de potencia con condiciones (Fachada: ×2 si propio tiene estado).</summary>
+        public IReadOnlyList<PowerModifier> PowerModifiers { get; }
+
+        /// <summary>
+        /// Fórmula OPCIONAL que reemplaza la potencia base (null = usar Power). Variables: ver
+        /// PowerFormulaVariables. Ej.: "150 * vida / 100" (Estallido), "amistad / 2.5" (Retribución).
+        /// </summary>
+        public MathExpression PowerFormula { get; }
+        public string PowerFormulaText { get; }
+
+        /// <summary>Stat de ATAQUE a usar (null = la de su categoría: Ataque o Atq. Esp.).</summary>
+        public StatId? AttackStat { get; }
+        /// <summary>Stat de DEFENSA a usar (null = la de su categoría: Defensa o Def. Esp.).</summary>
+        public StatId? DefenseStat { get; }
+        /// <summary>Si true, el ataque se calcula con la stat del RIVAL (Juego Sucio).</summary>
+        public bool AttackStatFromTarget { get; }
+
+        /// <summary>Etiquetas libres ("puño", "sonido", "mordisco"...): las usan las condiciones de habilidades.</summary>
+        public IReadOnlyList<string> Tags { get; }
+
+        /// <summary>
+        /// REQUISITOS: el movimiento solo funciona si se cumplen TODOS (vacío = siempre). Si no, «¡Pero falló!».
+        /// Comesueños: rival.estado=sleep. Ronquido: propio.estado=sleep. 'propio' = quien lo usa; 'rival' = el objetivo.
+        /// </summary>
+        public IReadOnlyList<Condition> Requirements { get; }
+
+        /// <summary>Variables que puede usar la fórmula de potencia.</summary>
+        public static readonly string[] PowerFormulaVariables =
+            { "potencia", "nivel", "nivel_rival", "vida", "vida_rival", "amistad", "velocidad", "velocidad_rival",
+              // 3.ª y 4.ª generación
+              "peso", "peso_rival", "seguidos", "reserva", "pp", "subidas_rival", "ps", "ps_rival", "azar" };
+
+        /// <summary>
+        /// TIPO SEGÚN EL CLIMA (Meteorobola: lluvia → Agua, sol → Fuego...). Vacío = siempre su tipo.
+        /// </summary>
+        public IReadOnlyDictionary<string, Id<ElementType>> TypeByWeather { get; }
+
+        /// <summary>El tipo real con este clima (null o sin entrada = el suyo).</summary>
+        public Id<ElementType> TypeIn(string weatherId)
+            => !string.IsNullOrEmpty(weatherId) && TypeByWeather.TryGetValue(weatherId, out var t) ? t : Type;
+
+        public bool HasTag(string tag)
+        {
+            foreach (var t in Tags) if (string.Equals(t, tag, StringComparison.OrdinalIgnoreCase)) return true;
+            return false;
+        }
+
         public Move(
             Id<Move> id,
             string displayName,
@@ -92,8 +156,32 @@ namespace CTEditor.GameDefinition.Domain.Moves
             int maxHits = 1,
             int critStage = 0,
             TwoTurnKind twoTurn = TwoTurnKind.None,
-            bool makesContact = false)
+            bool makesContact = false,
+            FixedDamageKind fixedDamage = FixedDamageKind.None,
+            int fixedDamageAmount = 0,
+            bool respectsTypeImmunity = false,
+            IReadOnlyList<PowerModifier> powerModifiers = null,
+            string powerFormula = null,
+            StatId? attackStat = null,
+            StatId? defenseStat = null,
+            bool attackStatFromTarget = false,
+            IReadOnlyList<string> tags = null,
+            IReadOnlyList<Condition> requirements = null,
+            IReadOnlyDictionary<string, Id<ElementType>> typeByWeather = null)
         {
+            var tbw = new Dictionary<string, Id<ElementType>>(StringComparer.OrdinalIgnoreCase);
+            if (typeByWeather != null) foreach (var kv in typeByWeather) if (!string.IsNullOrWhiteSpace(kv.Key)) tbw[kv.Key.Trim()] = kv.Value;
+            TypeByWeather = tbw;
+            Requirements = requirements == null ? Array.Empty<Condition>() : new List<Condition>(requirements);
+            PowerModifiers = powerModifiers == null ? Array.Empty<PowerModifier>() : new List<PowerModifier>(powerModifiers);
+            PowerFormulaText = string.IsNullOrWhiteSpace(powerFormula) ? null : powerFormula.Trim();
+            // Una fórmula mal escrita no rompe el combate: se ignora (el validador del editor avisa antes).
+            PowerFormula = PowerFormulaText != null && MathExpression.TryParse(PowerFormulaText, PowerFormulaVariables, out var expr, out _) ? expr : null;
+            AttackStat = attackStat;
+            DefenseStat = defenseStat;
+            AttackStatFromTarget = attackStatFromTarget;
+            Tags = tags == null ? Array.Empty<string>() : new List<string>(tags);
+            RespectsTypeImmunity = respectsTypeImmunity;
             // Estas validaciones LANZAN si los datos son absurdos. Son la última línea de defensa:
             // el autor nunca debería llegar aquí con basura, porque la validación amigable (con
             // mensajes claros, sin excepciones) ocurre antes, en Content Authoring (L.8). El
@@ -124,10 +212,12 @@ namespace CTEditor.GameDefinition.Domain.Moves
             CritStage = critStage < 0 ? 0 : critStage;
             TwoTurn = twoTurn;
             MakesContact = makesContact;
+            FixedDamage = fixedDamage;
+            FixedDamageAmount = fixedDamageAmount < 0 ? 0 : fixedDamageAmount;
         }
 
         /// <summary>¿Este movimiento hace daño directo? (No es de Estado y tiene potencia.)</summary>
-        public bool DealsDirectDamage => Category != MoveCategory.Status && Power > 0;
+        public bool DealsDirectDamage => Category != MoveCategory.Status && (Power > 0 || PowerFormula != null || FixedDamage != FixedDamageKind.None);
 
         /// <summary>¿Nunca falla? (Su precisión es null.)</summary>
         public bool NeverMisses => Accuracy is null;

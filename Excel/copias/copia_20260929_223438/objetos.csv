@@ -1,0 +1,73 @@
+﻿id;nombre;descripcion;categoria;precio;en_combate;fuera_combate;se_gasta;cura_ps;cura_pct;cura_todo;cura_estados;revive;revive_pct;recupera_pp;pp_todos;amistad;captura;combate_stat;combate_etapas;equipado_cura_turno;equipado_umbral;equipado_cura_ps;equipado_cura_pct;equipado_se_consume;equipado_potencia
+antidote;Antídoto;Cura el envenenamiento.;Cura de estado;100;si;si;si;0;0;no;poison|toxic;no;50;0;no;0;0;;0;0;0;0;0;si;
+awakening;Despertar;Despierta.;Cura de estado;250;si;si;si;0;0;no;sleep;no;50;0;no;0;0;;0;0;0;0;0;si;
+black_belt;Cinturón Negro;Movimientos de Lucha ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=fighting]
+black_glasses;Gafas de Sol;Movimientos de Siniestro ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=dark]
+burn_heal;Antiquemar;Cura las quemaduras.;Cura de estado;300;si;si;si;0;0;no;burn;no;50;0;no;0;0;;0;0;0;0;0;si;
+charcoal;Carbón;Movimientos de Fuego ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=fire]
+dawn_stone;Piedra Alba;Hace evolucionar a Kirlia macho y Snorunt hembra.;Evolución;3000;no;si;si;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+deep_sea_scale;Escama Marina;Llevándola al intercambiarse: Clamperl evoluciona a Gorebyss.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+deep_sea_tooth;Diente Marino;Llevándolo al intercambiarse: Clamperl evoluciona a Huntail.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+dragon_fang;Colmillo Dragón;Movimientos de Dragón ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=dragon]
+dragon_scale;Escama Dragón;Llevándolo al intercambiarse: Seadra evoluciona.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+dubious_disc;Disco Extraño;Llevándolo al intercambiarse: Porygon2 evoluciona.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+dusk_stone;Piedra Noche;Hace evolucionar a Murkrow, Misdreavus...;Evolución;3000;no;si;si;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+electirizer;Electrizador;Llevándolo al intercambiarse: Electabuzz evoluciona.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+elixir;Elixir;Recupera 10 PP de todos los movimientos.;Recuperar PP;3000;si;si;si;0;0;no;;no;50;10;si;0;0;;0;0;0;0;0;si;
+ether;Éter;Recupera 10 PP de un movimiento.;Recuperar PP;1200;si;si;si;0;0;no;;no;50;10;no;0;0;;0;0;0;0;0;si;
+fire_stone;Piedra Fuego;Hace evolucionar a ciertas especies.;Evolución;3000;no;si;si;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+full_heal;Cura Total;Cura cualquier estado.;Cura de estado;400;si;si;si;0;0;si;;no;50;0;no;0;0;;0;0;0;0;0;si;
+full_restore;Restaurar Todo;Cura todos los PS y cualquier estado.;Medicina;3000;si;si;si;0;100;si;;no;50;0;no;0;0;;0;0;0;0;0;si;
+great_ball;Super Ball;Mejor que la Poké Ball (×1,5).;Bola;600;si;no;si;0;0;no;;no;50;0;no;0;1,5;;0;0;0;0;0;si;
+hard_stone;Piedra Dura;Movimientos de Roca ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=rock]
+hyper_potion;Hiperpoción;Cura 120 PS.;Medicina;1500;si;si;si;120;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+ice_heal;Antihielo;Descongela.;Cura de estado;250;si;si;si;0;0;no;freeze;no;50;0;no;0;0;;0;0;0;0;0;si;
+kings_rock;Roca del Rey;Llevándolo al intercambiarse: Slowpoke y Poliwhirl evolucionan.;Equipable;5000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+leaf_stone;Piedra Hoja;Hace evolucionar a ciertas especies.;Evolución;3000;no;si;si;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+leftovers;Restos;Recupera 1/16 de PS cada turno.;Equipable;4000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;6,25;0;0;0;si;
+magmarizer;Magmatizador;Llevándolo al intercambiarse: Magmar evoluciona.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+magnet;Imán;Movimientos de Eléctrico ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=electric]
+master_ball;Master Ball;Captura siempre.;Bola;0;si;no;si;0;0;no;;no;50;0;no;0;255;;0;0;0;0;0;si;
+max_elixir;Elixir Máximo;Recupera todos los PP de todos los movimientos.;Recuperar PP;4500;si;si;si;0;0;no;;no;50;999;si;0;0;;0;0;0;0;0;si;
+max_ether;Éter Máximo;Recupera todos los PP de un movimiento.;Recuperar PP;2000;si;si;si;0;0;no;;no;50;999;no;0;0;;0;0;0;0;0;si;
+max_potion;Poción Máxima;Cura todos los PS.;Medicina;2500;si;si;si;0;100;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+max_revive;Revivir Máximo;Revive con todos los PS.;Revivir;4000;si;si;si;0;0;no;;si;100;0;no;0;0;;0;0;0;0;0;si;
+metal_coat;Revestimiento Metálico;Llevándolo al intercambiarse: Onix y Scyther evolucionan.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+miracle_seed;Semilla Milagro;Movimientos de Planta ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=grass]
+moon_stone;Piedra Lunar;Hace evolucionar a ciertas especies.;Evolución;3000;no;si;si;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+muscle_band;Cinta Fuerte;Movimientos físicos ×1,1.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,1 [si mov.categoria=fisico]
+mystic_water;Agua Mística;Movimientos de Agua ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=water]
+never_melt_ice;Antiderretir;Movimientos de Hielo ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=ice]
+oran_berry;Baya Aranja;Con la mitad de PS o menos, recupera 10 PS (se consume).;Equipable;100;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;50;10;0;si;
+oval_stone;Piedra Oval;Llevándola al subir de nivel de día: Happiny evoluciona.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+paralyze_heal;Antiparalizador;Cura la parálisis.;Cura de estado;300;si;si;si;0;0;no;paralysis;no;50;0;no;0;0;;0;0;0;0;0;si;
+poison_barb;Flecha Venenosa;Movimientos de Veneno ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=poison]
+poke_ball;Poké Ball;Bola básica (×1).;Bola;200;si;no;si;0;0;no;;no;50;0;no;0;1;;0;0;0;0;0;si;
+pomeg_berry;Baya Grana;Sube la amistad.;Amistad / vitaminas;100;no;si;si;0;0;no;;no;50;0;no;10;0;;0;0;0;0;0;si;
+potion;Poción;Cura 20 PS.;Medicina;200;si;si;si;20;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+protector;Protector;Llevándolo al intercambiarse: Rhydon evoluciona.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+razor_claw;Garra Afilada;Llevándola al subir de nivel de noche: Sneasel evoluciona.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+razor_fang;Colmillo Agudo;Llevándolo al subir de nivel de noche: Gligar evoluciona.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+reaper_cloth;Tela Terrible;Llevándola al intercambiarse: Dusclops evoluciona.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+revive;Revivir;Revive con la mitad de los PS.;Revivir;2000;si;si;si;0;0;no;;si;50;0;no;0;0;;0;0;0;0;0;si;
+sharp_beak;Pico Afilado;Movimientos de Volador ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=flying]
+shiny_stone;Piedra Día;Hace evolucionar a Togetic, Roselia...;Evolución;3000;no;si;si;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+silk_scarf;Pañuelo Seda;Movimientos de Normal ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=normal]
+silver_powder;Polvo Plata;Movimientos de Bicho ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=bug]
+sitrus_berry;Baya Zidra;Con la mitad de PS o menos, recupera 1/4 de PS (se consume).;Equipable;200;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;50;0;25;si;
+soft_sand;Arena Fina;Movimientos de Tierra ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=ground]
+spell_tag;Hechizo;Movimientos de Fantasma ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=ghost]
+sun_stone;Piedra Solar;Hace evolucionar a ciertas especies (Gloom, Sunkern).;Evolución;3000;no;si;si;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+super_potion;Superpoción;Cura 60 PS.;Medicina;700;si;si;si;60;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+thunder_stone;Piedra Trueno;Hace evolucionar a ciertas especies.;Evolución;3000;no;si;si;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+twisted_spoon;Cuchara Torcida;Movimientos de Psíquico ×1,2.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,2 [si mov.tipo=psychic]
+ultra_ball;Ultra Ball;Muy buena (×2).;Bola;800;si;no;si;0;0;no;;no;50;0;no;0;2;;0;0;0;0;0;si;
+up_grade;Mejora;Llevándolo al intercambiarse: Porygon evoluciona.;Equipable;2000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+water_stone;Piedra Agua;Hace evolucionar a ciertas especies.;Evolución;3000;no;si;si;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;
+wise_glasses;Gafas Especiales;Movimientos especiales ×1,1.;Equipable;3000;no;no;no;0;0;no;;no;50;0;no;0;0;;0;0;0;0;0;si;x1,1 [si mov.categoria=especial]
+x_accuracy;Precisión X;+2 a la Precisión.;Objeto de combate;1000;si;no;si;0;0;no;;no;50;0;no;0;0;accuracy;2;0;0;0;0;si;
+x_attack;Ataque X;+2 al Ataque durante el combate.;Objeto de combate;1000;si;no;si;0;0;no;;no;50;0;no;0;0;attack;2;0;0;0;0;si;
+x_defense;Defensa X;+2 a la Defensa.;Objeto de combate;2000;si;no;si;0;0;no;;no;50;0;no;0;0;defense;2;0;0;0;0;si;
+x_speed;Velocidad X;+2 a la Velocidad.;Objeto de combate;1000;si;no;si;0;0;no;;no;50;0;no;0;0;speed;2;0;0;0;0;si;
+x_sp_atk;Ataque Esp. X;+2 al Ataque Especial.;Objeto de combate;1000;si;no;si;0;0;no;;no;50;0;no;0;0;sp_attack;2;0;0;0;0;si;
+x_sp_def;Defensa Esp. X;+2 a la Defensa Especial.;Objeto de combate;2000;si;no;si;0;0;no;;no;50;0;no;0;0;sp_defense;2;0;0;0;0;si;

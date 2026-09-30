@@ -1,0 +1,5 @@
+﻿id;nombre;color;capas;daño_por_capa;tipo_daño;estado_por_capa;estadistica;etapas;tipos_inmunes;inmune_por_habilidad;la_retiran
+;;B29973;1;;;;;0;;;
+;;B29973;1;;;;;0;;;
+;;B29973;1;;;;;0;;;
+sticky_web;Red Viscosa;D9CC59;1;;;;speed;-1;;;

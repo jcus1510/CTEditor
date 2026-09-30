@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: campeona_cintia
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: campeona_cintia
+  displayName: Cintia
+  trainerClass: "Campe\xF3n"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 3ce5e4fae93d3dc43ae108c4e590d7d5, type: 2}
+    level: 58
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: a78a4ae9a7bb0594c95f41fd5ef36d3b, type: 2}
+    level: 58
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 9533862dd63a809478c128cbba83eedf, type: 2}
+    level: 60
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: ec1a172ab8771cc47ac5520570de699c, type: 2}
+    level: 60
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 8fc72c85164573a4aa2e44e0d254ac48, type: 2}
+    level: 58
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: aa3cf5b61c8f6ec478bd71db5634bceb, type: 2}
+    level: 62
+    moves: []
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 5
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 3
+  - itemId: full_heal
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 150
+  introLine: "Soy Cintia, la Campeona. Te lo dar\xE9 todo."
+  defeatLine: "Ha sido un combate precioso. Eres el nuevo Campe\xF3n."
+  victoryLine: "A\xFAn puedes mejorar."

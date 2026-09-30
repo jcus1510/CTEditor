@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: rival_israel_liga
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: rival_israel_liga
+  displayName: Israel
+  trainerClass: Rival
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: c90e6ed53e1e04347afa5e96f91e7637, type: 2}
+    level: 48
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: e3ef4de9529e6e34bab25e1c1d9c2030, type: 2}
+    level: 49
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: a78a4ae9a7bb0594c95f41fd5ef36d3b, type: 2}
+    level: 49
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: e82dc14f3f7028040bd4c208195566b2, type: 2}
+    level: 51
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 99e79723db2646947921f4421176c786, type: 2}
+    level: 50
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 46f1e88b0307eb04b8e433a7d78f21bc, type: 2}
+    level: 53
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 4
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 1
+  - itemId: hyper_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 50
+  introLine: "\xA1Esta vez s\xED que te gano!"
+  defeatLine: "A\xFAn me queda camino... \xA1pero te alcanzar\xE9!"
+  victoryLine: "\xA1S\xED! \xA1Por fin!"

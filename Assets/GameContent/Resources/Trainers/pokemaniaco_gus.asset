@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: pokemaniaco_gus
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: pokemaniaco_gus
+  displayName: Gus
+  trainerClass: "Pok\xE9man\xEDaco"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 3804e4d1b095e0b41a3e2e0f05f09ab4, type: 2}
+    level: 18
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 055387f72c81c194396dc774a039ff07, type: 2}
+    level: 20
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: ebee216214a5c6d4ba1faf661a73d764, type: 2}
+    level: 20
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 2
+  ai: 1
+  useItems: 1
+  items: []
+  healBelowPercent: 25
+  canSwitch: 0
+  movesetStyle: 0
+  baseMoney: 50
+  introLine: "\xA1Tengo monstruos rar\xEDsimos!"
+  defeatLine: "\xA1Mis monstruos raros...!"
+  victoryLine: "\xA1Colecciono victorias!"

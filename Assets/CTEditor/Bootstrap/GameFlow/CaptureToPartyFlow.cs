@@ -14,6 +14,7 @@ namespace CTEditor.Bootstrap.GameFlow
     /// quedó en combate. Vive en el composition root, que es quien conoce Battle, Party y GameDefinition.
     /// (Battle nunca tocó Party: solo entregó el BattleResult; aquí se traduce a un individuo real.)
     /// </summary>
+    [System.Obsolete("Sustituido por CTEditor.Adventure.Domain.BattleSession, que aplica todo a la partida (niveles, capturas, dinero, evoluciones).")]
     public sealed class CaptureToPartyFlow
     {
         private readonly Ruleset _ruleset;

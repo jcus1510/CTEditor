@@ -28,6 +28,12 @@ namespace CTEditor.GameDefinition.Domain.Stats
         public static readonly StatId SpDefense = new StatId("sp_defense");
         public static readonly StatId Speed     = new StatId("speed");
 
+        // --- Etapas de combate que NO son stats del monstruo (no tienen valor base ni EVs) ---
+        /// <summary>Etapa de PRECISIÓN (Ataque Arena la baja): multiplica la probabilidad de acertar.</summary>
+        public static readonly StatId Accuracy  = new StatId("accuracy");
+        /// <summary>Etapa de EVASIÓN (Doble Equipo la sube): reduce la probabilidad de que te acierten.</summary>
+        public static readonly StatId Evasion   = new StatId("evasion");
+
         /// <summary>
         /// Las 6 estadísticas clásicas en orden canónico. La validación de contenido (L.8)
         /// exige que todas existan: el invariante "los 6 siempre están" vive aquí como garantía.

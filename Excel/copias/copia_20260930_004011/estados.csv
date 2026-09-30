@@ -1,0 +1,40 @@
+﻿id;nombre;volatil;daño_por_turno;daño_creciente;cura_por_turno;prob_no_actuar;se_cura_al_retirarse;duracion;prob_recuperarse;autodaño;se_convierte_en;modificadores;tipos_inmunes;duracion_max;impide_cambio;bloquea_ataques;aguanta;cura_al_rival;mas_dificil_si_repite;captura_x;bloquea_estado;bloquea_repetir;bloquea_curar;bloquea_objetos;anula_habilidad;daño_si_estado;debilita_al_acabar;mismo_destino;rabia;devuelve_estado;robo;tipo_potenciado;tipo_potenciado_mult;refuerzo_se_gasta;inmune_tipos_extra;pierde_tipo;identificado;alcanzable_por;no_falla;cerca;en_suelo;genero_opuesto;protege_solo_daño;protege_baja_stat;protege_baja_etapas;protege_daño
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+;;no;0;no;no;0;no;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+fairy_lock;Cerrojo Feérico;si;0;no;no;0;si;2;0;0;;;;0;si;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;0
+kings_shield;Escudo Real;si;0;no;no;0;si;1;0;0;;;;0;no;si;no;no;si;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;si;attack;-2;0
+smacked_down;Derribado;si;0;no;no;0;si;0;0;0;;;;0;no;no;no;no;no;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;si;no;no;;0;0
+spiky_shield;Barrera Espinosa;si;0;no;no;0;si;1;0;0;;;;0;no;si;no;no;si;1;no;no;no;no;no;;no;no;no;no;no;;1;no;;;no;;no;no;no;no;no;;0;12,5

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: rival_azul_bosque
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: rival_azul_bosque
+  displayName: Azul
+  trainerClass: Rival
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 7a222c698438ac34d81e440c3ce22905, type: 2}
+    level: 17
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 53899e15b0cbe444288de99834cb03a8, type: 2}
+    level: 16
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 48f8136df4867e843a06d54153335c89, type: 2}
+    level: 15
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 6699ec8fe6c2fe34daefd0b9ddd3e95b, type: 2}
+    level: 18
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 2
+  ai: 1
+  useItems: 1
+  items:
+  - itemId: potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 0
+  movesetStyle: 0
+  baseMoney: 35
+  introLine: "\xA1Eh! \xBFA\xFAn sigues por aqu\xED?"
+  defeatLine: "\xA1Bah! Ha sido suerte."
+  victoryLine: "\xA1Soy mucho mejor que t\xFA!"

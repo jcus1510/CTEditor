@@ -72,6 +72,27 @@ namespace CTEditor.Party.Domain
 
         public bool Contains(Id<MonsterInstance> id) => _members.FindIndex(m => m.Id == id) >= 0;
 
+        /// <summary>Posición de un miembro (-1 si no está).</summary>
+        public int IndexOf(Id<MonsterInstance> id) => _members.FindIndex(m => m.Id == id);
+
+        /// <summary>Intercambia dos posiciones del equipo (el primero es el que sale a combatir).</summary>
+        public Result Swap(int a, int b)
+        {
+            if (a < 0 || b < 0 || a >= _members.Count || b >= _members.Count)
+                return Result.Failure("Posición fuera del equipo.");
+            var tmp = _members[a];
+            _members[a] = _members[b];
+            _members[b] = tmp;
+            return Result.Success();
+        }
+
+        /// <summary>El primer miembro que puede pelear (el que sale primero). Null si no queda ninguno.</summary>
+        public MonsterInstance FirstUsable()
+        {
+            foreach (var m in _members) if (!m.IsFainted) return m;
+            return null;
+        }
+
         /// <summary>¿Queda al menos uno que pueda pelear? (Útil para saber si la partida sigue.)</summary>
         public bool HasUsableMonster()
         {

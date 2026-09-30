@@ -1,0 +1,7 @@
+﻿id;nombre;color;turnos;mult_fisico;mult_especial;sin_bajadas;sin_estados;mult_velocidad
+aurora_veil;Velo Aurora;99E6F2;5;0,5;0,5;no;no;1
+light_screen;Pantalla de Luz;F28CD9;5;1;0,5;no;no;1
+mist;Neblina;BFD9E6;5;1;1;si;no;1
+reflect;Reflejo;F2CC59;5;0,5;1;no;no;1
+safeguard;Velo Sagrado;B299F2;5;1;1;no;si;1
+tailwind;Viento Afín;8CD9B2;4;1;1;no;no;2

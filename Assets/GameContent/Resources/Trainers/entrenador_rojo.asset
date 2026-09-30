@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: entrenador_rojo
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: entrenador_rojo
+  displayName: Rojo
+  trainerClass: "Entrenador Pok\xE9mon"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: d148172c1ce1a0947a931dda22f9f42e, type: 2}
+    level: 81
+    moves:
+    - {fileID: 11400000, guid: 5d29e88ccdc542d4696bf4230ca1a84e, type: 2}
+    - {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: 62c6a97d50c2ff54dacf531594dd4df0, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: b085d108fa9c4aa4abe06d4e6adac945, type: 2}
+    level: 73
+    moves:
+    - {fileID: 11400000, guid: f050730ea6b643346a1bd3c76ba306a1, type: 2}
+    - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+    - {fileID: 11400000, guid: 36afc492c55a0744fbfa3fb385bebc1d, type: 2}
+    - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: e82dc14f3f7028040bd4c208195566b2, type: 2}
+    level: 75
+    moves:
+    - {fileID: 11400000, guid: 5d68f7ae3f19057498187d163e8bf589, type: 2}
+    - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+    - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+    - {fileID: 11400000, guid: ee44701bbc792004f8c744056ac5452d, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 90db4dc28ed5d35438001cded61f1cf6, type: 2}
+    level: 77
+    moves:
+    - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
+    - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+    - {fileID: 11400000, guid: 7b31ca7e65ab8664298f232da45d96ca, type: 2}
+    - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 2ca17a2317036b2469359a38a07a614a, type: 2}
+    level: 77
+    moves:
+    - {fileID: 11400000, guid: a69a5906d0943504fb50821889185528, type: 2}
+    - {fileID: 11400000, guid: dd8887e1ce438d547a8d865bd70a8ed7, type: 2}
+    - {fileID: 11400000, guid: 41fecb803ec631c42ae3e13be0a7d87f, type: 2}
+    - {fileID: 11400000, guid: c77de5c4f73123949bb608823bc41a5b, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: f7bdd799cc1a6484ab6addd4b51b9f78, type: 2}
+    level: 77
+    moves:
+    - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+    - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
+    - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
+    - {fileID: 11400000, guid: 1df4f4a3194cca948bc22c7ba6dc44a0, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 5
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 3
+  - itemId: max_revive
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 200
+  introLine: ...
+  defeatLine: ...!
+  victoryLine: ...

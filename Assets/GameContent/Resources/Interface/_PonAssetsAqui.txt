@@ -1,0 +1,2 @@
+Aquí van los AJUSTES DE INTERFAZ (InterfaceSettingsData, id «ajustes»): teclas, caja de texto y colores.
+Créalos con CTEditor → Interfaz → Controles y caja de texto. Si no hay ninguno, el juego usa los clásicos.

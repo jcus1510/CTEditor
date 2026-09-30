@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEditor;
 using CTEditor.GameDefinition.Domain.Moves;
@@ -33,7 +34,7 @@ namespace CTEditor.GameDefinition.Editor
     /// de problemas; la ventana los muestra. Esto es justo lo que evita que el autor descubra un fallo
     /// recién en pleno combate.
     /// </summary>
-    public static class ContentValidator
+    public static partial class ContentValidator
     {
         /// <summary>Devuelve solo los problemas que afectan a un asset concreto (para la UI por-ficha).</summary>
         public static List<ValidationIssue> IssuesFor(Object asset)
@@ -68,7 +69,32 @@ namespace CTEditor.GameDefinition.Editor
             ValidateRulesets(rulesets, issues);
             ValidateCharts(charts, issues);
 
+            // Progresión y contenido nuevo (ContentValidator.Progression.cs).
+            ValidateProgression(species, statuses, statusIds, rulesets, issues);
+            ValidateAdvanced(moves, statuses, rulesets, issues);
+            ValidateAdventure(rulesets, issues); // entrenadores, equipos prearmados y zonas (ContentValidator.Adventure.cs)
+            ValidateInterface(issues); // menús y controles (ContentValidator.Interface.cs)
+            ValidateDex(species, issues);
+            ValidateTrashUsers(issues);
+
             return issues;
+        }
+
+        // --- Pokédex: números repetidos ---
+        private static void ValidateDex(List<SpeciesData> species, List<ValidationIssue> issues)
+        {
+            foreach (var g in species.Where(s => s.DexNumber > 0).GroupBy(s => s.DexNumber).Where(g => g.Count() > 1))
+                foreach (var s in g)
+                    issues.Add(Warning($"El número de Pokédex {g.Key} lo tienen {string.Join(", ", g.Select(x => x.DisplayName))}.", s));
+        }
+
+        // --- Papelera: fichas vivas que todavía usan algo de la papelera ---
+        private static void ValidateTrashUsers(List<ValidationIssue> issues)
+        {
+            foreach (var trashed in ContentTrash.Items())
+                foreach (var r in ReferenceFinder.FindReferencesTo(trashed))
+                    issues.Add(Warning($"'{ContentAssets.Label(r.Owner)}' usa '{ContentAssets.Label(trashed)}', que está en la PAPELERA ({r.Field}). " +
+                                       "Recupérala (Herramientas → Papelera) o cambia la referencia.", r.Owner));
         }
 
         // --- Movimientos ---
@@ -81,6 +107,14 @@ namespace CTEditor.GameDefinition.Editor
 
                 if (move.MaxHits < move.MinHits)
                     issues.Add(Warning($"El movimiento '{Name(move)}' tiene MaxHits ({move.MaxHits}) menor que MinHits ({move.MinHits}); se ajustará a MinHits.", move));
+
+                // Daño especial (Lote 5): avisos de configuraciones que no hacen nada.
+                if (move.FixedDamage != FixedDamageKind.None && move.Category == MoveCategory.Status)
+                    issues.Add(Warning($"El movimiento '{Name(move)}' tiene daño especial pero es de categoría Estado: no hará daño (ponlo Físico o Especial).", move));
+                if (move.FixedDamage == FixedDamageKind.Fixed && move.FixedDamageAmount <= 0)
+                    issues.Add(Warning($"El movimiento '{Name(move)}' hace daño fijo de 0 PS.", move));
+                if (move.FixedDamage == FixedDamageKind.None && move.Power == 0 && move.Category != MoveCategory.Status && string.IsNullOrWhiteSpace(move.PowerFormula))
+                    issues.Add(Warning($"El movimiento '{Name(move)}' es de daño pero tiene potencia 0: no hará nada (sube la potencia o usa daño especial).", move));
 
                 if (move.SecondaryEffects == null) continue;
                 foreach (var effect in move.SecondaryEffects)
@@ -97,9 +131,9 @@ namespace CTEditor.GameDefinition.Editor
                     else if (effect.kind == MoveEffectKind.ChangeStatStage)
                     {
                         if (string.IsNullOrWhiteSpace(effect.statStatId))
-                            issues.Add(Warning($"El movimiento '{Name(move)}' tiene un efecto de etapa sin stat (se ignorará).", move));
+                            issues.Add(Warning($"El movimiento '{Name(move)}' tiene un efecto de etapa sin estadística (se ignorará).", move));
                         else if (effect.statStages == 0)
-                            issues.Add(Warning($"El movimiento '{Name(move)}' cambia la stat '{effect.statStatId}' en 0 etapas (sin efecto).", move));
+                            issues.Add(Warning($"El movimiento '{Name(move)}' cambia la estadística '{effect.statStatId}' en 0 etapas (sin efecto).", move));
                     }
                 }
             }
@@ -128,7 +162,8 @@ namespace CTEditor.GameDefinition.Editor
                     foreach (var entry in sp.Learnset)
                     {
                         if (entry.move == null)
-                            issues.Add(Error($"La especie '{Name(sp)}' tiene una entrada de learnset sin movimiento asignado.", sp));
+                            issues.Add(Error($"La especie '{Name(sp)}' tiene una entrada de learnset sin movimiento asignado. " +
+                                "¿Borraste y volviste a crear un movimiento? Usa «🔧 Reparar especies» en el editor de Especies (o de Movimientos).", sp));
                         else if (entry.level < 1)
                             issues.Add(Warning($"La especie '{Name(sp)}' aprende '{entry.move.Id}' a nivel {entry.level} (debería ser >= 1).", sp));
                     }
@@ -147,7 +182,7 @@ namespace CTEditor.GameDefinition.Editor
                 {
                     foreach (var cs in sp.CustomStats)
                         if (string.IsNullOrWhiteSpace(cs.statId))
-                            issues.Add(Warning($"La especie '{Name(sp)}' tiene un stat personalizado sin id.", sp));
+                            issues.Add(Warning($"La especie '{Name(sp)}' tiene una estadística inventada sin id.", sp));
                 }
             }
         }
@@ -159,12 +194,12 @@ namespace CTEditor.GameDefinition.Editor
             foreach (var rs in rulesets)
             {
                 if (string.IsNullOrWhiteSpace(rs.DamageFormulaId))
-                    issues.Add(Error($"El ruleset '{Name(rs)}' no tiene fórmula de daño.", rs));
+                    issues.Add(Error($"Las reglas '{Name(rs)}' no tienen fórmula de daño.", rs));
                 else if (!knownFormulas.Contains(rs.DamageFormulaId))
-                    issues.Add(Warning($"El ruleset '{Name(rs)}' usa la fórmula '{rs.DamageFormulaId}', que no es una conocida ({string.Join(", ", knownFormulas)}).", rs));
+                    issues.Add(Warning($"Las reglas '{Name(rs)}' usan la fórmula '{rs.DamageFormulaId}', que no es una conocida ({string.Join(", ", knownFormulas)}).", rs));
 
                 if (rs.MaxMovesPerMonster < 1)
-                    issues.Add(Error($"El ruleset '{Name(rs)}' permite menos de 1 movimiento por monstruo.", rs));
+                    issues.Add(Error($"Las reglas '{Name(rs)}' permiten menos de 1 movimiento por monstruo.", rs));
             }
         }
 
@@ -216,6 +251,7 @@ namespace CTEditor.GameDefinition.Editor
             foreach (var guid in AssetDatabase.FindAssets("t:" + typeof(T).Name))
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
+                if (ContentTrash.IsTrashedPath(path)) continue; // lo de la papelera no se valida (ni cuenta como duplicado)
                 var asset = AssetDatabase.LoadAssetAtPath<T>(path);
                 if (asset != null) list.Add(asset);
             }

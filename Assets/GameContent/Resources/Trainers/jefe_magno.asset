@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: jefe_magno
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: jefe_magno
+  displayName: Magno
+  trainerClass: Jefe del Team Magma
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 5fce9c1e71e399949b16049d3128bbf7, type: 2}
+    level: 37
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: bb2fd4af0928cbb488f950bea5a6a676, type: 2}
+    level: 38
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 186f5f89fad245e4bb72565b4f8a922e, type: 2}
+    level: 39
+    moves: []
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 4
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "La humanidad necesita m\xE1s tierra. \xA1Aparta!"
+  defeatLine: "Hmm... quiz\xE1 me equivoqu\xE9."
+  victoryLine: "Nada detendr\xE1 mis planes."

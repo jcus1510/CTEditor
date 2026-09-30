@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: kricketot
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: kricketot
+  displayName: Kricketot
+  types:
+  - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
+  abilityId: shed_skin
+  secondAbilityId: 
+  hiddenAbilityId: run_away
+  growthCurveId: medium_slow
+  baseExpYield: 39
+  evYield:
+  - statId: defense
+    amount: 1
+  baseFriendship: 70
+  catchRate: 255
+  dexNumber: 401
+  category: Grillo
+  heightM: 0.3
+  weightKg: 2.2
+  dexColor: rojo
+  dexDescription: "Hablan entre s\xED chocando las antenas. Los sonidos producidos
+    son muy caracter\xEDsticos."
+  femalePercent: 50
+  legendary: 0
+  hp: 37
+  attack: 25
+  defense: 41
+  spAttack: 25
+  spDefense: 41
+  speed: 25
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 09db799c0c7218e4daad0f76094f6d45, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 43d0d19b060699548bfc305aecdc232a, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
+    level: 16
+  evolutions:
+  - target: {fileID: 11400000, guid: dac90d9d9f8abb842a130d4d6f42750a, type: 2}
+    requiredLevel: 10
+    method: 0
+    itemId: 
+    minFriendship: 0
+    conditions: []
+  machineMoves: []
+  tutorMoves:
+  - {fileID: 11400000, guid: 13ca1e152dccf554aa16ad9bfcd9ae56, type: 2}
+  - {fileID: 11400000, guid: f050730ea6b643346a1bd3c76ba306a1, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: a18d51fa09a21df4ca4319a635faf1fe, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 1db6d26df99d9ca4180072eb358a7436, type: 2}

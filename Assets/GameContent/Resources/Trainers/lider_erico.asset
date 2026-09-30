@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_erico
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_erico
+  displayName: Erico
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: e0d1d3629fa4fde4593727d54141926c, type: 2}
+    level: 20
+    moves:
+    - {fileID: 11400000, guid: 0636291e4eae3b146b1112aca9b448df, type: 2}
+    - {fileID: 11400000, guid: 01b037f4fcc5f4c46a053726e778dff2, type: 2}
+    - {fileID: 11400000, guid: f9393ac71e402e94d92eba2ed456c563, type: 2}
+    - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 95764aba71d51f84f9f3995f0279b043, type: 2}
+    level: 20
+    moves:
+    - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
+    - {fileID: 11400000, guid: 91d7d14655e701d40b528f342c361bfc, type: 2}
+    - {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
+    - {fileID: 11400000, guid: 7cf17ccfb7d37c742973c6692b880389, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: dd39c9e7c324f124197628311bc79ff1, type: 2}
+    level: 22
+    moves:
+    - {fileID: 11400000, guid: 3e9034391b20cc249ad2ece60d793edf, type: 2}
+    - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
+    - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+    - {fileID: 11400000, guid: 27c67f7db39357b49815c7060d90a0f2, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: e62fd91b3b8714c468e44af1606f3c23, type: 2}
+    level: 24
+    moves:
+    - {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
+    - {fileID: 11400000, guid: 7cf17ccfb7d37c742973c6692b880389, type: 2}
+    - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
+    - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 4
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "\xA1Wahahahah! \xA1Voy a electrizarte!"
+  defeatLine: "\xA1Wahahah! Me has cargado de alegr\xEDa. Toma la Medalla Dinamo."
+  victoryLine: "\xA1Qu\xE9 chispa!"

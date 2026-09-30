@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_morti
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_morti
+  displayName: Morti
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 9e3431a9ffd1b8347bc36d19573fd587, type: 2}
+    level: 21
+    moves:
+    - {fileID: 11400000, guid: 1db0d9d53ad30444492b07249c08d483, type: 2}
+    - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
+    - {fileID: 11400000, guid: 1e9502e238640da499f3cfa87629b763, type: 2}
+    - {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 9f8050426d9ce95438006f82732fc8a8, type: 2}
+    level: 21
+    moves:
+    - {fileID: 11400000, guid: 57b6a36f57133a848a8e6f2372fe652c, type: 2}
+    - {fileID: 11400000, guid: 37470fed86a77ec43b53ab2e8d4664f5, type: 2}
+    - {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
+    - {fileID: 11400000, guid: 16b091bddc2c69c4caf47ebb9fc70281, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: bc0caf2b3ee63b540acec34fe72ee456, type: 2}
+    level: 25
+    moves:
+    - {fileID: 11400000, guid: 57b6a36f57133a848a8e6f2372fe652c, type: 2}
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    - {fileID: 11400000, guid: 1e9502e238640da499f3cfa87629b763, type: 2}
+    - {fileID: 11400000, guid: 88aea8fc365bb0f438f437d235048d68, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 9f8050426d9ce95438006f82732fc8a8, type: 2}
+    level: 23
+    moves:
+    - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
+    - {fileID: 11400000, guid: 1e9502e238640da499f3cfa87629b763, type: 2}
+    - {fileID: 11400000, guid: 37470fed86a77ec43b53ab2e8d4664f5, type: 2}
+    - {fileID: 11400000, guid: 16b091bddc2c69c4caf47ebb9fc70281, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 4
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "Veo cosas que los dem\xE1s no ven..."
+  defeatLine: No lo vi venir. Toma la Medalla Niebla.
+  victoryLine: "El m\xE1s all\xE1 me acompa\xF1a."

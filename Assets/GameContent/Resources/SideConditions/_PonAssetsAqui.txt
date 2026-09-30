@@ -1,0 +1,2 @@
+Aquí van los EFECTOS DE LADO (SideConditionData): Reflejo, Pantalla de Luz, Velo Aurora, Neblina, Velo Sagrado, Viento Afín y los tuyos.
+Créalos con CTEditor → Combate → Efectos de lado (botón «Crear los 6 efectos clásicos»).

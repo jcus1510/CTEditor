@@ -1,0 +1,2 @@
+Aquí van los entrenadores rivales (CTEditor → Personajes → Entrenadores).
+Cada uno: nombre, clase, equipo (especie y nivel), cómo combate, dinero base y frases.

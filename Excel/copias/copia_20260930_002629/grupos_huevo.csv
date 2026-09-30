@@ -1,0 +1,30 @@
+﻿id;nombre;color;no_cria;descripcion
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+;;99BFE6;no;
+bug;Bicho;AAC22A;no;Las especies del grupo Bicho pueden criar entre sí.
+ditto;Ditto;B6AAD5;no;Las especies del grupo Ditto pueden criar entre sí.
+dragon;Dragón;5E57BF;no;Las especies del grupo Dragón pueden criar entre sí.
+fairy;Hada;FF9EB9;no;Las especies del grupo Hada pueden criar entre sí.
+flying;Volador;90AFF1;no;Las especies del grupo Volador pueden criar entre sí.
+ground;Campo;E5BA65;no;Las especies del grupo Campo pueden criar entre sí.
+humanshape;Humanoide;47B7AE;no;Las especies del grupo Humanoide pueden criar entre sí.
+indeterminate;Amorfo;9F82CC;no;Las especies del grupo Amorfo pueden criar entre sí.
+mineral;Mineral;979067;no;Las especies del grupo Mineral pueden criar entre sí.
+monster;Monstruo;97724C;no;Las especies del grupo Monstruo pueden criar entre sí.
+no_eggs;Desconocido;A3A3A3;si;No puede criar (legendarios, bebés y especies especiales).
+plant;Planta;82D25A;no;Las especies del grupo Planta pueden criar entre sí.
+water1;Agua 1;6BD1F9;no;Las especies del grupo Agua 1 pueden criar entre sí.
+water2;Agua 2;4B94ED;no;Las especies del grupo Agua 2 pueden criar entre sí.
+water3;Agua 3;2271B4;no;Las especies del grupo Agua 3 pueden criar entre sí.

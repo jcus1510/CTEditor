@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71c352d24ca6284faa1ca3345f90f52, type: 3}
+  m_Name: equipo_objeto
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MenuData
+  id: equipo_objeto
+  displayName: 'Equipo: objeto'
+  title: 
+  options:
+  - id: give
+    label: DAR
+    action: 9
+    target: give
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  - id: take
+    label: QUITAR
+    action: 9
+    target: take
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  - id: salir
+    label: SALIR
+    action: 0
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  columns: 1
+  wrap: 1
+  rememberCursor: 0
+  cancelCloses: 1
+  cancelOptionId: 
+  anchor: 1

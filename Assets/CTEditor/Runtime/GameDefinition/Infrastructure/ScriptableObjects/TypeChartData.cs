@@ -8,7 +8,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
     /// multiplicador). Solo define lo "interesante" (los x2, x0.5, x0); lo que no liste queda
     /// neutral por defecto, porque así lo resuelve el TypeChart del dominio.
     /// </summary>
-    [CreateAssetMenu(menuName = "CTEditor/Type Chart", fileName = "TypeChart")]
+    [CreateAssetMenu(menuName = "CTEditor/Tabla de tipos", fileName = "TablaDeTipos")]
     public sealed class TypeChartData : ScriptableObject
     {
         [SerializeField] private MatchupEntry[] matchups;

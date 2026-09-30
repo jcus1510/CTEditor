@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_erika
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_erika
+  displayName: Erika
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: c833461ff0dd07841836ffbcc71646e6, type: 2}
+    level: 29
+    moves:
+    - {fileID: 11400000, guid: 70288371a4a95a646a3bdaf1d1e04ce6, type: 2}
+    - {fileID: 11400000, guid: b8e0ae1c2ab2a7d46b91339f304564be, type: 2}
+    - {fileID: 11400000, guid: 1c707176215de6247ac6f78337170e78, type: 2}
+    - {fileID: 11400000, guid: 36d61ae0543c3c047861588b54ff9311, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 09fb406433427174880b49565707f3f5, type: 2}
+    level: 24
+    moves:
+    - {fileID: 11400000, guid: 4c1be241870b3b2408914a0226222162, type: 2}
+    - {fileID: 11400000, guid: 60ac62c386d80ab4db17b3e8a05c4df0, type: 2}
+    - {fileID: 11400000, guid: 36bfb8286b5281b42b15716b99496dde, type: 2}
+    - {fileID: 11400000, guid: 1c707176215de6247ac6f78337170e78, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 2ad8f294dc6a06f45b6ad7cdc0c03f49, type: 2}
+    level: 29
+    moves:
+    - {fileID: 11400000, guid: 08e98f5a8f6cf05419ab6404e1405864, type: 2}
+    - {fileID: 11400000, guid: 58b3bb2d11a3dd74689abe52955d6f02, type: 2}
+    - {fileID: 11400000, guid: 36d61ae0543c3c047861588b54ff9311, type: 2}
+    - {fileID: 11400000, guid: de7425f38b0577848a9def95bac54fe2, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 4
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "Me encantan las plantas... \xBFvienes a combatir?"
+  defeatLine: "Oh... toma la Medalla Arco\xEDris."
+  victoryLine: Las flores siempre vuelven a crecer.

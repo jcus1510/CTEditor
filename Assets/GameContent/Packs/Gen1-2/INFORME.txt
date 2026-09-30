@@ -1,0 +1,111 @@
+﻿PACK 1ª Y 2ª GENERACIÓN — qué incluye y qué falta
+=============================================
+
+• 251 especies (Bulbasaur…Celebi): tipos, stats base, EVs, XP base y curva de experiencia actuales;
+  aprendizaje por nivel de Pokémon Cristal; ratio de captura oficial; nombres en español.
+• POKÉDEX: número, categoría («Pokémon Semilla»), altura, peso, color, % de hembras (o sin género),
+  legendario y la descripción en español de su primera aparición.
+• 56 ENTRENADORES (entrenadores.csv): líderes de gimnasio, Alto Mando y Campeón con sus movimientos
+  de los juegos, rivales, Team Rocket y entrenadores de ruta. Los de ruta usan «movimientos_auto»: clasico
+  (los 4 últimos que aprende), equilibrado (ataque fuerte + cobertura + apoyo) o fuerte (el máximo reto).
+• 250 movimientos con sus valores actuales (tipo, categoría física/especial, potencia,
+  precisión, PP, prioridad, efectos). Forcejeo no va aquí: lo crea la plantilla de movimientos.
+• 56 habilidades (la primera no oculta de cada especie). Se crean SOLO con nombre: las que no
+  existan como plantilla no hacen nada hasta que las configures en CTEditor → Criaturas → Habilidades.
+
+• Daño especial (12): Bomba Sónica, Furia Dragón, Sísmico, Tinieblas, Superdiente y los KO directos usan
+  la columna "daño_especial". Ataque Arena, Pantalla de Humo, Doble Equipo, Reducción... usan las etapas de
+  precisión/evasión del motor.
+• Mecánicas especiales: Reflejo, Pantalla de Luz y Neblina (efectos de lado), Niebla, Foco Energía, Sustituto,
+  Anulación, Saña y Danza Pétalo (encadenan turnos y confunden), Furia, Metrónomo, Espejo, Mimético,
+  Transformación, Conversión (tipo de su primer movimiento, como desde la 2ª gen.), Teletransporte,
+  Contraataque y Venganza (columna "daño_especial"). Necesitan los efectos de lado del Centro de Contenido.
+• Estados volátiles: Constricción, Atadura, Giro Fuego y Tenaza atrapan (estado "trapped"); Drenadoras usa
+  "leech_seed"; la confusión se suma al estado principal.
+
+Todo es editable: cambia cualquier valor en Excel o en las ventanas de CTEditor.
+
+EVOLUCIONES QUE NO SON POR NIVEL (39) — incluidas: las piedras se usan desde la mochila y
+las de intercambio quedan listas para cuando exista el intercambio (o cámbialas a "especie@nivel" en especies.csv):
+   pichu → pikachu  (por amistad)
+   pikachu → raichu  (con el objeto thunder_stone)
+   nidorina → nidoqueen  (con el objeto moon_stone)
+   nidorino → nidoking  (con el objeto moon_stone)
+   cleffa → clefairy  (por amistad)
+   clefairy → clefable  (con el objeto moon_stone)
+   vulpix → ninetales  (con el objeto fire_stone)
+   igglybuff → jigglypuff  (por amistad)
+   jigglypuff → wigglytuff  (con el objeto moon_stone)
+   gloom → vileplume  (con el objeto leaf_stone)
+   growlithe → arcanine  (con el objeto fire_stone)
+   poliwhirl → poliwrath  (con el objeto water_stone)
+   kadabra → alakazam  (por intercambio)
+   machoke → machamp  (por intercambio)
+   weepinbell → victreebel  (con el objeto leaf_stone)
+   graveler → golem  (por intercambio)
+   shellder → cloyster  (con el objeto water_stone)
+   haunter → gengar  (por intercambio)
+   exeggcute → exeggutor  (con el objeto leaf_stone)
+   tyrogue → hitmonlee  (nivel 20 y stats:atq>def)
+   tyrogue → hitmonchan  (nivel 20 y stats:atq<def)
+   staryu → starmie  (con el objeto water_stone)
+   eevee → vaporeon  (con el objeto water_stone)
+   eevee → jolteon  (con el objeto thunder_stone)
+   eevee → flareon  (con el objeto fire_stone)
+   golbat → crobat  (por amistad)
+   togepi → togetic  (por amistad)
+   gloom → bellossom  (con el objeto sun_stone)
+   poliwhirl → politoed  (por intercambio llevando kings_rock)
+   sunkern → sunflora  (con el objeto sun_stone)
+   eevee → espeon  (por amistad (hora:dia))
+   eevee → umbreon  (por amistad (hora:noche))
+   slowpoke → slowking  (por intercambio llevando kings_rock)
+   onix → steelix  (por intercambio llevando metal_coat)
+   scyther → scizor  (por intercambio llevando metal_coat)
+   seadra → kingdra  (por intercambio llevando dragon_scale)
+   porygon → porygon2  (por intercambio llevando up_grade)
+   tyrogue → hitmontop  (nivel 20 y stats:atq=def)
+   chansey → blissey  (por amistad)
+
+MOVIMIENTOS APROXIMADOS (21):
+   low_kick (Patada Baja): potencia fija 50 (la de 1ª gen.; la actual depende del peso)
+   self_destruct (Autodestrucción): el usuario se debilita (retroceso del 100% de sus PS máx.)
+   psywave (Psicoonda): daño = nivel del usuario (el original varía entre 0,5 y 1,5 veces el nivel)
+   explosion (Explosión): el usuario se debilita (retroceso del 100% de sus PS máx.)
+   rest (Descanso): cura todo y se duerme (sin curar el estado previo)
+   triple_kick (Triple Patada): sin aumentar la potencia en cada golpe
+   thief (Ladrón): no roba el objeto
+   curse (Maldición): versión de no Fantasma (Ataque y Defensa +1, Velocidad -1)
+   flail (Azote): potencia por fórmula continua (el original va por tramos de PS)
+   reversal (Inversión): potencia por fórmula continua (el original va por tramos de PS)
+   belly_drum (Tambor): pierde la mitad de sus PS y sube el Ataque al máximo aunque no tenga PS suficientes
+   rollout (Rodar): sin aumentar la potencia en cada turno
+   false_swipe (Falso Tortazo): puede debilitar (el original deja 1 PS)
+   fury_cutter (Corte Furia): sin aumentar la potencia en cada turno
+   heal_bell (Cascabel Cura): solo cura el estado de quien lo usa (no de todo el equipo)
+   present (Presente): potencia fija 40 (el original puede curar al rival)
+   magnitude (Magnitud): potencia fija 70 (el original es al azar entre 10 y 150)
+   pursuit (Persecución): sin doble daño al que se retira
+   hidden_power (Poder Oculto): Normal de potencia 60 (el original depende de los IVs)
+   future_sight (Premonición): golpea en el momento (el original golpea 2 turnos después)
+   beat_up (Paliza): un solo golpe (el original golpea con todo el equipo)
+
+MOVIMIENTOS CON EFECTO AÚN NO SOPORTADO (15) — se importan con su daño/precisión, sin el efecto:
+   sketch (Esquema): efecto único
+   spider_web (Telaraña): efecto único
+   mind_reader (Telépata): efecto único
+   nightmare (Pesadilla): pesadilla
+   conversion_2 (Conversión 2): efecto único
+   spite (Rencor): efecto único
+   foresight (Profecía): sin tipo
+   destiny_bond (Mismo Destino): efecto único
+   perish_song (Canto Mortal): canto mortal
+   lock_on (Fijar Blanco): efecto único
+   mean_look (Mal de Ojo): efecto único
+   attract (Atracción): enamorar
+   sleep_talk (Sonámbulo): efecto único
+   pain_split (Divide Dolor): efecto único
+   psych_up (Autosugestión): efecto único
+
+Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
+The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.

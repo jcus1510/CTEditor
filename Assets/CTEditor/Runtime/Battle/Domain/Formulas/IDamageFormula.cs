@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CTEditor.SharedKernel.Abstractions;
 
 namespace CTEditor.Battle.Domain.Formulas
@@ -35,6 +36,12 @@ namespace CTEditor.Battle.Domain.Formulas
         /// <summary>Nivel de crítico del movimiento (0 = normal; mayor = más probabilidad de crítico).</summary>
         public int CritStage { get; }
 
+        /// <summary>Tabla de críticos ("1 entre N" por etapa). Null = la moderna (24, 8, 2, 1). 0 = nunca.</summary>
+        public IReadOnlyList<int> CritDenominators { get; }
+
+        /// <summary>Multiplicador del crítico (moderno 1,5).</summary>
+        public float CritMultiplier { get; }
+
         public DamageContext(
             int attackerLevel,
             int attackStat,
@@ -44,8 +51,12 @@ namespace CTEditor.Battle.Domain.Formulas
             bool stab,
             IRng rng,
             int critStage = 0,
-            float stabMultiplier = 0f)
+            float stabMultiplier = 0f,
+            IReadOnlyList<int> critDenominators = null,
+            float critMultiplier = 1.5f)
         {
+            CritDenominators = critDenominators;
+            CritMultiplier = critMultiplier <= 0f ? 1.5f : critMultiplier;
             AttackerLevel = attackerLevel;
             AttackStat = attackStat;
             DefenseStat = defenseStat;

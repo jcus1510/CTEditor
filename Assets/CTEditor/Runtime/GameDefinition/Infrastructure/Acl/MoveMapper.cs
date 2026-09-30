@@ -47,22 +47,68 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 {
                     if (e == null) continue;
                     var chance = new Percentage(e.chancePercent);
+                    var conditions = ConditionMapper.ToDomain(e.conditions);   // Lote A: condiciones
+                    bool shared = e.sharesPreviousRoll;                          // Lote A: dado compartido
 
                     switch (e.kind)
                     {
                         case MoveEffectKind.InflictStatus:
                             if (string.IsNullOrWhiteSpace(e.statusId)) continue; // efecto de estado vacío: se ignora
-                            effects.Add(new MoveEffect(chance, MoveEffectKind.InflictStatus, e.target, status: new StatusId(e.statusId)));
+                            effects.Add(new MoveEffect(chance, MoveEffectKind.InflictStatus, e.target, status: new StatusId(e.statusId),
+                                conditions: conditions, sharesPreviousRoll: shared));
                             break;
 
                         case MoveEffectKind.ChangeStatStage:
                             if (string.IsNullOrWhiteSpace(e.statStatId)) continue; // sin stat: se ignora
                             effects.Add(new MoveEffect(chance, MoveEffectKind.ChangeStatStage, e.target,
-                                stat: new StatId(e.statStatId), stages: e.statStages));
+                                stat: new StatId(e.statStatId), stages: e.statStages, conditions: conditions, sharesPreviousRoll: shared));
                             break;
 
-                        default: // Drain / Recoil / HealSelf: usan el porcentaje
-                            effects.Add(new MoveEffect(chance, e.kind, e.target, amount: new Percentage(e.amountPercent)));
+                        case MoveEffectKind.CureStatus:
+                            // Sin id = cura el estado PRINCIPAL; con id = ese estado (principal o volátil).
+                            effects.Add(new MoveEffect(chance, MoveEffectKind.CureStatus, e.target,
+                                status: string.IsNullOrWhiteSpace(e.statusId) ? default : new StatusId(e.statusId.Trim()),
+                                conditions: conditions, sharesPreviousRoll: shared));
+                            break;
+
+                        case MoveEffectKind.SetWeather:
+                            if (string.IsNullOrWhiteSpace(e.weatherId)) continue; // sin clima: se ignora
+                            effects.Add(new MoveEffect(chance, MoveEffectKind.SetWeather, e.target, conditions: conditions,
+                                sharesPreviousRoll: shared, weatherId: e.weatherId.Trim(), weatherTurns: e.weatherTurns));
+                            break;
+
+                        case MoveEffectKind.SetHazard:
+                            if (string.IsNullOrWhiteSpace(e.hazardId)) continue; // sin trampa: se ignora
+                            effects.Add(new MoveEffect(chance, MoveEffectKind.SetHazard, e.target, conditions: conditions,
+                                sharesPreviousRoll: shared, hazardId: e.hazardId.Trim()));
+                            break;
+
+                        case MoveEffectKind.ClearHazards: // sin id = todas
+                            effects.Add(new MoveEffect(chance, MoveEffectKind.ClearHazards, e.target, conditions: conditions,
+                                sharesPreviousRoll: shared, hazardId: (e.hazardId ?? "").Trim()));
+                            break;
+
+                        case MoveEffectKind.ForceSwitch:
+                            effects.Add(new MoveEffect(chance, MoveEffectKind.ForceSwitch, e.target, conditions: conditions, sharesPreviousRoll: shared));
+                            break;
+
+                        case MoveEffectKind.SetSideCondition:
+                            if (string.IsNullOrWhiteSpace(e.sideConditionId)) continue; // sin efecto de lado: se ignora
+                            effects.Add(new MoveEffect(chance, MoveEffectKind.SetSideCondition, e.target, conditions: conditions,
+                                sharesPreviousRoll: shared, sideConditionId: e.sideConditionId.Trim()));
+                            break;
+
+                        default:
+                            // Drain / Recoil / HealSelf / Heal / Flinch usan el porcentaje; Foco Energía y Relevo las etapas;
+                            // Anulación, Otra Vez y Saña los turnos (y Saña el estado final); Furia la stat y las etapas;
+                            // Conversión el tipo. Se pasa todo y cada efecto usa lo suyo.
+                            effects.Add(new MoveEffect(chance, e.kind, e.target,
+                                status: string.IsNullOrWhiteSpace(e.statusId) ? default : new StatusId(e.statusId.Trim()),
+                                amount: new Percentage(e.amountPercent),
+                                stat: string.IsNullOrWhiteSpace(e.statStatId) ? default : new StatId(e.statStatId.Trim()),
+                                stages: e.statStages, conditions: conditions, sharesPreviousRoll: shared,
+                                turns: e.turns, typeId: (e.typeId ?? "").Trim(), text: (e.text ?? "").Trim(),
+                                sideConditionId: (e.sideConditionId ?? "").Trim(), weatherId: (e.weatherId ?? "").Trim(), weatherTurns: e.weatherTurns));
                             break;
                     }
                 }
@@ -82,7 +128,28 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 data.MinHits,
                 data.MaxHits,
                 data.CritStage,
-                data.TwoTurn);
+                data.TwoTurn,
+                data.MakesContact,
+                data.FixedDamage,
+                data.FixedDamageAmount,
+                data.RespectsTypeImmunity,
+                ConditionMapper.ToDomain(data.PowerModifiers),
+                data.PowerFormula,
+                string.IsNullOrWhiteSpace(data.AttackStat) ? (StatId?)null : new StatId(data.AttackStat.Trim()),
+                string.IsNullOrWhiteSpace(data.DefenseStat) ? (StatId?)null : new StatId(data.DefenseStat.Trim()),
+                data.AttackStatFromTarget,
+                data.Tags,
+                ConditionMapper.ToDomain(data.Requirements),
+                WeatherTypes(data.TypeByWeather));
+        }
+
+        private static Dictionary<string, Id<ElementType>> WeatherTypes(MoveData.WeatherTypeEntry[] entries)
+        {
+            var map = new Dictionary<string, Id<ElementType>>();
+            if (entries != null)
+                foreach (var e in entries)
+                    if (e != null && e.type != null && !string.IsNullOrWhiteSpace(e.weatherId)) map[e.weatherId.Trim()] = new Id<ElementType>(e.type.Id);
+            return map;
         }
     }
 }

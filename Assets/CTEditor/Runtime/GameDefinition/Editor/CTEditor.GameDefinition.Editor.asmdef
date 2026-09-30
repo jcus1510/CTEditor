@@ -4,7 +4,10 @@
     "references": [
         "CTEditor.SharedKernel",
         "CTEditor.GameDefinition.Domain",
-        "CTEditor.GameDefinition"
+        "CTEditor.GameDefinition",
+        "CTEditor.Party.Domain",
+        "CTEditor.Battle.Domain",
+        "CTEditor.Adventure.Domain"
     ],
     "includePlatforms": [
         "Editor"

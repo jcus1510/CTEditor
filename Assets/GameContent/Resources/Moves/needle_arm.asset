@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af2ff6f36485864784eac3bda8601c8, type: 3}
+  m_Name: needle_arm
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
+  id: needle_arm
+  displayName: Brazo Pincho
+  type: {fileID: 11400000, guid: 50792a937522d2e4ab6bd6a520a1534f, type: 2}
+  category: 0
+  power: 60
+  neverMisses: 0
+  accuracy: 100
+  maxPp: 15
+  priority: 0
+  target: 0
+  secondaryEffects:
+  - chancePercent: 30
+    kind: 5
+    target: 0
+    statusId: 
+    amountPercent: 0
+    statStatId: 
+    statStages: 0
+    weatherId: 
+    weatherTurns: 0
+    hazardId: 
+    sideConditionId: 
+    turns: 0
+    typeId: 
+    text: 
+    sharesPreviousRoll: 0
+    conditions: []
+  minHits: 1
+  maxHits: 1
+  critStage: 0
+  twoTurn: 0
+  makesContact: 1
+  fixedDamage: 0
+  fixedDamageAmount: 0
+  respectsTypeImmunity: 0
+  powerModifiers: []
+  powerFormula: 
+  attackStat: 
+  defenseStat: 
+  attackStatFromTarget: 0
+  tags: []
+  requirements: []
+  typeByWeather: []
+  animationSeconds: 0

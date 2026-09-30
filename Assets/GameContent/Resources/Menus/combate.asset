@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71c352d24ca6284faa1ca3345f90f52, type: 3}
+  m_Name: combate
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MenuData
+  id: combate
+  displayName: "Combate: \xBFqu\xE9 har\xE1?"
+  title: 
+  options:
+  - id: luchar
+    label: LUCHAR
+    action: 9
+    target: fight
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  - id: mochila
+    label: MOCHILA
+    action: 9
+    target: bag
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  - id: equipo
+    label: "POK\xE9MON"
+    action: 9
+    target: switch
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  - id: huir
+    label: HUIR
+    action: 9
+    target: run
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  columns: 2
+  wrap: 1
+  rememberCursor: 1
+  cancelCloses: 0
+  cancelOptionId: 
+  anchor: 1

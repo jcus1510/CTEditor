@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a71c352d24ca6284faa1ca3345f90f52, type: 3}
+  m_Name: pausa_rejilla
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MenuData
+  id: pausa_rejilla
+  displayName: "Men\xFA de pausa (rejilla 2\xD73)"
+  title: 
+  options:
+  - id: equipo
+    label: Equipo
+    action: 2
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  - id: mochila
+    label: Mochila
+    action: 3
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  - id: ficha
+    label: '{jugador}'
+    action: 6
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  - id: guardar
+    label: Guardar
+    action: 7
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  - id: opciones
+    label: Opciones
+    action: 8
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  - id: salir
+    label: Cerrar
+    action: 0
+    target: 
+    requiredFlag: 
+    hiddenByFlag: 
+    help: 
+  columns: 2
+  wrap: 1
+  rememberCursor: 1
+  cancelCloses: 1
+  cancelOptionId: 
+  anchor: 5

@@ -5,6 +5,8 @@ using CTEditor.GameDefinition.Domain.Status;
 using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Types;
 
+using CTEditor.GameDefinition.Domain.Conditions;
+
 namespace CTEditor.GameDefinition.Domain.Abilities
 {
     /// <summary>
@@ -103,6 +105,21 @@ namespace CTEditor.GameDefinition.Domain.Abilities
         /// <summary>Anula el daño residual de estados (Cura Veneno no recibe daño de veneno; Guardia Mágica).</summary>
         public bool NegatesStatusDamage { get; }
 
+        /// <summary>
+        /// Modificadores de potencia AL ATACAR (Técnico: ×1,5 si la potencia es 60 o menos; Puño Férreo:
+        /// ×1,2 a los movimientos con etiqueta "puño"). "Propio" = el portador; "rival" = el objetivo.
+        /// </summary>
+        public IReadOnlyList<PowerModifier> OffensivePowerModifiers { get; }
+
+        /// <summary>
+        /// Modificadores de potencia AL RECIBIR un golpe (Peluche: ×0,5 si el movimiento hace contacto).
+        /// "Propio" = el portador (quien recibe); "rival" = el atacante.
+        /// </summary>
+        public IReadOnlyList<PowerModifier> DefensivePowerModifiers { get; }
+
+        /// <summary>Los ganchos de la 3.ª y 4.ª generación (clima, Robustez, Rastro, Superguarda...). Nunca null.</summary>
+        public AbilityExtras Extras { get; }
+
         public AbilityDefinition(
             AbilityId id,
             string displayName,
@@ -131,8 +148,14 @@ namespace CTEditor.GameDefinition.Domain.Abilities
             Percentage endOfTurnHealPercent = default,
             bool endOfTurnHealRequiresStatus = false,
             Percentage endOfTurnCureStatusChance = default,
-            bool negatesStatusDamage = false)
+            bool negatesStatusDamage = false,
+            IReadOnlyList<PowerModifier> offensivePowerModifiers = null,
+            IReadOnlyList<PowerModifier> defensivePowerModifiers = null,
+            AbilityExtras extras = null)
         {
+            Extras = extras ?? AbilityExtras.None;
+            OffensivePowerModifiers = offensivePowerModifiers ?? Array.Empty<PowerModifier>();
+            DefensivePowerModifiers = defensivePowerModifiers ?? Array.Empty<PowerModifier>();
             Id = id;
             DisplayName = displayName;
             PassiveModifiers = passiveModifiers ?? Array.Empty<StatPassiveModifier>();

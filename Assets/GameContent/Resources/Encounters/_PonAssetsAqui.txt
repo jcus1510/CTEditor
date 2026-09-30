@@ -1,0 +1,2 @@
+Aquí van las zonas salvajes (CTEditor → Mundo → Zonas salvajes).
+Cada zona: especies con su nivel mínimo, máximo y frecuencia.

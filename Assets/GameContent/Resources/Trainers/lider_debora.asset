@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_debora
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_debora
+  displayName: "D\xE9bora"
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 9c5fd62bc8be5f44dae872cff7d5db61, type: 2}
+    level: 37
+    moves:
+    - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+    - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
+    - {fileID: 11400000, guid: c475a06b2286c0543961aec8fb9e8749, type: 2}
+    - {fileID: 11400000, guid: bb2a46c3e900da44e86313655582e86b, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 9c5fd62bc8be5f44dae872cff7d5db61, type: 2}
+    level: 37
+    moves:
+    - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: c475a06b2286c0543961aec8fb9e8749, type: 2}
+    - {fileID: 11400000, guid: bb2a46c3e900da44e86313655582e86b, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: 9c5fd62bc8be5f44dae872cff7d5db61, type: 2}
+    level: 37
+    moves:
+    - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    - {fileID: 11400000, guid: c475a06b2286c0543961aec8fb9e8749, type: 2}
+    - {fileID: 11400000, guid: bb2a46c3e900da44e86313655582e86b, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  - species: {fileID: 11400000, guid: a3c9f350020996444a386db693e8919d, type: 2}
+    level: 40
+    moves:
+    - {fileID: 11400000, guid: 086b0bf63b44f0f4c8ead69ce6291aa8, type: 2}
+    - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
+    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+    - {fileID: 11400000, guid: bb2a46c3e900da44e86313655582e86b, type: 2}
+    heldItem: dragon_scale
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+  aiLevel: 4
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: hyper_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: Soy la mejor domadora de dragones del mundo.
+  defeatLine: "... No lo acepto. Pero toma la Medalla Drag\xF3n."
+  victoryLine: "\xA1Los dragones son invencibles!"

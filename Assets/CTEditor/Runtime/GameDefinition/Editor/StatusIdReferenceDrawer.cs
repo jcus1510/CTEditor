@@ -26,6 +26,7 @@ namespace CTEditor.GameDefinition.Editor
             foreach (var guid in AssetDatabase.FindAssets("t:StatusConditionData"))
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
+                if (ContentTrash.IsTrashedPath(path)) continue; // lo de la papelera no se ofrece
                 var data = AssetDatabase.LoadAssetAtPath<StatusConditionData>(path);
                 if (data != null && !string.IsNullOrWhiteSpace(data.Id) && !options.Contains(data.Id))
                     options.Add(data.Id);

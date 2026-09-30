@@ -1,0 +1,188 @@
+﻿CTEditor — Datos del juego en Excel
+====================================
+Cada archivo .csv es una hoja: una FILA por ficha, identificada por su columna 'id'.
+  • Ábrelos con Excel (o LibreOffice / Google Sheets). Guarda como 'CSV UTF-8' o 'CSV (delimitado por punto y coma)'.
+  • Filas con un id NUEVO crean fichas; filas con un id existente las actualizan.
+  • Borrar una fila NO borra la ficha (para borrar usa el editor de su categoría).
+  • Puedes quitar columnas que no quieras tocar: solo se aplican las que estén.
+  • Antes de aplicar, Unity te enseña qué va a cambiar y guarda una copia de seguridad.
+  • Listas: separa con |   Pares: clave:valor   Decimales: coma o punto.
+
+── tipos.csv  (Tipos)
+   id                       Id único (ej. fire).
+   nombre                   Nombre visible (ej. Fuego).
+   color                    Color en hexadecimal (ej. EE8130).
+
+── tabla_tipos.csv  (Tabla de tipos)
+   ataca\defiende           Primera columna: el tipo que ATACA. Cabecera: los tipos que DEFIENDEN.
+   (celdas)                 2 = muy eficaz, 0,5 = poco eficaz, 0 = inmune, vacío = normal (×1).
+
+── estados.csv  (Estados)
+   id                       Id (único, sin espacios). texto
+   nombre                   Nombre visible. texto
+   volatil                  Es volátil (se suma al principal). PRINCIPAL (desmarcado): quemado, parálisis, sueño... solo uno a la vez. VOLÁTIL (marcado): confusión, atrapado, drenadoras... se suma al principal y a otros volátiles, y se va al retirarse. [si / no]
+   daño_por_turno           Daño por turno (% PS máx.). Daño por turno como % de los PS máximos. 0 = no hace daño (p.ej. parálisis). [número]
+   daño_creciente           El daño crece cada turno. Si está marcado, el daño residual escala cada turno (envenenamiento grave / tóxico). [si / no]
+   cura_por_turno           Cura en vez de dañar. Si está marcado, el residual CURA en vez de dañar cada turno (regeneración). [si / no]
+   prob_no_actuar           Probabilidad de no actuar (%). Probabilidad por turno de no poder actuar. 0 = nunca impide (p.ej. quemado). [número]
+   se_cura_al_retirarse     Se cura al retirarse. Si está marcado, el estado se quita al cambiar de monstruo (estados volátiles). [si / no]
+   duracion                 Duración en turnos (0 = hasta curarse). Duración en turnos. 0 = permanente (hasta curar). >0 = se quita solo tras esos turnos (p.ej. sueño). [número entero]
+   prob_recuperarse         Probabilidad de recuperarse cada turno (%). Probabilidad por turno de recuperarse solo (dormido/confuso despiertan al azar). 0 = solo por duración. [número]
+   autodaño                 Autodaño al no actuar (% PS máx.). Si impide la acción, daño que el portador se hace a sí mismo (% PS máx). Confusión > 0; dormido = 0. [número]
+   se_convierte_en          Al terminar se convierte en. Al terminar, se convierte en este estado en vez de curarse (somnoliento -> dormido). Vacío = se cura. [id de StatusCondition]
+   modificadores            Cambios de estadísticas mientras dura. Modificadores pasivos de estadísticas mientras dura (p.ej. Ataque ×0,5 para quemado). [filas con |, campos con ':' en este orden: estadistica:multiplicador]
+   tipos_inmunes            Tipos inmunes. Tipos que NO pueden sufrir este estado (Fuego no se quema, Eléctrico no se paraliza...). Vacío = cualquiera. [lista con |: id de ElementType]
+   duracion_max             Duración máxima (al azar). Si es mayor que 'Duration Turns', la duración se sortea entre ambos (Atadura: 4 a 5 turnos). [número entero]
+   impide_cambio            Impide cambiarse y huir. El portador no puede cambiarse ni huir (Atadura, Mal de Ojo). [si / no]
+   bloquea_ataques          Bloquea los ataques del rival. Los movimientos del rival contra el portador fallan (Protección). Úsalo con duración 1. [si / no]
+   aguanta                  Aguanta con 1 PS. Un golpe que lo debilitaría lo deja con 1 PS (Aguante). Úsalo con duración 1. [si / no]
+   cura_al_rival            El daño por turno cura al rival. El daño por turno CURA al rival que está en el campo (Drenadoras). [si / no]
+   mas_dificil_si_repite    Más difícil si se repite. Si se usa turnos seguidos, cada vez es más difícil que salga (Protección: 1/3, 1/9...). [si / no]
+
+── climas.csv  (Climas)
+   id                       Id (único, sin espacios). Id estable (lo usan los movimientos y las condiciones). Ej.: rain [texto]
+   nombre                   Nombre visible. texto
+   turnos                   Turnos que dura. Turnos que dura cuando un movimiento lo activa sin indicar duración. 0 = hasta que otro clima lo reemplace. [número entero]
+   potencia_por_tipo        Potencia por tipo. Multiplicadores de potencia por tipo mientras dura. Lluvia: Agua ×1,5 y Fuego ×0,5. [filas con |, campos con ':' en este orden: tipo:multiplicador]
+   daño_por_turno           Daño por turno (% PS máx.). Daño a TODOS al final de cada turno (% de PS máx). Arena/granizo: 6,25. 0 = nada. [número]
+   tipos_inmunes            Tipos inmunes. Tipos que NO reciben ese daño (arena: Roca, Tierra y Acero). [lista con |: id de ElementType]
+   color                    Color. Color para la interfaz (fondo del combate, etiquetas). [color hex, ej. EE8130]
+
+── habilidades.csv  (Habilidades)
+   id                       Id (único, sin espacios). Id estable de la habilidad (clave de texto, p.ej. "levitate"). [texto]
+   nombre                   Nombre visible. texto
+   modificadores            Cambios de estadísticas mientras dura. Multiplica estadísticas mientras el portador está en combate (p.ej. ataque ×2). Se combina en EffectiveStat. [filas con |, campos con ':' en este orden: estadistica:multiplicador]
+   inmune_estados           Inmune a los estados. Estados que esta habilidad IMPIDE (no se pueden infligir al portador). [lista con |: id de StatusCondition]
+   inmune_tipos             Inmune a los tipos. Tipos a los que el portador es INMUNE (los movimientos de ese tipo no le afectan). [lista con |: id de ElementType]
+   cura_al_absorber         Cura al absorber (% PS máx.). Si es inmune a un tipo, % de PS máx que CURA al recibirlo (Absorbe Agua). 0 = solo anula. [número]
+   estado_por_contacto      Estado al recibir contacto. Estado a infligir al ATACANTE cuando le pega un golpe de CONTACTO (Estática, Cuerpo Llama). Vacío = ninguno. [id de StatusCondition]
+   prob_contacto            Probabilidad por contacto (%). Probabilidad de la reacción por contacto. [número]
+   entrada_stat             Al entrar: estadística. Al ENTRAR al campo, cambia una etapa de estadística (Intimidación: estadística "attack", -1, al rival). Vacío = nada. [texto]
+   entrada_etapas           Al entrar: etapas. número entero
+   entrada_propio           Al entrar: sobre sí mismo. Si está marcado, el cambio al entrar es sobre uno mismo; si no, sobre el rival. [si / no]
+   con_estado_stat          Con estado: estadística que sube. Stat que se multiplica SOLO si el portador tiene un estado (Agallas: "attack"; Pies Rápidos: "speed"). Vacío = nada. [texto]
+   con_estado_mult          Con estado: multiplicador. número
+   poca_vida_tipo           Poca vida: tipo potenciado. Tipo de movimiento potenciado al atacar con poca vida (Espesura: fuego). Vacío = nada. [id de ElementType]
+   poca_vida_umbral         Poca vida: umbral (% PS). Umbral de PS (% del máx) bajo el cual se activa el refuerzo a poca vida. [número]
+   poca_vida_mult           Poca vida: multiplicador. número
+   daño_recibido_tipo       Daño recibido por tipo. Daño ENTRANTE por tipo: multiplicadores (Sebo: Fuego x0.5 y Hielo x0.5). [filas con |, campos con ':' en este orden: tipo:multiplicador]
+   stab                     Multiplicador de mismo tipo (0 = 1,5). Multiplicador STAB explícito (Adaptable = 2). 0 = clásico (1.5). [número]
+   prioridad_estado         Prioridad extra en movimientos de estado. Bonus de prioridad para movimientos de ESTADO (Vista Lince = 1). [número entero]
+   impide_bajadas           Impide que le bajen estadísticas. Impide que el RIVAL le baje etapas de estadística (Cuerpo Puro). [si / no]
+   cura_al_retirarse        Se cura el estado al retirarse. Al cambiarse (salir), cura su estado alterado (Cura Natural). [si / no]
+   cura_ps_al_retirarse     Cura al retirarse (% PS máx.). Al cambiarse, recupera este % de PS máx (Regeneración = 33). [número]
+   fin_turno_stat           Fin de turno: estadística. Al fin de turno, cambia una etapa de estadística propia (Impulso: "speed"). Vacío = nada. [texto]
+   fin_turno_etapas         Fin de turno: etapas. número entero
+   fin_turno_cura           Fin de turno: cura (% PS máx.). Al fin de turno, recupera este % de PS máx (Cura Veneno = 12.5). [número]
+   fin_turno_con_estado     Fin de turno: solo si tiene estado. Si está marcado, esa curación solo ocurre si el portador TIENE estado (Cura Veneno). [si / no]
+   fin_turno_curar_estado   Fin de turno: prob. de curarse el estado (%). Al fin de turno, probabilidad de curarse el estado (Mudar = 30). [número]
+   anula_daño_estado        Anula el daño de los estados. Anula el daño residual de estados (Cura Veneno / Guardia Mágica). [si / no]
+   potencia_al_atacar       Ej.: x1,5 [si mov.potencia<=60] | x1,2 [si mov.etiqueta=puño]
+   potencia_al_recibir      Ej.: x0,5 [si mov.contacto]  ('propio' = quien tiene la habilidad)
+
+── objetos.csv  (Objetos)
+   id                       Id (único, sin espacios). texto
+   nombre                   Nombre visible. texto
+   descripcion              Descripción. Texto que verá el jugador en la mochila. [texto]
+   categoria                Categoría. Medicine (Medicina), Revive (Revivir), StatusCure (Cura de estado), PpRestore (Recuperar PP), Ball (Bola), Evolution (Evolución), BattleBoost (Objeto de combate), Held (Equipable), Vitamin (Amistad / vitaminas), Key (Objeto clave), Other (Rival)
+   precio                   Precio. número entero
+   en_combate               Se usa en combate. si / no
+   fuera_combate            Se usa fuera del combate. si / no
+   se_gasta                 Se gasta al usarlo. Se gasta al usarlo. Desmárcalo para objetos clave o reutilizables. [si / no]
+   cura_ps                  Cura PS (cantidad fija). número entero
+   cura_pct                 Cura PS (% del máximo). número
+   cura_todo                Cura cualquier estado. si / no
+   cura_estados             Cura estos estados. Estado que cura (su id). Varios separados por | (ej. poison|toxic). Para curar todos, marca la casilla de arriba. [texto]
+   revive                   Revive. si / no
+   revive_pct               Revive con (% PS). número
+   recupera_pp              Recupera PP. número entero
+   pp_todos                 A todos los movimientos. si / no
+   amistad                  Cambio de amistad. número entero
+   captura                  Multiplicador de captura (0 = no es bola). 0 = no es una bola. 1 = Poké Ball, 1,5 = Super Ball, 2 = Ultra Ball, 255 = Master Ball (siempre captura). [número]
+   combate_stat             En combate: estadística. texto
+   combate_etapas           En combate: etapas. número entero
+   equipado_cura_turno      Equipado: cura por turno (% PS). número
+   equipado_umbral          Equipado: se activa con PS ≤ (%). número
+   equipado_cura_ps         Equipado: cura al activarse (PS). número entero
+   equipado_cura_pct        Equipado: cura al activarse (% PS). número
+   equipado_se_consume      Equipado: se consume al activarse. si / no
+   equipado_potencia        Ej.: x1,2 [si mov.tipo=fire]
+
+── naturalezas.csv  (Naturalezas)
+   id                       Id (único, sin espacios). Id estable (lo guarda cada individuo). Único entre naturalezas. Ej: 'adamant'. [texto]
+   nombre                   Nombre visible. texto
+   sube                     Estadística que sube. Id de la estadística que SUBE (hp, attack, defense, sp_attack, sp_defense, speed o inventada). Vacío = ninguna. [texto]
+   baja                     Estadística que baja. Id de la estadística que BAJA. Vacío = ninguna. [texto]
+   porcentaje               Porcentaje. Porcentaje de inclinación. Clásico: 10 (= ×1.1 / ×0.9). [número entero]
+
+── curvas.csv  (Curvas de XP)
+   id                       Id (único, sin espacios). Id estable (lo referencia la Species). Único entre curvas. [texto]
+   nombre                   Nombre visible. texto
+   forma                    Forma de la curva. Cómo se genera la tabla: un preset clásico o Custom (tabla escrita a mano). [Fast (Rápida), MediumFast (Media), MediumSlow (Parabólica), Slow (Lenta), Erratic (Errática), Fluctuating (Fluctuante), Custom (Tabla propia), Expression (Fórmulas por tramos)]
+   nivel_max                Nivel máximo. Nivel máximo que cubre la curva. [número entero]
+   multiplicador_xp         Velocidad global (% de XP necesaria). Escala la XP necesaria del preset: 100 = igual, 50 = la mitad (sube el doble de rápido), 200 = el doble. No afecta a Custom. [número entero]
+   tabla                    Tabla propia (XP total por nivel). Solo para Custom: XP TOTAL para ser cada nivel. Índice = nivel (0 y 1 se ignoran, valen 0). [lista con |: número entero]
+   tramos                   Tramos de fórmula. Solo para Expression: tramos de fórmula (n = nivel). El primero debería empezar en el nivel 2. [filas con |, campos con ':' en este orden: desde_nivel:formula]
+
+── reglas.csv  (Reglas)
+   id                       Id (único, sin espacios). Id del conjunto de reglas (p. ej. 'classic'). El juego usa el PRIMERO de la carpeta Rulesets: ten solo uno. [texto]
+   nombre                   Nombre visible. texto
+   equipo_max               Tamaño máximo del equipo. número entero
+   movimientos_max          Movimientos por monstruo. número entero
+   nivel_max                Nivel máximo. número entero
+   formula_daño             Fórmula de daño. texto
+   iv_max                   IV máximo. Valor máximo de un IV. Clásico: 31. Pon 0 para un juego sin IVs. [número entero]
+   ev_max_stat              EV máximo por estadística. Tope de EVs por estadística. Clásico: 252. Pon 0 para un juego sin EVs. [número entero]
+   ev_max_total             EV máximo total. Tope de EVs totales sumando todas las estadísticas. Clásico: 510. [número entero]
+   usa_pp                   Los movimientos gastan PP. ¿Los movimientos gastan PP al usarse? Desmárcalo para usos ilimitados. [si / no]
+   forcejeo                 Movimiento sin PP (Forcejeo). Movimiento que se usa cuando no quedan PP en ninguno (Forcejeo). Vacío = el turno se pierde. [id de Move]
+   tabla_criticos           Tabla de críticos (1 entre N por etapa). Probabilidad de crítico por etapa del movimiento, como '1 entre N'. Moderno: 24, 8, 2, 1 (etapa 3 = siempre). 0 = nunca. [lista con |: número entero]
+   multiplicador_critico    Multiplicador del crítico. Cuánto multiplica un crítico. Moderno: 1,5. En 2ª-5ª gen.: 2. [número]
+   fisico_ataque            Físico: estadística de ataque. texto
+   fisico_defensa           Físico: estadística de defensa. texto
+   especial_ataque          Especial: estadística de ataque. texto
+   especial_defensa         Especial: estadística de defensa. texto
+
+── movimientos.csv  (Movimientos)
+   id                       Id único (ej. ember).
+   nombre                   Nombre visible.
+   tipo                     Id del tipo (ej. fire).
+   categoria                fisico, especial o estado.
+   potencia                 0 para movimientos de estado.
+   precision                0-100, o 'nunca' si nunca falla.
+   pp                       Usos máximos (ej. 25).
+   prioridad                0 normal; +1 Ataque Rápido.
+   objetivo                 rival, propio, rivales, aliado o todos.
+   golpes                   1, 2, o un rango 2-5.
+   critico                  0 normal; 1 o más = crítico alto.
+   dos_turnos               no, carga o recarga.
+   contacto                 si / no.
+   daño_especial            Vacío = normal. fijo:40 (siempre 40 PS), nivel (PS = nivel del usuario), mitad (mitad de los PS del rival), ko (KO directo).
+   respeta_inmunidad        Solo movimientos de estado: si = no afecta a inmunes por tipo (Onda Trueno vs Tierra).
+   potencia_mod             Multiplicadores con condiciones: x2 [si propio.estado] | x1,5 [si clima=rain]. Vacío = ninguno.
+   formula_potencia         Opcional, reemplaza la potencia. Variables: potencia, nivel, nivel_rival, vida, vida_rival, amistad, velocidad, velocidad_rival. Ej.: 150*vida/100
+   stat_ataque              Vacío = la de su categoría. Ej.: defense (Golpe Cuerpo con Defensa), suerte (estadística inventada).
+   stat_defensa             Vacío = la de su categoría. Psicocarga: defense.
+   ataca_con_rival          si = usa la estadística de ataque DEL RIVAL (Juego Sucio).
+   etiquetas                Etiquetas libres: puño|sonido|mordisco.
+   efectos                  estado:burn@10 | drenar:50 | retroceso:33 | retroceso_ps:25 | curar:50 | curar_rival:50 | curar_estado | clima:rain | stat:attack:-1 | stat_propio:speed:+2 | amedrentar@30 · condiciones: [si rival.vida<50] · mismo dado que el anterior: &efecto
+   animacion                Segundos de animación (solo presentación).
+
+── especies.csv  (Especies)
+   id                       Id único (ej. bulbasaur).
+   nombre                   Nombre visible.
+   tipos                    Uno o dos ids de tipo: grass|poison.
+   ps                       Estadística base.
+   ataque                   Estadística base.
+   defensa                  Estadística base.
+   atq_esp                  Estadística base.
+   def_esp                  Estadística base.
+   velocidad                Estadística base.
+   habilidad                Id de la habilidad (vacío = ninguna).
+   curva                    Id de la curva de XP (vacío = Media).
+   exp_base                 XP que da derrotarla (ej. 64).
+   evs                      EVs que da: sp_attack:1|speed:1.
+   aprende                  Learnset nivel:movimiento: 1:tackle|3:growl|7:leech_seed.
+   evoluciona               especie@16 · especie@objeto:thunder_stone · especie@amistad(:220) · especie@intercambio(:objeto). Varias con |.
+   stats_extra              Estadísticas inventadas: suerte:50|carisma:30.
+

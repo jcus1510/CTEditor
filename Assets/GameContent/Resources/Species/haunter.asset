@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: haunter
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: haunter
+  displayName: Haunter
+  types:
+  - {fileID: 11400000, guid: 1f6653f8eb948e44995eccd8804153ac, type: 2}
+  - {fileID: 11400000, guid: beba3a9ac208f3c43a7bda5d61c338cd, type: 2}
+  abilityId: levitate
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: medium_slow
+  baseExpYield: 142
+  evYield:
+  - statId: sp_attack
+    amount: 2
+  baseFriendship: 70
+  catchRate: 90
+  dexNumber: 93
+  category: Gas
+  heightM: 1.6
+  weightKg: 0.1
+  dexColor: morado
+  dexDescription: "Cuando tienes la sensaci\xF3n de que te est\xE1n observando, seguro
+    que es porque Haunter est\xE1 cerca."
+  femalePercent: 50
+  legendary: 0
+  hp: 45
+  attack: 50
+  defense: 45
+  spAttack: 115
+  spDefense: 55
+  speed: 95
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 57b6a36f57133a848a8e6f2372fe652c, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 1db0d9d53ad30444492b07249c08d483, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 1e9502e238640da499f3cfa87629b763, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
+    level: 16
+  - move: {fileID: 11400000, guid: 16b091bddc2c69c4caf47ebb9fc70281, type: 2}
+    level: 21
+  - move: {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
+    level: 31
+  - move: {fileID: 11400000, guid: 88aea8fc365bb0f438f437d235048d68, type: 2}
+    level: 39
+  - move: {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
+    level: 48
+  evolutions:
+  - target: {fileID: 11400000, guid: bc0caf2b3ee63b540acec34fe72ee456, type: 2}
+    requiredLevel: 0
+    method: 3
+    itemId: 
+    minFriendship: 0
+    conditions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 88aea8fc365bb0f438f437d235048d68, type: 2}
+  - {fileID: 11400000, guid: 0ebb2337b3b88994fb66c3d0757615e6, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: ae577806e1df525489d00aec3aa105fc, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 2a18e3c45efa21d4994f8c7d3d9050b8, type: 2}
+  - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+  - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: b08a11a32d7c09f4db0c89ad242fbbad, type: 2}
+  - {fileID: 11400000, guid: 62c6a97d50c2ff54dacf531594dd4df0, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 26d7833d84ead1340b06881753e72e48, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+  eggMoves:
+  - {fileID: 11400000, guid: 25c737bace85c664989731b45995b0fc, type: 2}
+  - {fileID: 11400000, guid: 6eb4be8e90915974d8951abd7c4f8d79, type: 2}
+  - {fileID: 11400000, guid: 1d38223dcfcba794ba0c7a6a28e3847b, type: 2}
+  eggGroups:
+  - {fileID: 11400000, guid: 9d53a19e52921834a83345100ec4a2a8, type: 2}

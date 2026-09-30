@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10925a483f74f264084b1dde3e11462a, type: 3}
+  m_Name: stealth_rock
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.HazardData
+  id: stealth_rock
+  displayName: Trampa Rocas
+  color: {r: 0.7, g: 0.62, b: 0.45, a: 1}
+  maxLayers: 1
+  damagePercentByLayer:
+  - 12.5
+  damageScalesWithType: {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
+  statusByLayer: []
+  statId: 
+  stages: 0
+  immuneTypes: []
+  immuneIfAbilityBlocksType: {fileID: 0}
+  absorbedByTypes: []

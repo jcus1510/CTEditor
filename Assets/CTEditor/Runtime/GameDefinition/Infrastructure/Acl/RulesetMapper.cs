@@ -16,7 +16,24 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 data.MaxPartySize,
                 data.MaxMovesPerMonster,
                 data.LevelCap,
-                new FormulaId(data.DamageFormulaId));
+                new FormulaId(data.DamageFormulaId),
+                data.MaxIv,
+                data.MaxEvPerStat,
+                data.MaxEvTotal,
+                data.UsePp,
+                data.StruggleMoveId,
+                data.CritDenominators,
+                data.CritMultiplier,
+                data.PhysicalAttackStat,
+                data.PhysicalDefenseStat,
+                data.SpecialAttackStat,
+                data.SpecialDefenseStat,
+                new AdventureRules(
+                    data.FleeAlwaysWorks, data.CanFleeTrainerBattles, data.CanCatchTrainerMonsters,
+                    data.CatchRateMultiplier, data.SendToBoxWhenFull, data.ExpShareAll, data.ExpShareOthersPercent,
+                    data.LearnMovesOnLevelUp, data.EvolveAfterBattle, data.FriendshipPerLevelUp,
+                    data.FriendshipLostOnFaint, data.StartingMoney, data.MoneyLostOnBlackoutPercent,
+                    data.HealOnBlackout));
         }
     }
 }
