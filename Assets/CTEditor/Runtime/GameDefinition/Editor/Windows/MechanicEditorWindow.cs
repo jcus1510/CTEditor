@@ -30,42 +30,61 @@ namespace CTEditor.GameDefinition.Editor
 
         public override string[] GuideSteps => new[]
         {
-            "Pulsa «Crear la Megaevolución oficial» (o crea una ficha nueva y elige su tipo).",
+            "Pulsa «Crear la Megaevolución y los movimientos Z oficiales» (o crea una ficha nueva y elige su tipo).",
             "Ajusta cuántas megas hay por combate, qué objeto clave necesita el jugador y si vuelve a su forma al retirarse.",
             "En las Reglas del juego, añádela a «Mecánicas especiales activas». Sin eso no hace nada.",
             "Las megapiedras son objetos; cada entrenador decide en su ficha si puede megaevolucionar.",
         };
 
-        // (id, nombre, máximo por combate, objeto clave, vuelve al retirarse, descripción)
-        private static readonly (string id, string name, int max, string key, bool revert, string desc)[] Library =
+        // (id, nombre, tipo, máximo por combate, objeto clave, vuelve al retirarse, descripción)
+        private static readonly (string id, string name, MechanicKind kind, int max, string key, bool revert, string desc)[] Library =
         {
-            ("mega_evolution", "Megaevolución", 1, "mega_ring", false,
+            ("mega_evolution", "Megaevolución", MechanicKind.MegaEvolution, 1, "mega_ring", false,
                 "La oficial (6.ª-7.ª gen.): una por combate y lado, el jugador necesita la Megapulsera y se queda megaevolucionado hasta el final."),
-            ("mega_evolution_free", "Megaevolución sin límite", 0, "", false,
+            ("mega_evolution_free", "Megaevolución sin límite", MechanicKind.MegaEvolution, 0, "", false,
                 "Variante: todas las que quieras por combate y sin objeto clave."),
+            ("z_moves", "Movimientos Z", MechanicKind.ZMove, 1, "z_ring", false,
+                "Los oficiales (7.ª gen.): con su cristal Z, un movimiento se convierte en movimiento Z una vez por combate; el jugador necesita la Pulsera Z."),
+            ("z_moves_free", "Movimientos Z sin límite", MechanicKind.ZMove, 0, "", false,
+                "Variante: todos los que quieras por combate y sin objeto clave."),
         };
 
-        /// <summary>Crea la Megaevolución oficial si falta. Público: lo usan el Centro de Contenido y el asistente de generación.</summary>
+        /// <summary>Crea la Megaevolución y los movimientos Z oficiales si faltan (activarlos lo deciden las Reglas). Público:
+        /// lo usan el Centro de Contenido y el asistente de generación.</summary>
         public static int CreateClassicSet()
         {
-            var g = Library[0];
-            bool created = ContentAssets.CreateIfMissing<MechanicData>(ContentFolders.Mechanics, g.id, g.name, so => Fill(so, g));
+            int n = 0;
+            foreach (var g in Library.Where(x => x.id == "mega_evolution" || x.id == "z_moves"))
+            {
+                var t = g;
+                if (ContentAssets.CreateIfMissing<MechanicData>(ContentFolders.Mechanics, t.id, t.name, so => Fill(so, t))) n++;
+            }
             AssetDatabase.SaveAssets();
-            return created ? 1 : 0;
+            return n;
         }
 
-        private static void Fill(SerializedObject so, (string id, string name, int max, string key, bool revert, string desc) g)
+        private static void Fill(SerializedObject so, (string id, string name, MechanicKind kind, int max, string key, bool revert, string desc) g)
         {
             so.FindProperty("displayName").stringValue = g.name;
-            so.FindProperty("mechanicKind").enumValueIndex = (int)MechanicKind.MegaEvolution;
+            so.FindProperty("mechanicKind").enumValueIndex = (int)g.kind;
             so.FindProperty("description").stringValue = g.desc;
-            so.FindProperty("megaMaxPerBattle").intValue = g.max;
-            so.FindProperty("megaRequiredKeyItem").stringValue = g.key;
-            so.FindProperty("megaRevertOnSwitch").boolValue = g.revert;
+            if (g.kind == MechanicKind.MegaEvolution)
+            {
+                so.FindProperty("megaMaxPerBattle").intValue = g.max;
+                so.FindProperty("megaRequiredKeyItem").stringValue = g.key;
+                so.FindProperty("megaRevertOnSwitch").boolValue = g.revert;
+            }
+            else
+            {
+                so.FindProperty("zMaxPerBattle").intValue = g.max;
+                so.FindProperty("zRequiredKeyItem").stringValue = g.key;
+                so.FindProperty("zProtectDamagePercent").floatValue = 25f;
+                so.FindProperty("zPowerTable").stringValue = ZMoveSettings.OfficialTable;
+            }
         }
 
         protected override IReadOnlyList<(string id, string name, string group)> Templates
-            => Library.Select(g => (g.id, g.name, "Megaevolución")).ToList();
+            => Library.Select(g => (g.id, g.name, g.kind == MechanicKind.ZMove ? "Movimientos Z" : "Megaevolución")).ToList();
 
         protected override void ApplyTemplate(SerializedObject so, string id)
         {
@@ -74,7 +93,7 @@ namespace CTEditor.GameDefinition.Editor
 
         protected override void DrawBulkPresets()
         {
-            if (GUILayout.Button("Crear la Megaevolución oficial")) FinishBulk(CreateClassicSet(), "mecánicas");
+            if (GUILayout.Button("Crear la Megaevolución y los movimientos Z oficiales")) FinishBulk(CreateClassicSet(), "mecánicas");
         }
 
         /// <summary>¿Está esta mecánica activa en las reglas del juego (la primera ficha de reglas)?</summary>
@@ -110,6 +129,25 @@ namespace CTEditor.GameDefinition.Editor
                     if (key != null && keyItem == null)
                         EditorGUILayout.HelpBox($"El objeto clave '{key}' no existe todavía: créalo en el editor de objetos o deja el campo vacío.", MessageType.Warning);
                     break;
+                case MechanicKind.ZMove:
+                {
+                    string zkey = string.IsNullOrWhiteSpace(d.ZRequiredKeyItem) ? null : d.ZRequiredKeyItem;
+                    var zItem = zkey == null ? null : ContentAssets.FindById<ItemData>(zkey);
+                    var settings = new ZMoveSettings(d.ZMaxPerBattle, d.ZRequiredKeyItem, d.ZProtectDamagePercent, d.ZPowerTable);
+                    EditorGUILayout.HelpBox(
+                        "• Un monstruo que lleva un CRISTAL Z (objeto con el efecto «Cristal Z») convierte los movimientos que su cristal indica " +
+                        "(por tipo, un movimiento concreto o una especie) en su movimiento Z.\n" +
+                        (d.ZMaxPerBattle == 0 ? "• Sin límite de movimientos Z por combate.\n" : $"• Cada lado puede usar {d.ZMaxPerBattle} movimiento(s) Z por combate.\n") +
+                        (zkey == null ? "• El jugador no necesita ningún objeto clave.\n"
+                                      : $"• El jugador necesita «{(zItem != null ? zItem.DisplayName : zkey)}» en la mochila.\n") +
+                        $"• Potencia Z: 40 → {settings.PowerFor(40)}, 80 → {settings.PowerFor(80)}, 120 → {settings.PowerFor(120)} (los exclusivos usan la suya).\n" +
+                        $"• Nunca fallan y atraviesan Protección con el {d.ZProtectDamagePercent:0.#} % del daño.\n" +
+                        "• Los de ESTADO hacen además su «efecto Z» (columna efecto_z del movimiento).\n" +
+                        "• Los rivales los usan si su ficha lo permite («Puede usar movimientos Z»).", MessageType.Info);
+                    if (zkey != null && zItem == null)
+                        EditorGUILayout.HelpBox($"El objeto clave '{zkey}' no existe todavía: créalo en el editor de objetos o deja el campo vacío.", MessageType.Warning);
+                    break;
+                }
             }
 
             EditorTheme.Section("En tus reglas", Accent);

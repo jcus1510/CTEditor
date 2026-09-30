@@ -206,6 +206,52 @@ def moves_to_add(gen, have):
     return out
 
 
+# ---------------- Movimientos Z (7.ª gen.) ----------------
+# Los genéricos (uno por tipo: PokeAPI los tiene en versión física y especial) tienen potencia «1» = la de la tabla de la
+# ficha de mecánica según el movimiento base; los exclusivos, la suya y sus efectos.
+Z_FIX = {
+    'catastropika': {'contacto': 'si'},
+    '10_000_000_volt_thunderbolt': {'critico': '2'},
+    'stoked_sparksurfer': {'efectos': 'estado:paralysis'},
+    'extreme_evoboost': {'objetivo': 'propio', 'efectos': 'stat_propio:attack:+2 | stat_propio:defense:+2 | stat_propio:sp_attack:+2 | stat_propio:sp_defense:+2 | stat_propio:speed:+2'},
+    'pulverizing_pancake': {'contacto': 'si'},
+    'genesis_supernova': {'efectos': 'lado:psychic_terrain'},
+    'malicious_moonsault': {'contacto': 'si'},
+    'guardian_of_alola': {'daño_especial': 'mitad', 'potencia': '0'},
+    'soul_stealing_7_star_strike': {'contacto': 'si'},
+    'clangorous_soulblaze': {'objetivo': 'rivales', 'etiquetas': 'sonido', 'efectos': 'stat_propio:attack:+1 | stat_propio:defense:+1 | stat_propio:sp_attack:+1 | stat_propio:sp_defense:+1 | stat_propio:speed:+1'},
+    'lets_snuggle_forever': {'contacto': 'si'},
+    'searing_sunraze_smash': {'contacto': 'si'},
+}
+
+
+def z_moves_to_add(have):
+    names = {r['move_id']: r['name'] for r in table('move_names') if r['local_language_id'] == SPANISH}
+    types = {r['id']: r['identifier'] for r in table('types')}
+    out, seen = [], set()
+    for m in table('moves'):
+        mid = int(m['id'])
+        if mid not in Z_OR_LETSGO or mid >= 729:
+            continue
+        ident = pack_id(m['identifier'].replace('--physical', '').replace('--special', ''))
+        if ident in have or ident in seen:
+            continue
+        seen.add(ident)
+        generic = '--' in m['identifier']
+        row = {
+            'id': ident, 'nombre': names.get(m['id'], ident).split(' (')[0], 'tipo': types[m['type_id']],
+            'categoria': CAT[m['damage_class_id']], 'potencia': '1' if generic else (m['power'] or '0'), 'precision': 'nunca',
+            'pp': '1', 'prioridad': '0', 'objetivo': 'rival', 'golpes': '1', 'critico': '0', 'dos_turnos': 'no', 'contacto': 'no',
+            'daño_especial': '', 'respeta_inmunidad': 'no', 'potencia_mod': '', 'formula_potencia': '', 'requisitos': '',
+            'stat_ataque': '', 'stat_defensa': '', 'ataca_con_rival': 'no', 'etiquetas': 'z|no_metronomo', 'efectos': '',
+            'tipo_clima': '', 'animacion': '',
+        }
+        for k, v in Z_FIX.get(ident, {}).items():
+            row[k] = row['etiquetas'] + '|' + v if k == 'etiquetas' else v
+        out.append(row)
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--gen', type=int, required=True)
@@ -214,6 +260,8 @@ def main():
     mpath = os.path.join(SRC, 'movimientos.csv')
     mheads, mrows = load(mpath)[:2]
     new_moves = moves_to_add(args.gen, {r['id'] for r in mrows})
+    if args.gen >= 7:
+        new_moves += z_moves_to_add({r['id'] for r in mrows} | {r['id'] for r in new_moves})
     if new_moves:
         for r in new_moves:
             mrows.append({h: r.get(h, '') for h in mheads})

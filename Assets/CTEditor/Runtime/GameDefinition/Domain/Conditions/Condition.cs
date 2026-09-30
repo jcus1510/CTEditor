@@ -42,7 +42,10 @@ namespace CTEditor.GameDefinition.Domain.Conditions
         OppositeGender,       // tienen géneros OPUESTOS (Seducción, Rivalidad ×0,75); los sin género nunca
         // --- Lote F (5.ª-6.ª gen.) ---
         FieldCondition,       // hay activo el efecto de campo Text en cualquier lado ("grassy_terrain", "trick_room")
-        CanEvolve             // aún puede evolucionar (Mineral Evolutivo)
+        CanEvolve,            // aún puede evolucionar (Mineral Evolutivo)
+        // --- 7.ª generación ---
+        MoveIs,               // el movimiento es exactamente Text (movimientos Z exclusivos: Rayo de Pikachu → Gigarrayo Fulminante)
+        IsSpecies             // el sujeto es de la especie Text (o una de sus formas/variantes: pikachu)
     }
 
     /// <summary>De quién se pregunta: el dueño de la ficha o el otro.</summary>
@@ -99,18 +102,21 @@ namespace CTEditor.GameDefinition.Domain.Conditions
         /// <summary>¿Usa el número (y la comparación)?</summary>
         public static bool UsesNumber(ConditionKind k) => k == ConditionKind.HpPercent || k == ConditionKind.Friendship
             || k == ConditionKind.Level || k == ConditionKind.LevelDifference || k == ConditionKind.StatStage
-            || k == ConditionKind.MovePower || k == ConditionKind.RandomChance;
+            || k == ConditionKind.MovePower || k == ConditionKind.RandomChance || k == ConditionKind.TurnsOnField
+            || k == ConditionKind.StockpileCount || k == ConditionKind.MoveEffectiveness || k == ConditionKind.WeightKg;
 
         /// <summary>¿Usa el texto (un id)?</summary>
         public static bool UsesText(ConditionKind k) => k == ConditionKind.HasStatus || k == ConditionKind.IsType
             || k == ConditionKind.Weather || k == ConditionKind.StatStage || k == ConditionKind.MoveType
-            || k == ConditionKind.MoveCategory || k == ConditionKind.MoveHasTag || k == ConditionKind.FieldCondition;
+            || k == ConditionKind.MoveCategory || k == ConditionKind.MoveHasTag || k == ConditionKind.FieldCondition
+            || k == ConditionKind.MoveIs || k == ConditionKind.IsSpecies;
 
         /// <summary>¿Tiene sentido "propio/rival"? (el clima o el movimiento no son de nadie).</summary>
         public static bool UsesSubject(ConditionKind k) => !(k == ConditionKind.Weather || k == ConditionKind.RandomChance
             || k == ConditionKind.MoveType || k == ConditionKind.MoveCategory || k == ConditionKind.MovePower
             || k == ConditionKind.MoveMakesContact || k == ConditionKind.MoveHasTag || k == ConditionKind.FieldCondition
-            || k == ConditionKind.SameGender || k == ConditionKind.OppositeGender);
+            || k == ConditionKind.SameGender || k == ConditionKind.OppositeGender || k == ConditionKind.MoveIs
+            || k == ConditionKind.MoveHasSecondary);
     }
 
     /// <summary>

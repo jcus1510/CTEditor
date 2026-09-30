@@ -871,8 +871,11 @@ namespace CTEditor.Battle.Domain.Turn
             var previousIgnored = _abilityIgnored;
             if (target != null && target != actor && X(actor).MoldBreaker) _abilityIgnored = target;
             int start = events.Count;
+            // MOVIMIENTO Z: se prepara aquí y se aplica en ResolveMoveCore tras pagar los PP del movimiento base.
+            if (!isChargedRelease && payPp) PrepareZ(actor, useMove); else _zPending = null;
+            var zPrepared = _zPending;
             try { ResolveMoveCore(actor, target, useMove, events, isChargedRelease, payPp, bideRelease); }
-            finally { _abilityIgnored = previousIgnored; }
+            finally { _abilityIgnored = previousIgnored; _zPending = null; _zProtectFactor = 1f; }
 
             // ¿Salió bien? (para Rodar, Corte Furia y Última Baza)
             bool used = false, failed = false;
@@ -881,6 +884,7 @@ namespace CTEditor.Battle.Domain.Turn
             {
                 var e = events[i];
                 if (e is MoveUsedEvent mu && mu.Attacker == actor.Id) { used = true; usedMove = mu.Move; }
+                if (zPrepared.HasValue && usedMove == zPrepared.Value.zMove.Id) usedMove = zPrepared.Value.baseMove;   // cuenta como el base
                 if (e is MoveMissedEvent mm && mm.Attacker == actor.Id || e is MoveFailedEvent mf && mf.Combatant == actor.Id
                     || e is MoveBlockedEvent || e is MoveHadNoEffectEvent) failed = true;
             }
@@ -908,6 +912,7 @@ namespace CTEditor.Battle.Domain.Turn
             if (payPp && !isChargedRelease && !PayPp(actor, ref useMove, events)) return;
 
             var move = _moves.Get(useMove.Move); // resuelve el id -> Move vía catálogo
+            move = ApplyPendingZ(actor, target, useMove, move, events);   // movimiento Z (si se pidió y se puede)
 
             // DOS TURNOS (CARGA): el primer uso solo carga; el golpe llega al turno siguiente.
             if (move.TwoTurn == TwoTurnKind.Charge && !isChargedRelease)
@@ -987,6 +992,12 @@ namespace CTEditor.Battle.Domain.Turn
                 {
                     foreach (var v in new List<ActiveVolatileStatus>(target.Volatiles))
                         if (TryGetStatus(v.Id, out var pd) && pd.BlocksIncomingMoves) { target.RemoveVolatile(v.Id); events.Add(new StatusFadedEvent(target.Id, v.Id)); }
+                }
+                else if (move.HasTag("z") && ZMechanic != null && ZMechanic.Z.ProtectDamagePercent > 0f)
+                {
+                    // Un movimiento Z atraviesa la protección con parte del daño (oficial: el 25 %).
+                    events.Add(new MoveBlockedEvent(target.Id));
+                    _zProtectFactor = ZMechanic.Z.ProtectDamagePercent / 100f;
                 }
                 else
                 {
@@ -1135,6 +1146,7 @@ namespace CTEditor.Battle.Domain.Turn
                     // BAYAS DE RESISTENCIA: el primer golpe muy eficaz de su tipo hace la mitad.
                     if (target != actor && !(target.HasSubstitute && !X(actor).Infiltrator))
                         damage = ApplyDamageTakenBlocks(target, actor, move, MoveTypeOf(actor, move), damage, events);
+                    if (_zProtectFactor < 1f) damage = System.Math.Max(1, (int)(damage * _zProtectFactor));
                     anyCrit |= result.WasCritical;
                     lastCrit = anyCrit;
 
@@ -2341,6 +2353,10 @@ namespace CTEditor.Battle.Domain.Turn
                 case ConditionKind.OppositeGender: return self != null && other != null && GenderText.Opposite(self.Gender, other.Gender);
                 case ConditionKind.FieldCondition: return FieldConditionActive(c.Text);
                 case ConditionKind.CanEvolve: return who != null && who.CanEvolve;
+                case ConditionKind.MoveIs: return move != null && string.Equals(move.Id.Value, c.Text, StringComparison.OrdinalIgnoreCase);
+                case ConditionKind.IsSpecies:
+                    return who != null && (string.Equals(who.SpeciesId.Value, c.Text, StringComparison.OrdinalIgnoreCase)
+                        || who.SpeciesId.Value.StartsWith(c.Text + "_", StringComparison.OrdinalIgnoreCase));   // sus variantes (pikachu_...)
                 default: return false;
             }
         }

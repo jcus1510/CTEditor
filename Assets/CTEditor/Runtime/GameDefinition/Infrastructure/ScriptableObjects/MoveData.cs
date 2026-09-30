@@ -45,6 +45,9 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         // categoría Status) con un efecto al 100% es algo como Fuego Fatuo.
         [SerializeField] private MoveEffectData[] secondaryEffects;
 
+        [Tooltip("MOVIMIENTOS Z: efecto extra si este movimiento de ESTADO se usa como movimiento Z (Danza Espada Z: quita las bajadas; Gruñido Z: +1 Defensa).")]
+        [SerializeField] private MoveEffectData[] zEffects = new MoveEffectData[0];
+
         [Tooltip("Golpe múltiple: mínimo y máximo de impactos por turno. 1 y 1 = normal; 2 y 5 = multi-golpe clásico.")]
         [SerializeField, Min(1)] private int minHits = 1;
         [SerializeField, Min(1)] private int maxHits = 1;
@@ -115,6 +118,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public int Priority => priority;
         public MoveTarget Target => target;
         public MoveEffectData[] SecondaryEffects => secondaryEffects;
+        public MoveEffectData[] ZEffects => zEffects;
         public int MinHits => minHits;
         public int MaxHits => maxHits;
         public int CritStage => critStage;

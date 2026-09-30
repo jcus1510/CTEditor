@@ -71,6 +71,12 @@ namespace CTEditor.Battle.Domain
         public int MegasUsed(bool playerSide) => playerSide ? _megasPlayer : _megasEnemy;
         internal void NoteMega(bool playerSide) { if (playerSide) _megasPlayer++; else _megasEnemy++; }
 
+        // --- Movimientos Z usados por cada lado en este combate ---
+        private int _zPlayer, _zEnemy;
+        /// <summary>Cuántos movimientos Z ha usado un lado en este combate.</summary>
+        public int ZMovesUsed(bool playerSide) => playerSide ? _zPlayer : _zEnemy;
+        internal void NoteZMove(bool playerSide) { if (playerSide) _zPlayer++; else _zEnemy++; }
+
         /// <summary>Id del clima activo ("rain", "sun"...). Null = despejado.</summary>
         public string WeatherId { get; private set; }
 

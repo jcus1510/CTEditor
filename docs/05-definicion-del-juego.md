@@ -106,8 +106,10 @@ Se usan en movimientos, habilidades, bloques de objetos y efectos. Las evalúa `
 - `GenerationRules` — `Generation, CategoryByType, SpecialTypes, SingleSpecialStat, Abilities, HeldItems, Natures,
   Genders, MachinesConsumable`. `ForGeneration(n)`: 1 = por tipo + Especial único + sin habilidades/objetos/naturalezas/
   géneros + MT gastables; 2 = por tipo, sin habilidades ni naturalezas; 3 = por tipo; 4 = MT gastables; 5+ = moderno.
-- `MechanicDefinition` (`Mechanics/`): `MechanicKind` (hoy `MegaEvolution`) + `MegaEvolutionSettings` (máximo por
-  combate, objeto clave requerido, revertir al retirarse). Varias fichas; se activan en el Ruleset.
+- `MechanicDefinition` (`Mechanics/`): `MechanicKind` (`MegaEvolution`, `ZMove`) + `MegaEvolutionSettings` (máximo por
+  combate, objeto clave requerido, revertir al retirarse) o `ZMoveSettings` (usos por combate, objeto clave «z_ring»,
+  % de daño que atraviesa Protección = 25, tabla de potencias «55:100|65:120|…|*:200»; `ZMoveSettings.OfficialZ`).
+- `Move.ZEffects`: efectos del movimiento de estado usado como Z (columna `efecto_z`). Varias fichas; se activan en el Ruleset.
 - `FormulaId`: nombre de la fórmula de daño (`classic`).
 
 ## Crecimiento (`Growth/`) y fórmulas (`Formulas/`)

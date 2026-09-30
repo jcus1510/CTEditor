@@ -7,14 +7,18 @@
    `GenerationRules.MachinesConsumable`, ya existe), `Evs` (vitaminas / bayas reductoras), `LevelUp` (Caramelo Raro),
    `EscapeBattle` (Poké Muñeco), `Repel` + disparador `OnWalk`, y condiciones en los bloques «Al usarlo» (bolas
    especiales: Ocaso Ball de noche, Red Ball contra Agua/Bicho...). Hoy se guardan y el editor avisa.
-3. **Paso 8 — 7.ª generación**: variantes de Alola como variantes enlazadas (`FormOf`), **movimientos Z** (nueva
-   `MechanicKind` + Cristales Z como objetos con `EnableMechanic`), pack Gen7 (`generar_packs.py --gen 7`,
-   `formas.py`, `generar_sets.py --gen 7`), reglas de la 7.ª (Megaevolución sigue activa).
+3. ~~Paso 8 — 7.ª generación~~ ✅ (pack Gen7, variantes de Alola, movimientos Z). Queda de la 7.ª:
+   - 18 habilidades solo con nombre: Huida/Retirada (`wimp_out`, `emergency_exit`), Remoto, Voz Fluida, Primer
+     Auxilio, Banco, Fuerte Afecto, Agrupamiento, Corrosión, Regia Presencia, Revés, Pareja de Baile, Batería,
+     Cuerpo Vívido, Receptor, Reacción Química, Ultraimpulso, Sistema Alfa.
+   - Ultraexplosión (Necrozma), formas de Mimikyu (Disfraz) y Greninja Ash.
+   - «Protector de Alola» (Guardian of Alola) se aproxima a «quita la mitad de los PS».
+   - ~50 sets de Smogon descartados por formas que el pack aún no tiene.
 
 ## Ideas abiertas (propuestas, sin decidir)
 
 - **Bolsillos de la mochila como fichas** (`BagPocketData`) en lugar del enum `ItemCategory`.
-- Condiciones nuevas para bloques: hora del día, zona, turno del combate, especie concreta.
+- Condiciones nuevas para bloques: hora del día, zona, turno del combate (movimiento y especie concretos ya existen).
 - Crianza (los grupos huevo ya existen).
 - Movimientos por bloques (el mismo sistema que objetos y habilidades para sus efectos secundarios).
 - Efectos de movimientos y habilidades por generación (hoy el motor aplica los de la 6.ª: ver `INFORME.txt` de cada pack).

@@ -88,6 +88,7 @@ namespace CTEditor.GameDefinition.Domain.Effects
         DisableMove,            // disables the move that hit it (use Chance)
         Special,                // Ref = a one-of-a-kind behaviour (see AbilityEffects.Specials); Amount if it needs one
         SetSideCondition,       // Ref = side / field condition id (terrains, screens...); on the holder's side (field ones: both)
+        ZMove,                  // Z crystal: with its conditions (move type, move, species), the move becomes the Z move Ref
     }
 
     /// <summary>Who an action affects: the holder or the other combatant.</summary>
@@ -172,6 +173,7 @@ namespace CTEditor.GameDefinition.Domain.Effects
                         case EffectAction.ImmuneToType: case EffectAction.ActFirst: case EffectAction.ChoiceLock:
                         case EffectAction.BlockStatusMoves: case EffectAction.ExtendWeather: case EffectAction.ExtendScreens:
                         case EffectAction.EnableMechanic: case EffectAction.PriorityBonus: case EffectAction.ImmuneToStatus:
+                        case EffectAction.ZMove:
                             return true;
                         default: return false;
                     }

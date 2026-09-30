@@ -22,7 +22,7 @@ interfaz del editor. El manual de uso para el AUTOR (qué hace cada botón) est�
 | 10 | [Infraestructura Unity](10-infraestructura-unity.md) | ScriptableObjects, mappers (ACL), catálogos, carpetas de contenido, carga en el juego. |
 | 11 | [El editor](11-editor.md) | Centro de Contenido, ventanas, inspector en español, papelera, validador, asistentes. |
 | 12 | [Excel (CSV)](12-excel-csv.md) | Esquemas, importación en dos fases, formatos de celda, copias de seguridad. |
-| 13 | [Packs y herramientas Python](13-packs-y-herramientas.md) | Packs Gen1…Gen6, generadores (PokeAPI, Smogon), verificador. |
+| 13 | [Packs y herramientas Python](13-packs-y-herramientas.md) | Packs Gen1…Gen7, generadores (PokeAPI, Smogon), verificador. |
 | 14 | [Escena, interfaz y controles](14-escena-e-interfaz.md) | Bootstrap: composition root, pantalla de combate, laboratorio, menús, caja de texto, input. |
 | 15 | [Pruebas y verificación](15-pruebas-y-verificacion.md) | Tests, cómo compilar y probar sin Unity, qué se revisa antes de cada commit. |
 | 16 | [Convenciones](16-convenciones.md) | Idiomas, nombres, enums, etiquetas, .meta, commits, cómo añadir cosas nuevas. |

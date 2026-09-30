@@ -28,6 +28,17 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Tooltip("Marcado: al retirarse del combate vuelve a su forma normal. Oficial: desmarcado (se queda megaevolucionado).")]
         [SerializeField] private bool megaRevertOnSwitch = false;
 
+        [Header("⚡ Movimientos Z")]
+        [Tooltip("Cuántos movimientos Z puede usar cada lado por combate. 1 = oficial. 0 = sin límite.")]
+        [SerializeField, Min(0)] private int zMaxPerBattle = 1;
+        [Tooltip("Objeto clave que el JUGADOR necesita en la mochila (oficial: Pulsera Z). Vacío = no hace falta.")]
+        [ContentIdReference(typeof(ItemData)), SerializeField] private string zRequiredKeyItem = "z_ring";
+        [Tooltip("% del daño de un movimiento Z que atraviesa Protección (oficial: 25).")]
+        [SerializeField, Range(0f, 100f)] private float zProtectDamagePercent = 25f;
+        [Tooltip("Potencia Z según la potencia del movimiento: «hasta:potencia» separados por |, «*» = el resto. " +
+                 "Oficial: 55:100|65:120|75:140|85:160|95:175|100:180|110:185|125:190|130:195|*:200")]
+        [SerializeField] private string zPowerTable = ZMoveSettings.OfficialTable;
+
         public string Id => id;
         public string DisplayName => displayName;
         public MechanicKind Kind => mechanicKind;
@@ -35,5 +46,9 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public int MegaMaxPerBattle => megaMaxPerBattle;
         public string MegaRequiredKeyItem => megaRequiredKeyItem;
         public bool MegaRevertOnSwitch => megaRevertOnSwitch;
+        public int ZMaxPerBattle => zMaxPerBattle;
+        public string ZRequiredKeyItem => zRequiredKeyItem;
+        public float ZProtectDamagePercent => zProtectDamagePercent;
+        public string ZPowerTable => zPowerTable;
     }
 }

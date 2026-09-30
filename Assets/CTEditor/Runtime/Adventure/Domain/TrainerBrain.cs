@@ -90,9 +90,33 @@ namespace CTEditor.Adventure.Domain
         public (BattleAction action, string itemId) Decide()
         {
             var choice = DecideCore();
-            return choice.action is UseMove um && !um.MegaEvolve && WantsMega(_battle.Enemy, _battle.Player)
-                ? (new UseMove(um.Move, true), choice.itemId)
-                : choice;
+            if (!(choice.action is UseMove um)) return choice;
+            bool mega = um.MegaEvolve || WantsMega(_battle.Enemy, _battle.Player);
+            bool z = WantsZ(_battle.Enemy, _battle.Player, um.Move);
+            return mega == um.MegaEvolve && !z ? choice : (new UseMove(um.Move, mega, z), choice.itemId);
+        }
+
+        // ---------------- Movimientos Z ----------------
+
+        /// <summary>
+        /// ¿Usa este movimiento como Z? Solo si su entrenador puede y el motor lo permite. Cuándo, según su nivel de IA (la misma
+        /// perilla que la mega): «nunca», «en cuanto pueda» o CON CABEZA: con un movimiento de daño contra un rival con al menos
+        /// el 40 % de PS (no lo malgasta rematando), o con uno de estado solo si le da algún efecto Z.
+        /// </summary>
+        private bool WantsZ(Combatant self, Combatant foe, Id<Move> move)
+        {
+            if (_trainer == null || !_trainer.CanUseZMoves || self.ChargingMove.HasValue || self.MustRecharge) return false;
+            if (!_resolver.CanZMove(_battle, false, move)) return false;
+            switch (_profile.MegaTiming)
+            {
+                case MegaTiming.Never: return false;
+                case MegaTiming.AsSoonAsPossible: return true;
+                default:
+                    var z = _resolver.ZMoveFor(self, move);
+                    if (z == null) return false;
+                    if (z.Category == MoveCategory.Status) return z.ZEffects.Count > 0;
+                    return foe != null && foe.CurrentHp * 100 >= foe.MaxHp * 40;
+            }
         }
 
         // ---------------- Megaevolución ----------------

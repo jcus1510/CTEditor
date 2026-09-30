@@ -67,6 +67,8 @@ específicos por objeto ni secciones por generación. Un objeto es una **lista d
 | `Evs`, `LevelUp`, `TeachMove`, `EscapeBattle`, `Repel` | `evs`, `nivel`, `enseñar`, `huir`, `repelente` | — | **Aún no** (se guardan; el editor avisa) |
 | `ChangeForm` | `forma id` | forma | Al usar: las variantes funcionan por `SpeciesData.variantItem` |
 | `EnableMechanic` | `mecanica id` | mecánica | Informativo: las megapiedras se leen de la regla de forma de la especie |
+| `SetSideCondition` | `poner_lado id` | efecto de lado o campo | Sí (instantáneos; los campos de la 7.ª al entrar) |
+| `ZMove` | `movimiento_z id` | movimiento Z | Sí (siempre; cristal Z, ver abajo) |
 
 `EffectRules.IsSupported(bloque)` es la fuente de verdad de la columna de la derecha (la usa el editor para avisar).
 
@@ -189,3 +191,18 @@ algo se guarda pero no tiene efecto).
 nuevos, y se compararon **todas** sus propiedades: salen idénticas. Tests: `EffectTextTests` (todas las habilidades de
 todos los packs se leen, se reescriben igual, no dejan bloques genéricos y el motor las soporta) y `AbilityBlockTests`
 (bloques libres en combate, veces por combate, momento «al debilitar»).
+
+## Cristales Z y condiciones nuevas (7.ª)
+
+Un **cristal Z** es un objeto con bloques `siempre [condiciones]: movimiento_z <id del Z>`. Las condiciones dicen qué
+movimientos convierte: `mov.tipo=fire` (los genéricos), `mov.id=thunderbolt` (un movimiento concreto) y
+`propio.especie=pikachu` (los exclusivos; `pikachu_` vale para todas sus formas). Ejemplos:
+
+```
+Firium Z:    siempre [si mov.tipo=fire]: movimiento_z inferno_overdrive
+Pikanium Z:  siempre [si mov.id=volt_tackle & propio.especie=pikachu]: movimiento_z catastropika
+```
+
+Condiciones nuevas: `mov.id=x` (`MoveIs`) y `propio.especie=x` / `rival.especie=x` (`IsSpecies`), útiles también para
+objetos y habilidades normales. La mecánica en sí (usos por combate, Pulsera Z, tabla de potencias, % que atraviesa
+Protección) está en la ficha de la mecánica, cap. [06](06-combate.md).

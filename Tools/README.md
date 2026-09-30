@@ -23,7 +23,7 @@ python3 Tools/verificar_pack/verificar_pack.py Excel                    # tu car
 - **ERRORES**: hay que corregirlos (el script termina con código 1: sirve antes de un commit o en CI).
 - **AVISOS**: revisa si son intencionados (p. ej. movimientos especiales de un líder del juego original).
 
-## generar_packs.py — un pack FIEL a cada generación (Gen1 … Gen6)
+## generar_packs.py — un pack FIEL a cada generación (Gen1 … Gen7)
 
 ```bash
 python3 Tools/verificar_pack/generar_packs.py          # los 6
@@ -79,7 +79,7 @@ Pokémon y sus nombres son marcas de Nintendo / Game Freak / The Pokémon Compan
 ## generar_sets.py — sets de competición de Smogon para cada pack
 
 ```bash
-python3 Tools/verificar_pack/generar_sets.py            # Gen1 … Gen6
+python3 Tools/verificar_pack/generar_sets.py            # Gen1 … Gen7
 python3 Tools/verificar_pack/generar_sets.py --gen 6
 ```
 

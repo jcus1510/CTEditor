@@ -356,6 +356,10 @@ def check_pokeapi(sheets, gen, rep):
         cat = {'fisico': 'physical', 'especial': 'special', 'estado': 'status'}
         _, rows, lines = sheets['movimientos.csv']
         for r, ln in zip(rows, lines):
+            if 'z' in r.get('etiquetas', '').split('|'):
+                if not (ref.get(r['id']) or ref.get(r['id'] + '__physical')):
+                    rep.warn(f'movimientos.csv:{ln} {r["id"]}: movimiento Z que no está en PokeAPI para la gen {gen}')
+                continue   # movimientos Z: su potencia sale de la tabla de la mecánica (o es la suya), no se compara
             a = ref.get(r['id'])
             if not a:
                 rep.warn(f'movimientos.csv:{ln} {r["id"]}: no está en PokeAPI para la gen {gen}'); continue

@@ -25,7 +25,7 @@ CTEditor/
 │  └─ GameContent/
 │     ├─ Resources/<Categoría>/       las FICHAS del proyecto (.asset): Species, Moves, Items, Types, Rulesets...
 │     ├─ Papelera/                    fichas «borradas» (recuperables); grupos «~nombre» (cambios de generación)
-│     ├─ Packs/Gen1 … Gen6/           un pack por generación: hojas CSV + INFORME.txt
+│     ├─ Packs/Gen1 … Gen7/           un pack por generación: hojas CSV + INFORME.txt
 │     └─ README.md                    MANUAL DEL AUTOR
 ├─ Excel/                             carpeta por defecto de exportación CSV (fuera de Assets, Unity no la importa)
 │  └─ copias/                         copias de seguridad automáticas (importaciones, cambios de generación)

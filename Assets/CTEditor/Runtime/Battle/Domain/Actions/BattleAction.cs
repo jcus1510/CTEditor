@@ -19,7 +19,9 @@ namespace CTEditor.Battle.Domain.Actions
         public Id<Move> Move { get; }
         /// <summary>true = antes de atacar, MEGAEVOLUCIONA (si puede: mecánica activa, megapiedra, le quedan megas).</summary>
         public bool MegaEvolve { get; }
-        public UseMove(Id<Move> move, bool megaEvolve = false) { Move = move; MegaEvolve = megaEvolve; }
+        /// <summary>Use it as a Z move (if the held Z crystal allows it: see TurnResolver.CanZMove).</summary>
+        public bool ZMove { get; }
+        public UseMove(Id<Move> move, bool megaEvolve = false, bool zMove = false) { Move = move; MegaEvolve = megaEvolve; ZMove = zMove; }
     }
 
     /// <summary>Intentar huir del combate.</summary>

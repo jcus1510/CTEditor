@@ -129,6 +129,7 @@ namespace CTEditor.GameDefinition.Editor
             A(EffectAction.DisableMove, "anular", "Anular el movimiento que le golpeó"),
             A(EffectAction.Special, "especial", "Comportamiento especial", EffectRefKind.Special),
             A(EffectAction.SetSideCondition, "poner_lado", "Poner un efecto de lado o un campo", EffectRefKind.SideCondition),
+            A(EffectAction.ZMove, "movimiento_z", "Cristal Z: convierte el movimiento en un movimiento Z", EffectRefKind.Move),
         };
 
         /// <summary>Is the reference a list («a,b»)?</summary>
@@ -183,7 +184,7 @@ namespace CTEditor.GameDefinition.Editor
                     return new[] { EffectAction.MultiplyStat, EffectAction.PowerMultiplier, EffectAction.DamageDealtMultiplier, EffectAction.CritStage,
                         EffectAction.AccuracyMultiplier, EffectAction.EvasionMultiplier, EffectAction.ImmuneToType, EffectAction.ActFirst,
                         EffectAction.ChoiceLock, EffectAction.BlockStatusMoves, EffectAction.ExtendWeather, EffectAction.ExtendScreens,
-                        EffectAction.EnableMechanic };
+                        EffectAction.EnableMechanic, EffectAction.ZMove };
                 case EffectTrigger.BeforeHit:
                     return new[] { EffectAction.DamageTakenMultiplier, EffectAction.SurviveAt1Hp };
                 case EffectTrigger.OnWalk:
@@ -283,6 +284,7 @@ namespace CTEditor.GameDefinition.Editor
                 case EffectAction.BlockMoveTag: what = $"nadie puede usar movimientos: {Ref(EffectRefKind.TagList)}"; break;
                 case EffectAction.DisableMove: what = "anula el movimiento que le golpeó"; break;
                 case EffectAction.SetSideCondition: what = $"pone {Ref(EffectRefKind.SideCondition)}"; break;
+                case EffectAction.ZMove: what = $"una vez por combate, el movimiento se convierte en {Ref(EffectRefKind.Move)} (movimiento Z)"; break;
                 case EffectAction.Special:
                 {
                     var sp = AbilityEffects.Special(b.Ref);

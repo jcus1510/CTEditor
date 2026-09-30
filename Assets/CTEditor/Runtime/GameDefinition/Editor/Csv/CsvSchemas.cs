@@ -179,7 +179,10 @@ namespace CTEditor.GameDefinition.Editor.Csv
                         ConditionText.WriteAll(so.FindProperty("requirements"), conds);
                     }, false)
                 .Col("efectos", "estado:burn@10 | drenar:50 | retroceso:33 | retroceso_ps:25 | curar:50 | curar_rival:50 | curar_estado | clima:rain | stat:attack:-1 | stat_propio:speed:+2 | amedrentar@30 · condiciones: [si rival.vida<50] · mismo dado que el anterior: &efecto",
-                    d => CsvCodecs.FormatEffects(ReadEffects(d)), WriteEffects)
+                    d => CsvCodecs.FormatEffects(ReadEffects(d.SecondaryEffects)), (so, v, c) => WriteEffects(so, v, c, "secondaryEffects"))
+                .Col("efecto_z", "Solo movimientos de ESTADO: efecto extra si se usa como movimiento Z (mismo formato que «efectos»). " +
+                    "Ej.: stat_propio:defense:+1 (Gruñido Z) · reiniciar_etapas (Danza Espada Z) · curar:100.",
+                    d => CsvCodecs.FormatEffects(ReadEffects(d.ZEffects)), (so, v, c) => WriteEffects(so, v, c, "zEffects"))
                 .Col("tipo_clima", "Tipo según el clima (Meteorobola): rain:water | sun:fire | hail:ice | sandstorm:rock. Vacío = siempre el suyo.",
                     d => string.Join("|", d.TypeByWeather.Where(t => t != null && t.type != null).Select(t => t.weatherId + ":" + t.type.Id)),
                     (so, v, c) =>
@@ -202,8 +205,8 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 .Col("animacion", "Segundos de animación (solo presentación).", d => CsvTable.Number(d.AnimationSeconds),
                     (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<MoveData>.SetFloat(so, "animationSeconds", v, "animación"); });
 
-        private static IEnumerable<ParsedEffect> ReadEffects(MoveData d)
-            => (d.SecondaryEffects ?? new MoveData.MoveEffectData[0]).Where(e => e != null).Select(e => new ParsedEffect
+        private static IEnumerable<ParsedEffect> ReadEffects(MoveData.MoveEffectData[] list)
+            => (list ?? new MoveData.MoveEffectData[0]).Where(e => e != null).Select(e => new ParsedEffect
             {
                 Kind = e.kind, Target = e.target, Chance = e.chancePercent, Status = e.statusId,
                 Amount = e.amountPercent, Stat = e.statStatId, Stages = e.statStages,
@@ -212,10 +215,10 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 Turns = e.turns, Side = e.sideConditionId, TypeId = e.typeId, Text = e.text
             });
 
-        private static void WriteEffects(SerializedObject so, string cell, ImportContext ctx)
+        private static void WriteEffects(SerializedObject so, string cell, ImportContext ctx, string field)
         {
             var effects = CsvCodecs.ParseEffects(cell);
-            var arr = so.FindProperty("secondaryEffects");
+            var arr = so.FindProperty(field);
             arr.arraySize = effects.Count;
             for (int i = 0; i < effects.Count; i++)
             {
@@ -691,6 +694,9 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 .Col("megaevoluciona", "si / no: ¿puede megaevolucionar? (si las reglas tienen la Megaevolución y lleva megapiedra). Vacío = sí.",
                     d => d.CanMegaEvolve ? "si" : "no",
                     (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<TrainerData>.SetBool(so, "canMegaEvolve", v, "megaevoluciona"); })
+                .Col("usa_z", "si / no: ¿puede usar movimientos Z? (si las reglas los tienen y lleva cristal Z). Vacío = sí.",
+                    d => d.CanUseZMoves ? "si" : "no",
+                    (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<TrainerData>.SetBool(so, "canUseZMoves", v, "usa_z"); })
                 .Col("formatos_sets", "Sets de competición: de qué formatos (ou,uu...). Vacío = de cualquiera.", d => d.SetFormats,
                     (so, v, c) => so.FindProperty("setFormats").stringValue = (v ?? "").Trim().ToLowerInvariant())
                 .Col("moveset_cambiante", "si = otro set al azar en cada combate; no (vacío) = siempre el mismo.", d => d.VariableSets ? "si" : "no",

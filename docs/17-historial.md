@@ -36,7 +36,7 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
 | 5 | Importar/exportar en formato Showdown + nombres en inglés | ✅ |
 | 6 | Sets de competición de Smogon (IA por nivel, fijo o cambiante, selector) | ✅ |
 | 7 | Asistente «Cambiar de generación» (papelera por grupos, copia, Adaptar a las reglas) | ✅ |
-| 8 | 7.ª generación (variantes de Alola, movimientos Z, pack Gen7) | ⏳ |
+| 8 | 7.ª generación (variantes de Alola, movimientos Z, pack Gen7) | ✅ |
 
 ## Después del paso 7
 
@@ -57,4 +57,10 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   las 190 habilidades convertidas y comparadas propiedad a propiedad con las antiguas (idénticas); bloques libres
   ejecutados como los de un objeto; editor con tarjetas y plantillas del pack; `efectos` en Excel y en los packs;
   «¿quién usa esto?» mira dentro de los efectos.
+- **Paso 8 — 7.ª generación**: pack Gen7 (807 especies, variantes de Alola, 709 movimientos, 231 habilidades, 195
+  entrenadores, 1301 sets); `completar_fuente.py` para completar `datos_fuente` de una generación nueva; momentos y
+  acciones nuevos para las habilidades de la 7.ª (campos al entrar `poner_lado`, Búnker, Campo Psíquico bloquea la
+  prioridad); **movimientos Z** (mecánica con usos, Pulsera Z, tabla de potencias y 25 % a través de Protección;
+  35 cristales Z como objetos con bloques `movimiento_z`; efectos Z de los movimientos de estado; botón Z; IA;
+  `usa_z` en entrenadores); condiciones `mov.id` y `especie`; reglas de la 7.ª activan los movimientos Z.
 - **Documentación** completa por capítulos (esta carpeta).

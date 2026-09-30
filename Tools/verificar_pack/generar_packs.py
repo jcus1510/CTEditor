@@ -149,7 +149,7 @@ def build(n, verbose=True):
     mh, mrows, _, _ = load(os.path.join(SRC, 'movimientos.csv'))
     moves = []
     for r in mrows:
-        a = g.moves_vals.get(r['id'])
+        a = g.moves_vals.get(r['id']) or g.moves_vals.get(r['id'] + '__physical')   # movimientos Z genéricos
         if not a:
             continue   # no existe en esta generación
         r = dict(r)
@@ -352,7 +352,7 @@ def english_names(species, moves, abil, sh, mh, ah):
     mv = {r['id']: pack_id(r['identifier']) for r in table('moves')}
     mv_en = {mv[r['move_id']]: r['name'] for r in table('move_names') if r['local_language_id'] == ENGLISH and r['move_id'] in mv}
     for m in moves:
-        m['nombre_en'] = mv_en.get(m['id'], '')
+        m['nombre_en'] = mv_en.get(m['id'], '') or mv_en.get(m['id'] + '__physical', '').replace(' (Physical)', '')
     ab = {r['id']: pack_id(r['identifier']) for r in table('abilities')}
     ab_en = {ab[r['ability_id']]: r['name'] for r in table('ability_names') if r['local_language_id'] == ENGLISH and r['ability_id'] in ab}
     for a in abil:
@@ -391,9 +391,11 @@ def items_for(n):
             continue   # Cristales Z: PokeAPI tiene la versión «de la mochila» y la «para llevar»; el editor usa una sola
         iid = pack_id(it['identifier'].replace('--held', ''))
         pocket, cat = cats.get(it['category_id'], ('', ''))
-        if first_gen.get(it['id'], 99) > n or pocket == '4' or cat in ('unused', 'all-machines'):
-            continue
         tpl = templates.get(iid)
+        # Sin índice de juego en PokeAPI (los cristales Z de Ultrasol/Ultraluna): cuenta desde la 7.ª si tiene datos en la fuente.
+        gen_of = first_gen.get(it['id'], 7 if tpl and '--held' in it['identifier'] else 99)
+        if gen_of > n or pocket == '4' or (cat in ('unused', 'all-machines') and not tpl):
+            continue
         name = names.get(it['id']) or (tpl or {}).get('nombre') or iid
         desc = flavor.get(it['id'], (0, ''))[1] or (tpl or {}).get('descripcion', '')
         if tpl:
@@ -432,7 +434,8 @@ def write_report(n, g, out, species, moves, abil, trainers, notes):
              f'• {len(trainers)} entrenadores con su nivel de IA: ' + ', '.join(f'nivel {k}: {v}' for k, v in sorted(by.items()) if k) + '.',
              '  Incluye el Laboratorio de IA (prueba_nivel_1 … 7: el mismo equipo en cada nivel) para el Torneo de IAs.', '',
              'APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):',
-             '  • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.',
+             '  • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.'
+             + (' (los que llegaron en la 7.ª, los suyos; algunas habilidades de la 7.ª solo tienen nombre).' if n >= 7 else ''),
              '  • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.',
              ]
     if n <= 2:

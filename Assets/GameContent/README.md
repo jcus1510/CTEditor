@@ -164,7 +164,7 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - Si una ventana es estrecha, marca **«📝 Ver la ayuda de cada campo debajo de él»** arriba del Inspector: las
   explicaciones se escriben completas bajo cada campo (además de verse al pasar el ratón).
 
-## Packs por generación (`Packs/Gen1/` … `Packs/Gen6/`)
+## Packs por generación (`Packs/Gen1/` … `Packs/Gen7/`)
 - Un pack por generación, **fiel a ella**: especies, estadísticas, tipos, movimientos (tipo, potencia, precisión, PP,
   prioridad; físico/especial según el tipo hasta la 3.ª), habilidades (desde la 3.ª), aprendizaje de su juego, tabla de
   tipos, naturalezas y grupos huevo cuando existían, y sus entrenadores. Cada uno trae un `INFORME.txt`.
@@ -263,6 +263,12 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
   editable) y solo si su ficha dice «Puede megaevolucionar» (Excel: `megaevoluciona`). Megas por combate, objeto clave
   y volver al retirarse se cambian en la ficha de mecánica. Las plantillas «6.ª gen.» y «7.ª gen.» de las reglas la
   activan; las demás generaciones la quitan. El pack Gen6 trae las 48 megas y a Dianta con su Gardevoirita.
+- **Movimientos Z** (7.ª): el monstruo lleva un cristal Z (objeto con bloques `movimiento_z`: qué tipo, movimiento o
+  especie convierte en qué Z). El jugador pulsa «Z» en el panel de movimientos (necesita la Pulsera Z de la ficha) y
+  elige movimiento; el rival lo decide como la Megaevolución y solo si su ficha dice «Puede usar movimientos Z» (Excel:
+  `usa_z`). Una vez por combate; potencia según la tabla de la ficha; atraviesa Protección con un 25 % del daño; los de
+  estado hacen su efecto Z (`efecto_z`) antes. La plantilla «7.ª gen.» de las reglas lo activa. El pack Gen7 trae los
+  35 cristales Z y todos los movimientos Z.
 
 ## Niveles de IA (Lote E + Lote F)
 Siete niveles, cada uno una ficha editable (CTEditor → Personajes → **Niveles de IA**) hecha de **4 bloques combinables**:

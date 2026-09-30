@@ -10,6 +10,8 @@ namespace CTEditor.Adventure.Domain
         public static PlayerChoice Fight(int moveIndex) => new FightChoice(moveIndex);
         /// <summary>Luchar MEGAEVOLUCIONANDO antes (si puede: ver BattleSession.CanPlayerMegaEvolve).</summary>
         public static PlayerChoice Fight(int moveIndex, bool megaEvolve) => new FightChoice(moveIndex, megaEvolve);
+        /// <summary>Luchar con MEGAEVOLUCIÓN y/o como MOVIMIENTO Z (ver BattleSession.CanPlayerZMove).</summary>
+        public static PlayerChoice Fight(int moveIndex, bool megaEvolve, bool zMove) => new FightChoice(moveIndex, megaEvolve, zMove);
         /// <summary>Cambiar al miembro 'teamIndex' del equipo.</summary>
         public static PlayerChoice Switch(int teamIndex) => new SwitchChoice(teamIndex);
         /// <summary>Usar un objeto de la mochila sobre el miembro 'teamIndex' (pociones, revivir, Ataque X...).</summary>
@@ -24,7 +26,8 @@ namespace CTEditor.Adventure.Domain
     {
         public int MoveIndex { get; }
         public bool MegaEvolve { get; }
-        public FightChoice(int i, bool megaEvolve = false) { MoveIndex = i; MegaEvolve = megaEvolve; }
+        public bool ZMove { get; }
+        public FightChoice(int i, bool megaEvolve = false, bool zMove = false) { MoveIndex = i; MegaEvolve = megaEvolve; ZMove = zMove; }
     }
     public sealed class SwitchChoice : PlayerChoice { public int TeamIndex { get; } public SwitchChoice(int i) { TeamIndex = i; } }
     public sealed class ItemChoice : PlayerChoice

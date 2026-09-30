@@ -60,7 +60,7 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
             var ai = new TrainerAiSettings(d.UseItems, bag, d.HealBelowPercent, d.CanSwitch, d.MovesetStyle);
             return new TrainerDefinition(d.Id, d.DisplayName, ToDomain(d.Team), d.TrainerClass, d.Ai, d.BaseMoney,
                 d.IntroLine, d.DefeatLine, d.VictoryLine, ai, d.AiLevel, d.AiProfileId, d.CanMegaEvolve,
-                (d.SetFormats ?? "").Split(','), d.VariableSets);
+                (d.SetFormats ?? "").Split(','), d.VariableSets, d.CanUseZMoves);
         }
 
         public static TeamPreset ToDomain(TeamPresetData d)

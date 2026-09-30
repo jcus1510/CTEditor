@@ -40,10 +40,45 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
 
             // EFECTOS SECUNDARIOS: cada sub-ficha -> un MoveEffect del dominio. Las entradas vacías
             // (sin estado) se ignoran.
+            var effects = Effects(data.SecondaryEffects);
+
+            return new Move(
+                new Id<Move>(data.Id),
+                data.DisplayName,
+                typeId,
+                data.Category,
+                data.Power,
+                accuracy,
+                data.MaxPp,
+                data.Priority,
+                data.Target,
+                effects,
+                data.MinHits,
+                data.MaxHits,
+                data.CritStage,
+                data.TwoTurn,
+                data.MakesContact,
+                data.FixedDamage,
+                data.FixedDamageAmount,
+                data.RespectsTypeImmunity,
+                ConditionMapper.ToDomain(data.PowerModifiers),
+                data.PowerFormula,
+                string.IsNullOrWhiteSpace(data.AttackStat) ? (StatId?)null : new StatId(data.AttackStat.Trim()),
+                string.IsNullOrWhiteSpace(data.DefenseStat) ? (StatId?)null : new StatId(data.DefenseStat.Trim()),
+                data.AttackStatFromTarget,
+                data.Tags,
+                ConditionMapper.ToDomain(data.Requirements),
+                WeatherTypes(data.TypeByWeather),
+                Effects(data.ZEffects));
+        }
+
+        /// <summary>The move's effects (also its Z effect): each sub-asset → a domain MoveEffect. Empty entries are skipped.</summary>
+        private static List<MoveEffect> Effects(MoveData.MoveEffectData[] list)
+        {
             var effects = new List<MoveEffect>();
-            if (data.SecondaryEffects != null)
+            if (list != null)
             {
-                foreach (var e in data.SecondaryEffects)
+                foreach (var e in list)
                 {
                     if (e == null) continue;
                     var chance = new Percentage(e.chancePercent);
@@ -114,33 +149,7 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 }
             }
 
-            return new Move(
-                new Id<Move>(data.Id),
-                data.DisplayName,
-                typeId,
-                data.Category,
-                data.Power,
-                accuracy,
-                data.MaxPp,
-                data.Priority,
-                data.Target,
-                effects,
-                data.MinHits,
-                data.MaxHits,
-                data.CritStage,
-                data.TwoTurn,
-                data.MakesContact,
-                data.FixedDamage,
-                data.FixedDamageAmount,
-                data.RespectsTypeImmunity,
-                ConditionMapper.ToDomain(data.PowerModifiers),
-                data.PowerFormula,
-                string.IsNullOrWhiteSpace(data.AttackStat) ? (StatId?)null : new StatId(data.AttackStat.Trim()),
-                string.IsNullOrWhiteSpace(data.DefenseStat) ? (StatId?)null : new StatId(data.DefenseStat.Trim()),
-                data.AttackStatFromTarget,
-                data.Tags,
-                ConditionMapper.ToDomain(data.Requirements),
-                WeatherTypes(data.TypeByWeather));
+            return effects;
         }
 
         private static Dictionary<string, Id<ElementType>> WeatherTypes(MoveData.WeatherTypeEntry[] entries)

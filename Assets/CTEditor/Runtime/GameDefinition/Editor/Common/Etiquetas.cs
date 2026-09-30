@@ -200,6 +200,12 @@ namespace CTEditor.GameDefinition.Editor
             ["variableSets"] = ("Moveset cambiante (otro set cada combate)", "moveset_cambiante"),
             // Megaevolución (entrenadores y niveles de IA)
             ["canMegaEvolve"] = ("Puede megaevolucionar", "megaevoluciona"),
+            ["canUseZMoves"] = ("Puede usar movimientos Z", "usa_z"),
+            ["zMaxPerBattle"] = ("Movimientos Z por combate (0 = sin límite)", "z_max"),
+            ["zRequiredKeyItem"] = ("Objeto clave para los Z", "z_objeto_clave"),
+            ["zProtectDamagePercent"] = ("% de daño Z que atraviesa Protección", "z_protege"),
+            ["zPowerTable"] = ("Tabla de potencia Z", "z_potencias"),
+            ["zEffects"] = ("Efecto Z (movimientos de estado)", "efecto_z"),
             ["megaTiming"] = ("Cuándo megaevoluciona", "cuando_mega"),
             // Formas y variantes
             ["formOf"] = ("Es forma de (variante)", "forma_de"),
@@ -677,6 +683,7 @@ namespace CTEditor.GameDefinition.Editor
         {
             // Categoría de movimiento
             ["MegaEvolution"] = "Megaevolución",
+            ["ZMove"] = "Movimientos Z",
             ["ByLevel"] = "Según su nivel", ["Yes"] = "Sí", ["No"] = "No", ["AsSoonAsPossible"] = "En cuanto puede",
             ["HeldItem"] = "Lleva un objeto", ["UseMove"] = "Usa un movimiento", ["DamagingMove"] = "Usa un ataque",
             ["HpBelow"] = "PS por debajo de un %", ["HpAtLeast"] = "PS desde un %", ["Weather"] = "Clima",

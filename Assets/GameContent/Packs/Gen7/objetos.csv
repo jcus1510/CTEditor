@@ -665,38 +665,38 @@ beedrillite;Beedrillita;Beedrillite;Una de las misteriosas Megapiedras. Permite 
 key_stone;Piedra Activadora;Key Stone;Piedra de singulares poderes que permite megaevolucionar en combate a un Pokémon que lleve consigo una Megapiedra.;Key;0;no;no;no;no;
 meteorite_shard;Frag. Meteorito;Meteorite Shard;Trozo de meteorito encontrado en el suelo de la Cueva Granito. Es ligeramente cálido al tacto.;Key;0;no;no;no;no;
 eon_flute;Flauta Eón;Eon Flute;Flauta capaz de invocar a Latios o Latias en cualquier lugar.;Key;0;no;no;no;no;
-normalium_z;Normastal Z;Normalium Z;Cristal que confiere el Poder Z a los movimientos de tipo Normal.;Key;0;no;no;no;no;
-firium_z;Pirostal Z;Firium Z;Cristal que confiere el Poder Z a los movimientos de tipo Fuego.;Key;0;no;no;no;no;
-waterium_z;Hidrostal Z;Waterium Z;Cristal que confiere el Poder Z a los movimientos de tipo Agua.;Key;0;no;no;no;no;
-electrium_z;Electrostal Z;Electrium Z;Cristal que confiere el Poder Z a los movimientos de tipo Eléctrico.;Key;0;no;no;no;no;
-grassium_z;Fitostal Z;Grassium Z;Cristal que confiere el Poder Z a los movimientos de tipo Planta.;Key;0;no;no;no;no;
-icium_z;Criostal Z;Icium Z;Cristal que confiere el Poder Z a los movimientos de tipo Hielo.;Key;0;no;no;no;no;
-fightinium_z;Lizastal Z;Fightinium Z;Cristal que confiere el Poder Z a los movimientos de tipo Lucha.;Key;0;no;no;no;no;
-poisonium_z;Toxistal Z;Poisonium Z;Cristal que confiere el Poder Z a los movimientos de tipo Veneno.;Key;0;no;no;no;no;
-groundium_z;Geostal Z;Groundium Z;Cristal que confiere el Poder Z a los movimientos de tipo Tierra.;Key;0;no;no;no;no;
-flyinium_z;Aerostal Z;Flyinium Z;Cristal que confiere el Poder Z a los movimientos de tipo Volador.;Key;0;no;no;no;no;
-psychium_z;Psicostal Z;Psychium Z;Cristal que confiere el Poder Z a los movimientos de tipo Psíquico.;Key;0;no;no;no;no;
-buginium_z;Insectostal Z;Buginium Z;Cristal que confiere el Poder Z a los movimientos de tipo Bicho.;Key;0;no;no;no;no;
-rockium_z;Litostal Z;Rockium Z;Cristal que confiere el Poder Z a los movimientos de tipo Roca.;Key;0;no;no;no;no;
-ghostium_z;Espectrostal Z;Ghostium Z;Cristal que confiere el Poder Z a los movimientos de tipo Fantasma.;Key;0;no;no;no;no;
-dragonium_z;Dracostal Z;Dragonium Z;Cristal que confiere el Poder Z a los movimientos de tipo Dragón.;Key;0;no;no;no;no;
-darkinium_z;Nictostal Z;Darkinium Z;Cristal que confiere el Poder Z a los movimientos de tipo Siniestro.;Key;0;no;no;no;no;
-steelium_z;Metalostal Z;Steelium Z;Cristal que confiere el Poder Z a los movimientos de tipo Acero.;Key;0;no;no;no;no;
-fairium_z;Feeristal Z;Fairium Z;Cristal que confiere el Poder Z a los movimientos de tipo Hada.;Key;0;no;no;no;no;
-pikanium_z;Pikastal Z;Pikanium Z;Cristal que confiere el Poder Z al movimiento Placaje Eléc de Pikachu.;Key;0;no;no;no;no;
+normalium_z;Normastal Z;Normalium Z;Cristal que confiere el Poder Z a los movimientos de tipo Normal.;Held;0;no;no;no;no;siempre [si mov.tipo=normal]: movimiento_z breakneck_blitz
+firium_z;Pirostal Z;Firium Z;Cristal que confiere el Poder Z a los movimientos de tipo Fuego.;Held;0;no;no;no;no;siempre [si mov.tipo=fire]: movimiento_z inferno_overdrive
+waterium_z;Hidrostal Z;Waterium Z;Cristal que confiere el Poder Z a los movimientos de tipo Agua.;Held;0;no;no;no;no;siempre [si mov.tipo=water]: movimiento_z hydro_vortex
+electrium_z;Electrostal Z;Electrium Z;Cristal que confiere el Poder Z a los movimientos de tipo Eléctrico.;Held;0;no;no;no;no;siempre [si mov.tipo=electric]: movimiento_z gigavolt_havoc
+grassium_z;Fitostal Z;Grassium Z;Cristal que confiere el Poder Z a los movimientos de tipo Planta.;Held;0;no;no;no;no;siempre [si mov.tipo=grass]: movimiento_z bloom_doom
+icium_z;Criostal Z;Icium Z;Cristal que confiere el Poder Z a los movimientos de tipo Hielo.;Held;0;no;no;no;no;siempre [si mov.tipo=ice]: movimiento_z subzero_slammer
+fightinium_z;Lizastal Z;Fightinium Z;Cristal que confiere el Poder Z a los movimientos de tipo Lucha.;Held;0;no;no;no;no;siempre [si mov.tipo=fighting]: movimiento_z all_out_pummeling
+poisonium_z;Toxistal Z;Poisonium Z;Cristal que confiere el Poder Z a los movimientos de tipo Veneno.;Held;0;no;no;no;no;siempre [si mov.tipo=poison]: movimiento_z acid_downpour
+groundium_z;Geostal Z;Groundium Z;Cristal que confiere el Poder Z a los movimientos de tipo Tierra.;Held;0;no;no;no;no;siempre [si mov.tipo=ground]: movimiento_z tectonic_rage
+flyinium_z;Aerostal Z;Flyinium Z;Cristal que confiere el Poder Z a los movimientos de tipo Volador.;Held;0;no;no;no;no;siempre [si mov.tipo=flying]: movimiento_z supersonic_skystrike
+psychium_z;Psicostal Z;Psychium Z;Cristal que confiere el Poder Z a los movimientos de tipo Psíquico.;Held;0;no;no;no;no;siempre [si mov.tipo=psychic]: movimiento_z shattered_psyche
+buginium_z;Insectostal Z;Buginium Z;Cristal que confiere el Poder Z a los movimientos de tipo Bicho.;Held;0;no;no;no;no;siempre [si mov.tipo=bug]: movimiento_z savage_spin_out
+rockium_z;Litostal Z;Rockium Z;Cristal que confiere el Poder Z a los movimientos de tipo Roca.;Held;0;no;no;no;no;siempre [si mov.tipo=rock]: movimiento_z continental_crush
+ghostium_z;Espectrostal Z;Ghostium Z;Cristal que confiere el Poder Z a los movimientos de tipo Fantasma.;Held;0;no;no;no;no;siempre [si mov.tipo=ghost]: movimiento_z never_ending_nightmare
+dragonium_z;Dracostal Z;Dragonium Z;Cristal que confiere el Poder Z a los movimientos de tipo Dragón.;Held;0;no;no;no;no;siempre [si mov.tipo=dragon]: movimiento_z devastating_drake
+darkinium_z;Nictostal Z;Darkinium Z;Cristal que confiere el Poder Z a los movimientos de tipo Siniestro.;Held;0;no;no;no;no;siempre [si mov.tipo=dark]: movimiento_z black_hole_eclipse
+steelium_z;Metalostal Z;Steelium Z;Cristal que confiere el Poder Z a los movimientos de tipo Acero.;Held;0;no;no;no;no;siempre [si mov.tipo=steel]: movimiento_z corkscrew_crash
+fairium_z;Feeristal Z;Fairium Z;Cristal que confiere el Poder Z a los movimientos de tipo Hada.;Held;0;no;no;no;no;siempre [si mov.tipo=fairy]: movimiento_z twinkle_tackle
+pikanium_z;Pikastal Z;Pikanium Z;Cristal que confiere el Poder Z al movimiento Placaje Eléc de Pikachu.;Held;0;no;no;no;no;siempre [si propio.especie=pikachu & mov.id=volt_tackle]: movimiento_z catastropika
 bottle_cap;Chapa Plateada;Bottle Cap;Una bonita chapa de color plata. Hay gente que las aprecia mucho.;Other;5000;no;no;no;no;
 gold_bottle_cap;Chapa Dorada;Gold Bottle Cap;Una bonita chapa de color dorado, menos común que su equivalente plateada. Hay gente que las aprecia mucho.;Other;10000;no;no;no;no;
 z_ring;Pulsera Z;Z-Ring;Misteriosa pulsera que transmite la fuerza física y mental del Entrenador a sus Pokémon, lo que les permite usar movimientos Z.;Key;0;no;no;no;no;
-decidium_z;Dueyestal Z;Decidium Z;Cristal que confiere el Poder Z al movimiento Puntada Sombría de Decidueye.;Key;0;no;no;no;no;
-incinium_z;Incinostal Z;Incinium Z;Cristal que confiere el Poder Z al movimiento Lariat Oscuro de Incineroar.;Key;0;no;no;no;no;
-primarium_z;Primastal Z;Primarium Z;Cristal que confiere el Poder Z al movimiento Aria Burbuja de Primarina.;Key;0;no;no;no;no;
-tapunium_z;Tapistal Z;Tapunium Z;Cristal que confiere el Poder Z al movimiento Furia Natural de los Tapu.;Key;0;no;no;no;no;
-marshadium_z;Marshastal Z;Marshadium Z;Cristal que confiere el Poder Z al movimiento Robasombra de Marshadow.;Key;0;no;no;no;no;
-aloraichium_z;Alo-Raistal Z;Aloraichium Z;Cristal que confiere el Poder Z al movimiento Rayo de los Raichu de Alola.;Key;0;no;no;no;no;
-snorlium_z;Snorlastal Z;Snorlium Z;Cristal que confiere el Poder Z al movimiento Giga Impacto de Snorlax.;Key;0;no;no;no;no;
-eevium_z;Eeveestal Z;Eevium Z;Cristal que confiere el Poder Z al movimiento Última Baza de Eevee.;Key;0;no;no;no;no;
-mewnium_z;Mewstal Z;Mewnium Z;Cristal que confiere el Poder Z al movimiento Psíquico de Mew.;Key;0;no;no;no;no;
-pikashunium_z;Ash-Pikastal Z;Pikashunium Z;Cristal que confiere el Poder Z al movimiento Rayo de los Pikachu que llevan gorra.;Key;0;no;no;no;no;
+decidium_z;Dueyestal Z;Decidium Z;Cristal que confiere el Poder Z al movimiento Puntada Sombría de Decidueye.;Held;0;no;no;no;no;siempre [si propio.especie=decidueye & mov.id=spirit_shackle]: movimiento_z sinister_arrow_raid
+incinium_z;Incinostal Z;Incinium Z;Cristal que confiere el Poder Z al movimiento Lariat Oscuro de Incineroar.;Held;0;no;no;no;no;siempre [si propio.especie=incineroar & mov.id=darkest_lariat]: movimiento_z malicious_moonsault
+primarium_z;Primastal Z;Primarium Z;Cristal que confiere el Poder Z al movimiento Aria Burbuja de Primarina.;Held;0;no;no;no;no;siempre [si propio.especie=primarina & mov.id=sparkling_aria]: movimiento_z oceanic_operetta
+tapunium_z;Tapistal Z;Tapunium Z;Cristal que confiere el Poder Z al movimiento Furia Natural de los Tapu.;Held;0;no;no;no;no;siempre [si propio.especie=tapu & mov.id=natures_madness]: movimiento_z guardian_of_alola
+marshadium_z;Marshastal Z;Marshadium Z;Cristal que confiere el Poder Z al movimiento Robasombra de Marshadow.;Held;0;no;no;no;no;siempre [si propio.especie=marshadow & mov.id=spectral_thief]: movimiento_z soul_stealing_7_star_strike
+aloraichium_z;Alo-Raistal Z;Aloraichium Z;Cristal que confiere el Poder Z al movimiento Rayo de los Raichu de Alola.;Held;0;no;no;no;no;siempre [si propio.especie=raichu_alola & mov.id=thunderbolt]: movimiento_z stoked_sparksurfer
+snorlium_z;Snorlastal Z;Snorlium Z;Cristal que confiere el Poder Z al movimiento Giga Impacto de Snorlax.;Held;0;no;no;no;no;siempre [si propio.especie=snorlax & mov.id=giga_impact]: movimiento_z pulverizing_pancake
+eevium_z;Eeveestal Z;Eevium Z;Cristal que confiere el Poder Z al movimiento Última Baza de Eevee.;Held;0;no;no;no;no;siempre [si propio.especie=eevee & mov.id=last_resort]: movimiento_z extreme_evoboost
+mewnium_z;Mewstal Z;Mewnium Z;Cristal que confiere el Poder Z al movimiento Psíquico de Mew.;Held;0;no;no;no;no;siempre [si propio.especie=mew & mov.id=psychic]: movimiento_z genesis_supernova
+pikashunium_z;Ash-Pikastal Z;Pikashunium Z;Cristal que confiere el Poder Z al movimiento Rayo de los Pikachu que llevan gorra.;Held;0;no;no;no;no;siempre [si propio.especie=pikachu & mov.id=thunderbolt]: movimiento_z 10_000_000_volt_thunderbolt
 forage_bag;Zurrón;Forage Bag;Saco para guardar ingredientes, indispensable en la Jungla Umbría para superar la prueba de Lulú.;Key;0;no;no;no;no;
 fishing_rod;Caña;Fishing Rod;Caña fabricada por la Capitana Nereida. Permite pescar los Pokémon escondidos en las rocas sumergidas.;Key;0;no;no;no;no;
 professors_mask;Máscara Profesor;Professor’s Mask;La máscara de luchador de Royale, el Enmascarado. Muy probablemente de factura propia.;Key;0;no;no;no;no;
@@ -737,6 +737,12 @@ ice_memory;Disco Hielo;Ice Memory;Disco de datos que contiene información relat
 dragon_memory;Disco Dragón;Dragon Memory;Disco de datos que contiene información relativa al tipo Dragón. Permite cambiar de tipo a cierto Pokémon.;Other;1000;no;no;no;no;
 dark_memory;Disco Siniestro;Dark Memory;Disco de datos que contiene información relativa al tipo Siniestro. Permite cambiar de tipo a cierto Pokémon.;Other;1000;no;no;no;no;
 fairy_memory;Disco Hada;Fairy Memory;Disco de datos que contiene información relativa al tipo Hada. Permite cambiar de tipo a cierto Pokémon.;Other;1000;no;no;no;no;
+solganium_z;Solgaleostal Z;Solganium Z;Cristal que confiere el Poder Z al movimiento Meteoimpacto de Solgaleo.;Held;0;no;no;no;no;siempre [si propio.especie=solgaleo & mov.id=sunsteel_strike]: movimiento_z searing_sunraze_smash | siempre [si propio.especie=necrozma_dusk & mov.id=sunsteel_strike]: movimiento_z searing_sunraze_smash
+lunalium_z;Lunalastal Z;Lunalium Z;Cristal que confiere el Poder Z al movimiento Rayo Umbrío de Lunala.;Held;0;no;no;no;no;siempre [si propio.especie=lunala & mov.id=moongeist_beam]: movimiento_z menacing_moonraze_maelstrom | siempre [si propio.especie=necrozma_dawn & mov.id=moongeist_beam]: movimiento_z menacing_moonraze_maelstrom
+ultranecrozium_z;Ultranecrostal Z;Ultranecrozium Z;Cristal que confiere el Poder Z al movimiento Géiser Fotónico de Necrozma.;Held;0;no;no;no;no;siempre [si propio.especie=necrozma & mov.id=photon_geyser]: movimiento_z light_that_burns_the_sky
+mimikium_z;Mimikyustal Z;Mimikium Z;Cristal que confiere el Poder Z al movimiento Carantoña de Mimikyu.;Held;0;no;no;no;no;siempre [si propio.especie=mimikyu & mov.id=play_rough]: movimiento_z lets_snuggle_forever
+lycanium_z;Lycanrostal Z;Lycanium Z;Cristal que confiere el Poder Z al movimiento Roca Afilada de Lycanroc.;Held;0;no;no;no;no;siempre [si propio.especie=lycanroc & mov.id=stone_edge]: movimiento_z splintered_stormshards
+kommonium_z;Kommostal Z;Kommonium Z;Cristal que confiere el Poder Z al movimiento Fragor Escamas de Kommo-o.;Held;0;no;no;no;no;siempre [si propio.especie=kommo_o & mov.id=clanging_scales]: movimiento_z clangorous_soulblaze
 silver_razz_berry;Baya Frambu Plateada;Silver Razz Berry;Una baya que puedes lanzar a un Pokémon salvaje para que resulte bastante más fácil capturarlo.;Other;1000;no;no;no;si;
 golden_razz_berry;Baya Frambu Dorada;Golden Razz Berry;Una baya que puedes lanzar a un Pokémon salvaje para que resulte mucho más fácil capturarlo.;Other;5000;no;no;no;si;
 silver_nanab_berry;Baya Latano Plateada;Silver Nanab Berry;Una baya que puedes lanzar a un Pokémon salvaje para tranquilizarlo bastante.;Other;1000;no;no;no;si;

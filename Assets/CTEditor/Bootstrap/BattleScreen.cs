@@ -103,6 +103,9 @@ namespace CTEditor.Bootstrap
         [Tooltip("Botón de MEGAEVOLUCIÓN en el panel de movimientos (se enciende/apaga antes de elegir el movimiento). " +
                  "Si lo dejas vacío, se crea solo al lado de «Atrás».")]
         [SerializeField] private Button megaButton;
+        [Tooltip("Botón de MOVIMIENTO Z en el panel de movimientos (se enciende/apaga antes de elegir el movimiento). " +
+                 "Si lo dejas vacío, se crea solo al lado del de Mega.")]
+        [SerializeField] private Button zButton;
         [SerializeField] private Button[] moveButtons;
         [SerializeField] private Button[] switchButtons;
         [SerializeField] private Button[] bagButtons;
@@ -489,6 +492,8 @@ namespace CTEditor.Bootstrap
             Wire(backButton, OnBack);
             EnsureMegaButton();
             Wire(megaButton, () => { _megaArmed = !_megaArmed; RefreshMegaButton(); });
+            EnsureZButton();
+            Wire(zButton, () => { _zArmed = !_zArmed; RefreshZButton(); });
             Wire(advanceButton, () => _advance = true);
             Wire(yesButton, () => _yesNo = true);
             Wire(noButton, () => _yesNo = false);
@@ -518,8 +523,33 @@ namespace CTEditor.Bootstrap
         private void OnMoveButton(int i)
         {
             if (_mode == Mode.LearnMove) { _index = i; return; }
-            _choice = PlayerChoice.Fight(i, _megaArmed && Session.CanPlayerMegaEvolve);
+            _choice = PlayerChoice.Fight(i, _megaArmed && Session.CanPlayerMegaEvolve, _zArmed && Session.CanPlayerZMoveWith(i));
             _megaArmed = false;
+            _zArmed = false;
+        }
+
+        // ---------------- Movimientos Z ----------------
+
+        private bool _zArmed;
+
+        // Escenas sin botón Z: se crea uno copiando «Atrás», dos huecos a su izquierda (el primero es el de Mega).
+        private void EnsureZButton()
+        {
+            if (zButton || !backButton) return;
+            zButton = Instantiate(backButton, backButton.transform.parent);
+            zButton.name = "Movimiento Z";
+            var rt = (RectTransform)zButton.transform;
+            rt.anchoredPosition += new Vector2(-2f * (((RectTransform)backButton.transform).sizeDelta.x + 10f), 0f);
+            zButton.gameObject.SetActive(false);
+        }
+
+        private void RefreshZButton()
+        {
+            if (!zButton) return;
+            bool can = Session != null && _mode == Mode.Moves && Session.CanPlayerZMove;
+            zButton.gameObject.SetActive(can);
+            if (!can) { _zArmed = false; return; }
+            SetButtonLabel(zButton, _zArmed ? "⚡ Z: ¡SÍ!" : "⚡ Movimiento Z");
         }
 
         // ---------------- Megaevolución ----------------
@@ -628,6 +658,7 @@ namespace CTEditor.Bootstrap
             }
             if (backButton) { backButton.gameObject.SetActive(true); backButton.interactable = true; SetButtonLabel(backButton, "Atrás"); }
             RefreshMegaButton();
+            RefreshZButton();
         }
 
         private void OpenLearnPanel(MonsterInstance mon)
@@ -711,6 +742,7 @@ namespace CTEditor.Bootstrap
             SetPanel(confirmPanel, panel == confirmPanel);
             if (backButton) backButton.gameObject.SetActive(panel != actionPanel && panel != confirmPanel && panel != null);
             if (megaButton) megaButton.gameObject.SetActive(false);   // solo lo enciende el panel de movimientos
+            if (zButton) zButton.gameObject.SetActive(false);
         }
 
         private void HideMenus()
@@ -723,6 +755,7 @@ namespace CTEditor.Bootstrap
             SetPanel(confirmPanel, false);
             if (backButton) backButton.gameObject.SetActive(false);
             if (megaButton) megaButton.gameObject.SetActive(false);
+            if (zButton) zButton.gameObject.SetActive(false);
         }
 
         private static void SetPanel(GameObject go, bool on) { if (go) go.SetActive(on); }
@@ -990,6 +1023,13 @@ namespace CTEditor.Bootstrap
                     yield return Say($"¡{Cap(Who(tc.Combatant))} ahora es de tipo {string.Join("/", tc.Types.Select(data.TypeName))}!");
                     break;
                 case SelfSwitchRequiredEvent _: break; // lo gestiona la sesión (elegir quién entra)
+                case ZMoveUsedEvent zu:
+                {
+                    string who = Cap(Who(zu.Combatant));
+                    yield return Say($"¡{who} libera todo su poder Z!");
+                    if (zu.ZMove != zu.BaseMove) yield return Say($"¡{Session.Data.MoveName(zu.ZMove)}!");
+                    break;
+                }
                 case MegaEvolvedEvent me:
                 {
                     string who = Cap(Who(me.Combatant));
