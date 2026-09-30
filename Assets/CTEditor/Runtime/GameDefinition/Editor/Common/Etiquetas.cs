@@ -186,6 +186,22 @@ namespace CTEditor.GameDefinition.Editor
             ["specialAttackStat"] = ("Especial: estadística de ataque", "especial_ataque"),
             ["specialDefenseStat"] = ("Especial: estadística de defensa", "especial_defensa"),
 
+            // Reglas de generación
+            ["generation"] = ("Generación de referencia (0 = personalizada)", "generacion"),
+            ["categoryByType"] = ("Categoría por tipo (1.ª-3.ª gen.)", "categoria_por_tipo"),
+            ["specialTypes"] = ("Tipos especiales (con categoría por tipo)", "tipos_especiales"),
+            ["singleSpecialStat"] = ("Especial único (1.ª gen.)", "especial_unico"),
+            ["abilitiesEnabled"] = ("Hay habilidades", "hay_habilidades"),
+            ["heldItemsEnabled"] = ("Se pueden equipar objetos", "hay_objetos_equipados"),
+            ["naturesEnabled"] = ("Hay naturalezas", "hay_naturalezas"),
+            ["gendersEnabled"] = ("Hay géneros", "hay_generos"),
+            ["mechanicIds"] = ("Mecánicas especiales activas", "mecanicas"),
+            // Mecánicas especiales
+            ["mechanicKind"] = ("Tipo de mecánica", "tipo_mecanica"),
+            ["megaMaxPerBattle"] = ("Megas por combate y lado (0 = sin límite)", "megas_por_combate"),
+            ["megaRequiredKeyItem"] = ("Objeto clave del jugador (Megapulsera)", "objeto_clave"),
+            ["megaRevertOnSwitch"] = ("Vuelve a su forma al retirarse", "revierte_al_cambiar"),
+
             // Climas
             ["defaultTurns"] = ("Turnos que dura", "turnos"),
             ["typePowerMultipliers"] = ("Potencia por tipo", "potencia_por_tipo"),
@@ -621,6 +637,7 @@ namespace CTEditor.GameDefinition.Editor
         private static readonly Dictionary<string, string> Enums = new Dictionary<string, string>
         {
             // Categoría de movimiento
+            ["MegaEvolution"] = "Megaevolución",
             ["Physical"] = "Físico", ["Special"] = "Especial", ["Status"] = "Estado",
             // Objetivo
             ["SingleEnemy"] = "Un rival", ["Self"] = "Uno mismo", ["AllEnemies"] = "Todos los rivales",

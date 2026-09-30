@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using CTEditor.GameDefinition.Domain.Trainers;
 using CTEditor.GameDefinition.Infrastructure.Catalog;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 
@@ -109,7 +110,18 @@ namespace CTEditor.GameDefinition.Editor
                 if (GUILayout.Button(new GUIContent(t.name, t.desc), EditorStyles.miniButton)) EditSelected(so => Fill(so, id));
             }
             EditorGUILayout.EndHorizontal();
+
+            // Movimientos, objeto y naturaleza sugeridos, visibles antes de jugar (vacío = automático).
+            EditorGUILayout.LabelField("Equipo sugerido", EditorStyles.boldLabel);
+            _suggestLevel = EditorGUILayout.IntPopup(new GUIContent("Como un entrenador", "Qué nivel de IA usar para sugerir: " +
+                "Novato = los 4 últimos por nivel · Élite = MT/tutor/huevo y objetos básicos · Maestro = competición (naturaleza y objeto)."),
+                _suggestLevel, Enumerable.Range(1, AiProfile.MaxLevel).Select(l => new GUIContent(AiLevelEditorWindow.LevelLabel(l))).ToArray(),
+                Enumerable.Range(1, AiProfile.MaxLevel).ToArray());
+            var prof = TrainerEditorWindow.ProfileFor(_suggestLevel);
+            TeamPreview.DrawSuggestButtons("members", d.Members, prof, prof.Moveset, "un " + AiProfile.ClassicName(_suggestLevel), EditSelected);
         }
+
+        private static int _suggestLevel = 4;
 
         protected override void DrawPreview(TeamPresetData d)
         {

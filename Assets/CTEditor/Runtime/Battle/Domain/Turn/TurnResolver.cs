@@ -120,6 +120,7 @@ namespace CTEditor.Battle.Domain.Turn
             var events = new List<IDomainEvent>();
             if (battle.IsOver) return events;
             _battle = battle;
+            ApplyGenerationRules(battle);
             _forcedInThisTurn.Clear();
             _pendingPlays = null;
             _chosenPlayer = playerAction;
@@ -157,6 +158,7 @@ namespace CTEditor.Battle.Domain.Turn
             var events = new List<IDomainEvent>();
             if (battle == null || _pendingPlays == null) return events;
             _battle = battle;
+            ApplyGenerationRules(battle);
             var plays = _pendingPlays;
             int next = _pendingIndex + 1;
             bool pass = _pendingPass;
@@ -502,6 +504,18 @@ namespace CTEditor.Battle.Domain.Turn
             return m;
         }
 
+        // REGLAS DE GENERACIÓN sobre los combatientes: con «Especial único» (1.ª gen.) las etapas de Atq. Esp. y
+        // Def. Esp. se mueven juntas. Idempotente: se llama al entrar en cada fase del combate.
+        private void ApplyGenerationRules(Battle battle)
+        {
+            (StatId, StatId)? link = _rules.Generation.SingleSpecialStat ? (_rules.SpecialAttack, _rules.SpecialDefense) : ((StatId, StatId)?)null;
+            foreach (var m in battle.PlayerTeam.Members) m.LinkStages(link);
+            foreach (var m in battle.EnemyTeam.Members) m.LinkStages(link);
+        }
+
+        // Categoría con la que hace daño según las reglas (1.ª-3.ª gen.: la decide el tipo real del movimiento).
+        private MoveCategory CategoryOf(Combatant actor, Move move) => _rules.CategoryOf(move, MoveTypeOf(actor, move).Value);
+
         private void SetSideCondition(Combatant actor, Combatant sideOf, string id, List<IDomainEvent> events)
         {
             var team = SideOf(sideOf);
@@ -673,6 +687,7 @@ namespace CTEditor.Battle.Domain.Turn
             var events = new List<IDomainEvent>();
             if (battle == null) return events;
             _battle = battle;
+            ApplyGenerationRules(battle);
             ApplyOnEntry(battle.Player, battle.Enemy, events);
             ApplyOnEntry(battle.Enemy, battle.Player, events);
             ApplyGen4OnEntry(battle.Player, battle.Enemy, events);
@@ -686,6 +701,7 @@ namespace CTEditor.Battle.Domain.Turn
             var events = new List<IDomainEvent>();
             if (battle == null) return events;
             _battle = battle;
+            ApplyGenerationRules(battle);
             var entering = playerSide ? battle.Player : battle.Enemy;
             EnterField(entering, playerSide, events);
             // Si las trampas lo debilitan al entrar: experiencia y, quizá, fin del combate.
@@ -1125,7 +1141,7 @@ namespace CTEditor.Battle.Domain.Turn
                     damageDealt += damage;
 
                     target.TakeDamage(damage);
-                    if (target != actor) target.NoteDamageTaken(damage, move.Category);
+                    if (target != actor) target.NoteDamageTaken(damage, CategoryOf(actor, move));
                     // El daño especial no es "muy eficaz" ni "poco eficaz": se narra como normal (salvo inmunidad).
                     float shownEffectiveness = move.FixedDamage != FixedDamageKind.None && effectiveness > 0f ? 1f : effectiveness;
                     events.Add(new DamageDealtEvent(target.Id, damage, shownEffectiveness));
@@ -1627,6 +1643,7 @@ namespace CTEditor.Battle.Domain.Turn
         private bool TryGetHeldItem(Combatant c, out ItemDefinition item)
         {
             item = null;
+            if (!_rules.Generation.HeldItems) return false;   // reglas de generación: sin objetos equipados
             if (_items == null || c == null || string.IsNullOrEmpty(c.HeldItem)) return false;
             // Zoquete y Embargo: el objeto equipado no hace nada. Zona Mágica: ninguno funciona.
             if (X(c).Klutz || HasVolatileFlag(c, d => d.Extras.BlocksItems) || ItemsSuppressed()) return false;
@@ -2146,7 +2163,7 @@ namespace CTEditor.Battle.Domain.Turn
             // SELECCIÓN DE STATS: la categoría decide cuáles (según el Ruleset: clásico Ataque/Defensa y
             // Atq.Esp./Def.Esp.), y cada movimiento puede cambiarlas (Psicocarga ataca la Defensa; Juego
             // Sucio usa el Ataque del RIVAL). Así una stat inventada ("suerte") también puede hacer daño.
-            bool physical = move.Category == MoveCategory.Physical;
+            bool physical = CategoryOf(actor, move) == MoveCategory.Physical;
             var atkStatId = move.AttackStat ?? (physical ? _rules.PhysicalAttack : _rules.SpecialAttack);
             var defStatId = move.DefenseStat ?? (physical ? _rules.PhysicalDefense : _rules.SpecialDefense);
             // Zona Extraña: la Defensa y la Def. Esp. se intercambian para el daño.
@@ -2364,7 +2381,7 @@ namespace CTEditor.Battle.Domain.Turn
             foreach (var d in FieldConditions())
                 if (d.TypeDamageMultipliers.TryGetValue(realType.Value ?? "", out var tm)) abMult *= tm;
             // Reflejo / Pantalla de Luz del lado del objetivo (los críticos las atraviesan).
-            if (!result.WasCritical && target != actor) abMult *= ScreenMultiplier(target, move.Category);
+            if (!result.WasCritical && target != actor) abMult *= ScreenMultiplier(target, CategoryOf(actor, move));
             // Cinta Experto: los golpes muy eficaces pegan más.
             if (effectiveness > 1f) abMult *= HeldX(actor).SuperEffectiveBoost;
             if (abMult != 1f)
@@ -2542,6 +2559,7 @@ namespace CTEditor.Battle.Domain.Turn
         private bool TryGetAbility(Combatant c, out AbilityDefinition def)
         {
             def = null;
+            if (!_rules.Generation.Abilities) return false;   // reglas de generación: sin habilidades
             if (_abilities == null || c == null || !c.Ability.HasValue) return false;
             if (!AbilityWorks(c)) return false;   // Bilis, Gas Reactivo, Rompemoldes
             return _abilities.TryGet(new Id<AbilityDefinition>(c.Ability.Value.Value), out def);

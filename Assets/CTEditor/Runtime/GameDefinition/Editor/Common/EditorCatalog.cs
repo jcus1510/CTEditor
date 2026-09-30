@@ -168,6 +168,7 @@ namespace CTEditor.GameDefinition.Editor
             Add(EditorCategory.Battle, 5, "Climas", "🌦", "Lluvia, sol, arena, nieve... y los tuyos.", EditorTheme.Weathers, WeatherEditorWindow.Open, Count<WeatherData>, "tiempo");
             Add(EditorCategory.Battle, 6, "Trampas de campo", "📌", "Púas, Trampa Rocas, Púas Tóxicas, Red Viscosa.", EditorTheme.Hazards, HazardEditorWindow.Open, Count<HazardData>);
             Add(EditorCategory.Battle, 7, "Efectos de lado", "🛡", "Reflejo, Pantalla de Luz, Neblina, Velo Sagrado, Viento Afín... y los tuyos.", EditorTheme.SideConditions, SideConditionEditorWindow.Open, Count<SideConditionData>, "pantallas reflejo");
+            Add(EditorCategory.Battle, 9, "Mecánicas especiales", "💎", "Megaevolución (y más adelante movimientos Z, Dinamax...): cómo funciona cada una. Las activas se eligen en las reglas.", EditorTheme.Mechanics, MechanicEditorWindow.Open, Count<MechanicData>, "mega megaevolucion megapiedra");
             Add(EditorCategory.Battle, 8, "Reglas del juego", "📜", "Equipo, niveles, IV/EV, PP, críticos, captura, huida, dinero...", EditorTheme.Rules, RulesetEditorWindow.Open, Count<RulesetData>, "ruleset aventura");
 
             // Objetos

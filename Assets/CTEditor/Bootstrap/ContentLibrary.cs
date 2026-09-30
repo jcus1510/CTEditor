@@ -81,6 +81,18 @@ namespace CTEditor.Bootstrap
             _moveAnim = null; _trainers = null; _teams = null; _zones = null; _gameData = null; _types = null; _hazards = null; _sideConditions = null;
         }
 
+        /// <summary>Una ficha de mecánica especial por id (GameContent/Resources/Mechanics). Null si no existe.</summary>
+        public static CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicDefinition MechanicById(string id)
+        {
+            foreach (var d in Resources.LoadAll<MechanicData>(ContentPaths.Mechanics))
+            {
+                if (d == null || !string.Equals(d.Id, id, StringComparison.OrdinalIgnoreCase)) continue;
+                try { return MechanicMapper.ToDomain(d); }
+                catch (Exception e) { Debug.LogWarning($"[CTEditor] Mecánica '{d.name}' no válida: {e.Message}"); }
+            }
+            return null;
+        }
+
         /// <summary>Niveles de IA del autor (GameContent/Resources/AiLevels). Los que falten usan el clásico.</summary>
         public static List<AiProfile> AiProfiles
         {
@@ -173,7 +185,7 @@ namespace CTEditor.Bootstrap
                 if (!_rulesetLoaded)
                 {
                     var data = FirstInFolder<RulesetData>(ContentPaths.Rulesets);
-                    _ruleset = data != null ? RulesetMapper.ToDomain(data) : null;
+                    _ruleset = data != null ? RulesetMapper.ToDomain(data, MechanicById) : null;
                     _rulesetLoaded = true;
                 }
                 return _ruleset;

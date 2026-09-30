@@ -27,5 +27,6 @@ namespace CTEditor.Bootstrap
         public const string SideConditions = F.SideConditions;
         public const string AiLevels = F.AiLevels;
         public const string EggGroups = F.EggGroups;
+        public const string Mechanics = F.Mechanics;
     }
 }

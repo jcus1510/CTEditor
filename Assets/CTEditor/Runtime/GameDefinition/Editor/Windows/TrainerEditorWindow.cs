@@ -3,6 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using CTEditor.GameDefinition.Domain.Trainers;
+using CTEditor.GameDefinition.Editor.Csv;
 using CTEditor.GameDefinition.Infrastructure.Catalog;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 
@@ -164,8 +165,25 @@ namespace CTEditor.GameDefinition.Editor
                 new[] { ("potion", 2), ("full_heal", 1) }),
         };
 
-        /// <summary>Crea los entrenadores de ejemplo que falten. Público: lo usa el Centro de Contenido.</summary>
+        /// <summary>
+        /// Entrenadores de ejemplo: los 7 SUGERIDOS del pack (uno por nivel de IA, con su equipo del pack). Si no hay pack,
+        /// los ejemplos de siempre. Público: lo usa el Centro de Contenido. Devuelve cuántos creó o reparó.
+        /// </summary>
         public static int CreateClassicSet()
+        {
+            var templates = PackTools.Available ? PackTools.TrainerTemplates() : null;
+            if (templates != null && templates.Count > 0)
+            {
+                var suggested = TrainerTemplatesWindow.Suggested(templates.Select(t => (t.id, t.label, t.level)));
+                int before = ContentAssets.LoadAll<TrainerData>().Count;
+                PackTools.ImportTrainers(suggested, ImportMode.CreateOnly);
+                return Mathf.Max(0, ContentAssets.LoadAll<TrainerData>().Count - before);
+            }
+            return CreateLibrarySet();
+        }
+
+        /// <summary>Los ejemplos escritos en el código (sin pack).</summary>
+        public static int CreateLibrarySet()
         {
             int created = 0;
             foreach (var t in Library)
@@ -227,7 +245,9 @@ namespace CTEditor.GameDefinition.Editor
 
         protected override void DrawBulkPresets()
         {
-            if (GUILayout.Button($"Crear los {Library.Length} entrenadores de ejemplo")) FinishBulk(CreateClassicSet(), "entrenadores");
+            if (GUILayout.Button(new GUIContent("📋 Plantillas del pack… (todos, algunos o los 7 sugeridos, con vista previa)",
+                    "Todos los entrenadores del pack elegido como plantillas: los ves antes de añadirlos.")))
+                TrainerTemplatesWindow.Open();
             // Los entrenadores del pack clásico (líderes, Alto Mando, rivales, Team Rocket y de ruta), sin borrar nada.
             PackTools.DrawPackMenu("entrenadores", PackTools.ImportMissingTrainers, () => { PackTools.UpdateAllTrainers(); });
             DrawChallengeMaker();
@@ -315,15 +335,26 @@ namespace CTEditor.GameDefinition.Editor
 
         protected override void DrawPresets(TrainerData d)
         {
-            EditorGUILayout.LabelField("Plantillas (rellenan todo; el id se mantiene)", EditorStyles.boldLabel);
-            EditorGUILayout.BeginHorizontal();
-            foreach (var t in Library)
+            // Plantillas = los entrenadores del pack (o de tu Excel): copia equipo, IA, mochila y frases; el id se mantiene.
+            if (GUILayout.Button(new GUIContent("📋 Rellenar desde una plantilla del pack…", "Copia en este entrenador el equipo, la IA, la mochila y " +
+                    "las frases de un entrenador del pack. El id se mantiene."), EditorStyles.miniButton))
             {
-                string id = t.id;
-                if (GUILayout.Button(new GUIContent($"{AiIcon(t.ai)} {t.cls} {t.name}", $"IA {AiName(t.ai)} · " + string.Join(", ", t.team.Select(m => $"{m.Item1} Nv.{m.Item2}"))), EditorStyles.miniButton))
-                    EditSelected(so => Fill(so, id));
+                var menu = new GenericMenu();
+                string target = d.Id;
+                foreach (var t in PackTools.TrainerTemplates().OrderBy(x => x.level).ThenBy(x => x.label))
+                {
+                    var tpl = t;
+                    menu.AddItem(new GUIContent($"Nivel {(tpl.level > 0 ? AiLevelEditorWindow.LevelLabel(tpl.level) : "sin nivel")}/{tpl.label} ({tpl.id})"), false, () =>
+                    {
+                        if (!EditorUtility.DisplayDialog("Rellenar desde plantilla", $"¿Sustituir los datos de '{target}' por los de '{tpl.label}'?", "Rellenar", "Cancelar")) return;
+                        string report = PackTools.FillTrainerFromTemplate(tpl.id, target);
+                        EditorUtility.DisplayDialog("Rellenar desde plantilla", report ?? "No se encontró la plantilla.", "Vale");
+                        Refresh();
+                    });
+                }
+                if (menu.GetItemCount() == 0) menu.AddDisabledItem(new GUIContent("La fuente no tiene entrenadores.csv"));
+                menu.ShowAsContext();
             }
-            EditorGUILayout.EndHorizontal();
 
             // Nivel de IA en un clic (lo más cambiado): 1 Novato … 7 Injusto (en dos filas).
             EditorGUILayout.LabelField("Nivel de IA", EditorStyles.boldLabel);
@@ -345,6 +376,12 @@ namespace CTEditor.GameDefinition.Editor
             }
             EditorGUILayout.EndHorizontal();
             DrawAiLinks(d);
+
+            // Lo que el juego le pondrá a cada miembro, visible y editable ANTES de darle a Play.
+            EditorGUILayout.LabelField("Equipo según su IA", EditorStyles.boldLabel);
+            var sugProfile = ProfileFor(d);
+            var sugStyle = d.MovesetStyle != MovesetStyle.ByAi ? d.MovesetStyle : sugProfile.Moveset;
+            TeamPreview.DrawSuggestButtons("team", d.Team, sugProfile, sugStyle, "su IA", EditSelected);
             DrawBagEditor(d);
         }
 

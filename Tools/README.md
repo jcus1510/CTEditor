@@ -23,6 +23,30 @@ python3 Tools/verificar_pack/verificar_pack.py Excel                    # tu car
 - **ERRORES**: hay que corregirlos (el script termina con código 1: sirve antes de un commit o en CI).
 - **AVISOS**: revisa si son intencionados (p. ej. movimientos especiales de un líder del juego original).
 
+## generar_packs.py — un pack FIEL a cada generación (Gen1 … Gen6)
+
+```bash
+python3 Tools/verificar_pack/generar_packs.py          # los 6
+python3 Tools/verificar_pack/generar_packs.py --gen 3  # solo la 3.ª
+```
+
+Crea `Assets/GameContent/Packs/GenN` = «el juego» de esa generación: 151/251/386/493/649/721 especies con los datos
+que tenían entonces (PokeAPI, deshaciendo los cambios posteriores):
+
+| | Qué es fiel a la generación |
+|---|---|
+| Especies | Tipos, estadísticas (1.ª gen.: una sola Especial), habilidades (desde la 3.ª; ocultas desde la 5.ª), aprendizaje por nivel del juego de referencia (Rojo/Azul, Cristal, Esmeralda, Platino, N2/B2, ROZA) y MT/tutor/huevo de sus juegos, grupos huevo (desde la 2.ª), sin géneros en la 1.ª. |
+| Movimientos | Solo los que existen, con tipo, potencia, precisión, PP y prioridad de entonces; físico/especial **según el tipo** hasta la 3.ª gen.; Maldición «???» (typeless) en la 2.ª-4.ª. |
+| Tabla de tipos | La de la generación (sin Siniestro/Acero en la 1.ª, sin Hada hasta la 6.ª, Fantasma→Acero ×0,5 hasta la 5.ª...). |
+| Objetos | Todos los de la generación (nombre, descripción y precio oficiales) salvo las MT y los que ya tienen efecto en las plantillas del código: Balls, objetos clave, bayas, placas, Megapiedras, mails... (los nuevos, solo con sus datos). |
+| Entrenadores | Los de los juegos hasta esa generación, con movimientos válidos (sin objetos en la 1.ª, sin naturalezas antes de la 3.ª), especialistas de tipo, Ases del Frente (5.ª y 6.ª) y el Laboratorio de IA. |
+
+Lo que PokeAPI no tiene (efectos de movimientos, configuración de habilidades, Pokédex, entrenadores) sale de
+**`Tools/datos_fuente/`**: edita allí y vuelve a generar. Cada pack trae un `INFORME.txt` con lo que es fiel y lo
+que aún se aproxima (el motor aplica efectos y reglas de la 6.ª gen.; se ajustará con las mecánicas por generación).
+
+En Unity: **Centro de Contenido → Pack** (desplegable) para elegir cuál importar.
+
 ## generar_base.py — las hojas base de un pack
 
 ```bash
@@ -44,6 +68,18 @@ código («el pack manda»).
 
 - `verificar_pack/csvlib.py` — lectura/escritura de CSV idéntica a `CsvTable.cs`.
 - `verificar_pack/pokeapi.py` — descarga y caché de PokeAPI; valores por generación.
-- `verificar_pack/verificar_pack.py`, `verificar_pack/generar_base.py` — las dos herramientas.
+- `verificar_pack/verificar_pack.py`, `generar_packs.py`, `generar_base.py` — las herramientas.
+- `datos_fuente/` — datos maestros (efectos, habilidades, Pokédex, entrenadores) y los INFORME de los packs antiguos.
 
 Pokémon y sus nombres son marcas de Nintendo / Game Freak / The Pokémon Company: proyecto personal y educativo.
+
+## probar_dominio — compilar el dominio y pasar sus tests sin abrir Unity
+
+```bash
+dotnet test Tools/probar_dominio
+```
+
+Compila con .NET 8 el código puro del juego (SharedKernel, GameDefinition.Domain, Battle, Party, Adventure...) y ejecuta
+los tests de `Tests/EditMode` que no dependen de Unity. Sirve para comprobar un cambio del motor en segundos. Los tests
+que usan el editor o las fichas (Excel, catálogo, papelera...) están excluidos en el `.csproj`: esos se pasan en el
+Test Runner de Unity. Si creas un test nuevo que use Unity, añádelo a la lista `Exclude`.

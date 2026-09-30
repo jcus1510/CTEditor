@@ -8,6 +8,7 @@ import csv, collections, os, sys, urllib.request
 BASE = 'https://raw.githubusercontent.com/PokeAPI/pokeapi/master/data/v2/csv/'
 CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '.cache', 'pokeapi')
 SPANISH = '7'   # local_language_id del español
+PHYSICAL_TYPES = {'normal', 'fighting', 'flying', 'ground', 'rock', 'bug', 'ghost', 'poison', 'steel', 'typeless'}
 STAT_COL = {'1': 'ps', '2': 'ataque', '3': 'defensa', '4': 'atq_esp', '5': 'def_esp', '6': 'velocidad'}
 
 
@@ -31,7 +32,8 @@ class PokeApi:
         self.gen = gen
         self.vg_gen = {r['id']: int(r['generation_id']) for r in table('version_groups')}
         self.vg_order = {r['id']: int(r['order']) for r in table('version_groups')}
-        self.type_name = {r['id']: r['identifier'] for r in table('types')}
+        # «???» (unknown: Maldición en la 2.ª-4.ª gen.) = «typeless» del editor: neutro contra todo.
+        self.type_name = {r['id']: ('typeless' if r['identifier'] == 'unknown' else r['identifier']) for r in table('types')}
         self.type_gen = {r['identifier']: int(r['generation_id']) for r in table('types')}
 
     # ---------------- Tipos ----------------
@@ -83,6 +85,10 @@ class PokeApi:
         tpast = collections.defaultdict(lambda: collections.defaultdict(list))
         for r in table('pokemon_types_past'):
             tpast[r['pokemon_id']][int(r['generation_id'])].append((int(r['slot']), self.type_name[r['type_id']]))
+        if self.gen == 1:   # 1.ª gen.: una sola estadística ESPECIAL (en el editor, Atq. Esp. = Def. Esp.)
+            for r in table('pokemon_stats_past'):
+                if r['stat_id'] == '9' and int(r['generation_id']) >= 1 and r['pokemon_id'] in out:
+                    out[r['pokemon_id']]['atq_esp'] = out[r['pokemon_id']]['def_esp'] = r['base_stat']
         for pid in out:
             gens = sorted(g for g in tpast[pid] if g >= self.gen)
             chosen = tpast[pid][gens[0]] if gens else types[pid]
@@ -105,6 +111,10 @@ class PokeApi:
                 for col, key in cols.items():
                     if c.get(col):
                         mv[c['move_id']][key] = self.type_name[c[col]] if col == 'type_id' else c[col]
+        if self.gen <= 3:   # hasta la 3.ª gen., físico o especial lo decide el TIPO del movimiento
+            for v in mv.values():
+                if v['categoria'] != 'status':
+                    v['categoria'] = 'physical' if v['tipo'] in PHYSICAL_TYPES else 'special'
         return {v['id']: v for v in mv.values() if v['gen'] <= self.gen}
 
     # ---------------- Qué puede aprender (para equipos de entrenadores) ----------------

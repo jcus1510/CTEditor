@@ -60,6 +60,7 @@ namespace CTEditor.Adventure.Domain
         public static List<(ItemDefinition item, int count)> GivableItems(GameData data, PlayerSave save)
         {
             var list = new List<(ItemDefinition, int)>();
+            if (!data.Ruleset.Generation.HeldItems) return list;   // reglas de generación: sin objetos equipados
             foreach (var (id, count) in save.Bag.Contents())
                 if (count > 0 && data.TryGetItem(id, out var item) && CanBeHeld(item)) list.Add((item, count));
             return list;
@@ -152,6 +153,7 @@ namespace CTEditor.Adventure.Domain
         public static FieldResult GiveItem(GameData data, PlayerSave save, int partyIndex, string itemId)
         {
             if (!TryMember(save, partyIndex, out var mon, out var fail)) return fail;
+            if (!data.Ruleset.Generation.HeldItems) return FieldResult.Fail("En este juego los monstruos no pueden llevar objetos.");
             if (!data.TryGetItem(itemId, out var item)) return FieldResult.Fail($"El objeto '{itemId}' no existe.");
             if (!CanBeHeld(item)) return FieldResult.Fail($"{item.DisplayName} es un objeto clave: no se puede llevar.");
             if (!save.Bag.Has(item.Id)) return FieldResult.Fail($"No te quedan {item.DisplayName}.");

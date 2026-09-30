@@ -40,6 +40,9 @@ namespace CTEditor.Party.Domain
             if (ruleset == null) throw new ArgumentNullException(nameof(ruleset));
             if (growth == null) throw new ArgumentNullException(nameof(growth));
 
+            // 0) REGLAS DE GENERACIÓN: sin naturalezas (1.ª-2.ª gen.) todos son neutros.
+            if (!ruleset.Generation.Natures) nature = null;
+
             // 1) Nivel recortado al tope de las reglas.
             var lvl = Level.Clamped(level, ruleset.LevelCap);
 
@@ -93,7 +96,10 @@ namespace CTEditor.Party.Domain
                 created.SetAbilitySlot(ivs.Of(StatId.Hp) % 2);
             // GÉNERO según el % de hembras de su especie. Tampoco gasta azar: sale de su id y su genética
             // (siempre el mismo para el mismo individuo, distinto entre individuos).
-            created.SetGender(GenderText.FromRoll(species.Dex.FemalePercent, GenderRoll(id.Value, ivs)));
+            // Sin géneros en las reglas (1.ª gen.): todos sin género.
+            created.SetGender(ruleset.Generation.Genders
+                ? GenderText.FromRoll(species.Dex.FemalePercent, GenderRoll(id.Value, ivs))
+                : Gender.Genderless);
             return created;
         }
 

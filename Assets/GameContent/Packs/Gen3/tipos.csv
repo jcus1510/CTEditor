@@ -1,0 +1,19 @@
+﻿id;nombre;color
+bug;Bicho;A6B91A
+dark;Siniestro;705746
+dragon;Dragón;6F35FC
+electric;Eléctrico;F7D02C
+fighting;Lucha;C22E28
+fire;Fuego;EE8130
+flying;Volador;A98FF3
+ghost;Fantasma;735797
+grass;Planta;7AC74C
+ground;Tierra;E2BF65
+ice;Hielo;96D9D6
+normal;Normal;A8A77A
+poison;Veneno;A33EA1
+psychic;Psíquico;F95587
+rock;Roca;B6A136
+steel;Acero;B7B7CE
+typeless;Sin tipo;8C9999
+water;Agua;6390F0

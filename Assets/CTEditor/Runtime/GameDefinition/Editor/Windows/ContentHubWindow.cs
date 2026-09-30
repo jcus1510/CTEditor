@@ -62,6 +62,7 @@ namespace CTEditor.GameDefinition.Editor
             if (GUILayout.Button("⬇ Importar CSV / paquete", GUILayout.Height(24))) CsvWindow.OpenTab(1);
             if (GUILayout.Button("📦 Importar " + PackName, GUILayout.Height(24))) ImportGen1Pack();
             EditorGUILayout.EndHorizontal();
+            DrawPackPicker();
             EditorTheme.Paragraph("Para compartir tu configuración, exporta y manda la carpeta; quien la reciba usa «Importar».");
 
             // ---------------- Editores por categoría ----------------
@@ -186,28 +187,62 @@ namespace CTEditor.GameDefinition.Editor
             EditorGUILayout.EndHorizontal();
         }
 
-        // El orden importa: las habilidades referencian tipos y estados, así que van al final.
-        /// <summary>Carpeta del pack de 1ª generación dentro del proyecto.</summary>
-        public static string Gen1PackFolder => Path.Combine(Application.dataPath, "GameContent", "Packs", "Gen1");
+        // ---------------- Packs (uno por generación: Gen1 … Gen6, o los que añadas) ----------------
 
-        /// <summary>Carpeta del pack de 1ª y 2ª generación (251 especies, Pokédex y entrenadores).</summary>
-        public static string Gen12PackFolder => Path.Combine(Application.dataPath, "GameContent", "Packs", "Gen1-2");
+        /// <summary>Carpeta donde viven los packs (Assets/GameContent/Packs).</summary>
+        public static string PacksRoot => Path.Combine(Application.dataPath, "GameContent", "Packs");
 
-        /// <summary>Carpeta del pack de la 1ª a la 4ª generación (493 especies, MT, tutor, huevo, habilidades ocultas).</summary>
-        public static string Gen14PackFolder => Path.Combine(Application.dataPath, "GameContent", "Packs", "Gen1-4");
+        /// <summary>Los packs disponibles: cada carpeta de Packs/ que tenga especies.csv (ordenados: Gen1, Gen2...).</summary>
+        public static List<string> AvailablePacks()
+            => Directory.Exists(PacksRoot)
+                ? Directory.GetDirectories(PacksRoot).Where(d => File.Exists(Path.Combine(d, "especies.csv")))
+                    .OrderBy(d => Path.GetFileName(d).Length).ThenBy(d => Path.GetFileName(d), StringComparer.OrdinalIgnoreCase).ToList()
+                : new List<string>();
 
-        /// <summary>Carpeta del pack de la 1ª a la 6ª generación (721 especies, tipo Hada, Teselia y Kalos, objetos de competición).</summary>
-        public static string Gen16PackFolder => Path.Combine(Application.dataPath, "GameContent", "Packs", "Gen1-6");
+        private static string PackPrefKey => "CTEditor.PackElegido." + Application.dataPath.GetHashCode();
 
-        /// <summary>El pack que se usa: el más completo que haya (1ª-6ª, 1ª-4ª, 1ª-2ª y por último 1ª).</summary>
-        public static string PackFolder => Directory.Exists(Gen16PackFolder) ? Gen16PackFolder
-                                         : Directory.Exists(Gen14PackFolder) ? Gen14PackFolder
-                                         : Directory.Exists(Gen12PackFolder) ? Gen12PackFolder : Gen1PackFolder;
+        /// <summary>El pack elegido (se recuerda por proyecto). Si no eligió ninguno, el más reciente (Gen6).</summary>
+        public static string PackFolder
+        {
+            get
+            {
+                var all = AvailablePacks();
+                string chosen = EditorPrefs.GetString(PackPrefKey, "");
+                return all.FirstOrDefault(p => Path.GetFileName(p) == chosen) ?? all.LastOrDefault() ?? Path.Combine(PacksRoot, "Gen6");
+            }
+            set { EditorPrefs.SetString(PackPrefKey, Path.GetFileName(value ?? "")); PackTools.ForgetCache(); }
+        }
 
-        /// <summary>Nombre del pack para botones y mensajes.</summary>
-        public static string PackName => Directory.Exists(Gen16PackFolder) ? "la 1ª a la 6ª generación"
-                                       : Directory.Exists(Gen14PackFolder) ? "la 1ª a la 4ª generación"
-                                       : Directory.Exists(Gen12PackFolder) ? "la 1ª y 2ª generación" : "la 1ª generación";
+        /// <summary>Nombre de un pack para mensajes: «la 3.ª generación» (o el nombre de su carpeta).</summary>
+        public static string NameOf(string folder)
+        {
+            string n = Path.GetFileName((folder ?? "").TrimEnd('/', '\\'));
+            var m = System.Text.RegularExpressions.Regex.Match(n, @"^Gen(\d+)$");
+            return m.Success ? $"la {m.Groups[1].Value}.ª generación" : n;
+        }
+
+        /// <summary>Nombre corto: «pack 3.ª gen.».</summary>
+        public static string ShortNameOf(string folder)
+        {
+            string n = Path.GetFileName((folder ?? "").TrimEnd('/', '\\'));
+            var m = System.Text.RegularExpressions.Regex.Match(n, @"^Gen(\d+)$");
+            return m.Success ? $"pack {m.Groups[1].Value}.ª gen." : "pack " + n;
+        }
+
+        /// <summary>Nombre del pack elegido para botones y mensajes.</summary>
+        public static string PackName => NameOf(PackFolder);
+
+        /// <summary>Desplegable para elegir el pack (Centro de Contenido).</summary>
+        public static void DrawPackPicker()
+        {
+            var all = AvailablePacks();
+            if (all.Count == 0) { EditorGUILayout.HelpBox("No hay packs en " + PacksRoot + ".", MessageType.Info); return; }
+            int current = Mathf.Max(0, all.IndexOf(PackFolder));
+            int picked = EditorGUILayout.Popup(new GUIContent("Pack", "Cada pack es una generación con sus datos originales: especies, " +
+                "estadísticas, movimientos, tabla de tipos... (lee su INFORME.txt)."), current,
+                all.Select(p => $"{Path.GetFileName(p)} · {NameOf(p)}").ToArray());
+            if (picked != current) PackFolder = all[picked];
+        }
 
         /// <summary>
         /// IMPORTAR EL PACK: primero asegura la base que el pack referencia (tipos, estados, climas, objetos,
@@ -243,7 +278,10 @@ namespace CTEditor.GameDefinition.Editor
             try
             {
                 CreateClassicBase(report, pack);
-                report.Add($"Habilidades-plantilla: {AbilityEditorWindow.CreateClassicSet(out _, pack.Ids(PackTools.AbilitiesFile))} nuevas");
+                // Habilidades: las del pack mandan. Un pack SIN habilidades (1.ª y 2.ª gen.: aún no existían) no recibe ninguna.
+                if (pack.Has(PackTools.AbilitiesFile))
+                    report.Add($"Habilidades-plantilla: {AbilityEditorWindow.CreateClassicSet(out _, pack.Ids(PackTools.AbilitiesFile))} nuevas");
+                else report.Add("Habilidades: ninguna (en esta generación no existen)");
             }
             catch (Exception e)
             {
@@ -320,11 +358,17 @@ namespace CTEditor.GameDefinition.Editor
             Step("tipos.csv", "Tipos", TypeChartTools.CreateClassicSet);
             Step("estados.csv", "Estados", ClassicStatusPresets.CreateClassicSet);
             Step("climas.csv", "Climas", WeatherEditorWindow.CreateClassicSet);
-            Step("objetos.csv", "Objetos", ItemEditorWindow.CreateClassicSet);
+            // Objetos: las plantillas (los que tienen EFECTO configurado) se crean siempre; el objetos.csv del pack solo trae
+            // los DEMÁS objetos de su generación (clave, bayas, placas, Megapiedras...), así que no se pisan.
+            report.Add($"Objetos con efecto: {ItemEditorWindow.CreateClassicSet()} nuevos" + (pack != null && pack.Has("objetos.csv") ? " (+ el resto, del pack)" : ""));
             Step("trampas.csv", "Trampas de campo", HazardEditorWindow.CreateClassicSet);
             Step("efectos_lado.csv", "Efectos de lado", SideConditionEditorWindow.CreateClassicSet);
-            // Movimientos: siempre las plantillas que el pack NO trae (Forcejeo lo necesita el motor).
-            report.Add($"Movimientos-plantilla (incluye Forcejeo): {ClassicMovePresets.CreateAll(out _, pack?.Ids(PackTools.MovesFile))} nuevos");
+            // Movimientos: si el pack trae los suyos, del código SOLO sale Forcejeo (lo necesita el motor): así un pack
+            // de 1.ª gen. no recibe movimientos modernos. Sin pack, todas las plantillas.
+            var skipMoves = pack != null && pack.Has(PackTools.MovesFile)
+                ? new HashSet<string>(ClassicMovePresets.All.Select(p => p.Id).Where(id => id != "struggle"))
+                : null;
+            report.Add($"Movimientos-plantilla (Forcejeo{(skipMoves == null ? " y los clásicos" : "")}): {ClassicMovePresets.CreateAll(out _, skipMoves)} nuevos");
             Step("naturalezas.csv", "Naturalezas", NatureEditorWindow.CreateClassicSet);
             Step("curvas.csv", "Curvas", GrowthCurveEditorWindow.CreateClassicSet);
             Step("reglas.csv", "Reglas", RulesetEditorWindow.CreateClassicSet);

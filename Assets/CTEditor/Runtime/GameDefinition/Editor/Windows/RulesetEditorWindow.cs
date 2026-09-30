@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using CTEditor.GameDefinition.Domain.Rules;
 using CTEditor.GameDefinition.Infrastructure.Catalog;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 
@@ -31,6 +33,8 @@ namespace CTEditor.GameDefinition.Editor
             "En «Golpes críticos» elige la tabla por generación o escribe la tuya.",
             "Si inventaste estadísticas, puedes decidir con cuáles se calcula el daño físico y el especial.",
             "En «Aventura» decides huir, capturar, dinero, derrota y Repartir Experiencia (plantillas: clásica, fácil o reto).",
+            "En «Reglas de generación» pon las de una generación de golpe (1.ª: sin habilidades ni objetos...) y retoca lo que quieras.",
+            "En «Mecánicas especiales» activa las que quieras (Megaevolución...). Se pueden combinar.",
         };
 
         // (nombre, equipo, movimientos, nivel máx, IV máx, EV por stat, EV total)
@@ -68,11 +72,68 @@ namespace CTEditor.GameDefinition.Editor
             int c = ButtonRow(CritPresets[0].name, CritPresets[1].name, CritPresets[2].name, CritPresets[3].name);
             if (c >= 0) EditSelected(so => ApplyCrit(so, c));
 
+            // Reglas de generación: todas las perillas de una generación de golpe (luego se retocan una a una).
+            EditorGUILayout.LabelField("Reglas de generación", EditorStyles.boldLabel);
+            int g1 = ButtonRow("1.ª gen.", "2.ª gen.", "3.ª gen.", "4.ª gen.", "5.ª gen.");
+            int g2 = ButtonRow("6.ª gen.", "7.ª gen.", "8.ª gen.", "9.ª gen.", "Moderno (todo)");
+            int gen = g1 >= 0 ? g1 + 1 : g2 >= 0 ? (g2 == 4 ? 0 : g2 + 6) : -1;
+            if (gen >= 0) EditSelected(so => ApplyGeneration(so, GenerationRules.ForGeneration(gen)));
+
+            DrawMechanics(d);
+
             // Aventura: huir, capturar, dinero, derrota, experiencia.
             EditorGUILayout.LabelField("Aventura (huir, capturar, dinero, derrota)", EditorStyles.boldLabel);
             int adv = ButtonRow(AdventurePresets[0].name, AdventurePresets[1].name, AdventurePresets[2].name);
             if (adv >= 0) EditSelected(so => ApplyAdventure(so, adv));
             EditorGUILayout.Space();
+        }
+
+        /// <summary>Pone todas las reglas de generación de golpe (plantilla por generación).</summary>
+        public static void ApplyGeneration(SerializedObject so, GenerationRules g)
+        {
+            so.FindProperty("generation").intValue = g.Generation;
+            so.FindProperty("categoryByType").boolValue = g.CategoryByType;
+            so.FindProperty("singleSpecialStat").boolValue = g.SingleSpecialStat;
+            so.FindProperty("abilitiesEnabled").boolValue = g.Abilities;
+            so.FindProperty("heldItemsEnabled").boolValue = g.HeldItems;
+            so.FindProperty("naturesEnabled").boolValue = g.Natures;
+            so.FindProperty("gendersEnabled").boolValue = g.Genders;
+            var arr = so.FindProperty("specialTypes");
+            var types = GenerationRules.ClassicSpecialTypes;
+            arr.arraySize = types.Count;
+            for (int i = 0; i < types.Count; i++) arr.GetArrayElementAtIndex(i).stringValue = types[i];
+            // Críticos fieles a la generación (1.ª gen. usaba la velocidad; se aproxima con la de 2.ª-5.ª).
+            if (g.Generation >= 1 && g.Generation <= 5) ApplyCrit(so, 2);
+            else if (g.Generation == 6) ApplyCrit(so, 1);
+            else if (g.Generation >= 7) ApplyCrit(so, 0);
+        }
+
+        // Lista de fichas de mecánica con su casilla «activa en estas reglas».
+        private void DrawMechanics(RulesetData d)
+        {
+            EditorGUILayout.LabelField("Mecánicas especiales", EditorStyles.boldLabel);
+            var all = ContentAssets.LoadAll<MechanicData>();
+            var active = new HashSet<string>((d.MechanicIds ?? new string[0]).Where(x => !string.IsNullOrWhiteSpace(x)),
+                System.StringComparer.OrdinalIgnoreCase);
+            if (all.Count == 0)
+            {
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField("No hay fichas de mecánica.", EditorStyles.miniLabel);
+                if (GUILayout.Button("💎 Crear la Megaevolución oficial", GUILayout.Width(220))) MechanicEditorWindow.CreateClassicSet();
+                EditorGUILayout.EndHorizontal();
+            }
+            foreach (var m in all)
+            {
+                EditorGUILayout.BeginHorizontal();
+                bool on = active.Contains(m.Id ?? "");
+                bool now = EditorGUILayout.ToggleLeft($"{m.DisplayName}  ({Etiquetas.Enum(m.Kind.ToString())})", on);
+                if (now != on && !string.IsNullOrWhiteSpace(m.Id)) { var id = m.Id; EditSelected(so => MechanicEditorWindow.SetActive(so, id, now)); }
+                if (GUILayout.Button("Abrir", EditorStyles.miniButton, GUILayout.Width(50))) MechanicEditorWindow.OpenAt(m);
+                EditorGUILayout.EndHorizontal();
+            }
+            foreach (var id in active)
+                if (!all.Any(m => string.Equals(m.Id, id, System.StringComparison.OrdinalIgnoreCase)))
+                    EditorGUILayout.HelpBox($"La mecánica '{id}' está activa pero no existe ninguna ficha con ese id: se ignora.", MessageType.Warning);
         }
 
         // (nombre, huir siempre, huir de entrenador, capturar de entrenador, captura ×, al PC, repartir exp,
@@ -191,6 +252,20 @@ namespace CTEditor.GameDefinition.Editor
                 $"{(d.EvolveAfterBattle ? "; al terminar el combate puede evolucionar (el jugador puede cancelarlo)" : "")}.\n" +
                 $"• Empiezas con {d.StartingMoney} ₽. Al perder un combate pierdes el {d.MoneyLostOnBlackoutPercent:0}% del dinero" +
                 (d.HealOnBlackout ? " y vuelves curado al Centro." : "."),
+                MessageType.Info);
+
+            EditorTheme.Section("Generación y mecánicas", Accent);
+            var mechNames = ContentAssets.LoadAll<MechanicData>()
+                .Where(m => (d.MechanicIds ?? new string[0]).Any(id => string.Equals(id, m.Id, System.StringComparison.OrdinalIgnoreCase)))
+                .Select(m => m.DisplayName).ToList();
+            EditorGUILayout.HelpBox(
+                (d.Generation > 0 ? $"• Reglas de referencia: {d.Generation}.ª generación.\n" : "• Reglas de generación personalizadas.\n") +
+                (d.CategoryByType ? $"• Físico o Especial lo decide el TIPO (especiales: {string.Join(", ", d.SpecialTypes ?? new string[0])}).\n"
+                                  : "• Físico o Especial lo decide cada movimiento.\n") +
+                (d.SingleSpecialStat ? "• Especial único: lo que sube o baja el Ataque Especial también mueve la Defensa Especial.\n" : "") +
+                $"• Habilidades: {(d.Abilities ? "sí" : "NO")} · Objetos equipados: {(d.HeldItems ? "sí" : "NO")} · " +
+                $"Naturalezas: {(d.Natures ? "sí" : "NO")} · Géneros: {(d.Genders ? "sí" : "NO")}.\n" +
+                (mechNames.Count > 0 ? $"• Mecánicas especiales activas: {string.Join(", ", mechNames)}." : "• Sin mecánicas especiales."),
                 MessageType.Info);
 
             if (d.CritDenominators == null || d.CritDenominators.Length == 0)

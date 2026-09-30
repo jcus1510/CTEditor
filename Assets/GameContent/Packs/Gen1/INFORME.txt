@@ -1,61 +1,27 @@
-﻿PACK 1ª GENERACIÓN — qué incluye y qué falta
-========================================
+﻿PACK 1.ª GENERACIÓN — fiel a su generación (generado por Tools/verificar_pack/generar_packs.py)
+========================================================================================
 
-• 151 especies (Bulbasaur…Mew): tipos, stats base, EVs, XP base y curva de experiencia actuales;
-  aprendizaje por nivel de Pokémon Rojo/Azul; ratio de captura oficial; nombres en español.
-• POKÉDEX: número, categoría («Pokémon Semilla»), altura, peso, color, % de hembras (o sin género),
-  legendario y la descripción en español de su primera aparición.
-• 31 ENTRENADORES (entrenadores.csv): líderes de gimnasio, Alto Mando y Campeón con sus movimientos
-  de los juegos, rivales, Team Rocket y entrenadores de ruta. Los de ruta usan «movimientos_auto»: clasico
-  (los 4 últimos que aprende), equilibrado (ataque fuerte + cobertura + apoyo) o fuerte (el máximo reto).
-• 164 movimientos con sus valores actuales (tipo, categoría física/especial, potencia,
-  precisión, PP, prioridad, efectos). Forcejeo no va aquí: lo crea la plantilla de movimientos.
-• 48 habilidades (la primera no oculta de cada especie). Se crean SOLO con nombre: las que no
-  existan como plantilla no hacen nada hasta que las configures en CTEditor → Criaturas → Habilidades.
+• 151 especies (hasta la n.º 151) con los datos QUE TENÍAN EN LA 1.ª GENERACIÓN (PokeAPI):
+  tipos, estadísticas base (una sola ESPECIAL: Atq. Esp. = Def. Esp.),
+  aprendizaje por nivel de Rojo/Azul y MT/tutor/huevo de los juegos de la generación.
+• 164 movimientos: solo los que existen en la 1.ª gen., con su tipo, potencia, precisión, PP y prioridad
+  de entonces. Categoría FÍSICA/ESPECIAL SEGÚN EL TIPO (así era hasta la 3.ª gen.).
+• SIN habilidades (llegaron en la 3.ª generación).
+• Tipos y TABLA DE TIPOS de la generación (sin Siniestro ni Acero; Fantasma no afecta a Psíquico).
+• Sin naturalezas, sin crianza, sin géneros y sin objetos equipados (así era la 1.ª gen.).
+• 39 entrenadores con su nivel de IA: nivel 1: 4, nivel 2: 10, nivel 3: 8, nivel 4: 9, nivel 5: 5, nivel 6: 2, nivel 7: 1.
+  Incluye el Laboratorio de IA (prueba_nivel_1 … 7: el mismo equipo en cada nivel) para el Torneo de IAs.
 
-• Daño especial (12): Bomba Sónica, Furia Dragón, Sísmico, Tinieblas, Superdiente y los KO directos usan
-  la columna "daño_especial". Ataque Arena, Pantalla de Humo, Doble Equipo, Reducción... usan las etapas de
-  precisión/evasión del motor.
-• Mecánicas especiales: Reflejo, Pantalla de Luz y Neblina (efectos de lado), Niebla, Foco Energía, Sustituto,
-  Anulación, Saña y Danza Pétalo (encadenan turnos y confunden), Furia, Metrónomo, Espejo, Mimético,
-  Transformación, Conversión (tipo de su primer movimiento, como desde la 2ª gen.), Teletransporte,
-  Contraataque y Venganza (columna "daño_especial"). Necesitan los efectos de lado del Centro de Contenido.
-• Estados volátiles: Constricción, Atadura, Giro Fuego y Tenaza atrapan (estado "trapped"); Drenadoras usa
-  "leech_seed"; la confusión se suma al estado principal.
+APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):
+  • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.
+  • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.
+  • El motor aún da naturaleza aleatoria si existen fichas de naturaleza en el proyecto.
 
-Todo es editable: cambia cualquier valor en Excel o en las ventanas de CTEditor.
+ENTRENADORES CON MIEMBROS DE GENERACIONES POSTERIORES (QUITADOS) (1):
+   especialista_electric
 
-EVOLUCIONES QUE NO SON POR NIVEL (20) — incluidas: las piedras se usan desde la mochila y
-las de intercambio quedan listas para cuando exista el intercambio (o cámbialas a "especie@nivel" en especies.csv):
-   pikachu → raichu  (con el objeto thunder_stone)
-   nidorina → nidoqueen  (con el objeto moon_stone)
-   nidorino → nidoking  (con el objeto moon_stone)
-   clefairy → clefable  (con el objeto moon_stone)
-   vulpix → ninetales  (con el objeto fire_stone)
-   jigglypuff → wigglytuff  (con el objeto moon_stone)
-   gloom → vileplume  (con el objeto leaf_stone)
-   growlithe → arcanine  (con el objeto fire_stone)
-   poliwhirl → poliwrath  (con el objeto water_stone)
-   kadabra → alakazam  (por intercambio)
-   machoke → machamp  (por intercambio)
-   weepinbell → victreebel  (con el objeto leaf_stone)
-   graveler → golem  (por intercambio)
-   shellder → cloyster  (con el objeto water_stone)
-   haunter → gengar  (por intercambio)
-   exeggcute → exeggutor  (con el objeto leaf_stone)
-   staryu → starmie  (con el objeto water_stone)
-   eevee → vaporeon  (con el objeto water_stone)
-   eevee → jolteon  (con el objeto thunder_stone)
-   eevee → flareon  (con el objeto fire_stone)
-
-MOVIMIENTOS APROXIMADOS (5):
-   low_kick (Patada Baja): potencia fija 50 (la de 1ª gen.; la actual depende del peso)
-   self_destruct (Autodestrucción): el usuario se debilita (retroceso del 100% de sus PS máx.)
-   psywave (Psicoonda): daño = nivel del usuario (el original varía entre 0,5 y 1,5 veces el nivel)
-   explosion (Explosión): el usuario se debilita (retroceso del 100% de sus PS máx.)
-   rest (Descanso): cura todo y se duerme (sin curar el estado previo)
-
-MOVIMIENTOS CON EFECTO AÚN NO SOPORTADO (0) — se importan con su daño/precisión, sin el efecto:
+OBJETOS AÑADIDOS SOLO CON SUS DATOS (SIN EFECTO EN COMBATE TODAVÍA), POR CATEGORÍA (4):
+   Ball: 1, Key: 16, Other: 15, Vitamin: 7
 
 Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
 The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.

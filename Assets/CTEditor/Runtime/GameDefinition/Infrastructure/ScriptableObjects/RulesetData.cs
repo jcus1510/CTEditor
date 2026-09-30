@@ -46,6 +46,30 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [StatIdReference, SerializeField] private string specialAttackStat = "sp_attack";
         [StatIdReference, SerializeField] private string specialDefenseStat = "sp_defense";
 
+        [Header("Reglas de generación")]
+        [Tooltip("Generación de referencia (1-9; 0 = personalizada). Solo informa: las perillas de abajo son las que mandan. " +
+                 "Usa las plantillas «Reglas de la 1.ª gen.»... del editor de reglas para ponerlas todas de golpe.")]
+        [SerializeField, Range(0, 9)] private int generation = 0;
+        [Tooltip("1.ª-3.ª gen.: la categoría Físico/Especial la decide el TIPO del movimiento (los de estado siguen siendo de estado).")]
+        [SerializeField] private bool categoryByType = false;
+        [Tooltip("Con «categoría por tipo»: los tipos cuyos movimientos son ESPECIALES. El resto, físicos.")]
+        [ContentIdReference(typeof(ElementTypeData)), SerializeField]
+        private string[] specialTypes = { "fire", "water", "grass", "electric", "ice", "psychic", "dragon", "dark" };
+        [Tooltip("1.ª gen.: una sola estadística «Especial». Lo que sube o baja el Ataque Especial también mueve la Defensa Especial.")]
+        [SerializeField] private bool singleSpecialStat = false;
+        [Tooltip("¿Hay habilidades? (desde 3.ª gen.). Desmarcado: ninguna habilidad hace nada en combate.")]
+        [SerializeField] private bool abilitiesEnabled = true;
+        [Tooltip("¿Se pueden equipar objetos? (desde 2.ª gen.). Desmarcado: nadie lleva objetos.")]
+        [SerializeField] private bool heldItemsEnabled = true;
+        [Tooltip("¿Hay naturalezas? (desde 3.ª gen.). Desmarcado: todos neutros.")]
+        [SerializeField] private bool naturesEnabled = true;
+        [Tooltip("¿Hay géneros? (desde 2.ª gen.). Desmarcado: todos sin género.")]
+        [SerializeField] private bool gendersEnabled = true;
+
+        [Header("Mecánicas especiales")]
+        [Tooltip("Las fichas de mecánica ACTIVAS en tu juego (Megaevolución...). Se pueden combinar. Vacío = ninguna.")]
+        [ContentIdReference(typeof(MechanicData)), SerializeField] private string[] mechanicIds = new string[0];
+
         [Header("Huir")]
         [Tooltip("Desmarcado (clásico): huir de un salvaje depende de la velocidad y de los intentos. Marcado: siempre se huye.")]
         [SerializeField] private bool fleeAlwaysWorks = false;
@@ -99,6 +123,15 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public string PhysicalDefenseStat => physicalDefenseStat;
         public string SpecialAttackStat => specialAttackStat;
         public string SpecialDefenseStat => specialDefenseStat;
+        public int Generation => generation;
+        public bool CategoryByType => categoryByType;
+        public string[] SpecialTypes => specialTypes;
+        public bool SingleSpecialStat => singleSpecialStat;
+        public bool Abilities => abilitiesEnabled;
+        public bool HeldItems => heldItemsEnabled;
+        public bool Natures => naturesEnabled;
+        public bool Genders => gendersEnabled;
+        public string[] MechanicIds => mechanicIds;
         public bool FleeAlwaysWorks => fleeAlwaysWorks;
         public bool CanFleeTrainerBattles => canFleeTrainerBattles;
         public bool CanCatchTrainerMonsters => canCatchTrainerMonsters;

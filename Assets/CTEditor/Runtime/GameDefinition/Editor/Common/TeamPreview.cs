@@ -31,9 +31,14 @@ namespace CTEditor.GameDefinition.Editor
                 EditorTheme.BeginCard(accent, title);
                 var pills = new List<(string, Color)>();
                 if (s.Types != null) foreach (var t in s.Types) if (t != null) pills.Add((t.DisplayName, t.Color));
+                // Lo vacío también se enseña: qué pondrá el juego (según el nivel de IA) para que no haya sorpresas en Play.
                 if (!string.IsNullOrWhiteSpace(m.heldItem)) pills.Add(("🎒 " + m.heldItem, EditorTheme.Items));
+                else if (profile != null && profile.HeldItems != HeldItemStyle.None)
+                    pills.Add(("🎒 automático (" + (profile.HeldItems == HeldItemStyle.Competitive ? "competición" : "básico") + ")", EditorTheme.Items));
                 if (m.fixedIvs >= 0) pills.Add(($"IV {m.fixedIvs}", EditorTheme.Tools));
+                else if (profile != null && profile.CompetitiveTraining) pills.Add(("IV 31 · EVs de competición", EditorTheme.Tools));
                 if (m.nature != null) pills.Add((m.nature.DisplayName, EditorTheme.Natures));
+                else pills.Add((profile != null && profile.CompetitiveTraining ? "naturaleza automática (competición)" : "naturaleza al azar", EditorTheme.Natures));
                 EditorTheme.Pills(pills.ToArray());
                 var st = EstimatedStats(s, m.level, m.fixedIvs >= 0 ? m.fixedIvs : 15);
                 EditorTheme.Paragraph($"≈ PS {st[0]} · Atq {st[1]} · Def {st[2]} · At.Esp {st[3]} · Def.Esp {st[4]} · Vel {st[5]}" +
@@ -219,6 +224,107 @@ namespace CTEditor.GameDefinition.Editor
                 el.FindPropertyRelative("nickname").stringValue = "";
             }
             return found.Count;
+        }
+
+        // ---------------- ✨ Sugerir según la IA ----------------
+
+        /// <summary>
+        /// Escribe en el equipo lo que el juego le pondría a cada miembro según su nivel de IA (el MISMO código que en
+        /// Play): movimientos, objeto y naturaleza. 'overwrite' = false solo rellena lo VACÍO; true lo sustituye todo.
+        /// Lo que se deje vacío sigue siendo automático en el juego. Devuelve cuántos miembros cambió.
+        /// </summary>
+        public static int ApplySuggestions(UnityEditor.SerializedProperty list, TeamMemberData[] members, AiProfile profile,
+            MovesetStyle style, bool overwrite)
+        {
+            if (list == null || members == null) return 0;
+            var data = EditorGameData.Get();
+            int changed = 0;
+            for (int i = 0; i < members.Length && i < list.arraySize; i++)
+            {
+                var m = members[i];
+                if (m == null || m.SpeciesKey.Length == 0) continue;
+                CTEditor.GameDefinition.Domain.Trainers.TeamMemberSpec spec;
+                try { spec = CTEditor.GameDefinition.Infrastructure.Acl.TrainerMapper.ToDomain(m); } catch (System.Exception) { continue; }
+                var sug = spec == null ? null : CTEditor.Adventure.Domain.TeamBuilder.Suggest(spec, data, profile, style);
+                if (sug == null) continue;
+                var el = list.GetArrayElementAtIndex(i);
+                bool did = false;
+
+                if (overwrite || m.MoveKeys().Length == 0)
+                {
+                    var moves = el.FindPropertyRelative("moves");
+                    var ids = el.FindPropertyRelative("moveIds");
+                    var found = sug.Moves.Select(id => ContentAssets.FindById<MoveData>(id.Value)).Where(x => x != null).ToList();
+                    moves.arraySize = found.Count;
+                    ids.arraySize = found.Count;
+                    for (int k = 0; k < found.Count; k++)
+                    {
+                        moves.GetArrayElementAtIndex(k).objectReferenceValue = found[k];
+                        ids.GetArrayElementAtIndex(k).stringValue = found[k].Id;
+                    }
+                    did |= found.Count > 0;
+                }
+                if (overwrite || string.IsNullOrWhiteSpace(m.heldItem))
+                {
+                    var held = el.FindPropertyRelative("heldItem");
+                    if (overwrite || sug.HeldItem.Length > 0) { did |= held.stringValue != sug.HeldItem; held.stringValue = sug.HeldItem; }
+                }
+                if (overwrite || m.NatureKey.Length == 0)
+                {
+                    var nat = sug.NatureId.Length > 0 ? ContentAssets.FindById<NatureData>(sug.NatureId) : null;
+                    if (overwrite || nat != null)
+                    {
+                        el.FindPropertyRelative("nature").objectReferenceValue = nat;
+                        el.FindPropertyRelative("natureId").stringValue = nat != null ? nat.Id : "";
+                        did = true;
+                    }
+                }
+                if (did) changed++;
+            }
+            return changed;
+        }
+
+        /// <summary>
+        /// Botones «✨ Sugerir» para un equipo (entrenador o equipo prearmado). 'edit' aplica el cambio con deshacer
+        /// (EditSelected de la ventana). 'what' = texto de a quién se refiere la IA («su nivel de IA», «IA Élite»...).
+        /// </summary>
+        public static void DrawSuggestButtons(string field, TeamMemberData[] members, AiProfile profile, MovesetStyle style, string what,
+            System.Action<System.Action<UnityEditor.SerializedObject>> edit)
+        {
+            UnityEditor.EditorGUILayout.BeginHorizontal();
+            bool fill = GUILayout.Button(new GUIContent("✨ Sugerir según " + what + " (rellena lo vacío)",
+                "Pone en cada miembro los movimientos, objeto y naturaleza que el juego le daría en Play, para que los veas y " +
+                "los ajustes. Lo que ya escribiste no se toca. Lo que dejes vacío sigue siendo automático."), UnityEditor.EditorStyles.miniButton);
+            bool all = GUILayout.Button(new GUIContent("↻ Sugerir todo de nuevo", "Sustituye movimientos, objeto y naturaleza de TODOS los miembros por la sugerencia."),
+                UnityEditor.EditorStyles.miniButton, GUILayout.Width(170));
+            bool clear = GUILayout.Button(new GUIContent("∅ Dejar en automático", "Vacía movimientos, objeto y naturaleza: el juego los elegirá al combatir."),
+                UnityEditor.EditorStyles.miniButton, GUILayout.Width(140));
+            UnityEditor.EditorGUILayout.EndHorizontal();
+            if (fill || all)
+            {
+                int n = 0;
+                edit(so => n = ApplySuggestions(so.FindProperty(field), members, profile, style, all));
+                UnityEditor.EditorUtility.DisplayDialog("Sugerir según la IA", n == 0 ? "No había nada que rellenar." :
+                    $"{n} miembro(s) actualizados con lo que el juego les daría. Revísalos y ajusta lo que quieras.", "Vale");
+                GUIUtility.ExitGUI();
+            }
+            if (clear && UnityEditor.EditorUtility.DisplayDialog("Dejar en automático", "¿Vaciar movimientos, objeto y naturaleza de todo el equipo?", "Vaciar", "Cancelar"))
+            {
+                edit(so =>
+                {
+                    var list = so.FindProperty(field);
+                    for (int i = 0; i < list.arraySize; i++)
+                    {
+                        var el = list.GetArrayElementAtIndex(i);
+                        el.FindPropertyRelative("moves").arraySize = 0;
+                        el.FindPropertyRelative("moveIds").arraySize = 0;
+                        el.FindPropertyRelative("heldItem").stringValue = "";
+                        el.FindPropertyRelative("nature").objectReferenceValue = null;
+                        el.FindPropertyRelative("natureId").stringValue = "";
+                    }
+                });
+                GUIUtility.ExitGUI();
+            }
         }
 
         /// <summary>Pone un objeto equipado al miembro 'index' (si existe ese miembro).</summary>

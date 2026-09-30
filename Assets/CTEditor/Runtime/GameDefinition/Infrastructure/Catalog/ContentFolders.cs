@@ -32,6 +32,8 @@ namespace CTEditor.GameDefinition.Infrastructure.Catalog
         public const string Menus = "Menus";
         public const string AiLevels = "AiLevels";
         public const string EggGroups = "EggGroups";
+        /// <summary>Mecánicas especiales (Megaevolución...): las reglas activan las que quieras.</summary>
+        public const string Mechanics = "Mechanics";
         /// <summary>Ajustes de interfaz (teclas, texto, colores): normalmente una sola ficha.</summary>
         public const string Interface = "Interface";
 

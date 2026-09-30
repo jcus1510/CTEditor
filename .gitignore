@@ -109,3 +109,8 @@ InitTestScene*.unity*
 # Caché de datos descargados por Tools/ (PokeAPI)
 /Tools/.cache/
 __pycache__/
+
+# Compilación de Tools/probar_dominio
+/Tools/probar_dominio/bin/
+/Tools/probar_dominio/obj/
+!/Tools/probar_dominio/*.csproj
