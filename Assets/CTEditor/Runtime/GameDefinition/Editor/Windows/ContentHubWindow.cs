@@ -356,7 +356,7 @@ namespace CTEditor.GameDefinition.Editor
             int z = EncounterZoneEditorWindow.CreateClassicSet();
             AssetDatabase.SaveAssets();
             EditorCatalog.ClearCounts();
-            string msg = $"Entrenadores: {t} · Equipos prearmados: {e} · Zonas salvajes: {z} nuevos";
+            string msg = $"Entrenadores: {t} · Equipos prearmados: {e} · Zonas salvajes: {z} nuevos o reparados";
             if (notify) ShowNotification(new GUIContent(msg));
             return msg;
         }

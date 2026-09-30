@@ -54,7 +54,7 @@ namespace CTEditor.GameDefinition.Editor
             foreach (var t in Library)
             {
                 string id = t.id;
-                if (ContentAssets.CreateIfMissing<TeamPresetData>(ContentFolders.Teams, t.id, t.name, so => Fill(so, id))) created++;
+                if (ContentAssets.CreateOrRepair<TeamPresetData>(ContentFolders.Teams, t.id, t.name, so => Fill(so, id))) created++;
             }
             AssetDatabase.SaveAssets();
             return created;

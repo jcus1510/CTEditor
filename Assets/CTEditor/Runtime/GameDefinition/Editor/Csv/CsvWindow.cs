@@ -229,6 +229,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                         "Antes se guarda una copia de seguridad de todo en la carpeta 'Excel/copias'.", "Aplicar", "Cancelar"))
                 {
                     RunAnalysis(); // por si algo cambió desde el análisis
+                    if (_analyses == null) { GUIUtility.ExitGUI(); return; } // el nuevo análisis falló: su error ya se muestra
                     string backupRoot = Path.Combine(CsvImporter.DefaultFolder, "copias");
                     _lastReport = CsvImporter.Apply(_analyses, _context, backupRoot);
                     _analyses = null;
@@ -284,7 +285,12 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     _analyses = CsvImporter.Analyze(_folder, _mode, out _context);
                 }
             }
-            catch (Exception e) { _analyses = null; _lastReport = "Error al analizar: " + e.Message; }
+            catch (Exception e)
+            {
+                Debug.LogError("[Excel] Error al analizar: " + e);
+                _analyses = null;
+                _lastReport = "Error al analizar: " + e.Message + " (el detalle está en la Consola).";
+            }
         }
 
         private void DrawFile(FileAnalysis a)

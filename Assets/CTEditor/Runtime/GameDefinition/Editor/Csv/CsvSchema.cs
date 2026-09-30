@@ -194,19 +194,30 @@ namespace CTEditor.GameDefinition.Editor.Csv
 
                 var existing = ctx.Find<TData>(plan.Id);
                 plan.IsNew = existing == null;
-                if (!plan.IsNew && mode == ImportMode.CreateOnly) { plan.Skipped = true; continue; }
+                bool repairing = false;
+                if (!plan.IsNew && mode == ImportMode.CreateOnly)
+                {
+                    // «Solo lo que falta» no toca lo existente... salvo que tenga REFERENCIAS ROTAS (p. ej. un
+                    // entrenador cuyo equipo apuntaba a especies que se borraron y se volvieron a crear): esa
+                    // ficha se repara con los datos de la hoja, que la nombran por id.
+                    if (!ContentAssets.HasBrokenReferences(existing)) { plan.Skipped = true; continue; }
+                    repairing = true;
+                }
 
                 // Se aplica la fila sobre una COPIA temporal: así sabemos si hay errores y qué cambiaría,
-                // sin tocar ninguna ficha real.
-                var temp = existing != null ? Object.Instantiate(existing) : ScriptableObject.CreateInstance<TData>();
+                // sin tocar ninguna ficha real. Cualquier fallo (no solo los de formato) se queda en ESTA
+                // fila: el resto del archivo se sigue analizando y se puede aplicar.
+                TData temp = null;
                 try
                 {
+                    temp = existing != null ? Object.Instantiate(existing) : ScriptableObject.CreateInstance<TData>();
                     var so = new SerializedObject(temp);
                     ctx.Warnings.Clear();
                     foreach (var (col, header) in present)
                     {
                         try { col.Set(so, cells[header], ctx); }
                         catch (CsvCellException e) { plan.Errors.Add($"[{col.Header}] {e.Message}"); }
+                        catch (Exception e) { plan.Errors.Add(InternalError(col.Header, plan, e)); }
                     }
                     so.ApplyModifiedPropertiesWithoutUndo();
                     plan.Warnings.AddRange(ctx.Warnings);
@@ -214,12 +225,25 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     if (existing != null)
                         foreach (var (col, header) in present)
                         {
-                            string before = col.Get(existing) ?? "";
-                            string after = col.Deferred ? (cells[header] ?? "") : (col.Get((TData)temp) ?? "");
-                            if (!string.Equals(before, after, StringComparison.Ordinal)) plan.Changes.Add((col.Header, before, after));
+                            try
+                            {
+                                string before = col.Get(existing) ?? "";
+                                string after = col.Deferred ? (cells[header] ?? "") : (col.Get(temp) ?? "");
+                                if (!string.Equals(before, after, StringComparison.Ordinal)) plan.Changes.Add((col.Header, before, after));
+                            }
+                            catch (Exception e) { plan.Errors.Add(InternalError(col.Header, plan, e)); }
                         }
                 }
-                finally { Object.DestroyImmediate(temp); }
+                catch (Exception e) { plan.Errors.Add(InternalError("fila", plan, e)); }
+                finally { if (temp != null) Object.DestroyImmediate(temp); }
+
+                // Reparación: solo si la hoja cambia algo (si la referencia rota no es de nada que la hoja escriba,
+                // p. ej. un sprite, la fila se trata como «ya existe»).
+                if (repairing)
+                {
+                    if (plan.Changes.Count == 0 && plan.Errors.Count == 0) plan.Skipped = true;
+                    else plan.Warnings.Insert(0, "Tenía referencias rotas (fichas borradas o vueltas a crear): se repara con los datos de esta hoja.");
+                }
             }
             return plans;
         }
@@ -231,30 +255,44 @@ namespace CTEditor.GameDefinition.Editor.Csv
 
             // Pasada 1: crear/actualizar con todas las columnas normales.
             var assets = new Dictionary<RowPlan, TData>();
+            // Un fallo en una fila la marca con error y se sigue con las demás (no deja la importación a medias).
             foreach (var p in toApply)
             {
-                var asset = ctx.Find<TData>(p.Id) ?? ContentAssets.Create<TData>(_category, p.Id, p.Id);
-                ContentAssets.Edit(asset, so =>
+                try
                 {
-                    foreach (var col in Columns.Where(c => !c.Deferred))
+                    var asset = ctx.Find<TData>(p.Id) ?? ContentAssets.Create<TData>(_category, p.Id, p.Id);
+                    ContentAssets.Edit(asset, so =>
                     {
-                        var h = col.MatchIn(p.Cells.Keys);
-                        if (h != null) col.Set(so, p.Cells[h], ctx);
-                    }
-                });
-                ctx.Register(asset);
-                assets[p] = asset;
-                applied++;
+                        foreach (var col in Columns.Where(c => !c.Deferred))
+                        {
+                            var h = col.MatchIn(p.Cells.Keys);
+                            if (h != null) col.Set(so, p.Cells[h], ctx);
+                        }
+                    });
+                    ctx.Register(asset);
+                    assets[p] = asset;
+                    applied++;
+                }
+                catch (Exception e) { p.Errors.Add(InternalError("aplicar", p, e)); }
             }
 
             // Pasada 2: columnas diferidas (ya existen todas las fichas del archivo).
             foreach (var p in toApply)
             {
+                if (!assets.TryGetValue(p, out var asset)) continue;
                 var deferred = Columns.Where(c => c.Deferred && c.MatchIn(p.Cells.Keys) != null).ToList();
                 if (deferred.Count == 0) continue;
-                ContentAssets.Edit(assets[p], so => { foreach (var col in deferred) col.Set(so, p.Cells[col.MatchIn(p.Cells.Keys)], ctx); });
+                try { ContentAssets.Edit(asset, so => { foreach (var col in deferred) col.Set(so, p.Cells[col.MatchIn(p.Cells.Keys)], ctx); }); }
+                catch (Exception e) { p.Errors.Add(InternalError("aplicar", p, e)); }
             }
             return applied;
+        }
+
+        // Error inesperado (un fallo del programa, no del Excel): se enseña en la fila y el detalle va a la Consola.
+        private string InternalError(string where, RowPlan plan, Exception e)
+        {
+            Debug.LogError($"[Excel] {FileName}, línea {plan.Line}, id '{plan.Id}', {where}: {e}");
+            return $"[{where}] Error interno ({e.GetType().Name}: {e.Message}). El detalle está en la Consola.";
         }
 
         // ---------------- Ayudas para definir columnas ----------------

@@ -147,6 +147,36 @@ namespace CTEditor.GameDefinition.Editor
             return true;
         }
 
+        /// <summary>
+        /// Crea la ficha si no hay ninguna con ese id; si existe pero tiene REFERENCIAS ROTAS (p. ej. un
+        /// entrenador cuyo equipo apuntaba a especies borradas y vueltas a crear), la vuelve a rellenar con
+        /// 'init' (el id se mantiene). Devuelve true si la creó o la reparó.
+        /// </summary>
+        public static bool CreateOrRepair<T>(string category, string id, string displayName, Action<SerializedObject> init)
+            where T : ScriptableObject, IContentAsset
+        {
+            var existing = FindById<T>(id);
+            if (existing == null) { Create<T>(category, id, displayName, init); return true; }
+            if (!HasBrokenReferences(existing)) return false;
+            Edit(existing, init);
+            return true;
+        }
+
+        /// <summary>
+        /// ¿La ficha apunta a fichas que ya no existen? (en el Inspector sale «Missing»). Pasa al borrar una
+        /// ficha y volver a crearla, o al volver a una versión anterior del proyecto: la nueva tiene otro GUID.
+        /// </summary>
+        public static bool HasBrokenReferences(Object asset)
+        {
+            if (asset == null) return false;
+            var it = new SerializedObject(asset).GetIterator();
+            while (it.Next(true))
+                if (it.propertyType == SerializedPropertyType.ObjectReference
+                    && it.objectReferenceValue == null && it.objectReferenceInstanceIDValue != 0)
+                    return true;
+            return false;
+        }
+
         /// <summary>Asigna un campo de texto si existe (algunas fichas no tienen todos los campos).</summary>
         public static void SetString(SerializedObject so, string field, string value)
         {

@@ -163,10 +163,30 @@ namespace CTEditor.GameDefinition.Editor.Csv
 
             // Primero se registran TODOS los ids que existirán, para que una hoja pueda referenciar
             // fichas que crea otra hoja (o la misma) en esta importación.
-            foreach (var (a, table) in files) if (table != null) a.Schema.RegisterPlanned(table, context);
-            foreach (var (a, table) in files) if (table != null) a.Rows = a.Schema.Plan(table, context, mode);
+            // Un fallo inesperado en un archivo se queda en ESE archivo (con el detalle en la Consola): los demás
+            // se siguen analizando y se pueden aplicar.
+            var failed = new HashSet<FileAnalysis>();
+            foreach (var (a, table) in files)
+            {
+                if (table == null) continue;
+                try { a.Schema.RegisterPlanned(table, context); }
+                catch (Exception e) { Fail(a, e); failed.Add(a); }
+            }
+            foreach (var (a, table) in files)
+            {
+                if (table == null || failed.Contains(a)) continue;
+                try { a.Rows = a.Schema.Plan(table, context, mode); }
+                catch (Exception e) { Fail(a, e); }
+            }
 
             return files.Select(f => f.analysis).ToList();
+        }
+
+        private static void Fail(FileAnalysis a, Exception e)
+        {
+            UnityEngine.Debug.LogError($"[Excel] Error al analizar {Path.GetFileName(a.Path)}: {e}");
+            a.Rows = new List<RowPlan>();
+            a.LoadError = $"Error interno al analizar este archivo ({e.GetType().Name}: {e.Message}). El detalle está en la Consola.";
         }
 
         // ---------------- Aplicar ----------------
@@ -191,7 +211,14 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 {
                     if (a.LoadError != null || a.Rows.Count == 0) continue;
                     EditorUtility.DisplayProgressBar("Importando desde Excel", a.Schema.Title, 0.5f);
-                    int n = a.Schema.Apply(a.Rows, context);
+                    int n;
+                    try { n = a.Schema.Apply(a.Rows, context); }
+                    catch (Exception e)
+                    {
+                        UnityEngine.Debug.LogError($"[Excel] Error al aplicar {a.Schema.Title}: {e}");
+                        report.Add($"{a.Schema.Title}: ERROR al aplicar ({e.Message}). El detalle está en la Consola.");
+                        continue;
+                    }
                     report.Add($"{a.Schema.Title}: {n} aplicada(s)" + (a.WithErrors > 0 ? $", {a.WithErrors} con errores saltada(s)" : ""));
                 }
             }

@@ -43,7 +43,7 @@ namespace CTEditor.GameDefinition.Editor
             foreach (var z in Library)
             {
                 string id = z.id;
-                if (ContentAssets.CreateIfMissing<EncounterZoneData>(ContentFolders.Encounters, z.id, z.name, so => Fill(so, id))) created++;
+                if (ContentAssets.CreateOrRepair<EncounterZoneData>(ContentFolders.Encounters, z.id, z.name, so => Fill(so, id))) created++;
             }
             AssetDatabase.SaveAssets();
             return created;
