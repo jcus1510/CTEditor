@@ -319,6 +319,17 @@ namespace CTEditor.GameDefinition.Editor
                     did |= evsProp.stringValue != text;
                     evsProp.stringValue = text;
                 }
+                // Con sets de competición también vienen habilidad e IVs.
+                if (sug.AbilityId.Length > 0 && (overwrite || string.IsNullOrWhiteSpace(m.abilityId)))
+                {
+                    el.FindPropertyRelative("abilityId").stringValue = sug.AbilityId;
+                    did = true;
+                }
+                if (!sug.Ivs.IsEmpty && (overwrite || string.IsNullOrWhiteSpace(m.ivs)))
+                {
+                    el.FindPropertyRelative("ivs").stringValue = sug.Ivs.Format(" / ");
+                    did = true;
+                }
                 if (did) changed++;
             }
             return changed;
@@ -339,6 +350,9 @@ namespace CTEditor.GameDefinition.Editor
                 UnityEditor.EditorStyles.miniButton, GUILayout.Width(170));
             bool clear = GUILayout.Button(new GUIContent("∅ Dejar en automático", "Vacía movimientos, objeto, naturaleza y EVs: el juego los elegirá al combatir."),
                 UnityEditor.EditorStyles.miniButton, GUILayout.Width(140));
+            if (GUILayout.Button(new GUIContent("🏆 Set de Smogon…", "Elige para cada miembro uno de los sets de competición de su especie (filtra por formato) y guárdalo: moveset FIJO."),
+                    UnityEditor.EditorStyles.miniButton, GUILayout.Width(130)))
+                SetPickerWindow.Open(field, members, edit);
             UnityEditor.EditorGUILayout.EndHorizontal();
             if (fill || all)
             {

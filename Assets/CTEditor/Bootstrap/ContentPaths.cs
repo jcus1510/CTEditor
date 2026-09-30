@@ -28,5 +28,6 @@ namespace CTEditor.Bootstrap
         public const string AiLevels = F.AiLevels;
         public const string EggGroups = F.EggGroups;
         public const string Mechanics = F.Mechanics;
+        public const string Sets = F.Sets;
     }
 }

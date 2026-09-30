@@ -111,6 +111,12 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         /// <summary>Mochila por defecto si el entrenador no trae la suya.</summary>
         public IReadOnlyList<(string itemId, int quantity)> DefaultBag { get; }
 
+        /// <summary>
+        /// ¿Arma a los miembros sin movimientos escritos con SETS DE COMPETICIÓN (Smogon) de su especie, si los hay?
+        /// Por defecto: Campeón, Maestro e Injusto.
+        /// </summary>
+        public bool UseCompetitiveSets { get; }
+
         /// <summary>Cuándo megaevoluciona. Por defecto: Novato y Aficionado nunca; Veterano y Élite en cuanto pueden; del Campeón arriba, con cabeza.</summary>
         public MegaTiming MegaTiming { get; }
 
@@ -122,8 +128,9 @@ namespace CTEditor.GameDefinition.Domain.Trainers
             bool useMachineMoves, bool useTutorMoves, bool useEggMoves, bool autoHeldItems,
             IReadOnlyList<(string itemId, int quantity)> defaultBag = null,
             AiKnowledge knowledge = AiKnowledge.Battle, HeldItemStyle? heldItems = null, bool competitiveTraining = false,
-            int predictPercent = 0, MegaTiming? megaTiming = null)
+            int predictPercent = 0, MegaTiming? megaTiming = null, bool? competitiveSets = null)
         {
+            UseCompetitiveSets = competitiveSets ?? level >= 5;
             MegaTiming = megaTiming ?? DefaultMegaTiming(level);
             Knowledge = knowledge;
             HeldItems = heldItems ?? (autoHeldItems ? HeldItemStyle.Basic : HeldItemStyle.None);

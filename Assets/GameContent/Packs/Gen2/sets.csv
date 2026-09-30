@@ -1,0 +1,336 @@
+﻿id;especie;formato;nombre;puntuacion;objeto;habilidad;naturaleza;evs;ivs;movimientos
+unown_ou_1;unown;ou;The Power Within;0;twisted_spoon;;;;;hidden_power
+venusaur_ou_1;venusaur;ou;Defensive;66;leftovers;;;;;synthesis/leech_seed/razor_leaf/sleep_powder,reflect
+venusaur_ou_2;venusaur;ou;Swords Dance;41;leftovers;;;;;swords_dance/body_slam/giga_drain/sleep_powder
+charizard_ou_1;charizard;ou;BellyZard (Belly Drum);85;leftovers;;;;;belly_drum/earthquake/rock_slide/fire_blast
+blastoise_ou_1;blastoise;ou;Bulky Water;66;leftovers;;;;;surf/rest/reflect/rapid_spin
+blastoise_ou_2;blastoise;ou;RestTalk;67;leftovers;;;;;rest/sleep_talk/surf/ice_beam,zap_cannon
+butterfree_ou_1;butterfree;ou;Double Powder;0;leftovers;;;;;sleep_powder/stun_spore/psychic,nightmare/giga_drain
+beedrill_ou_1;beedrill;ou;Swords Dance;0;leftovers;;;;;sludge_bomb/hidden_power/swords_dance/agility,return,twineedle
+pidgeot_ou_1;pidgeot;ou;Standard;15;leftovers;;;;;return/hidden_power,wing_attack/toxic/steel_wing,mirror_move,hidden_power
+pikachu_ou_1;pikachu;ou;Light Ball;0;light_ball;;;;;thunderbolt/surf/sing/hidden_power
+raichu_ou_1;raichu;ou;Rain Dance;55;leftovers;;;;;thunder/surf/rain_dance/substitute,thunder_wave
+raichu_ou_2;raichu;ou;Thunder Wave;30;;;;;;thunderbolt/surf/thunder_wave/seismic_toss
+raichu_ou_3;raichu;ou;Support;39;leftovers;;;;;charm/encore/hidden_power,light_screen/thunderbolt
+nidoqueen_ou_1;nidoqueen;ou;Standard;47;leftovers;;;;;earthquake/lovely_kiss/thunder,thunderbolt/ice_beam,fire_blast
+nidoking_ou_1;nidoking;ou;Mixed Sweeper;65;leftovers;;;;;earthquake/lovely_kiss/ice_beam/thunder,thunderbolt
+clefable_ou_1;clefable;ou;Belly Drum;69;leftovers;;;;;belly_drum/moonlight/return/fire_blast,charm,encore,shadow_ball
+clefable_ou_2;clefable;ou;Mixed Attacker;50;leftovers;;;;;return,double_edge/fire_blast,thunderbolt/ice_beam/moonlight
+vileplume_ou_1;vileplume;ou;Standard;0;leftovers;;;;;sleep_powder/leech_seed/sludge_bomb/moonlight
+poliwrath_ou_1;poliwrath;ou;Belly Drum;46;leftovers;;;;;belly_drum/lovely_kiss/hydro_pump/body_slam
+alakazam_ou_1;alakazam;ou;Mixed Attacker;56;leftovers;;;;;psychic/dynamic_punch/recover,substitute/fire_punch,thunder_punch,zap_cannon,ice_punch
+alakazam_ou_2;alakazam;ou;Utility;62;leftovers;;;;;psychic/fire_punch,toxic/encore,toxic/recover
+victreebel_ou_1;victreebel;ou;Swords Dance;40;leftovers;;;;;sleep_powder/swords_dance/sludge_bomb/giga_drain
+victreebel_ou_2;victreebel;ou;Growth;25;leftovers;;;;;sleep_powder/growth/giga_drain/hidden_power
+golem_ou_1;golem;ou;Rapid Spin;81;leftovers;;;;;earthquake/rapid_spin/explosion/roar,fire_blast
+golem_ou_2;golem;ou;Curse;55;leftovers;;;;;earthquake/rock_slide/explosion/curse
+articuno_ou_1;articuno;ou;Blue Bird (RestTalk / Phazer);55;leftovers;;;;;rest/sleep_talk,roar/ice_beam/toxic,reflect
+zapdos_ou_1;zapdos;ou;RestTalk;66;leftovers;;;;;thunder,thunderbolt/hidden_power/rest/sleep_talk
+zapdos_ou_2;zapdos;ou;Offensive Phazer;51;leftovers;;;;;thunderbolt,thunder/hidden_power/whirlwind/thunder_wave
+moltres_ou_1;moltres;ou;RestTalk;68;charcoal;;;;;rest/sleep_talk/fire_blast/sunny_day
+meganium_ou_1;meganium;ou;Support;47;leftovers;;;;;razor_leaf/reflect,light_screen/leech_seed/synthesis
+meganium_ou_2;meganium;ou;Swords Dance;54;leftovers;;;;;body_slam/swords_dance/synthesis/earthquake
+typhlosion_ou_1;typhlosion;ou;Mixed Attacker;66;leftovers;;;;;fire_blast/dynamic_punch/hidden_power,thunder_punch/earthquake,sunny_day
+feraligatr_ou_1;feraligatr;ou;Mixed Sweeper;79;leftovers;;;;;hydro_pump/earthquake/rock_slide,ancient_power/curse,dynamic_punch
+feraligatr_ou_2;feraligatr;ou;Special Sweeper;40;leftovers;;;;;hydro_pump/ice_beam/crunch/hidden_power
+togetic_ou_1;togetic;ou;Special Attacker;0;leftovers;;;;;charm,encore/fire_blast/safeguard/psychic
+togetic_ou_2;togetic;ou;SunnyBeam;0;leftovers;;;;;sunny_day/solar_beam/fire_blast/encore,safeguard
+togetic_ou_3;togetic;ou;Curse;0;leftovers;;;;;curse/hidden_power/return/rest
+jumpluff_ou_1;jumpluff;ou;Status Support;77;leftovers;;;;;sleep_powder/stun_spore/leech_seed/encore
+hitmonchan_ou_1;hitmonchan;ou;Standard;0;leftovers;;;;;high_jump_kick/return/counter,curse/hidden_power
+arbok_ou_1;arbok;ou;Glare;69;leftovers;;;;;sludge_bomb/glare/earthquake/giga_drain,substitute,screech
+dodrio_ou_1;dodrio;ou;RestTalk;45;leftovers;;;;;double_edge/drill_peck/rest/sleep_talk
+gengar_ou_1;gengar;ou;Assassin;58;leftovers;;;;;thunderbolt,thunder/ice_punch/hypnosis,dynamic_punch/explosion,destiny_bond
+gengar_ou_2;gengar;ou;Perish Trapper;32;leftovers;;;;;perish_song/mean_look/protect/thunderbolt,thunder
+electrode_ou_1;electrode;ou;Exploder;0;leftovers;;;;;thunder_wave/thunderbolt/explosion/hidden_power
+electrode_ou_2;electrode;ou;Support;0;leftovers;;;;;thunderbolt/light_screen,reflect/rest,explosion/thunder_wave,toxic
+exeggutor_ou_1;exeggutor;ou;Standard Explosion;69;leftovers;;;;;sleep_powder,stun_spore/psychic/giga_drain,hidden_power/explosion
+exeggutor_ou_2;exeggutor;ou;Leech Seed;58;leftovers;;;;;stun_spore/leech_seed/psychic/substitute,explosion
+noctowl_ou_1;noctowl;ou;Reflect;0;leftovers;;;;;hypnosis/reflect/night_shade/rest
+noctowl_ou_2;noctowl;ou;Curse;0;leftovers;;;;;hypnosis/curse/return/rest,hidden_power
+ariados_ou_1;ariados;ou;Baton Pass Trapper;0;leftovers;;;;;spider_web/agility/baton_pass/sludge_bomb
+qwilfish_ou_1;qwilfish;ou;Spikes;41;leftovers;;;;;curse/sludge_bomb/hydro_pump/spikes
+corsola_ou_1;corsola;ou;Curse;0;leftovers;;;;;mirror_coat,surf/curse/ancient_power/recover
+corsola_ou_2;corsola;ou;Support;0;leftovers;;;;;surf/recover/toxic/mirror_coat
+mantine_ou_1;mantine;ou;Support;40;leftovers;;;;;hydro_pump/confuse_ray/toxic/haze
+raikou_ou_1;raikou;ou;Phazer;64;leftovers;;;;;thunder,thunderbolt/roar/hidden_power,reflect/rest
+raikou_ou_2;raikou;ou;RestTalk;75;leftovers;;;;;thunder,thunderbolt/hidden_power/rest/sleep_talk
+entei_ou_1;entei;ou;Sunny Day;75;leftovers;;;;;sunny_day/fire_blast/solar_beam/hidden_power
+suicune_ou_1;suicune;ou;Defensive Tank;72;leftovers;;;;;surf/toxic,ice_beam/rest/sleep_talk,roar
+raticate_ou_1;raticate;ou;Super Fang;32;leftovers;;;;;super_fang/substitute/mimic/body_slam
+sandslash_ou_1;sandslash;ou;Swords Dance;70;leftovers;;;;;swords_dance/earthquake/rock_slide/substitute
+parasect_ou_1;parasect;ou;Double Powder;55;leftovers;;;;;spore/hidden_power/giga_drain/stun_spore
+parasect_ou_2;parasect;ou;Special Sweeper;55;leftovers;;;;;spore/growth/giga_drain/hidden_power
+parasect_ou_3;parasect;ou;Swords Dance;55;leftovers;;;;;spore/hidden_power/return,sludge_bomb/swords_dance
+persian_ou_1;persian;ou;Screech;0;leftovers;;;;;return,body_slam/hypnosis/screech/zap_cannon,thunderbolt
+persian_ou_2;persian;ou;Swagger + Psych Up;0;leftovers;;;;;return,body_slam/shadow_ball,substitute/swagger/psych_up
+golduck_ou_1;golduck;ou;Standard;85;leftovers;;;;;cross_chop/hypnosis/surf,hydro_pump/ice_beam,hidden_power
+arcanine_ou_1;arcanine;ou;RestTalk;45;leftovers;;;;;fire_blast,flamethrower/hidden_power,body_slam/rest/sleep_talk
+machamp_ou_1;machamp;ou;Curse Sweeper;61;leftovers;;;;;cross_chop/curse/rock_slide/hidden_power,fire_blast
+machamp_ou_2;machamp;ou;Pure Attacker;57;leftovers;;;;;cross_chop/rock_slide/earthquake,body_slam/fire_blast,hidden_power
+machamp_ou_3;machamp;ou;RestTalk;58;leftovers;;;;;cross_chop/curse/rest/sleep_talk
+tentacruel_ou_1;tentacruel;ou;Druidcruel (Swords Dance);55;leftovers;;;;;swords_dance/substitute/sludge_bomb/hydro_pump,surf
+tentacruel_ou_2;tentacruel;ou;Rapid Spin;62;leftovers;;;;;rapid_spin/sludge_bomb,toxic/surf/screech,curse,protect
+magneton_ou_1;magneton;ou;Standard;0;leftovers;;;;;thunderbolt/thunder_wave/hidden_power/substitute
+muk_ou_1;muk;ou;Mixed Attacker;61;leftovers;;;;;sludge_bomb/fire_blast/explosion/curse
+cloyster_ou_1;cloyster;ou;Spikes;75;leftovers;;;;;spikes/surf/toxic,hidden_power/explosion,rapid_spin
+marowak_ou_1;marowak;ou;Swords Dance Sweeper;71;thick_club;;;;26 Atq/26 Def;earthquake/rock_slide/hidden_power,rest/swords_dance
+lickitung_ou_1;lickitung;ou;Swords Dance;0;leftovers;;;;;body_slam/swords_dance/sleep_talk/rest
+lickitung_ou_2;lickitung;ou;Special Attacker;0;leftovers;;;;;thunderbolt/ice_beam/sleep_talk/rest
+rhydon_ou_1;rhydon;ou;Curse;81;leftovers;;;;;earthquake/rock_slide/curse/roar
+tangela_ou_1;tangela;ou;Double Powder;0;leftovers;;;;;stun_spore/sleep_powder/giga_drain/reflect,synthesis
+kangaskhan_ou_1;kangaskhan;ou;Curse;59;leftovers;;;;;curse/rest/return/roar
+kangaskhan_ou_2;kangaskhan;ou;Attract;38;leftovers;;;;;body_slam/earthquake/attract/substitute
+seaking_ou_1;seaking;ou;Swords Dance;0;leftovers;;;;;swords_dance/agility,surf/double_edge/hidden_power
+seaking_ou_2;seaking;ou;Special Attacker;0;leftovers;;;;;surf/ice_beam/rest/sleep_talk
+starmie_ou_1;starmie;ou;Rapid Spin;72;leftovers;;;;;surf/psychic,thunder_wave/rapid_spin/recover
+jynx_ou_1;jynx;ou;Lullaby;59;leftovers;;;;;lovely_kiss/ice_beam/psychic/substitute,thief,nightmare
+electabuzz_ou_1;electabuzz;ou;All-Out Attacker;38;leftovers;;;;;thunderbolt/ice_punch/cross_chop/fire_punch
+tauros_ou_1;tauros;ou;RestTalk;70;leftovers;;;;;double_edge/earthquake/rest/sleep_talk
+lapras_ou_1;lapras;ou;RestTalk;43;leftovers;;;;;ice_beam/thunderbolt/rest/sleep_talk
+lapras_ou_2;lapras;ou;Tank;80;leftovers;;;;;confuse_ray/ice_beam/thunder/surf,sing,reflect
+ditto_ou_1;ditto;ou;The Set;0;metal_powder;;;;;transform
+vaporeon_ou_1;vaporeon;ou;Growth Sweeper;74;leftovers;;;;;surf,hydro_pump/growth/rest/sleep_talk,acid_armor
+jolteon_ou_1;jolteon;ou;Baton Pass;59;leftovers;;;;;baton_pass/agility,growth/hidden_power/thunder,thunderbolt
+omastar_ou_1;omastar;ou;Support;85;leftovers;;;;;surf/rest/haze/reflect
+omastar_ou_2;omastar;ou;RestTalk;55;leftovers;;;;;rest/sleep_talk/hydro_pump,surf/ice_beam
+aerodactyl_ou_1;aerodactyl;ou;Standard;54;leftovers;;;;;earthquake/hidden_power,ancient_power/wing_attack,hidden_power/fire_blast
+aerodactyl_ou_2;aerodactyl;ou;Curse;66;leftovers;;;;;curse/earthquake/hidden_power,ancient_power/substitute
+aerodactyl_ou_3;aerodactyl;ou;Defensive;53;leftovers;;;;;reflect/rest/whirlwind/hidden_power,wing_attack
+snorlax_ou_1;snorlax;ou;Curselax;63;leftovers;;;;;curse/double_edge,body_slam,return/earthquake,fire_blast,flamethrower,lovely_kiss,thunder/rest
+snorlax_ou_2;snorlax;ou;RestTalk;64;leftovers;;;;;rest/sleep_talk/double_edge/curse,thunder,flamethrower,surf,earthquake
+snorlax_ou_3;snorlax;ou;Drumlax;48;leftovers;;;;;belly_drum/body_slam,return/earthquake,lovely_kiss/rest
+snorlax_ou_4;snorlax;ou;All-out Attacker;53;leftovers;;;;;double_edge,body_slam/earthquake,lovely_kiss/thunder,fire_blast,curse/self_destruct
+snorlax_ou_5;snorlax;ou;Toxic;53;leftovers;;;;;double_edge/flamethrower/toxic/rest
+dragonite_ou_1;dragonite;ou;All-Out Attacker;57;leftovers;;;;;thunder_wave,double_edge/ice_beam/thunder/dynamic_punch
+dragonite_ou_2;dragonite;ou;Defensive;39;leftovers;;;;;haze/reflect/rest/sleep_talk,body_slam,dragon_breath
+furret_ou_1;furret;ou;Curse;0;leftovers;;;;;double_edge/rest/curse/shadow_ball
+ledian_ou_1;ledian;ou;Baton Pass;0;leftovers;;;;;baton_pass/agility/light_screen/reflect
+lanturn_ou_1;lanturn;ou;RestTalk;0;leftovers;;;;;surf/thunderbolt,thunder/rest/sleep_talk
+lanturn_ou_2;lanturn;ou;Parafusion;0;leftovers;;;;;surf/thunderbolt/thunder_wave/confuse_ray
+politoed_ou_1;politoed;ou;Belly Drum;0;leftovers;;;;;belly_drum/surf/lovely_kiss/body_slam
+yanma_ou_1;yanma;ou;Physical Attacker;0;leftovers;;;;;curse,screech/hidden_power/wing_attack/giga_drain
+quagsire_ou_1;quagsire;ou;Belly Drum;61;leftovers;;;;;earthquake/hidden_power/belly_drum/rest
+espeon_ou_1;espeon;ou;Sweeper;71;leftovers;;;;;growth/psychic/hidden_power/morning_sun
+espeon_ou_2;espeon;ou;Baton Pass;68;leftovers;;;;;growth/psychic/baton_pass/morning_sun,hidden_power
+umbreon_ou_1;umbreon;ou;Charm;61;leftovers;;;;;charm/pursuit/sleep_talk,toxic/rest,moonlight
+misdreavus_ou_1;misdreavus;ou;Disruptor;24;;;;;;thunder/toxic/thief,protect,hypnosis,confuse_ray/pain_split,rest
+misdreavus_ou_2;misdreavus;ou;Perish Trapper;50;leftovers;;;;;mean_look/perish_song/protect/confuse_ray,thunder
+wobbuffet_ou_1;wobbuffet;ou;Oh, no! It's Wobbuffet! (Counter + Mirror Coat);0;leftovers;;;;;counter/mirror_coat/destiny_bond/safeguard
+forretress_ou_1;forretress;ou;Spikes;58;leftovers;;;;;spikes/rapid_spin/toxic,explosion/hidden_power,giga_drain
+gligar_ou_1;gligar;ou;Screech;67;leftovers;;;;;screech/earthquake/wing_attack/counter
+gligar_ou_2;gligar;ou;Thief;38;;;;;;earthquake/wing_attack/rest,protect/thief
+steelix_ou_1;steelix;ou;Curse + Roar;81;leftovers;;;;;earthquake/curse/roar/explosion,rock_slide,body_slam
+scizor_ou_1;scizor;ou;Baton Pass;58;leftovers;;;;;swords_dance/baton_pass/agility/hidden_power
+shuckle_ou_1;shuckle;ou;PP Stall;70;leftovers;;;;;defense_curl/toxic,encore/flash,wrap/rest
+heracross_ou_1;heracross;ou;RestTalk;83;leftovers;;;;;rest/sleep_talk/megahorn/curse,seismic_toss
+ursaring_ou_1;ursaring;ou;Curse Phazer;69;leftovers;;;;;curse/return/earthquake,rest/roar
+piloswine_ou_1;piloswine;ou;RestTalk;57;leftovers;;;;;earthquake/ice_beam/sleep_talk/rest
+skarmory_ou_1;skarmory;ou;Physical Wall;74;leftovers;;;;;whirlwind/drill_peck/rest/curse
+houndoom_ou_1;houndoom;ou;Pursuit Trapper;63;leftovers;;;;;fire_blast/crunch/pursuit/roar,counter
+houndoom_ou_2;houndoom;ou;SunnyBeam;46;leftovers;;;;;sunny_day/fire_blast/solar_beam/pursuit
+kingdra_ou_1;kingdra;ou;RestTalk;48;leftovers;;;;;surf/dragon_breath,ice_beam/rest/sleep_talk
+donphan_ou_1;donphan;ou;RestTalk;68;leftovers;;;;;earthquake/rapid_spin/sleep_talk/rest
+donphan_ou_2;donphan;ou;Offensive;57;leftovers;;;;;earthquake/rapid_spin/hidden_power,toxic/roar,protect
+porygon2_ou_1;porygon2;ou;Thunder Wave;66;leftovers;;;;;thunder_wave,thunder/double_edge/ice_beam/recover
+porygon2_ou_2;porygon2;ou;Curse;70;leftovers;;;;;curse/double_edge,return/recover/ice_beam
+smeargle_ou_1;smeargle;ou;Baton Pass;62;;;;;;spore/agility/baton_pass/substitute,spikes,encore,destiny_bond
+smeargle_ou_2;smeargle;ou;Spikes;47;;;;;;spikes/spore/present,mirror_coat,encore/sacred_fire,destiny_bond,encore
+miltank_ou_1;miltank;ou;Standard Cleric;79;leftovers;;;;;heal_bell/milk_drink/growl/body_slam
+blissey_ou_1;blissey;ou;Cleric;72;leftovers;;;;;heal_bell/flamethrower,ice_beam,toxic/toxic,light_screen,present,sing/soft_boiled
+blissey_ou_2;blissey;ou;Counter;51;leftovers;;;;;thunder_wave,sing,thunder/ice_beam,flamethrower/counter,thunder/soft_boiled,counter
+tyranitar_ou_1;tyranitar;ou;Standard Utility;67;leftovers;;;;;rock_slide/pursuit/roar/fire_blast,crunch,earthquake
+tyranitar_ou_2;tyranitar;ou;Curse;53;leftovers;;;;;rock_slide/curse/roar/rest
+cloyster_ubers_1;cloyster;ubers;Spikes;79;leftovers;;;;;spikes/surf/toxic/explosion,rapid_spin
+snorlax_ubers_1;snorlax;ubers;Monolax;69;leftovers;;;;;double_edge,body_slam/curse/rest/lovely_kiss,sleep_talk
+snorlax_ubers_2;snorlax;ubers;Curselax;64;leftovers;;;;;double_edge,body_slam/curse/earthquake,flamethrower,fire_blast/rest
+snorlax_ubers_3;snorlax;ubers;Restless Snorlax;63;leftovers;;;;;double_edge,body_slam/curse,belly_drum/earthquake/self_destruct,lovely_kiss
+snorlax_ubers_4;snorlax;ubers;DrumLax;50;leftovers;;;;;body_slam,return/belly_drum/rest/lovely_kiss,earthquake
+mewtwo_ubers_1;mewtwo;ubers;Recover;55;leftovers;;;;;flamethrower,thunder,psychic/toxic,ice_beam/barrier,self_destruct,psychic,dynamic_punch/recover
+mewtwo_ubers_2;mewtwo;ubers;All-out Attacker;50;leftovers;;;;;thunder/ice_beam,psychic/dynamic_punch,fire_blast,submission/self_destruct
+mew_ubers_1;mew;ubers;Lead Mew;36;magnet;;;;;swords_dance/thunder_wave/fire_blast,thunder/explosion
+mew_ubers_2;mew;ubers;Backline Mew;58;leftovers;;;;;swords_dance/earthquake,shadow_ball/rock_slide,submission/explosion,soft_boiled
+forretress_ubers_1;forretress;ubers;Entry Hazard Setter;78;leftovers;;;;;spikes/toxic,rapid_spin/rapid_spin,explosion/hidden_power
+tyranitar_ubers_1;tyranitar;ubers;CurseTar;68;leftovers;;;;;rock_slide/curse/roar/rest
+tyranitar_ubers_2;tyranitar;ubers;Roar + 3 Attacks;59;leftovers;;;;;rock_slide/roar/crunch/flamethrower,surf
+lugia_ubers_1;lugia;ubers;Curse;81;leftovers;;;;;curse/aeroblast/whirlwind/recover
+lugia_ubers_2;lugia;ubers;Supportive;55;leftovers;;;;;surf/toxic/whirlwind/recover
+ho_oh_ubers_1;ho_oh;ubers;Standard Wall;67;leftovers;;;;;flamethrower/toxic/recover/whirlwind
+celebi_ubers_1;celebi;ubers;Standard;75;leftovers;;;;;heal_bell/recover/leech_seed/psychic
+blastoise_uu_1;blastoise;uu;Spinstoise (Rapid Spin);77;leftovers;;;;;rapid_spin/surf/rest/sleep_talk
+blastoise_uu_2;blastoise;uu;Mixed;53;leftovers;;;;;surf,hydro_pump/rapid_spin/zap_cannon/earthquake
+pikachu_uu_1;pikachu;uu;Substitute;60;light_ball;;;;;substitute/thunderbolt,thunder/surf/hidden_power,swagger,sing
+raichu_uu_1;raichu;uu;Thief;59;;;;;;thunder/surf/hidden_power/thief
+nidoqueen_uu_1;nidoqueen;uu;The Queen of UU (3 attacks);66;leftovers;;;;;earthquake/thunder/ice_beam,fire_blast/moonlight
+wigglytuff_uu_1;wigglytuff;uu;Granbullytuff (Curse + RestTalk);85;leftovers;;;;;curse/return,body_slam/rest/sleep_talk
+vileplume_uu_1;vileplume;uu;Defensive;42;leftovers;;;;;stun_spore/sludge_bomb/giga_drain/synthesis
+victreebel_uu_1;victreebel;uu;Swords Dance;79;leftovers;;;;;swords_dance/sludge_bomb/hidden_power/sleep_powder,giga_drain
+mr_mime_uu_1;mr_mime;uu;Disruptor;59;leftovers;;;;;psychic/thunder/thunder_wave,hypnosis/encore,light_screen,reflect,thief,substitute
+mr_mime_uu_2;mr_mime;uu;Baton Pass;49;leftovers;;;;;thunder_wave,encore,barrier,hypnosis/psychic,thunder/substitute,barrier/baton_pass
+mr_mime_uu_3;mr_mime;uu;RestTalk;61;leftovers;;;;;psychic/thunder/rest/sleep_talk
+feraligatr_uu_1;feraligatr;uu;Offensive;84;leftovers;;;;;hydro_pump/earthquake/rock_slide/screech
+ampharos_uu_1;ampharos;uu;Heart of the Lighthouse (Sleep Talk);70;leftovers;;;;;thunder,thunderbolt/light_screen,hidden_power,reflect/rest/sleep_talk
+bellossom_uu_1;bellossom;uu;Standard Supporter;51;leftovers;;;;;stun_spore,sleep_powder/hidden_power,razor_leaf/leech_seed,hidden_power/moonlight
+bellossom_uu_2;bellossom;uu;Swords Dance;71;leftovers;;;;;stun_spore/swords_dance/return,double_edge/moonlight,giga_drain,hidden_power
+jumpluff_uu_1;jumpluff;uu;Utility;80;leftovers;;;;;stun_spore/encore/synthesis,leech_seed/sleep_powder,reflect,hidden_power,leech_seed
+granbull_uu_1;granbull;uu;Curse RestTalk;69;leftovers;;;;;curse/frustration/rest/sleep_talk
+granbull_uu_2;granbull;uu;Cleric RestTalk;58;leftovers;;;;;frustration/heal_bell/rest/sleep_talk
+granbull_uu_3;granbull;uu;Curse Kiss;42;leftovers;;;;;curse/frustration/hidden_power/lovely_kiss
+granbull_uu_4;granbull;uu;Coverage RestTalk;57;leftovers;;;;;frustration/thunder,hidden_power/rest/sleep_talk
+dodrio_uu_1;dodrio;uu;Rest + Sleep Talk;73;leftovers;;;;;double_edge/drill_peck/rest/sleep_talk
+electrode_uu_1;electrode;uu;Support;56;;;;;;explosion/light_screen/reflect,hidden_power,thunder_wave/thunderbolt,thunder,thunder_wave
+ariados_uu_1;ariados;uu;Baton Pass Trapper;0;leftovers;;;;;spider_web/protect/disable/baton_pass
+ariados_uu_2;ariados;uu;Physical Attacker;0;;;;;;sludge_bomb/hidden_power/screech/thief
+qwilfish_uu_1;qwilfish;uu;Spiker;77;leftovers;;;;;spikes/sludge_bomb/hydro_pump/haze,curse
+sandslash_uu_1;sandslash;uu;Swords Dance;83;leftovers;;;;;earthquake/rock_slide/swords_dance/substitute,hidden_power
+persian_uu_1;persian;uu;Sub Swagger;0;leftovers;;;;;substitute/swagger/double_edge/psych_up
+arcanine_uu_1;arcanine;uu;Offensive;49;leftovers;;;;;fire_blast/hidden_power/crunch/sunny_day,roar
+poliwhirl_uu_1;poliwhirl;uu;Belly Drum Sweeper;0;leftovers;;;;;belly_drum/return/earthquake/lovely_kiss
+kadabra_uu_1;kadabra;uu;Utility Attacker;68;leftovers;;;;;psychic/thunder_punch/recover/encore,thunder_wave
+graveler_uu_1;graveler;uu;Rapid Spin;84;leftovers;;;;;earthquake,defense_curl/hidden_power,defense_curl/rapid_spin/explosion,rest
+slowbro_uu_1;slowbro;uu;Sleep Talking Sponge (Sleep Talk);79;leftovers;;;;;psychic,thunder_wave/surf/rest/sleep_talk
+magneton_uu_1;magneton;uu;RestTalk;68;leftovers;;;;;thunder/hidden_power/rest/sleep_talk
+dewgong_uu_1;dewgong;uu;Rest Talk;0;leftovers;;;;;surf/ice_beam/rest/sleep_talk
+muk_uu_1;muk;uu;Explosion;76;leftovers;;;;;sludge_bomb/thunder,hidden_power/curse,thunder,fire_blast/explosion
+haunter_uu_1;haunter;uu;Offensive Utility;44;leftovers;;;;;hypnosis,thief/psychic/thunder/explosion
+hypno_uu_1;hypno;uu;Supporter;55;leftovers;;;;;thunder_wave,hypnosis/psychic,seismic_toss/light_screen,reflect/rest
+hypno_uu_2;hypno;uu;Sleep Talking Wall;73;leftovers;;;;;psychic/seismic_toss,thunder_wave/rest/sleep_talk
+hypno_uu_3;hypno;uu;Curse Sleep Talk;60;leftovers;;;;;curse/body_slam/rest/sleep_talk
+chansey_uu_1;chansey;uu;Defensive Cleric;68;leftovers;;;;;present/thunder,ice_beam/heal_bell/soft_boiled
+chansey_uu_2;chansey;uu;Curse;57;leftovers;;;;;curse/double_edge/counter,iron_tail,heal_bell/soft_boiled
+scyther_uu_1;scyther;uu;All-Out-Attacker;65;leftovers;;;;;swords_dance/wing_attack/hidden_power/double_edge,light_screen
+scyther_uu_2;scyther;uu;Swords Dance;63;leftovers;;;;;swords_dance/wing_attack,double_edge,return/hidden_power/baton_pass
+electabuzz_uu_1;electabuzz;uu;All-out Attacker;48;leftovers;;;;;thunder,thunderbolt/psychic/ice_punch/cross_chop,pursuit,hidden_power
+electabuzz_uu_2;electabuzz;uu;RestTalk;58;leftovers;;;;;thunderbolt/pursuit/rest/sleep_talk
+pinsir_uu_1;pinsir;uu;Swords Dance;61;leftovers;;;;;swords_dance/return/hidden_power/rock_throw,protect,double_edge
+pinsir_uu_2;pinsir;uu;RestTalk;41;leftovers;;;;;rest/sleep_talk/swords_dance/body_slam
+gyarados_uu_1;gyarados;uu;All-out Offensive;83;leftovers;;;;;hidden_power/hydro_pump/thunder/double_edge,roar
+flareon_uu_1;flareon;uu;Growth Pass;68;leftovers;;;;;growth/flamethrower/hidden_power/baton_pass
+porygon_uu_1;porygon;uu;Curse;70;leftovers;;;;;curse/double_edge/thunder_wave/recover
+omastar_uu_1;omastar;uu;Normal-resistant Special Attacker;55;leftovers;;;;;surf/ice_beam,hidden_power/rest/sleep_talk,hidden_power
+kabutops_uu_1;kabutops;uu;Swords Dance Sweeper;85;leftovers;;;;;swords_dance/ancient_power/hidden_power,submission/hydro_pump,double_edge
+aerodactyl_uu_1;aerodactyl;uu;Curse;59;leftovers;;;;;hidden_power/earthquake/curse/rest,roar,toxic,protect
+aerodactyl_uu_2;aerodactyl;uu;Phazer;53;leftovers;;;;;hidden_power/earthquake/roar/toxic,protect,fire_blast
+crobat_uu_1;crobat;uu;Haze;30;;;;;;haze/wing_attack/thief,toxic/confuse_ray,hidden_power,rest
+lanturn_uu_1;lanturn;uu;RestTalk;44;leftovers;;;;;thunder/surf/rest/sleep_talk
+sudowoodo_uu_1;sudowoodo;uu;Curse + Self-Destruct;77;leftovers;;;;;curse/rock_slide/earthquake/self_destruct
+politoed_uu_1;politoed;uu;Growth;76;leftovers;;;;;surf/growth/rest/sleep_talk,hidden_power
+politoed_uu_2;politoed;uu;Belly Drum;26;leftovers;;;;;belly_drum/lovely_kiss/earthquake/hidden_power
+quagsire_uu_1;quagsire;uu;Belly Drum;51;leftovers;;;;;belly_drum/earthquake/hidden_power/sludge_bomb,amnesia,protect
+slowking_uu_1;slowking;uu;Special Tank;75;leftovers;;;;;surf,psychic/thunder_wave,psychic/rest/sleep_talk
+girafarig_uu_1;girafarig;uu;Mixed;46;leftovers;;;;;earthquake/thunder/return,shadow_ball/psychic,curse
+girafarig_uu_2;girafarig;uu;Amnesia Pass;61;leftovers;;;;;amnesia/baton_pass/thunder/psychic,earthquake
+gligar_uu_1;gligar;uu;The G-Word (Offensive Thief);46;;;;;;earthquake/hidden_power,wing_attack/thief/screech,counter
+shuckle_uu_1;shuckle;uu;Defensive;71;leftovers;;;;;toxic/defense_curl/sleep_talk,flash/rest
+piloswine_uu_1;piloswine;uu;The P-Word (RestTalk);82;leftovers;;;;;earthquake/ice_beam/rest/sleep_talk
+pidgeot_nu_1;pidgeot;nu;Reflect;84;leftovers;;;;;double_edge/reflect/rest/sleep_talk
+wigglytuff_nu_1;wigglytuff;nu;Paralysis-spreading Tank;64;leftovers;;;;;body_slam,double_edge/thunder/rest/sleep_talk
+wigglytuff_nu_2;wigglytuff;nu;CurseTuff;74;leftovers;;;;;curse/double_edge,body_slam/sleep_talk,thunder_wave/rest
+azumarill_nu_1;azumarill;nu;Miracle Bunny (RestTalk);69;leftovers;;;;;surf/light_screen,ice_beam/rest/sleep_talk
+hitmonlee_nu_1;hitmonlee;nu;RestTalk;71;leftovers;;;;;high_jump_kick/body_slam,hidden_power/rest/sleep_talk
+hitmonlee_nu_2;hitmonlee;nu;Setup Sweeper;48;leftovers;;;;;meditate,curse/high_jump_kick/hidden_power,double_edge/double_edge,body_slam,rapid_spin,mach_punch
+hitmontop_nu_1;hitmontop;nu;Rapid Spin;74;leftovers;;;;;hidden_power,high_jump_kick/rapid_spin/rest/sleep_talk
+hitmontop_nu_2;hitmontop;nu;Curse;59;leftovers;;;;;curse/high_jump_kick/rest/sleep_talk
+arbok_nu_1;arbok;nu;Glare;65;leftovers;;;;;glare/sludge_bomb/earthquake/giga_drain,substitute
+dugtrio_nu_1;dugtrio;nu;Substitute Attacker;80;leftovers;;;;;earthquake/rock_slide/screech/substitute
+farfetchd_nu_1;farfetchd;nu;Baton Pass;73;leftovers;;;;;agility/swords_dance/return/baton_pass
+ariados_nu_1;ariados;nu;Trapper;70;leftovers;;;;;spider_web/agility/baton_pass/sludge_bomb,protect
+weezing_nu_1;weezing;nu;Mixed Attacking Tank;70;leftovers;;;;;sludge_bomb/thunder/explosion/fire_blast,hidden_power,haze,pain_split
+raticate_nu_1;raticate;nu;Super Fang;70;leftovers;;;;;super_fang/double_edge/rest/sleep_talk
+fearow_nu_1;fearow;nu;Wallbreaker;78;leftovers;;;;;double_edge/drill_peck/rest/sleep_talk
+ninetales_nu_1;ninetales;nu;Defensive;74;leftovers;;;;;flamethrower/sunny_day,toxic,reflect/rest/sleep_talk
+ninetales_nu_2;ninetales;nu;Roar;71;leftovers;;;;;flamethrower/toxic,sunny_day/roar/rest
+gloom_nu_1;gloom;nu;Bulky Setup Sweeper;68;leftovers;;;;;swords_dance,curse/sludge_bomb/stun_spore,razor_leaf,hidden_power,sleep_powder/moonlight
+persian_nu_1;persian;nu;Lead;39;;;;;;double_edge/thief/hypnosis/screech
+persian_nu_2;persian;nu;RestTalk;24;leftovers;;;;;double_edge/thunder/rest/sleep_talk
+primeape_nu_1;primeape;nu;RestTalk;45;leftovers;;;;;cross_chop/thunder/rest/sleep_talk
+primeape_nu_2;primeape;nu;Substitute Attacker;61;leftovers;;;;;cross_chop/thunder/double_edge/substitute
+tentacool_nu_1;tentacool;nu;Rapid Spin;70;leftovers;;;;;hydro_pump,surf/sludge_bomb/rapid_spin/protect,screech
+graveler_nu_1;graveler;nu;Rapid Spin;80;leftovers;;;;;earthquake/hidden_power/rapid_spin/explosion
+rapidash_nu_1;rapidash;nu;RestTalk;70;leftovers;;;;;fire_blast/double_edge/rest/sleep_talk
+magnemite_nu_1;magnemite;nu;RestTalk;79;leftovers;;;;;thunder/hidden_power/rest/sleep_talk
+dewgong_nu_1;dewgong;nu;RestTalk;67;leftovers;;;;;surf/ice_beam/rest/sleep_talk
+dewgong_nu_2;dewgong;nu;Toxic Support;58;leftovers;;;;;toxic/encore/ice_beam/protect,surf,rest
+dewgong_nu_3;dewgong;nu;Growth Pass Recipient;55;leftovers;;;;;ice_beam/surf/hidden_power/protect
+kingler_nu_1;kingler;nu;Swords Dance + Hidden Power Ground;43;leftovers;;;;;swords_dance/return,body_slam/hidden_power/substitute,protect
+kingler_nu_2;kingler;nu;Swords Dance + Hidden Power Rock;31;leftovers;;;;;swords_dance/return/hidden_power/surf,substitute
+exeggcute_nu_1;exeggcute;nu;Boom Utility;74;leftovers;;;;;stun_spore/psychic/hidden_power,sleep_powder,thief/explosion
+cubone_nu_1;cubone;nu;Agility Recipient;69;thick_club;;;;;earthquake/rock_slide/swords_dance/substitute,hidden_power
+lickitung_nu_1;lickitung;nu;Curse;39;leftovers;;;;;curse/rest/sleep_talk/return
+magmar_nu_1;magmar;nu;Special Sweeper;64;leftovers;;;;;fire_blast/thunder_punch,hidden_power/cross_chop/sunny_day,hidden_power,thief
+flareon_nu_1;flareon;nu;Growth Pass;57;leftovers;;;;;growth/fire_blast/hidden_power,double_edge/baton_pass
+flareon_nu_2;flareon;nu;RestTalk;72;leftovers;;;;;fire_blast/double_edge/rest/sleep_talk
+porygon_nu_1;porygon;nu;Curse;74;leftovers;;;;;curse/double_edge/thunder_wave/recover
+porygon_nu_2;porygon;nu;BoltBeam;57;leftovers;;;;;thunder/ice_beam/thunder_wave,thief/recover
+dragonair_nu_1;dragonair;nu;Dual Screens;57;leftovers;;;;;thunder_wave/reflect/light_screen/fire_blast,surf
+dragonair_nu_2;dragonair;nu;3 Attacks;56;leftovers;;;;;thunder_wave/fire_blast/thunder/surf
+ledian_nu_1;ledian;nu;Baton Pass;82;leftovers;;;;;light_screen/barrier/agility/baton_pass
+chinchou_nu_1;chinchou;nu;Chinchou Gang! (RestTalk);72;leftovers;;;;;surf,hydro_pump/thunder/rest/sleep_talk
+chinchou_nu_2;chinchou;nu;Support;56;leftovers;;;;;surf/thunder,thunderbolt/light_screen,ice_beam/thunder_wave,ice_beam
+xatu_nu_1;xatu;nu;King Xatu (RestTalk);77;leftovers;;;;;psychic/hidden_power,drill_peck,night_shade/rest/sleep_talk
+xatu_nu_2;xatu;nu;Utility;30;;;;;;psychic/haze/rest,drill_peck,hidden_power/thief
+sudowoodo_nu_1;sudowoodo;nu;Offensive;81;leftovers;;;;;curse/rock_slide/earthquake/self_destruct
+sudowoodo_nu_2;sudowoodo;nu;Defensive;66;leftovers;;;;;rock_slide/earthquake,curse/sleep_talk,curse/rest
+pineco_nu_1;pineco;nu;Entry Hazard Setter;77;leftovers;;;;;spikes/rapid_spin/explosion/toxic,reflect,hidden_power
+dunsparce_nu_1;dunsparce;nu;RestTalk;58;leftovers;;;;;curse/return/rest/sleep_talk
+shuckle_nu_1;shuckle;nu;Rollout;71;leftovers;;;;;defense_curl/toxic/rollout/rest
+shuckle_nu_2;shuckle;nu;Defensive Pivot;61;leftovers;;;;;toxic/encore/rest/sleep_talk
+sneasel_nu_1;sneasel;nu;Defensive;59;leftovers;;;;;return/moonlight/toxic/dynamic_punch,thief
+sneasel_nu_2;sneasel;nu;Offensive Nightmare;73;leftovers;;;;;return/nightmare/moonlight/toxic
+octillery_nu_1;octillery;nu;RestTalk;81;leftovers;;;;;surf/hidden_power,ice_beam/rest/sleep_talk
+delibird_nu_1;delibird;nu;Spikes;58;;;;;;ice_beam/toxic/thief/spikes
+houndour_nu_1;houndour;nu;Pursuit;65;leftovers;;;;;pursuit/fire_blast/solar_beam,crunch/sunny_day,counter
+stantler_nu_1;stantler;nu;Offensive Support;32;;;;;;return/earthquake/hypnosis,light_screen/thief,reflect,curse
+stantler_nu_2;stantler;nu;RestTalk;71;leftovers;;;;;return/earthquake/rest/sleep_talk
+pupitar_nu_1;pupitar;nu;Magistr (Standard);82;leftovers;;;;;earthquake/rock_slide/ancient_power/screech
+charmeleon_pu_1;charmeleon;pu;Booster;40;leftovers;;;;;belly_drum,swords_dance/return/rock_slide/fire_blast
+beedrill_pu_1;beedrill;pu;Double Dance;70;leftovers;;;;;swords_dance/agility/sludge_bomb/hidden_power
+clefairy_pu_1;clefairy;pu;Curse + Twave;75;leftovers;;;;;curse/return/moonlight/thunder_wave
+bayleef_pu_1;bayleef;pu;Defensive;47;leftovers;;;;;synthesis/curse/body_slam/razor_leaf,hidden_power
+hitmontop_pu_1;hitmontop;pu;Restalk;64;leftovers;;;;;high_jump_kick/hidden_power,curse/rest/sleep_talk
+hitmontop_pu_2;hitmontop;pu;Curse;68;leftovers;;;;;high_jump_kick/hidden_power/rest/curse
+noctowl_pu_1;noctowl;pu;Curse;82;leftovers;;;;;curse/return/rest/sleep_talk
+ariados_pu_1;ariados;pu;AgiliPass + Spider Web;66;leftovers;;;;;spider_web/agility/baton_pass/sludge_bomb
+magcargo_pu_1;magcargo;pu;Curse;52;leftovers;;;;;fire_blast,flamethrower/rock_slide/curse/protect
+magcargo_pu_2;magcargo;pu;Restalk;77;leftovers;;;;;flamethrower/rock_slide,body_slam/rest/sleep_talk
+corsola_pu_1;corsola;pu;Curse;83;leftovers;;;;;curse/rock_slide/surf/recover
+mantine_pu_1;mantine;pu;3 Attacks;42;leftovers;;;;;hydro_pump/ice_beam/hidden_power,toxic/haze,substitute
+mantine_pu_2;mantine;pu;Curse;53;leftovers;;;;;curse/hidden_power/rest/sleep_talk
+nidorino_pu_1;nidorino;pu;Utility;0;;;;;;thunder/ice_beam/morning_sun,lovely_kiss/thief
+golbat_pu_1;golbat;pu;Utility;57;leftovers;;;;;wing_attack/toxic/whirlwind/protect,hidden_power
+golbat_pu_2;golbat;pu;Offensive;59;leftovers;;;;;wing_attack/hidden_power/giga_drain/screech,protect,whirlwind,thief
+venomoth_pu_1;venomoth;pu;Status Moth;67;leftovers;;;;;sleep_powder,hidden_power,thief/stun_spore,giga_drain/psychic/sludge_bomb
+venomoth_pu_2;venomoth;pu;Offensive;57;leftovers;;;;;screech,protect,giga_drain/psychic/sludge_bomb/hidden_power
+venomoth_pu_3;venomoth;pu;Rest Talk;53;leftovers;;;;;sludge_bomb/psychic/rest/sleep_talk
+venomoth_pu_4;venomoth;pu;Curse Pass;56;leftovers;;;;;sludge_bomb/curse/baton_pass/sleep_powder,psychic,hidden_power
+poliwhirl_pu_1;poliwhirl;pu;Belly Drum;70;leftovers;;;;;belly_drum/return/earthquake/lovely_kiss,substitute,ice_beam
+abra_pu_1;abra;pu;Substitute;46;leftovers;;;;;substitute/psychic/ice_punch,thief/thunder_wave
+abra_pu_2;abra;pu;Rest Talk;36;leftovers;;;;;psychic/rest/sleep_talk
+machoke_pu_1;machoke;pu;Restalk;63;leftovers;;;;;cross_chop/body_slam/rest/sleep_talk
+geodude_pu_1;geodude;pu;Spinner;70;leftovers;;;;;rapid_spin/rock_slide/earthquake/curse,explosion
+ponyta_pu_1;ponyta;pu;RestTalk;63;leftovers;;;;;fire_blast/double_edge/rest,hidden_power/sleep_talk,hypnosis
+slowpoke_pu_1;slowpoke;pu;Resttalk;83;leftovers;;;;;psychic/thunder_wave,surf,body_slam/rest/sleep_talk
+gastly_pu_1;gastly;pu;3 Attacks+Hypnosis;54;leftovers;;;;;psychic/thunder,thief/hypnosis/explosion
+onix_pu_1;onix;pu;Defensive;60;;;;;;rock_slide/earthquake/explosion,body_slam,curse/roar,explosion
+drowzee_pu_1;drowzee;pu;Defensive;77;leftovers;;;;;psychic/thunder_wave,seismic_toss/rest,seismic_toss/sleep_talk,protect
+voltorb_pu_1;voltorb;pu;Lead;74;leftovers;;;;;thunder,thunderbolt/light_screen,thunder_wave/reflect,thunder_wave/explosion
+cubone_pu_1;cubone;pu;Restalk;62;thick_club;;;;;earthquake/body_slam,double_edge/rest/sleep_talk
+cubone_pu_2;cubone;pu;Swords Dance;64;thick_club;;;;;swords_dance/earthquake/rock_slide/substitute,hidden_power,body_slam
+rhyhorn_pu_1;rhyhorn;pu;Curse;75;leftovers;;;;;curse/earthquake/rock_slide/roar,toxic,protect
+rhyhorn_pu_2;rhyhorn;pu;TSR;71;leftovers;;;;;toxic/earthquake/rock_slide/roar
+tangela_pu_1;tangela;pu;Growth;67;leftovers;;;;;growth/giga_drain/hidden_power/synthesis,amnesia,sleep_powder
+tangela_pu_2;tangela;pu;Utility;39;;;;;;giga_drain/thief,hidden_power/sleep_powder,stun_spore/synthesis,stun_spore
+seadra_pu_1;seadra;pu;RestTalk;60;leftovers;;;;;hydro_pump,surf/hidden_power,ice_beam/rest/sleep_talk
+seadra_pu_2;seadra;pu;3 Attacks;62;leftovers;;;;;hydro_pump,surf/ice_beam/hidden_power/haze,protect,agility,rain_dance
+seaking_pu_1;seaking;pu;Swords Dance;71;leftovers;;;;;swords_dance/return/rest/sleep_talk,surf
+seaking_pu_2;seaking;pu;Curse;56;leftovers;;;;;curse/return/surf/rest
+staryu_pu_1;staryu;pu;Thunder Wave;50;leftovers;;;;;thunder_wave/recover/surf,ice_beam/thunderbolt,ice_beam
+eevee_pu_1;eevee;pu;Growth Pass;72;leftovers;;;;;growth/baton_pass/substitute/reflect
+flaaffy_pu_1;flaaffy;pu;Restalk;77;leftovers;;;;;thunder/hidden_power/rest/sleep_talk
+aipom_pu_1;aipom;pu;Agility Pass;41;;;;;;agility/baton_pass/return/thief
+sunflora_pu_1;sunflora;pu;Growth;60;leftovers;;;;;growth/razor_leaf/hidden_power/synthesis
+murkrow_pu_1;murkrow;pu;Pursuit Trapper;49;leftovers;;;;;pursuit/drill_peck/hidden_power,thief/haze,nightmare
+sneasel_pu_1;sneasel;pu;Mixed Screech;49;leftovers;;;;;return/ice_beam/screech/moonlight
+delibird_pu_1;delibird;pu;Spikes;51;;;;;;spikes/ice_beam/thief,hidden_power/toxic,hidden_power
+elekid_pu_1;elekid;pu;RestTalk;46;leftovers;;;;;thunder/psychic,ice_punch/rest/sleep_talk
+elekid_pu_2;elekid;pu;All-Out-Attacker;34;;;;;;thunder/hidden_power,ice_punch/psychic,hidden_power/thief,cross_chop,light_screen

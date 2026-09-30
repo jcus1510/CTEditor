@@ -178,6 +178,7 @@ namespace CTEditor.GameDefinition.Editor
             // Personajes
             Add(EditorCategory.Characters, 1, "Entrenadores", "🧑", "Equipo, nivel de IA, mochila, premio y frases de cada rival.", EditorTheme.Trainers, TrainerEditorWindow.Open, Count<TrainerData>, "rivales ia lideres");
             Add(EditorCategory.Characters, 2, "Niveles de IA", "🧠", "Los 5 niveles (Novato → Campeón): errores, curación, cambios y a qué movimientos llegan.", EditorTheme.Trainers, AiLevelEditorWindow.Open, Count<AiLevelData>, "dificultad ia reto");
+            Add(EditorCategory.Characters, 5, "Sets de competición", "🏆", "Sets de Smogon (o tuyos) por especie y formato: los usan las IA de Campeón en adelante.", EditorTheme.Trainers, SetsEditorWindow.Open, Count<CompetitiveSetData>, "smogon competitivo ou uu ubers moveset");
             Add(EditorCategory.Characters, 3, "Equipos prearmados", "👥", "Equipos listos para empezar la partida o para probar.", EditorTheme.Teams, TeamPresetEditorWindow.Open, Count<TeamPresetData>);
             Add(EditorCategory.Characters, 4, "Personajes y diálogos", "💬", "NPC del mapa: sprite, frases y qué hacen al hablarles.", EditorTheme.Trainers, null, null, "npc");
 

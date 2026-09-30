@@ -98,10 +98,13 @@ namespace CTEditor.GameDefinition.Editor
         {
             int start = append ? arr.arraySize : 0;
             arr.arraySize = start + members.Count;
-            for (int i = 0; i < members.Count; i++)
+            for (int i = 0; i < members.Count; i++) WriteMember(arr.GetArrayElementAtIndex(start + i), members[i]);
+        }
+
+        /// <summary>Escribe un miembro (ids) en un elemento del equipo de una ficha.</summary>
+        public static void WriteMember(SerializedProperty el, ShowdownMember m)
+        {
             {
-                var m = members[i];
-                var el = arr.GetArrayElementAtIndex(start + i);
                 el.FindPropertyRelative("species").objectReferenceValue = ContentAssets.FindById<SpeciesData>(m.SpeciesId);
                 el.FindPropertyRelative("speciesId").stringValue = m.SpeciesId;
                 el.FindPropertyRelative("level").intValue = m.Level;

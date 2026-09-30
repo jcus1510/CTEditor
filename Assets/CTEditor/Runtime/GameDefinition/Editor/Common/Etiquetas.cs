@@ -187,6 +187,17 @@ namespace CTEditor.GameDefinition.Editor
             ["specialAttackStat"] = ("Especial: estadística de ataque", "especial_ataque"),
             ["specialDefenseStat"] = ("Especial: estadística de defensa", "especial_defensa"),
 
+            // Sets de competición
+            ["speciesId"] = ("Especie", "especie"),
+            ["setFormat"] = ("Formato (ou, uu, ubers...)", "formato"),
+            ["setScore"] = ("Puntuación (uso, 0-100)", "puntuacion"),
+            ["itemOptions"] = ("Objetos (alternativas)", "objeto"),
+            ["abilityOptions"] = ("Habilidades (alternativas)", "habilidad"),
+            ["natureOptions"] = ("Naturalezas (alternativas)", "naturaleza"),
+            ["moveSlots"] = ("Movimientos (huecos / alternativas)", "movimientos"),
+            ["competitiveSets"] = ("Usa sets de competición (Smogon)", "sets_competicion"),
+            ["setFormats"] = ("Formatos de sus sets (vacío = todos)", "formatos_sets"),
+            ["variableSets"] = ("Moveset cambiante (otro set cada combate)", "moveset_cambiante"),
             // Megaevolución (entrenadores y niveles de IA)
             ["canMegaEvolve"] = ("Puede megaevolucionar", "megaevoluciona"),
             ["megaTiming"] = ("Cuándo megaevoluciona", "cuando_mega"),
@@ -661,7 +672,7 @@ namespace CTEditor.GameDefinition.Editor
         {
             // Categoría de movimiento
             ["MegaEvolution"] = "Megaevolución",
-            ["ByLevel"] = "Según su nivel", ["AsSoonAsPossible"] = "En cuanto puede",
+            ["ByLevel"] = "Según su nivel", ["Yes"] = "Sí", ["No"] = "No", ["AsSoonAsPossible"] = "En cuanto puede",
             ["HeldItem"] = "Lleva un objeto", ["UseMove"] = "Usa un movimiento", ["DamagingMove"] = "Usa un ataque",
             ["HpBelow"] = "PS por debajo de un %", ["HpAtLeast"] = "PS desde un %", ["Weather"] = "Clima",
             ["Physical"] = "Físico", ["Special"] = "Especial", ["Status"] = "Estado",

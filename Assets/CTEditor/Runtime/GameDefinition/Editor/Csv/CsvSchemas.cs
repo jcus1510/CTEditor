@@ -33,13 +33,57 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 new CsvReflectiveSchema<GrowthCurveData>("curvas.csv", "Curvas de XP", ContentFolders.Curves, 50),
                 new CsvReflectiveSchema<MechanicData>("mecanicas.csv", "Mecánicas especiales", ContentFolders.Mechanics, 58),
                 new CsvReflectiveSchema<RulesetData>("reglas.csv", "Reglas", ContentFolders.Rulesets, 60),
-                Moves(), Species(),
+                Moves(), Species(), Sets(),
                 Trainers(), Zones(), TeamPresets(),
                 new CsvReflectiveSchema<EggGroupData>("grupos_huevo.csv", "Grupos huevo", ContentFolders.EggGroups, 15),
                 new CsvReflectiveSchema<AiLevelData>("niveles_ia.csv", "Niveles de IA", ContentFolders.AiLevels, 88),
             };
             list.Sort((a, b) => a.Order.CompareTo(b.Order));
             return list;
+        }
+
+        // ---------------- Sets de competición (Smogon o del autor) ----------------
+
+        public static CsvSchema<CompetitiveSetData> Sets()
+            => new CsvSchema<CompetitiveSetData>("sets.csv", "Sets de competición", ContentFolders.Sets, 85)
+                .Col("id", "Id único (ej. garchomp_ou_1).", d => d.Id, (so, v, c) => so.FindProperty("id").stringValue = v)
+                .Col("especie", "Id de la especie.", d => d.SpeciesId, (so, v, c) =>
+                {
+                    v = (v ?? "").Trim();
+                    if (v.Length == 0) throw new CsvCellException("Un set necesita especie.");
+                    if (!c.Exists<SpeciesData>(v)) c.Warnings.Add($"La especie '{v}' aún no existe.");
+                    so.FindProperty("speciesId").stringValue = v;
+                })
+                .Col("formato", "ou, ubers, uu, ru, nu, pu, lc... (o el tuyo).", d => d.Format, (so, v, c) => so.FindProperty("setFormat").stringValue = (v ?? "").Trim().ToLowerInvariant())
+                .Col("nombre", "Nombre del set (Choice Scarf, Dragon Dance...).", d => d.DisplayName, (so, v, c) => so.FindProperty("displayName").stringValue = v)
+                .Col("puntuacion", "0-100: cuánto se usa (la IA elige con más peso los altos).", d => d.Score.ToString(),
+                    (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<CompetitiveSetData>.SetInt(so, "setScore", v, "puntuación", 0); })
+                .Col("objeto", "Objetos posibles separados por coma.", d => d.Items, (so, v, c) => SetOptions<ItemData>(so, "itemOptions", v, c, "El objeto"))
+                .Col("habilidad", "Habilidades posibles separadas por coma.", d => d.Abilities, (so, v, c) => SetOptions<AbilityData>(so, "abilityOptions", v, c, "La habilidad"))
+                .Col("naturaleza", "Naturalezas posibles separadas por coma.", d => d.Natures, (so, v, c) => SetOptions<NatureData>(so, "natureOptions", v, c, "La naturaleza"))
+                .Col("evs", "EVs: 252 Atq/4 DefE/252 Vel.", d => d.Evs, (so, v, c) => SetSpread(so, "evs", v, "EVs"))
+                .Col("ivs", "IVs distintos de 31: 0 Atq.", d => d.Ivs, (so, v, c) => SetSpread(so, "ivs", v, "IVs"))
+                .Col("movimientos", "4 huecos separados por /; alternativas de cada hueco separadas por coma.", d => d.Moves, (so, v, c) =>
+                {
+                    var slots = CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet.ParseSlots(v);
+                    if (slots.Count == 0) throw new CsvCellException("Un set necesita al menos un movimiento.");
+                    foreach (var m in slots.SelectMany(s => s))
+                        if (!c.Exists<MoveData>(m)) c.Warnings.Add($"El movimiento '{m}' aún no existe (el set lo saltará).");
+                    so.FindProperty("moveSlots").stringValue = CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet.FormatSlots(slots);
+                });
+
+        private static void SetOptions<T>(SerializedObject so, string field, string v, ImportContext c, string what) where T : ScriptableObject
+        {
+            var opts = CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet.ParseOptions(v);
+            foreach (var o in opts) if (!c.Exists<T>(o)) c.Warnings.Add($"{what} '{o}' aún no existe (el set lo saltará).");
+            so.FindProperty(field).stringValue = CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet.FormatOptions(opts);
+        }
+
+        private static void SetSpread(SerializedObject so, string field, string v, string what)
+        {
+            if (!CTEditor.GameDefinition.Domain.Stats.StatSpread.TryParse(v, out var s, out var error))
+                throw new CsvCellException($"{what} no válidos: {error}");
+            so.FindProperty(field).stringValue = s.Format(" / ");
         }
 
         // ---------------- Tipos ----------------
@@ -706,6 +750,10 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 .Col("megaevoluciona", "si / no: ¿puede megaevolucionar? (si las reglas tienen la Megaevolución y lleva megapiedra). Vacío = sí.",
                     d => d.CanMegaEvolve ? "si" : "no",
                     (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<TrainerData>.SetBool(so, "canMegaEvolve", v, "megaevoluciona"); })
+                .Col("formatos_sets", "Sets de competición: de qué formatos (ou,uu...). Vacío = de cualquiera.", d => d.SetFormats,
+                    (so, v, c) => so.FindProperty("setFormats").stringValue = (v ?? "").Trim().ToLowerInvariant())
+                .Col("moveset_cambiante", "si = otro set al azar en cada combate; no (vacío) = siempre el mismo.", d => d.VariableSets ? "si" : "no",
+                    (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<TrainerData>.SetBool(so, "variableSets", v, "moveset_cambiante"); })
                 .Col("movimientos_auto", "Miembros sin movimientos escritos: ia (según su IA), clasico (4 últimos), equilibrado, fuerte o competitivo.",
                     d => d.MovesetStyle == Domain.Trainers.MovesetStyle.Classic ? "clasico" : d.MovesetStyle == Domain.Trainers.MovesetStyle.Balanced ? "equilibrado"
                        : d.MovesetStyle == Domain.Trainers.MovesetStyle.Strong ? "fuerte"

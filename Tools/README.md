@@ -75,6 +75,19 @@ código («el pack manda»).
 
 Pokémon y sus nombres son marcas de Nintendo / Game Freak / The Pokémon Company: proyecto personal y educativo.
 
+## generar_sets.py — sets de competición de Smogon para cada pack
+
+```bash
+python3 Tools/verificar_pack/generar_sets.py            # Gen1 … Gen6
+python3 Tools/verificar_pack/generar_sets.py --gen 6
+```
+
+Escribe `Packs/GenN/sets.csv` con los sets de los análisis de Smogon (de https://pkmn.github.io/smogon, formatos de
+individuales OU, Ubers, UU, RU, NU, PU y LC que existan en esa generación) y una **puntuación** 0-100 sacada de sus
+estadísticas de uso (movimientos, objeto y habilidad). Los nombres se traducen a los ids del pack (por `nombre_en` o por
+el id); lo que no existe en el pack se quita y los sets de especies que no están se descartan (se cuenta al terminar).
+Hace falta haber generado antes los packs (usa sus nombres en inglés). Se descarga una vez a `Tools/.cache/smogon`.
+
 ## probar_dominio — compilar el dominio y pasar sus tests sin abrir Unity
 
 ```bash

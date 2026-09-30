@@ -141,10 +141,42 @@ namespace CTEditor.Adventure.Domain
             var style = trainer.AiSettings.Moveset != MovesetStyle.ByAi ? trainer.AiSettings.Moveset : profile.Moveset;
             for (int i = 0; i < trainer.Team.Count && team.Count < data.Ruleset.MaxPartySize; i++)
             {
-                var mon = Build(trainer.Team[i], new Id<MonsterInstance>($"t:{trainer.Id}:{i + 1}"), data, rng, problems, style, profile);
+                var spec = WithCompetitiveSet(trainer, i, data, profile, rng);
+                var mon = Build(spec, new Id<MonsterInstance>($"t:{trainer.Id}:{i + 1}"), data, rng, problems, style, profile);
                 if (mon != null) team.Add(mon);
             }
             return team;
+        }
+
+        /// <summary>
+        /// SETS DE COMPETICIÓN: si su IA los usa y el miembro no tiene movimientos escritos, se le aplica un set de su especie
+        /// (de los formatos del entrenador). MOVESET FIJO: el mismo set y alternativas en cada combate (azar con semilla del
+        /// entrenador y el hueco). CAMBIANTE: al azar en cada combate.
+        /// </summary>
+        public static TeamMemberSpec WithCompetitiveSet(TrainerDefinition trainer, int index, GameData data, AiProfile profile, IRng rng)
+        {
+            var spec = trainer.Team[index];
+            if (profile == null || !profile.UseCompetitiveSets || spec.Moves.Count > 0 || data.Sets.Count == 0) return spec;
+            var pick = trainer.VariableSets && rng != null ? rng : new HashRng($"{trainer.Id}:{index}");
+            var set = CompetitiveSet.Choose(data.Sets, spec.Species, trainer.SetFormats, pick);
+            return set == null ? spec : set.ApplyTo(spec, pick, data.Exists);
+        }
+
+        /// <summary>Azar con semilla fija por texto (siempre igual para el mismo entrenador y hueco).</summary>
+        private sealed class HashRng : IRng
+        {
+            private readonly Random _r;
+            public HashRng(string seed)
+            {
+                unchecked
+                {
+                    int h = 17;
+                    foreach (char c in seed ?? "") h = h * 31 + c;
+                    _r = new Random(h);
+                }
+            }
+            public int Next(int minInclusive, int maxExclusive) => maxExclusive <= minInclusive ? minInclusive : _r.Next(minInclusive, maxExclusive);
+            public float NextFloat() => (float)_r.NextDouble();
         }
 
         // Objeto equipado automático (Élite y Campeón): lo más útil que exista en el juego.
@@ -308,6 +340,9 @@ namespace CTEditor.Adventure.Domain
             public string HeldItem = "";
             /// <summary>EVs que le pondría su entrenamiento de competición (vacío si su nivel de IA no entrena).</summary>
             public StatSpread Evs = StatSpread.Empty;
+            /// <summary>Con sets de competición: el set usado («ou: Choice Scarf»), su habilidad y sus IVs.</summary>
+            public string SetName = "", AbilityId = "";
+            public StatSpread Ivs = StatSpread.Empty;
         }
 
         /// <summary>
@@ -315,11 +350,25 @@ namespace CTEditor.Adventure.Domain
         /// movimientos, objeto y naturaleza escritos, y devuelve lo que el juego elegiría. La naturaleza solo se sugiere si
         /// el nivel de IA entrena como en competición (si no, en el juego sale al azar). Null si la especie no existe.
         /// </summary>
-        public static MemberSuggestion Suggest(TeamMemberSpec spec, GameData data, AiProfile profile, MovesetStyle style)
+        public static MemberSuggestion Suggest(TeamMemberSpec spec, GameData data, AiProfile profile, MovesetStyle style,
+            IReadOnlyCollection<string> setFormats = null)
         {
             if (spec == null || data == null) return null;
             if (style == MovesetStyle.ByAi) style = profile?.Moveset ?? MovesetStyle.Classic;
             var blank = new TeamMemberSpec(spec.Species, spec.Level, null, "", null, spec.FixedIv, spec.Nickname, spec.Gender);
+            // Su IA usa sets de competición: el más usado de su especie (en los formatos pedidos).
+            var set = profile != null && profile.UseCompetitiveSets ? CompetitiveSet.Choose(data.Sets, spec.Species, setFormats, null) : null;
+            if (set != null)
+            {
+                var withSet = set.ApplyTo(blank, null, data.Exists);
+                var sm = Build(withSet, new Id<MonsterInstance>("sugerencia"), data, new FirstRng(), null, style, profile);
+                if (sm == null) return null;
+                return new MemberSuggestion
+                {
+                    Moves = sm.Moves.ToList(), NatureId = withSet.Nature?.Value ?? "", HeldItem = sm.HeldItem ?? "",
+                    Evs = withSet.Evs, Ivs = withSet.Ivs, AbilityId = withSet.Ability?.Value ?? "", SetName = $"{set.Format}: {set.Name}",
+                };
+            }
             var mon = Build(blank, new Id<MonsterInstance>("sugerencia"), data, new FirstRng(), null, style, profile);
             if (mon == null) return null;
             bool training = profile != null && profile.CompetitiveTraining;

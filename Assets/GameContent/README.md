@@ -166,6 +166,19 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
   los rellena para verlos y retocarlos. La vista previa enseña las estadísticas con esos EVs.
 - Excel (columna `equipo`): `especie@nivel…~naturaleza!habilidad(252 Atq/4 PS/252 Vel)#31(0 Vel)"mote"`.
 
+## Sets de competición (Smogon)
+- **Personajes → 🏆 Sets de competición**: sets de los análisis de Smogon (o tuyos) por especie y formato (OU, Ubers, UU,
+  RU, NU, PU, LC): movimientos en 4 huecos con alternativas, objeto/habilidad/naturaleza con alternativas, EVs e IVs, y
+  una **puntuación** (0-100) de cuánto se usa de verdad según las estadísticas de Smogon. Los packs traen `sets.csv`
+  (se importa con el pack; se regenera con `Tools/verificar_pack/generar_sets.py`).
+- Los entrenadores cuya IA tiene **«Usa sets de competición»** (por defecto Campeón, Maestro e Injusto; editable en cada
+  nivel de IA) arman a los miembros SIN movimientos escritos con un set de su especie, elegido al azar con más peso para
+  los más usados. Lo escrito a mano se respeta (objeto, naturaleza, EVs...).
+- En el entrenador: **«Formatos de sus sets»** (ou, uu...; vacío = todos) y **«Moveset cambiante»**: marcado, en cada
+  combate elige otro set y otras alternativas (nunca sabes qué llevará); desmarcado (FIJO), siempre el mismo.
+  **«🏆 Set de Smogon…»** (en entrenadores y equipos) elige un set por miembro con buscador de formato y lo guarda en la
+  ficha. «✨ Sugerir» con una IA que usa sets propone el más usado (con su habilidad e IVs).
+
 ## Importar y exportar equipos en formato Showdown
 - En el editor de **entrenadores** y en el de **equipos prearmados**: «📤 Exportar a Showdown» copia el equipo al
   portapapeles en el formato estándar (nombres en inglés) y «📥 Importar de Showdown…» abre una ventana para pegar un

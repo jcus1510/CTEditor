@@ -67,6 +67,7 @@ namespace CTEditor.GameDefinition.Editor
             ValidateStatuses(statuses, statusIds, issues);
             ValidateSpecies(species, issues);
             ValidateRulesets(rulesets, issues);
+            ValidateSets(issues);
             ValidateCharts(charts, issues);
 
             // Progresión y contenido nuevo (ContentValidator.Progression.cs).
@@ -187,6 +188,16 @@ namespace CTEditor.GameDefinition.Editor
                             issues.Add(Warning($"La especie '{Name(sp)}' tiene una estadística inventada sin id.", sp));
                 }
             }
+        }
+
+        // --- Sets de competición ---
+        private static void ValidateSets(List<ValidationIssue> issues)
+        {
+            var sets = LoadAll<CompetitiveSetData>();
+            CollectIds(sets, s => s.Id, "set de competición", issues);
+            foreach (var s in sets)
+                foreach (var p in SetsEditorWindow.Problems(s))
+                    issues.Add(Warning($"Set '{s.Id}': {p}", s));
         }
 
         // --- Rulesets ---
