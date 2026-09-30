@@ -1,0 +1,17 @@
+{
+    "name": "CTEditor.World.Domain",
+    "rootNamespace": "CTEditor.World.Domain",
+    "references": [
+        "CTEditor.SharedKernel",
+        "CTEditor.Art.Domain"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

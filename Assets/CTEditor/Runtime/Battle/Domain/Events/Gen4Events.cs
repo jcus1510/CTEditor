@@ -149,4 +149,18 @@ namespace CTEditor.Battle.Domain.Events
         public MegaEvolvedEvent(Id<BattleParticipant> combatant, string formId, string formName, string stoneId)
         { Combatant = combatant; FormId = formId ?? ""; FormName = formName ?? ""; StoneId = stoneId ?? ""; }
     }
+
+    /// <summary>MOVIMIENTO Z: «¡Pikachu libera todo su poder Z! ¡Gigarrayo Fulminante!».</summary>
+    public sealed class ZMoveUsedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        /// <summary>The move it was based on.</summary>
+        public Id<Move> BaseMove { get; }
+        /// <summary>The Z move used (the base move itself for status moves).</summary>
+        public Id<Move> ZMove { get; }
+        /// <summary>The Z crystal that made it possible.</summary>
+        public string CrystalId { get; }
+        public ZMoveUsedEvent(Id<BattleParticipant> combatant, Id<Move> baseMove, Id<Move> zMove, string crystalId)
+        { Combatant = combatant; BaseMove = baseMove; ZMove = zMove; CrystalId = crystalId ?? ""; }
+    }
 }

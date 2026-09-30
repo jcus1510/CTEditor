@@ -85,8 +85,9 @@ namespace CTEditor.GameDefinition.Domain.Trainers
             string trainerClass = "", TrainerAi ai = TrainerAi.Smart, int baseMoney = 20,
             string introLine = "", string defeatLine = "", string victoryLine = "", TrainerAiSettings aiSettings = null,
             int aiLevel = 0, string aiProfileId = "", bool canMegaEvolve = true,
-            IEnumerable<string> setFormats = null, bool variableSets = false)
+            IEnumerable<string> setFormats = null, bool variableSets = false, bool canUseZMoves = true)
         {
+            CanUseZMoves = canUseZMoves;
             SetFormats = (setFormats ?? Array.Empty<string>()).Where(f => !string.IsNullOrWhiteSpace(f)).Select(f => f.Trim().ToLowerInvariant()).Distinct().ToList();
             VariableSets = variableSets;
             CanMegaEvolve = canMegaEvolve;
@@ -116,6 +117,9 @@ namespace CTEditor.GameDefinition.Domain.Trainers
 
         /// <summary>¿Puede megaevolucionar? (si las reglas tienen la mecánica y un miembro lleva su megapiedra). Por defecto, sí.</summary>
         public bool CanMegaEvolve { get; }
+
+        /// <summary>¿Puede usar movimientos Z? (si las reglas tienen la mecánica y un miembro lleva su cristal Z). Por defecto, sí.</summary>
+        public bool CanUseZMoves { get; }
 
         /// <summary>"Cazabichos Pepe" (o solo el nombre si no tiene clase).</summary>
         public string FullName => string.IsNullOrWhiteSpace(TrainerClass) ? DisplayName : TrainerClass + " " + DisplayName;

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: awakening
   displayName: Despertar
+  englishName: Awakening
   description: Despierta.
   category: 2
   icon: {fileID: 0}
@@ -21,21 +22,15 @@ MonoBehaviour:
   usableInBattle: 1
   usableOutsideBattle: 1
   consumable: 1
-  healHp: 0
-  healPercent: 0
-  curesAllStatus: 0
-  curesStatusId: sleep
-  revives: 0
-  reviveHpPercent: 50
-  restorePp: 0
-  restorePpAllMoves: 0
-  friendshipChange: 0
-  catchMultiplier: 0
-  battleStatId: 
-  battleStages: 0
-  heldPowerModifiers: []
-  heldEndOfTurnHealPercent: 0
-  heldTriggerHpPercent: 0
-  heldTriggerHealHp: 0
-  heldTriggerHealPercent: 0
-  heldConsumedOnTrigger: 1
+  isBerry: 0
+  effects:
+  - trigger: 0
+    conditions: []
+    action: 4
+    target: 0
+    reference: sleep
+    amount: 0
+    threshold: 0
+    consumes: 0
+    chance: 100
+    maxPerBattle: 0

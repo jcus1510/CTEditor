@@ -1,0 +1,69 @@
+# 20 · La aplicación CTEditor
+
+`Assets/CTEditor/App` — el editor como **programa propio** (hecho con Unity, UI Toolkit en tiempo de ejecución), no
+como ventanas del editor de Unity. Plan completo y decisiones: [PROPUESTA_APLICACION](PROPUESTA_APLICACION.md).
+
+## Cómo abrirla
+
+- En Unity: **CTEditor → Aplicación → Abrir la aplicación (Play)**. La primera vez crea la escena
+  `Assets/CTEditor/App/Scenes/Aplicacion.unity` (un objeto con `AppRoot`; lo demás se crea por código) y la pone la
+  primera en Build Settings.
+- Compilada para Windows (Build Settings → la escena de la aplicación): arranca **a pantalla completa con la resolución
+  del monitor**; F11 cambia a ventana.
+- El entorno de trabajo de cada usuario se guarda en `Application.persistentDataPath/entorno.json` (menú CTEditor →
+  Aplicación → Abrir la carpeta del entorno de trabajo).
+
+## Qué hay (fases 2, 3 y 4)
+
+| Pieza | Archivo | Qué hace |
+|---|---|---|
+| Entrada | `AppRoot.cs` | Pantalla completa a resolución nativa, panel de UI Toolkit con la escala del usuario × la de Windows (ppp), cámara y EventSystem (Input System) si faltan, F11/F5/Ctrl+S aunque nada tenga el foco. |
+| Ventana | `AppShell.cs` | UNA ventana con capas: pantalla (inicio o mesa de trabajo), diálogos, menús, arrastre y avisos emergentes. Proyecto abierto, entorno, registro de avisos, atajos (`ShortcutMap`), Ctrl + rueda = escala, vigilancia de «graficos/». |
+| Inicio | `StartScreen.cs` | Nuevo proyecto (nombre, carpeta, **tamaño de tile: 32 px por defecto**, 16, 48, 24 u otro; pantalla 512 × 384) y abrir (buscar o recientes). Avisa si la carpeta es un proyecto de RPG Maker XP / Essentials (importación: fase 9). |
+| Menús | `MenuBar.cs` | Proyecto, Ver (paneles, distribuciones), Entorno (temas, escala, pantalla completa, personalizar), Jugar, Ayuda. Con un menú abierto, pasar por otro título lo abre. |
+| Paneles | `DockView.cs` | Dibuja `DockLayout`: **separadores que se arrastran** (doble clic = mitad y mitad), **pestañas que se arrastran** a otro grupo o a un lado (marca azul de dónde caerá), × y clic central cierran, «+» abre un panel cerrado. El contenido de cada panel se conserva al reordenar. |
+| Recursos | `Panels/AssetsPanel.cs` | Imágenes de «graficos/» por tipo, miniatura, tamaño, cortada o no; buscar, filtrar por tipo, importar un PNG (elige el tipo y abre el corte), recargar, abrir la carpeta. Se actualiza sola si cambias un archivo desde fuera. |
+| Corte | `SliceWizard.cs` | Imagen con rejilla, zoom (Alt + rueda), tamaño (cuadrado o no), desplazamiento, separación, sugerencias, vacíos (azul) y repetidos (naranja), información del tile bajo el ratón, resumen y avisos. Personajes: plantilla XP 4×4 o VX/MV 3×4, nombre de cada fila y **vista previa andando** en las 4 direcciones. Guarda `imagen.corte.json` conservando las propiedades de tile. |
+| Explorador | `FolderBrowser.cs` | Elegir carpeta o archivo dentro de la aplicación (no hay diálogo nativo): accesos, unidades, subir, ruta a mano, nueva carpeta; marca los proyectos de CTEditor. |
+| Entorno | `SettingsDialog.cs` | Tema y cada color, escala y letra, pantalla completa, distribuciones (de fábrica y propias) y atajos. |
+| Estilo | `Ui.cs`, `Textures.cs` | Controles con el tema aplicado en código (sin hojas de estilo aparte); texturas nítidas, tiras para imágenes muy altas, miniaturas reducidas en memoria. |
+| Registro de paneles | `Panels/PanelRegistry.cs` | `PanelRegistry.Register(id, fábrica)`: cada panel se registra; un módulo nuevo añade el suyo sin tocar nada. Eventos (fase 7) y Base de datos (fase 10) aún explican cuándo llegan. |
+| Mapas | `Panels/MapTreePanel.cs` | Árbol de mapas como RPG Maker: nuevo mapa (nombre, 20 × 15 por defecto, tileset, dónde), abrir, cambiar el nombre (doble clic), mover dentro de otro o a la raíz, borrar; marca el mapa de inicio y los que no se han guardado (*). |
+| Mapa | `Panels/MapPanel.cs` | El mapa con el **mismo renderizador que el juego** (Tilemap de Unity en una textura). Herramientas: lápiz (con sello de varios tiles), rectángulo, relleno, goma, cuentagotas, inicio del jugador. Clic derecho = coger tiles del mapa; botón central o Alt = mover; rueda = zoom al ratón; Ctrl + clic = retocar ese tile. Rejilla, capa activa, atenuar las demás, «Probar aquí». |
+| Tiles | `Panels/TilesPanel.cs` | Paleta del tileset (clic o arrastrar = sello) y **propiedades pintadas encima** como en RPG Maker XP: paso (centro = todo, borde = un lado), prioridad 0-5, terreno (hierba, agua…), arbusto, mostrador. Arrastrar aplica a varios; se deshace con Ctrl+Z. |
+| Capas | `Panels/MapTreePanel.cs` (`LayersPanel`) | Capas de arriba abajo: ver, bloquear, opacidad, añadir, quitar, subir, bajar, cambiar el nombre. |
+| Propiedades | `Panels/InspectorPanel.cs` | Nombre, tamaño con ancla (por dónde crece), tileset, música, bici, exterior; inicio del jugador y su hoja de personaje. |
+| Retoque | `Panels/RetouchPanel.cs` | Editor de píxeles: lápiz, goma, relleno, línea, rectángulo (borde o relleno), cuentagotas, reemplazar color; grosor; colores principal/secundario, código, paleta de la imagen o del tile, recientes; rejilla de píxeles y de tiles; **modo tile** con vista 3 × 3; guardar (el mapa y el juego se actualizan solos). |
+| Juego | `Play/PlayScreen.cs` | **▶ Jugar (F5) / Probar aquí (Ctrl+F5)**: el jugador anda con las reglas de paso de RPG Maker XP, animado con su hoja de personaje; cámara que le sigue; resolución del proyecto ampliada en múltiplos exactos; recarga los gráficos si cambian; F9 depurador (casilla, terreno, lados libres, atravesar paredes); Esc vuelve al editor tal como estaba. |
+| Dibujo | `Rendering/MapRenderer.cs`, `Rendering/TilesetAtlas.cs` | Cada capa = dos tilemaps (debajo / encima del jugador según la prioridad del tile); cámara propia en su capa de Unity; tiras para tilesets muy altos. |
+
+## Cómo se hace un mapa (flujo)
+
+1. **Recursos** → Importar (o copiar) el tileset en `graficos/tilesets` → **Cortar** (32 px).
+2. **Mapas** → Nuevo mapa (elige el tileset).
+3. **Tiles** → elige un tile o un bloque → pinta en **Mapa** (B lápiz, U rectángulo, G relleno, E goma, I cuentagotas).
+4. **Tiles** → modo Paso / Prioridad / Terreno para decir por dónde se pasa, qué va encima del jugador y dónde hay hierba.
+5. **Propiedades** → Colocar el inicio → **Jugar (F5)**. Esc para volver. Todo se guarda solo.
+
+## Reglas
+
+- **Una sola ventana**: una aplicación de Unity en Windows no abre ventanas nativas sueltas; los paneles se acoplan,
+  se redimensionan y los diálogos flotan dentro de la ventana.
+- **Sin emoji ni símbolos raros** en los textos: la fuente de UI Toolkit puede no tenerlos (se verían cuadrados).
+  Usar letras, `×`, `·`, `«»`, `—`, `•`.
+- La lógica (corte, JSON, proyecto, paneles, atajos) vive en los dominios puros (`Art`, `Project`, `Workspace`) con
+  tests; la aplicación solo dibuja y reenvía clics.
+- Solo APIs de UI Toolkit que ya existían en Unity 2021.3 (sin `IntegerField` ni `Painter2D`): así se puede compilar sin
+  Unity. Para números, `Ui.NumberBox`.
+
+## Verificar sin Unity
+
+`dotnet build Tools/compilar_app` compila la aplicación y sus dominios contra las DLL de Unity 2021.3 (NuGet
+`UnityEngine.Modules`). El código del Input System va entre `#if CTEDITOR_INPUT_SYSTEM` y `App/Editor` no se incluye
+(usa UnityEditor). **Lo visual hay que probarlo en Unity.**
+
+## Exportar el juego (decidido, pendiente)
+
+Vía principal **motor listo + datos**: el motor del juego se compila con Unity una vez por plataforma y la aplicación
+lo copia junto a los datos empaquetados (**un archivo, cifrado opcional**), con el nombre y el icono del juego.
+**Windows primero**. Después, **Exportar a proyecto Unity** para profesionales (consolas, código propio). Ver la propuesta.

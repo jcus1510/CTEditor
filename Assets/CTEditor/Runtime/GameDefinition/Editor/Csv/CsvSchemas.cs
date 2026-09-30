@@ -179,7 +179,10 @@ namespace CTEditor.GameDefinition.Editor.Csv
                         ConditionText.WriteAll(so.FindProperty("requirements"), conds);
                     }, false)
                 .Col("efectos", "estado:burn@10 | drenar:50 | retroceso:33 | retroceso_ps:25 | curar:50 | curar_rival:50 | curar_estado | clima:rain | stat:attack:-1 | stat_propio:speed:+2 | amedrentar@30 · condiciones: [si rival.vida<50] · mismo dado que el anterior: &efecto",
-                    d => CsvCodecs.FormatEffects(ReadEffects(d)), WriteEffects)
+                    d => CsvCodecs.FormatEffects(ReadEffects(d.SecondaryEffects)), (so, v, c) => WriteEffects(so, v, c, "secondaryEffects"))
+                .Col("efecto_z", "Solo movimientos de ESTADO: efecto extra si se usa como movimiento Z (mismo formato que «efectos»). " +
+                    "Ej.: stat_propio:defense:+1 (Gruñido Z) · reiniciar_etapas (Danza Espada Z) · curar:100.",
+                    d => CsvCodecs.FormatEffects(ReadEffects(d.ZEffects)), (so, v, c) => WriteEffects(so, v, c, "zEffects"))
                 .Col("tipo_clima", "Tipo según el clima (Meteorobola): rain:water | sun:fire | hail:ice | sandstorm:rock. Vacío = siempre el suyo.",
                     d => string.Join("|", d.TypeByWeather.Where(t => t != null && t.type != null).Select(t => t.weatherId + ":" + t.type.Id)),
                     (so, v, c) =>
@@ -202,8 +205,8 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 .Col("animacion", "Segundos de animación (solo presentación).", d => CsvTable.Number(d.AnimationSeconds),
                     (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<MoveData>.SetFloat(so, "animationSeconds", v, "animación"); });
 
-        private static IEnumerable<ParsedEffect> ReadEffects(MoveData d)
-            => (d.SecondaryEffects ?? new MoveData.MoveEffectData[0]).Where(e => e != null).Select(e => new ParsedEffect
+        private static IEnumerable<ParsedEffect> ReadEffects(MoveData.MoveEffectData[] list)
+            => (list ?? new MoveData.MoveEffectData[0]).Where(e => e != null).Select(e => new ParsedEffect
             {
                 Kind = e.kind, Target = e.target, Chance = e.chancePercent, Status = e.statusId,
                 Amount = e.amountPercent, Stat = e.statStatId, Stages = e.statStages,
@@ -212,10 +215,10 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 Turns = e.turns, Side = e.sideConditionId, TypeId = e.typeId, Text = e.text
             });
 
-        private static void WriteEffects(SerializedObject so, string cell, ImportContext ctx)
+        private static void WriteEffects(SerializedObject so, string cell, ImportContext ctx, string field)
         {
             var effects = CsvCodecs.ParseEffects(cell);
-            var arr = so.FindProperty("secondaryEffects");
+            var arr = so.FindProperty(field);
             arr.arraySize = effects.Count;
             for (int i = 0; i < effects.Count; i++)
             {
@@ -284,87 +287,23 @@ namespace CTEditor.GameDefinition.Editor.Csv
             return schema;
         }
 
-        // ---------------- Habilidades: automático + columnas de potencia ----------------
+        // ---------------- Habilidades: automático + columna de efectos ----------------
 
         public static CsvSchema Abilities()
         {
             var schema = new CsvReflectiveSchema<AbilityData>("habilidades.csv", "Habilidades", ContentFolders.Abilities, 30);
-            schema.Col("potencia_al_atacar", "Ej.: x1,5 [si mov.potencia<=60] | x1,2 [si mov.etiqueta=puño]",
-                    d => ReadMods(d.OffensivePowerModifiers), (so, v, c) => WriteMods(so, "offensivePowerModifiers", v))
-                  .Col("potencia_al_recibir", "Ej.: x0,5 [si mov.contacto]  ('propio' = quien tiene la habilidad)",
-                    d => ReadMods(d.DefensivePowerModifiers), (so, v, c) => WriteMods(so, "defensivePowerModifiers", v))
-                  // 3.ª y 4.ª gen.: listas con condiciones (no caben en el formato automático).
-                  .Col("precision_mod", "Precisión de SUS movimientos. Ej.: x1,3 (Ojo Compuesto) | x0,8 [si mov.categoria=fisico] (Entusiasmo)",
-                    d => ReadMods(d.AccuracyModifiers), (so, v, c) => WriteMods(so, "accuracyModifiers", v))
-                  .Col("evasion_mod", "Precisión de los que le atacan. Ej.: x0,8 [si clima=sandstorm] (Velo Arena)",
-                    d => ReadMods(d.EvasionModifiers), (so, v, c) => WriteMods(so, "evasionModifiers", v))
-                  .Col("stats_condicionales", "Ej.: speed:x2 [si clima=sun] | attack:x0,5 [si propio.turnos_campo<5]",
-                    d => ReadStatMods(d.ConditionalStats), (so, v, c) => WriteStatMods(so, v))
-                  .Col("al_recibir_golpe", "Ej.: attack:+1 [si mov.tipo=dark] (Justiciero)",
-                    d => ReadOnHit(d.OnHitStats), (so, v, c) => WriteOnHit(so, v));
+            schema.Col("efectos", "Lo que hace la habilidad, bloques separados por |. Formato: cuándo [si condiciones]: acción valores; opciones. " +
+                    "Ej.: al_entrar: etapa attack -1; al_rival | siempre [si mov.tipo=fire & propio.vida<=33]: daño x1,5 | " +
+                    "contacto: poner_estado paralysis; al_rival; prob=30 | siempre: rastro. Opciones: al_rival, prob=N, veces=N.",
+                    d => EffectText.Format(ItemEffectsEditing.Blocks(d)),
+                    (so, v, c) =>
+                    {
+                        List<EffectBlock> blocks;
+                        try { blocks = EffectText.Parse(v); }
+                        catch (FormatException e) { throw new CsvCellException(e.Message); }
+                        ItemEffectsEditing.SetBlocks(so, blocks);
+                    });
             return schema;
-        }
-
-        // "stat:x2 [si ...] | stat:x0,5" <-> ConditionalStatData[]
-        private static string ReadStatMods(AbilityData.ConditionalStatData[] list)
-            => string.Join(" | ", (list ?? new AbilityData.ConditionalStatData[0]).Where(m => m != null).Select(m =>
-                m.statId + ":" + ReadMods(new[] { new PowerModifierData { multiplier = m.multiplier, conditions = m.conditions } })));
-
-        internal static void WriteStatMods(SerializedObject so, string cell, string field = "conditionalStats")
-        {
-            var parts = CsvCodecs.SplitList(cell);
-            var prop = so.FindProperty(field);
-            prop.arraySize = parts.Count;
-            for (int i = 0; i < parts.Count; i++)
-            {
-                string raw = parts[i].Trim();
-                int colon = raw.IndexOf(':');
-                if (colon <= 0) throw new CsvCellException($"'{raw}': usa stat:xN [si condición] (ej. speed:x2 [si clima=sun]).");
-                List<(float, Condition[])> mods;
-                try { mods = ConditionText.ParseModifiers(raw.Substring(colon + 1)); }
-                catch (FormatException e) { throw new CsvCellException(e.Message); }
-                if (mods.Count != 1) throw new CsvCellException($"'{raw}': un multiplicador por stat.");
-                var el = prop.GetArrayElementAtIndex(i);
-                el.FindPropertyRelative("statId").stringValue = raw.Substring(0, colon).Trim();
-                el.FindPropertyRelative("multiplier").floatValue = mods[0].Item1;
-                ConditionText.WriteAll(el.FindPropertyRelative("conditions"), mods[0].Item2);
-            }
-        }
-
-        // "attack:+1 [si mov.tipo=dark]" <-> OnHitStatData[]
-        private static string ReadOnHit(AbilityData.OnHitStatData[] list)
-            => string.Join(" | ", (list ?? new AbilityData.OnHitStatData[0]).Where(m => m != null).Select(m =>
-            {
-                var conds = (m.conditions ?? new ConditionData[0]).Where(c => c != null).Select(ConditionText.FromData).ToList();
-                return m.statId + ":" + (m.stages > 0 ? "+" : "") + m.stages + (conds.Count > 0 ? " [si " + ConditionText.FormatAll(conds) + "]" : "");
-            }));
-
-        internal static void WriteOnHit(SerializedObject so, string cell, string field = "onHitStats")
-        {
-            var parts = CsvCodecs.SplitList(cell);
-            var prop = so.FindProperty(field);
-            prop.arraySize = parts.Count;
-            for (int i = 0; i < parts.Count; i++)
-            {
-                string raw = parts[i].Trim();
-                var conds = new List<Condition>();
-                int br = raw.IndexOf('[');
-                if (br >= 0)
-                {
-                    int close = raw.LastIndexOf(']');
-                    if (close < br) throw new CsvCellException($"'{raw}': falta cerrar el corchete ].");
-                    try { conds = ConditionText.ParseAll(raw.Substring(br + 1, close - br - 1)); }
-                    catch (FormatException e) { throw new CsvCellException(e.Message); }
-                    raw = raw.Substring(0, br).Trim();
-                }
-                var p = raw.Split(':');
-                if (p.Length != 2 || !CsvTable.TryInt(p[1].Replace("+", "").Trim(), out int stages))
-                    throw new CsvCellException($"'{parts[i]}': usa stat:etapas [si condición] (ej. attack:+1 [si mov.tipo=dark]).");
-                var el = prop.GetArrayElementAtIndex(i);
-                el.FindPropertyRelative("statId").stringValue = p[0].Trim();
-                el.FindPropertyRelative("stages").intValue = stages;
-                ConditionText.WriteAll(el.FindPropertyRelative("conditions"), conds);
-            }
         }
 
         // ---------------- Especies ----------------
@@ -755,6 +694,9 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 .Col("megaevoluciona", "si / no: ¿puede megaevolucionar? (si las reglas tienen la Megaevolución y lleva megapiedra). Vacío = sí.",
                     d => d.CanMegaEvolve ? "si" : "no",
                     (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<TrainerData>.SetBool(so, "canMegaEvolve", v, "megaevoluciona"); })
+                .Col("usa_z", "si / no: ¿puede usar movimientos Z? (si las reglas los tienen y lleva cristal Z). Vacío = sí.",
+                    d => d.CanUseZMoves ? "si" : "no",
+                    (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<TrainerData>.SetBool(so, "canUseZMoves", v, "usa_z"); })
                 .Col("formatos_sets", "Sets de competición: de qué formatos (ou,uu...). Vacío = de cualquiera.", d => d.SetFormats,
                     (so, v, c) => so.FindProperty("setFormats").stringValue = (v ?? "").Trim().ToLowerInvariant())
                 .Col("moveset_cambiante", "si = otro set al azar en cada combate; no (vacío) = siempre el mismo.", d => d.VariableSets ? "si" : "no",

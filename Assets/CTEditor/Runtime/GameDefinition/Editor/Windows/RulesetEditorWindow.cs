@@ -95,23 +95,28 @@ namespace CTEditor.GameDefinition.Editor
 
         /// <summary>
         /// La plantilla COMPLETA de una generación (0 = moderno) lista para aplicar a unas reglas: sus perillas, sus críticos y,
-        /// fiel a la generación, la Megaevolución solo en la 6.ª y la 7.ª («Moderno» no toca las mecánicas). Crea la ficha de
-        /// Megaevolución si hace falta. La usan este editor y el asistente «Cambiar de generación».
+        /// fiel a la generación, la Megaevolución solo en la 6.ª y la 7.ª y los movimientos Z solo en la 7.ª («Moderno» no toca
+        /// las mecánicas). Crea las fichas de mecánica si hacen falta. La usan este editor y el asistente «Cambiar de generación».
         /// </summary>
         public static Action<SerializedObject> GenerationPreset(int gen)
         {
-            List<MechanicData> Megas() => ContentAssets.LoadAll<MechanicData>()
-                .Where(m => !string.IsNullOrWhiteSpace(m.Id) && m.Kind == CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind.MegaEvolution).ToList();
-            var megas = Megas();
-            bool withMega = gen == 6 || gen == 7;
-            if (withMega && megas.Count == 0) { MechanicEditorWindow.CreateClassicSet(); megas = Megas(); }
+            List<MechanicData> Of(CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind k) => ContentAssets.LoadAll<MechanicData>()
+                .Where(m => !string.IsNullOrWhiteSpace(m.Id) && m.Kind == k).ToList();
+            const CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind Mega = CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind.MegaEvolution;
+            const CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind Z = CTEditor.GameDefinition.Domain.Rules.Mechanics.MechanicKind.ZMove;
+            bool withMega = gen == 6 || gen == 7, withZ = gen == 7;
+            if ((withMega && Of(Mega).Count == 0) || (withZ && Of(Z).Count == 0)) MechanicEditorWindow.CreateClassicSet();
+            var megas = Of(Mega);
+            var zs = Of(Z);
             return so =>
             {
                 ApplyGeneration(so, GenerationRules.ForGeneration(gen));
                 if (gen == 0) return;
-                foreach (var m in megas) MechanicEditorWindow.SetActive(so, m.Id, false);
+                foreach (var m in megas.Concat(zs)) MechanicEditorWindow.SetActive(so, m.Id, false);
                 if (withMega && megas.Count > 0)
                     MechanicEditorWindow.SetActive(so, (megas.FirstOrDefault(m => m.Id == "mega_evolution") ?? megas[0]).Id, true);
+                if (withZ && zs.Count > 0)
+                    MechanicEditorWindow.SetActive(so, (zs.FirstOrDefault(m => m.Id == "z_moves") ?? zs[0]).Id, true);
             };
         }
 
@@ -147,7 +152,7 @@ namespace CTEditor.GameDefinition.Editor
             {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField("No hay fichas de mecánica.", EditorStyles.miniLabel);
-                if (GUILayout.Button("💎 Crear la Megaevolución oficial", GUILayout.Width(220))) MechanicEditorWindow.CreateClassicSet();
+                if (GUILayout.Button("💎 Crear la Megaevolución y los Z oficiales", GUILayout.Width(260))) MechanicEditorWindow.CreateClassicSet();
                 EditorGUILayout.EndHorizontal();
             }
             foreach (var m in all)

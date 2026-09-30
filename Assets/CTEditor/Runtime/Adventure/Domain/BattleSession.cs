@@ -210,6 +210,31 @@ namespace CTEditor.Adventure.Domain
             }
         }
 
+        /// <summary>¿Puede el jugador usar ALGÚN movimiento como movimiento Z este turno? (para el botón de la interfaz).</summary>
+        public bool CanPlayerZMove => WhyNoZMove(-1) == null;
+
+        /// <summary>¿Puede usar el movimiento del hueco 'moveIndex' como Z? (-1 = cualquiera).</summary>
+        public bool CanPlayerZMoveWith(int moveIndex) => WhyNoZMove(moveIndex) == null;
+
+        /// <summary>Por qué no puede usar un movimiento Z (null = sí puede). 'moveIndex' -1 = con cualquier movimiento.</summary>
+        public string WhyNoZMove(int moveIndex)
+        {
+            if (Phase != SessionPhase.ChooseAction || Battle.IsOver) return "Ahora no.";
+            var mech = Resolver.ZMechanic;
+            if (mech == null) return "En este juego no hay movimientos Z.";
+            var active = Battle.Player;
+            bool can = moveIndex < 0 ? Resolver.CanZMove(Battle, true)
+                : moveIndex < active.Moves.Count && Resolver.CanZMove(Battle, true, active.Moves[moveIndex]);
+            if (!can)
+                return Battle.ZMovesUsed(true) > 0 && !mech.Z.HasUsesLeft(Battle.ZMovesUsed(true))
+                    ? "Ya has usado tu movimiento Z en este combate."
+                    : $"{NameOf(active.Id)} no lleva un cristal Z para {(moveIndex < 0 ? "sus movimientos" : "ese movimiento")}.";
+            string key = mech.Z.RequiredKeyItem;
+            if (key.Length > 0 && !Save.Bag.Has(key))
+                return $"Necesitas {(Data.TryGetItem(key, out var it) ? it.DisplayName : key)} para usar movimientos Z.";
+            return null;
+        }
+
         public SessionStep Submit(PlayerChoice choice)
         {
             if (Phase != SessionPhase.ChooseAction) return SessionStep.Rejected("Ahora no toca elegir una acción.");
@@ -360,7 +385,8 @@ namespace CTEditor.Adventure.Domain
                     { reason = $"¡{NameOf(active.Id)} tiene que repetir {Data.MoveName(active.EncoreMove.Value)}!"; return false; }
                     if (active.IsDisabled(picked)) { reason = $"¡{Data.MoveName(picked)} está anulado!"; return false; }
                     if (f.MegaEvolve && !CanPlayerMegaEvolve) { reason = WhyNoMega ?? "No puede megaevolucionar."; return false; }
-                    action = new UseMove(picked, f.MegaEvolve);
+                    if (f.ZMove && !CanPlayerZMoveWith(f.MoveIndex)) { reason = WhyNoZMove(f.MoveIndex) ?? "No puede usar un movimiento Z."; return false; }
+                    action = new UseMove(picked, f.MegaEvolve, f.ZMove);
                     return true;
                 }
 

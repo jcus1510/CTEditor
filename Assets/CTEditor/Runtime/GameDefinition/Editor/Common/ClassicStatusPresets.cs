@@ -27,6 +27,8 @@ namespace CTEditor.GameDefinition.Editor
             ("imprison", "Cerca"), ("ingrain", "Arraigo"), ("aqua_ring", "Acua Aro"), ("cant_escape", "Sin escapatoria"),
             // Lote F: 5.ª y 6.ª generación.
             ("kings_shield", "Escudo Real"), ("spiky_shield", "Barrera Espinosa"), ("smacked_down", "Derribado"), ("fairy_lock", "Cerrojo Feérico"),
+            // 7.ª generación.
+            ("baneful_bunker", "Búnker"),
         };
 
         // 5.ª y 6.ª gen.: protecciones con castigo y otros volátiles nuevos.
@@ -39,6 +41,7 @@ namespace CTEditor.GameDefinition.Editor
                 case "spiky_shield": name = "Barrera Espinosa"; break;
                 case "smacked_down": name = "Derribado"; break;
                 case "fairy_lock": name = "Cerrojo Feérico"; break;
+                case "baneful_bunker": name = "Búnker"; break;
                 default: return false;
             }
             // Base: un volátil «vacío» (se reutiliza el relleno de la 4.ª gen. con Sin escapatoria y se ajusta).
@@ -50,13 +53,14 @@ namespace CTEditor.GameDefinition.Editor
             S("displayName", name);
             B("preventsSwitch", kind == "fairy_lock");
             I("durationTurns", kind == "fairy_lock" ? 2 : kind == "smacked_down" ? 0 : 1);
-            bool shield = kind == "kings_shield" || kind == "spiky_shield";
+            bool shield = kind == "kings_shield" || kind == "spiky_shield" || kind == "baneful_bunker";
             B("blocksIncomingMoves", shield); B("harderWhenRepeated", shield);
             // Escudo Real: solo para ataques con daño; quien le toca pierde 2 de Ataque. Barrera Espinosa: 1/8 de PS.
             B("protectOnlyDamaging", kind == "kings_shield");
             S("protectContactStat", kind == "kings_shield" ? "attack" : "");
             I("protectContactStages", kind == "kings_shield" ? -2 : 0);
             F("protectContactDamagePercent", kind == "spiky_shield" ? 12.5f : 0f);
+            S("protectContactStatus", kind == "baneful_bunker" ? "poison" : "");   // Búnker: envenena a quien le toca
             B("grounded", kind == "smacked_down");   // Antiaéreo / Mil Flechas: le afecta Tierra aunque vuele
             return true;
         }
@@ -68,6 +72,7 @@ namespace CTEditor.GameDefinition.Editor
             var b = so.FindProperty("protectContactStat"); if (b != null) b.stringValue = "";
             var c = so.FindProperty("protectContactStages"); if (c != null) c.intValue = 0;
             var d = so.FindProperty("protectContactDamagePercent"); if (d != null) d.floatValue = 0f;
+            var e = so.FindProperty("protectContactStatus"); if (e != null) e.stringValue = "";
         }
 
         /// <summary>
@@ -162,7 +167,7 @@ namespace CTEditor.GameDefinition.Editor
         /// <summary>¿Es volátil en la plantilla clásica? (se usa también para avisar si una ficha antigua no lo está).</summary>
         public static bool IsClassicVolatile(string id)
             => id == "confusion" || id == "drowsy" || id == "trapped" || id == "leech_seed" || id == "protect" || id == "endure"
-               || Gen4.ContainsKey(id) || id == "kings_shield" || id == "spiky_shield" || id == "smacked_down" || id == "fairy_lock";
+               || Gen4.ContainsKey(id) || id == "kings_shield" || id == "spiky_shield" || id == "smacked_down" || id == "fairy_lock" || id == "baneful_bunker";
 
         /// <summary>Rellena los campos de comportamiento de un estado según la plantilla (no toca el id).</summary>
         public static bool Fill(SerializedObject so, string kind)

@@ -5,7 +5,7 @@ using CTEditor.GameDefinition.Domain.Effects;
 namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
 {
     /// <summary>
-    /// One EFFECT BLOCK as the author edits it: «when [trigger], if [conditions], then [action]». Items (and later abilities)
+    /// One EFFECT BLOCK as the author edits it: «when [trigger], if [conditions], then [action]». Items and abilities
     /// keep a list of these. The editor shows each field only when the action needs it (see EffectAction).
     /// </summary>
     [Serializable]

@@ -1,0 +1,1302 @@
+﻿id;especie;formato;nombre;puntuacion;objeto;habilidad;naturaleza;evs;ivs;movimientos
+gardevoir_ou_1;gardevoir;ou;Offensive Support;58;gardevoirite;trace;timid;252 AtqE/4 DefE/252 Vel;;will_o_wisp,healing_wish/psyshock/hyper_voice/focus_blast
+magnezone_ou_1;magnezone;ou;Substitute Z;46;electrium_z,steelium_z;;modest,timid;4 Def/252 AtqE/252 Vel;;substitute/thunderbolt/flash_cannon/hidden_power
+magnezone_ou_2;magnezone;ou;Choice Scarf;60;choice_scarf;;timid;4 PS/4 Def/248 AtqE/252 Vel;;thunderbolt/hidden_power/flash_cannon/volt_switch
+magnezone_ou_3;magnezone;ou;Choice Specs;59;choice_specs;;modest;4 PS/252 AtqE/252 Vel;;thunderbolt/hidden_power/flash_cannon/volt_switch
+gallade_ou_1;gallade;ou;Swords Dance;69;galladite;justified;jolly;252 Atq/4 Def/252 Vel;;swords_dance/close_combat/zen_headbutt/knock_off
+heatran_ou_1;heatran;ou;Specially Defensive;60;leftovers;;calm;252 PS/180 DefE/76 Vel;;magma_storm,lava_plume/earth_power,protect/toxic/stealth_rock,taunt,protect
+heatran_ou_2;heatran;ou;Z-Move;41;firium_z,grassium_z,steelium_z;;modest,timid;4 Def/252 AtqE/252 Vel;;magma_storm/earth_power/toxic,solar_beam,flash_cannon/stealth_rock,taunt,toxic
+hawlucha_ou_1;hawlucha;ou;Terrain Seed Sweeper;87;electric_seed,psychic_seed;unburden;adamant;96 PS/252 Atq/36 DefE/124 Vel;;swords_dance/acrobatics/high_jump_kick/substitute,roost
+avalugg_ou_1;avalugg;ou;Physical Wall;98;rocky_helmet;sturdy;impish;252 PS/88 Atq/168 Def;;avalanche/recover/rapid_spin/earthquake
+tapu_koko_ou_1;tapu_koko;ou;Choice Specs;39;choice_specs;;timid;8 PS/4 Def/244 AtqE/252 Vel;;thunderbolt/dazzling_gleam/hidden_power/volt_switch
+tapu_koko_ou_2;tapu_koko;ou;Calm Mind;27;fairium_z;;timid;8 PS/4 Def/244 AtqE/252 Vel;;thunderbolt/dazzling_gleam/calm_mind/roost
+tapu_koko_ou_3;tapu_koko;ou;Physical Z-Move;19;electrium_z;;hasty;252 Atq/4 AtqE/252 Vel;;wild_charge/hidden_power/u_turn/roost
+tapu_koko_ou_4;tapu_koko;ou;Offensive Pivot;34;life_orb,electrium_z,shuca_berry;;timid;8 PS/4 Def/244 AtqE/252 Vel;;thunderbolt/hidden_power/volt_switch,u_turn/roost
+tapu_lele_ou_1;tapu_lele;ou;Choice Specs;53;choice_specs;;modest;252 AtqE/4 DefE/252 Vel;;psychic/moonblast/psyshock/hidden_power,focus_blast
+tapu_lele_ou_2;tapu_lele;ou;3 Attacks;46;fightinium_z,psychium_z,twisted_spoon;;modest,timid;252 AtqE/4 DefE/252 Vel;;psyshock/moonblast/focus_blast,hidden_power/calm_mind,taunt
+tapu_lele_ou_3;tapu_lele;ou;Choice Scarf;45;choice_scarf;;timid;252 AtqE/4 DefE/252 Vel;;psychic/moonblast/hidden_power/focus_blast,thunderbolt,natures_madness
+tapu_bulu_ou_1;tapu_bulu;ou;Choice Band;46;choice_band;;adamant;84 PS/248 Atq/176 Vel;;wood_hammer/horn_leech/superpower/stone_edge
+tapu_bulu_ou_2;tapu_bulu;ou;Specially Defensive;57;leftovers;;careful;248 PS/8 Def/252 DefE;;swords_dance,bulk_up/horn_leech/superpower/protect,synthesis
+tapu_bulu_ou_3;tapu_bulu;ou;Swords Dance;49;fightinium_z;;adamant;236 PS/144 Atq/32 DefE/96 Vel;;swords_dance/horn_leech/superpower/stone_edge
+tapu_bulu_ou_4;tapu_bulu;ou;Choice Scarf;45;choice_scarf;;jolly;252 Atq/4 DefE/252 Vel;;horn_leech/wood_hammer/superpower/stone_edge,megahorn
+tapu_fini_ou_1;tapu_fini;ou;Utility;63;leftovers;;calm;248 PS/92 Def/32 AtqE/120 DefE/16 Vel;;surf,natures_madness,scald/moonblast/defog,natures_madness,knock_off/taunt
+tapu_fini_ou_2;tapu_fini;ou;Offensive Calm Mind;55;wiki_berry,leftovers;;modest;196 PS/216 AtqE/96 Vel;;calm_mind/surf/moonblast/taunt,defog
+tapu_fini_ou_3;tapu_fini;ou;Whirlpool Trapper;56;leftovers;;bold;248 PS/156 Def/40 DefE/64 Vel;;whirlpool/taunt/natures_madness/moonblast
+cresselia_ou_1;cresselia;ou;Calm Mind;57;leftovers;;bold;252 PS/92 Def/152 AtqE/12 Vel;;psyshock/ice_beam/calm_mind/moonlight
+cresselia_ou_2;cresselia;ou;Support;55;leftovers,rocky_helmet,eject_button;;calm;252 PS/64 Def/136 DefE/56 Vel;;lunar_dance,future_sight/thunder_wave,toxic/ice_beam/moonlight
+cresselia_ou_3;cresselia;ou;Trick Room;35;mental_herb;;sassy;252 PS/152 Def/104 DefE;;ice_beam/trick_room/moonlight/lunar_dance
+venusaur_ou_1;venusaur;ou;Defensive;39;venusaurite;chlorophyll;bold;252 PS/172 Def/68 DefE/16 Vel;;leech_seed/sludge_bomb/hidden_power/synthesis
+charizard_ou_1;charizard;ou;Dragon Dance;14;charizardite_x;;jolly;252 Atq/4 DefE/252 Vel;;dragon_dance/flare_blitz/earthquake/dragon_claw,roost
+charizard_ou_2;charizard;ou;Drought Wallbreaker Y;69;charizardite_y;;timid;4 Def/252 AtqE/252 Vel;;flamethrower,fire_blast/focus_blast,hidden_power/solar_beam/roost
+charizard_ou_3;charizard;ou;Swords Dance;13;charizardite_x;;jolly;252 Atq/4 Def/252 Vel;;swords_dance/flare_blitz/dragon_claw/roost
+nidoking_ou_1;nidoking;ou;Life Orb Attacker;83;life_orb;sheer_force;timid;252 AtqE/4 DefE/252 Vel;;earth_power/sludge_wave/ice_beam/substitute,flamethrower
+clefable_ou_1;clefable;ou;Utility;58;leftovers,rocky_helmet,life_orb;magic_guard;bold;252 PS/252 Def/4 DefE;;stealth_rock,knock_off,wish/moonblast/soft_boiled/thunder_wave,knock_off,flamethrower,heal_bell,seismic_toss,ice_beam
+clefable_ou_2;clefable;ou;Defensive Calm Mind;60;leftovers,life_orb;magic_guard;bold;252 PS/252 Def/4 AtqE;;calm_mind/moonblast,thunderbolt/thunder,flamethrower,thunder_wave,knock_off,ice_beam/soft_boiled
+clefable_ou_3;clefable;ou;Life Orb;49;life_orb;magic_guard;modest;76 PS/252 AtqE/180 Vel;;moonblast/thunderbolt,thunder/fire_blast/soft_boiled
+clefable_ou_4;clefable;ou;Unaware;45;leftovers;unaware;bold;252 PS/252 Def/4 DefE;;moonblast/calm_mind/wish/protect
+ninetales_alola_ou_1;ninetales_alola;ou;Aurora Veil;60;light_clay;snow_warning;timid;252 PS/4 AtqE/252 Vel;;aurora_veil/freeze_dry/hypnosis/hail
+alakazam_ou_1;alakazam;ou;Offensive;50;alakazite;magic_guard;timid;4 Def/252 AtqE/252 Vel;;psychic/focus_blast/shadow_ball,calm_mind/recover,calm_mind,energy_ball,taunt,knock_off
+golem_alola_ou_1;golem_alola;ou;Choice Scarf;78;choice_scarf;;jolly;252 Atq/4 DefE/252 Vel;;wild_charge/earthquake/fire_punch/explosion,stealth_rock,stone_edge
+slowbro_ou_1;slowbro;ou;Defensive;70;leftovers,psychium_z,icium_z;regenerator;bold;252 PS/252 Def/4 DefE;;scald/slack_off/ice_beam,counter/future_sight,thunder_wave,toxic,protect,flamethrower
+slowbro_ou_2;slowbro;ou;Paper Shell (Mega);56;slowbronite;regenerator;bold;252 PS/252 Def/4 DefE;;scald/slack_off/ice_beam,psychic/psychic,calm_mind,toxic,future_sight
+muk_alola_ou_1;muk_alola;ou;Assault Vest;53;assault_vest;;careful;248 PS/36 Atq/28 Def/192 DefE/4 Vel;;knock_off/pursuit/poison_jab/fire_punch,rock_slide
+gengar_ou_1;gengar;ou;Offensive Utility;43;life_orb,ghostium_z;;timid;4 PS/252 AtqE/252 Vel;;shadow_ball/sludge_wave/taunt/focus_blast
+gengar_ou_2;gengar;ou;Choice Specs;56;choice_specs;;timid;4 PS/252 AtqE/252 Vel;;shadow_ball/sludge_wave/focus_blast/trick,thunderbolt
+marowak_alola_ou_1;marowak_alola;ou;Offensive;80;thick_club;rock_head;brave;248 PS/252 Atq/8 DefE;;shadow_bone/flare_blitz/swords_dance/bonemerang
+chansey_ou_1;chansey;ou;Defensive;73;eviolite;;bold;252 PS/252 Def/4 DefE;;stealth_rock,aromatherapy/seismic_toss/soft_boiled/toxic,thunder_wave
+pinsir_ou_1;pinsir;ou;Swords Dance;73;pinsirite;;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/frustration/quick_attack/close_combat,earthquake
+gyarados_ou_1;gyarados;ou;Mega Dragon Dance;37;gyaradosite;;jolly;252 Atq/4 DefE/252 Vel;;dragon_dance/substitute,taunt/crunch/earthquake,waterfall
+gyarados_ou_2;gyarados;ou;Flyinium Z;85;flyinium_z;moxie;jolly;252 Atq/4 DefE/252 Vel;;dragon_dance/waterfall/bounce/taunt,earthquake
+ditto_ou_1;ditto;ou;Imposter;100;choice_scarf;imposter;relaxed;252 PS/4 Atq/252 Def;;transform
+zapdos_ou_1;zapdos;ou;Defensive;74;rocky_helmet,leftovers;static;bold;248 PS/240 Def/20 Vel;;volt_switch,discharge/heat_wave/hidden_power,defog/roost
+moltres_ou_1;moltres;ou;Pressure;69;leftovers;;timid;208 PS/60 Def/240 Vel;;substitute/roost/defog/flamethrower
+dragonite_ou_1;dragonite;ou;Dragon Dance;68;flyinium_z,dragonium_z;multiscale;adamant,jolly;252 Atq/4 DefE/252 Vel;;dragon_dance/fly,outrage/earthquake/extreme_speed,substitute,superpower
+mew_ou_1;mew;ou;Lead;49;mental_herb;;timid;252 PS/40 Def/216 Vel;;stealth_rock/taunt/ice_beam/thunder_wave
+mew_ou_2;mew;ou;Defensive;18;leftovers;;jolly;240 PS/52 Def/216 Vel;;earthquake/will_o_wisp/soft_boiled/stealth_rock,defog
+mew_ou_3;mew;ou;Nasty Plot;4;mewnium_z;;modest,timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/psychic/fire_blast,aura_sphere/rock_polish,soft_boiled
+azumarill_ou_1;azumarill;ou;Belly Drum;55;normalium_z;huge_power;adamant;4 PS/252 Atq/252 Vel;;belly_drum/aqua_jet/play_rough/knock_off
+quagsire_ou_1;quagsire;ou;Unaware Wall;86;leftovers;unaware;relaxed;252 PS/252 Def/4 DefE;;scald/earthquake/recover/toxic,curse
+scizor_ou_1;scizor;ou;Swords Dance;34;scizorite;light_metal;impish;248 PS/16 Def/244 DefE;;swords_dance/roost/bullet_punch/u_turn,knock_off
+heracross_ou_1;heracross;ou;Wallbreaker;28;heracronite;moxie,guts;adamant;64 PS/252 Atq/192 Vel;;swords_dance/close_combat/rock_blast/pin_missile,substitute
+mantine_ou_1;mantine;ou;Mixed Wall;94;leftovers;water_absorb;calm;252 PS/36 Def/220 DefE;;roost/scald/defog/toxic,haze
+skarmory_ou_1;skarmory;ou;Physically Defensive;82;rocky_helmet,shed_shell;sturdy;bold,impish;248 PS/252 Def/8 DefE;;roost/spikes/whirlwind/counter,toxic,brave_bird,defog
+kingdra_ou_1;kingdra;ou;Choice Specs;69;choice_specs;;modest;4 PS/252 AtqE/252 Vel;;hydro_pump/surf/draco_meteor/ice_beam
+suicune_ou_1;suicune;ou;Substitute + Calm Mind;81;leftovers;;timid;252 PS/40 DefE/216 Vel;;scald/substitute/calm_mind/protect
+tyranitar_ou_1;tyranitar;ou;Pursuit;46;tyranitarite;;adamant;132 PS/252 Atq/124 Vel;;stealth_rock,crunch,ice_punch/stone_edge/pursuit/fire_punch,earthquake,crunch,ice_punch
+tyranitar_ou_2;tyranitar;ou;Dragon Dance;23;tyranitarite;;jolly;252 Atq/4 DefE/252 Vel;;dragon_dance/stone_edge/fire_punch,earthquake/ice_punch
+tyranitar_ou_3;tyranitar;ou;Choice Scarf;52;choice_scarf;;jolly;8 PS/208 Atq/40 Def/252 Vel;;rock_slide,stone_edge,ice_punch/pursuit/foul_play,crunch/earthquake
+tyranitar_ou_4;tyranitar;ou;Assault Vest;42;assault_vest;;careful;224 PS/32 Atq/252 DefE;;rock_slide/crunch/pursuit/earthquake
+tyranitar_ou_5;tyranitar;ou;Choice Band;57;choice_band;;adamant;40 PS/252 Atq/48 DefE/168 Vel;;stone_edge/crunch/pursuit/earthquake,superpower,ice_punch,fire_punch
+swampert_ou_1;swampert;ou;Rain Sweeper;35;swampertite;damp;jolly;4 PS/244 Atq/8 DefE/252 Vel;;waterfall/earthquake/ice_punch,toxic/stealth_rock,substitute,superpower
+pelipper_ou_1;pelipper;ou;Defensive Rain Setter;89;damp_rock;drizzle;relaxed;248 PS/252 Def/8 DefE;;scald/u_turn/roost/defog,hurricane,knock_off
+breloom_ou_1;breloom;ou;Focus Sash;82;focus_sash;technician;jolly,adamant;252 Atq/4 DefE/252 Vel;;spore/mach_punch/bullet_seed/swords_dance,rock_tomb
+shedinja_ou_1;shedinja;ou;Tank;66;focus_sash;;lonely,naive;252 Atq/4 AtqE/252 Vel;;will_o_wisp/toxic,swords_dance/protect,x_scissor/shadow_sneak,x_scissor,shadow_ball
+sableye_ou_1;sableye;ou;Utility;80;sablenite;prankster;careful;248 PS/8 Def/252 DefE;;knock_off/will_o_wisp/recover/protect
+mawile_ou_1;mawile;ou;Swords Dance;73;mawilite;intimidate;adamant;92 PS/252 Atq/164 Vel;;swords_dance/play_rough/sucker_punch/knock_off,thunder_punch
+mawile_ou_2;mawile;ou;All-out Attacker;62;mawilite;intimidate;adamant;92 PS/252 Atq/164 Vel;;play_rough/thunder_punch/sucker_punch,ice_punch/brick_break,fire_fang
+mawile_ou_3;mawile;ou;Substitute;33;mawilite;intimidate;adamant;144 PS/252 Atq/112 Vel;;substitute/thunder_punch/ice_punch/focus_punch
+aggron_ou_1;aggron;ou;Mega Tank;69;aggronite;;careful;248 PS/56 Atq/200 DefE/4 Vel;;stealth_rock/heavy_slam/earthquake/ice_punch,fire_punch,protect
+medicham_ou_1;medicham;ou;All-out Attacker;28;medichamite;telepathy;jolly,adamant;252 Atq/4 DefE/252 Vel;;high_jump_kick/fake_out/ice_punch,bullet_punch/zen_headbutt,thunder_punch
+camerupt_ou_1;camerupt;ou;Offensive Stealth Rock;90;cameruptite;;modest;132 PS/252 AtqE/124 Vel;;stealth_rock/fire_blast/earth_power/toxic,substitute,rock_slide,nature_power
+altaria_ou_1;altaria;ou;Utility;63;altarianite;;impish;240 PS/136 Def/76 DefE/56 Vel;;body_slam/roost/roar,earthquake/heal_bell
+crawdaunt_ou_1;crawdaunt;ou;Choice Band;86;choice_band;adaptability;adamant;252 Atq/4 DefE/252 Vel;;knock_off/crabhammer/aqua_jet/crunch
+salamence_ou_1;salamence;ou;Flyinium Z;78;flyinium_z;moxie;jolly;252 Atq/4 DefE/252 Vel;;dragon_dance/fly/earthquake/substitute,stone_edge,fire_fang
+latias_ou_1;latias;ou;Utility;37;latiasite;;timid;248 PS/8 Def/252 Vel;;ice_beam/hidden_power,psychic,thunder_wave,defog/thunder_wave,defog/roost
+latias_ou_2;latias;ou;Calm Mind;19;latiasite;;timid;248 PS/8 Def/252 Vel;;calm_mind/stored_power,psyshock/ice_beam/roost
+latios_ou_1;latios;ou;Mega Mixed Attacker;17;latiosite;;naive;4 Atq/252 AtqE/252 Vel;;psychic/earthquake/ice_beam,draco_meteor,thunderbolt/roost
+jirachi_ou_1;jirachi;ou;Choice Scarf;41;choice_scarf;;jolly;252 Atq/4 DefE/252 Vel;;iron_head/u_turn/healing_wish/fire_punch
+jirachi_ou_2;jirachi;ou;Wish;53;leftovers;;careful;248 PS/188 DefE/72 Vel;;wish/protect/iron_head/u_turn,body_slam
+jirachi_ou_3;jirachi;ou;Stealth Rock;48;leftovers;;careful;248 PS/188 DefE/72 Vel;;stealth_rock/iron_head/u_turn/healing_wish
+staraptor_ou_1;staraptor;ou;Choice Scarf;85;choice_scarf;reckless;jolly;252 Atq/4 Def/252 Vel;;brave_bird/double_edge/u_turn/close_combat,final_gambit,defog,tailwind
+gastrodon_ou_1;gastrodon;ou;Specially Defensive;84;leftovers;storm_drain;sassy;248 PS/8 Def/252 DefE;;scald/recover/toxic/earthquake
+lopunny_ou_1;lopunny;ou;All-out Attacker;68;lopunnite;limber;jolly,adamant;252 Atq/4 DefE/252 Vel;;fake_out/frustration/high_jump_kick/quick_attack,ice_punch,healing_wish
+lopunny_ou_2;lopunny;ou;PuP + Encore;50;lopunnite;limber;jolly;252 Atq/4 DefE/252 Vel;;frustration/high_jump_kick/power_up_punch/encore
+garchomp_ou_1;garchomp;ou;Offensive Z-Move;70;dragonium_z,rockium_z;rough_skin;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/earthquake/outrage,stone_edge/stealth_rock,substitute,fire_fang,aqua_tail,dragon_claw
+garchomp_ou_2;garchomp;ou;Mixed Mega;38;garchompite;rough_skin;hasty,mild;4 Atq/252 AtqE/252 Vel;;draco_meteor/earthquake/fire_blast/stealth_rock,hidden_power
+garchomp_ou_3;garchomp;ou;Tank;42;rocky_helmet;rough_skin;jolly;252 PS/4 DefE/252 Vel;;stealth_rock/earthquake/toxic/fire_blast,roar,dragon_tail
+garchomp_ou_4;garchomp;ou;Swords Dance Mega;50;garchompite;rough_skin;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/substitute,fire_fang,aqua_tail/earthquake/stone_edge
+hippowdon_ou_1;hippowdon;ou;Physically Defensive;59;leftovers;;impish;252 PS/112 Def/144 DefE;;stealth_rock/earthquake/slack_off/whirlwind
+weavile_ou_1;weavile;ou;Choice Band;71;choice_band;;jolly;252 Atq/4 DefE/252 Vel;;icicle_crash/knock_off/ice_shard,beat_up/pursuit,beat_up
+tangrowth_ou_1;tangrowth;ou;Physically Defensive;60;rocky_helmet;regenerator;relaxed;248 PS/172 Def/88 DefE;;giga_drain/knock_off/hidden_power/sludge_bomb,sleep_powder
+tangrowth_ou_2;tangrowth;ou;Assault Vest;92;assault_vest;regenerator;sassy;252 PS/12 Def/244 DefE;;giga_drain/knock_off/hidden_power,sludge_bomb/earthquake,sludge_bomb
+gliscor_ou_1;gliscor;ou;Swords Dance;77;toxic_orb;poison_heal;jolly,careful;248 PS/240 DefE/20 Vel;;swords_dance/earthquake/facade,ice_fang/roost
+gliscor_ou_2;gliscor;ou;Utility;79;toxic_orb;poison_heal;jolly;248 PS/64 Def/60 DefE/136 Vel;;defog,stealth_rock/earthquake/roost/toxic,u_turn,knock_off
+mamoswine_ou_1;mamoswine;ou;Physical Attacker;58;metronome;thick_fat;adamant;252 Atq/4 DefE/252 Vel;;earthquake/ice_shard/icicle_crash/stealth_rock,knock_off
+porygon_z_ou_1;porygon_z;ou;Z-Conversion;61;normalium_z;;timid;4 Def/252 AtqE/252 Vel;;thunderbolt/ice_beam/recover/conversion
+rotom_wash_ou_1;rotom_wash;ou;Defensive;63;wiki_berry,waterium_z,leftovers;;bold;252 PS/252 Def/4 DefE;;volt_switch/hydro_pump/will_o_wisp,defog/defog,pain_split,will_o_wisp
+rotom_wash_ou_2;rotom_wash;ou;Offensive;33;electrium_z;;timid;108 PS/184 AtqE/216 Vel;;hydro_pump/volt_switch/thunder/pain_split
+uxie_ou_1;uxie;ou;Lead;66;mental_herb,red_card;;relaxed;252 PS/116 Def/140 DefE;;trick_room/stealth_rock/memento/magic_coat,skill_swap
+manaphy_ou_1;manaphy;ou;2 Attacks + Rest;63;waterium_z;;modest;248 PS/240 AtqE/20 Vel;;tail_glow/rest/surf/ice_beam,psychic
+manaphy_ou_2;manaphy;ou;Three Attacks;61;waterium_z;;timid;252 AtqE/4 DefE/252 Vel;;tail_glow/surf/ice_beam/psychic
+victini_ou_1;victini;ou;Choice Scarf;43;choice_scarf;;jolly;252 PS/4 Atq/252 Vel;;v_create/u_turn/final_gambit/trick
+victini_ou_2;victini;ou;Choice Band;39;choice_band;;jolly;252 Atq/4 DefE/252 Vel;;v_create/bolt_strike/u_turn/zen_headbutt,brick_break
+victini_ou_3;victini;ou;Z-Celebrate;16;normalium_z;;timid;252 AtqE/4 DefE/252 Vel;;celebrate/searing_shot/stored_power/focus_blast
+serperior_ou_1;serperior;ou;Utility;58;rocky_helmet;contrary;timid;208 PS/48 Def/252 Vel;;leaf_storm/taunt/glare/defog
+serperior_ou_2;serperior;ou;Substitute;69;leftovers;contrary;timid;56 PS/200 AtqE/252 Vel;;leaf_storm/hidden_power,glare/substitute/leech_seed,glare
+serperior_ou_3;serperior;ou;Choice Scarf;58;choice_scarf;contrary;timid;252 AtqE/4 DefE/252 Vel;;leaf_storm/glare/defog/knock_off
+excadrill_ou_1;excadrill;ou;Sand Rush;54;steelium_z,leftovers,rockium_z;;adamant,jolly;252 Atq/4 DefE/252 Vel;;swords_dance/iron_head/earthquake/rapid_spin,rock_slide
+excadrill_ou_2;excadrill;ou;Specially Defensive;67;leftovers;mold_breaker;jolly;252 PS/180 DefE/76 Vel;;stealth_rock,iron_head/earthquake/toxic,iron_head/rapid_spin
+excadrill_ou_3;excadrill;ou;Lead;51;focus_sash;mold_breaker;jolly;252 Atq/4 DefE/252 Vel;;stealth_rock/earthquake/rock_tomb,toxic/rapid_spin
+conkeldurr_ou_1;conkeldurr;ou;Offensive;67;flame_orb;;adamant;104 PS/252 Atq/152 Vel;;drain_punch/mach_punch/knock_off/facade
+seismitoad_ou_1;seismitoad;ou;Defensive;84;leftovers;water_absorb;careful;244 PS/36 Def/216 DefE/12 Vel;;stealth_rock/scald/earthquake,knock_off/refresh,toxic,rest,knock_off
+scolipede_ou_1;scolipede;ou;Swords Dance;68;waterium_z;speed_boost;jolly;252 Atq/4 Def/252 Vel;;swords_dance/megahorn/aqua_tail/earthquake
+reuniclus_ou_1;reuniclus;ou;2 Attacks;67;rocky_helmet,psychium_z;magic_guard;bold;252 PS/212 Def/44 Vel;;calm_mind/psyshock/focus_blast,energy_ball/recover
+reuniclus_ou_2;reuniclus;ou;Double Dance;64;leftovers,rocky_helmet;magic_guard;bold;252 PS/212 Def/44 Vel;;calm_mind/acid_armor/psyshock/recover
+amoonguss_ou_1;amoonguss;ou;Black Sludge;80;black_sludge;regenerator;calm;248 PS/56 Def/204 DefE;;spore/giga_drain/hidden_power/sludge_bomb,stun_spore
+amoonguss_ou_2;amoonguss;ou;Assault Vest;60;assault_vest;regenerator;sassy;252 PS/96 Def/160 DefE;;giga_drain/sludge_bomb/stomping_tantrum/hidden_power
+alomomola_ou_1;alomomola;ou;WishPass;78;leftovers;regenerator;bold;40 PS/216 Def/252 DefE;;scald/toxic,knock_off/wish/protect
+ferrothorn_ou_1;ferrothorn;ou;Entry Hazard Setter;56;leftovers,figy_berry;;sassy,relaxed;252 PS/16 Def/240 DefE;;power_whip/spikes,stealth_rock/gyro_ball,stealth_rock,protect,thunder_wave,knock_off/leech_seed,thunder_wave,toxic
+bisharp_ou_1;bisharp;ou;Swords Dance;65;darkinium_z,black_glasses;;adamant,jolly;252 Atq/4 DefE/252 Vel;;knock_off/iron_head/sucker_punch/swords_dance
+hydreigon_ou_1;hydreigon;ou;Darkinium Z;39;darkinium_z;;timid,modest;244 AtqE/32 DefE/232 Vel;;dark_pulse/earth_power/flash_cannon/roost
+volcarona_ou_1;volcarona;ou;Offensive Quiver Dance;51;buginium_z,aguav_berry,lum_berry,leftovers,psychium_z,firium_z,life_orb;;timid;252 AtqE/4 DefE/252 Vel;;quiver_dance/flamethrower,fire_blast/bug_buzz,giga_drain,psychic/hidden_power,psychic
+volcarona_ou_2;volcarona;ou;Substitute + Swarm;51;leftovers;swarm;timid;128 PS/196 AtqE/184 Vel;;substitute/quiver_dance/bug_buzz/flamethrower
+volcarona_ou_3;volcarona;ou;Bulky Quiver Dance;48;leftovers,buginium_z,firium_z,psychium_z;;bold;248 PS/196 Def/64 Vel;;quiver_dance/bug_buzz,hidden_power,psychic/flamethrower/roost
+terrakion_ou_1;terrakion;ou;Swords Dance;64;rockium_z;;jolly;252 Atq/4 Def/252 Vel;;swords_dance/stone_edge/close_combat/stealth_rock
+terrakion_ou_2;terrakion;ou;Choice Scarf;30;choice_scarf;;jolly;252 Atq/4 Def/252 Vel;;stone_edge/close_combat/rock_slide/toxic,earthquake
+tornadus_therian_ou_1;tornadus_therian;ou;Bulky Pivot;63;flyinium_z,rocky_helmet;;timid;240 PS/64 Def/204 Vel;;hurricane/knock_off,taunt,heat_wave/u_turn,taunt,heat_wave/defog
+tornadus_therian_ou_2;tornadus_therian;ou;Offensive Pivot;58;flyinium_z,fightinium_z;;timid;128 PS/8 Def/156 AtqE/216 Vel;;hurricane/knock_off,focus_blast,heat_wave/u_turn,taunt/defog
+thundurus_ou_1;thundurus;ou;Nasty Plot;57;fightinium_z;;timid;4 Def/252 AtqE/252 Vel;;nasty_plot/thunderbolt/hidden_power/focus_blast
+thundurus_therian_ou_1;thundurus_therian;ou;Wallbreaker;48;fightinium_z,electrium_z,leftovers,iapapa_berry;;timid;4 Def/252 AtqE/252 Vel;;thunderbolt/hidden_power/focus_blast/nasty_plot
+thundurus_therian_ou_2;thundurus_therian;ou;Offensive Support;34;rocky_helmet,iapapa_berry;;timid;112 PS/144 AtqE/252 Vel;;volt_switch,thunderbolt/hidden_power/taunt/defog,thunder_wave
+landorus_therian_ou_1;landorus_therian;ou;Choice Scarf;42;choice_scarf;;jolly,naive;232 Atq/68 Def/208 Vel;;earthquake/u_turn/stone_edge,explosion,hidden_power,punishment/defog,explosion
+landorus_therian_ou_2;landorus_therian;ou;Defensive;52;rocky_helmet,iapapa_berry,flyinium_z;;impish;252 PS/112 Def/144 Vel;;stealth_rock,defog/earthquake/hidden_power,toxic,fly,knock_off,defog,rock_tomb/u_turn
+landorus_therian_ou_3;landorus_therian;ou;Swords Dance;32;flyinium_z,rockium_z;;jolly;252 Atq/4 DefE/252 Vel;;stealth_rock,substitute/swords_dance/earthquake/fly,stone_edge
+landorus_therian_ou_4;landorus_therian;ou;Lead;40;focus_sash,yache_berry;;jolly;252 Atq/4 DefE/252 Vel;;stealth_rock/earthquake/rock_tomb,imprison,hidden_power/explosion,imprison,u_turn
+kyurem_ou_1;kyurem;ou;Substitute + Roost;67;metronome,icium_z;;timid;56 PS/196 AtqE/4 DefE/252 Vel;;substitute/ice_beam/earth_power/roost
+kyurem_black_ou_1;kyurem_black;ou;Z-Move;68;icium_z;;naive;252 Atq/4 AtqE/252 Vel;;freeze_shock/fusion_bolt/ice_beam/roost,substitute,earth_power,hone_claws
+keldeo_ou_1;keldeo;ou;Calm Mind;55;leftovers,waterium_z;;timid;252 AtqE/4 DefE/252 Vel;;calm_mind/scald,hydro_pump/secret_sword/substitute,taunt
+greninja_ou_1;greninja;ou;Battle Bond;63;choice_specs,waterium_z;;timid;4 Def/252 AtqE/252 Vel;;hydro_pump,surf/dark_pulse/water_shuriken/spikes
+greninja_ou_2;greninja;ou;Physical Protean;25;groundium_z,fightinium_z,life_orb,poisonium_z;protean;hasty;252 Atq/4 AtqE/252 Vel;;dig,low_kick,u_turn/ice_beam/gunk_shot/spikes,toxic_spikes
+greninja_ou_3;greninja;ou;Special Protean;36;waterium_z,life_orb;protean;hasty;4 Atq/252 AtqE/252 Vel;;hydro_pump,ice_beam/gunk_shot,ice_beam/hidden_power,extrasensory,grass_knot/spikes,toxic_spikes,u_turn
+greninja_ou_4;greninja;ou;Choice Scarf;22;choice_scarf;protean;hasty;176 Atq/80 AtqE/252 Vel;;rock_slide/u_turn/ice_beam/gunk_shot,spikes,waterfall
+diggersby_ou_1;diggersby;ou;Choice Band;55;choice_band;huge_power;adamant;252 Atq/4 Def/252 Vel;;earthquake/return/quick_attack/spikes,fire_punch
+diancie_ou_1;diancie;ou;Offensive;30;diancite;;hasty,timid;4 Atq/252 AtqE/252 Vel;;stealth_rock,protect/moonblast/diamond_storm,earth_power/earth_power,hidden_power
+diancie_ou_2;diancie;ou;Substitute + Endeavor;30;diancite;;jolly,timid;240 PS/16 Def/252 Vel;;stealth_rock/substitute/endeavor/diamond_storm,moonblast
+hoopa_unbound_ou_1;hoopa_unbound;ou;Choice Band;57;choice_band;;adamant,jolly;252 Atq/4 DefE/252 Vel;;hyperspace_fury/zen_headbutt,ice_punch/gunk_shot,drain_punch,ice_punch/fire_punch,drain_punch,ice_punch
+hoopa_unbound_ou_2;hoopa_unbound;ou;Nasty Plot;6;fightinium_z,darkinium_z;;timid,modest;32 PS/224 AtqE/252 Vel;;nasty_plot/dark_pulse/psychic,psyshock/focus_blast
+volcanion_ou_1;volcanion;ou;Assault Vest;36;assault_vest;;relaxed;248 PS/8 Atq/96 Def/28 AtqE/128 Vel;;steam_eruption/flamethrower/sludge_bomb,superpower,earth_power/explosion
+ribombee_ou_1;ribombee;ou;Sticky Web Lead;89;focus_sash;shield_dust;timid;252 AtqE/4 DefE/252 Vel;;sticky_web/moonblast/hidden_power/stun_spore,quiver_dance
+toxapex_ou_1;toxapex;ou;Specially Defensive;82;black_sludge,shed_shell,payapa_berry,rocky_helmet;regenerator;calm;252 PS/36 Def/220 DefE;;scald,knock_off/haze,toxic,knock_off/toxic_spikes,toxic,baneful_bunker/recover
+araquanid_ou_1;araquanid;ou;Sticky Web Lead;51;focus_sash;;brave,adamant;216 PS/252 Atq/40 AtqE;;sticky_web/liquidation/magic_coat/hidden_power,toxic
+pyukumuku_ou_1;pyukumuku;ou;Unaware Wall;88;leftovers;unaware;bold;252 PS/252 Def/4 DefE;;block/recover/spite,soak/rest,taunt,toxic
+mimikyu_ou_1;mimikyu;ou;Swords Dance;72;life_orb,ghostium_z;;adamant,jolly;252 Atq/4 DefE/252 Vel;;swords_dance/shadow_sneak/play_rough/shadow_claw
+kommo_o_ou_1;kommo_o;ou;Offensive;44;;bulletproof,soundproof;hasty;252 Atq/4 DefE/252 Vel;;clanging_scales/close_combat,drain_punch/poison_jab,flamethrower/stealth_rock,taunt
+kommo_o_ou_2;kommo_o;ou;Dragon Dance;40;groundium_z,poisonium_z;bulletproof,soundproof;jolly,hasty;252 Atq/4 DefE/252 Vel;;dragon_dance/close_combat/ice_punch,clanging_scales/earthquake,poison_jab
+kommo_o_ou_3;kommo_o;ou;Specially Defensive;43;leftovers;bulletproof,soundproof;careful;248 PS/196 DefE/64 Vel;;stealth_rock/drain_punch,close_combat/protect,roar,rock_slide/toxic
+kommo_o_ou_4;kommo_o;ou;Belly Drum;20;salac_berry;;jolly;52 PS/204 Atq/252 Vel;;belly_drum/substitute/drain_punch/thunder_punch,frustration
+buzzwole_ou_1;buzzwole;ou;Bulk Up;40;leftovers;;impish;252 PS/144 Def/112 Vel;;drain_punch/ice_punch/bulk_up/roost
+xurkitree_ou_1;xurkitree;ou;Tail Glow;40;electrium_z;;modest;252 AtqE/4 DefE/252 Vel;;thunderbolt/hidden_power/energy_ball/tail_glow
+celesteela_ou_1;celesteela;ou;Defensive;78;leftovers;;sassy;252 PS/24 Def/232 DefE;;leech_seed/protect/heavy_slam/flamethrower
+kartana_ou_1;kartana;ou;Paper Cut (Swords Dance);47;normalium_z,fightinium_z,steelium_z,grassium_z;;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/leaf_blade/sacred_sword/giga_impact,knock_off,smart_strike
+kartana_ou_2;kartana;ou;Paper Plane (Choice Scarf);66;choice_scarf;;jolly;252 Atq/4 DefE/252 Vel;;leaf_blade/knock_off/sacred_sword/smart_strike
+kartana_ou_3;kartana;ou;Paper Press (Choice Band);56;choice_band;;jolly;252 Atq/4 DefE/252 Vel;;leaf_blade/smart_strike/knock_off/sacred_sword
+kartana_ou_4;kartana;ou;Paper Fan (Utility);36;grassium_z;;jolly;124 PS/132 Atq/252 Vel;;defog/synthesis/leaf_blade/knock_off
+magearna_ou_1;magearna;ou;Assault Vest;39;assault_vest;;calm;248 PS/72 Def/188 DefE;;fleur_cannon/ice_beam,energy_ball,iron_head/hidden_power,focus_blast/volt_switch
+magearna_ou_2;magearna;ou;Utility;26;leftovers,fairium_z;;calm;248 PS/72 Def/188 DefE;;fleur_cannon,ice_beam,flash_cannon/pain_split/heart_swap,heal_bell,thunder_wave/volt_switch
+magearna_ou_3;magearna;ou;Calm Mind + Pain Split;31;fairium_z,leftovers;;modest;248 PS/28 Def/172 AtqE/16 DefE/44 Vel;;fleur_cannon/thunderbolt/calm_mind/pain_split
+magearna_ou_4;magearna;ou;Calm Mind + 3 Attacks;34;aguav_berry,leftovers,custap_berry;;modest;248 PS/72 Def/136 AtqE/8 DefE/44 Vel;;calm_mind/fleur_cannon,ice_beam/focus_blast,aura_sphere/thunderbolt
+magearna_ou_5;magearna;ou;Shift Gear;36;fightinium_z,fairium_z,leftovers,wiki_berry,electrium_z;;timid;252 AtqE/4 DefE/252 Vel;;shift_gear/focus_blast,fleur_cannon,calm_mind/fleur_cannon,ice_beam/thunderbolt,calm_mind
+magearna_ou_6;magearna;ou;Trick Room;28;fairium_z;;quiet;252 PS/4 Def/252 AtqE;;trick_room/fleur_cannon/focus_blast,flash_cannon/thunderbolt,ice_beam
+blacephalon_ou_1;blacephalon;ou;Choice Specs;38;choice_specs;;timid;252 AtqE/4 DefE/252 Vel;;fire_blast/shadow_ball/hidden_power/trick
+blacephalon_ou_2;blacephalon;ou;Substitute + Calm Mind;38;ghostium_z;;timid;232 PS/4 Def/20 AtqE/252 Vel;;flamethrower/shadow_ball/substitute/calm_mind
+aegislash_ubers_1;aegislash;ubers;Specially Defensive;52;iron_ball,leftovers;;sassy;252 PS/4 AtqE/252 DefE;;kings_shield/toxic/gyro_ball/shadow_ball
+tapu_koko_ubers_1;tapu_koko;ubers;Dual Screens;16;light_clay;;jolly;248 PS/8 Def/252 Vel;;reflect/light_screen/taunt/u_turn
+tapu_koko_ubers_2;tapu_koko;ubers;Offensive Utility;32;electrium_z;;timid;8 Def/248 AtqE/252 Vel;;thunder/taunt/u_turn/natures_madness
+tapu_lele_ubers_1;tapu_lele;ubers;Psychic Terrain Support;66;terrain_extender;;timid;252 AtqE/4 DefE/252 Vel;;psychic/moonblast/natures_madness/taunt
+tapu_lele_ubers_2;tapu_lele;ubers;Choice Scarf;39;choice_scarf;;timid;252 AtqE/4 DefE/252 Vel;;psychic/moonblast/aromatherapy/hidden_power
+venusaur_ubers_1;venusaur;ubers;Defensive;28;venusaurite;chlorophyll;bold,impish;252 PS/180 Def/76 DefE;;leech_seed/toxic/synthesis/grass_knot,earthquake
+dugtrio_ubers_1;dugtrio;ubers;Utility Trapper;44;groundium_z;arena_trap;adamant,jolly;252 Atq/4 Def/252 Vel;;earthquake/screech/substitute/memento,toxic
+slowbro_ubers_1;slowbro;ubers;Physical Wall;54;slowbronite;regenerator;bold;248 PS/216 Def/44 DefE;;toxic/scald,ice_beam/slack_off/iron_defense
+muk_alola_ubers_1;muk_alola;ubers;Assault Vest;58;assault_vest;;brave,adamant;252 PS/80 Atq/28 Def/148 DefE;;pursuit/knock_off/shadow_sneak/clear_smog,poison_jab
+cloyster_ubers_1;cloyster;ubers;Entry Hazard Lead;84;focus_sash;skill_link;jolly,adamant;252 Atq/4 Def/252 Vel;;spikes,toxic_spikes/shell_smash/icicle_spear/rapid_spin
+gengar_ubers_1;gengar;ubers;Offensive Trapper;19;gengarite;;timid;252 AtqE/4 DefE/252 Vel;;shadow_ball/sludge_wave/icy_wind,focus_blast/thunder,taunt,substitute
+gengar_ubers_2;gengar;ubers;Hex;30;gengarite;;timid;252 AtqE/4 DefE/252 Vel;;hex/will_o_wisp/sludge_bomb,sludge_wave/substitute,taunt
+gengar_ubers_3;gengar;ubers;Utility Trapper;25;gengarite;;timid;252 AtqE/4 DefE/252 Vel;;taunt/destiny_bond,substitute/sludge_wave/shadow_ball
+chansey_ubers_1;chansey;ubers;Support;56;eviolite;;bold,calm;4 PS/252 Def/252 DefE;;soft_boiled/heal_bell/toxic/wish,confide
+kangaskhan_ubers_1;kangaskhan;ubers;Utility Attacker;64;kangaskhanite;scrappy;jolly;52 PS/180 Atq/36 Def/8 DefE/232 Vel;;fake_out/seismic_toss/shadow_claw,crunch/body_slam,rock_tomb
+gyarados_ubers_1;gyarados;ubers;Dragon Dance;70;gyaradosite;;jolly,adamant;252 Atq/4 Def/252 Vel;;dragon_dance/taunt/crunch/waterfall,earthquake
+ditto_ubers_1;ditto;ubers;no u (Revenge Killer);96;choice_scarf;imposter;relaxed;248 PS/8 Atq/252 Def;;transform
+mewtwo_ubers_1;mewtwo;ubers;Special Attacker;27;mewtwonite_y;unnerve;timid;40 Def/216 AtqE/252 Vel;;psystrike/ice_beam/fire_blast/calm_mind,focus_blast,taunt
+mewtwo_ubers_2;mewtwo;ubers;Physical Attacker;10;mewtwonite_x;;jolly;252 Atq/4 Def/252 Vel;;low_kick/taunt/ice_beam,zen_headbutt/stone_edge,zen_headbutt
+wobbuffet_ubers_1;wobbuffet;ubers;Trapper;73;custap_berry,sitrus_berry;;calm;252 PS/4 Def/252 DefE;;encore/counter/mirror_coat/destiny_bond,safeguard
+scizor_ubers_1;scizor;ubers;Bulky Pivot;40;scizorite;light_metal;sassy;248 PS/8 Def/252 DefE;;bullet_punch/roost/u_turn/toxic,swords_dance
+skarmory_ubers_1;skarmory;ubers;Physically Defensive;80;shed_shell,rocky_helmet,leftovers;sturdy;bold;252 PS/252 Def/4 DefE;;roost/whirlwind/spikes,defog/toxic
+smeargle_ubers_1;smeargle;ubers;Suicide Lead;49;focus_sash;;jolly;252 PS/4 Def/252 Vel;;sticky_web/nuzzle/taunt/whirlwind,toxic_thread
+blissey_ubers_1;blissey;ubers;Support;60;shed_shell;;calm;252 PS/4 Def/252 DefE;;soft_boiled/heal_bell/confide/toxic,stealth_rock,wish
+tyranitar_ubers_1;tyranitar;ubers;Choice Band;26;choice_band;;adamant;228 Atq/28 Def/252 Vel;;stone_edge/crunch/pursuit/superpower,ice_punch
+tyranitar_ubers_2;tyranitar;ubers;Utility;35;lum_berry;;adamant;248 PS/76 Atq/148 Def/36 Vel;;pursuit/rock_tomb,rock_slide/foul_play/toxic,thunder_wave
+lugia_ubers_1;lugia;ubers;Wall;55;leftovers;multiscale;bold;252 PS/160 Def/96 Vel;;roost/toxic/whirlwind,dragon_tail/psychic,ice_beam
+ho_oh_ubers_1;ho_oh;ubers;Defensive;67;leftovers;regenerator;impish,bold;252 PS/204 Def/52 DefE;;sacred_fire,flamethrower/recover/toxic/defog
+ho_oh_ubers_2;ho_oh;ubers;Choice Scarf;63;choice_scarf;regenerator;jolly;252 Atq/4 DefE/252 Vel;;brave_bird/sacred_fire/toxic/defog,earthquake
+ho_oh_ubers_3;ho_oh;ubers;Tank;58;life_orb,flyinium_z;regenerator;adamant;104 PS/252 Atq/152 Vel;;sacred_fire/brave_bird/recover/toxic,curse,substitute
+ho_oh_ubers_4;ho_oh;ubers;Choice Band;62;choice_band;regenerator;adamant;4 PS/252 Atq/252 Vel;;sacred_fire/brave_bird/earthquake/toxic
+blaziken_ubers_1;blaziken;ubers;Swords Dance;34;blazikenite;speed_boost;adamant,jolly;252 Atq/4 Def/252 Vel;;swords_dance/flare_blitz/low_kick/stone_edge,knock_off
+sableye_ubers_1;sableye;ubers;Support;54;sablenite;prankster;impish;248 PS/252 Def/8 DefE;;fake_out/foul_play/toxic,will_o_wisp/recover
+salamence_ubers_1;salamence;ubers;Dragon Dance;12;salamencite;;adamant;44 PS/252 Atq/212 Vel;;dragon_dance/double_edge/roost/facade
+salamence_ubers_2;salamence;ubers;Offensive Defog;4;salamencite;;jolly;252 Atq/4 Def/252 Vel;;defog/double_edge/roost/facade
+salamence_ubers_3;salamence;ubers;Defensive;5;salamencite;;impish;248 PS/136 Def/124 Vel;;body_slam/defog/roost/refresh,dragon_tail
+metagross_ubers_1;metagross;ubers;Physical Attacker;28;metagrossite;;jolly;232 PS/60 Atq/40 DefE/176 Vel;;meteor_mash/ice_punch/rock_slide,thunder_punch/bullet_punch,earthquake
+latias_ubers_1;latias;ubers;Support;34;latiasite;;timid;252 PS/76 Def/4 DefE/176 Vel;;defog/toxic/healing_wish,recover/draco_meteor,grass_knot
+kyogre_ubers_1;kyogre;ubers;Calm Mind + Water Spout;43;blue_orb;;modest;4 Def/252 AtqE/252 Vel;;water_spout/calm_mind/origin_pulse/ice_beam
+kyogre_ubers_2;kyogre;ubers;Physical Attacker;29;blue_orb;;adamant,jolly;252 Atq/4 Def/252 Vel;;liquidation/earthquake/ice_beam/thunder
+kyogre_ubers_3;kyogre;ubers;Defensive;16;blue_orb;;bold;248 PS/236 Def/24 DefE;;scald/rest/sleep_talk/toxic,ice_beam
+kyogre_ubers_4;kyogre;ubers;Special Attacker;43;blue_orb;;mild,hasty;4 Def/252 AtqE/252 Vel;;origin_pulse/ice_beam/thunder,substitute/liquidation,calm_mind
+groudon_ubers_1;groudon;ubers;Stealth Rock + Swords Dance;11;red_orb;;adamant;136 PS/168 Atq/52 DefE/152 Vel;;stealth_rock/swords_dance/precipice_blades/rock_tomb,stone_edge
+groudon_ubers_2;groudon;ubers;Defensive Support;12;red_orb;;relaxed;252 PS/56 Def/200 DefE;;stealth_rock/precipice_blades/overheat/toxic
+groudon_ubers_3;groudon;ubers;Mixed Rock Polish;8;red_orb;;mild;252 AtqE/100 DefE/156 Vel;;rock_polish/precipice_blades/fire_blast/hidden_power,dragon_pulse
+groudon_ubers_4;groudon;ubers;Mixed Swords Dance;8;red_orb;;mild;212 AtqE/144 DefE/152 Vel;;swords_dance/precipice_blades/rock_tomb/eruption,overheat
+groudon_ubers_5;groudon;ubers;Offensive Support;12;red_orb;;mild;252 AtqE/104 DefE/152 Vel;;stealth_rock/precipice_blades/overheat/toxic,hidden_power,rock_tomb
+groudon_ubers_6;groudon;ubers;Double Dance;21;red_orb;;adamant;252 Atq/100 DefE/156 Vel;;rock_polish/swords_dance/precipice_blades/stone_edge,fire_punch
+rayquaza_ubers_1;rayquaza;ubers;Dragon Dance;53;flyinium_z,life_orb,focus_sash;;adamant,jolly;252 Atq/4 DefE/252 Vel;;dragon_dance/dragon_ascent/earthquake/extreme_speed
+rayquaza_ubers_2;rayquaza;ubers;Mixed Wallbreaker;42;life_orb;;naive;252 Atq/4 AtqE/252 Vel;;draco_meteor/dragon_ascent/v_create,earthquake/extreme_speed
+rayquaza_ubers_3;rayquaza;ubers;Choice Scarf;26;choice_scarf;;naughty,lonely;252 Atq/4 AtqE/252 Vel;;dragon_ascent/v_create/draco_meteor/toxic,defog
+deoxys_ubers_1;deoxys;ubers;Marshadow Lure;27;kasib_berry;;jolly;228 Atq/120 Def/48 DefE/112 Vel;;psycho_boost/taunt/pursuit/spikes,ice_beam
+deoxys_attack_ubers_1;deoxys_attack;ubers;All-out Attacker;36;life_orb;;naive,rash;4 Atq/252 AtqE/252 Vel;;psycho_boost/ice_beam/superpower/pursuit,dark_pulse
+deoxys_defense_ubers_1;deoxys_defense;ubers;Spikes;40;leftovers;;bold;252 PS/104 Def/152 Vel;;spikes/taunt/recover/toxic
+deoxys_speed_ubers_1;deoxys_speed;ubers;Lead;63;focus_sash,rocky_helmet;;timid;252 PS/4 Def/252 Vel;;stealth_rock/taunt/skill_swap,magic_coat/spikes,magic_coat
+lopunny_ubers_1;lopunny;ubers;Healing Wish;52;lopunnite;limber;jolly;4 PS/252 Atq/252 Vel;;fake_out/return/high_jump_kick/healing_wish
+lucario_ubers_1;lucario;ubers;Swords Dance;79;lucarionite;justified;jolly,adamant;252 Atq/4 DefE/252 Vel;;swords_dance/meteor_mash/close_combat/bullet_punch
+dialga_ubers_1;dialga;ubers;Offensive Utility;45;life_orb,shuca_berry;;modest;104 PS/252 AtqE/152 Vel;;stealth_rock/draco_meteor/fire_blast/thunder,toxic
+palkia_ubers_1;palkia;ubers;All-out Attacker;64;life_orb;;hasty,mild;4 Atq/252 AtqE/252 Vel;;hydro_pump/spacial_rend,draco_meteor/thunder/focus_punch,fire_blast
+giratina_ubers_1;giratina;ubers;Defog;68;leftovers;;relaxed;248 PS/208 Def/52 DefE;;defog/rest/toxic/will_o_wisp,roar
+darkrai_ubers_1;darkrai;ubers;Special Attacker;50;life_orb;;timid;4 PS/252 AtqE/252 Vel;;hypnosis/nasty_plot/dark_pulse/thunder,sludge_bomb
+shaymin_sky_ubers_1;shaymin_sky;ubers;Special Attacker;45;life_orb,metronome;;timid;4 Def/252 AtqE/252 Vel;;seed_flare/air_slash/earth_power,hidden_power/healing_wish
+arceus_ubers_1;arceus;ubers;Extreme Killer;64;chople_berry,leftovers;;adamant;240 PS/252 Atq/16 Vel;;swords_dance/extreme_speed/shadow_claw/recover,substitute
+arceus_ubers_2;arceus;ubers;Normalium Z;41;normalium_z;;adamant;132 PS/252 Atq/124 Vel;;swords_dance/extreme_speed/refresh/shadow_claw
+excadrill_ubers_1;excadrill;ubers;Suicide Lead;89;focus_sash;mold_breaker;jolly;252 Atq/4 DefE/252 Vel;;stealth_rock/rock_tomb/toxic,earthquake/rapid_spin
+gothorita_ubers_1;gothorita;ubers;Trapper;85;eviolite;shadow_tag;sassy;252 PS/4 Def/252 DefE;;charm/confide/taunt/rest
+gothitelle_ubers_1;gothitelle;ubers;PP Stall;90;leftovers;shadow_tag;calm;244 PS/108 Def/156 DefE;;confide/charm/taunt/rest
+ferrothorn_ubers_1;ferrothorn;ubers;Defensive;70;leftovers;;sassy,careful;252 PS/4 Def/252 DefE;;toxic,protect/spikes/leech_seed/gyro_ball,power_whip
+reshiram_ubers_1;reshiram;ubers;Life Orb;46;life_orb;;modest;104 PS/252 AtqE/152 Vel;;blue_flare/draco_meteor/roost/toxic,stone_edge
+zekrom_ubers_1;zekrom;ubers;Hone Claws;32;dragonium_z;;adamant;104 PS/252 Atq/152 Vel;;hone_claws/bolt_strike/outrage/substitute
+zekrom_ubers_2;zekrom;ubers;Physically Defensive;40;leftovers;;impish;252 PS/4 Atq/252 Def;;bolt_strike/dragon_tail/toxic/roost
+landorus_ubers_1;landorus;ubers;Wallbreaker;69;life_orb;sheer_force;rash,naive;4 Atq/252 AtqE/252 Vel;;earth_power/rock_slide/stealth_rock,knock_off/hidden_power
+kyurem_white_ubers_1;kyurem_white;ubers;Wallbreaker;64;life_orb,choice_specs;;timid,modest;252 AtqE/4 DefE/252 Vel;;ice_beam/draco_meteor/fusion_flare/roost,earth_power
+genesect_ubers_1;genesect;ubers;Choice Band;35;choice_band;;hasty;252 Atq/4 DefE/252 Vel;;u_turn/iron_head/extreme_speed/explosion
+greninja_ubers_1;greninja;ubers;Lead;59;focus_sash;;timid;252 AtqE/4 DefE/252 Vel;;spikes/taunt/dark_pulse/substitute,ice_beam
+klefki_ubers_1;klefki;ubers;Spikes Support;63;leftovers;;careful;252 PS/4 Def/252 DefE;;spikes/play_rough/thunder_wave/toxic
+xerneas_ubers_1;xerneas;ubers;Choice Scarf;41;choice_scarf;;modest,timid;4 Def/252 AtqE/252 Vel;;moonblast/focus_blast,hidden_power/aromatherapy,thunder,grass_knot/defog,thunder,grass_knot
+xerneas_ubers_2;xerneas;ubers;Geomancy;54;power_herb;;modest;168 Def/252 AtqE/88 Vel;;geomancy/moonblast/thunder/focus_blast,hidden_power
+xerneas_ubers_3;xerneas;ubers;Choice Specs;34;choice_specs;;timid,modest;4 Def/252 AtqE/252 Vel;;moonblast/grass_knot,thunder/hidden_power,focus_blast/aromatherapy,defog
+xerneas_ubers_4;xerneas;ubers;Defensive;25;leftovers;;bold;248 PS/252 Def/8 DefE;;defog/rest/moonblast/toxic,aromatherapy,sleep_talk
+xerneas_ubers_5;xerneas;ubers;Z-Geomancy;29;fairium_z;;bold;248 PS/252 Def/8 DefE;;geomancy/ingrain,sleep_talk/rest/moonblast
+yveltal_ubers_1;yveltal;ubers;Life Orb;31;life_orb;;mild;4 Atq/252 AtqE/252 Vel;;dark_pulse/oblivion_wing/taunt/sucker_punch,toxic
+yveltal_ubers_2;yveltal;ubers;Choice Scarf;35;choice_scarf;;modest;32 Def/224 AtqE/252 Vel;;foul_play/dark_pulse/oblivion_wing/u_turn,defog
+yveltal_ubers_3;yveltal;ubers;Stallbreaker;31;leftovers,charti_berry;;timid;248 PS/76 DefE/184 Vel;;foul_play,dark_pulse/toxic/taunt/roost
+yveltal_ubers_4;yveltal;ubers;Bulky Choice Scarf;31;choice_scarf;;jolly;72 PS/252 Def/184 Vel;;foul_play/u_turn/toxic/defog,knock_off
+yveltal_ubers_5;yveltal;ubers;Physically Defensive;28;charti_berry,dread_plate;;impish,bold;248 PS/180 Def/80 Vel;;foul_play/roost/toxic,taunt/sucker_punch,defog,taunt
+yveltal_ubers_6;yveltal;ubers;Choice Specs;23;choice_specs;;timid;4 Def/252 AtqE/252 Vel;;dark_pulse/oblivion_wing/u_turn/heat_wave
+yveltal_ubers_7;yveltal;ubers;Choice Band;22;choice_band;;jolly,adamant;252 Atq/4 Def/252 Vel;;knock_off/foul_play/u_turn/sucker_punch,toxic
+zygarde_ubers_1;zygarde;ubers;Big Boss (Dragon Dance);72;leftovers,groundium_z,dragonium_z;;adamant;12 PS/216 Atq/48 DefE/232 Vel;;dragon_dance/thousand_arrows/substitute/dragon_tail,glare,protect
+zygarde_ubers_2;zygarde;ubers;Defensive;71;leftovers;;impish;252 PS/252 Def/4 DefE;;rest/coil,sleep_talk/thousand_arrows/glare,dragon_tail
+zygarde_ubers_3;zygarde;ubers;Thousand Waves;65;leftovers;;adamant;80 PS/220 Atq/208 Def;;dragon_dance/thousand_arrows/thousand_waves/rest
+diancie_ubers_1;diancie;ubers;Mega Diancie;45;diancite;;naive;24 Atq/232 AtqE/252 Vel;;moonblast/diamond_storm/earth_power,toxic/stealth_rock,heal_bell
+ribombee_ubers_1;ribombee;ubers;Offensive Sticky Web;88;focus_sash;shield_dust;timid;4 PS/252 AtqE/252 Vel;;sticky_web/moonblast/stun_spore/quiver_dance
+toxapex_ubers_1;toxapex;ubers;Defensive;77;rocky_helmet,shed_shell;regenerator;bold;248 PS/252 Def/8 DefE;;toxic_spikes/scald,toxic/haze/recover
+solgaleo_ubers_1;solgaleo;ubers;Choice Scarf;33;choice_scarf;;jolly;252 Atq/4 DefE/252 Vel;;sunsteel_strike/flare_blitz/earthquake/stone_edge,wild_charge,toxic
+lunala_ubers_1;lunala;ubers;Calm Mind;46;;;timid;244 AtqE/12 DefE/252 Vel;;calm_mind/moongeist_beam/psyshock/focus_blast,moonblast
+lunala_ubers_2;lunala;ubers;Choice Scarf;33;choice_scarf;;modest,timid;252 AtqE/4 DefE/252 Vel;;moongeist_beam/focus_blast/ice_beam/psyshock
+lunala_ubers_3;lunala;ubers;Defensive;34;leftovers;;timid;148 PS/160 Def/200 Vel;;moongeist_beam/roost/defog/toxic,will_o_wisp
+buzzwole_ubers_1;buzzwole;ubers;Physical Wall;20;leftovers;;impish;248 PS/184 Def/76 DefE;;hammer_arm/toxic/roost/earthquake,taunt
+pheromosa_ubers_1;pheromosa;ubers;Offensive Pivot;49;life_orb;;naive,naughty;252 Atq/4 AtqE/252 Vel;;u_turn/low_kick/ice_beam/throat_chop,poison_jab
+celesteela_ubers_1;celesteela;ubers;Physically Defensive;78;leftovers;;impish;248 PS/8 Atq/252 Def;;leech_seed/heavy_slam/toxic/protect
+magearna_ubers_1;magearna;ubers;Specially Defensive;74;leftovers,normalium_z;;calm;252 PS/4 Def/252 DefE;;heart_swap/fleur_cannon/volt_switch/heal_bell,pain_split
+marshadow_ubers_1;marshadow;ubers;Life Orb Attacker;51;life_orb;;naive,jolly;252 Atq/4 Def/252 Vel;;spectral_thief/close_combat/shadow_sneak/hidden_power,rock_tomb
+marshadow_ubers_2;marshadow;ubers;Bulk Up;54;marshadium_z;;jolly;252 Atq/4 Def/252 Vel;;bulk_up/spectral_thief/close_combat/shadow_sneak,substitute
+naganadel_ubers_1;naganadel;ubers;Nasty Plot;61;dragonium_z;;timid;252 AtqE/4 DefE/252 Vel;;draco_meteor/sludge_wave/nasty_plot/fire_blast
+empoleon_uu_1;empoleon;uu;Utility;62;leftovers;;calm;252 PS/76 Def/180 DefE;;scald/stealth_rock,defog/toxic/protect,knock_off,roar
+cresselia_uu_1;cresselia;uu;Defensive Z-Move;33;fairium_z;;bold;252 PS/240 Def/16 Vel;;psyshock/moonblast/moonlight/calm_mind
+blastoise_uu_1;blastoise;uu;Offensive Wallbreaker;26;blastoisinite;rain_dish;modest;104 PS/252 AtqE/152 Vel;;water_pulse,hydro_pump/dark_pulse/aura_sphere,ice_beam/ice_beam,rapid_spin
+beedrill_uu_1;beedrill;uu;Offensive Pivot;74;beedrillite;;jolly;252 Atq/4 DefE/252 Vel;;u_turn/poison_jab/drill_run/knock_off,toxic_spikes,pursuit
+pidgeot_uu_1;pidgeot;uu;Special Attacker;74;pidgeotite;big_pecks;timid;4 Def/252 AtqE/252 Vel;;hurricane/heat_wave/u_turn/roost
+sandslash_alola_uu_1;sandslash_alola;uu;Aurora Veil Setter;41;light_clay;slush_rush;jolly;252 Atq/4 Def/252 Vel;;aurora_veil/rapid_spin/icicle_crash/earthquake,knock_off,toxic
+nidoqueen_uu_1;nidoqueen;uu;Offensive Hazard Setter;66;life_orb;sheer_force;modest;128 PS/252 AtqE/128 Vel;;toxic_spikes,stealth_rock/sludge_wave/earth_power/ice_beam
+nidoqueen_uu_2;nidoqueen;uu;Defensive;71;black_sludge;sheer_force;bold;252 PS/108 Def/72 DefE/76 Vel;;toxic_spikes,stealth_rock/sludge_wave/earth_power/ice_beam
+nidoking_uu_1;nidoking;uu;Wallbreaker;73;life_orb;sheer_force;timid;4 Def/252 AtqE/252 Vel;;sludge_wave/earth_power/ice_beam/substitute,taunt
+venomoth_uu_1;venomoth;uu;Quiver Dance;85;buginium_z;tinted_lens;timid;252 AtqE/4 DefE/252 Vel;;quiver_dance/sleep_powder/bug_buzz/sludge_bomb
+tentacruel_uu_1;tentacruel;uu;Defensive;70;black_sludge,icium_z;;timid;252 PS/112 Def/144 Vel;;scald/rapid_spin/haze/sludge_bomb,toxic_spikes,knock_off
+slowbro_uu_1;slowbro;uu;Mega Calm Mind;46;slowbronite;regenerator;bold;252 PS/76 Def/180 DefE;;scald/calm_mind/slack_off/ice_beam,psyshock
+slowbro_uu_2;slowbro;uu;Calm Mind;59;leftovers,waterium_z,psychium_z;regenerator;bold;252 PS/252 Def/4 DefE;;calm_mind/scald/psyshock/slack_off
+slowbro_uu_3;slowbro;uu;Defensive;63;leftovers,colbur_berry;regenerator;bold;252 PS/252 Def/4 DefE;;scald/psyshock,ice_beam/slack_off/toxic,thunder_wave
+slowbro_uu_4;slowbro;uu;Block;46;colbur_berry,slowbronite;regenerator;bold;252 PS/252 Def/4 DefE;;block/rest/scald/toxic,calm_mind
+slowbro_uu_5;slowbro;uu;Tank;47;slowbronite;regenerator;bold;252 PS/76 Def/180 DefE;;scald/ice_beam/psyshock,fire_blast/slack_off
+slowbro_uu_6;slowbro;uu;Special Attacker;47;slowbronite;regenerator;modest;212 PS/252 AtqE/44 Vel;;scald/slack_off/ice_beam/psyshock,fire_blast
+slowbro_uu_7;slowbro;uu;Future Sight Attacker;43;slowbronite;regenerator;modest;212 PS/252 AtqE/44 Vel;;future_sight/scald/slack_off/ice_beam
+magneton_uu_1;magneton;uu;Choice Specs;60;choice_specs;;timid;4 Def/252 AtqE/252 Vel;;thunderbolt/hidden_power/flash_cannon/volt_switch
+magneton_uu_2;magneton;uu;Choice Scarf;77;choice_scarf;;timid;4 Def/252 AtqE/252 Vel;;thunderbolt/hidden_power/flash_cannon/volt_switch
+muk_alola_uu_1;muk_alola;uu;Pursuit Trapper;66;assault_vest;;adamant;4 PS/252 Atq/252 DefE;;pursuit/gunk_shot,poison_jab/knock_off/fire_punch
+gengar_uu_1;gengar;uu;Substitute;54;ghostium_z,fightinium_z;;timid;252 AtqE/4 DefE/252 Vel;;substitute/shadow_ball/sludge_wave/focus_blast
+marowak_alola_uu_1;marowak_alola;uu;Offensive Wallbreaker;70;thick_club;rock_head,lightning_rod;adamant;84 PS/252 Atq/172 Vel;;shadow_bone/flare_blitz,fire_punch/stealth_rock/low_kick,bonemerang
+starmie_uu_1;starmie;uu;Offensive;33;life_orb,colbur_berry;analytic;timid;252 AtqE/4 DefE/252 Vel;;hydro_pump/ice_beam/psyshock,thunderbolt/rapid_spin,thunderbolt
+starmie_uu_2;starmie;uu;Bulky Spinner;47;leftovers;natural_cure;timid;252 PS/4 AtqE/252 Vel;;scald/toxic,protect/recover/rapid_spin
+aerodactyl_uu_1;aerodactyl;uu;Offensive;15;aerodactylite;unnerve;jolly;252 Atq/4 Def/252 Vel;;stone_edge/earthquake/pursuit,roost/roost,ice_fang
+aerodactyl_uu_2;aerodactyl;uu;Stealth Rock;30;aerodactylite;unnerve;jolly;252 Atq/4 DefE/252 Vel;;stealth_rock/stone_edge/earthquake/ice_fang
+snorlax_uu_1;snorlax;uu;Papa Lax (Curse + Recycle);43;iapapa_berry;gluttony;careful;252 PS/152 Def/104 DefE;;curse/facade/recycle/fire_punch,earthquake
+snorlax_uu_2;snorlax;uu;RestTalk;51;leftovers;thick_fat;careful;252 PS/152 Def/104 DefE;;curse/return,body_slam/rest/sleep_talk,fire_punch,earthquake
+articuno_uu_1;articuno;uu;Specially Defensive;55;leftovers;;calm;248 PS/4 Def/160 DefE/96 Vel;;defog/heal_bell/freeze_dry/roost
+moltres_uu_1;moltres;uu;Offensive;61;flyinium_z;flame_body;timid;252 AtqE/4 DefE/252 Vel;;hurricane/fire_blast/roost/u_turn,defog,agility
+moltres_uu_2;moltres;uu;Defensive;38;leftovers;;timid;248 PS/36 Def/224 Vel;;roost/defog/flamethrower/toxic,will_o_wisp,roar
+moltres_uu_3;moltres;uu;Choice Specs;40;choice_specs;flame_body;timid;252 AtqE/4 DefE/252 Vel;;hurricane/fire_blast/flamethrower,air_slash/air_slash,u_turn,sleep_talk
+mew_uu_1;mew;uu;Stallbreaker;33;leftovers;;jolly;252 PS/4 Def/252 Vel;;seismic_toss,knock_off/taunt/will_o_wisp,toxic/soft_boiled
+mew_uu_2;mew;uu;Defensive Utility;36;leftovers;;jolly;252 PS/80 Def/176 Vel;;seismic_toss,knock_off/defog,stealth_rock/taunt/soft_boiled
+feraligatr_uu_1;feraligatr;uu;Dragon Dance;84;life_orb;sheer_force;jolly,adamant;4 PS/252 Atq/252 Vel;;dragon_dance/liquidation/ice_punch/crunch
+feraligatr_uu_2;feraligatr;uu;Agility;70;life_orb;sheer_force;jolly;252 Atq/4 Def/252 Vel;;agility/liquidation/crunch/ice_punch
+crobat_uu_1;crobat;uu;Stallbreaker;47;flyinium_z,sharp_beak;infiltrator;jolly;252 Atq/4 Def/252 Vel;;brave_bird/super_fang/taunt/roost
+xatu_uu_1;xatu;uu;Dual Screens;55;light_clay;magic_bounce;calm;252 PS/108 Def/76 DefE/72 Vel;;reflect/light_screen/u_turn/thunder_wave
+umbreon_uu_1;umbreon;uu;Specially Defensive;78;leftovers;;calm;252 PS/252 DefE/4 Vel;;foul_play/heal_bell,toxic/wish/protect,moonlight
+gligar_uu_1;gligar;uu;Defensive Utility;88;eviolite;immunity;impish;252 PS/156 Def/100 DefE;;earthquake/roost/defog,stealth_rock/u_turn,toxic,knock_off
+steelix_uu_1;steelix;uu;Offensive Stealth Rock;51;steelixite;sturdy;brave;252 PS/208 Atq/48 DefE;;stealth_rock/gyro_ball/earthquake/curse
+scizor_uu_1;scizor;uu;Choice Band;67;choice_band;technician;adamant;164 PS/252 Atq/92 Vel;;bullet_punch/u_turn/superpower/pursuit,knock_off
+scizor_uu_2;scizor;uu;Life Orb + Swords Dance;50;life_orb;technician;adamant;252 Atq/4 DefE/252 Vel;;bullet_punch/superpower,knock_off/bug_bite,quick_attack/swords_dance
+scizor_uu_3;scizor;uu;Bulky Swords Dance;54;buginium_z,leftovers;technician;adamant;248 PS/16 Atq/144 Def/96 DefE/4 Vel;;u_turn/bullet_punch/swords_dance/roost
+scizor_uu_4;scizor;uu;Offensive Swords Dance;48;fightinium_z,metal_coat;technician;adamant;252 PS/204 Atq/48 Def/4 Vel;;bullet_punch/superpower,knock_off/roost,knock_off/swords_dance
+scizor_uu_5;scizor;uu;Choice Scarf;55;choice_scarf;technician;jolly;40 PS/252 Atq/216 Vel;;u_turn/bullet_punch/pursuit/superpower
+heracross_uu_1;heracross;uu;Swords Dance;57;flame_orb;guts;jolly;252 Atq/4 Def/252 Vel;;swords_dance/close_combat/knock_off/facade
+mantine_uu_1;mantine;uu;Defensive;92;leftovers;water_absorb;bold;252 PS/252 Def/4 DefE;;scald/roost/defog/haze,toxic
+houndoom_uu_1;houndoom;uu;Nasty Plot;78;houndoominite;flash_fire;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/fire_blast/dark_pulse/sludge_bomb
+porygon2_uu_1;porygon2;uu;Z-Conversion;49;normalium_z;download;timid;252 AtqE/4 DefE/252 Vel;;thunderbolt/ice_beam/conversion/recover
+blissey_uu_1;blissey;uu;Defensive;69;leftovers;;bold;252 PS/252 Def/4 DefE;;seismic_toss/toxic/soft_boiled/heal_bell,stealth_rock
+entei_uu_1;entei;uu;Choice Band;70;choice_band;;adamant;252 Atq/4 Def/252 Vel;;sacred_fire/extreme_speed/stone_edge/flare_blitz
+suicune_uu_1;suicune;uu;Calm Mind + Protect;55;leftovers;;timid;252 PS/40 DefE/216 Vel;;calm_mind/protect/scald/substitute
+suicune_uu_2;suicune;uu;CroCune;78;leftovers;;bold;252 PS/160 Def/96 Vel;;calm_mind/rest/sleep_talk/scald
+celebi_uu_1;celebi;uu;Nasty Plot;39;psychium_z,grassium_z;;timid;4 Def/252 AtqE/252 Vel;;nasty_plot/psychic/giga_drain,leaf_storm/dazzling_gleam,recover
+sceptile_uu_1;sceptile;uu;All-out Attacker;8;sceptilite;;timid;252 AtqE/4 DefE/252 Vel;;leaf_storm/dragon_pulse/earthquake,giga_drain,focus_blast/hidden_power,focus_blast
+swampert_uu_1;swampert;uu;Defensive;53;leftovers;;relaxed;252 PS/252 Def/4 DefE;;stealth_rock/earthquake/scald/toxic,roar
+swampert_uu_2;swampert;uu;Choice Band;34;choice_band;;adamant;88 PS/252 Atq/168 Vel;;earthquake/waterfall/ice_punch/toxic,superpower
+swampert_uu_3;swampert;uu;Offensive Stealth Rock;32;life_orb;;adamant;92 PS/252 Atq/164 Vel;;stealth_rock/earthquake/waterfall/ice_punch
+linoone_uu_1;linoone;uu;Belly Drum Sweeper;84;figy_berry;gluttony;adamant;148 PS/248 Atq/8 Def/88 DefE/16 Vel;;belly_drum/extreme_speed/stomping_tantrum/seed_bomb
+aggron_uu_1;aggron;uu;Stealth Rock;26;aggronite;;careful;252 PS/4 Def/252 DefE;;stealth_rock/heavy_slam/earthquake,fire_punch/toxic,fire_punch
+aggron_uu_2;aggron;uu;Curse;3;aggronite;;careful;252 PS/4 Def/252 DefE;;heavy_slam/curse/rest/sleep_talk
+manectric_uu_1;manectric;uu;All-out Attacker;74;manectite;lightning_rod;timid;4 Def/252 AtqE/252 Vel;;volt_switch/overheat,flamethrower/thunderbolt/hidden_power
+sharpedo_uu_1;sharpedo;uu;Cleaner;43;sharpedonite;speed_boost;adamant,jolly;4 PS/252 Atq/252 Vel;;crunch/ice_fang/earthquake,psychic_fangs/protect
+altaria_uu_1;altaria;uu;Dragon Dance;63;altarianite;;adamant;252 Atq/4 DefE/252 Vel;;dragon_dance/return,facade/earthquake,fire_blast/roost
+altaria_uu_2;altaria;uu;Refresh;71;altarianite;;adamant;252 Atq/4 DefE/252 Vel;;dragon_dance/return/refresh/roost
+altaria_uu_3;altaria;uu;Defensive;64;altarianite;;impish;252 PS/200 Def/56 Vel;;return/flamethrower,dragon_dance,defog/heal_bell,defog/roost
+altaria_uu_4;altaria;uu;Special Tank;40;altarianite;;modest;248 PS/4 Def/160 AtqE/96 Vel;;hyper_voice/fire_blast/toxic/roost
+crawdaunt_uu_1;crawdaunt;uu;Swords Dance;69;waterium_z,life_orb;adaptability;jolly;4 PS/252 Atq/252 Vel;;swords_dance/crabhammer/knock_off/aqua_jet
+crawdaunt_uu_2;crawdaunt;uu;Choice Band;68;choice_band;adaptability;adamant;252 Atq/4 Def/252 Vel;;knock_off/crabhammer/aqua_jet/superpower,crunch
+absol_uu_1;absol;uu;All-out Attacker;12;absolite;justified;naive,jolly;252 Atq/4 DefE/252 Vel;;knock_off/pursuit/fire_blast,superpower/sucker_punch,iron_tail
+glalie_uu_1;glalie;uu;Offensive Spiker;69;glalitite;;naive,jolly;252 Atq/4 AtqE/252 Vel;;spikes/return,double_edge/freeze_dry,ice_shard/earthquake,hidden_power,explosion
+metagross_uu_1;metagross;uu;Choice Band;37;choice_band;;adamant;40 PS/252 Atq/216 Vel;;meteor_mash/earthquake/pursuit/explosion,bullet_punch,trick
+metagross_uu_2;metagross;uu;Offensive Stealth Rock;51;life_orb,shuca_berry,colbur_berry;;adamant;40 PS/252 Atq/216 Vel;;stealth_rock/meteor_mash/earthquake/explosion,bullet_punch
+metagross_uu_3;metagross;uu;Mixed Offensive Lure;35;life_orb;;hasty;4 Atq/252 AtqE/252 Vel;;meteor_mash,explosion/hidden_power/grass_knot/stealth_rock
+registeel_uu_1;registeel;uu;Specially Defensive;69;leftovers;;calm;252 PS/4 Def/252 DefE;;stealth_rock/toxic/seismic_toss/protect,counter
+latias_uu_1;latias;uu;Calm Mind;38;dragonium_z,life_orb;;timid;252 AtqE/4 DefE/252 Vel;;calm_mind/draco_meteor/psyshock,psychic/roost
+latias_uu_2;latias;uu;Electrium Z;26;electrium_z;;timid;252 AtqE/4 DefE/252 Vel;;calm_mind/thunder,thunderbolt/ice_beam,draco_meteor/roost
+latias_uu_3;latias;uu;Choice Specs;31;choice_specs;;timid;4 Def/252 AtqE/252 Vel;;draco_meteor/psyshock/surf/trick,healing_wish
+latias_uu_4;latias;uu;3 Attacks + Roost;27;life_orb;;timid;252 AtqE/4 DefE/252 Vel;;draco_meteor/psychic/hidden_power,thunderbolt/roost
+latias_uu_5;latias;uu;Choice Scarf;33;choice_scarf;;timid;252 AtqE/4 DefE/252 Vel;;draco_meteor/psychic/trick,defog/healing_wish
+infernape_uu_1;infernape;uu;Nasty Plot;14;fightinium_z,life_orb;;timid;4 Def/252 AtqE/252 Vel;;nasty_plot/fire_blast/focus_blast/vacuum_wave
+infernape_uu_2;infernape;uu;Choice Scarf;33;choice_scarf;;jolly;252 Atq/4 Def/252 Vel;;flare_blitz/u_turn/close_combat/gunk_shot,stone_edge
+infernape_uu_3;infernape;uu;Mixed Attacker;25;life_orb;;naive;168 Atq/88 AtqE/252 Vel;;overheat,fire_blast/close_combat/slack_off,gunk_shot/grass_knot,gunk_shot
+infernape_uu_4;infernape;uu;Choice Band;37;choice_band;iron_fist,blaze;jolly;252 Atq/4 Def/252 Vel;;flare_blitz/u_turn/close_combat/mach_punch,gunk_shot,stone_edge
+infernape_uu_5;infernape;uu;Swords Dance;31;fightinium_z,electrium_z;iron_fist;jolly;252 Atq/4 Def/252 Vel;;swords_dance/close_combat/flare_blitz/mach_punch,thunder_punch
+roserade_uu_1;roserade;uu;3 Attacks;48;poisonium_z;technician;timid;252 AtqE/4 DefE/252 Vel;;sleep_powder/leaf_storm/sludge_bomb/hidden_power
+gastrodon_uu_1;gastrodon;uu;Specially Defensive;79;leftovers;storm_drain;sassy;252 PS/4 Def/252 DefE;;scald/earthquake/toxic/recover
+bronzong_uu_1;bronzong;uu;Specially Defensive;44;leftovers;;sassy;252 PS/4 Def/252 DefE;;stealth_rock/toxic/gyro_ball/psywave,protect
+lucario_uu_1;lucario;uu;Nasty Plot;32;fightinium_z,life_orb;inner_focus;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/focus_blast,aura_sphere/flash_cannon/vacuum_wave
+lucario_uu_2;lucario;uu;Swords Dance;60;life_orb;justified;jolly,adamant;252 Atq/4 DefE/252 Vel;;swords_dance/close_combat/extreme_speed/meteor_mash,bullet_punch
+hippowdon_uu_1;hippowdon;uu;Mixed Wall;79;leftovers,rocky_helmet;sand_stream,sand_force;impish;252 PS/80 Def/176 DefE;;stealth_rock/earthquake/slack_off/toxic,whirlwind
+toxicroak_uu_1;toxicroak;uu;Swords Dance;58;life_orb,poisonium_z,darkinium_z;dry_skin;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/drain_punch/gunk_shot/sucker_punch,ice_punch
+rhyperior_uu_1;rhyperior;uu;Tank;80;leftovers;solid_rock;adamant;252 PS/16 Atq/240 DefE;;stealth_rock/earthquake/stone_edge,rock_blast/ice_punch,toxic,swords_dance
+togekiss_uu_1;togekiss;uu;Nasty Plot;65;leftovers;serene_grace;timid;252 PS/4 AtqE/252 Vel;;nasty_plot/heal_bell,thunder_wave/air_slash/roost
+togekiss_uu_2;togekiss;uu;Offensive Nasty Plot;39;fightinium_z,babiri_berry;serene_grace;timid;4 Def/252 AtqE/252 Vel;;nasty_plot/air_slash/aura_sphere,flamethrower/roost
+togekiss_uu_3;togekiss;uu;Support;70;leftovers;serene_grace;bold;252 PS/160 Def/96 Vel;;air_slash/heal_bell,thunder_wave/roost/defog,thunder_wave
+togekiss_uu_4;togekiss;uu;Choice Scarf;48;choice_scarf;serene_grace;timid;4 Def/252 AtqE/252 Vel;;air_slash/thunder_wave/trick/roost
+mamoswine_uu_1;mamoswine;uu;Life Orb;64;life_orb;thick_fat;adamant,jolly;252 Atq/4 DefE/252 Vel;;ice_shard/earthquake/icicle_crash/knock_off
+froslass_uu_1;froslass;uu;Suicide Lead;93;focus_sash;cursed_body;timid;4 PS/252 AtqE/252 Vel;;spikes/taunt/icy_wind/destiny_bond
+rotom_heat_uu_1;rotom_heat;uu;Fast Bulky Pivot;56;wiki_berry,leftovers;;timid;236 PS/20 AtqE/252 Vel;;defog,pain_split/volt_switch/overheat/toxic,will_o_wisp
+rotom_heat_uu_2;rotom_heat;uu;Offensive Pivot;41;firium_z;;timid;4 Def/252 AtqE/252 Vel;;overheat/volt_switch/toxic/pain_split
+rotom_mow_uu_1;rotom_mow;uu;Offensive Pivot;54;grassium_z,iapapa_berry;;timid;252 AtqE/4 DefE/252 Vel;;thunderbolt/volt_switch/leaf_storm/defog,hidden_power
+uxie_uu_1;uxie;uu;Trick Room Setter;32;mental_herb,colbur_berry;;relaxed;252 PS/252 Def/4 DefE;;trick_room/stealth_rock/memento,u_turn/magic_coat,psychic
+azelf_uu_1;azelf;uu;Nasty Plot;4;adrenaline_orb,life_orb;;timid;4 Def/252 AtqE/252 Vel;;nasty_plot/psyshock,psychic/flamethrower,fire_blast/dazzling_gleam
+azelf_uu_2;azelf;uu;Suicide Lead;70;focus_sash;;jolly,naive;252 Atq/4 AtqE/252 Vel;;stealth_rock/explosion/taunt/knock_off,fire_blast
+azelf_uu_3;azelf;uu;Dual Screens;29;light_clay;;jolly;252 Def/40 DefE/216 Vel;;reflect/light_screen/taunt/u_turn,explosion
+shaymin_uu_1;shaymin;uu;Z-Celebrate;17;normalium_z;;timid;252 AtqE/4 DefE/252 Vel;;celebrate/seed_flare/dazzling_gleam/hidden_power
+seismitoad_uu_1;seismitoad;uu;Offensive Stealth Rock;60;leftovers,expert_belt;water_absorb;modest;72 PS/252 AtqE/184 Vel;;stealth_rock/hydro_pump/earth_power/hidden_power
+seismitoad_uu_2;seismitoad;uu;Defensive Stealth Rock;91;leftovers;water_absorb;relaxed;252 PS/252 Def/4 DefE;;stealth_rock/scald/earthquake/toxic,refresh
+krookodile_uu_1;krookodile;uu;Choice Scarf;48;choice_scarf;;jolly;252 Atq/4 Def/252 Vel;;knock_off/earthquake/pursuit/stone_edge,crunch
+krookodile_uu_2;krookodile;uu;Stealth Rock;54;iapapa_berry,groundium_z,focus_sash;;jolly;252 Atq/4 Def/252 Vel;;stealth_rock/knock_off/earthquake/taunt,pursuit
+darmanitan_uu_1;darmanitan;uu;Choice Band;54;choice_band;;jolly;252 Atq/4 DefE/252 Vel;;flare_blitz/u_turn/earthquake/rock_slide,fire_punch
+cofagrigus_uu_1;cofagrigus;uu;Trick Room;13;ghostium_z;;quiet;252 PS/252 AtqE/4 DefE;;shadow_ball/hidden_power/trick_room/nasty_plot
+zoroark_uu_1;zoroark;uu;Nasty Plot;42;fightinium_z;;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/dark_pulse/focus_blast/sludge_bomb
+reuniclus_uu_1;reuniclus;uu;Defensive Calm Mind;71;fightinium_z,leftovers;magic_guard;bold;252 PS/212 Def/44 Vel;;calm_mind/psyshock/focus_blast/recover
+reuniclus_uu_2;reuniclus;uu;Offensive Trick Room;49;life_orb;magic_guard;quiet;252 PS/4 Def/252 AtqE;;psychic,psyshock/shadow_ball/focus_blast/trick_room
+amoonguss_uu_1;amoonguss;uu;Defensive Pivot;72;rocky_helmet,black_sludge;regenerator;bold;252 PS/176 Def/80 DefE;;spore/giga_drain/hidden_power/sludge_bomb
+jellicent_uu_1;jellicent;uu;Physically Defensive;65;leftovers,colbur_berry;;bold;252 PS/212 Def/44 Vel;;hex,scald/taunt/will_o_wisp/recover
+alomomola_uu_1;alomomola;uu;Defensive;92;leftovers,rocky_helmet;regenerator;bold,impish;40 PS/252 Def/216 DefE;;wish/protect/toxic,knock_off/scald,knock_off
+ferroseed_uu_1;ferroseed;uu;Bulky Entry Hazard Setter;70;eviolite;;sassy;252 PS/80 Def/176 DefE;;stealth_rock,spikes/gyro_ball/leech_seed/toxic,protect
+chandelure_uu_1;chandelure;uu;Substitute + Calm Mind;41;leftovers;flame_body,flash_fire;timid;4 Def/252 AtqE/252 Vel;;substitute/calm_mind/shadow_ball/flamethrower
+chandelure_uu_2;chandelure;uu;Choice Scarf;56;choice_scarf;flame_body,flash_fire;timid;4 Def/252 AtqE/252 Vel;;shadow_ball/fire_blast/trick/memento,hidden_power,flamethrower
+haxorus_uu_1;haxorus;uu;Swords Dance;60;dragonium_z,lum_berry;mold_breaker;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/outrage/earthquake/poison_jab
+haxorus_uu_2;haxorus;uu;Dragon Dance;75;dragonium_z,lum_berry;mold_breaker;jolly;252 Atq/4 DefE/252 Vel;;dragon_dance/outrage/earthquake/poison_jab
+mienshao_uu_1;mienshao;uu;Assault Vest;48;assault_vest;regenerator;jolly;100 PS/156 DefE/252 Vel;;high_jump_kick/knock_off/u_turn/fake_out
+bisharp_uu_1;bisharp;uu;Swords Dance;64;life_orb,dread_plate,darkinium_z;;adamant,jolly;252 Atq/4 DefE/252 Vel;;swords_dance/knock_off/iron_head/sucker_punch
+bisharp_uu_2;bisharp;uu;Assault Vest;48;assault_vest;;adamant;188 PS/236 Atq/84 Vel;;pursuit/knock_off/iron_head/sucker_punch
+mandibuzz_uu_1;mandibuzz;uu;Utility Birb;60;leftovers;overcoat;careful;248 PS/124 DefE/136 Vel;;foul_play/taunt/toxic/roost
+durant_uu_1;durant;uu;Hone Claws;49;steelium_z;hustle;jolly;4 PS/252 Atq/252 Vel;;hone_claws/iron_head/superpower/crunch,rock_slide
+hydreigon_uu_1;hydreigon;uu;Choice Scarf;62;choice_scarf;;timid;252 AtqE/4 DefE/252 Vel;;draco_meteor/dark_pulse/u_turn/fire_blast
+hydreigon_uu_2;hydreigon;uu;Defog;37;dragonium_z,dread_plate;;timid;252 AtqE/4 DefE/252 Vel;;defog/dark_pulse/roost/draco_meteor
+hydreigon_uu_3;hydreigon;uu;Taunt;34;life_orb,dragonium_z;;timid;252 AtqE/4 DefE/252 Vel;;taunt/dark_pulse/roost/draco_meteor
+hydreigon_uu_4;hydreigon;uu;Life Orb Attacker;40;life_orb;;timid;252 AtqE/4 DefE/252 Vel;;draco_meteor/dark_pulse/flash_cannon/roost,fire_blast
+hydreigon_uu_5;hydreigon;uu;Choice Specs;45;choice_specs;;timid;252 AtqE/4 DefE/252 Vel;;draco_meteor/dark_pulse/flash_cannon,u_turn/fire_blast,u_turn
+cobalion_uu_1;cobalion;uu;Swords Dance;59;fightinium_z,rocky_helmet,shuca_berry;;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/iron_head/close_combat/stealth_rock,rock_polish
+cobalion_uu_2;cobalion;uu;Calm Mind;16;fightinium_z,electrium_z;;timid;252 AtqE/4 DefE/252 Vel;;calm_mind/flash_cannon/focus_blast/hidden_power,volt_switch
+terrakion_uu_1;terrakion;uu;Swords Dance;61;rockium_z,fightinium_z;;jolly;252 Atq/4 Def/252 Vel;;swords_dance/stone_edge/close_combat/earthquake,stealth_rock
+terrakion_uu_2;terrakion;uu;Choice Band;40;choice_band;;jolly;252 Atq/4 Def/252 Vel;;close_combat/stone_edge/earthquake/toxic,quick_attack
+tornadus_uu_1;tornadus;uu;Life Orb;63;life_orb;defiant,prankster;hasty;4 Atq/252 AtqE/252 Vel;;hurricane/heat_wave/superpower/grass_knot,defog,tailwind
+tornadus_uu_2;tornadus;uu;Offensive Support;41;flyinium_z;;hasty,timid;4 Atq/252 AtqE/252 Vel;;hurricane/u_turn/superpower,heat_wave/defog,tailwind
+kyurem_uu_1;kyurem;uu;SubRoost;67;leftovers;;timid;56 PS/200 AtqE/252 Vel;;ice_beam/substitute/earth_power/roost
+kyurem_uu_2;kyurem;uu;Choice Specs;36;choice_specs;;timid;252 AtqE/4 DefE/252 Vel;;draco_meteor/ice_beam/hidden_power/earth_power
+meloetta_uu_1;meloetta;uu;Z-Celebrate;48;normalium_z;;timid;252 AtqE/4 DefE/252 Vel;;celebrate/psychic/focus_blast/hyper_voice,shadow_ball
+chesnaught_uu_1;chesnaught;uu;Spikes;65;leftovers,rocky_helmet;bulletproof;impish;244 PS/252 Def/12 Vel;;spikes/wood_hammer,roar/drain_punch/synthesis
+talonflame_uu_1;talonflame;uu;Swords Dance;69;flyinium_z;gale_wings;jolly;252 Atq/4 Def/252 Vel;;swords_dance/brave_bird/flare_blitz,flame_charge/taunt,roost,flame_charge
+florges_uu_1;florges;uu;Cleric;72;leftovers;symbiosis;bold;252 PS/252 Def/4 DefE;;moonblast/synthesis/aromatherapy/wish,toxic
+doublade_uu_1;doublade;uu;Swords Dance;72;eviolite;;brave,adamant;240 PS/252 Atq/16 DefE;;swords_dance/gyro_ball,iron_head/shadow_claw,sacred_sword/shadow_sneak
+barbaracle_uu_1;barbaracle;uu;Shell Smash;55;rockium_z;;naive,jolly;252 Atq/4 AtqE/252 Vel;;shell_smash/stone_edge/liquidation/grass_knot,earthquake
+aurorus_uu_1;aurorus;uu;Aurora Veil Lead;0;focus_sash;snow_warning;timid;252 AtqE/4 DefE/252 Vel;;stealth_rock/freeze_dry/hidden_power,blizzard/encore,thunder_wave
+sylveon_uu_1;sylveon;uu;Cleric;80;leftovers;pixilate;bold;252 PS/252 Def/4 AtqE;;hyper_voice/wish/protect/heal_bell
+klefki_uu_1;klefki;uu;Support;46;leftovers;;careful;248 PS/252 DefE/8 Vel;;spikes/thunder_wave/toxic,magnet_rise/play_rough
+zygarde_10_uu_1;zygarde_10;uu;Choice Band;67;choice_band;;jolly;252 Atq/4 Def/252 Vel;;thousand_arrows/outrage/extreme_speed/toxic,earthquake
+diancie_uu_1;diancie;uu;Support;59;leftovers;;calm,sassy;252 PS/4 Def/252 DefE;;stealth_rock,diamond_storm/heal_bell,diamond_storm/toxic/moonblast
+hoopa_uu_1;hoopa;uu;Nasty Plot;47;fightinium_z,ghostium_z;;modest,timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/shadow_ball/focus_blast/substitute
+volcanion_uu_1;volcanion;uu;Defog;28;shuca_berry,leftovers;;modest;40 PS/252 AtqE/216 Vel;;defog/steam_eruption/flamethrower/sludge_bomb
+volcanion_uu_2;volcanion;uu;Choice Specs;45;choice_specs;;modest,timid;4 Def/252 AtqE/252 Vel;;steam_eruption/fire_blast,flamethrower/earth_power,hidden_power/sludge_bomb
+volcanion_uu_3;volcanion;uu;Toxic;22;leftovers;;modest;248 PS/44 AtqE/216 Vel;;steam_eruption/flamethrower/toxic/protect,substitute
+decidueye_uu_1;decidueye;uu;Swords Dance;27;decidium_z;;jolly,adamant;32 PS/224 Atq/252 Vel;;swords_dance/substitute/leaf_blade/spirit_shackle
+primarina_uu_1;primarina;uu;Choice Specs;52;choice_specs;;modest;40 PS/252 AtqE/216 Vel;;hydro_pump/moonblast/sparkling_aria/psychic
+primarina_uu_2;primarina;uu;Defensive;30;leftovers;;bold;252 PS/252 Def/4 DefE;;scald/moonblast/rest/sleep_talk
+araquanid_uu_1;araquanid;uu;Sticky Web;35;splash_plate,focus_sash;;adamant;148 PS/252 Atq/108 Vel;;sticky_web/liquidation/leech_life/magic_coat
+salazzle_uu_1;salazzle;uu;Nasty Plot;13;poisonium_z;oblivious;timid;24 Def/232 AtqE/252 Vel;;nasty_plot/sludge_wave/fire_blast/hidden_power
+salazzle_uu_2;salazzle;uu;Corrosion;35;black_sludge;;timid;248 PS/8 Def/252 Vel;;toxic/protect/flamethrower/substitute,taunt
+bewear_uu_1;bewear;uu;Choice Band;16;choice_band;;jolly,adamant;252 Atq/4 Def/252 Vel;;return/superpower/shadow_claw,earthquake/facade
+bewear_uu_2;bewear;uu;Swords Dance;32;normalium_z;;jolly;252 Atq/4 Def/252 Vel;;swords_dance/drain_punch/double_edge/earthquake
+tsareena_uu_1;tsareena;uu;Choice Band;61;choice_band;queenly_majesty;jolly;252 Atq/4 DefE/252 Vel;;power_whip/knock_off,rapid_spin/high_jump_kick/u_turn
+tsareena_uu_2;tsareena;uu;Offensive Utility;66;lum_berry;queenly_majesty;jolly;252 Atq/4 Def/252 Vel;;rapid_spin/power_whip/u_turn/high_jump_kick,knock_off
+palossand_uu_1;palossand;uu;Stealth Rock;55;leftovers,colbur_berry;;bold;252 PS/164 Def/92 DefE;;stealth_rock/earth_power/shore_up/toxic
+pyukumuku_uu_1;pyukumuku;uu;Specially Defensive;95;leftovers;unaware;calm;252 PS/4 Def/252 DefE;;block/toxic,spite/soak,rest/recover
+mimikyu_uu_1;mimikyu;uu;Swords Dance;64;life_orb,ghostium_z;;adamant,jolly;252 Atq/4 Def/252 Vel;;swords_dance/shadow_claw/play_rough/shadow_sneak
+nihilego_uu_1;nihilego;uu;3 Attacks;42;black_sludge,electrium_z,life_orb;;timid;252 AtqE/4 DefE/252 Vel;;sludge_wave/thunderbolt/grass_knot,hidden_power,power_gem/stealth_rock,protect,toxic_spikes
+nihilego_uu_2;nihilego;uu;Choice Scarf;54;choice_scarf;;timid;252 AtqE/4 DefE/252 Vel;;power_gem/sludge_wave/grass_knot/thunderbolt,dazzling_gleam
+nihilego_uu_3;nihilego;uu;Stall Utility;35;black_sludge;;timid;4 Def/252 AtqE/252 Vel;;stealth_rock/sludge_wave/protect,pain_split/power_gem,thunderbolt
+necrozma_uu_1;necrozma;uu;Stealth Rock;38;metronome,iapapa_berry;;modest;108 PS/252 AtqE/144 Vel;;stealth_rock/photon_geyser/heat_wave/signal_beam
+necrozma_uu_2;necrozma;uu;Choice Specs;36;choice_specs;;modest;252 AtqE/4 DefE/252 Vel;;photon_geyser/earth_power/heat_wave/signal_beam
+necrozma_uu_3;necrozma;uu;Calm Mind;37;psychium_z,wiki_berry;;modest;68 PS/252 AtqE/188 Vel;;calm_mind/photon_geyser/heat_wave/signal_beam
+stakataka_uu_1;stakataka;uu;Offensive Trick Room;79;rockium_z;;lonely;252 PS/252 Atq/4 DefE;15 Def;trick_room/gyro_ball/stone_edge/earthquake
+stakataka_uu_2;stakataka;uu;Defensive;18;leftovers;;sassy;252 PS/4 Def/252 DefE;;gyro_ball/rock_blast/stealth_rock/protect,toxic
+zeraora_uu_1;zeraora;uu;Mixed Attacker;42;life_orb,expert_belt,shuca_berry;;naive;252 Atq/4 AtqE/252 Vel;;plasma_fists/close_combat/grass_knot/knock_off,volt_switch
+zeraora_uu_2;zeraora;uu;Bulk Up;32;electrium_z,shuca_berry,normalium_z;;jolly;252 Atq/4 Def/252 Vel;;bulk_up/plasma_fists/close_combat/knock_off,giga_impact
+gardevoir_ru_1;gardevoir;ru;Choice Scarf;69;choice_scarf;trace;timid;4 Def/252 AtqE/252 Vel;;psyshock/moonblast/will_o_wisp,trick/healing_wish
+gardevoir_ru_2;gardevoir;ru;Choice Specs;56;choice_specs;trace;timid;4 Def/252 AtqE/252 Vel;;psyshock/moonblast/shadow_ball,hidden_power/trick,healing_wish
+flygon_ru_1;flygon;ru;Choice Scarf;51;choice_scarf;;jolly;252 Atq/4 DefE/252 Vel;;u_turn/earthquake/outrage/aerial_ace,dragon_claw,defog
+noivern_ru_1;noivern;ru;Support;43;leftovers;infiltrator;timid;252 AtqE/4 DefE/252 Vel;;hurricane/taunt/roost/u_turn
+noivern_ru_2;noivern;ru;Choice Scarf;53;choice_scarf;infiltrator;timid;252 AtqE/4 DefE/252 Vel;;hurricane/draco_meteor/u_turn/switcheroo
+vikavolt_ru_1;vikavolt;ru;Bulky Pivot;43;rocky_helmet;;bold;252 PS/196 Def/60 Vel;;volt_switch/bug_buzz/roost/energy_ball
+cresselia_ru_1;cresselia;ru;Physically Defensive;51;leftovers;;bold;252 PS/112 Def/144 Vel;;moonlight/psyshock/moonblast,ice_beam/toxic
+venusaur_ru_1;venusaur;ru;Sun Sweeper;59;life_orb,grassium_z;chlorophyll;modest;4 Def/252 AtqE/252 Vel;;growth/sludge_bomb/giga_drain/hidden_power
+blastoise_ru_1;blastoise;ru;Offensive Spinner;72;blastoisinite;rain_dish;timid;4 Def/252 AtqE/252 Vel;;rapid_spin/dark_pulse/aura_sphere/ice_beam
+nidoqueen_ru_1;nidoqueen;ru;Stealth Rock;72;life_orb;sheer_force;timid;252 AtqE/4 DefE/252 Vel;;stealth_rock/earth_power/sludge_wave,ice_beam/toxic,taunt
+ninetales_ru_1;ninetales;ru;Nasty Plot Wallbreaker;51;firium_z;drought;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/fire_blast/solar_beam/hidden_power
+ninetales_ru_2;ninetales;ru;Choice Specs;47;choice_specs;drought;timid;252 AtqE/4 DefE/252 Vel;;overheat/fire_blast,flamethrower/solar_beam/hidden_power
+golbat_ru_1;golbat;ru;Defensive;97;eviolite;infiltrator;jolly;248 PS/244 Def/16 Vel;;brave_bird/roost/defog,taunt/toxic,super_fang,taunt
+vileplume_ru_1;vileplume;ru;Strength Sap;65;poisonium_z,black_sludge;effect_spore;bold;252 PS/252 Def/4 DefE;;giga_drain/sludge_bomb/strength_sap/sleep_powder
+arcanine_ru_1;arcanine;ru;Wallbreaker;60;life_orb;flash_fire;jolly;252 Atq/4 Def/252 Vel;;flare_blitz/wild_charge/extreme_speed/morning_sun
+machamp_ru_1;machamp;ru;Guts Wallbreaker;44;flame_orb;;adamant;252 Atq/4 Def/252 Vel;;close_combat/knock_off/facade/bullet_punch
+machamp_ru_2;machamp;ru;Assault Vest;51;assault_vest;;adamant;252 PS/200 Atq/56 Vel;;close_combat/knock_off/ice_punch,thunder_punch/bullet_punch
+slowbro_ru_1;slowbro;ru;Defensive Pivot;64;leftovers,colbur_berry;regenerator;bold;252 PS/252 Def/4 AtqE;;scald/psyshock/slack_off/ice_beam
+cloyster_ru_1;cloyster;ru;Shell Smash;59;focus_sash;skill_link;jolly;252 Atq/4 DefE/252 Vel;;shell_smash/icicle_spear/spikes/explosion,rapid_spin
+marowak_alola_ru_1;marowak_alola;ru;Swords Dance Wallbreaker;72;thick_club;rock_head;adamant;212 PS/252 Atq/44 Vel;;flare_blitz/shadow_bone/swords_dance/low_kick,earthquake
+tangela_ru_1;tangela;ru;Defensive Pivot;84;eviolite;regenerator;bold;252 PS/108 Def/92 AtqE/56 DefE;;leaf_storm/knock_off/leech_seed,sleep_powder/sludge_bomb,hidden_power
+ditto_ru_1;ditto;ru;Revenge Killer;100;choice_scarf;imposter;relaxed;252 PS/4 Atq/252 Def;30 AtqE/30 DefE;transform
+vaporeon_ru_1;vaporeon;ru;Support;72;leftovers;;calm;252 PS/4 Def/252 DefE;;scald/wish/protect/ice_beam,heal_bell
+jolteon_ru_1;jolteon;ru;Special Attacker;44;life_orb;quick_feet;timid;252 AtqE/4 DefE/252 Vel;;yawn/volt_switch/thunderbolt/hidden_power
+aerodactyl_ru_1;aerodactyl;ru;Physical Attacker;56;life_orb;unnerve;jolly;252 Atq/4 Def/252 Vel;;stone_edge/earthquake/roost,taunt/pursuit
+snorlax_ru_1;snorlax;ru;Standard CurseLax;42;leftovers;thick_fat;careful;188 PS/128 Def/192 DefE;;curse/frustration,body_slam/rest/earthquake,sleep_talk
+snorlax_ru_2;snorlax;ru;Recycle CurseLax;37;figy_berry;gluttony;careful;188 PS/176 Def/144 DefE;;curse/recycle/facade/earthquake,fire_punch
+snorlax_ru_3;snorlax;ru;Choice Band;10;choice_band;;adamant;228 PS/252 Atq/28 Vel;;double_edge/earthquake/pursuit/self_destruct,fire_punch
+articuno_ru_1;articuno;ru;Defensive Defog;83;leftovers;;timid;252 PS/112 DefE/144 Vel;;defog/freeze_dry/roost/heal_bell,substitute
+xatu_ru_1;xatu;ru;Defensive;74;rocky_helmet;magic_bounce;bold;252 PS/200 Def/56 Vel;;psyshock/roost/heat_wave/u_turn,calm_mind
+ampharos_ru_1;ampharos;ru;Special Attacker;73;ampharosite;static;modest;4 PS/252 AtqE/252 Vel;;volt_switch/dragon_pulse/focus_blast/thunderbolt
+espeon_ru_1;espeon;ru;Calm Mind;51;leftovers,electrium_z;magic_bounce;timid;4 Def/252 AtqE/252 Vel;;calm_mind/psychic/shadow_ball/morning_sun,zap_cannon
+espeon_ru_2;espeon;ru;Choice Specs;49;choice_specs;magic_bounce;timid;4 Def/252 AtqE/252 Vel;;psychic/shadow_ball/dazzling_gleam/trick,hidden_power
+umbreon_ru_1;umbreon;ru;Cleric;81;leftovers;;calm;252 PS/4 Def/252 DefE;;wish/protect/heal_bell,toxic/foul_play
+slowking_ru_1;slowking;ru;Assault Vest;50;assault_vest;regenerator;modest;252 PS/176 AtqE/80 DefE;;scald/future_sight/fire_blast/dragon_tail
+forretress_ru_1;forretress;ru;Defensive;70;leftovers;overcoat,sturdy;relaxed;252 PS/252 Def/4 DefE;;gyro_ball/spikes/volt_switch/rapid_spin,toxic
+steelix_ru_1;steelix;ru;Tank;82;leftovers;sturdy;impish;252 PS/252 Def/4 DefE;;stealth_rock/heavy_slam/earthquake/toxic
+sneasel_ru_1;sneasel;ru;All-out Attacker;62;life_orb,choice_band;;jolly;252 Atq/4 Def/252 Vel;;knock_off/icicle_crash/ice_shard/pursuit
+mantine_ru_1;mantine;ru;Defog;82;flyinium_z,leftovers;water_absorb;calm;252 PS/120 DefE/136 Vel;;roost/defog/scald/air_slash,haze
+houndoom_ru_1;houndoom;ru;Nasty Plot;48;darkinium_z;flash_fire;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/dark_pulse/fire_blast/taunt
+houndoom_ru_2;houndoom;ru;Choice Scarf;88;choice_scarf;flash_fire;timid;12 Def/244 AtqE/252 Vel;;fire_blast/dark_pulse/hidden_power/destiny_bond,overheat,toxic
+kingdra_ru_1;kingdra;ru;CritDra;58;scope_lens;sniper;timid;252 AtqE/4 DefE/252 Vel;;focus_energy/draco_meteor/hydro_pump,surf/substitute
+donphan_ru_1;donphan;ru;Offensive Spinner;74;leftovers;;adamant;252 PS/252 Atq/4 Def;;rapid_spin/earthquake/knock_off/ice_shard
+porygon2_ru_1;porygon2;ru;Defensive;65;eviolite;;bold;252 PS/252 Def/4 DefE;;recover/ice_beam/foul_play/toxic,thunder_wave
+raikou_ru_1;raikou;ru;Substitute + Calm Mind;49;leftovers;;timid;252 AtqE/4 DefE/252 Vel;;substitute/calm_mind/thunderbolt/hidden_power
+raikou_ru_2;raikou;ru;Calm Mind + 3 Attacks;42;fightinium_z;;rash;4 Def/252 AtqE/252 Vel;;calm_mind/thunderbolt/aura_sphere/hidden_power
+sceptile_ru_1;sceptile;ru;Leech Seed + Protect;67;sceptilite;overgrow;timid;4 Def/252 AtqE/252 Vel;;leaf_storm/dragon_pulse/protect/leech_seed
+swellow_ru_1;swellow;ru;Boomburst;51;choice_specs;scrappy;timid;4 Def/252 AtqE/252 Vel;;boomburst/u_turn/heat_wave/air_slash
+exploud_ru_1;exploud;ru;Choice Specs;81;choice_specs;scrappy;timid;4 Def/252 AtqE/252 Vel;;boomburst/focus_blast/fire_blast/surf
+hariyama_ru_1;hariyama;ru;Tank;54;assault_vest;;adamant;172 Atq/252 DefE/84 Vel;;close_combat/knock_off/stone_edge,earthquake/earthquake,bullet_punch
+medicham_ru_1;medicham;ru;All-out Attacker;50;life_orb;;jolly;252 Atq/4 Def/252 Vel;;high_jump_kick/zen_headbutt/thunder_punch/bullet_punch
+camerupt_ru_1;camerupt;ru;Tank;30;cameruptite;solid_rock;calm;252 PS/172 DefE/84 Vel;;fire_blast/earth_power/rest/sleep_talk
+milotic_ru_1;milotic;ru;Defensive;67;leftovers;;calm;252 PS/108 Def/148 DefE;;scald/recover/toxic,haze/refresh,ice_beam
+banette_ru_1;banette;ru;Offensive;53;banettite;frisk;adamant;40 PS/252 Atq/216 Vel;;destiny_bond/shadow_claw/gunk_shot/taunt,knock_off
+glalie_ru_1;glalie;ru;Wallbreaker;69;glalitite;;jolly;4 PS/252 Atq/252 Vel;;double_edge/ice_shard/earthquake/spikes,explosion
+metagross_ru_1;metagross;ru;Offensive Stealth Rock;36;shuca_berry,custap_berry;;adamant;76 PS/252 Atq/180 Vel;;stealth_rock/meteor_mash/earthquake/toxic,explosion
+metagross_ru_2;metagross;ru;Choice Band;42;choice_band;;adamant;252 Atq/4 Def/252 Vel;;meteor_mash/earthquake/bullet_punch/pursuit,explosion,thunder_punch
+metagross_ru_3;metagross;ru;Agility;31;life_orb,weakness_policy;;adamant,jolly;252 Atq/4 Def/252 Vel;;agility/meteor_mash/earthquake/thunder_punch,explosion
+metagross_ru_4;metagross;ru;Choice Scarf;36;choice_scarf;;jolly;252 Atq/4 Def/252 Vel;;meteor_mash/zen_headbutt/earthquake/trick
+registeel_ru_1;registeel;ru;Specially Defensive;82;leftovers;;calm;252 PS/4 Def/252 DefE;;seismic_toss/toxic/stealth_rock/protect
+torterra_ru_1;torterra;ru;Defensive;78;leftovers;;impish;248 PS/252 Def/8 DefE;;stealth_rock/wood_hammer/earthquake/synthesis
+roserade_ru_1;roserade;ru;Offensive Spikes;78;life_orb;technician,natural_cure;timid;252 AtqE/4 DefE/252 Vel;;spikes/leaf_storm/sludge_bomb/hidden_power,synthesis
+gastrodon_ru_1;gastrodon;ru;Defensive;81;leftovers;storm_drain;careful;56 PS/16 Atq/252 Def/184 DefE;;recover/earthquake/ice_beam/toxic,scald
+mismagius_ru_1;mismagius;ru;Nasty Plot;53;ghostium_z,electrium_z;;timid;8 Def/248 AtqE/252 Vel;;nasty_plot/shadow_ball/thunderbolt/taunt,substitute
+honchkrow_ru_1;honchkrow;ru;Darkinium Z;56;darkinium_z;moxie;jolly;252 Atq/4 Def/252 Vel;;brave_bird/sucker_punch/superpower/taunt
+bronzong_ru_1;bronzong;ru;Specially Defensive;54;leftovers;;calm,sassy;252 PS/4 Def/252 DefE;;stealth_rock/toxic/psywave/protect,gyro_ball,earthquake
+drapion_ru_1;drapion;ru;Choice Band;51;choice_band;sniper;jolly;252 Atq/4 DefE/252 Vel;;knock_off/poison_jab/pursuit/earthquake,aqua_tail
+toxicroak_ru_1;toxicroak;ru;Swords Dance;76;life_orb;dry_skin;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/gunk_shot/drain_punch/sucker_punch
+toxicroak_ru_2;toxicroak;ru;Choice Scarf;23;choice_scarf;dry_skin;jolly;252 Atq/4 DefE/252 Vel;;gunk_shot/low_kick/earthquake/knock_off
+abomasnow_ru_1;abomasnow;ru;Swords Dance;71;abomasite;soundproof;adamant;252 Atq/4 Def/252 Vel;;swords_dance/wood_hammer/ice_shard/earthquake
+abomasnow_ru_2;abomasnow;ru;Mixed Attacker;66;abomasite;soundproof;rash,mild;92 Atq/252 AtqE/164 Vel;;blizzard/wood_hammer,giga_drain/ice_shard/focus_blast,earthquake
+rhyperior_ru_1;rhyperior;ru;Stealth Rock;78;leftovers;solid_rock;adamant;248 PS/16 Atq/244 DefE;;stealth_rock/earthquake/rock_blast,megahorn/toxic,swords_dance
+rhyperior_ru_2;rhyperior;ru;Choice Band;45;choice_band;solid_rock;adamant;52 PS/252 Atq/204 Vel;;earthquake/stone_edge/megahorn/ice_punch
+yanmega_ru_1;yanmega;ru;Choice Specs;76;choice_specs;tinted_lens;timid;252 AtqE/4 DefE/252 Vel;;bug_buzz/air_slash/u_turn/giga_drain,psychic
+yanmega_ru_2;yanmega;ru;Speed Boost Sweeper;50;life_orb;;modest;252 AtqE/4 DefE/252 Vel;;protect/bug_buzz/air_slash/giga_drain
+rotom_mow_ru_1;rotom_mow;ru;Offensive Support;44;grassium_z;;timid;4 Def/252 AtqE/252 Vel;;defog/leaf_storm/volt_switch/will_o_wisp
+uxie_ru_1;uxie;ru;Utility;31;wiki_berry,colbur_berry;;timid;252 PS/40 Def/216 Vel;;stealth_rock/psyshock/yawn/u_turn,memento
+shaymin_ru_1;shaymin;ru;Offensive;24;life_orb;;timid;252 AtqE/4 DefE/252 Vel;;seed_flare/earth_power/hidden_power/synthesis,rest
+shaymin_ru_2;shaymin;ru;Choice Scarf;12;choice_scarf;;timid;252 AtqE/4 DefE/252 Vel;;seed_flare/healing_wish/psychic/hidden_power
+shaymin_ru_3;shaymin;ru;Leech Seed;46;leftovers;;timid;252 AtqE/4 DefE/252 Vel;;leech_seed/substitute,protect/seed_flare/air_slash,earth_power,psychic
+shaymin_ru_4;shaymin;ru;Z-Celebrate;13;normalium_z;;timid;252 AtqE/4 DefE/252 Vel;;celebrate/seed_flare/air_slash/earth_power
+emboar_ru_1;emboar;ru;Wallbreaker;82;choice_band;reckless;jolly;252 Atq/4 Def/252 Vel;;flare_blitz/superpower/wild_charge/earthquake,sucker_punch
+stoutland_ru_1;stoutland;ru;Sand Attacker;77;choice_band;sand_rush;adamant;252 Atq/4 DefE/252 Vel;;return/superpower/pursuit/crunch,facade
+gigalith_ru_1;gigalith;ru;Specially Defensive;59;leftovers;sand_stream;careful;252 PS/4 Def/252 DefE;;stealth_rock/stone_edge,rock_blast/earthquake/toxic
+seismitoad_ru_1;seismitoad;ru;Stealth Rock;95;leftovers;water_absorb;relaxed;252 PS/252 Def/4 DefE;;stealth_rock/scald/earthquake/toxic,refresh
+sawk_ru_1;sawk;ru;Wallbreaker;49;fightinium_z;;jolly;252 Atq/4 Def/252 Vel;;close_combat/knock_off/taunt/poison_jab,earthquake
+sigilyph_ru_1;sigilyph;ru;Offensive Defog;57;life_orb;magic_guard;timid;4 Def/252 AtqE/252 Vel;;psychic/heat_wave/roost,air_slash/defog
+sigilyph_ru_2;sigilyph;ru;Calm Mind;54;life_orb;magic_guard;timid;4 Def/252 AtqE/252 Vel;;psychic/heat_wave/roost/calm_mind
+cofagrigus_ru_1;cofagrigus;ru;Defensive;44;colbur_berry;;bold;252 PS/252 Def/4 AtqE;;will_o_wisp/shadow_ball/pain_split/haze,toxic_spikes
+garbodor_ru_1;garbodor;ru;Physically Defensive Spikes;48;rocky_helmet;aftermath;impish;252 PS/252 Def/4 DefE;;gunk_shot/toxic/spikes/pain_split
+vanilluxe_ru_1;vanilluxe;ru;Wallbreaker;65;icicle_plate,choice_specs;snow_warning;hasty;4 Atq/252 AtqE/252 Vel;;blizzard/freeze_dry/ice_shard/taunt,hidden_power
+escavalier_ru_1;escavalier;ru;Tank;66;leftovers;overcoat;adamant;252 PS/52 Atq/204 DefE;;megahorn/iron_head/protect/pursuit,knock_off
+escavalier_ru_2;escavalier;ru;Choice Band;68;choice_band;overcoat;adamant;172 PS/252 Atq/84 Vel;;megahorn/iron_head/pursuit/knock_off,drill_run
+galvantula_ru_1;galvantula;ru;Sticky Web;51;life_orb;;timid;252 AtqE/4 DefE/252 Vel;;sticky_web/thunder/bug_buzz/volt_switch
+klinklang_ru_1;klinklang;ru;Shift Gear;87;electrium_z;clear_body;adamant;4 PS/252 Atq/252 Vel;;shift_gear/gear_grind/wild_charge/magnet_rise
+mandibuzz_ru_1;mandibuzz;ru;Taunt + Toxic;67;leftovers,rocky_helmet;overcoat;impish;248 PS/76 Def/184 Vel;;taunt/toxic/roost/foul_play,knock_off
+mandibuzz_ru_2;mandibuzz;ru;Defog;72;leftovers,rocky_helmet;overcoat;careful;248 PS/20 Def/240 DefE;;defog/taunt,u_turn/roost/foul_play,knock_off
+virizion_ru_1;virizion;ru;Swords Dance;54;fightinium_z,life_orb;;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/close_combat/leaf_blade/synthesis,stone_edge
+vivillon_ru_1;vivillon;ru;Quiver Dance;59;flyinium_z,leftovers;compound_eyes;timid;252 AtqE/4 DefE/252 Vel;;quiver_dance/sleep_powder/hurricane/substitute
+florges_ru_1;florges;ru;Cleric;65;leftovers;symbiosis;timid;252 PS/120 Def/136 Vel;;moonblast/synthesis/aromatherapy/wish
+pangoro_ru_1;pangoro;ru;Choice Band;58;choice_band;;adamant;252 Atq/4 DefE/252 Vel;;knock_off/drain_punch/bullet_punch/superpower,gunk_shot,thunder_punch
+pangoro_ru_2;pangoro;ru;Swords Dance;53;life_orb,lum_berry;;adamant;252 Atq/4 DefE/252 Vel;;swords_dance/knock_off/drain_punch/bullet_punch
+slurpuff_ru_1;slurpuff;ru;Belly Drum Sweeper;88;sitrus_berry;unburden;adamant,jolly;4 PS/252 Atq/252 Vel;;belly_drum/play_rough/return/drain_punch
+barbaracle_ru_1;barbaracle;ru;Shell Smash;63;rockium_z;;jolly;252 Atq/4 DefE/252 Vel;;shell_smash/liquidation/stone_edge/low_kick
+dragalge_ru_1;dragalge;ru;Offensive;57;choice_specs,dragonium_z;adaptability;modest;204 PS/252 AtqE/52 Vel;;draco_meteor/sludge_bomb/focus_blast/toxic_spikes
+tyrantrum_ru_1;tyrantrum;ru;Choice Scarf;72;choice_scarf;rock_head;jolly;4 PS/252 Atq/252 Vel;;head_smash/outrage/earthquake/dragon_claw
+tyrantrum_ru_2;tyrantrum;ru;Choice Band;59;choice_band;rock_head;adamant;4 PS/252 Atq/252 Vel;;head_smash/outrage/earthquake/superpower,crunch
+tyrantrum_ru_3;tyrantrum;ru;Rock Polish;61;dragonium_z,rockium_z;rock_head;jolly;4 PS/252 Atq/252 Vel;;rock_polish/head_smash/outrage/earthquake
+goodra_ru_1;goodra;ru;Choice Scarf;46;choice_scarf;;timid,hasty;4 Atq/252 AtqE/252 Vel;;draco_meteor/thunderbolt/fire_blast/earthquake
+goodra_ru_2;goodra;ru;Choice Specs;38;choice_specs;;timid;252 AtqE/4 DefE/252 Vel;;draco_meteor/fire_blast/thunderbolt/sludge_wave
+zygarde_10_ru_1;zygarde_10;ru;Dragon Dance;47;dragonium_z;;jolly,adamant;252 Atq/4 DefE/252 Vel;;dragon_dance/thousand_arrows/outrage/extreme_speed
+zygarde_10_ru_2;zygarde_10;ru;Choice Band;78;choice_band;;jolly;252 Atq/4 DefE/252 Vel;;thousand_arrows/outrage/extreme_speed/toxic,earthquake
+diancie_ru_1;diancie;ru;Specially Defensive;60;leftovers;;calm;252 PS/4 Def/252 DefE;;stealth_rock/moonblast/earth_power/toxic,heal_bell
+hoopa_ru_1;hoopa;ru;Wallbreaker;33;ghostium_z,electrium_z;;timid;248 AtqE/8 DefE/252 Vel;;shadow_ball/focus_blast,thunderbolt/thunderbolt,substitute/nasty_plot
+ribombee_ru_1;ribombee;ru;Choice Specs;52;choice_specs;shield_dust;timid;252 AtqE/4 DefE/252 Vel;;moonblast/bug_buzz/u_turn/sticky_web,psychic
+ribombee_ru_2;ribombee;ru;Quiver Dance;54;fairium_z;shield_dust;timid;252 AtqE/4 DefE/252 Vel;;quiver_dance/moonblast/bug_buzz/psychic
+lycanroc_dusk_ru_1;lycanroc_dusk;ru;Swords Dance;55;life_orb;;jolly;252 Atq/4 Def/252 Vel;;swords_dance/stone_edge/fire_fang,drill_run/sucker_punch,accelerock
+araquanid_ru_1;araquanid;ru;Sticky Web;32;splash_plate;;adamant;252 Atq/4 Def/252 Vel;;sticky_web/liquidation/magic_coat/mirror_coat
+araquanid_ru_2;araquanid;ru;Substitute + Toxic;45;leftovers;;adamant;188 PS/252 Atq/68 Vel;;substitute/toxic/liquidation/leech_life,protect
+salazzle_ru_1;salazzle;ru;Special Sweeper;52;poisonium_z;oblivious;timid;8 PS/248 AtqE/252 Vel;;nasty_plot/fire_blast/sludge_wave/hidden_power
+salazzle_ru_2;salazzle;ru;Choice Scarf;34;choice_scarf;;timid;4 Def/252 AtqE/252 Vel;;fire_blast/sludge_wave/hidden_power/dragon_pulse
+bewear_ru_1;bewear;ru;Swords Dance;37;normalium_z,silk_scarf;;adamant;252 Atq/4 Def/252 Vel;;swords_dance/double_edge/superpower/shadow_claw
+bewear_ru_2;bewear;ru;Choice Band;45;choice_band;;adamant;252 Atq/4 Def/252 Vel;;return,double_edge/superpower/shadow_claw/drain_punch
+tsareena_ru_1;tsareena;ru;Offensive;54;meadow_plate,life_orb;queenly_majesty;adamant,jolly;252 Atq/4 Def/252 Vel;;rapid_spin/power_whip/knock_off/synthesis,high_jump_kick
+passimian_ru_1;passimian;ru;Choice Scarf;73;choice_scarf;defiant;jolly;252 Atq/4 Def/252 Vel;;close_combat/u_turn/earthquake,rock_slide/gunk_shot,rock_slide
+passimian_ru_2;passimian;ru;Choice Band;71;choice_band;defiant;jolly;252 Atq/4 Def/252 Vel;;close_combat/u_turn/knock_off/earthquake,rock_slide
+golisopod_ru_1;golisopod;ru;Revenge Killer;56;sitrus_berry,insect_plate;;adamant;168 PS/252 Atq/88 Vel;;first_impression/liquidation/leech_life/aqua_jet,spikes
+palossand_ru_1;palossand;ru;Defensive Stealth Rock;65;leftovers,colbur_berry;;bold;252 PS/252 Def/4 DefE;;earth_power/shore_up/stealth_rock/toxic
+pyukumuku_ru_1;pyukumuku;ru;Unaware Wall;96;leftovers;unaware;bold;252 PS/252 Def/4 DefE;;toxic/recover,rest/soak,spite/block,spite
+bruxish_ru_1;bruxish;ru;Swords Dance;65;life_orb;strong_jaw;jolly,adamant;252 Atq/4 Def/252 Vel;;swords_dance/psychic_fangs/aqua_jet/crunch,liquidation
+bruxish_ru_2;bruxish;ru;Choice Band;64;choice_band;strong_jaw;jolly,adamant;252 Atq/4 Def/252 Vel;;psychic_fangs/aqua_jet/liquidation/crunch
+dhelmise_ru_1;dhelmise;ru;Bulky Spinner;66;colbur_berry,steelium_z;;adamant;248 PS/56 Atq/120 Def/84 Vel;;rapid_spin/power_whip/anchor_shot/rest,synthesis
+necrozma_ru_1;necrozma;ru;Calm Mind;39;firium_z;;timid;252 AtqE/4 DefE/252 Vel;;photon_geyser/heat_wave/calm_mind/moonlight
+necrozma_ru_2;necrozma;ru;Offensive Stealth Rock;50;psychium_z,wiki_berry;;timid;252 AtqE/4 DefE/252 Vel;;photon_geyser/heat_wave/stealth_rock/moonlight
+weezing_nu_1;weezing;nu;Defensive;62;rocky_helmet,black_sludge;;bold;252 PS/152 Def/88 DefE/16 Vel;;sludge_bomb/will_o_wisp/pain_split/toxic_spikes,taunt
+gallade_nu_1;gallade;nu;Swords Dance;50;psychium_z,life_orb;justified;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/close_combat/psycho_cut/knock_off
+vikavolt_nu_1;vikavolt;nu;Pivot;46;buginium_z,leftovers;;modest;104 PS/252 AtqE/152 Vel;;bug_buzz/volt_switch/energy_ball/roost
+vikavolt_nu_2;vikavolt;nu;Choice Specs;64;choice_specs;;modest;104 PS/252 AtqE/152 Vel;;bug_buzz/thunderbolt/energy_ball/volt_switch
+charizard_nu_1;charizard;nu;Z-Hold Hands;43;normalium_z;;timid;32 PS/228 AtqE/32 DefE/216 Vel;;hold_hands/fire_blast/air_slash,focus_blast/hidden_power,roost
+blastoise_nu_1;blastoise;nu;Defensive;64;leftovers,normalium_z;;bold;252 PS/60 Def/196 Vel;;scald/toxic/rapid_spin/refresh,ice_beam
+clefairy_nu_1;clefairy;nu;Defensive;80;eviolite;magic_guard;calm;252 PS/72 Def/184 DefE;;seismic_toss/soft_boiled/knock_off/thunder_wave,toxic,wish,moonblast
+golbat_nu_1;golbat;nu;Defensive;86;eviolite;infiltrator;jolly;252 PS/80 DefE/176 Vel;;brave_bird/toxic/defog,taunt/roost
+victreebel_nu_1;victreebel;nu;Defensive;26;rocky_helmet;;timid;252 PS/172 Def/84 Vel;;leaf_storm/sludge_bomb/strength_sap/sleep_powder
+kingler_nu_1;kingler;nu;Double Dance;78;life_orb;sheer_force;adamant,jolly;252 Atq/4 Def/252 Vel;;agility/swords_dance/liquidation/knock_off,x_scissor
+exeggutor_alola_nu_1;exeggutor_alola;nu;Choice Specs;60;choice_specs;;modest;252 AtqE/4 DefE/252 Vel;;draco_meteor/leaf_storm/flamethrower/giga_drain
+hitmonlee_nu_1;hitmonlee;nu;Curse;46;white_herb;unburden;adamant;252 Atq/4 Def/252 Vel;;curse/close_combat/knock_off/stone_edge,earthquake
+rhydon_nu_1;rhydon;nu;Stealth Rock;68;eviolite;;adamant;4 PS/252 Atq/252 Vel;;stealth_rock/earthquake/stone_edge,rock_blast/swords_dance
+tauros_nu_1;tauros;nu;Tauros;62;life_orb;sheer_force;naive;252 Atq/4 AtqE/252 Vel;;body_slam/fire_blast/work_up,zen_headbutt/earthquake
+vaporeon_nu_1;vaporeon;nu;Defensive;70;leftovers;;bold;252 PS/252 Def/4 DefE;;scald/toxic,heal_bell/wish/protect
+aerodactyl_nu_1;aerodactyl;nu;Choice Band;45;choice_band;unnerve;jolly;252 Atq/4 Def/252 Vel;;stone_edge/aerial_ace/earthquake/pursuit
+aerodactyl_nu_2;aerodactyl;nu;Flyinium Z;52;flyinium_z;unnerve;jolly;252 Atq/4 Def/252 Vel;;stone_edge/sky_attack/earthquake/roost
+typhlosion_nu_1;typhlosion;nu;Typhlosion;64;choice_specs;blaze,flash_fire;timid;252 AtqE/4 DefE/252 Vel;;eruption/flamethrower,fire_blast/focus_blast/hidden_power
+xatu_nu_1;xatu;nu;Defensive Pivot;68;rocky_helmet;magic_bounce;impish;252 PS/196 Def/60 Vel;;night_shade/roost/u_turn/toxic,protect
+slowking_nu_1;slowking;nu;Assault Vest;64;assault_vest;regenerator;modest;212 PS/252 AtqE/44 Vel;;scald/future_sight,psyshock/fire_blast,ice_beam/dragon_tail,grass_knot
+slowking_nu_2;slowking;nu;Nasty Plot;49;psychium_z;regenerator;bold;248 PS/216 Def/44 Vel;;nasty_plot/scald/future_sight,psyshock/slack_off
+slowking_nu_3;slowking;nu;Physically Defensive;44;colbur_berry,psychium_z;regenerator;bold;248 PS/252 Def/8 DefE;;scald/psyshock/toxic,calm_mind/slack_off
+steelix_nu_1;steelix;nu;Defensive;83;leftovers;sturdy;careful;252 PS/4 Atq/252 DefE;;stealth_rock/heavy_slam/earthquake/toxic,protect
+sneasel_nu_1;sneasel;nu;Choice Band;73;choice_band;;jolly;252 Atq/4 Def/252 Vel;;knock_off/icicle_crash/ice_shard/pursuit
+piloswine_nu_1;piloswine;nu;Stealth Rock;93;eviolite;thick_fat;adamant;252 PS/252 Atq/4 Def;;stealth_rock/icicle_crash/earthquake/ice_shard
+hitmontop_nu_1;hitmontop;nu;Rapid Spin;47;leftovers;;impish;252 PS/252 Def/4 DefE;;rapid_spin/foresight,protect/close_combat,low_kick/toxic
+miltank_nu_1;miltank;nu;Stealth Rock;59;leftovers;;calm;252 PS/236 DefE/20 Vel;;stealth_rock/seismic_toss/milk_drink/toxic
+sceptile_nu_1;sceptile;nu;All-out Attacker;39;life_orb;;timid;4 Def/252 AtqE/252 Vel;;leaf_storm/giga_drain/focus_blast,earthquake/hidden_power
+hariyama_nu_1;hariyama;nu;Assault Vest;40;assault_vest;;adamant;252 Atq/4 Def/252 DefE;;close_combat/knock_off/heavy_slam/stone_edge,ice_punch
+hariyama_nu_2;hariyama;nu;Defensive;34;leftovers;;impish;12 PS/252 Def/244 DefE;;close_combat,revenge/knock_off,toxic/rest/sleep_talk
+medicham_nu_1;medicham;nu;Wallbreaker;59;life_orb;;jolly;4 PS/252 Atq/252 Vel;;high_jump_kick/zen_headbutt,psycho_cut/thunder_punch/bullet_punch
+absol_nu_1;absol;nu;All-Out Attacker;70;life_orb;justified;jolly;252 Atq/4 Def/252 Vel;;knock_off/sucker_punch/superpower/iron_tail,pursuit
+glalie_nu_1;glalie;nu;Spikes;60;glalitite;ice_body;jolly;252 Atq/4 DefE/252 Vel;;spikes/double_edge/earthquake/explosion
+regirock_nu_1;regirock;nu;Mixed Defensive;53;leftovers;sturdy;impish;248 PS/96 Atq/16 Def/148 DefE;;stealth_rock/stone_edge,rock_slide/earthquake,hammer_arm/toxic
+torterra_nu_1;torterra;nu;Offensive;34;rockium_z,grassium_z;;jolly;252 Atq/4 DefE/252 Vel;;wood_hammer/earthquake/stone_edge/rock_polish
+ambipom_nu_1;ambipom;nu;Offensive Pivot;43;life_orb;;jolly;252 Atq/4 Def/252 Vel;;fake_out/return/low_kick,pursuit/u_turn
+mismagius_nu_1;mismagius;nu;Nasty Plot;43;rockium_z,ghostium_z;;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/shadow_ball/power_gem/protect,taunt
+abomasnow_nu_1;abomasnow;nu;Mixed Attacker;50;abomasite;soundproof;modest,mild;252 AtqE/4 DefE/252 Vel;;blizzard/giga_drain/focus_blast,earthquake/substitute,ice_shard
+abomasnow_nu_2;abomasnow;nu;Swords Dance;32;abomasite;soundproof;jolly,adamant;252 Atq/4 DefE/252 Vel;;swords_dance/wood_hammer/ice_shard/earthquake
+magmortar_nu_1;magmortar;nu;Z-Move;55;fightinium_z,electrium_z;vital_spirit;modest;252 AtqE/4 DefE/252 Vel;;fire_blast/focus_blast/thunderbolt/taunt
+magmortar_nu_2;magmortar;nu;Choice Specs;54;choice_specs;vital_spirit;modest;252 AtqE/4 DefE/252 Vel;;fire_blast/focus_blast/thunderbolt/hidden_power
+rotom_nu_1;rotom;nu;Defensive Defog;46;colbur_berry,iapapa_berry;;timid;248 PS/8 AtqE/252 Vel;;defog/volt_switch/will_o_wisp/hex
+rotom_nu_2;rotom;nu;Offensive Defog;39;electrium_z,ghostium_z;;timid;252 AtqE/4 DefE/252 Vel;;defog/thunder,thunderbolt/shadow_ball/volt_switch
+rotom_nu_3;rotom;nu;Choice Specs;39;choice_specs;;timid;252 AtqE/4 DefE/252 Vel;;thunderbolt/shadow_ball/volt_switch/trick,defog
+mesprit_nu_1;mesprit;nu;Offensive Support;29;electrium_z;;timid;252 AtqE/4 DefE/252 Vel;;stealth_rock/psychic/thunder,thunderbolt/energy_ball,ice_beam
+samurott_nu_1;samurott;nu;Special Wallbreaker;28;life_orb;;timid;252 AtqE/4 DefE/252 Vel;;hydro_pump/grass_knot/ice_beam/taunt,aqua_jet,knock_off
+samurott_nu_2;samurott;nu;Swords Dance Sweeper;46;buginium_z,waterium_z;;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/liquidation/aqua_jet/megahorn
+audino_nu_1;audino;nu;Defensive Pivot;59;audinite;regenerator;calm;252 PS/4 Def/252 DefE;;wish/protect/heal_bell,toxic/knock_off,dazzling_gleam
+seismitoad_nu_1;seismitoad;nu;Defensive Stealth Rock;69;leftovers;water_absorb;timid;252 PS/112 Def/144 Vel;;stealth_rock/scald/refresh/earthquake,toxic
+seismitoad_nu_2;seismitoad;nu;Offensive Stealth Rock;39;waterium_z;water_absorb;modest;4 Def/252 AtqE/252 Vel;;stealth_rock/hydro_pump/earth_power/knock_off
+seismitoad_nu_3;seismitoad;nu;Substitute + Toxic;58;leftovers;water_absorb;timid;252 PS/24 Def/232 Vel;;substitute/toxic/scald/earthquake
+sawk_nu_1;sawk;nu;Choice Band;60;choice_band;mold_breaker,sturdy;jolly,adamant;252 Atq/4 DefE/252 Vel;;close_combat/knock_off/ice_punch/earthquake
+whimsicott_nu_1;whimsicott;nu;Choice Specs;46;choice_specs;infiltrator;timid;252 AtqE/4 DefE/252 Vel;;moonblast/energy_ball/psychic/u_turn
+lilligant_nu_1;lilligant;nu;Quiver Dance;43;normalium_z;;timid;252 AtqE/4 DefE/252 Vel;;quiver_dance/sleep_powder,hidden_power/giga_drain,energy_ball/hyper_beam
+scrafty_nu_1;scrafty;nu;Bulk Up;50;leftovers;;careful;252 PS/4 Atq/252 DefE;;bulk_up/knock_off/drain_punch/rest
+scrafty_nu_2;scrafty;nu;Dragon Dance;49;chople_berry;shed_skin,moxie;jolly;252 Atq/4 Def/252 Vel;;dragon_dance/knock_off/high_jump_kick/drain_punch
+sigilyph_nu_1;sigilyph;nu;Life Orb Attacker;54;life_orb;magic_guard;timid;252 AtqE/4 DefE/252 Vel;;air_slash/heat_wave/energy_ball/roost,protect,psyshock
+sigilyph_nu_2;sigilyph;nu;Choice Specs;47;choice_specs;tinted_lens;timid;252 AtqE/4 DefE/252 Vel;;air_slash/heat_wave/energy_ball/psyshock,psychic
+sigilyph_nu_3;sigilyph;nu;Calm Mind + Flyinium Z;33;flyinium_z;magic_guard;timid;252 PS/4 Def/252 Vel;;calm_mind/air_slash/roost/cosmic_power,stored_power
+archeops_nu_1;archeops;nu;Suicide Lead;31;focus_sash;;naive;252 Atq/252 Vel;;head_smash/stealth_rock/endeavor/taunt
+garbodor_nu_1;garbodor;nu;Offensive Spikes Setter;65;toxic_plate,black_sludge;aftermath;adamant,jolly;4 PS/252 Atq/252 Vel;;gunk_shot/spikes/stomping_tantrum,toxic_spikes,seed_bomb/explosion
+garbodor_nu_2;garbodor;nu;Defensive Spikes Setter;72;black_sludge,rocky_helmet;aftermath;careful;252 PS/228 DefE/28 Vel;;gunk_shot/spikes/toxic_spikes,seed_bomb/pain_split
+cinccino_nu_1;cinccino;nu;Wallbreaker;83;choice_band;skill_link;jolly;252 Atq/4 Def/252 Vel;;tail_slap/rock_blast/bullet_seed/knock_off,u_turn
+ferroseed_nu_1;ferroseed;nu;Defensive Hazard Setter;62;eviolite;;relaxed;252 PS/252 Def/4 DefE;;spikes,stealth_rock/leech_seed/protect/knock_off
+klinklang_nu_1;klinklang;nu;Shift Gear;70;steelium_z,electrium_z;clear_body;adamant;68 PS/252 Atq/188 Vel;;shift_gear/gear_grind/wild_charge,return/magnet_rise,substitute
+accelgor_nu_1;accelgor;nu;Choice Specs;51;choice_specs;sticky_hold;timid;252 AtqE/4 DefE/252 Vel;;bug_buzz/focus_blast/energy_ball/spikes
+accelgor_nu_2;accelgor;nu;Fightinium Z;38;fightinium_z;;timid;252 AtqE/4 DefE/252 Vel;;spikes/bug_buzz/focus_blast/recover
+druddigon_nu_1;druddigon;nu;Defensive;62;leftovers,rocky_helmet;mold_breaker;careful;252 PS/4 Def/252 DefE;;stealth_rock/toxic,glare,taunt/earthquake/dragon_tail,protect,toxic
+druddigon_nu_2;druddigon;nu;Dragonium Z;57;dragonium_z;mold_breaker;adamant;252 Atq/4 Def/252 Vel;;stealth_rock/outrage/earthquake/taunt,glare
+braviary_nu_1;braviary;nu;Offensive Bulk Up;58;fightinium_z,flyinium_z;defiant;jolly;252 Atq/4 Def/252 Vel;;brave_bird/superpower/bulk_up/roost
+braviary_nu_2;braviary;nu;Substitute + Bulk Up;50;leftovers;defiant;jolly;252 PS/160 DefE/96 Vel;;substitute/bulk_up/brave_bird/roost
+delphox_nu_1;delphox;nu;Calm Mind;28;grassium_z,firium_z,colbur_berry;;timid;252 AtqE/4 DefE/252 Vel;;calm_mind/fire_blast/psychic,dazzling_gleam/grass_knot
+delphox_nu_2;delphox;nu;Wish + Protect;11;leftovers;;timid;252 PS/28 AtqE/228 Vel;;wish/protect/mystical_fire/toxic
+delphox_nu_3;delphox;nu;Choice Scarf;33;choice_scarf;;timid;252 AtqE/4 DefE/252 Vel;;fire_blast/psychic,psyshock/dazzling_gleam,grass_knot/trick
+vivillon_nu_1;vivillon;nu;Quiver Dance;76;flyinium_z,leftovers;compound_eyes;timid;252 AtqE/4 DefE/252 Vel;;quiver_dance/hurricane/energy_ball,substitute/sleep_powder
+pyroar_nu_1;pyroar;nu;Z-Move;32;grassium_z,normalium_z;unnerve;timid;252 AtqE/4 DefE/252 Vel;;fire_blast/hyper_voice/solar_beam,hidden_power/taunt
+pangoro_nu_1;pangoro;nu;Swords Dance;45;chople_berry,life_orb;;adamant;252 Atq/4 DefE/252 Vel;;swords_dance/knock_off/drain_punch/bullet_punch
+pangoro_nu_2;pangoro;nu;Choice Band;57;choice_band;;adamant;252 Atq/4 DefE/252 Vel;;knock_off/superpower,hammer_arm/drain_punch/bullet_punch,zen_headbutt
+aromatisse_nu_1;aromatisse;nu;Offensive Trick Room;46;fairium_z;aroma_veil;quiet;248 PS/252 AtqE/8 DefE;;trick_room/nasty_plot/moonblast/psychic,hidden_power
+malamar_nu_1;malamar;nu;Rest Talk Sweeper;55;leftovers;;careful;252 PS/4 Def/252 DefE;;superpower/knock_off/rest/sleep_talk
+clawitzer_nu_1;clawitzer;nu;Wallbreaker;65;choice_specs;;modest;4 Def/252 AtqE/252 Vel;;water_pulse,scald/ice_beam/dark_pulse/aura_sphere,u_turn
+clawitzer_nu_2;clawitzer;nu;Substitute + Toxic;34;leftovers;;modest;100 PS/252 AtqE/156 Vel;;substitute/toxic/water_pulse/dark_pulse,ice_beam
+heliolisk_nu_1;heliolisk;nu;All-out Attacker;64;choice_specs;;timid;4 Def/252 AtqE/252 Vel;;volt_switch/hyper_voice/thunderbolt/surf
+aurorus_nu_1;aurorus;nu;Offensive Stealth Rock;55;icicle_plate;snow_warning;modest;252 AtqE/4 DefE/252 Vel;;blizzard/freeze_dry/stealth_rock/earth_power,protect
+decidueye_nu_1;decidueye;nu;Nasty Plot;15;ghostium_z,grassium_z;;timid;4 PS/252 AtqE/252 Vel;;nasty_plot/shadow_ball/leaf_storm/roost
+decidueye_nu_2;decidueye;nu;Defensive Defog;27;colbur_berry;long_reach;calm;248 PS/100 Def/144 DefE/16 Vel;;defog/grass_knot/roost/u_turn
+decidueye_nu_3;decidueye;nu;Offensive Defog;24;colbur_berry,grassium_z;;timid;252 AtqE/4 DefE/252 Vel;;defog/leaf_storm/roost/u_turn
+incineroar_nu_1;incineroar;nu;Swords Dance;58;figy_berry,incinium_z;intimidate;jolly;252 Atq/4 Def/252 Vel;;swords_dance/knock_off,darkest_lariat/earthquake/flare_blitz
+incineroar_nu_2;incineroar;nu;Defensive Pivot;62;figy_berry;intimidate;impish;244 PS/100 Def/164 DefE;;flare_blitz,fire_blast/knock_off/u_turn/earthquake,will_o_wisp
+incineroar_nu_3;incineroar;nu;Weakness Policy;25;weakness_policy;intimidate;jolly;252 PS/4 DefE/252 Vel;;bulk_up/flame_charge/power_trip/substitute,drain_punch
+comfey_nu_1;comfey;nu;Calm Mind;79;life_orb;triage;modest;236 PS/252 AtqE/20 Vel;;draining_kiss/giga_drain/calm_mind/hidden_power
+passimian_nu_1;passimian;nu;Choice Scarf;87;choice_scarf;defiant;jolly;252 Atq/4 Def/252 Vel;;close_combat/u_turn/knock_off/gunk_shot,earthquake
+palossand_nu_1;palossand;nu;Defensive Stealth Rock;66;colbur_berry;;bold;252 PS/252 Def/4 DefE;;stealth_rock/earth_power/shadow_ball/shore_up
+pyukumuku_nu_1;pyukumuku;nu;Unaware Wall;86;leftovers;unaware;bold;252 PS/252 Def/4 DefE;;recover/rest,toxic/block,toxic/spite
+minior_nu_1;minior;nu;Shell Smash;70;rockium_z,white_herb;;naughty,adamant;252 Atq/4 Def/252 Vel;;shell_smash/stone_edge/earthquake/hidden_power,acrobatics
+togedemaru_nu_1;togedemaru;nu;Choice Scarf;77;choice_scarf;lightning_rod;jolly;252 Atq/4 Def/252 Vel;;u_turn/zing_zap/iron_head/nuzzle,toxic
+dhelmise_nu_1;dhelmise;nu;Rapid Spin;55;steelium_z,colbur_berry;;adamant;52 PS/252 Atq/204 Vel;;power_whip/anchor_shot/rapid_spin/synthesis
+dhelmise_nu_2;dhelmise;nu;Choice Band;37;choice_band;;adamant;52 PS/252 Atq/204 Vel;;power_whip/heavy_slam,anchor_shot/earthquake/knock_off
+guzzlord_nu_1;guzzlord;nu;Choice Specs;56;choice_specs;;modest;76 Def/252 AtqE/180 Vel;;draco_meteor/dark_pulse/fire_blast/sludge_bomb
+guzzlord_nu_2;guzzlord;nu;Dragonium Z;39;dragonium_z;;modest;76 Def/252 AtqE/180 Vel;;draco_meteor/knock_off,dark_pulse/fire_blast/heavy_slam
+leafeon_pu_1;leafeon;pu;Z-Celebrate;55;normalium_z;;jolly;252 Atq/4 Def/252 Vel;;celebrate/leaf_blade/knock_off,double_edge/synthesis
+leafeon_pu_2;leafeon;pu;Swords Dance;71;grassium_z,normalium_z;chlorophyll;jolly;252 Atq/4 Def/252 Vel;;swords_dance/leaf_blade/knock_off,double_edge/synthesis,double_edge
+glaceon_pu_1;glaceon;pu;Z-Celebrate;50;normalium_z;;timid,modest;252 AtqE/4 DefE/252 Vel;;celebrate/ice_beam/hidden_power/shadow_ball
+gourgeist_small_pu_1;gourgeist_small;pu;SubSeed;28;leftovers;frisk;jolly;152 PS/132 Def/224 Vel;;substitute/leech_seed/will_o_wisp/phantom_force
+gourgeist_large_pu_1;gourgeist_large;pu;Defensive;69;leftovers;frisk;impish;72 PS/252 Def/184 Vel;;seed_bomb/foul_play/will_o_wisp/synthesis
+avalugg_pu_1;avalugg;pu;Defensive Spinner;66;leftovers,rocky_helmet;sturdy;careful;252 PS/4 Def/252 DefE;;rapid_spin/recover/avalanche/earthquake,toxic
+crabominable_pu_1;crabominable;pu;Assault Vest;56;assault_vest;iron_fist;adamant;252 PS/4 Atq/252 DefE;;drain_punch/ice_hammer/earthquake/thunder_punch
+crabominable_pu_2;crabominable;pu;SubToxic;41;leftovers;iron_fist;careful;252 PS/196 DefE/60 Vel;;substitute/toxic/drain_punch/ice_hammer
+crabominable_pu_3;crabominable;pu;Trick Room Attacker;61;life_orb,choice_band;iron_fist;brave;252 PS/252 Atq/4 Def;;ice_hammer/close_combat/earthquake/thunder_punch
+lycanroc_pu_1;lycanroc;pu;Swords Dance;63;;steadfast;jolly;252 Atq/4 Def/252 Vel;;swords_dance/stone_edge/brick_break,fire_fang/accelerock
+lycanroc_pu_2;lycanroc;pu;Offensive Stealth Rock;65;;steadfast;jolly;252 Atq/4 DefE/252 Vel;;stealth_rock/stone_edge/accelerock/swords_dance,toxic,taunt
+lycanroc_midnight_pu_1;lycanroc_midnight;pu;Choice Scarf;47;choice_scarf;no_guard;adamant;252 Atq/4 Def/252 Vel;;stone_edge/fire_punch/stomping_tantrum/toxic
+shiftry_pu_1;shiftry;pu;Mixed Life Orb;51;life_orb;;lonely,hasty;252 Atq/4 AtqE/252 Vel;;knock_off/sucker_punch/leaf_storm/defog,low_kick
+shiftry_pu_2;shiftry;pu;Swords Dance;44;life_orb,black_glasses;;adamant,jolly;252 Atq/4 Def/252 Vel;;swords_dance/seed_bomb/knock_off/sucker_punch
+shiftry_pu_3;shiftry;pu;Choice Scarf;21;choice_scarf;;adamant;252 Atq/4 Def/252 Vel;;knock_off/leaf_blade/rock_slide/low_kick,explosion
+butterfree_pu_1;butterfree;pu;Quiver Dance;68;focus_sash,life_orb;tinted_lens;timid;252 AtqE/4 DefE/252 Vel;;quiver_dance/sleep_powder/bug_buzz/air_slash,energy_ball
+beedrill_pu_1;beedrill;pu;Suicide Lead;20;focus_sash;;jolly;252 Atq/4 Def/252 Vel;;toxic_spikes/endeavor/tailwind/x_scissor
+pidgeot_pu_1;pidgeot;pu;Defog;64;sky_plate;big_pecks;jolly;252 Atq/4 Def/252 Vel;;defog/roost/brave_bird/u_turn
+raticate_pu_1;raticate;pu;All-out Attacker;61;flame_orb;guts;jolly;252 Atq/4 Def/252 Vel;;facade/stomping_tantrum/sucker_punch/u_turn
+raticate_alola_pu_1;raticate_alola;pu;Swords Dance;64;normalium_z,darkinium_z;hustle;jolly,adamant;252 Atq/4 DefE/252 Vel;;swords_dance/double_edge/knock_off/sucker_punch
+fearow_pu_1;fearow;pu;Critical Hit;60;scope_lens;sniper;jolly;252 Atq/4 Def/252 Vel;;frustration/drill_peck/drill_run/u_turn
+arbok_pu_1;arbok;pu;Offensive Coil;23;waterium_z,groundium_z;;adamant;252 Atq/4 DefE/252 Vel;;coil/gunk_shot/aqua_tail,earthquake/sucker_punch
+raichu_pu_1;raichu;pu;Nasty Plot;53;life_orb,electrium_z;lightning_rod;timid;4 Def/252 AtqE/252 Vel;;nasty_plot/thunderbolt/grass_knot/focus_blast,hidden_power
+raichu_alola_pu_1;raichu_alola;pu;Nasty Plot;46;psychium_z,aloraichium_z;;timid;4 Def/252 AtqE/252 Vel;;nasty_plot/thunderbolt/psyshock,psychic/focus_blast,substitute
+sandslash_pu_1;sandslash;pu;Utility;65;leftovers;sand_rush;jolly;252 PS/4 Atq/252 Vel;;earthquake/knock_off/rapid_spin/stealth_rock,toxic
+sandslash_alola_pu_1;sandslash_alola;pu;Hail Sweeper;62;icium_z,shuca_berry;slush_rush;jolly;252 Atq/4 Def/252 Vel;;swords_dance/icicle_crash/iron_head/earthquake,knock_off
+sandslash_alola_pu_2;sandslash_alola;pu;Choice Scarf;61;choice_scarf;slush_rush;jolly;252 Atq/4 DefE/252 Vel;;icicle_crash/iron_head/earthquake/rapid_spin,knock_off
+sandslash_alola_pu_3;sandslash_alola;pu;Offensive Support;60;shuca_berry;slush_rush;jolly;252 Atq/4 Def/252 Vel;;rapid_spin,stealth_rock/icicle_crash/knock_off,iron_head/earthquake
+clefairy_pu_1;clefairy;pu;Calm Mind;77;eviolite;magic_guard;sassy;252 PS/4 Def/252 DefE;;calm_mind/moonblast/soft_boiled/stealth_rock,thunder_wave,knock_off
+clefairy_pu_2;clefairy;pu;Specially Defensive;79;eviolite;magic_guard;sassy;252 PS/4 Def/252 DefE;;soft_boiled/seismic_toss,moonblast/stealth_rock,knock_off/toxic
+wigglytuff_pu_1;wigglytuff;pu;Stealth Rock;48;life_orb;competitive;timid;4 PS/252 AtqE/252 Vel;;stealth_rock/hyper_voice/dazzling_gleam/fire_blast,focus_blast
+parasect_pu_1;parasect;pu;Specially Defensive;71;leftovers;dry_skin;careful;248 PS/8 Def/252 DefE;;spore/leech_life/knock_off/synthesis
+dugtrio_pu_1;dugtrio;pu;Suicide Lead;72;focus_sash;sand_force;jolly;252 Atq/4 Def/252 Vel;;earthquake/stone_edge/memento/stealth_rock
+dugtrio_alola_pu_1;dugtrio_alola;pu;Substitute + Toxic;55;leftovers;tangling_hair;jolly;252 Atq/4 DefE/252 Vel;;earthquake/iron_head/substitute/toxic
+dugtrio_alola_pu_2;dugtrio_alola;pu;All-out Attacker;50;life_orb;tangling_hair;jolly;252 Atq/4 DefE/252 Vel;;earthquake/iron_head/sucker_punch/pursuit,memento
+persian_pu_1;persian;pu;Nasty Plot;21;life_orb,normalium_z;technician;timid;4 Def/252 AtqE/252 Vel;;nasty_plot/hyper_voice/hidden_power/water_pulse,substitute
+persian_alola_pu_1;persian_alola;pu;Nasty Plot;36;darkinium_z,psychium_z;;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/dark_pulse/parting_shot/thunderbolt,dream_eater
+persian_alola_pu_2;persian_alola;pu;Bulky Pivot;50;darkinium_z;;jolly;252 PS/4 Def/252 Vel;;parting_shot/taunt/foul_play/toxic
+golduck_pu_1;golduck;pu;Rain Sweeper;35;life_orb;swift_swim;modest;252 AtqE/4 DefE/252 Vel;;rain_dance/hydro_pump,surf/ice_beam/hidden_power
+primeape_pu_1;primeape;pu;Choice Scarf;86;choice_scarf;defiant;jolly;252 Atq/4 Def/252 Vel;;close_combat/u_turn/stone_edge,ice_punch/gunk_shot
+primeape_pu_2;primeape;pu;Offensive;64;fist_plate,fightinium_z;defiant;jolly;252 Atq/4 Def/252 Vel;;close_combat/stone_edge/u_turn/encore,gunk_shot
+primeape_pu_3;primeape;pu;Choice Band;65;choice_band;defiant;jolly;252 Atq/4 Def/252 Vel;;close_combat/u_turn/stone_edge/gunk_shot,seed_bomb
+poliwrath_pu_1;poliwrath;pu;Special Tank;21;leftovers;;timid;252 PS/160 AtqE/96 Vel;;scald/focus_blast/toxic/protect,vacuum_wave,ice_beam
+poliwrath_pu_2;poliwrath;pu;Physically Defensive;26;leftovers;;relaxed;252 PS/252 Def/4 DefE;;circle_throw/scald/rest/sleep_talk
+kadabra_pu_1;kadabra;pu;Focus Sash Revenge Killer;71;focus_sash;magic_guard;timid;4 PS/252 AtqE/252 Vel;;psychic/counter/taunt,shadow_ball,thunder_wave/dazzling_gleam
+victreebel_pu_1;victreebel;pu;Specially Offensive;43;grassium_z,rocky_helmet;;timid,modest;4 Def/252 AtqE/252 Vel;;strength_sap/leaf_storm/sludge_bomb/hidden_power
+victreebel_pu_2;victreebel;pu;Swords Dance;23;grassium_z,lum_berry;;jolly,adamant;252 Atq/4 Def/252 Vel;;swords_dance/strength_sap/power_whip/poison_jab
+golem_pu_1;golem;pu;Lead;70;custap_berry,weakness_policy;sturdy;adamant;252 Atq/4 Def/252 Vel;;stealth_rock/earthquake/stone_edge/explosion,sucker_punch
+golem_alola_pu_1;golem_alola;pu;Trapper;33;choice_scarf;;jolly;252 Atq/4 DefE/252 Vel;;earthquake/fire_punch/thunder_punch/stone_edge,explosion
+rapidash_pu_1;rapidash;pu;Offensive Utility;55;firium_z;flash_fire;jolly;252 Atq/4 Def/252 Vel;;flare_blitz/wild_charge/high_horsepower,will_o_wisp/morning_sun
+farfetchd_pu_1;farfetchd;pu;All-out Attacker;62;stick,life_orb;defiant;adamant;252 Atq/4 Def/252 Vel;;first_impression/brave_bird/leaf_blade/knock_off,frustration,swords_dance
+dodrio_pu_1;dodrio;pu;Choice Scarf;64;choice_scarf;early_bird;jolly;252 Atq/4 DefE/252 Vel;;brave_bird/jump_kick/return/knock_off,pursuit
+dodrio_pu_2;dodrio;pu;Swords Dance;59;flyinium_z,fightinium_z;early_bird;jolly;252 Atq/4 DefE/252 Vel;;swords_dance/brave_bird/jump_kick/return,quick_attack
+dodrio_pu_3;dodrio;pu;Choice Band;62;choice_band;early_bird;jolly;252 Atq/4 DefE/252 Vel;;brave_bird/return/jump_kick/knock_off,pursuit,quick_attack
+dewgong_pu_1;dewgong;pu;Perish Trapper;63;leftovers;hydration;calm;252 PS/4 Def/252 DefE;;whirlpool/perish_song/rain_dance/rest
+muk_pu_1;muk;pu;Rest + Sleep Talk;28;leftovers;sticky_hold;careful;252 PS/4 Atq/252 DefE;;curse/poison_jab/rest/sleep_talk
+muk_pu_2;muk;pu;Choice Band;24;choice_band;sticky_hold,poison_touch;adamant;204 PS/252 Atq/52 Vel;;gunk_shot/shadow_sneak/thunder_punch,fire_punch/ice_punch,explosion
+haunter_pu_1;haunter;pu;Life Orb;40;life_orb;;timid;4 Def/252 AtqE/252 Vel;;shadow_ball/sludge_bomb/dazzling_gleam,hidden_power/destiny_bond,substitute
+haunter_pu_2;haunter;pu;Choice Scarf;41;choice_scarf;;timid;4 Def/252 AtqE/252 Vel;;shadow_ball/sludge_wave/destiny_bond/trick,will_o_wisp
+hypno_pu_1;hypno;pu;Z-Hypnosis Belly Drum;4;psychium_z;;jolly;252 Atq/4 DefE/252 Vel;;hypnosis/belly_drum/zen_headbutt/drain_punch
+electrode_pu_1;electrode;pu;Dual Screens;44;light_clay;aftermath;jolly,timid;252 PS/4 Def/252 Vel;;reflect/light_screen/taunt/explosion,volt_switch
+exeggutor_pu_1;exeggutor;pu;Trick Room;38;grassium_z,life_orb;harvest;quiet;248 PS/8 Def/252 AtqE;;trick_room/leaf_storm,giga_drain/psychic/hidden_power,sleep_powder
+exeggutor_pu_2;exeggutor;pu;Choice Specs;41;choice_specs;;modest,timid;252 AtqE/4 DefE/252 Vel;;leaf_storm/psychic,psyshock/hidden_power/giga_drain,sleep_powder
+marowak_pu_1;marowak;pu;Trick Room Attacker;72;thick_club;battle_armor,rock_head;brave;248 PS/252 Atq/8 Def;;earthquake,bonemerang/stone_edge/knock_off/swords_dance,double_edge
+hitmonchan_pu_1;hitmonchan;pu;Toxic + Iapapa Berry;57;iapapa_berry;iron_fist;careful;252 PS/24 Atq/104 DefE/128 Vel;;drain_punch/mach_punch/toxic/rapid_spin
+hitmonchan_pu_2;hitmonchan;pu;Life Orb Attacker;62;life_orb;iron_fist;adamant;252 Atq/4 DefE/252 Vel;;drain_punch/mach_punch/thunder_punch,stone_edge/rapid_spin
+hitmonchan_pu_3;hitmonchan;pu;Assault Vest;75;assault_vest;iron_fist;adamant;156 PS/224 Atq/128 Vel;;drain_punch/mach_punch/thunder_punch,stone_edge/rapid_spin
+tangela_pu_1;tangela;pu;Defensive Pivot;81;eviolite;regenerator;bold;252 PS/252 Def/4 DefE;;giga_drain/hidden_power/knock_off/leech_seed,synthesis,sleep_powder
+kangaskhan_pu_1;kangaskhan;pu;All-Out Attacker;72;silk_scarf,figy_berry;scrappy;adamant,jolly;252 Atq/4 DefE/252 Vel;;fake_out/double_edge/earthquake/sucker_punch
+kangaskhan_pu_2;kangaskhan;pu;Power-Up Punch + Z-Move;53;fightinium_z,normalium_z;scrappy;adamant,jolly;252 Atq/4 Def/252 Vel;;power_up_punch/double_edge/sucker_punch/focus_punch,earthquake
+kangaskhan_pu_3;kangaskhan;pu;Substitute + Toxic;25;leftovers;scrappy;impish;252 PS/124 Def/132 DefE;;substitute/toxic/power_up_punch/return
+seaking_pu_1;seaking;pu;Offensive Utility;59;life_orb;lightning_rod;adamant;64 PS/252 Atq/192 Vel;;waterfall/knock_off/drill_run/megahorn
+mr_mime_pu_1;mr_mime;pu;Nasty Plot;29;fightinium_z,life_orb;;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/dazzling_gleam/focus_blast/psyshock
+scyther_pu_1;scyther;pu;Bulky Swords Dance;64;eviolite;technician;jolly;248 PS/8 Atq/252 Vel;;swords_dance/u_turn/aerial_ace/roost
+scyther_pu_2;scyther;pu;Choice Scarf;62;choice_scarf;technician;jolly;252 Atq/4 Def/252 Vel;;u_turn/aerial_ace/brick_break/knock_off,toxic
+scyther_pu_3;scyther;pu;Choice Band;59;choice_band;technician;jolly;252 Atq/4 Def/252 Vel;;u_turn/aerial_ace/brick_break/knock_off,pursuit
+jynx_pu_1;jynx;pu;Z-Lovely Kiss;72;normalium_z;dry_skin;timid;4 Def/252 AtqE/252 Vel;;lovely_kiss/nasty_plot/ice_beam/psyshock
+jynx_pu_2;jynx;pu;Choice Scarf;55;choice_scarf;dry_skin;timid;4 Def/252 AtqE/252 Vel;;ice_beam/psychic/focus_blast/lovely_kiss,trick
+jynx_pu_3;jynx;pu;Substitute + Nasty Plot;64;normalium_z,leftovers;dry_skin;timid;4 Def/252 AtqE/252 Vel;;substitute/nasty_plot/lovely_kiss/ice_beam
+pinsir_pu_1;pinsir;pu;Z-Me First;44;normalium_z;moxie;adamant;252 Atq/4 Def/252 Vel;;me_first/x_scissor/earthquake/stone_edge
+pinsir_pu_2;pinsir;pu;Swords Dance;50;life_orb,lum_berry;mold_breaker;jolly;252 Atq/4 Def/252 Vel;;swords_dance/x_scissor/earthquake/stone_edge,knock_off
+lapras_pu_1;lapras;pu;Choice Specs;17;choice_specs;;modest;80 PS/252 AtqE/176 Vel;;freeze_dry/hydro_pump/ice_beam/hidden_power
+ditto_pu_1;ditto;pu;Imposter;99;choice_scarf;imposter;relaxed;252 PS/4 Atq/252 Def;30 Atq/30 AtqE;transform
+flareon_pu_1;flareon;pu;Wallbreaker;27;choice_band;;adamant;252 Atq/4 Def/252 Vel;;flare_blitz/superpower/return,double_edge/quick_attack
+omastar_pu_1;omastar;pu;Shell Smash;48;waterium_z,groundium_z,white_herb;weak_armor;modest,timid;4 Def/252 AtqE/252 Vel;;shell_smash/hydro_pump/ice_beam/earth_power,hidden_power,endure
+omastar_pu_2;omastar;pu;Lead;48;focus_sash;weak_armor;timid;4 Def/252 AtqE/252 Vel;;stealth_rock/spikes/scald/ice_beam,rock_tomb
+kabutops_pu_1;kabutops;pu;Choice Scarf;37;choice_scarf;;jolly;252 Atq/4 Def/252 Vel;;liquidation/stone_edge/knock_off,superpower/rapid_spin
+kabutops_pu_2;kabutops;pu;Rain Sweeper;51;rockium_z,life_orb;;adamant;252 Atq/4 Def/252 Vel;;swords_dance/stone_edge/liquidation/superpower,aqua_jet
+articuno_pu_1;articuno;pu;3 Attacks + Roost;40;flyinium_z;;timid;252 AtqE/4 DefE/252 Vel;;hurricane/freeze_dry/hidden_power/roost
+articuno_pu_2;articuno;pu;SubRoost;55;leftovers;;timid;252 AtqE/4 DefE/252 Vel;;substitute/roost/freeze_dry/hurricane
+articuno_pu_3;articuno;pu;Specially Defensive;57;leftovers;;calm;248 PS/204 DefE/56 Vel;;roost/defog/freeze_dry/heal_bell,toxic,substitute
+meganium_pu_1;meganium;pu;Cleric;75;leftovers;;calm;252 PS/4 Def/252 DefE;;aromatherapy/giga_drain/synthesis/dragon_tail
+furret_pu_1;furret;pu;Frisk + Trick;62;choice_scarf,choice_band;frisk;jolly;252 Atq/4 DefE/252 Vel;;trick/double_edge,return/u_turn/knock_off,brick_break
+noctowl_pu_1;noctowl;pu;Double Dance;35;flyinium_z;tinted_lens;modest;252 AtqE/4 DefE/252 Vel;;agility/work_up/hurricane/roost
+ledian_pu_1;ledian;pu;Falcon PUNCH (All-out Attacker);16;life_orb;iron_fist;jolly;252 Atq/4 DefE/252 Vel;;power_up_punch/drain_punch/ice_punch/thunder_punch
+ariados_pu_1;ariados;pu;Lead;51;focus_sash;;jolly;252 Atq/4 Def/252 Vel;;sticky_web/toxic_spikes/megahorn/toxic_thread,sucker_punch
+lanturn_pu_1;lanturn;pu;Bulky Pivot;54;leftovers;;calm;40 PS/220 Def/248 DefE;;volt_switch/scald/toxic/heal_bell,protect
+lanturn_pu_2;lanturn;pu;Assault Vest;41;assault_vest;;modest;172 AtqE/136 DefE/200 Vel;;scald/volt_switch/ice_beam/hidden_power
+lanturn_pu_3;lanturn;pu;Choice Scarf;26;choice_scarf;;timid;252 AtqE/4 DefE/252 Vel;;hydro_pump/ice_beam/thunderbolt/volt_switch
+natu_pu_1;natu;pu;Defensive Magic Bounce;64;eviolite;magic_bounce;bold;248 PS/244 Def/16 Vel;;night_shade,psychic/u_turn/reflect,thunder_wave/roost
+ampharos_pu_1;ampharos;pu;Cleric;28;leftovers;;modest;184 PS/252 AtqE/72 Vel;;thunderbolt,volt_switch/focus_blast/hidden_power/heal_bell
+bellossom_pu_1;bellossom;pu;Bulky Quiver Dance;65;grassium_z,leftovers;;timid;248 PS/8 Def/252 Vel;;strength_sap/quiver_dance/giga_drain/moonblast,safeguard
+sudowoodo_pu_1;sudowoodo;pu;Choice Band;48;choice_band;rock_head;adamant;252 Atq/4 Def/252 Vel;;head_smash/earthquake/sucker_punch/wood_hammer
+politoed_pu_1;politoed;pu;Specially Defensive;39;chesto_berry;;calm;248 PS/252 DefE/8 Vel;;protect,encore/scald/toxic/rest
+jumpluff_pu_1;jumpluff;pu;Swords Dance;36;;infiltrator;jolly;252 Atq/4 Def/252 Vel;;swords_dance/strength_sap/sleep_powder/acrobatics
+jumpluff_pu_2;jumpluff;pu;Fast Pivot;31;;infiltrator;jolly;252 Atq/4 Def/252 Vel;;u_turn/acrobatics/sleep_powder/memento,seed_bomb
+sunflora_pu_1;sunflora;pu;Sun Wallbreaker;63;life_orb;solar_power;modest;92 PS/252 AtqE/164 Vel;;solar_beam/earth_power/sludge_bomb/giga_drain
+unown_pu_1;unown;pu;Choice Specs;0;choice_specs;;modest,timid;252 AtqE/4 DefE/252 Vel;;hidden_power
+wobbuffet_pu_1;wobbuffet;pu;Bulky Death Fodder;82;leftovers,aguav_berry;telepathy;calm;252 PS/4 Def/252 DefE;;encore/counter/mirror_coat/destiny_bond
+girafarig_pu_1;girafarig;pu;Choice Band;21;choice_band;sap_sipper;jolly;252 Atq/4 Def/252 Vel;;return/psychic_fangs/earthquake/trick
+dunsparce_pu_1;dunsparce;pu;ParaFlinch;52;leftovers;;adamant;252 PS/36 Atq/220 Vel;;glare/headbutt/roost/coil,rock_slide,substitute
+granbull_pu_1;granbull;pu;Offensive Support;44;leftovers,normalium_z;;adamant;212 PS/252 Atq/44 Vel;;heal_bell/thunder_wave/play_rough/earthquake
+qwilfish_pu_1;qwilfish;pu;Utility;58;rocky_helmet,black_sludge;intimidate;timid,jolly;252 PS/4 Def/252 Vel;;spikes/scald,waterfall/taunt/destiny_bond,poison_jab,toxic_spikes
+qwilfish_pu_2;qwilfish;pu;Rain Sweeper;15;life_orb,waterium_z;swift_swim;adamant;252 Atq/4 Def/252 Vel;;swords_dance/waterfall,liquidation/poison_jab/explosion
+shuckle_pu_1;shuckle;pu;Sticky Web Setter;51;mental_herb;;calm;248 PS/8 Def/252 DefE;;sticky_web/stealth_rock/encore/toxic,knock_off,infestation
+ursaring_pu_1;ursaring;pu;Trick Room Wallbreaker;56;flame_orb;;brave;252 PS/252 Atq/4 DefE;;swords_dance/facade/crunch/close_combat
+magcargo_pu_1;magcargo;pu;Stealth Rock;49;leftovers;flame_body;calm;248 PS/8 Def/252 DefE;;stealth_rock/recover/toxic,yawn/lava_plume
+corsola_pu_1;corsola;pu;Stealth Rock;75;leftovers;regenerator;bold;252 PS/252 Def/4 DefE;;stealth_rock/recover/scald/toxic
+octillery_pu_1;octillery;pu;Trick Room;48;life_orb;sniper;quiet;252 PS/252 AtqE/4 DefE;;hydro_pump,surf/fire_blast/ice_beam/energy_ball
+delibird_pu_1;delibird;pu;Lead;9;focus_sash;;timid;252 AtqE/4 DefE/252 Vel;;spikes/rapid_spin/icy_wind/destiny_bond
+stantler_pu_1;stantler;pu;All-out Attacker;22;life_orb;;lonely,hasty;252 Atq/4 AtqE/252 Vel;;double_edge/sucker_punch/jump_kick,earthquake/signal_beam,energy_ball
+smeargle_pu_1;smeargle;pu;Sticky Web Lead;46;focus_sash;;jolly;248 PS/8 DefE/252 Vel;;sticky_web/stealth_rock/spore/nuzzle,taunt
+combusken_pu_1;combusken;pu;Specially Offensive;54;firium_z,fightinium_z,leftovers;speed_boost;timid;4 Def/252 AtqE/252 Vel;;fire_blast/focus_blast/hidden_power,substitute/protect
+combusken_pu_2;combusken;pu;Swords Dance;42;firium_z,fightinium_z,eviolite;speed_boost;jolly;252 Atq/4 Def/252 Vel;;swords_dance/flare_blitz/sky_uppercut,low_kick/protect
+mightyena_pu_1;mightyena;pu;All-out Attacker;65;life_orb;moxie;adamant,jolly;252 Atq/4 DefE/252 Vel;;crunch/sucker_punch/play_rough/iron_tail
+beautifly_pu_1;beautifly;pu;Quiver Dance;33;buginium_z,life_orb;;timid;252 AtqE/4 DefE/252 Vel;;quiver_dance/bug_buzz/hidden_power/roost
+dustox_pu_1;dustox;pu;Quiver Dance + Iron Defense;56;black_sludge;;bold;248 PS/120 Def/140 Vel;;quiver_dance/iron_defense/bug_buzz/roost
+ludicolo_pu_1;ludicolo;pu;Rain Sweeper;60;life_orb;;modest,timid;252 AtqE/4 DefE/252 Vel;29 PS;rain_dance/hydro_pump/giga_drain,energy_ball/ice_beam
+masquerain_pu_1;masquerain;pu;Sticky Web Lead;56;focus_sash;;timid;252 AtqE/4 DefE/252 Vel;;sticky_web/bug_buzz/hydro_pump,air_slash/quiver_dance
+slaking_pu_1;slaking;pu;All-out Attacker;29;life_orb;;naive;252 Atq/4 AtqE/252 Vel;;return,retaliate/pursuit,sucker_punch/earthquake/fire_blast
+ninjask_pu_1;ninjask;pu;Swords Dance;51;groundium_z;;jolly;252 Atq/4 Def/252 Vel;;swords_dance/leech_life/dig/aerial_ace
+shedinja_pu_1;shedinja;pu;Swords Dance;64;focus_sash;;lonely;252 Atq/252 Vel;;swords_dance/x_scissor/shadow_sneak/will_o_wisp,protect
+delcatty_pu_1;delcatty;pu;Normalize;60;silk_scarf;normalize;jolly;252 Atq/4 Def/252 Vel;;fake_out/sucker_punch/return,double_edge/thunder_wave
+sableye_pu_1;sableye;pu;Physically Defensive;79;leftovers,rocky_helmet;prankster;impish,bold;248 PS/252 Def/8 DefE;;taunt/will_o_wisp/recover/knock_off,foul_play,night_shade
+mawile_pu_1;mawile;pu;Wallbreaker;51;life_orb;sheer_force;naughty;252 Atq/4 AtqE/252 Vel;;play_rough/iron_head/sucker_punch/fire_blast
+mawile_pu_2;mawile;pu;Physical Wall;20;leftovers,rocky_helmet;intimidate;impish;252 PS/252 Def/4 DefE;;stealth_rock/play_rough/super_fang/toxic,knock_off
+aggron_pu_1;aggron;pu;Choice Band;54;choice_band;rock_head;adamant,jolly;252 Atq/4 Def/252 Vel;;head_smash/heavy_slam/aqua_tail/earthquake,superpower
+aggron_pu_2;aggron;pu;Offensive Stealth Rock;49;shuca_berry,chople_berry;rock_head;adamant,jolly;252 Atq/4 DefE/252 Vel;;stealth_rock/head_smash/heavy_slam/taunt
+manectric_pu_1;manectric;pu;Choice Scarf;70;choice_scarf;lightning_rod;timid;252 AtqE/4 DefE/252 Vel;;thunderbolt/volt_switch/overheat/hidden_power,switcheroo
+plusle_pu_1;plusle;pu;Nasty Plot;0;life_orb;lightning_rod;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/thunderbolt/hidden_power,grass_knot/substitute,encore
+minun_pu_1;minun;pu;Nasty Plot;33;life_orb;volt_absorb;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/thunderbolt/hidden_power,grass_knot/substitute,encore
+volbeat_pu_1;volbeat;pu;Weather Setter;67;heat_rock,damp_rock;prankster;relaxed;252 PS/4 Atq/252 Def;;sunny_day,rain_dance/u_turn/thunder_wave/encore
+illumise_pu_1;illumise;pu;Weather Setter;55;heat_rock,damp_rock;prankster;relaxed;252 PS/4 Atq/252 Def;;sunny_day,rain_dance/u_turn/thunder_wave/encore
+roselia_pu_1;roselia;pu;Specially Defensive;71;eviolite;;calm;248 PS/236 DefE/24 Vel;;spikes/synthesis/sludge_bomb/giga_drain
+swalot_pu_1;swalot;pu;Assault Vest;13;assault_vest;;quiet;248 PS/200 AtqE/60 DefE;;sludge_bomb/giga_drain/ice_beam/earthquake
+wailord_pu_1;wailord;pu;Pressure Stall;25;leftovers;pressure;calm;252 Def/4 AtqE/252 DefE;;substitute/aqua_ring/protect/block
+camerupt_pu_1;camerupt;pu;Wallbreaker;51;choice_specs;solid_rock;modest;252 AtqE/4 DefE/252 Vel;;eruption/overheat/flamethrower/earth_power
+torkoal_pu_1;torkoal;pu;Rapid Spin;57;leftovers;shell_armor;bold;248 PS/232 Def/28 DefE;;stealth_rock/rapid_spin/lava_plume/yawn,toxic
+grumpig_pu_1;grumpig;pu;3 Attacks;34;colbur_berry,fightinium_z;;timid;80 PS/252 AtqE/176 Vel;;psychic/focus_blast/shadow_ball/calm_mind,taunt,thunder_wave
+spinda_pu_1;spinda;pu;Trick Room;56;life_orb;contrary;brave;252 PS/252 Atq/4 Def;;trick_room/superpower/return/sucker_punch
+cacturne_pu_1;cacturne;pu;Offensive Spikes;56;life_orb;water_absorb;mild;4 Atq/252 AtqE/252 Vel;;spikes/dark_pulse/sucker_punch/energy_ball,giga_drain
+altaria_pu_1;altaria;pu;Defensive Defog;48;leftovers;;calm;252 PS/160 DefE/96 Vel;;defog/toxic/dragon_pulse/roost
+zangoose_pu_1;zangoose;pu;Toxic Orb Wallbreaker;59;toxic_orb;toxic_boost;adamant,jolly;252 Atq/4 Def/252 Vel;;facade/knock_off/close_combat,swords_dance/quick_attack
+zangoose_pu_2;zangoose;pu;Belly Drum;40;sitrus_berry;;jolly;4 PS/252 Atq/252 Vel;;belly_drum/quick_attack/knock_off/close_combat
+seviper_pu_1;seviper;pu;Mixed Attacker;49;life_orb;;naughty;8 PS/56 Atq/224 AtqE/220 Vel;;sludge_wave/giga_drain/earthquake,flamethrower/sucker_punch
+lunatone_pu_1;lunatone;pu;Offensive;33;life_orb;;modest,timid;252 AtqE/4 DefE/252 Vel;;psychic,psyshock/power_gem/earth_power/rock_polish
+solrock_pu_1;solrock;pu;Stealth Rock;4;colbur_berry,leftovers,rocky_helmet;;impish;252 PS/4 Atq/252 Def;;stealth_rock/rock_slide/will_o_wisp/morning_sun
+whiscash_pu_1;whiscash;pu;Dragon Dance;65;flyinium_z;anticipation;jolly;4 PS/252 Atq/252 Vel;;dragon_dance/waterfall/earthquake/bounce
+claydol_pu_1;claydol;pu;Rapid Spin;45;colbur_berry;;bold;252 PS/120 Def/136 Vel;;rapid_spin/toxic,stealth_rock/psychic/earth_power
+cradily_pu_1;cradily;pu;Specially Defensive;85;leftovers;storm_drain;careful,calm;252 PS/4 Def/252 DefE;;stealth_rock/recover/toxic/rock_slide,giga_drain
+armaldo_pu_1;armaldo;pu;Offensive Spinner;36;leftovers;;adamant;252 PS/92 Atq/164 Vel;;rapid_spin/stone_edge/knock_off/earthquake
+castform_pu_1;castform;pu;Z-Rain Dance;45;waterium_z;;timid;252 AtqE/4 DefE/252 Vel;;rain_dance/hydro_pump/ice_beam/thunder
+kecleon_pu_1;kecleon;pu;Assault Vest;72;assault_vest;protean;adamant;172 PS/252 Atq/84 Vel;;knock_off/drain_punch/shadow_sneak/sucker_punch,power_up_punch
+banette_pu_1;banette;pu;Offensive;38;life_orb;;adamant;252 Atq/4 Def/252 Vel;;shadow_claw/knock_off,gunk_shot/will_o_wisp/sucker_punch,shadow_sneak
+tropius_pu_1;tropius;pu;SubSeed;68;sitrus_berry;harvest;bold;248 PS/252 Def/8 DefE;;leech_seed/substitute/air_slash/protect,toxic
+chimecho_pu_1;chimecho;pu;Supporter;57;leftovers,colbur_berry;;calm;252 PS/4 Def/252 DefE;;healing_wish,defog/recover/psychic/thunder_wave,taunt
+absol_pu_1;absol;pu;Choice Band;52;choice_band;justified;adamant,jolly;252 Atq/4 Def/252 Vel;;knock_off/sucker_punch/superpower,play_rough/pursuit
+absol_pu_2;absol;pu;Swords Dance;53;life_orb,darkinium_z;justified;adamant,jolly;252 Atq/4 Def/252 Vel;;swords_dance/knock_off/sucker_punch/superpower,play_rough
+glalie_pu_1;glalie;pu;Suicide Lead;45;focus_sash;;naive,jolly;252 Atq/4 Def/252 Vel;;spikes/taunt/ice_beam,ice_shard/explosion,earthquake,ice_shard
+walrein_pu_1;walrein;pu;Specially Defensive;53;leftovers;oblivious;calm;248 PS/8 Def/252 DefE;;roar/toxic/surf,ice_beam/protect,super_fang,encore
+huntail_pu_1;huntail;pu;Shell Smash;87;white_herb;water_veil;naughty;252 Atq/4 AtqE/252 Vel;;shell_smash/waterfall/sucker_punch/ice_beam
+gorebyss_pu_1;gorebyss;pu;Shell Smash;28;waterium_z,white_herb;;modest,timid;4 Def/252 AtqE/252 Vel;;shell_smash/hydro_pump/ice_beam/hidden_power,substitute
+relicanth_pu_1;relicanth;pu;Choice Band;31;choice_band;rock_head;adamant;252 Atq/4 Def/252 Vel;;head_smash/waterfall/earthquake/zen_headbutt
+luvdisc_pu_1;luvdisc;pu;Rain Sweeper;0;life_orb,waterium_z;;modest,timid;252 AtqE/4 DefE/252 Vel;;hydro_pump/ice_beam/hidden_power/rain_dance
+metang_pu_1;metang;pu;Stealth Rock;79;eviolite;;adamant;252 PS/176 Atq/80 Def;;stealth_rock/meteor_mash/earthquake/toxic,bullet_punch
+regirock_pu_1;regirock;pu;Stealth Rock;60;leftovers;;impish;252 PS/180 Def/76 DefE;;stealth_rock/rock_slide,stone_edge/drain_punch,earthquake/toxic,protect
+regirock_pu_2;regirock;pu;Sunny Day;26;heat_rock;sturdy;adamant;252 PS/252 Atq/4 Def;;sunny_day/stealth_rock/explosion/stone_edge
+regice_pu_1;regice;pu;Rock Polish;34;fightinium_z;;modest,timid;252 AtqE/4 DefE/252 Vel;;rock_polish/ice_beam/focus_blast/thunderbolt
+torterra_pu_1;torterra;pu;Rock Polish;43;grassium_z,rockium_z;;adamant,jolly;252 Atq/4 DefE/252 Vel;;rock_polish/wood_hammer/earthquake/stone_edge,swords_dance
+torterra_pu_2;torterra;pu;Stealth Rock;61;leftovers;shell_armor;careful;252 PS/44 Def/212 DefE;;stealth_rock/wood_hammer/earthquake/synthesis
+torterra_pu_3;torterra;pu;Bulky Swords Dance;56;grassium_z,leftovers;shell_armor;careful;252 PS/160 DefE/96 Vel;;swords_dance/wood_hammer/earthquake/synthesis
+bibarel_pu_1;bibarel;pu;Swords Dance;58;life_orb;;adamant;252 Atq/4 Def/252 Vel;;swords_dance/return/waterfall/aqua_jet
+kricketune_pu_1;kricketune;pu;Suicide Lead;32;focus_sash;technician;jolly;252 Atq/4 DefE/252 Vel;;sticky_web/endeavor/taunt/bug_bite
+luxray_pu_1;luxray;pu;All-Out Attacker;36;flame_orb;guts;jolly;252 Atq/4 DefE/252 Vel;;wild_charge/facade/superpower/volt_switch
+rampardos_pu_1;rampardos;pu;Choice Scarf;56;choice_scarf;sheer_force;jolly;252 Atq/4 DefE/252 Vel;;head_smash/rock_slide/superpower,pursuit/zen_headbutt
+bastiodon_pu_1;bastiodon;pu;Special Wall;58;leftovers;;careful;252 PS/4 Def/252 DefE;;stealth_rock/rock_slide,metal_burst/metal_burst,magic_coat,roar/toxic
+wormadam_pu_1;wormadam;pu;Quiver Dance;39;leftovers;overcoat;timid;252 AtqE/4 DefE/252 Vel;;quiver_dance/bug_buzz/giga_drain/hidden_power
+wormadam_sandy_pu_1;wormadam_sandy;pu;Physically Defensive;62;leftovers;overcoat;impish;252 PS/4 Atq/252 Def;;earthquake/stealth_rock/toxic/protect
+wormadam_trash_pu_1;wormadam_trash;pu;Defensive Utility;54;leftovers;overcoat;careful;252 PS/4 Def/252 DefE;;stealth_rock/toxic/protect/iron_head,gyro_ball
+mothim_pu_1;mothim;pu;Choice Specs;47;choice_specs;tinted_lens;rash;4 Atq/252 AtqE/252 Vel;;bug_buzz/air_slash/u_turn/energy_ball
+vespiquen_pu_1;vespiquen;pu;Pressure Stall;20;leftovers;;bold;248 PS/172 Def/88 Vel;;substitute/toxic/roost/air_slash,bug_buzz
+pachirisu_pu_1;pachirisu;pu;Utility;77;leftovers;volt_absorb;impish;252 PS/252 Def/4 DefE;;nuzzle/toxic/u_turn/super_fang
+floatzel_pu_1;floatzel;pu;Specially Offensive;16;life_orb;;timid;252 AtqE/4 DefE/252 Vel;;hydro_pump/ice_beam/focus_blast/taunt,hidden_power
+floatzel_pu_2;floatzel;pu;Choice Band;41;choice_band;water_veil;jolly;252 Atq/4 DefE/252 Vel;;liquidation/ice_punch/pursuit/aqua_jet,switcheroo
+cherrim_pu_1;cherrim;pu;Z-Sunny Day;46;firium_z;;jolly;252 Atq/4 Def/252 Vel;;sunny_day/swords_dance/petal_blizzard/return,healing_wish
+gastrodon_pu_1;gastrodon;pu;Defensive;79;leftovers;storm_drain;sassy;252 PS/108 Def/148 DefE;;scald/recover/toxic/earthquake
+drifblim_pu_1;drifblim;pu;Substitute + Calm Mind;37;sitrus_berry;unburden;modest,timid;4 Def/252 AtqE/252 Vel;30 PS;substitute/calm_mind/shadow_ball/hidden_power
+lopunny_pu_1;lopunny;pu;Switcheroo;41;choice_band,flame_orb,assault_vest;klutz;jolly;252 Atq/4 DefE/252 Vel;;switcheroo/return/high_jump_kick/healing_wish
+purugly_pu_1;purugly;pu;All-out Attacker;67;life_orb,silk_scarf;defiant;jolly;252 Atq/4 Def/252 Vel;;fake_out/return/knock_off,sucker_punch/u_turn
+skuntank_pu_1;skuntank;pu;Physically Offensive;59;rocky_helmet,black_sludge,black_glasses;aftermath;jolly;4 PS/252 Atq/252 Vel;;pursuit/sucker_punch/poison_jab/defog,taunt
+skuntank_pu_2;skuntank;pu;Choice Band;53;choice_band;aftermath;jolly,adamant;4 PS/252 Atq/252 Vel;;pursuit/sucker_punch/poison_jab/crunch
+skuntank_pu_3;skuntank;pu;Choice Scarf;57;choice_scarf;aftermath;jolly,adamant;4 PS/252 Atq/252 Vel;;pursuit/poison_jab/crunch/defog,punishment
+skuntank_pu_4;skuntank;pu;Special Attacker;36;darkinium_z,black_sludge;aftermath;timid,modest;4 PS/252 AtqE/252 Vel;;defog/dark_pulse/acid_spray,sludge_bomb/taunt,fire_blast
+bronzor_pu_1;bronzor;pu;Defensive;81;eviolite;;calm;252 PS/168 Def/88 DefE;;stealth_rock/psywave/toxic/rest
+chatot_pu_1;chatot;pu;Choice Attacker;38;choice_scarf,choice_specs;tangled_feet;timid;252 AtqE/4 DefE/252 Vel;;boomburst/heat_wave/hidden_power/u_turn
+spiritomb_pu_1;spiritomb;pu;Pursuit Trapper;39;figy_berry,black_glasses;infiltrator;adamant,brave;248 PS/252 Atq/8 Def;;pursuit/sucker_punch/foul_play,psychic/will_o_wisp
+spiritomb_pu_2;spiritomb;pu;Calm Mind;29;leftovers,darkinium_z;;bold;248 PS/252 Def/8 DefE;;calm_mind/dark_pulse/rest/sleep_talk
+carnivine_pu_1;carnivine;pu;Swords Dance;25;life_orb,grassium_z;;adamant;188 PS/252 Atq/68 Vel;;swords_dance/power_whip/knock_off/sleep_powder
+lumineon_pu_1;lumineon;pu;Defog;84;leftovers;storm_drain;bold;252 PS/248 Def/8 Vel;;defog/scald/u_turn/toxic
+abomasnow_pu_1;abomasnow;pu;Mixed Wallbreaker;42;life_orb;;hasty,mild;4 Atq/252 AtqE/252 Vel;;blizzard/giga_drain,wood_hammer/earthquake,focus_blast/ice_shard
+abomasnow_pu_2;abomasnow;pu;Choice Scarf;53;choice_scarf;;naive;4 Atq/252 AtqE/252 Vel;;blizzard/giga_drain/focus_blast/earthquake
+abomasnow_pu_3;abomasnow;pu;Swords Dance;25;grassium_z,life_orb;;jolly,hasty;252 Atq/4 AtqE/252 Vel;;swords_dance/wood_hammer,seed_bomb/ice_shard/earthquake,blizzard
+lickilicky_pu_1;lickilicky;pu;Wish;82;leftovers;oblivious;calm;248 PS/8 Def/252 DefE;;wish/protect/toxic,heal_bell,dragon_tail/seismic_toss,knock_off
+electivire_pu_1;electivire;pu;Mixed Attacker;47;life_orb;motor_drive,vital_spirit;naive;4 Atq/252 AtqE/252 Vel;;volt_switch,thunderbolt/flamethrower/earthquake/focus_blast,ice_punch
+probopass_pu_1;probopass;pu;Offensive Stealth Rock;41;air_balloon,leftovers;magnet_pull;modest;172 PS/252 AtqE/84 Vel;;stealth_rock/flash_cannon/hidden_power/taunt,earth_power
+dusknoir_pu_1;dusknoir;pu;Choice Band;44;choice_band;frisk;adamant;212 PS/252 Atq/44 Vel;;earthquake/shadow_sneak/ice_punch/trick
+rotom_frost_pu_1;rotom_frost;pu;Offensive Defog;51;icium_z,iapapa_berry;;timid;252 AtqE/4 DefE/252 Vel;;blizzard/volt_switch/defog/thunderbolt,will_o_wisp,pain_split
+rotom_frost_pu_2;rotom_frost;pu;Choice Scarf;49;choice_scarf;;timid;252 AtqE/4 DefE/252 Vel;;blizzard/volt_switch/thunderbolt/trick,defog
+rotom_fan_pu_1;rotom_fan;pu;Defensive Pivot;51;iapapa_berry,leftovers;;bold;252 PS/208 Def/48 Vel;;volt_switch/air_slash/will_o_wisp/defog,pain_split
+regigigas_pu_1;regigigas;pu;Slow Utility;48;leftovers;;adamant;252 PS/252 Atq/4 DefE;;thunder_wave,toxic/knock_off/return/drain_punch,substitute
+phione_pu_1;phione;pu;Rain Dance;0;damp_rock;;relaxed;252 PS/252 Def/4 DefE;;rain_dance/heal_bell/scald/u_turn
+servine_pu_1;servine;pu;Fast Utility;57;eviolite;contrary;timid;252 PS/4 AtqE/252 Vel;;leaf_storm/defog/synthesis/hidden_power
+watchog_pu_1;watchog;pu;All-out Attacker;23;life_orb;analytic;adamant,jolly;252 Atq/4 Def/252 Vel;;return/low_kick/knock_off/seed_bomb
+stoutland_pu_1;stoutland;pu;Choice Band;70;choice_band;scrappy;adamant,jolly;252 Atq/4 Def/252 Vel;;return/superpower/pursuit/facade
+liepard_pu_1;liepard;pu;Choice Band;38;choice_band;limber,prankster;jolly;252 Atq/4 Def/252 Vel;;knock_off/pursuit/play_rough/u_turn,sucker_punch,copycat
+liepard_pu_2;liepard;pu;Nasty Plot;41;black_glasses,leftovers;prankster;timid;4 PS/252 AtqE/252 Vel;;nasty_plot/dark_pulse/encore/copycat
+liepard_pu_3;liepard;pu;Weather;49;damp_rock,heat_rock;prankster;jolly;252 Atq/4 Def/252 Vel;;knock_off/rain_dance,sunny_day/encore,thunder_wave/u_turn
+simisage_pu_1;simisage;pu;Mixed Attacker;40;life_orb;overgrow;naive;252 Atq/4 AtqE/252 Vel;;leaf_storm/superpower/rock_slide/gunk_shot,knock_off
+simisear_pu_1;simisear;pu;Nasty Plot;62;firium_z,grassium_z;blaze;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/fire_blast/grass_knot/focus_blast,hidden_power
+simisear_pu_2;simisear;pu;Choice Specs;54;choice_specs;blaze;timid;252 AtqE/4 DefE/252 Vel;;fire_blast/focus_blast/grass_knot/overheat,flamethrower,hidden_power
+simipour_pu_1;simipour;pu;Nasty Plot;55;waterium_z;torrent;timid;252 AtqE/4 DefE/252 Vel;;nasty_plot/hydro_pump/ice_beam/grass_knot
+musharna_pu_1;musharna;pu;Future Sight;51;psychium_z,colbur_berry;synchronize;modest;128 PS/252 AtqE/36 DefE/92 Vel;;future_sight/dazzling_gleam/moonlight/healing_wish
+musharna_pu_2;musharna;pu;Calm Mind;47;fairium_z,colbur_berry;synchronize;bold;252 PS/252 Def/4 AtqE;;calm_mind/moonlight/psychic/dazzling_gleam
+musharna_pu_3;musharna;pu;Calm Mind + Barrier;44;leftovers;synchronize;bold;252 PS/252 Def/4 AtqE;;calm_mind/barrier/rest/dazzling_gleam,stored_power
+unfezant_pu_1;unfezant;pu;Tailwind Support;45;scope_lens;super_luck;adamant;252 Atq/4 Def/252 Vel;;tailwind/hypnosis/u_turn/return
+zebstrika_pu_1;zebstrika;pu;All-out Attacker;66;life_orb;sap_sipper;timid;4 Def/252 AtqE/252 Vel;;thunderbolt/volt_switch/overheat/hidden_power
+swoobat_pu_1;swoobat;pu;Calm Mind;57;salac_berry;simple;timid;4 PS/252 AtqE/252 Vel;;calm_mind/substitute/stored_power,psychic/air_slash
+audino_pu_1;audino;pu;Wish Passer;78;leftovers;regenerator;careful;248 PS/8 Def/252 DefE;;wish/protect/knock_off/heal_bell,toxic,encore
+gurdurr_pu_1;gurdurr;pu;Bulky Attacker;80;eviolite;;adamant;252 PS/44 Atq/212 Def;;drain_punch/mach_punch/knock_off/bulk_up
+throh_pu_1;throh;pu;Bulk Up;45;leftovers;mold_breaker;impish;128 PS/104 Def/152 DefE/124 Vel;;bulk_up/storm_throw/knock_off/substitute
+leavanny_pu_1;leavanny;pu;Sticky Web;69;focus_sash;;jolly;252 Atq/4 Def/252 Vel;;sticky_web/leaf_blade/x_scissor/knock_off,magic_coat
+basculin_pu_1;basculin;pu;All-out Attacker;65;waterium_z,life_orb;adaptability;naive;252 Atq/4 AtqE/252 Vel;;waterfall,liquidation/aqua_jet/ice_beam/superpower,crunch
+maractus_pu_1;maractus;pu;Lead;6;focus_sash;;naive;4 Atq/252 AtqE/252 Vel;;spikes/endeavor/energy_ball/sucker_punch
+crustle_pu_1;crustle;pu;Entry Hazard Lead;42;focus_sash,mental_herb;weak_armor,sturdy;jolly;252 Atq/4 Def/252 Vel;;stealth_rock/spikes/knock_off/rock_blast,stone_edge
+carracosta_pu_1;carracosta;pu;Shell Smash;48;rockium_z,life_orb,white_herb;;naughty;252 Atq/4 Def/252 Vel;;shell_smash/stone_edge/aqua_jet/hydro_pump,superpower,ice_beam
+gothitelle_pu_1;gothitelle;pu;Calm Mind;38;colbur_berry;competitive;modest,timid;252 AtqE/4 DefE/252 Vel;;psychic,psyshock/thunderbolt/hidden_power/calm_mind
+swanna_pu_1;swanna;pu;Offensive Defog;71;flyinium_z,life_orb;hydration;timid;4 Def/252 AtqE/252 Vel;;hurricane/scald/defog/roost
+swanna_pu_2;swanna;pu;Choice Scarf;54;choice_scarf;hydration;naive;4 Atq/252 AtqE/252 Vel;;hurricane/brave_bird/scald/defog
+sawsbuck_pu_1;sawsbuck;pu;Sun Sweeper;47;normalium_z;;adamant;252 Atq/4 DefE/252 Vel;;swords_dance/double_edge/horn_leech/jump_kick
+emolga_pu_1;emolga;pu;Utility Pivot;36;rocky_helmet;motor_drive;timid;4 Def/252 AtqE/252 Vel;;thunderbolt/u_turn/encore,taunt/roost,knock_off
+jellicent_pu_1;jellicent;pu;Defensive Utility;53;colbur_berry,rindo_berry,leftovers;cursed_body,water_absorb;bold;252 PS/224 Def/32 Vel;;hex,scald/taunt/will_o_wisp,toxic/recover
+jellicent_pu_2;jellicent;pu;Offensive Taunt;36;waterium_z;cursed_body,water_absorb;modest;4 Def/252 AtqE/252 Vel;;taunt/recover/water_spout/shadow_ball
+jellicent_pu_3;jellicent;pu;Offensive Trick Room;28;ghostium_z,waterium_z;cursed_body,water_absorb;quiet;252 PS/4 Def/252 AtqE;;trick_room/hydro_pump/shadow_ball/ice_beam,recover
+jellicent_pu_4;jellicent;pu;Choice Specs;16;choice_specs;;modest;4 Def/252 AtqE/252 Vel;;water_spout/shadow_ball/hydro_pump/ice_beam,trick
+ferroseed_pu_1;ferroseed;pu;Defensive;62;eviolite;;relaxed;252 PS/216 Def/40 DefE;;spikes,stealth_rock/leech_seed/gyro_ball/protect
+eelektross_pu_1;eelektross;pu;Assault Vest;67;assault_vest;;modest,quiet;252 PS/4 Atq/252 AtqE;;volt_switch/giga_drain/flamethrower/knock_off,acid_spray,drain_punch
+beheeyem_pu_1;beheeyem;pu;Offensive Trick Room;51;psychium_z,colbur_berry;analytic;quiet;248 PS/8 Def/252 AtqE;;trick_room/psychic,psyshock/nasty_plot/signal_beam,hidden_power
+beartic_pu_1;beartic;pu;Weather Sweeper;61;icium_z,life_orb;slush_rush,swift_swim;jolly;252 Atq/4 DefE/252 Vel;;icicle_crash/superpower/throat_chop,aqua_jet,play_rough/swords_dance
+cryogonal_pu_1;cryogonal;pu;Offensive;41;icium_z,metronome,icicle_plate;;timid;252 AtqE/4 DefE/252 Vel;;rapid_spin,defog/recover/freeze_dry/hidden_power
+cryogonal_pu_2;cryogonal;pu;Defensive;56;leftovers;;timid;248 PS/8 AtqE/52 DefE/200 Vel;;rapid_spin,defog/recover/frost_breath,freeze_dry/hidden_power,toxic
+stunfisk_pu_1;stunfisk;pu;Defensive Stealth Rock;63;leftovers;;bold;252 PS/252 Def/4 DefE;;stealth_rock/discharge/earth_power/toxic,protect
+golurk_pu_1;golurk;pu;Stealth Rock;45;colbur_berry;;adamant,jolly;252 Atq/4 Def/252 Vel;;stealth_rock/earthquake/shadow_punch/ice_punch
+pawniard_pu_1;pawniard;pu;Swords Dance;67;eviolite;;adamant;252 Atq/4 Def/252 Vel;;swords_dance/knock_off/sucker_punch/iron_head
+bouffalant_pu_1;bouffalant;pu;Substitute + Swords Dance;44;leftovers;sap_sipper;careful;252 PS/156 DefE/100 Vel;;substitute/swords_dance/return/earthquake
+heatmor_pu_1;heatmor;pu;All-out Attacker;48;life_orb;flash_fire;jolly,naive;252 Atq/4 DefE/252 Vel;;fire_lash/sucker_punch/knock_off,giga_drain/superpower
+gogoat_pu_1;gogoat;pu;Bulk Up;62;leftovers;;careful;252 PS/4 Atq/252 DefE;;bulk_up/horn_leech/earthquake,rock_slide/milk_drink
+furfrou_pu_1;furfrou;pu;Offensive Pivot;31;leftovers;;jolly;32 PS/252 Atq/224 Vel;;return/u_turn/toxic,thunder_wave/sucker_punch
+meowstic_pu_1;meowstic;pu;Dual Screens;46;light_clay;prankster;bold;252 PS/252 Def/4 DefE;;reflect/light_screen/yawn,thunder_wave/psychic
+aurorus_pu_1;aurorus;pu;Choice Specs;62;choice_specs;snow_warning,refrigerate;modest,timid;252 AtqE/4 DefE/252 Vel;;blizzard,hyper_voice/freeze_dry/earth_power/hidden_power
+aurorus_pu_2;aurorus;pu;Choice Scarf;57;choice_scarf;snow_warning;timid;252 AtqE/4 DefE/252 Vel;;blizzard/freeze_dry/earth_power/stone_edge
+aurorus_pu_3;aurorus;pu;Stealth Rock Lead;45;focus_sash;snow_warning;timid;4 Atq/252 AtqE/252 Vel;;stealth_rock/blizzard/encore/rock_tomb,earth_power
+dedenne_pu_1;dedenne;pu;SubRecycle;46;petaya_berry;;timid;4 PS/252 AtqE/252 Vel;;substitute/recycle/thunderbolt/hidden_power
+carbink_pu_1;carbink;pu;Trick Room Lead;43;mental_herb;sturdy;relaxed;252 PS/4 Atq/252 Def;;trick_room/stealth_rock/explosion/magic_coat
+carbink_pu_2;carbink;pu;Stealth Rock;47;leftovers;;calm,careful;252 PS/4 Def/252 DefE;;stealth_rock/moonblast,rock_slide/toxic/rest,protect
+trevenant_pu_1;trevenant;pu;Choice Band;7;choice_band;;jolly;252 Atq/4 DefE/252 Vel;;wood_hammer/earthquake/rock_slide/shadow_claw,trick
+gourgeist_pu_1;gourgeist;pu;Z-Trick-or-Treat;75;ghostium_z;frisk;adamant;96 PS/252 Atq/160 Vel;;trick_or_treat/seed_bomb/phantom_force/shadow_sneak,return
+gourgeist_super_pu_1;gourgeist_super;pu;Physically Defensive;61;colbur_berry,leftovers;frisk;bold;252 PS/252 Def/4 DefE;;will_o_wisp/synthesis/leech_seed/foul_play
+toucannon_pu_1;toucannon;pu;Mixed Attacker;40;life_orb;skill_link;rash,naive;4 Atq/252 AtqE/252 Vel;;boomburst/brave_bird/bullet_seed/overheat
+gumshoos_pu_1;gumshoos;pu;Choice Band;49;choice_band;;adamant;252 Atq/4 Def/252 Vel;;return/earthquake/u_turn/crunch
+oricorio_pu_1;oricorio;pu;Offensive Calm Mind;48;flyinium_z;;timid;252 AtqE/4 DefE/252 Vel;;calm_mind/hurricane/revelation_dance/roost,hidden_power
+oricorio_pom_pom_pu_1;oricorio_pom_pom;pu;Calm Mind;52;flyinium_z,rocky_helmet;;timid;252 PS/4 Def/252 Vel;;calm_mind/roost/hurricane/hidden_power,taunt,revelation_dance
+oricorio_pom_pom_pu_2;oricorio_pom_pom;pu;Stallbreaker;38;leftovers;;timid;252 PS/4 Def/252 Vel;;toxic/taunt/roost/hurricane,revelation_dance
+oricorio_pau_pu_1;oricorio_pau;pu;Calm Mind;19;flyinium_z;;timid;252 PS/4 Def/252 Vel;;calm_mind/hurricane/taunt,hidden_power/roost
+oricorio_sensu_pu_1;oricorio_sensu;pu;Bulky Calm Mind;44;flyinium_z,rocky_helmet;;timid;252 PS/64 Def/192 Vel;;calm_mind/roost/taunt/hurricane
+oricorio_sensu_pu_2;oricorio_sensu;pu;Offensive Calm Mind;56;flyinium_z,leftovers;;timid;4 Def/252 AtqE/252 Vel;;calm_mind/hurricane/revelation_dance/roost,substitute
+wishiwashi_pu_1;wishiwashi;pu;Trick Room Sweeper;65;choice_specs;;quiet;252 PS/4 Def/252 AtqE;1 Vel;hydro_pump/ice_beam/hidden_power/u_turn
+mudsdale_pu_1;mudsdale;pu;Stealth Rock;75;figy_berry,leftovers;stamina;impish;252 PS/172 Def/84 DefE;;stealth_rock/earthquake/toxic/rock_slide,protect
+mudsdale_pu_2;mudsdale;pu;Choice Band;54;choice_band;stamina;adamant;4 PS/252 Atq/252 Vel;;earthquake/heavy_slam/rock_slide/close_combat,toxic
+lurantis_pu_1;lurantis;pu;Defog;74;leftovers;contrary;bold;248 PS/252 Def/8 AtqE;;defog/leaf_storm/superpower,toxic/aromatherapy,synthesis
+shiinotic_pu_1;shiinotic;pu;Choice Specs;59;choice_specs;effect_spore;modest;92 PS/252 AtqE/164 Vel;;moonblast/giga_drain/hidden_power/spore
+oranguru_pu_1;oranguru;pu;Trick Room;23;fightinium_z,electrium_z,colbur_berry;;quiet;248 PS/252 AtqE/8 DefE;;trick_room/nasty_plot/psychic/focus_blast,thunderbolt
+pyukumuku_pu_1;pyukumuku;pu;Unaware Trapper;77;leftovers,ghostium_z,poisonium_z;unaware;bold;252 PS/252 Def/4 DefE;;block/spite,toxic/recover/rest
+type_null_pu_1;type_null;pu;Bulky Pivot;53;eviolite;;careful;252 PS/8 Def/248 DefE;;u_turn/return/rest/sleep_talk
+type_null_pu_2;type_null;pu;Swords Dance;54;eviolite;;careful;252 PS/8 Def/248 DefE;;swords_dance/return/rest/sleep_talk,iron_defense
+silvally_pu_1;silvally;pu;Swords Dance;20;normalium_z;;jolly;252 Atq/4 Def/252 Vel;;swords_dance/double_edge/parting_shot/shadow_claw
+komala_pu_1;komala;pu;Bulky Spinner;28;assault_vest;;adamant;252 PS/232 Atq/24 Vel;;rapid_spin/return/u_turn/sucker_punch,earthquake
+turtonator_pu_1;turtonator;pu;Shell Smash;55;dragonium_z,white_herb;;timid;252 AtqE/4 DefE/252 Vel;;shell_smash/fire_blast/draco_meteor/dragon_pulse
+drampa_pu_1;drampa;pu;Choice Specs;62;choice_specs;sap_sipper;modest;140 PS/252 AtqE/116 Vel;;draco_meteor/hyper_voice/fire_blast,flamethrower/focus_blast,energy_ball
+drampa_pu_2;drampa;pu;Calm Mind;30;leftovers;sap_sipper,berserk;modest;140 PS/252 AtqE/116 Vel;;calm_mind/dragon_pulse/roost/flamethrower,hyper_voice
+koffing_lc_1;koffing;lc;Defensive;57;eviolite;;bold;36 PS/236 Def/236 DefE;;will_o_wisp/pain_split/sludge_bomb/fire_blast,clear_smog,toxic_spikes
+ralts_lc_1;ralts;lc;Revenge Trapper;51;choice_scarf;trace;timid;52 PS/236 AtqE/196 Vel;;psychic/dazzling_gleam/thunderbolt/memento,destiny_bond
+pumpkaboo_small_lc_1;pumpkaboo_small;lc;Z-Trick-or-Treat;93;ghostium_z;frisk;modest;4 PS/36 Def/164 AtqE/156 DefE/148 Vel;;trick_or_treat/shadow_ball/fire_blast/giga_drain
+bergmite_lc_1;bergmite;lc;Bulky Spinner;58;eviolite;sturdy;impish;44 Atq/156 Def/236 DefE/52 Vel;;rapid_spin/recover/avalanche/toxic
+noibat_lc_1;noibat;lc;Life Orb;56;life_orb;infiltrator;timid;236 AtqE/36 DefE/236 Vel;9 PS;draco_meteor/hurricane/heat_wave/tailwind
+piplup_lc_1;piplup;lc;Utility;78;eviolite;;bold;92 PS/252 Def/148 DefE;;stealth_rock/defog/scald/ice_beam
+bulbasaur_lc_1;bulbasaur;lc;Z-Celebrate Sweeper;59;normalium_z;chlorophyll;modest;44 Def/160 AtqE/240 Vel;;celebrate/sludge_bomb/giga_drain/hidden_power,sleep_powder
+charmander_lc_1;charmander;lc;Life Orb;45;life_orb;;adamant;180 Atq/92 AtqE/236 Vel;21 PS;dragon_dance/flare_blitz/hidden_power,brick_break/thunder_punch
+squirtle_lc_1;squirtle;lc;Rapid Spin;50;eviolite;;impish;84 PS/52 Atq/156 Def/84 DefE/92 Vel;;rapid_spin/fake_out/waterfall/aqua_jet,ice_punch,yawn
+pidgey_lc_1;pidgey;lc;Pidgey;34;choice_scarf;big_pecks;jolly,naive;36 PS/236 Atq/228 Vel;;brave_bird/return/u_turn/defog,heat_wave
+rattata_lc_1;rattata;lc;Hustle Wallbreaker;11;life_orb;hustle;jolly;232 Atq/76 Def/180 Vel;;double_edge,return/flame_wheel/sucker_punch/zen_headbutt,hidden_power
+rattata_alola_lc_1;rattata_alola;lc;Life Orb;75;life_orb;hustle;jolly;228 Atq/76 Def/180 Vel;;double_edge,return/sucker_punch,crunch/u_turn/pursuit,quick_attack,crunch
+spearow_lc_1;spearow;lc;Life Orb Attacker;60;life_orb;sniper;jolly;196 Atq/36 Def/28 DefE/196 Vel;;double_edge/drill_peck/drill_run/u_turn
+ekans_lc_1;ekans;lc;Coil Sweeper;64;berry_juice;intimidate,shed_skin;careful;156 PS/84 Def/244 DefE;;coil/gunk_shot/earthquake/sucker_punch
+sandshrew_lc_1;sandshrew;lc;Bulky Support;85;eviolite;sand_rush;adamant;36 PS/156 Atq/76 Def/36 DefE/196 Vel;;rapid_spin/stealth_rock/earthquake/knock_off
+sandshrew_alola_lc_1;sandshrew_alola;lc;Hail Sweeper;70;life_orb,eviolite;slush_rush;adamant,jolly;36 PS/236 Atq/36 Def/196 Vel;;icicle_spear,icicle_crash/iron_head/earthquake/swords_dance,rapid_spin,knock_off,icicle_crash
+sandshrew_alola_lc_2;sandshrew_alola;lc;Choice Scarf;57;choice_scarf;slush_rush;jolly;236 Atq/76 DefE/196 Vel;;icicle_spear/iron_head/rapid_spin,knock_off/earthquake
+nidoran_f_lc_1;nidoran_f;lc;Toxic Spikes;0;berry_juice;;impish;60 Atq/180 Def/196 DefE/28 Vel;;toxic_spikes/super_fang/poison_jab/thief
+nidoran_m_lc_1;nidoran_m;lc;Hone Claws;100;eviolite;hustle;adamant;220 Atq/36 Def/196 Vel;;poison_jab/drill_run/sucker_punch/hone_claws
+zubat_lc_1;zubat;lc;Choice Scarf;34;choice_scarf;;jolly;36 PS/236 Atq/236 Vel;;brave_bird/u_turn/defog/pursuit
+oddish_lc_1;oddish;lc;Defensive Pivot;56;eviolite;;bold;156 PS/236 Def/76 DefE/36 Vel;;sleep_powder/strength_sap,synthesis/sludge_bomb/giga_drain
+paras_lc_1;paras;lc;Spore Utility;78;eviolite;dry_skin;adamant;116 Atq/156 Def/156 DefE/76 Vel;;spore/knock_off/seed_bomb/leech_life
+venonat_lc_1;venonat;lc;Sleep Powder Support;45;eviolite;;bold;36 PS/36 Def/116 AtqE/76 DefE/236 Vel;;sleep_powder/morning_sun/sludge_bomb/psychic
+diglett_lc_1;diglett;lc;Offensive Trapper;63;groundium_z,life_orb;arena_trap;jolly;36 PS/236 Atq/236 Vel;;earthquake/rock_slide/sucker_punch/substitute,memento
+diglett_lc_2;diglett;lc;Choice Scarf;48;choice_scarf;arena_trap;jolly;36 PS/236 Atq/236 Vel;;earthquake/rock_slide/final_gambit,memento/beat_up,pursuit
+diglett_lc_3;diglett;lc;Focus Sash;63;focus_sash;arena_trap;jolly;36 PS/236 Atq/236 Vel;;earthquake/sucker_punch,memento/rock_slide/memento,reversal,stealth_rock
+diglett_alola_lc_1;diglett_alola;lc;Sand Sweeper;48;life_orb;sand_force;jolly;36 PS/236 Atq/36 Def/196 Vel;;iron_head/earthquake/rock_slide/substitute
+meowth_lc_1;meowth;lc;Mixed Attacker;67;life_orb;technician;hasty;236 Atq/36 AtqE/36 DefE/196 Vel;19 PS;fake_out/feint,return/water_pulse/aerial_ace,knock_off,u_turn
+meowth_alola_lc_1;meowth_alola;lc;Z-Parting Shot;48;darkinium_z;technician;timid;36 PS/200 AtqE/40 DefE/200 Vel;;parting_shot/dark_pulse/hidden_power/taunt,thunderbolt
+meowth_alola_lc_2;meowth_alola;lc;Nasty Plot;36;life_orb;technician;timid;200 AtqE/40 DefE/200 Vel;19 PS;nasty_plot/dark_pulse/hidden_power/thunderbolt,parting_shot
+psyduck_lc_1;psyduck;lc;Choice Scarf;0;choice_scarf;cloud_nine;timid;240 AtqE/240 Vel;;hydro_pump/psychic/ice_beam/hidden_power,scald
+mankey_lc_1;mankey;lc;Choice Scarf;64;choice_scarf;defiant;jolly,adamant;36 PS/196 Atq/76 Def/196 Vel;;close_combat/gunk_shot/u_turn/earthquake
+growlithe_lc_1;growlithe;lc;Bulky Pivot;38;eviolite;;impish;76 PS/36 Atq/156 Def/196 DefE/36 Vel;;will_o_wisp/morning_sun/flare_blitz/wild_charge,hidden_power
+poliwag_lc_1;poliwag;lc;Belly Drum;78;berry_juice;;jolly;116 PS/196 Atq/196 Vel;;belly_drum/waterfall/hypnosis,thief/return,thief
+abra_lc_1;abra;lc;Focus Sash;71;focus_sash;magic_guard;timid;240 AtqE/200 Vel;;psychic/dazzling_gleam/hidden_power,counter/protect,energy_ball,psychic_terrain
+abra_lc_2;abra;lc;Life Orb;59;life_orb;magic_guard;timid;240 AtqE/200 Vel;;psychic/dazzling_gleam/hidden_power,energy_ball/substitute
+machop_lc_1;machop;lc;Choice Scarf;65;choice_scarf;no_guard;jolly;36 PS/196 Atq/36 Def/236 Vel;;dynamic_punch/knock_off/poison_jab/rock_slide
+bellsprout_lc_1;bellsprout;lc;Praise The Sun (Sun Sweeper);38;poisonium_z,eviolite,life_orb;;modest,timid;76 Def/196 AtqE/36 DefE/196 Vel;;solar_beam/sludge_bomb/weather_ball/sleep_powder,growth
+tentacool_lc_1;tentacool;lc;Defensive Utility;79;berry_juice,eviolite;liquid_ooze;calm;196 PS/236 Def/36 AtqE/36 Vel;;rapid_spin/knock_off,toxic_spikes/scald/sludge_bomb
+tentacool_lc_2;tentacool;lc;Offensive;29;life_orb;;timid;76 Def/196 AtqE/36 DefE/196 Vel;19 PS;hydro_pump/sludge_bomb/knock_off/hidden_power,rapid_spin
+geodude_lc_1;geodude;lc;Stealth Rock;80;berry_juice;sturdy;adamant;36 PS/196 Atq/116 Def/36 DefE/116 Vel;;stealth_rock/rock_blast/earthquake/sucker_punch,explosion,counter
+geodude_alola_lc_1;geodude_alola;lc;Magnet Pull;78;eviolite;;adamant;36 PS/116 Atq/116 Def/196 DefE/36 Vel;;rock_blast/fire_punch/superpower/stealth_rock
+ponyta_lc_1;ponyta;lc;Physical Firium Z;62;firium_z;flame_body;jolly;236 Atq/76 Def/196 Vel;;flame_charge/flare_blitz/high_horsepower/morning_sun,wild_charge
+ponyta_lc_2;ponyta;lc;Physical Utility;70;eviolite,berry_juice;flame_body;jolly;76 Atq/156 Def/76 DefE/196 Vel;;flare_blitz/high_horsepower,flame_charge/will_o_wisp,flame_charge/morning_sun,flame_charge
+ponyta_lc_3;ponyta;lc;Bloom Doom;16;grassium_z;flash_fire;timid;76 Def/236 AtqE/196 Vel;;solar_beam/flamethrower,fire_blast/flame_charge/hypnosis
+ponyta_lc_4;ponyta;lc;Sunny Day;40;eviolite,firium_z;flame_body;timid;156 Def/156 AtqE/196 Vel;;fire_blast/solar_beam/sunny_day/morning_sun
+slowpoke_lc_1;slowpoke;lc;Tank;89;eviolite;regenerator;calm;116 PS/76 Def/116 AtqE/196 DefE;;slack_off/scald/psychic/thunder_wave,fire_blast,calm_mind
+magnemite_lc_1;magnemite;lc;Choice Scarf;59;choice_scarf;analytic,magnet_pull;modest,timid;240 AtqE/240 Vel;;volt_switch/flash_cannon/thunderbolt/hidden_power
+magnemite_lc_2;magnemite;lc;SturdyJuice;61;berry_juice;sturdy;modest,timid;36 Def/236 AtqE/236 Vel;;volt_switch/flash_cannon/recycle/endure,hidden_power
+doduo_lc_1;doduo;lc;Physical Attacker;78;berry_juice;early_bird;jolly;236 Atq/236 Vel;;brave_bird/knock_off/jump_kick/quick_attack,return
+doduo_lc_2;doduo;lc;Choice Scarf;68;choice_scarf;early_bird;jolly;236 Atq/236 Vel;;brave_bird/knock_off/jump_kick/return,quick_attack
+seel_lc_1;seel;lc;Perish Trapper;7;eviolite;;bold;236 PS/236 Def/36 DefE;;whirlpool/perish_song/protect/rest
+grimer_lc_1;grimer;lc;Tank;67;berry_juice;sticky_hold;brave;36 PS/196 Atq/196 Def/36 AtqE/36 DefE;;gunk_shot/fire_punch/giga_drain/thief,memento
+grimer_alola_lc_1;grimer_alola;lc;Pursuit Trap;73;eviolite,berry_juice;;adamant;36 PS/196 Atq/196 Def/36 DefE;;pursuit/knock_off/poison_jab,gunk_shot/shadow_sneak,fire_punch
+grimer_alola_lc_2;grimer_alola;lc;RestTalk;49;eviolite;;adamant;36 PS/196 Atq/196 Def/36 DefE;;rest/sleep_talk/knock_off/poison_jab,gunk_shot
+shellder_lc_1;shellder;lc;SMASHING;87;eviolite;skill_link;impish,jolly;36 PS/236 Atq/36 Def/196 Vel;;shell_smash/icicle_spear/rock_blast/liquidation
+gastly_lc_1;gastly;lc;Life Orb;49;life_orb;;timid;200 AtqE/80 DefE/200 Vel;;shadow_ball/sludge_bomb/hidden_power,dazzling_gleam,psychic/substitute,destiny_bond
+gastly_lc_2;gastly;lc;Hex;23;berry_juice;;timid;36 PS/36 Def/116 AtqE/76 DefE/196 Vel;;hex/will_o_wisp/substitute/sludge_bomb
+gastly_lc_3;gastly;lc;Lure;35;fairium_z,electrium_z;;timid;36 Def/196 AtqE/76 DefE/196 Vel;;dazzling_gleam,thunder/sludge_bomb/shadow_ball/substitute,hidden_power
+gastly_lc_4;gastly;lc;Choice Scarf;38;choice_scarf;;timid;36 Def/196 AtqE/76 DefE/196 Vel;;shadow_ball/sludge_bomb/thunderbolt/dazzling_gleam,trick,hidden_power
+onix_lc_1;onix;lc;SturdyJuice;60;berry_juice;sturdy;jolly;76 PS/236 Atq/196 Vel;;stealth_rock/rock_blast/earthquake/endure,taunt
+onix_lc_2;onix;lc;Weak Armor;70;eviolite;weak_armor;jolly;76 PS/236 Atq/196 Vel;;stealth_rock/rock_blast/earthquake/explosion,protect
+drowzee_lc_1;drowzee;lc;Defensive;62;eviolite;;bold;196 PS/236 Def/12 AtqE/36 DefE/20 Vel;;psychic/counter/wish/protect
+krabby_lc_1;krabby;lc;Choice Scarf;66;choice_scarf;sheer_force;adamant;36 PS/236 Atq/36 Def/196 Vel;;liquidation/superpower/knock_off/body_slam
+voltorb_lc_1;voltorb;lc;Dual Screens;82;light_clay;aftermath;timid,jolly;196 PS/36 Def/76 DefE/196 Vel;;reflect/light_screen/volt_switch,explosion/taunt,volt_switch
+exeggcute_lc_1;exeggcute;lc;Harvest;36;oran_berry;harvest;timid;36 PS/200 Def/40 AtqE/80 DefE/120 Vel;;substitute/sleep_powder,leech_seed/giga_drain/psychic,hidden_power
+cubone_lc_1;cubone;lc;Physical Attacker;80;thick_club;battle_armor;jolly;196 Atq/76 Def/236 Vel;;bonemerang/knock_off/rock_slide/fire_punch
+lickitung_lc_1;lickitung;lc;Wish Support;73;eviolite;oblivious;impish;196 PS/76 Def/236 DefE;;wish/protect/body_slam,heal_bell/knock_off,heal_bell
+rhyhorn_lc_1;rhyhorn;lc;Rhyhorn;63;eviolite;rock_head;careful;36 PS/156 Atq/156 Def/116 DefE;;stealth_rock/rock_blast/earthquake/megahorn,fire_fang,poison_jab
+horsea_lc_1;horsea;lc;Rain Sweeper;37;life_orb;;modest,timid;116 PS/196 AtqE/196 Vel;;hydro_pump/ice_beam/rain_dance/hidden_power
+goldeen_lc_1;goldeen;lc;Supersonic Skystrike;61;flyinium_z;lightning_rod;jolly;220 Atq/36 DefE/252 Vel;;bounce/waterfall/drill_run/knock_off
+staryu_lc_1;staryu;lc;All-Out Attacker;69;eviolite,life_orb;analytic;timid;76 Def/196 AtqE/236 Vel;;hydro_pump/psychic,thunderbolt/ice_beam,thunderbolt/thunderbolt,hidden_power,rapid_spin
+staryu_lc_2;staryu;lc;Offensive Rapid Spin;66;eviolite;analytic;timid;156 Def/116 AtqE/236 Vel;;rapid_spin/hydro_pump/ice_beam,psychic,thunderbolt/recover
+staryu_lc_3;staryu;lc;Defensive Rapid Spin;65;eviolite;natural_cure;timid;116 PS/156 Def/236 Vel;;rapid_spin/scald/psychic,ice_beam,thunderbolt/recover
+magikarp_lc_1;magikarp;lc;I Think I'm Funny For Using This;0;bright_powder;rattled;jolly;36 PS/196 Atq/76 Def/196 Vel;;splash/flail/tackle/bounce
+omanyte_lc_1;omanyte;lc;Shell Smash Sweeper;68;eviolite;shell_armor;modest;76 PS/196 AtqE/236 Vel;;shell_smash/hydro_pump,surf/ice_beam/earth_power
+omanyte_lc_2;omanyte;lc;Support;28;eviolite;weak_armor;modest;76 PS/116 Def/116 AtqE/156 Vel;;spikes,stealth_rock/hydro_pump/knock_off/stealth_rock,toxic_spikes
+kabuto_lc_1;kabuto;lc;Offensive Support;80;eviolite;weak_armor;careful;116 PS/36 Atq/36 Def/156 DefE/156 Vel;;rapid_spin/stealth_rock/knock_off/rock_slide,aqua_jet,waterfall
+dratini_lc_1;dratini;lc;Life Orb Mixed Attacker;32;life_orb;;rash;164 Atq/196 AtqE/116 Vel;17 PS;draco_meteor/extreme_speed/iron_tail/fire_blast
+dratini_lc_2;dratini;lc;Dragon Dance;47;life_orb;;adamant,naughty;244 Atq/36 DefE/196 Vel;17 PS;dragon_dance/outrage/extreme_speed/iron_tail,fire_blast
+chikorita_lc_1;chikorita;lc;Defensive;28;eviolite;;bold;156 PS/156 Def/48 AtqE/76 DefE;;giga_drain/hidden_power/synthesis/aromatherapy
+cyndaquil_lc_1;cyndaquil;lc;Choice Scarf;76;choice_scarf;flash_fire;timid;44 PS/12 Def/200 AtqE/236 Vel;;eruption/hidden_power/fire_blast/extrasensory
+totodile_lc_1;totodile;lc;Dragon Dance;73;eviolite,life_orb;sheer_force;adamant;236 Atq/4 Def/252 Vel;;dragon_dance/waterfall/ice_punch/superpower,aqua_jet
+hoothoot_lc_1;hoothoot;lc;Specially Defensive;60;eviolite;;calm;196 PS/36 Def/228 DefE/36 Vel;;hypnosis/roost/air_slash/reflect,defog
+ledyba_lc_1;ledyba;lc;Swords Dance;0;berry_juice;rattled;jolly;36 PS/196 Atq/116 Def/156 Vel;;swords_dance/acrobatics/knock_off/drain_punch
+chinchou_lc_1;chinchou;lc;Bulky Pivot;43;berry_juice;;bold;76 PS/212 Def/152 AtqE/60 Vel;;scald/volt_switch/ice_beam,hidden_power/thunder_wave,hidden_power
+chinchou_lc_2;chinchou;lc;Choice Scarf Pivot;59;choice_scarf;;timid;52 Def/232 AtqE/224 Vel;;hydro_pump/volt_switch/ice_beam,hidden_power,scald/scald,hidden_power,thunderbolt
+pichu_lc_1;pichu;lc;Life Orb Attacker;21;life_orb;lightning_rod;hasty;36 PS/196 Atq/76 AtqE/196 Vel;;fake_out/volt_tackle/volt_switch/encore,iron_tail
+cleffa_lc_1;cleffa;lc;Counter;37;focus_sash;magic_guard;hasty;196 PS/76 AtqE/236 Vel;3 Def/9 DefE;counter/endeavor/thunder_wave/encore
+igglybuff_lc_1;igglybuff;lc;Wish + Protect;0;eviolite;competitive;calm;196 PS/116 AtqE/196 DefE;;wish/protect/hyper_voice/fire_blast,psychic
+togepi_lc_1;togepi;lc;Tank;57;eviolite;serene_grace;bold;236 PS/156 Def/76 DefE/36 Vel;;dazzling_gleam/fire_blast/morning_sun,soft_boiled/nasty_plot,heal_bell
+natu_lc_1;natu;lc;Life Orb;59;life_orb;magic_bounce;naive;116 Atq/196 AtqE/196 Vel;19 PS;psychic/heat_wave,dazzling_gleam/u_turn/roost,sucker_punch
+natu_lc_2;natu;lc;Defensive;59;eviolite;magic_bounce;bold;196 PS/156 Def/36 AtqE/76 DefE/36 Vel;;psychic/roost/heat_wave/u_turn,thunder_wave
+mareep_lc_1;mareep;lc;Dual Screens;0;eviolite;;bold;196 Def/76 AtqE/236 DefE;;reflect/light_screen/heal_bell,toxic/thunderbolt
+hoppip_lc_1;hoppip;lc;Bulky Support;49;eviolite;infiltrator;impish;156 PS/196 Def/156 DefE;;strength_sap/sleep_powder,toxic/bullet_seed/u_turn,cotton_guard
+wooper_lc_1;wooper;lc;Defensive;64;eviolite;water_absorb;sassy;76 PS/236 Def/156 DefE;;scald/recover/earthquake/yawn,encore
+pineco_lc_1;pineco;lc;Lead;62;berry_juice;;jolly;236 Atq/36 Def/236 Vel;;stealth_rock/spikes/rapid_spin/explosion,payback
+snubbull_lc_1;snubbull;lc;Berry Juice;69;berry_juice;;impish,careful;36 PS/116 Atq/116 Def/196 DefE/36 Vel;;play_rough/fire_punch,earthquake/thief/earthquake,bulk_up,thunder_wave
+snubbull_lc_2;snubbull;lc;Sub Snub (Substitute);58;berry_juice;;adamant,jolly;196 Atq/116 Def/196 Vel;;substitute/play_rough/thief/fire_punch,earthquake
+snubbull_lc_3;snubbull;lc;Eviolite;59;eviolite;;jolly;36 PS/116 Atq/36 Def/116 DefE/196 Vel;;play_rough/earthquake,fire_punch/thief,fire_punch/thunder_wave,bulk_up,thief
+teddiursa_lc_1;teddiursa;lc;Quick Feet;97;toxic_orb;quick_feet;jolly;36 PS/196 Atq/36 Def/36 DefE/196 Vel;;facade/crunch/close_combat/protect,swords_dance
+slugma_lc_1;slugma;lc;Utility;55;eviolite;flame_body;bold;36 PS/196 Def/116 AtqE/116 DefE/36 Vel;;lava_plume/clear_smog,earth_power/memento/will_o_wisp
+swinub_lc_1;swinub;lc;Stealth Rock;44;focus_sash;;jolly;116 PS/196 Atq/196 Vel;;stealth_rock/earthquake/ice_shard/endeavor
+remoraid_lc_1;remoraid;lc;Choice Scarf;57;choice_scarf;;naive;236 AtqE/236 Vel;;water_spout/hydro_pump/fire_blast/bullet_seed
+houndour_lc_1;houndour;lc;Life Orb;61;life_orb;flash_fire;naive;36 Atq/36 Def/196 AtqE/236 Vel;9 PS;fire_blast/dark_pulse/sucker_punch/flame_charge,pursuit
+houndour_lc_2;houndour;lc;Choice Scarf;53;choice_scarf;flash_fire;naive;36 Def/196 AtqE/36 DefE/236 Vel;;fire_blast/dark_pulse/pursuit/destiny_bond,snarl
+phanpy_lc_1;phanpy;lc;Utility;72;eviolite;;careful;116 PS/116 Atq/116 Def/116 DefE/36 Vel;;stealth_rock/earthquake/knock_off/ice_shard
+smoochum_lc_1;smoochum;lc;Icium Z Wallbreaker;71;icium_z;forewarn;timid;240 AtqE/240 Vel;;blizzard/psychic/hidden_power/substitute,ice_beam
+elekid_lc_1;elekid;lc;Special Attacker;74;life_orb;vital_spirit;timid,hasty;240 AtqE/236 Vel;9 PS;volt_switch/thunderbolt/psychic/hidden_power,cross_chop
+magby_lc_1;magby;lc;Belly Drum;88;berry_juice;vital_spirit;jolly;236 Atq/252 Vel;29 PS;belly_drum/fire_punch/mach_punch/return,thunder_punch
+magby_lc_2;magby;lc;Life Orb;40;life_orb;vital_spirit;jolly;236 Atq/252 Vel;;flare_blitz/cross_chop/mach_punch/return,thunder_punch
+larvitar_lc_1;larvitar;lc;Dragon Dance;49;eviolite;;jolly;244 Atq/36 Def/36 DefE/188 Vel;;dragon_dance/earthquake/rock_slide,stone_edge/superpower
+treecko_lc_1;treecko;lc;Swords Dance;84;berry_juice;unburden;adamant;116 PS/156 Atq/156 Def/36 Vel;;swords_dance/bullet_seed/drain_punch/acrobatics,rock_slide
+torchic_lc_1;torchic;lc;Offensive;73;life_orb,firium_z;speed_boost;modest;36 Def/200 AtqE/36 DefE/236 Vel;;protect/fire_blast/hidden_power/substitute,overheat
+mudkip_lc_1;mudkip;lc;Bulky Attacker;32;eviolite;;impish;196 Atq/116 Def/196 DefE;;waterfall/ice_beam/superpower/double_edge,return
+poochyena_lc_1;poochyena;lc;Z-Howl;31;normalium_z;rattled;jolly;236 Atq/36 DefE/236 Vel;;howl/crunch/play_rough/fire_fang
+zigzagoon_lc_1;zigzagoon;lc;Belly Drum Sweeper;75;berry_juice;;adamant;132 PS/196 Atq/108 Def/28 DefE/36 Vel;;belly_drum/extreme_speed/thief/seed_bomb,protect
+lotad_lc_1;lotad;lc;Rain Sweeper;0;life_orb;;modest;116 Def/196 AtqE/196 Vel;19 PS;surf/giga_drain/ice_beam/rain_dance
+seedot_lc_1;seedot;lc;Chlorophyll Sweeper;0;life_orb;;rash;40 Atq/36 Def/200 AtqE/200 Vel;19 PS;growth/solar_beam/hidden_power/explosion
+taillow_lc_1;taillow;lc;Mixed Life Orb;55;life_orb;guts,scrappy;naive;36 Def/200 AtqE/36 DefE/236 Vel;19 PS;boomburst/heat_wave/hidden_power,u_turn/brave_bird
+taillow_lc_2;taillow;lc;Guts Physical Sweeper;40;flame_orb;;jolly;36 PS/236 Atq/236 Vel;;facade/brave_bird/quick_attack/u_turn,protect
+shroomish_lc_1;shroomish;lc;Tank;31;eviolite;;impish;36 PS/36 Atq/196 Def/116 DefE/76 Vel;;spore/bullet_seed/drain_punch/synthesis
+nincada_lc_1;nincada;lc;Final Gambit;61;eviolite;;naive;188 PS/76 Atq/36 Def/196 Vel;;final_gambit/leech_life/giga_drain/toxic
+whismur_lc_1;whismur;lc;Trick Room Breaker;0;life_orb;;quiet;244 PS/36 Def/188 AtqE/36 DefE;;hyper_voice/shadow_ball/ice_beam/fire_blast,hammer_arm
+makuhita_lc_1;makuhita;lc;Belly Drum;47;berry_juice;;jolly;20 PS/196 Atq/36 Def/236 Vel;;belly_drum/close_combat/knock_off/bullet_punch,heavy_slam
+azurill_lc_1;azurill;lc;Trick Room Sweeper;60;life_orb;huge_power;brave;196 PS/196 Atq/116 Def;;double_edge/knock_off/waterfall,iron_tail/return
+nosepass_lc_1;nosepass;lc;SturdyJuice Utility;42;berry_juice;;relaxed;76 Atq/236 Def/196 DefE;;stealth_rock/rock_blast/thunder_wave/volt_switch
+skitty_lc_1;skitty;lc;Skitty;69;life_orb;normalize;jolly,adamant;236 Atq/76 DefE/196 Vel;;fake_out/sucker_punch/double_edge/thunder_wave,foresight
+aron_lc_1;aron;lc;Rock Polish;47;eviolite;rock_head;jolly;196 Atq/116 DefE/196 Vel;;rock_polish/head_smash/heavy_slam,iron_head/earthquake,superpower
+electrike_lc_1;electrike;lc;Choice Scarf;84;choice_scarf;lightning_rod;timid;240 AtqE/236 Vel;30 AtqE;volt_switch/thunderbolt,hidden_power/flamethrower/switcheroo,thunderbolt
+carvanha_lc_1;carvanha;lc;Physical Life Orb;85;life_orb;speed_boost;adamant;196 Atq/36 Def/36 DefE/236 Vel;9 PS;waterfall/crunch/psychic_fangs/protect,aqua_jet
+carvanha_lc_2;carvanha;lc;Special Life Orb;48;life_orb;speed_boost;modest;36 Def/236 AtqE/236 Vel;9 PS;hydro_pump/dark_pulse/ice_beam/protect
+wailmer_lc_1;wailmer;lc;Choice Scarf;49;choice_scarf;pressure;timid;36 PS/200 AtqE/200 Vel;;water_spout/hydro_pump/ice_beam/hidden_power
+numel_lc_1;numel;lc;Sweeper;79;eviolite,berry_juice,groundium_z;simple;modest;36 PS/236 AtqE/236 Vel;;flame_charge/fire_blast/earth_power/growth,stealth_rock
+spoink_lc_1;spoink;lc;Calm Mind;30;eviolite;;timid;80 Def/200 AtqE/200 Vel;;calm_mind/psychic/power_gem/hidden_power
+cacnea_lc_1;cacnea;lc;Swords Dance;60;eviolite;water_absorb;jolly;236 Atq/116 Def/156 Vel;;swords_dance/sucker_punch/seed_bomb/drain_punch,thunder_punch
+barboach_lc_1;barboach;lc;Dragon Dance;69;flyinium_z;;adamant;36 PS/212 Atq/12 Def/28 DefE/196 Vel;;dragon_dance/earthquake/waterfall/bounce
+corphish_lc_1;corphish;lc;Wallbreaker;73;eviolite;adaptability;adamant;196 Atq/76 Def/236 Vel;;crabhammer/aqua_jet/knock_off/swords_dance
+corphish_lc_2;corphish;lc;Dragon Dance;75;eviolite;adaptability;jolly,adamant;196 Atq/76 Def/236 Vel;;crabhammer/aqua_jet/knock_off/dragon_dance
+baltoy_lc_1;baltoy;lc;Rapid Spin;49;berry_juice;;bold;36 PS/236 Def/36 AtqE/196 DefE;;rapid_spin/stealth_rock/earth_power/psychic
+lileep_lc_1;lileep;lc;Tank;83;eviolite;storm_drain;bold;68 PS/220 Def/108 AtqE/60 DefE/12 Vel;;recover/giga_drain/stealth_rock/ancient_power,earth_power,toxic
+anorith_lc_1;anorith;lc;Utility;52;berry_juice;;jolly;236 Atq/36 Def/236 Vel;;stealth_rock/rapid_spin/knock_off/rock_blast
+shuppet_lc_1;shuppet;lc;Trick Room Utility;0;focus_sash;frisk;brave;4 PS/236 Atq/156 Def/92 DefE;;trick_room/knock_off/shadow_sneak/destiny_bond
+duskull_lc_1;duskull;lc;Bulky Utility;50;eviolite;;relaxed,careful;196 PS/196 Def/116 DefE;;pain_split/will_o_wisp/substitute/shadow_sneak,hex
+wynaut_lc_1;wynaut;lc;Trapper;71;berry_juice;;bold;156 PS/132 Def/132 DefE/12 Vel;;counter/mirror_coat/encore/tickle,safeguard
+snorunt_lc_1;snorunt;lc;Scarf Spikes;0;choice_scarf;;modest;40 PS/36 Def/200 AtqE/200 Vel;30 PS/30 AtqE/30 DefE/30 Vel;spikes/frost_breath/shadow_ball/hidden_power
+spheal_lc_1;spheal;lc;Special Attacker;38;berry_juice;;modest;36 PS/36 Def/240 AtqE/36 DefE/156 Vel;30 AtqE;yawn/ice_beam/surf/hidden_power
+clamperl_lc_1;clamperl;lc;Shell Smash;80;deep_sea_tooth;rattled;timid;76 PS/248 AtqE/184 Vel;;shell_smash/surf/ice_beam/hidden_power,substitute
+bagon_lc_1;bagon;lc;Dragon Dance;55;life_orb,dragonium_z;sheer_force;adamant;236 Atq/76 Def/196 Vel;;dragon_dance/outrage/zen_headbutt,substitute/fire_fang,substitute
+turtwig_lc_1;turtwig;lc;Defensive Stealth Rock;43;eviolite;;careful;76 PS/52 Atq/244 Def/76 DefE/28 Vel;;stealth_rock/synthesis/bullet_seed/superpower
+chimchar_lc_1;chimchar;lc;Suicide Lead;27;focus_sash;;hasty;4 PS/56 Atq/4 Def/216 AtqE/4 DefE/188 Vel;;fake_out/overheat/hidden_power/stealth_rock
+starly_lc_1;starly;lc;Choice Scarf;77;choice_scarf;reckless;naive;36 PS/236 Atq/36 AtqE/196 Vel;;brave_bird/double_edge/u_turn/heat_wave,hidden_power
+bidoof_lc_1;bidoof;lc;Swords Dance;63;eviolite,berry_juice;;adamant;236 Atq/116 Def/116 DefE/28 Vel;;swords_dance/return/quick_attack/crunch,aqua_tail
+shinx_lc_1;shinx;lc;Pivot;56;berry_juice;intimidate;adamant;76 PS/76 Atq/244 Def/36 AtqE/4 DefE;;volt_switch/wild_charge/thief/fire_fang,ice_fang
+budew_lc_1;budew;lc;Entry Hazard Setter;79;eviolite;;bold;36 PS/236 Def/40 AtqE/196 DefE;;spikes/sleep_powder,sludge_bomb/synthesis,giga_drain/giga_drain,sludge_bomb,hidden_power
+cranidos_lc_1;cranidos;lc;Choice Scarf;61;choice_scarf;sheer_force,mold_breaker;jolly,adamant;236 Atq/36 Def/212 Vel;;rock_slide,stone_edge/zen_headbutt/superpower/earthquake,thunder_punch,pursuit
+cranidos_lc_2;cranidos;lc;Life Orb;37;life_orb;sheer_force;jolly;236 Atq/36 Def/212 Vel;;rock_slide/zen_headbutt/fire_punch,superpower/crunch,substitute
+shieldon_lc_1;shieldon;lc;SturdyJuice;46;berry_juice;;adamant;116 PS/100 Atq/52 Def/212 DefE;;metal_burst/stealth_rock/rock_blast/endure,protect
+buizel_lc_1;buizel;lc;Icium Z;45;icium_z,life_orb;water_veil;naive;200 AtqE/36 DefE/240 Vel;;blizzard/scald/hidden_power/aqua_jet
+cherubi_lc_1;cherubi;lc;"Sun ""Sweeper""";0;eviolite;;modest;76 Def/180 AtqE/236 Vel;;solar_beam/weather_ball/sunny_day/healing_wish
+shellos_lc_1;shellos;lc;Defensive;52;eviolite;;bold;228 PS/132 Def/100 DefE/4 Vel;;scald/recover/earth_power,ice_beam/clear_smog,toxic
+buneary_lc_1;buneary;lc;Offensive Utility;43;eviolite,choice_band;limber;jolly;228 Atq/4 Def/236 Vel;;healing_wish/return/drain_punch,jump_kick,fire_punch/thunder_wave,switcheroo,quick_attack
+buneary_lc_2;buneary;lc;Z-Splash;53;normalium_z;limber;jolly;228 Atq/4 Def/236 Vel;;splash/return/drain_punch/fire_punch,quick_attack
+glameow_lc_1;glameow;lc;Life Orb;59;life_orb;;jolly;236 Atq/20 Def/236 Vel;1 PS;return/sucker_punch/play_rough/fake_out,knock_off
+chingling_lc_1;chingling;lc;Defensive;0;eviolite;;bold;156 PS/116 Def/196 DefE;;psychic/recover/grass_knot/hypnosis,hidden_power,knock_off
+stunky_lc_1;stunky;lc;Life Orb;39;life_orb;aftermath;hasty;12 PS/252 Atq/244 Vel;30 Def/30 AtqE;sucker_punch/play_rough/fire_blast/hidden_power,sludge_bomb
+stunky_lc_2;stunky;lc;Offensive Utility;71;eviolite;aftermath;careful;252 Atq/60 Def/188 DefE/4 Vel;;pursuit/sucker_punch/defog/sludge_bomb,fire_blast,memento
+bronzor_lc_1;bronzor;lc;Stealth Rock Setter;38;berry_juice;;relaxed;64 PS/4 Atq/228 Def/4 AtqE/148 DefE/12 Vel;;stealth_rock/recycle/psychic/heavy_slam,earthquake
+bonsly_lc_1;bonsly;lc;SturdyJuice;54;berry_juice;;jolly;36 PS/196 Atq/76 Def/196 Vel;;stealth_rock/rock_slide/stomping_tantrum/sucker_punch,counter
+gible_lc_1;gible;lc;Stealth Rock;67;berry_juice;rough_skin;bold;52 PS/156 Def/116 AtqE/156 DefE/20 Vel;;stealth_rock/draco_meteor/earth_power/fire_blast
+munchlax_lc_1;munchlax;lc;Recycle + Berry Juice Tank;58;berry_juice;thick_fat;adamant;236 Atq/36 Def/236 DefE;;return,body_slam/earthquake,fire_punch/pursuit,fire_punch,whirlwind/recycle
+munchlax_lc_2;munchlax;lc;RestTalk;42;eviolite;thick_fat;impish;236 Atq/36 Def/236 DefE;;return,body_slam/curse,earthquake,whirlwind/rest/sleep_talk
+riolu_lc_1;riolu;lc;Bulky Swords Dance;71;eviolite;prankster;adamant;116 PS/196 Atq/116 Def/36 DefE/36 Vel;;swords_dance/copycat/high_jump_kick/protect,iron_tail,zen_headbutt,crunch
+hippopotas_lc_1;hippopotas;lc;Physical Wall;68;eviolite;;careful;132 PS/20 Atq/132 Def/180 DefE/20 Vel;;slack_off/stealth_rock/earthquake/whirlwind,rock_tomb
+skorupi_lc_1;skorupi;lc;Team Support;47;eviolite;;jolly;196 PS/36 Atq/36 Def/236 Vel;;toxic_spikes/taunt/knock_off/poison_jab
+croagunk_lc_1;croagunk;lc;Special Attacker;72;eviolite,berry_juice;dry_skin;modest;52 PS/116 Def/188 AtqE/116 DefE/36 Vel;;nasty_plot/sludge_bomb/focus_blast/vacuum_wave
+croagunk_lc_2;croagunk;lc;Mixed Utility;68;eviolite;dry_skin;quiet;132 PS/28 Atq/116 Def/108 AtqE/116 DefE;;knock_off/sludge_bomb/vacuum_wave/drain_punch,sucker_punch
+croagunk_lc_3;croagunk;lc;Physical Support;51;eviolite;dry_skin;adamant;52 PS/188 Atq/116 Def/116 DefE/36 Vel;;drain_punch/gunk_shot/knock_off,thief,bulk_up/sucker_punch,bulk_up
+finneon_lc_1;finneon;lc;Defog;94;berry_juice,eviolite;storm_drain;bold;44 PS/232 Def/48 AtqE/112 DefE/72 Vel;;defog/scald/u_turn/hidden_power
+mantyke_lc_1;mantyke;lc;Eye of the Storm (Rain Dance);62;life_orb,eviolite;;modest;36 Def/200 AtqE/36 DefE/196 Vel;9 PS;rain_dance/hydro_pump/air_slash/hidden_power
+snover_lc_1;snover;lc;Choice Scarf;55;choice_scarf;;naive;104 Atq/184 AtqE/200 Vel;;blizzard/giga_drain/ice_shard/hidden_power
+snover_lc_2;snover;lc;Balanced Pivot;47;eviolite;;quiet;36 PS/104 Atq/40 Def/184 AtqE/120 DefE;;blizzard/giga_drain/ice_shard/hidden_power
+snivy_lc_1;snivy;lc;Eviolite Wallbreaker;65;eviolite;contrary;timid;240 AtqE/252 Vel;;leaf_storm/defog,glare,knock_off/synthesis/hidden_power
+snivy_lc_2;snivy;lc;Berry Juice;50;berry_juice;contrary;timid;240 AtqE/252 Vel;;leaf_storm/defog,substitute,knock_off/glare,defog/hidden_power
+snivy_lc_3;snivy;lc;Normalium Z;46;normalium_z;contrary;timid;240 AtqE/252 Vel;30 AtqE/30 DefE;leaf_storm/wring_out/hidden_power/glare,substitute
+snivy_lc_4;snivy;lc;Choice Scarf;51;choice_scarf;contrary;timid;240 AtqE/252 Vel;;leaf_storm/giga_drain,defog/knock_off,defog/hidden_power
+tepig_lc_1;tepig;lc;Life Orb;52;life_orb;thick_fat;jolly;252 Atq/236 Vel;;flare_blitz/head_smash,wild_charge/sucker_punch/superpower,flame_charge
+oshawott_lc_1;oshawott;lc;Swords Dance;45;life_orb;;adamant,jolly;236 Atq/236 Vel;;swords_dance/sacred_sword,aerial_ace/aqua_jet/aqua_tail
+patrat_lc_1;patrat;lc;Swords Dance;0;eviolite;analytic;adamant;236 Atq/204 Def/44 DefE/20 Vel;;swords_dance/hypnosis/return/zen_headbutt,crunch
+lillipup_lc_1;lillipup;lc;Bulky Attacker;0;eviolite;;adamant,jolly;196 Atq/76 Def/236 Vel;;return/play_rough/fire_fang/thunder_wave
+purrloin_lc_1;purrloin;lc;Utility;71;eviolite,berry_juice;prankster;careful;188 PS/36 Atq/140 Def/60 DefE/68 Vel;;encore/u_turn/knock_off/thunder_wave,taunt
+pansage_lc_1;pansage;lc;All-Out Offensive;0;life_orb;overgrow;jolly;252 Atq/244 Vel;;bullet_seed/knock_off/low_sweep/gunk_shot
+pansear_lc_1;pansear;lc;Substitute + Will-O-Wisp;0;berry_juice;blaze;jolly;36 PS/12 Atq/212 Def/212 DefE/4 Vel;;recycle/will_o_wisp/substitute/flame_charge
+panpour_lc_1;panpour;lc;Nasty Plot;0;eviolite;torrent;timid;36 PS/52 Def/176 AtqE/244 Vel;;nasty_plot/hydro_pump/ice_beam/hidden_power
+munna_lc_1;munna;lc;Calm Mind Sweeper;44;eviolite;synchronize;bold;68 PS/156 Def/60 AtqE/156 DefE/4 Vel;;calm_mind/stored_power/dazzling_gleam/moonlight
+pidove_lc_1;pidove;lc;Z-Tailwind;33;flyinium_z;super_luck;adamant;240 Atq/252 Vel;;tailwind/aerial_ace/hidden_power,u_turn/return
+blitzle_lc_1;blitzle;lc;All-out Attacker;46;life_orb;sap_sipper;naive;200 Atq/20 Def/40 AtqE/20 DefE/228 Vel;9 PS;wild_charge/volt_switch,double_edge/flame_charge/hidden_power
+roggenrola_lc_1;roggenrola;lc;Weak Armor;67;eviolite;weak_armor;jolly;156 Atq/76 Def/76 DefE/156 Vel;;stealth_rock/rock_blast/earthquake/explosion
+woobat_lc_1;woobat;lc;Simple Sweeper;74;eviolite,salac_berry;simple;timid;76 PS/12 Def/236 AtqE/180 Vel;;calm_mind/stored_power/heat_wave,air_slash/roost,substitute
+drilbur_lc_1;drilbur;lc;Choice Scarf;76;choice_scarf;mold_breaker;jolly,adamant;236 Atq/36 Def/212 Vel;;earthquake/rock_slide/rapid_spin/poison_jab,shadow_claw
+drilbur_lc_2;drilbur;lc;Utility;66;berry_juice,eviolite;mold_breaker;jolly;36 PS/76 Atq/36 Def/76 DefE/212 Vel;;earthquake/rock_slide,rock_tomb/stealth_rock,swords_dance/rapid_spin,swords_dance
+drilbur_lc_3;drilbur;lc;All-out Attacker;57;life_orb,groundium_z;mold_breaker;jolly;36 PS/236 Atq/212 Vel;;earthquake/rock_slide/shadow_claw/rapid_spin,poison_jab
+timburr_lc_1;timburr;lc;Bulky Attacker;86;eviolite;iron_fist,guts;adamant;196 Atq/156 Def/156 DefE;;drain_punch/mach_punch/knock_off/fire_punch,ice_punch,poison_jab
+timburr_lc_2;timburr;lc;Bulk Up;82;eviolite;guts,iron_fist;careful;116 Atq/156 Def/236 DefE;;drain_punch/mach_punch/knock_off/bulk_up
+tympole_lc_1;tympole;lc;Rain Dance Sweeper;0;life_orb;;modest;116 Def/196 AtqE/36 DefE/84 Vel;;rain_dance/hydro_pump/earth_power/sludge_bomb
+venipede_lc_1;venipede;lc;Entry Hazard Stacker;69;grassium_z,eviolite;speed_boost;serious,impish;76 Atq/204 Def/36 AtqE/44 DefE/148 Vel;;spikes/solar_beam,toxic_spikes/protect/pin_missile
+cottonee_lc_1;cottonee;lc;Offensive Prankster;51;darkinium_z,eviolite;;timid;36 PS/40 Def/144 AtqE/40 DefE/232 Vel;;giga_drain,hidden_power/dazzling_gleam,hidden_power/encore,knock_off/memento,knock_off,tailwind
+petilil_lc_1;petilil;lc;Sun Sweeper;0;eviolite,life_orb;;timid;36 Def/200 AtqE/36 DefE/200 Vel;;sunny_day/solar_beam,giga_drain/hidden_power/sleep_powder
+sandile_lc_1;sandile;lc;Choice Scarf;86;choice_scarf;moxie;adamant,jolly;180 Atq/76 Def/236 Vel;;earthquake/crunch/fire_fang,stone_edge/pursuit,stone_edge
+darumaka_lc_1;darumaka;lc;Choice Scarf;68;choice_scarf;;jolly;116 PS/196 Atq/196 Vel;;flare_blitz/u_turn/superpower/rock_slide,zen_headbutt
+dwebble_lc_1;dwebble;lc;Entry Hazard Setter;57;eviolite,berry_juice;weak_armor,sturdy;jolly;36 PS/156 Atq/76 Def/236 Vel;;stealth_rock/spikes/rock_blast/knock_off
+dwebble_lc_2;dwebble;lc;Shell Smash;55;berry_juice;;adamant;236 Atq/236 Vel;;shell_smash/rock_blast/earthquake/substitute,knock_off,aerial_ace
+scraggy_lc_1;scraggy;lc;Dragon Dance Sweeper;68;eviolite;shed_skin,moxie;jolly,adamant;36 PS/156 Atq/36 Def/36 DefE/212 Vel;;dragon_dance/high_jump_kick,drain_punch/knock_off/zen_headbutt,poison_jab,drain_punch
+scraggy_lc_2;scraggy;lc;Choice Scarf;51;choice_scarf;moxie;jolly;36 PS/236 Atq/212 Vel;;high_jump_kick/knock_off/poison_jab/drain_punch,zen_headbutt
+yamask_lc_1;yamask;lc;Support;61;eviolite;;relaxed;52 PS/36 Atq/156 Def/236 DefE;;will_o_wisp/hex/knock_off/toxic_spikes
+tirtouga_lc_1;tirtouga;lc;Defensive;37;eviolite;;careful;164 PS/52 Atq/92 Def/156 DefE/20 Vel;;stealth_rock/stone_edge/knock_off/aqua_jet,liquidation
+tirtouga_lc_2;tirtouga;lc;Solid Rock Smash;46;eviolite;;jolly,adamant;4 PS/132 Atq/92 Def/76 DefE/180 Vel;;shell_smash/waterfall,aqua_jet/stone_edge/zen_headbutt,earthquake
+tirtouga_lc_3;tirtouga;lc;Sturdy Smash;58;berry_juice;sturdy;jolly;212 Atq/92 Def/180 Vel;;shell_smash/waterfall,aqua_jet/stone_edge/zen_headbutt,earthquake
+archen_lc_1;archen;lc;The Hero;49;berry_juice;;jolly;76 PS/180 Atq/196 Vel;;acrobatics/rock_slide,head_smash/heat_wave,earthquake/hidden_power,defog
+archen_lc_2;archen;lc;Utility;48;berry_juice;;jolly;76 PS/20 Atq/76 Def/76 DefE/196 Vel;;stealth_rock,defog/rock_slide/acrobatics/earthquake,defog,knock_off
+trubbish_lc_1;trubbish;lc;Spikes;84;berry_juice;sticky_hold;jolly;116 PS/36 Atq/100 Def/20 DefE/236 Vel;;spikes/recycle/gunk_shot/drain_punch
+zorua_lc_1;zorua;lc;Life Orb;41;life_orb;;timid,naive;36 Def/196 AtqE/36 DefE/236 Vel;;night_daze,dark_pulse/extrasensory/nasty_plot,knock_off/u_turn,hidden_power,knock_off
+minccino_lc_1;minccino;lc;Life Orb;68;life_orb;skill_link;jolly;196 Atq/36 Def/36 DefE/236 Vel;;tail_slap/knock_off/seed_bomb,u_turn/u_turn,wake_up_slap
+solosis_lc_1;solosis;lc;Offensive Trick Room;67;electrium_z,life_orb;magic_guard;quiet;240 PS/240 AtqE;1 Atq/30 Def/30 AtqE/30 DefE;trick_room/psychic/thunder/hidden_power
+ducklett_lc_1;ducklett;lc;Utility Defog;58;eviolite;hydration;bold;180 PS/116 Def/4 AtqE/196 DefE;;hurricane,air_slash/scald/defog/roost
+vanillite_lc_1;vanillite;lc;Weak Armor Sweeper;16;icium_z,life_orb;weak_armor;modest;240 AtqE/244 Vel;19 PS/1 Atq/30 Def/30 AtqE/30 DefE/30 Vel;ice_beam/hidden_power/explosion/substitute
+deerling_lc_1;deerling;lc;Life Orb;38;life_orb;sap_sipper;jolly;36 PS/196 Atq/36 Def/236 Vel;;return,double_edge/seed_bomb/jump_kick/substitute,wild_charge
+karrablast_lc_1;karrablast;lc;Choice Scarf;67;choice_scarf;no_guard;jolly,adamant;236 Atq/76 Def/196 Vel;;megahorn/knock_off/drill_run/poison_jab,pursuit
+foongus_lc_1;foongus;lc;Defensive;91;eviolite;regenerator;bold;124 PS/160 Def/160 DefE;;spore/sludge_bomb/giga_drain/synthesis,hidden_power
+frillish_lc_1;frillish;lc;Tank;45;eviolite;;bold;236 PS/116 Def/76 AtqE/76 DefE;;scald/shadow_ball,hex/recover/will_o_wisp
+frillish_lc_2;frillish;lc;Choice Scarf + Water Spout;36;choice_scarf;;timid;76 PS/236 AtqE/196 Vel;;water_spout/shadow_ball,hydro_pump/ice_beam,energy_ball/trick
+joltik_lc_1;joltik;lc;All Out Attacker;50;life_orb;swarm;timid;36 Def/220 AtqE/236 Vel;;volt_switch/thunderbolt/giga_drain/bug_buzz
+ferroseed_lc_1;ferroseed;lc;Wall;67;eviolite,berry_juice;;impish;84 PS/36 Atq/108 Def/228 DefE/36 Vel;;bullet_seed/knock_off/thunder_wave,spikes/stealth_rock,spikes
+klink_lc_1;klink;lc;Shift Gear;87;eviolite;clear_body;adamant;236 Atq/36 Def/116 DefE/116 Vel;;shift_gear/gear_grind/wild_charge/return
+elgyem_lc_1;elgyem;lc;Offensive Trick Room;60;eviolite;analytic;quiet;236 PS/240 AtqE;;trick_room/nasty_plot/psychic/hidden_power
+litwick_lc_1;litwick;lc;Trick Room;50;eviolite;flame_body;quiet;116 PS/236 Def/156 DefE;;memento/trick_room/fire_blast,pain_split/will_o_wisp
+axew_lc_1;axew;lc;Dragon Dance Sweeper;61;eviolite;mold_breaker;jolly,adamant;68 PS/220 Atq/220 Vel;;dragon_dance/outrage,dual_chop/superpower/iron_tail,poison_jab
+cubchoo_lc_1;cubchoo;lc;Hail Sweeper;66;eviolite,berry_juice;slush_rush;naive,naughty;76 PS/196 Atq/36 AtqE/196 Vel;;ice_punch/superpower/play_rough/surf
+mienfoo_lc_1;mienfoo;lc;Bulky Attacker;78;eviolite;regenerator;jolly;196 Def/36 DefE/236 Vel;;high_jump_kick/u_turn/knock_off/fake_out
+mienfoo_lc_2;mienfoo;lc;Choice Scarf;58;choice_scarf;reckless,regenerator;jolly;236 Atq/36 Def/236 Vel;;high_jump_kick/u_turn/knock_off/drain_punch,brick_break
+mienfoo_lc_3;mienfoo;lc;Flyinium Z;50;flyinium_z;regenerator,reckless;jolly;156 Atq/116 Def/236 Vel;;bounce/high_jump_kick/fake_out/knock_off,u_turn
+golett_lc_1;golett;lc;Tank;53;eviolite;;adamant;44 PS/164 Atq/196 Def/76 Vel;;drain_punch/earthquake/stealth_rock/ice_punch,shadow_punch
+pawniard_lc_1;pawniard;lc;Bulky Attacker;66;eviolite;;jolly,adamant;156 Atq/36 Def/116 DefE/196 Vel;;knock_off/sucker_punch/iron_head/stealth_rock,swords_dance,brick_break
+pawniard_lc_2;pawniard;lc;Choice Scarf Attacker;53;choice_scarf;;jolly;236 Atq/36 Def/36 DefE/196 Vel;;knock_off/iron_head/brick_break,sucker_punch/pursuit
+pawniard_lc_3;pawniard;lc;Life Orb Attacker;47;life_orb;;jolly;236 Atq/36 Def/36 DefE/196 Vel;;knock_off/sucker_punch/iron_head/low_sweep,swords_dance
+rufflet_lc_1;rufflet;lc;Choice Scarf;65;choice_scarf;hustle;jolly;252 Atq/36 Def/196 Vel;;brave_bird/superpower/u_turn/return,aerial_ace
+rufflet_lc_2;rufflet;lc;Bulk Up;71;eviolite;hustle;impish;116 PS/12 Atq/116 Def/196 DefE/36 Vel;;brave_bird,aerial_ace/superpower,facade/bulk_up/roost
+vullaby_lc_1;vullaby;lc;Offensive Pivot;62;berry_juice;weak_armor;adamant,jolly;236 Atq/76 Def/196 Vel;;brave_bird/knock_off/u_turn/defog,hidden_power
+vullaby_lc_2;vullaby;lc;Mixed Attacker;52;berry_juice;weak_armor;docile;156 Atq/76 Def/80 AtqE/196 Vel;30 PS/30 AtqE;brave_bird/knock_off/heat_wave/hidden_power
+vullaby_lc_3;vullaby;lc;Flyinium Z;41;flyinium_z;weak_armor;naughty;236 Atq/76 Def/80 AtqE/116 Vel;30 PS/30 AtqE;brave_bird/knock_off/hidden_power/heat_wave,protect
+vullaby_lc_4;vullaby;lc;Nasty Plot;37;berry_juice,eviolite;weak_armor;modest;116 PS/240 AtqE/116 Vel;;nasty_plot/air_slash/heat_wave/hidden_power,dark_pulse,protect
+vullaby_lc_5;vullaby;lc;Choice Scarf;47;choice_scarf;overcoat;adamant,jolly;236 Atq/76 Def/196 Vel;30 PS/30 AtqE;brave_bird/knock_off/u_turn/defog,hidden_power
+deino_lc_1;deino;lc;Choice Scarf;35;choice_scarf;;jolly;20 PS/236 Atq/36 DefE/212 Vel;;outrage/crunch/superpower/zen_headbutt
+larvesta_lc_1;larvesta;lc;Bulky Pivot;67;eviolite;;impish;76 PS/236 Def/156 DefE/36 Vel;;flare_blitz/morning_sun/u_turn/will_o_wisp,wild_charge
+chespin_lc_1;chespin;lc;Offensive Utility;81;eviolite;bulletproof;impish;68 PS/28 Atq/156 Def/236 DefE;;seed_bomb/zen_headbutt/synthesis/spikes,drain_punch,rock_slide
+fennekin_lc_1;fennekin;lc;Magician;73;power_herb;magician;timid;36 PS/36 Def/180 AtqE/36 DefE/196 Vel;;fire_blast/solar_beam/psychic/will_o_wisp
+froakie_lc_1;froakie;lc;Life Orb;62;life_orb;protean;naive;72 Atq/36 Def/184 AtqE/192 Vel;30 Atq/30 AtqE/30 Vel;hydro_pump/ice_beam/u_turn/hidden_power
+bunnelby_lc_1;bunnelby;lc;Choice Scarf;52;choice_scarf;huge_power;adamant,jolly;228 Atq/52 Def/220 Vel;;return/u_turn/earthquake/stone_edge
+bunnelby_lc_2;bunnelby;lc;Life Orb;78;life_orb;huge_power;adamant,jolly;228 Atq/52 Def/220 Vel;4 PS;return/quick_attack/earthquake/iron_head
+fletchling_lc_1;fletchling;lc;Bulky Sweeper;64;berry_juice;gale_wings;adamant;196 Atq/92 Def/180 Vel;;acrobatics/swords_dance/u_turn,flame_charge/substitute,overheat,hidden_power
+litleo_lc_1;litleo;lc;Moxie Sweeper;35;firium_z;moxie;jolly;20 PS/196 Atq/52 Def/4 DefE/180 Vel;;flare_blitz/return/flame_charge/wild_charge,hidden_power
+flabebe_lc_1;flabebe;lc;Calm Mind;67;eviolite;;bold;164 PS/204 Def/108 AtqE/20 Vel;;calm_mind/psychic/moonblast/synthesis
+skiddo_lc_1;skiddo;lc;Bulk Up;48;eviolite;;careful;236 Atq/52 Def/220 DefE;;bulk_up/horn_leech/rock_slide/zen_headbutt,brick_break
+pancham_lc_1;pancham;lc;Parting Shot Pivot;84;eviolite;iron_fist,mold_breaker;adamant;180 Atq/100 Def/212 DefE/12 Vel;;parting_shot/drain_punch/knock_off/gunk_shot,zen_headbutt
+pancham_lc_2;pancham;lc;Swords Dance Wallbreaker;83;eviolite;mold_breaker,iron_fist;adamant;180 Atq/100 Def/212 DefE/12 Vel;;swords_dance/drain_punch/knock_off/gunk_shot,zen_headbutt
+espurr_lc_1;espurr;lc;Electrium Z;40;electrium_z;infiltrator;timid;20 PS/4 Def/176 AtqE/36 DefE/216 Vel;30 AtqE/30 Vel;thunderbolt/psychic/substitute/hidden_power
+honedge_lc_1;honedge;lc;Offensive;79;eviolite,berry_juice;;adamant;76 PS/116 Atq/116 Def/140 DefE/52 Vel;;shadow_sneak/iron_head/sacred_sword,rock_slide/pursuit,swords_dance
+spritzee_lc_1;spritzee;lc;Defensive;84;eviolite;aroma_veil;bold;212 PS/196 Def/12 AtqE/76 DefE/12 Vel;;wish/protect/moonblast/covet,psychic,calm_mind
+spritzee_lc_2;spritzee;lc;Nasty Plot;64;eviolite,berry_juice;aroma_veil;modest;52 PS/116 Def/252 AtqE/76 DefE/12 Vel;;nasty_plot/moonblast/psychic/trick_room
+inkay_lc_1;inkay;lc;Choice Scarf;61;choice_scarf;;jolly,adamant;12 PS/244 Atq/12 Def/236 Vel;;superpower/knock_off/psycho_cut/switcheroo
+binacle_lc_1;binacle;lc;Shell Smash;49;eviolite;;adamant;20 PS/180 Atq/60 Def/148 DefE/36 Vel;;shell_smash/liquidation/stone_edge/cross_chop
+skrelp_lc_1;skrelp;lc;Special Attacker;77;eviolite;adaptability;calm;116 PS/116 Def/200 AtqE/36 DefE/40 Vel;;sludge_wave/hydro_pump/hidden_power/toxic_spikes,scald
+clauncher_lc_1;clauncher;lc;Choice Scarf;49;choice_scarf;;modest;20 Def/212 AtqE/12 DefE/244 Vel;;u_turn/water_pulse/ice_beam/hidden_power
+helioptile_lc_1;helioptile;lc;Life Orb;29;life_orb;;timid;92 Def/192 AtqE/16 DefE/196 Vel;11 PS;thunderbolt/surf/glare,hidden_power/u_turn
+tyrunt_lc_1;tyrunt;lc;Dragon Dance;79;berry_juice;sturdy;jolly;204 Atq/76 DefE/212 Vel;23 PS;dragon_dance/stone_edge,rock_slide/outrage/earthquake,superpower
+amaura_lc_1;amaura;lc;Choice Scarf;65;choice_scarf;snow_warning,refrigerate;modest,timid;60 PS/220 AtqE/228 Vel;;blizzard,hyper_voice/earth_power/thunderbolt/ancient_power,hyper_beam
+goomy_lc_1;goomy;lc;Sap Sipper;32;eviolite;;bold;76 PS/236 Def/156 DefE/40 Vel;;dragon_pulse/sludge_wave,hidden_power/rest/sleep_talk
+phantump_lc_1;phantump;lc;Z-Forest's Curse;94;grassium_z;frisk;jolly;12 PS/196 Atq/52 Def/36 DefE/212 Vel;;forests_curse/shadow_claw/horn_leech/rock_slide,poison_jab
+pumpkaboo_super_lc_1;pumpkaboo_super;lc;Special Spinblocker;85;eviolite;frisk;calm;204 PS/36 Def/4 AtqE/236 DefE/28 Vel;;giga_drain/synthesis/will_o_wisp/fire_blast,shadow_ball
+pumpkaboo_super_lc_2;pumpkaboo_super;lc;Mixed Spinblocker;85;eviolite;frisk;sassy,careful;204 PS/36 Def/4 AtqE/236 DefE/28 Vel;;giga_drain,bullet_seed/synthesis/will_o_wisp/shadow_sneak,fire_blast
+rowlet_lc_1;rowlet;lc;Swords Dance;41;life_orb,berry_juice;;jolly;236 Atq/36 DefE/180 Vel;;swords_dance/brave_bird/leaf_blade/sucker_punch
+litten_lc_1;litten;lc;Intimidate Pivot;65;berry_juice;intimidate;jolly;156 Atq/116 Def/36 DefE/196 Vel;;u_turn/flare_blitz/will_o_wisp/fake_out
+pikipek_lc_1;pikipek;lc;Choice Scarf;69;choice_scarf;skill_link;jolly,adamant;236 Atq/36 Def/236 Vel;;brave_bird/bullet_seed/brick_break,drill_peck/u_turn
+pikipek_lc_2;pikipek;lc;Life Orb;64;life_orb;skill_link;jolly;236 Atq/36 Def/236 Vel;10 PS;brave_bird,drill_peck/bullet_seed/brick_break,flame_charge/flame_charge,substitute,u_turn
+yungoos_lc_1;yungoos;lc;Choice Scarf;65;choice_scarf;adaptability;adamant,jolly;196 Atq/36 Def/36 DefE/236 Vel;;return/earthquake,fire_fang/u_turn/pursuit,crunch,fire_fang
+grubbin_lc_1;grubbin;lc;Electroweb Pivot;0;eviolite;;relaxed;140 PS/20 Atq/156 Def/156 DefE;;electroweb/volt_switch/x_scissor/acrobatics
+crabrawler_lc_1;crabrawler;lc;Physical Attacker;20;life_orb,choice_scarf;;jolly;180 Atq/60 Def/252 Vel;;close_combat/crabhammer/earthquake/stone_edge
+rockruff_lc_1;rockruff;lc;All-out Attacker;51;life_orb;vital_spirit;jolly;236 Atq/76 Def/196 Vel;9 PS;stone_edge/stomping_tantrum/zen_headbutt,fire_fang/sucker_punch
+mareanie_lc_1;mareanie;lc;Defensive Pivot;87;eviolite;regenerator;bold;116 PS/12 Atq/180 Def/12 AtqE/180 DefE;;scald/sludge_bomb/recover/knock_off,toxic_spikes,iron_defense
+mudbray_lc_1;mudbray;lc;Offensive;83;eviolite,berry_juice;stamina;adamant;116 PS/196 Atq/36 Def/156 Vel;;earthquake/heavy_slam/rock_slide/stealth_rock
+mudbray_lc_2;mudbray;lc;RestTalk;66;eviolite;stamina;careful;116 PS/116 Atq/36 Def/236 DefE;;earthquake/rest/sleep_talk/heavy_slam
+mudbray_lc_3;mudbray;lc;Choice Scarf;58;choice_scarf;stamina;adamant,jolly;36 PS/196 Atq/36 Def/236 Vel;;earthquake/heavy_slam/rock_slide/close_combat
+fomantis_lc_1;fomantis;lc;Defensive Defog;56;eviolite;contrary;bold;116 PS/236 Def/120 AtqE;;leaf_storm/defog/synthesis/hidden_power
+morelull_lc_1;morelull;lc;Defensive Pivot;88;eviolite;effect_spore;bold;36 PS/236 Def/76 AtqE/156 DefE;;spore/moonblast/giga_drain/strength_sap
+salandit_lc_1;salandit;lc;Poisonium Z;22;poisonium_z;;timid;36 Def/192 AtqE/36 DefE/220 Vel;;sludge_bomb/fire_blast/hidden_power/flame_charge
+salandit_lc_2;salandit;lc;Life Orb;33;life_orb;oblivious;timid;36 Def/192 AtqE/40 DefE/220 Vel;3 PS/30 AtqE;nasty_plot/sludge_bomb/fire_blast/hidden_power
+stufful_lc_1;stufful;lc;Swords Dance;64;eviolite;;adamant;236 Atq/36 Def/196 DefE/36 Vel;;swords_dance/return/brick_break,superpower/ice_punch,earthquake
+bounsweet_lc_1;bounsweet;lc;Rapid Spin;62;eviolite;oblivious;impish;180 PS/36 Atq/132 Def/132 DefE/20 Vel;;rapid_spin/seed_bomb/synthesis/play_rough
+wimpod_lc_1;wimpod;lc;Spikes Setter;83;focus_sash;;naive;76 Atq/196 Def/36 AtqE/196 Vel;;spikes/taunt/scald/aqua_jet
+sandygast_lc_1;sandygast;lc;Rock Polish;32;berry_juice;;modest;76 PS/116 AtqE/76 DefE/236 Vel;;rock_polish/earth_power/shadow_ball/destiny_bond
+jangmo_o_lc_1;jangmo_o;lc;Dragon Dance;55;berry_juice;bulletproof,overcoat;adamant;236 Atq/236 Vel;;dragon_dance/outrage,dragon_claw/earthquake/brick_break,substitute

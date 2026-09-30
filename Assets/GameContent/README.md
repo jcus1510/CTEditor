@@ -34,7 +34,7 @@ ningún componente.
 ## Cómo crear contenido (sin programar)
 Abre **CTEditor → Centro de Contenido**. Desde ahí:
 - **"Crear el contenido clásico completo"**: crea de una vez los 18 tipos con su tabla, los 8 estados,
-  las 25 naturalezas, las 6 curvas de XP, las reglas clásicas y 30 habilidades. Lo que ya exista (por id)
+  las 25 naturalezas, las 6 curvas de XP, las reglas clásicas y las habilidades del pack elegido (con todos sus efectos). Lo que ya exista (por id)
   no se toca, así que puedes pulsarlo sin miedo.
 - Cada categoría tiene su **editor** (Tipos, Tabla de Tipos, Estados, Movimientos, Habilidades, Especies,
   Curvas de Experiencia, Naturalezas, Reglas): lista con buscador, crear escribiendo un id, duplicar,
@@ -110,8 +110,12 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
   - Excel: columna `efectos`, p. ej. `fin_de_turno: curar 6,25% | antes_de_golpe [si mov.tipo=fire & propio.eficacia>1]:
     daño_recibido x0,5; se_gasta | poca_vida@25: etapa attack +1; se_gasta`. Opciones: `se_gasta`, `al_rival`, `prob=N`,
     `veces=N`.
-  - Las **plantillas** son datos: `Assets/GameContent/Plantillas/objetos.csv` (edítalas en Excel). Los **packs** traen
+  - Las **plantillas** son los objetos del pack elegido (o de tu Excel): no hay hoja aparte. Los **packs** traen
     todos los objetos de su generación con todos sus efectos: importar con «Actualizar también» los deja completos.
+- **Habilidades**: el mismo sistema de efectos que los objetos (tarjetas «cuándo / si / qué» y la columna `efectos` en
+  Excel). Ej.: Intimidación = `al_entrar: etapa attack -1; al_rival`; Mar Llamas = `siempre [si mov.tipo=fire &
+  propio.vida<=33]: daño x1,5`. Lo único de cada una (Rastro, Ausente, Gula...) está en «Especial». Las plantillas son
+  las habilidades del pack elegido; puedes inventar las tuyas combinando piezas.
 - **MT que se gastan**: es una regla (Reglas → «Las MT se gastan»; 1.ª-4.ª gen. sí, desde la 5.ª no), no del objeto.
 - **Mochila**: el `PartyHolder` trae la `Mochila inicial` (por defecto 5 Pociones y 10 Poké Balls). Los
   botones Mochila y Capturar de la pantalla de combate usan los objetos que elijas.
@@ -160,7 +164,7 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - Si una ventana es estrecha, marca **«📝 Ver la ayuda de cada campo debajo de él»** arriba del Inspector: las
   explicaciones se escriben completas bajo cada campo (además de verse al pasar el ratón).
 
-## Packs por generación (`Packs/Gen1/` … `Packs/Gen6/`)
+## Packs por generación (`Packs/Gen1/` … `Packs/Gen7/`)
 - Un pack por generación, **fiel a ella**: especies, estadísticas, tipos, movimientos (tipo, potencia, precisión, PP,
   prioridad; físico/especial según el tipo hasta la 3.ª), habilidades (desde la 3.ª), aprendizaje de su juego, tabla de
   tipos, naturalezas y grupos huevo cuando existían, y sus entrenadores. Cada uno trae un `INFORME.txt`.
@@ -259,6 +263,12 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
   editable) y solo si su ficha dice «Puede megaevolucionar» (Excel: `megaevoluciona`). Megas por combate, objeto clave
   y volver al retirarse se cambian en la ficha de mecánica. Las plantillas «6.ª gen.» y «7.ª gen.» de las reglas la
   activan; las demás generaciones la quitan. El pack Gen6 trae las 48 megas y a Dianta con su Gardevoirita.
+- **Movimientos Z** (7.ª): el monstruo lleva un cristal Z (objeto con bloques `movimiento_z`: qué tipo, movimiento o
+  especie convierte en qué Z). El jugador pulsa «Z» en el panel de movimientos (necesita la Pulsera Z de la ficha) y
+  elige movimiento; el rival lo decide como la Megaevolución y solo si su ficha dice «Puede usar movimientos Z» (Excel:
+  `usa_z`). Una vez por combate; potencia según la tabla de la ficha; atraviesa Protección con un 25 % del daño; los de
+  estado hacen su efecto Z (`efecto_z`) antes. La plantilla «7.ª gen.» de las reglas lo activa. El pack Gen7 trae los
+  35 cristales Z y todos los movimientos Z.
 
 ## Niveles de IA (Lote E + Lote F)
 Siete niveles, cada uno una ficha editable (CTEditor → Personajes → **Niveles de IA**) hecha de **4 bloques combinables**:

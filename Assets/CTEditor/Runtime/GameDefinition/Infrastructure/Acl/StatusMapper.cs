@@ -104,6 +104,7 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                                  : new CTEditor.GameDefinition.Domain.Stats.StatId(d.ProtectContactStat.Trim()),
             ProtectContactStages = d.ProtectContactStages,
             ProtectContactDamagePercent = d.ProtectContactDamagePercent,
+            ProtectContactStatus = (d.ProtectContactStatus ?? "").Trim(),
         };
     }
 }

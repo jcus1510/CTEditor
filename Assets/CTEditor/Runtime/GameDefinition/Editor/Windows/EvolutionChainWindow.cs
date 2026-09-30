@@ -56,6 +56,7 @@ namespace CTEditor.GameDefinition.Editor
             w.titleContent = new GUIContent("Árbol de familia");
             w.minSize = new Vector2(1100, 560);
             w.Reload();
+            w.EnsureGraph();
             if (species != null) w._root = w.RootOf(species);
             w.Show();
         }
@@ -66,9 +67,74 @@ namespace CTEditor.GameDefinition.Editor
         {
             _species = ContentAssets.LoadAll<SpeciesData>();
             _species.Sort((a, b) => string.Compare(ContentAssets.Label(a), ContentAssets.Label(b), StringComparison.OrdinalIgnoreCase));
+            _graphVersion = -1;
         }
 
-        // ---------------- Grafo ----------------
+        // ---------------- Grafo (en caché) ----------------
+        // Parents, bases, variants, roots and chain labels are computed ONCE per content change (ContentAssets.Version /
+        // EditStamp), not on every GUI event: with ~800 species the old per-frame searches were O(n²)-O(n³).
+
+        private int _graphVersion = -1, _graphStamp = -1;
+        private bool _graphSingles;
+        private Dictionary<SpeciesData, SpeciesData> _parentOf = new Dictionary<SpeciesData, SpeciesData>();
+        private Dictionary<SpeciesData, SpeciesData> _baseOf = new Dictionary<SpeciesData, SpeciesData>();
+        private Dictionary<SpeciesData, List<SpeciesData>> _variantsOf = new Dictionary<SpeciesData, List<SpeciesData>>();
+        private List<(SpeciesData root, string label)> _roots = new List<(SpeciesData, string)>();
+        private string[] _speciesNames = new string[0];
+        private string _filterSearch;
+        private int _filterVersion = -1;
+        private List<(SpeciesData root, string label)> _filtered = new List<(SpeciesData, string)>();
+
+        private void EnsureGraph()
+        {
+            if (_graphVersion == ContentAssets.Version && _graphStamp == ContentAssets.EditStamp && _graphSingles == _showSingles) return;
+            if (_graphVersion != ContentAssets.Version) Reload();
+            _graphVersion = ContentAssets.Version; _graphStamp = ContentAssets.EditStamp; _graphSingles = _showSingles;
+            _species.RemoveAll(x => x == null);
+
+            _parentOf = new Dictionary<SpeciesData, SpeciesData>();
+            foreach (var p in _species)
+                foreach (var c in Children(p))
+                    if (!_parentOf.ContainsKey(c.target)) _parentOf[c.target] = p;
+
+            var byId = new Dictionary<string, SpeciesData>(StringComparer.OrdinalIgnoreCase);
+            foreach (var x in _species) if (!string.IsNullOrEmpty(x.Id) && !byId.ContainsKey(x.Id)) byId[x.Id] = x;
+            _baseOf = new Dictionary<SpeciesData, SpeciesData>();
+            _variantsOf = new Dictionary<SpeciesData, List<SpeciesData>>();
+            foreach (var x in _species)
+            {
+                if (string.IsNullOrWhiteSpace(x.FormOf) || !byId.TryGetValue(x.FormOf, out var b) || b == x) continue;
+                _baseOf[x] = b;
+                if (!_variantsOf.TryGetValue(b, out var list)) _variantsOf[b] = list = new List<SpeciesData>();
+                list.Add(x);
+            }
+
+            var variantsPerRoot = new Dictionary<SpeciesData, int>();
+            foreach (var v in _baseOf.Keys)
+            {
+                var r = RootOf(v);
+                if (r != null) variantsPerRoot[r] = variantsPerRoot.TryGetValue(r, out int n) ? n + 1 : 1;
+            }
+            _roots = new List<(SpeciesData, string)>();
+            foreach (var x in _species)
+            {
+                if (_parentOf.ContainsKey(x) || _baseOf.ContainsKey(x)) continue;
+                if (!_showSingles && !Children(x).Any() && VariantsOf(x).Count == 0 && (x.Forms == null || x.Forms.Length == 0)) continue;
+                _roots.Add((x, ChainLabel(x, variantsPerRoot.TryGetValue(x, out int k) ? k : 0)));
+            }
+            _speciesNames = _species.ConvertAll(x => ContentAssets.Label(x)).ToArray();
+            _filterVersion = -1;
+        }
+
+        private List<(SpeciesData root, string label)> FilteredRoots()
+        {
+            EnsureGraph();
+            if (_filterVersion == _graphStamp + _graphVersion * 7919 && _filterSearch == _search) return _filtered;
+            _filterVersion = _graphStamp + _graphVersion * 7919; _filterSearch = _search;
+            _filtered = string.IsNullOrEmpty(_search) ? _roots
+                : _roots.Where(r => r.label.IndexOf(_search, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            return _filtered;
+        }
 
         private IEnumerable<(SpeciesData target, int level, int index)> Children(SpeciesData s)
         {
@@ -78,15 +144,13 @@ namespace CTEditor.GameDefinition.Editor
                     yield return (s.Evolutions[i].target, s.Evolutions[i].requiredLevel, i);
         }
 
-        private SpeciesData ParentOf(SpeciesData s)
-            => _species.FirstOrDefault(p => Children(p).Any(c => c.target == s));
+        private SpeciesData ParentOf(SpeciesData s) => s != null && _parentOf.TryGetValue(s, out var p) ? p : null;
 
         // La base de una variante (null si no es variante o su base no existe).
-        private SpeciesData BaseOf(SpeciesData s)
-            => s == null || string.IsNullOrWhiteSpace(s.FormOf) ? null
-                : _species.FirstOrDefault(x => x != s && string.Equals(x.Id, s.FormOf, StringComparison.OrdinalIgnoreCase));
+        private SpeciesData BaseOf(SpeciesData s) => s != null && _baseOf.TryGetValue(s, out var b) ? b : null;
 
-        private List<SpeciesData> VariantsOf(SpeciesData s) => FormEditing.VariantsOf(s, _species);
+        private static readonly List<SpeciesData> NoVariants = new List<SpeciesData>();
+        private List<SpeciesData> VariantsOf(SpeciesData s) => s != null && _variantsOf.TryGetValue(s, out var v) ? v : NoVariants;
 
         private SpeciesData RootOf(SpeciesData s)
         {
@@ -100,19 +164,12 @@ namespace CTEditor.GameDefinition.Editor
             return s; // ciclo: devolvemos donde se detectó
         }
 
-        private List<SpeciesData> Roots()
-        {
-            var targets = new HashSet<SpeciesData>();
-            foreach (var s in _species) foreach (var c in Children(s)) targets.Add(c.target);
-            return _species.Where(s => !targets.Contains(s) && BaseOf(s) == null
-                && (_showSingles || Children(s).Any() || VariantsOf(s).Count > 0 || (s.Forms != null && s.Forms.Length > 0))).ToList();
-        }
-
         // ---------------- UI ----------------
 
         // Zoom de texto (Ctrl + rueda, o los botones A− / A+ de los editores).
         private void OnGUI()
         {
+            EnsureGraph();
             EditorZoom.Begin(this);
             try { DrawWindow(); }
             finally { EditorZoom.End(); }
@@ -204,10 +261,17 @@ namespace CTEditor.GameDefinition.Editor
             _showSingles = EditorGUILayout.ToggleLeft("Mostrar especies sin evolución", _showSingles);
 
             _listScroll = EditorGUILayout.BeginScrollView(_listScroll);
-            foreach (var root in Roots())
+            // Virtual list: only the visible rows are drawn (the rest is empty space of the same height).
+            var rows = FilteredRoots();
+            const float rowH = 22f;   // 20 + spacing
+            float viewH = Math.Max(200f, position.height);
+            int first = Mathf.Clamp((int)(_listScroll.y / rowH) - 2, 0, rows.Count);
+            int last = Mathf.Clamp(first + (int)(viewH / rowH) + 4, first, rows.Count);
+            if (first > 0) GUILayout.Space(first * rowH);
+            for (int i = first; i < last; i++)
             {
-                string chain = ChainLabel(root);
-                if (!string.IsNullOrEmpty(_search) && chain.IndexOf(_search, StringComparison.OrdinalIgnoreCase) < 0) continue;
+                var root = rows[i].root;
+                string chain = rows[i].label;
                 var row = EditorGUILayout.GetControlRect(GUILayout.Height(20));
                 if (root == _root) EditorGUI.DrawRect(row, EditorTheme.WithAlpha(EditorTheme.Species, 0.35f));
                 if (root.Types != null && root.Types.Length > 0 && root.Types[0] != null)
@@ -215,6 +279,7 @@ namespace CTEditor.GameDefinition.Editor
                 if (GUI.Button(new Rect(row.x + 8, row.y, row.width - 8, row.height), new GUIContent(chain, chain),
                         root == _root ? EditorStyles.boldLabel : EditorStyles.label)) { _root = root; _addFrom = null; }
             }
+            if (last < rows.Count) GUILayout.Space((rows.Count - last) * rowH);
             EditorGUILayout.EndScrollView();
 
             if (GUILayout.Button("Refrescar")) Reload();
@@ -222,7 +287,7 @@ namespace CTEditor.GameDefinition.Editor
         }
 
         // "Bulbasaur → Ivysaur → Venusaur" (con ramas: "Eevee → Vaporeon / Jolteon / Flareon").
-        private string ChainLabel(SpeciesData root)
+        private string ChainLabel(SpeciesData root, int variants)
         {
             var parts = new List<string> { root.DisplayName };
             var level = Children(root).Select(c => c.target).ToList();
@@ -232,7 +297,6 @@ namespace CTEditor.GameDefinition.Editor
                 parts.Add(string.Join(" / ", level.Select(s => s.DisplayName)));
                 level = level.Where(seen.Add).SelectMany(s => Children(s).Select(c => c.target)).ToList();
             }
-            int variants = _species.Count(v => BaseOf(v) != null && RootOf(v) == root);
             return string.Join(" → ", parts) + (variants > 0 ? $"  (+{variants} variante{(variants == 1 ? "" : "s")})" : "");
         }
 
@@ -242,7 +306,7 @@ namespace CTEditor.GameDefinition.Editor
             if (_root == null)
             {
                 EditorGUILayout.HelpBox("Elige una cadena, o empieza una nueva:", MessageType.Info);
-                var names = _species.ConvertAll(s => ContentAssets.Label(s)).ToArray();
+                var names = _speciesNames;
                 if (names.Length > 0)
                 {
                     _addTarget = Mathf.Clamp(EditorGUILayout.Popup("Primera etapa", _addTarget, names), 0, names.Length - 1);
@@ -504,7 +568,7 @@ namespace CTEditor.GameDefinition.Editor
                 EditorGUILayout.EndHorizontal();
             }
             if (shown == 0) EditorGUILayout.HelpBox("Nada la provoca todavía: añade un cambio con una plantilla.", MessageType.Info);
-            so.ApplyModifiedProperties();
+            if (so.ApplyModifiedProperties()) ContentAssets.NoteEdited();
 
             EditorGUILayout.BeginHorizontal();
             _formRuleTemplate = EditorGUILayout.Popup(_formRuleTemplate, FormEditing.Templates.Select(t => t.name).ToArray());
@@ -597,14 +661,16 @@ namespace CTEditor.GameDefinition.Editor
             if (_addFrom == null) return;
             EditorGUILayout.Space();
             EditorGUILayout.LabelField($"Añadir evolución a {_addFrom.DisplayName}", EditorStyles.boldLabel);
-            var candidates = _species.Where(s => s != _addFrom).ToList();
-            var names = candidates.ConvertAll(s => ContentAssets.Label(s)).ToArray();
-            if (names.Length == 0) { EditorGUILayout.HelpBox("Crea otra especie primero.", MessageType.Info); return; }
+            // The popup lists every species (cached names); choosing the species itself is refused on «Añadir».
+            var candidates = _species;
+            var names = _speciesNames;
+            if (names.Length < 2) { EditorGUILayout.HelpBox("Crea otra especie primero.", MessageType.Info); return; }
 
             _addTarget = Mathf.Clamp(EditorGUILayout.Popup("Evoluciona en", _addTarget, names), 0, names.Length - 1);
+            if (candidates[_addTarget] == _addFrom) EditorGUILayout.HelpBox("No puede evolucionar en sí misma.", MessageType.Warning);
             _addLevel = EditorGUILayout.IntField("Nivel", _addLevel);
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Añadir", GUILayout.Width(70)))
+            if (GUILayout.Button("Añadir", GUILayout.Width(70)) && candidates[_addTarget] != _addFrom)
             {
                 var target = candidates[_addTarget];
                 var from = _addFrom;
@@ -711,7 +777,7 @@ namespace CTEditor.GameDefinition.Editor
                 EvolutionText.Reset(c);
                 c.FindPropertyRelative("check").intValue = (int)EvolutionConditionKind.TimeOfDay;
             }
-            so.ApplyModifiedProperties();
+            if (so.ApplyModifiedProperties()) ContentAssets.NoteEdited();
         }
 
         private static void DrawConditionFields(SerializedProperty c, EvolutionConditionKind kind)
@@ -761,12 +827,20 @@ namespace CTEditor.GameDefinition.Editor
             p.intValue = EditorGUILayout.Popup(label, Mathf.Clamp(p.intValue, 0, names.Length - 1), names.Select(Etiquetas.Enum).ToArray());
         }
 
+        // Item ids and names, cached per content change (Gen6 has ~670 items: rebuilding them on every GUI event stutters).
+        private static List<string> _itemIds, _itemNames;
+        private static int _itemsVersion = -1, _itemsStamp = -1;
+
         private static void ItemPopup(SerializedProperty p, string label, bool optional)
         {
-            var items = ContentAssets.LoadAll<ItemData>();
-            var ids = new List<string>(); var names = new List<string>();
-            if (optional) { ids.Add(""); names.Add("(ninguno)"); }
-            foreach (var it in items) { ids.Add(it.Id); names.Add(ContentAssets.Label(it)); }
+            if (_itemIds == null || _itemsVersion != ContentAssets.Version || _itemsStamp != ContentAssets.EditStamp)
+            {
+                _itemsVersion = ContentAssets.Version; _itemsStamp = ContentAssets.EditStamp;
+                _itemIds = new List<string>(); _itemNames = new List<string>();
+                foreach (var it in ContentAssets.LoadAll<ItemData>()) { _itemIds.Add(it.Id); _itemNames.Add(ContentAssets.Label(it)); }
+            }
+            var ids = new List<string>(_itemIds); var names = new List<string>(_itemNames);
+            if (optional) { ids.Insert(0, ""); names.Insert(0, "(ninguno)"); }
             if (ids.Count == 0) { EditorGUILayout.HelpBox("Crea objetos en CTEditor → Objetos → Todos los objetos.", MessageType.Info); return; }
             int cur = ids.IndexOf(p.stringValue ?? "");
             if (cur < 0 && !string.IsNullOrEmpty(p.stringValue)) { ids.Insert(0, p.stringValue); names.Insert(0, "⚠ " + p.stringValue + " (no existe)"); cur = 0; }

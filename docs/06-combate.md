@@ -11,7 +11,7 @@
 | `Combatant` (+ `.Gen4`, `.Forms`) | Copia de TRABAJO de un participante: PS, estado, volátiles, etapas, PP, objeto (y el consumido), habilidad actual, forma, bloqueo Elección, sustituto, turnos en campo, contadores de usos de efectos por combate... |
 | `TurnResolver` (partial) | El servicio que resuelve cada turno. No guarda estado entre llamadas (salvo un turno en pausa). |
 | `BattleRules` | Reglas ya traducidas del Ruleset: críticos, estadísticas del daño, reglas de generación, mecánicas. `CategoryOf(move)` decide físico/especial (por tipo si la generación lo dice). |
-| `BattleAction` | Acción elegida: `UseMove` (con `megaEvolve`), `Flee`, `SwitchMonster`, `UseItemAction` (`BattleItemEffect`), `Capturar`. |
+| `BattleAction` | Acción elegida: `UseMove` (con `megaEvolve` y `zMove`), `Flee`, `SwitchMonster`, `UseItemAction` (`BattleItemEffect`), `Capturar`. |
 | `BattleResult` | Desenlace (`BattleOutcome`: ganó, perdió, huyó, capturado...) + estado final de cada participante (PS, estado, PP, objeto), XP y EVs repartidos. |
 | `IBattleAI` + `AI/` | IA de combate: `SimpleBattleAI` (al azar), `AggressiveBattleAI` (más daño esperado), `ExpertBattleAI` (usa `PreviewDamage`: remata, evita lo inútil, se protege), `PredictorBattleAI` (anticipa cambios con `IOpponentModel`). |
 | `Formulas/` | `IDamageFormula` + `ClassicDamageFormula`; `ICatchFormula` + `ClassicCatchFormula` (sacudidas); `IXpFormula` + `ClassicXpFormula`. |
@@ -62,6 +62,20 @@ calculadora de daño y el editor), `RestrictionFor` (¿puede usar este movimient
 | `TurnResolver.Items.cs` | **Objetos equipados por bloques de efecto** (ver [09](09-efectos-por-bloques.md)). |
 | `TurnResolver.Forms.cs` | Cambios de forma (entrada, movimiento, fin de turno). |
 | `TurnResolver.Mega.cs` | Megaevolución (piedra o movimiento; máximo por lado; objeto clave del jugador en la sesión). |
+| `TurnResolver.ZMoves.cs` | **Movimientos Z** (ver abajo). |
+
+## Movimientos Z (7.ª)
+
+Solo si el Ruleset activa una mecánica `ZMove`. El combatiente lleva un **cristal Z** (objeto con bloques
+`movimiento_z`, [09](09-efectos-por-bloques.md)); el jugador pulsa **Z** en la pantalla de combate y elige movimiento
+(`UseMove.ZMove`). Una vez por combate y lado (lo que diga la ficha):
+
+- **De daño**: se convierte en el Z del bloque (su tipo y efectos, categoría del movimiento base, potencia de la tabla
+  de la ficha o la fija del Z exclusivo). Atraviesa Protección con el % de la ficha (25 %).
+- **De estado**: ejecuta primero su efecto Z (`Move.ZEffects`) y luego lo suyo (Novena Potencia, que es de estado, conserva su categoría).
+- Gasta los PP del movimiento base. Evento `ZMoveUsedEvent`.
+- La Pulsera Z del jugador y el permiso del entrenador (`TrainerDefinition.CanUseZMoves`, columna `usa_z`) los comprueba
+  `BattleSession` (`CanPlayerZMove`, `WhyNoZMove`); la IA lo decide con el mismo `MegaTiming` que la Megaevolución.
 
 ## Determinismo
 

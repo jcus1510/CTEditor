@@ -27,7 +27,11 @@ namespace CTEditor.GameDefinition.Editor
             "tiene algún estado", "tiene el estado…", "% de vida", "es del tipo…", "el clima es…",
             "amistad (0-255)", "nivel", "nivel − nivel del otro", "etapa de una estadística", "ya actuó este turno",
             "movimiento: es del tipo…", "movimiento: categoría…", "movimiento: potencia base",
-            "movimiento: hace contacto", "movimiento: tiene la etiqueta…", "azar (%)"
+            "movimiento: hace contacto", "movimiento: tiene la etiqueta…", "azar (%)",
+            "recibió daño este turno", "turnos en el campo", "el otro va a atacar", "ya usó sus otros movimientos",
+            "reservas (Reserva)", "eficacia del movimiento contra él", "movimiento: tiene efecto secundario", "lleva un objeto",
+            "perdió su objeto", "peso (kg)", "mismo género", "género opuesto", "efecto de campo activo…", "aún puede evolucionar",
+            "movimiento: es exactamente…", "es de la especie…"
         };
         private static readonly string[] SubjectLabels = { "Propio", "Rival" };
         private static readonly string[] CmpLabels = { "menos de", "como mucho", "exactamente", "al menos", "más de", "distinto de" };
@@ -91,6 +95,9 @@ namespace CTEditor.GameDefinition.Editor
             else if (kind == ConditionKind.IsType || kind == ConditionKind.MoveType) textP.stringValue = IdPopup(r2, "type", textP.stringValue);
             else if (kind == ConditionKind.Weather) textP.stringValue = IdPopup(r2, "weather", textP.stringValue);
             else if (kind == ConditionKind.MoveHasTag) textP.stringValue = EditorGUI.TextField(r2, "Etiqueta", textP.stringValue);
+            else if (kind == ConditionKind.FieldCondition) textP.stringValue = EditorGUI.TextField(r2, "Efecto (id)", textP.stringValue);
+            else if (kind == ConditionKind.MoveIs) textP.stringValue = EditorGUI.TextField(r2, "Movimiento (id)", textP.stringValue);
+            else if (kind == ConditionKind.IsSpecies) textP.stringValue = EditorGUI.TextField(r2, "Especie (id)", textP.stringValue);
             else EditorGUI.LabelField(r2, "(no necesita valor)", EditorStyles.miniLabel);
 
             // --- Renglón 3: la frase, sobre fondo de color ---

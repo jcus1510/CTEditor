@@ -17,7 +17,7 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
             return new SideConditionDefinition(d.Id, d.DisplayName, d.Turns, d.PhysicalDamageMultiplier, d.SpecialDamageMultiplier,
                 d.BlocksStatDrops, d.BlocksStatus, d.SpeedMultiplier, d.ReversesTurnOrder, d.AccuracyMultiplier, d.GroundsTargets,
                 d.BlocksCrits, types, d.SwapsDefenses, d.SuppressesItems, d.Group, d.EndOfTurnHealPercent,
-                d.GroundedStatusBlock, Map(d.TypePowerMultipliers));
+                d.GroundedStatusBlock, Map(d.TypePowerMultipliers), d.BlocksPriorityOnGrounded);
         }
 
         private static System.Collections.Generic.Dictionary<string, float> Map(SideConditionData.TypeMultiplierEntry[] list)

@@ -27,7 +27,15 @@ BATTLE = {
     'giratina': (4, [('giratina-origin', 'origin', None)], '>origin:objeto:griseous_orb', '', False),
     'kyogre': (6, [('kyogre-primal', 'primal', None)], '>primal:objeto:blue_orb', '', False),
     'groudon': (6, [('groudon-primal', 'primal', None)], '>primal:objeto:red_orb', '', False),
+    # 7.ª generación
+    'wishiwashi': (7, [('wishiwashi-school', 'school', None)], '>school:ps_desde:25;con=schooling|school>:ps_bajo:25;con=schooling', '', True),
+    'minior': (7, [('minior-red', 'core', None)], '>core:ps_bajo:50;con=shields_down|core>:ps_desde:50;con=shields_down', '', True),
+    'zygarde': (7, [('zygarde-complete', 'complete', None)], '>complete:ps_bajo:50;con=power_construct', '', True),
 }
+
+# Silvally (7.ª): un disco en cada tipo, como las tablas de Arceus.
+MEMORIES = {t: f'{t}_memory' for t in ('fighting', 'flying', 'poison', 'ground', 'rock', 'bug', 'ghost', 'steel', 'fire', 'water',
+                                     'grass', 'electric', 'psychic', 'ice', 'dragon', 'dark', 'fairy')}
 
 PLATES = {'fighting': 'fist_plate', 'flying': 'sky_plate', 'poison': 'toxic_plate', 'ground': 'earth_plate', 'rock': 'stone_plate',
           'bug': 'insect_plate', 'ghost': 'spooky_plate', 'steel': 'iron_plate', 'fire': 'flame_plate', 'water': 'splash_plate',
@@ -49,6 +57,30 @@ VARIANTS = {
     'pumpkaboo-small': ('pumpkaboo', 6, ''), 'pumpkaboo-large': ('pumpkaboo', 6, ''), 'pumpkaboo-super': ('pumpkaboo', 6, ''),
     'gourgeist-small': ('gourgeist', 6, ''), 'gourgeist-large': ('gourgeist', 6, ''), 'gourgeist-super': ('gourgeist', 6, ''),
     'hoopa-unbound': ('hoopa', 6, 'prison_bottle'),
+    # 7.ª generación: formas de Alola (especies completas enlazadas a la de Kanto) y otras variantes.
+    'rattata-alola': ('rattata', 7, ''), 'raticate-alola': ('raticate', 7, ''), 'raichu-alola': ('raichu', 7, ''),
+    'sandshrew-alola': ('sandshrew', 7, ''), 'sandslash-alola': ('sandslash', 7, ''), 'vulpix-alola': ('vulpix', 7, ''),
+    'ninetales-alola': ('ninetales', 7, ''), 'diglett-alola': ('diglett', 7, ''), 'dugtrio-alola': ('dugtrio', 7, ''),
+    'meowth-alola': ('meowth', 7, ''), 'persian-alola': ('persian', 7, ''), 'geodude-alola': ('geodude', 7, ''),
+    'graveler-alola': ('graveler', 7, ''), 'golem-alola': ('golem', 7, ''), 'grimer-alola': ('grimer', 7, ''),
+    'muk-alola': ('muk', 7, ''), 'exeggutor-alola': ('exeggutor', 7, ''), 'marowak-alola': ('marowak', 7, ''),
+    'lycanroc-midnight': ('lycanroc', 7, ''), 'lycanroc-dusk': ('lycanroc', 7, ''),
+    'oricorio-pom-pom': ('oricorio', 7, 'yellow_nectar'), 'oricorio-pau': ('oricorio', 7, 'pink_nectar'),
+    'oricorio-sensu': ('oricorio', 7, 'purple_nectar'),
+    'necrozma-dusk': ('necrozma', 7, ''), 'necrozma-dawn': ('necrozma', 7, ''),   # con el N-Solarizador / N-Lunarizador (objetos clave)
+    'zygarde-10': ('zygarde', 7, ''),
+}
+
+# Evoluciones de las variantes (las de Alola evolucionan a su forma de Alola). En Alola, las especies de Kanto que tienen
+# forma regional evolucionan a ella: se anota con «lugar:alola».
+VARIANT_EVOS = {
+    'rattata_alola': 'raticate_alola@20+hora:noche', 'sandshrew_alola': 'sandslash_alola@objeto:ice_stone',
+    'vulpix_alola': 'ninetales_alola@objeto:ice_stone', 'diglett_alola': 'dugtrio_alola@26', 'meowth_alola': 'persian_alola@amistad',
+    'geodude_alola': 'graveler_alola@25', 'graveler_alola': 'golem_alola@intercambio', 'grimer_alola': 'muk_alola@38',
+}
+BASE_TO_VARIANT_EVOS = {
+    'pichu': None, 'pikachu': 'raichu_alola@objeto:thunder_stone+lugar:alola',
+    'exeggcute': 'exeggutor_alola@objeto:leaf_stone+lugar:alola', 'cubone': 'marowak_alola@28+hora:noche+lugar:alola',
 }
 
 STATS = ('ataque', 'defensa', 'atq_esp', 'def_esp', 'velocidad')
@@ -84,7 +116,11 @@ class Forms:
         """Rellena `formas` y `cambios_forma` de la especie s (dict de la fila). Devuelve True si tiene formas."""
         sp = s['id']
         entries, rules = [], []
-        if sp == 'arceus' and n >= 4:
+        if sp == 'silvally' and n >= 7:
+            for t, memory in MEMORIES.items():
+                entries.append(self._form_entry(s, f'silvally-{t}', t, False, used_abilities, n))
+                rules.append(f'>{t}:objeto:{memory};con=rks_system')
+        elif sp == 'arceus' and n >= 4:
             for t, plate in PLATES.items():
                 if t == 'fairy' and n < 6:
                     continue
@@ -209,7 +245,7 @@ class Forms:
                     r['altura'] = _dec(int(p['height']) / 10)
                 if p['weight']:
                     r['peso'] = _dec(int(p['weight']) / 10)
-            r['evoluciona'] = ''
+            r['evoluciona'] = VARIANT_EVOS.get(r['id'], '') if n >= 7 else ''
             r['forma_de'] = base
             r['objeto_variante'] = item
             r['formas'] = r['cambios_forma'] = ''

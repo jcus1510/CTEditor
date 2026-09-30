@@ -17,13 +17,13 @@ python3 Tools/verificar_pack/verificar_pack.py Excel                    # tu car
 | Comprobación | Qué mira |
 |---|---|
 | Formato | Filas y columnas como las lee el editor, ids vacíos o repetidos, filas con celdas de más o de menos. |
-| Referencias | Que exista todo lo que se nombra (en el pack o en la base que crean las plantillas del código): movimientos de especies y entrenadores, evoluciones y sus objetos, habilidades, tipos, curvas, grupos huevo, naturalezas, objetos equipados y de mochila, efectos de movimientos (estados, climas, trampas, campos), niveles de IA. |
+| Referencias | Los efectos de objetos y habilidades (momentos, acciones y especiales leídos de `EffectText.cs` y `AbilityEffects.cs`). Que exista todo lo que se nombra (en el pack o en la base que crean las plantillas del código): movimientos de especies y entrenadores, evoluciones y sus objetos, habilidades, tipos, curvas, grupos huevo, naturalezas, objetos equipados y de mochila, efectos de movimientos (estados, climas, trampas, campos), niveles de IA. |
 | `--pokeapi --gen N` | Estadísticas base y tipos de las especies, tipo/categoría/potencia/precisión/PP/prioridad de los movimientos y la tabla de tipos **de la generación N** (deshace con el historial de PokeAPI los cambios posteriores). Movimientos escritos en los equipos de entrenadores: que la especie los pueda aprender en algún juego hasta la gen N. |
 
 - **ERRORES**: hay que corregirlos (el script termina con código 1: sirve antes de un commit o en CI).
 - **AVISOS**: revisa si son intencionados (p. ej. movimientos especiales de un líder del juego original).
 
-## generar_packs.py — un pack FIEL a cada generación (Gen1 … Gen6)
+## generar_packs.py — un pack FIEL a cada generación (Gen1 … Gen7)
 
 ```bash
 python3 Tools/verificar_pack/generar_packs.py          # los 6
@@ -37,10 +37,11 @@ que tenían entonces (PokeAPI, deshaciendo los cambios posteriores):
 |---|---|
 | Especies | Tipos, estadísticas (1.ª gen.: una sola Especial), habilidades (desde la 3.ª; ocultas desde la 5.ª), aprendizaje por nivel del juego de referencia (Rojo/Azul, Cristal, Esmeralda, Platino, N2/B2, ROZA) y MT/tutor/huevo de sus juegos, grupos huevo (desde la 2.ª), sin géneros en la 1.ª. |
 | Movimientos | Solo los que existen, con tipo, potencia, precisión, PP y prioridad de entonces; físico/especial **según el tipo** hasta la 3.ª gen.; Maldición «???» (typeless) en la 2.ª-4.ª. |
+| Habilidades | Las que usan sus especies (desde la 3.ª) con TODOS sus efectos en la columna `efectos` (bloques «cuándo / si / qué», sacados de `Tools/datos_fuente/habilidades.csv`). |
 | Nombres en inglés | Columna `nombre_en` (el nombre de Showdown) en especies —variantes al estilo «Rotom-Wash», «Nidoran-F»—, movimientos, habilidades, objetos y naturalezas: sirve para importar y exportar equipos en formato Showdown. |
 | Formas y variantes | Formas de combate (Castform, Cherrim, Darmanitan, Meloetta, Aegislash, Giratina, Arceus, Kyogre/Groudon primigenios) con qué las provoca, y variantes como especies con `forma_de` (Deoxys, Wormadam, Rotom, Shaymin, Basculin, Tótem, Kyurem, Keldeo, Pumpkaboo/Gourgeist, Hoopa) con sus datos de PokeAPI (`formas.py`). |
 | Tabla de tipos | La de la generación (sin Siniestro/Acero en la 1.ª, sin Hada hasta la 6.ª, Fantasma→Acero ×0,5 hasta la 5.ª...). |
-| Objetos | Todos los de la generación salvo las MT (nombre, descripción y precio oficiales) con TODOS sus efectos (columna `efectos`, sacada de `Assets/GameContent/Plantillas/objetos.csv`); las bolas sin plantilla capturan como una Poké Ball, y el resto de objetos sin plantilla van solo con sus datos. |
+| Objetos | Todos los de la generación salvo las MT (nombre, descripción y precio oficiales) con TODOS sus efectos (columna `efectos`, sacada de `Tools/datos_fuente/objetos.csv`); las bolas sin plantilla capturan como una Poké Ball, y el resto de objetos sin plantilla van solo con sus datos. |
 | Entrenadores | Los de los juegos hasta esa generación, con movimientos válidos (sin objetos en la 1.ª, sin naturalezas antes de la 3.ª), especialistas de tipo, Ases del Frente (5.ª y 6.ª) y el Laboratorio de IA. |
 
 Lo que PokeAPI no tiene (efectos de movimientos, configuración de habilidades, Pokédex, entrenadores) sale de
@@ -71,14 +72,14 @@ código («el pack manda»).
 - `verificar_pack/csvlib.py` — lectura/escritura de CSV idéntica a `CsvTable.cs`.
 - `verificar_pack/pokeapi.py` — descarga y caché de PokeAPI; valores por generación.
 - `verificar_pack/verificar_pack.py`, `generar_packs.py`, `generar_base.py` — las herramientas.
-- `datos_fuente/` — datos maestros (efectos, habilidades, Pokédex, entrenadores) y los INFORME de los packs antiguos.
+- `datos_fuente/` — datos maestros (efectos de movimientos, `objetos.csv` y `habilidades.csv` con sus efectos por bloques, Pokédex, entrenadores) y los INFORME de los packs antiguos.
 
 Pokémon y sus nombres son marcas de Nintendo / Game Freak / The Pokémon Company: proyecto personal y educativo.
 
 ## generar_sets.py — sets de competición de Smogon para cada pack
 
 ```bash
-python3 Tools/verificar_pack/generar_sets.py            # Gen1 … Gen6
+python3 Tools/verificar_pack/generar_sets.py            # Gen1 … Gen7
 python3 Tools/verificar_pack/generar_sets.py --gen 6
 ```
 

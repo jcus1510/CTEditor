@@ -7,7 +7,6 @@ namespace CTEditor.GameDefinition.Editor
     // se dice "este tipo usa el inspector en español". (Unity necesita una clase por tipo.)
     [CustomEditor(typeof(MoveData))] public sealed class MoveDataInspector : SpanishInspector { }
     [CustomEditor(typeof(StatusConditionData))] public sealed class StatusDataInspector : SpanishInspector { }
-    [CustomEditor(typeof(AbilityData))] public sealed class AbilityDataInspector : SpanishInspector { }
     [CustomEditor(typeof(SpeciesData))] public sealed class SpeciesDataInspector : SpanishInspector { }
     [CustomEditor(typeof(ElementTypeData))] public sealed class TypeDataInspector : SpanishInspector { }
     [CustomEditor(typeof(TypeChartData))] public sealed class TypeChartDataInspector : SpanishInspector { }

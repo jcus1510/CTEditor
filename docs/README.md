@@ -22,13 +22,17 @@ interfaz del editor. El manual de uso para el AUTOR (qué hace cada botón) est�
 | 10 | [Infraestructura Unity](10-infraestructura-unity.md) | ScriptableObjects, mappers (ACL), catálogos, carpetas de contenido, carga en el juego. |
 | 11 | [El editor](11-editor.md) | Centro de Contenido, ventanas, inspector en español, papelera, validador, asistentes. |
 | 12 | [Excel (CSV)](12-excel-csv.md) | Esquemas, importación en dos fases, formatos de celda, copias de seguridad. |
-| 13 | [Packs y herramientas Python](13-packs-y-herramientas.md) | Packs Gen1…Gen6, generadores (PokeAPI, Smogon), verificador. |
+| 13 | [Packs y herramientas Python](13-packs-y-herramientas.md) | Packs Gen1…Gen7, generadores (PokeAPI, Smogon), verificador. |
 | 14 | [Escena, interfaz y controles](14-escena-e-interfaz.md) | Bootstrap: composition root, pantalla de combate, laboratorio, menús, caja de texto, input. |
 | 15 | [Pruebas y verificación](15-pruebas-y-verificacion.md) | Tests, cómo compilar y probar sin Unity, qué se revisa antes de cada commit. |
 | 16 | [Convenciones](16-convenciones.md) | Idiomas, nombres, enums, etiquetas, .meta, commits, cómo añadir cosas nuevas. |
 | 17 | [Historial](17-historial.md) | Qué se construyó y en qué orden (lotes, pasos 1-7, efectos por bloques). |
-| 18 | [Pendientes y hoja de ruta](18-pendientes.md) | Lo que falta (paso 8 Gen 7, habilidades por bloques...) y problemas conocidos. |
+| 18 | [Pendientes y hoja de ruta](18-pendientes.md) | Lo que falta (paso 8 Gen 7, efectos «Al usarlo»...) y problemas conocidos. |
 | 19 | [Cómo migrar el proyecto](19-migrar.md) | Lista paso a paso para llevar el proyecto a otro sitio sin perder nada. |
+| 20 | [La aplicación CTEditor](20-aplicacion.md) | El editor como programa propio: ventana única, paneles acoplables, recursos, asistente de corte, entorno. |
+
+**Plan actual**: [`PROPUESTA_APLICACION.md`](PROPUESTA_APLICACION.md) — la aplicación CTEditor (mapas, NPC, eventos por
+nodos, recursos y corte de tilesets, editor de píxeles, jugar al instante).
 
 Documentos anteriores: [`PROPUESTA_EDITOR_OBJETOS.md`](PROPUESTA_EDITOR_OBJETOS.md) (la propuesta que dio lugar al
 capítulo 09; ya implementada) y [`CONTEXTO.md`](CONTEXTO.md) (resumen de una página).

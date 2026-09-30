@@ -6,17 +6,14 @@ using CTEditor.GameDefinition.Domain.Stats;
 using CTEditor.GameDefinition.Domain.Types;
 
 using CTEditor.GameDefinition.Domain.Conditions;
+using CTEditor.GameDefinition.Domain.Effects;
 
 namespace CTEditor.GameDefinition.Domain.Abilities
 {
     /// <summary>
-    /// Una HABILIDAD: rasgo pasivo de una especie, siempre activo, hecho de datos (como un estado).
-    /// Este es el LOTE 1, que reutiliza ganchos que ya existen en el combate:
-    ///   - PassiveModifiers  -> EffectiveStat (igual que los estados). Ej.: "duplica el Ataque".
-    ///   - StatusImmunities  -> al infligir estado. Ej.: "no puede ser paralizado".
-    ///   - TypeImmunities    -> al calcular efectividad. Ej.: "inmune a tipo Tierra" (Levitación).
-    /// Los lotes siguientes (al entrar, por contacto, condicionales, clima...) añadirán más ganchos
-    /// SIN tirar esto: el modelo es el mismo, solo crece en hooks.
+    /// An ABILITY: a list of EFFECT BLOCKS («when / if / then»), the same pieces as items. The properties below are what the
+    /// battle engine asks for; AbilityEffects.Read fills them from the blocks with a classic shape (Intimidate, Blaze...).
+    /// The other blocks are GenericEffects and run like a held item's blocks, so authors can invent abilities.
     /// </summary>
     public sealed class AbilityDefinition
     {
@@ -120,10 +117,34 @@ namespace CTEditor.GameDefinition.Domain.Abilities
         /// <summary>Los ganchos de la 3.ª y 4.ª generación (clima, Robustez, Rastro, Superguarda...). Nunca null.</summary>
         public AbilityExtras Extras { get; }
 
-        public AbilityDefinition(
+        /// <summary>All of the ability's effect blocks, as the author wrote them.</summary>
+        public IReadOnlyList<EffectBlock> Effects { get; private set; } = Array.Empty<EffectBlock>();
+
+        /// <summary>Blocks with no ability shape: the engine runs them like a held item's blocks.</summary>
+        public IReadOnlyList<EffectBlock> GenericEffects { get; private set; } = Array.Empty<EffectBlock>();
+
+        /// <summary>An ability made of EFFECT BLOCKS («when / if / then»). The properties above are read from them.</summary>
+        public AbilityDefinition(AbilityId id, string displayName, IReadOnlyList<EffectBlock> effects = null)
+            : this(id, displayName, AbilityEffects.Read(effects)) { }
+
+        private AbilityDefinition(AbilityId id, string displayName, AbilityViews v)
+            : this(id, displayName, v.PassiveModifiers, v.StatusImmunities, v.TypeImmunities, v.AbsorbImmuneHealPercent,
+                v.ContactReactionStatus, v.ContactReactionChance, v.OnEntryStat, v.OnEntryStages, v.OnEntryTargetsSelf,
+                v.StatusStatBoostStat, v.StatusStatBoostMultiplier, v.LowHpBoostType, v.LowHpThreshold, v.LowHpBoostMultiplier,
+                v.IncomingTypeMultipliers, v.StabMultiplierOverride, v.StatusMovePriorityBonus, v.PreventsStatReduction,
+                v.CuresStatusOnSwitchOut, v.HealPercentOnSwitchOut, v.EndOfTurnStat, v.EndOfTurnStages, v.EndOfTurnHealPercent,
+                v.EndOfTurnHealRequiresStatus, v.EndOfTurnCureStatusChance, v.NegatesStatusDamage, v.OffensivePowerModifiers, v.DefensivePowerModifiers,
+                v.Extras)
+        {
+            Effects = v.All.ToArray();
+            GenericEffects = v.Generic.ToArray();
+        }
+
+        // The engine's values, read from the blocks by AbilityEffects (private: an ability is only built from blocks).
+        private AbilityDefinition(
             AbilityId id,
             string displayName,
-            IReadOnlyList<StatPassiveModifier> passiveModifiers = null,
+            IReadOnlyList<StatPassiveModifier> passiveModifiers,
             IReadOnlyList<StatusId> statusImmunities = null,
             IReadOnlyList<Id<ElementType>> typeImmunities = null,
             Percentage absorbImmuneHealPercent = default,

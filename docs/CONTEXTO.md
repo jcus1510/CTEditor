@@ -5,17 +5,21 @@
 - **Qué es**: motor de combates por turnos estilo Pokémon + editor completo en **Unity 6 (6000.3.7f1)**. Premisa:
   **todo es editable**; las generaciones son datos (packs) y reglas, nunca código ([01](01-vision-y-premisas.md)).
 - **Arquitectura**: DDD estricto; dominios puros sin Unity (SharedKernel, GameDefinition.Domain, Battle, Party,
-  Adventure, Eventing) + Infrastructure (ScriptableObjects y mappers) + Editor + Bootstrap ([03](03-arquitectura.md)).
+  Adventure, Eventing, Art, World, Editing, Project, Workspace) + Infrastructure (ScriptableObjects y mappers) + Editor + Bootstrap ([03](03-arquitectura.md)).
 - **Datos**: fichas `*Data` → mapper (ACL) → dominio → `GameData` → `BattleSession` → `TurnResolver` → eventos → UI.
-- **Objetos**: listas de **efectos por bloques** «cuándo / si / qué» con probabilidad, veces por combate y gasto
-  ([09](09-efectos-por-bloques.md)). Las habilidades pasarán al mismo sistema.
+- **Objetos y habilidades**: listas de **efectos por bloques** «cuándo / si / qué» con probabilidad, veces por combate y
+  gasto, guardadas DENTRO de cada ficha ([09](09-efectos-por-bloques.md)).
 - **Excel**: todo se exporta/importa en CSV (`;`, coma decimal), con análisis previo y copia de seguridad ([12](12-excel-csv.md)).
-- **Packs**: Gen1…Gen6 fieles, generados con Python desde PokeAPI y Smogon y verificados ([13](13-packs-y-herramientas.md)).
-- **Verificar sin Unity**: `dotnet test Tools/probar_dominio` (218 ✔) y `dotnet test Tools/compilar_unity`
-  (294 ✔, 8 fallos conocidos que necesitan Unity) ([15](15-pruebas-y-verificacion.md)).
+- **Packs**: Gen1…Gen7 fieles, generados con Python desde PokeAPI y Smogon y verificados ([13](13-packs-y-herramientas.md)).
+- **Verificar sin Unity**: `dotnet test Tools/probar_dominio` (258 ✔) y `dotnet test Tools/compilar_unity`
+  (337 ✔, 9 fallos conocidos que necesitan Unity) ([15](15-pruebas-y-verificacion.md)).
 - **Idiomas**: interfaz en español; código (identificadores y comentarios nuevos) en inglés; textos de interfaz
   centralizados (`Etiquetas`, `EffectText`) para traducir ([16](16-convenciones.md)).
 - **Git**: rama `develop`, sin PR salvo que se pidan, commits en español ([16](16-convenciones.md)).
-- **Siguiente**: habilidades por bloques, efectos «Al usarlo» pendientes (MT, vitaminas, Caramelo Raro, repelentes),
-  paso 8 (7.ª gen.) ([18](18-pendientes.md)).
+- **Siguiente**: la **aplicación CTEditor** (hecha con Unity): recursos y corte de tilesets, editor de mapas con
+  ▶ jugar al instante, editor de píxeles, NPC y eventos por nodos ([PROPUESTA_APLICACION](PROPUESTA_APLICACION.md)).
+  La aplicación ya abre y se pueden hacer mapas y jugarlos (fases 2-4): CTEditor → Aplicación → Abrir la aplicación
+  ([20](20-aplicacion.md)). Arquitectura por capas de la aplicación y cómo añadir módulos: [03](03-arquitectura.md).
+  Plan de fases (5-12) en la sección 8 de la propuesta.
+  Las generaciones quedan en pausa ([18](18-pendientes.md)).
 - **Migrar**: [19](19-migrar.md).

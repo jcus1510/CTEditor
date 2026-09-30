@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: passho_berry
   displayName: Baya Pasio
+  englishName: Passho Berry
   description: El primer golpe MUY EFICAZ de tipo Agua que recibe hace la mitad (se
     consume).
   category: 7
@@ -22,43 +23,27 @@ MonoBehaviour:
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0
-  healHp: 0
-  healPercent: 0
-  curesAllStatus: 0
-  curesStatusId: 
-  revives: 0
-  reviveHpPercent: 50
-  restorePp: 0
-  restorePpAllMoves: 0
-  friendshipChange: 0
-  catchMultiplier: 0
-  battleStatId: 
-  battleStages: 0
-  heldPowerModifiers: []
-  heldEndOfTurnHealPercent: 0
-  heldTriggerHpPercent: 0
-  heldTriggerHealHp: 0
-  heldTriggerHealPercent: 0
-  heldConsumedOnTrigger: 1
-  heldStatMultipliers: []
-  heldChoiceLock: 0
-  heldAttackRecoilPercent: 0
-  heldSurviveFromFullHp: 0
-  heldContactDamagePercent: 0
-  heldOnHitStats: []
-  heldOnHitConsumed: 0
-  heldAirBalloon: 0
-  heldBlocksStatusMoves: 0
-  heldCritStageBonus: 0
-  heldAccuracyMultiplier: 1
-  heldEvasionMultiplier: 1
-  heldResistBerryType: water
-  heldCuresAnyStatus: 0
-  heldSelfStatusEndOfTurn: 
-  heldFlinchChance: 0
-  heldHealOnDamagePercent: 0
-  heldWeatherTurnsBonus: 0
-  heldScreenTurnsBonus: 0
-  heldBlackSludge: 0
-  heldQuickClawChance: 0
-  heldSuperEffectiveBoost: 1
+  isBerry: 1
+  effects:
+  - trigger: 4
+    conditions:
+    - kind: 10
+      subject: 0
+      comparison: 2
+      number: 0
+      text: water
+      negate: 0
+    - kind: 21
+      subject: 0
+      comparison: 4
+      number: 1
+      text: 
+      negate: 0
+    action: 16
+    target: 0
+    reference: 
+    amount: 0.5
+    threshold: 0
+    consumes: 1
+    chance: 100
+    maxPerBattle: 0

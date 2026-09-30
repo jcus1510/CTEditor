@@ -223,9 +223,13 @@ namespace CTEditor.Battle.Domain.Turn
             return false;
         }
 
+        /// <summary>Priority of the play being resolved (Psychic Terrain makes priority moves fail against grounded targets).</summary>
+        private int _currentPriority;
+
         // Una jugada: cargas y recargas, movimientos encadenados, estados que impiden actuar y la acción elegida.
         private void ResolvePlay(Battle battle, (bool isPlayer, BattleAction action) play, Combatant actor, Combatant target, List<IDomainEvent> events)
         {
+            _currentPriority = play.action is UseMove ? PriorityOf(actor, play.action) : 0;
             // RECARGA: tras un movimiento de recarga, este turno se pierde por completo.
             if (actor.MustRecharge)
             {
@@ -274,6 +278,7 @@ namespace CTEditor.Battle.Domain.Turn
                 // Impasible: al retroceder, sube su Velocidad.
                 var fx = X(actor);
                 if (fx.OnFlinchStat.HasValue && fx.OnFlinchStages != 0) ChangeStageFrom(actor, actor, fx.OnFlinchStat.Value, fx.OnFlinchStages, events);
+                RunHeld(actor, EffectTrigger.OnFlinch, OpponentOf(actor), null, events);
                 return;
             }
 
@@ -645,6 +650,7 @@ namespace CTEditor.Battle.Domain.Turn
         private void ApplyOnSwitchOut(Combatant leaving, List<IDomainEvent> events)
         {
             if (leaving == null || leaving.IsFainted) return;
+            RunHeld(leaving, EffectTrigger.OnSwitchOut, OpponentOf(leaving), null, events);
             if (!TryGetAbility(leaving, out var ability)) return;
 
             if (ability.CuresStatusOnSwitchOut && leaving.Status.HasValue)
@@ -865,8 +871,11 @@ namespace CTEditor.Battle.Domain.Turn
             var previousIgnored = _abilityIgnored;
             if (target != null && target != actor && X(actor).MoldBreaker) _abilityIgnored = target;
             int start = events.Count;
+            // MOVIMIENTO Z: se prepara aquí y se aplica en ResolveMoveCore tras pagar los PP del movimiento base.
+            if (!isChargedRelease && payPp) PrepareZ(actor, useMove); else _zPending = null;
+            var zPrepared = _zPending;
             try { ResolveMoveCore(actor, target, useMove, events, isChargedRelease, payPp, bideRelease); }
-            finally { _abilityIgnored = previousIgnored; }
+            finally { _abilityIgnored = previousIgnored; _zPending = null; _zProtectFactor = 1f; }
 
             // ¿Salió bien? (para Rodar, Corte Furia y Última Baza)
             bool used = false, failed = false;
@@ -875,6 +884,7 @@ namespace CTEditor.Battle.Domain.Turn
             {
                 var e = events[i];
                 if (e is MoveUsedEvent mu && mu.Attacker == actor.Id) { used = true; usedMove = mu.Move; }
+                if (zPrepared.HasValue && usedMove == zPrepared.Value.zMove.Id) usedMove = zPrepared.Value.baseMove;   // cuenta como el base
                 if (e is MoveMissedEvent mm && mm.Attacker == actor.Id || e is MoveFailedEvent mf && mf.Combatant == actor.Id
                     || e is MoveBlockedEvent || e is MoveHadNoEffectEvent) failed = true;
             }
@@ -902,6 +912,7 @@ namespace CTEditor.Battle.Domain.Turn
             if (payPp && !isChargedRelease && !PayPp(actor, ref useMove, events)) return;
 
             var move = _moves.Get(useMove.Move); // resuelve el id -> Move vía catálogo
+            move = ApplyPendingZ(actor, target, useMove, move, events);   // movimiento Z (si se pidió y se puede)
 
             // DOS TURNOS (CARGA): el primer uso solo carga; el golpe llega al turno siguiente.
             if (move.TwoTurn == TwoTurnKind.Charge && !isChargedRelease)
@@ -962,8 +973,16 @@ namespace CTEditor.Battle.Domain.Turn
                         events.Add(new MoveHadNoEffectEvent(actor.Id, target.Id, move.Id));
                         var ix = X(target);
                         if (ix.OnImmuneStat.HasValue && ix.OnImmuneStages != 0) ChangeStageFrom(target, target, ix.OnImmuneStat.Value, ix.OnImmuneStages, events);
+                        RunHeld(target, EffectTrigger.OnAbsorb, actor, move, events);
                         return;
                     }
+
+            // CAMPO PSÍQUICO: los movimientos con prioridad fallan contra quien pisa el suelo.
+            if (aimed && _currentPriority > 0 && TerrainBlocksPriority(target))
+            {
+                events.Add(new MoveFailedEvent(actor.Id));
+                return;
+            }
 
             // PROTECCIÓN: si el objetivo se protegió este turno, lo que se le lanza no le hace nada
             // (salvo Amago, que rompe la protección).
@@ -973,6 +992,12 @@ namespace CTEditor.Battle.Domain.Turn
                 {
                     foreach (var v in new List<ActiveVolatileStatus>(target.Volatiles))
                         if (TryGetStatus(v.Id, out var pd) && pd.BlocksIncomingMoves) { target.RemoveVolatile(v.Id); events.Add(new StatusFadedEvent(target.Id, v.Id)); }
+                }
+                else if (move.HasTag("z") && ZMechanic != null && ZMechanic.Z.ProtectDamagePercent > 0f)
+                {
+                    // Un movimiento Z atraviesa la protección con parte del daño (oficial: el 25 %).
+                    events.Add(new MoveBlockedEvent(target.Id));
+                    _zProtectFactor = ZMechanic.Z.ProtectDamagePercent / 100f;
                 }
                 else
                 {
@@ -1083,6 +1108,7 @@ namespace CTEditor.Battle.Domain.Turn
                         target.SetAbsorbedTypeBoost(MoveTypeOf(actor, move));
                         events.Add(new AbilityTriggeredEvent(target.Id, absorbAb.Id.Value, "absorbe_potencia"));
                     }
+                    RunHeld(target, EffectTrigger.OnAbsorb, actor, move, events);
                 }
 
                 // Si ABSORBE el tipo (Absorbe Agua), cura un % de PS máx en vez de solo anular.
@@ -1120,6 +1146,7 @@ namespace CTEditor.Battle.Domain.Turn
                     // BAYAS DE RESISTENCIA: el primer golpe muy eficaz de su tipo hace la mitad.
                     if (target != actor && !(target.HasSubstitute && !X(actor).Infiltrator))
                         damage = ApplyDamageTakenBlocks(target, actor, move, MoveTypeOf(actor, move), damage, events);
+                    if (_zProtectFactor < 1f) damage = System.Math.Max(1, (int)(damage * _zProtectFactor));
                     anyCrit |= result.WasCritical;
                     lastCrit = anyCrit;
 
@@ -1736,6 +1763,15 @@ namespace CTEditor.Battle.Domain.Turn
                 && string.Equals(tx.StatusImmuneInWeather, _battle.WeatherId, StringComparison.OrdinalIgnoreCase))
                 return;
 
+            // Blocks «inmune a estados» with conditions (Escudo Limitado con más de la mitad de vida...). Empty list = every
+            // MAIN status.
+            if (HeldHas(target, EffectAction.ImmuneToStatus, source, null, b => b.Ref.Length == 0 ? !statusDef.IsVolatile
+                    : b.RefList.Any(r => string.Equals(r, statusId.Value, StringComparison.OrdinalIgnoreCase))))
+            {
+                events.Add(new StatusFailedEvent(target.Id, statusId));
+                return;
+            }
+
             // Un estado PRINCIPAL no pisa a otro principal; un VOLÁTIL no se repite, pero se suma.
             if (statusDef.IsVolatile ? target.HasVolatile(statusId) : target.Status.HasValue) return;
 
@@ -2317,6 +2353,10 @@ namespace CTEditor.Battle.Domain.Turn
                 case ConditionKind.OppositeGender: return self != null && other != null && GenderText.Opposite(self.Gender, other.Gender);
                 case ConditionKind.FieldCondition: return FieldConditionActive(c.Text);
                 case ConditionKind.CanEvolve: return who != null && who.CanEvolve;
+                case ConditionKind.MoveIs: return move != null && string.Equals(move.Id.Value, c.Text, StringComparison.OrdinalIgnoreCase);
+                case ConditionKind.IsSpecies:
+                    return who != null && (string.Equals(who.SpeciesId.Value, c.Text, StringComparison.OrdinalIgnoreCase)
+                        || who.SpeciesId.Value.StartsWith(c.Text + "_", StringComparison.OrdinalIgnoreCase));   // sus variantes (pikachu_...)
                 default: return false;
             }
         }
@@ -2605,6 +2645,8 @@ namespace CTEditor.Battle.Domain.Turn
                 if (px.PriorityTypeBonus != 0 && px.PriorityType.Length > 0
                     && string.Equals(MoveTypeOf(actor, move).Value, px.PriorityType, StringComparison.OrdinalIgnoreCase))
                     p += px.PriorityTypeBonus;
+                // Blocks «prioridad» with conditions (items and abilities: Alas Vendaval con vida llena, Primer Auxilio...).
+                p += (int)HeldSum(actor, EffectAction.PriorityBonus, OpponentOf(actor), move);
                 return p;
             }
             return 0;

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.SharedKernel.Abstractions;
 using CTEditor.SharedKernel.Events;
 using CTEditor.SharedKernel.ValueObjects;
@@ -83,17 +84,17 @@ namespace CTEditor.Tests.EditMode
 
         private static readonly AbilityDefinition[] Abilities =
         {
-            new AbilityDefinition(new AbilityId("gale_wings"), "Alas Vendaval", extras: new AbilityExtras { PriorityType = "flying", PriorityTypeBonus = 1 }),
-            new AbilityDefinition(new AbilityId("pixilate"), "Piel Feérica", extras: new AbilityExtras { ConvertNormalTo = "fairy", ConvertBoost = 1.3f }),
-            new AbilityDefinition(new AbilityId("gooey"), "Baba", extras: new AbilityExtras { ContactStatDrop = StatId.Speed, ContactStatDropStages = -1 }),
-            new AbilityDefinition(new AbilityId("rivalry"), "Rivalidad", offensivePowerModifiers: new[]
+            new AbilityDefinition(new AbilityId("gale_wings"), "Alas Vendaval", new[] { new EffectBlock(EffectTrigger.Passive, EffectAction.PriorityBonus, 1f, conditions: new[] { new Condition(ConditionKind.MoveType, text: "flying") }) }),
+            new AbilityDefinition(new AbilityId("pixilate"), "Piel Feérica", new[] { new EffectBlock(EffectTrigger.Passive, EffectAction.ConvertNormalType, 1.3f, "fairy") }),
+            new AbilityDefinition(new AbilityId("gooey"), "Baba", new[] { new EffectBlock(EffectTrigger.ContactTaken, EffectAction.ChangeStage, -1f, "speed", target: BlockTarget.Other) }),
+            new AbilityDefinition(new AbilityId("rivalry"), "Rivalidad", new[]
             {
-                new PowerModifier(1.25f, new[] { new Condition(ConditionKind.SameGender) }),
-                new PowerModifier(0.75f, new[] { new Condition(ConditionKind.OppositeGender) }),
+                TestItems.Power(1.25f, new Condition(ConditionKind.SameGender)),
+                TestItems.Power(0.75f, new Condition(ConditionKind.OppositeGender)),
             }),
         };
 
-        // The same effect text as Assets/GameContent/Plantillas/objetos.csv: these tests check that the DATA gives the right battle.
+        // The same effect text as Tools/datos_fuente/objetos.csv: these tests check that the DATA gives the right battle.
         private static ItemDefinition Held(string id, string effects)
             => new ItemDefinition(id, id, ItemCategory.Held, effects: EffectText.Parse(effects));
 

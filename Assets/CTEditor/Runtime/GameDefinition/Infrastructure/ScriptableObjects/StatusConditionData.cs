@@ -119,6 +119,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField, Range(-6, 0)] private int protectContactStages;
         [Tooltip("Si le golpean con contacto mientras se protege, el atacante pierde este % de PS (Barrera Espinosa: 12,5).")]
         [SerializeField, Range(0f, 100f)] private float protectContactDamagePercent;
+        [Tooltip("Si le golpean con contacto mientras se protege, el atacante sufre este estado (Búnker: poison).")]
+        [StatusIdReference, SerializeField] private string protectContactStatus = "";
 
         public bool BlocksStatusMoves => blocksStatusMoves;
         public bool BlocksRepeatedMove => blocksRepeatedMove;
@@ -146,6 +148,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public string ProtectContactStat => protectContactStat;
         public int ProtectContactStages => protectContactStages;
         public float ProtectContactDamagePercent => protectContactDamagePercent;
+        public string ProtectContactStatus => protectContactStatus;
 
         public string Id => id;
         public string DisplayName => displayName;

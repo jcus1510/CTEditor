@@ -64,5 +64,7 @@ namespace CTEditor.GameDefinition.Domain.Status
         public int ProtectContactStages { get; set; }
         /// <summary>Si le golpean con contacto mientras se protege, el atacante pierde este % de PS (Barrera Espinosa: 12,5).</summary>
         public float ProtectContactDamagePercent { get; set; }
+        /// <summary>If hit with contact while it protects, the attacker gets this status (Baneful Bunker: poison). Empty = none.</summary>
+        public string ProtectContactStatus { get; set; } = "";
     }
 }

@@ -200,6 +200,12 @@ namespace CTEditor.GameDefinition.Editor
             ["variableSets"] = ("Moveset cambiante (otro set cada combate)", "moveset_cambiante"),
             // Megaevolución (entrenadores y niveles de IA)
             ["canMegaEvolve"] = ("Puede megaevolucionar", "megaevoluciona"),
+            ["canUseZMoves"] = ("Puede usar movimientos Z", "usa_z"),
+            ["zMaxPerBattle"] = ("Movimientos Z por combate (0 = sin límite)", "z_max"),
+            ["zRequiredKeyItem"] = ("Objeto clave para los Z", "z_objeto_clave"),
+            ["zProtectDamagePercent"] = ("% de daño Z que atraviesa Protección", "z_protege"),
+            ["zPowerTable"] = ("Tabla de potencia Z", "z_potencias"),
+            ["zEffects"] = ("Efecto Z (movimientos de estado)", "efecto_z"),
             ["megaTiming"] = ("Cuándo megaevoluciona", "cuando_mega"),
             // Formas y variantes
             ["formOf"] = ("Es forma de (variante)", "forma_de"),
@@ -484,10 +490,12 @@ namespace CTEditor.GameDefinition.Editor
             ["protectContactStat"] = ("Al bloquear contacto: estadística que baja al atacante", "protege_baja_stat"),
             ["protectContactStages"] = ("Al bloquear contacto: etapas que baja", "protege_baja_etapas"),
             ["protectContactDamagePercent"] = ("Al bloquear contacto: % de PS que pierde el atacante", "protege_daño"),
+            ["protectContactStatus"] = ("Al bloquear contacto: estado que sufre el atacante", "protege_estado"),
             ["swapsDefenses"] = ("Intercambia Defensa y Def. Esp. (Zona Extraña)", "intercambia_defensas"),
             ["suppressesItems"] = ("Anula los objetos equipados (Zona Mágica)", "anula_objetos"),
             ["group"] = ("Grupo (solo uno activo: campos)", "grupo"),
             ["groundedStatusBlock"] = ("Estados que impide a quien pisa el suelo (* = todos)", "impide_estados"),
+            ["blocksPriorityOnGrounded"] = ("Bloquea la prioridad contra quien pisa el suelo", "bloquea_prioridad"),
             // --- 3.ª y 4.ª generación: habilidades, estados y efectos de lado ---
             ["onEntryWeather"] = ("Al entrar: clima que pone", "clima_al_entrar"),
             ["onEntryWeatherTurns"] = ("Al entrar: turnos del clima (0 = permanente)", "clima_al_entrar_turnos"),
@@ -675,6 +683,7 @@ namespace CTEditor.GameDefinition.Editor
         {
             // Categoría de movimiento
             ["MegaEvolution"] = "Megaevolución",
+            ["ZMove"] = "Movimientos Z",
             ["ByLevel"] = "Según su nivel", ["Yes"] = "Sí", ["No"] = "No", ["AsSoonAsPossible"] = "En cuanto puede",
             ["HeldItem"] = "Lleva un objeto", ["UseMove"] = "Usa un movimiento", ["DamagingMove"] = "Usa un ataque",
             ["HpBelow"] = "PS por debajo de un %", ["HpAtLeast"] = "PS desde un %", ["Weather"] = "Clima",

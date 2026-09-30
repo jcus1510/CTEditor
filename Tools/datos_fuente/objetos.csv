@@ -134,3 +134,38 @@ wiki_berry;Baya Wiki;Wiki Berry;Con la mitad de sus PS o menos, recupera 1/8 de 
 mago_berry;Baya Ango;Mago Berry;Con la mitad de sus PS o menos, recupera 1/8 de sus PS (se consume).;Berry;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
 aguav_berry;Baya Guaya;Aguav Berry;Con la mitad de sus PS o menos, recupera 1/8 de sus PS (se consume).;Berry;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
 iapapa_berry;Baya Pabaya;Iapapa Berry;Con la mitad de sus PS o menos, recupera 1/8 de sus PS (se consume).;Berry;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
+normalium_z;Normastal Z;;Convierte los movimientos de tipo normal en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=normal]: movimiento_z breakneck_blitz
+fightinium_z;Lizastal Z;;Convierte los movimientos de tipo fighting en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=fighting]: movimiento_z all_out_pummeling
+flyinium_z;Voladostal Z;;Convierte los movimientos de tipo flying en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=flying]: movimiento_z supersonic_skystrike
+poisonium_z;Toxistal Z;;Convierte los movimientos de tipo poison en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=poison]: movimiento_z acid_downpour
+groundium_z;Geostal Z;;Convierte los movimientos de tipo ground en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=ground]: movimiento_z tectonic_rage
+rockium_z;Litostal Z;;Convierte los movimientos de tipo rock en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=rock]: movimiento_z continental_crush
+buginium_z;Insectostal Z;;Convierte los movimientos de tipo bug en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=bug]: movimiento_z savage_spin_out
+ghostium_z;Espectrostal Z;;Convierte los movimientos de tipo ghost en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=ghost]: movimiento_z never_ending_nightmare
+steelium_z;Metalostal Z;;Convierte los movimientos de tipo steel en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=steel]: movimiento_z corkscrew_crash
+firium_z;Pirostal Z;;Convierte los movimientos de tipo fire en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=fire]: movimiento_z inferno_overdrive
+waterium_z;Hidrostal Z;;Convierte los movimientos de tipo water en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=water]: movimiento_z hydro_vortex
+grassium_z;Fitostal Z;;Convierte los movimientos de tipo grass en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=grass]: movimiento_z bloom_doom
+electrium_z;Electrostal Z;;Convierte los movimientos de tipo electric en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=electric]: movimiento_z gigavolt_havoc
+psychium_z;Psicostal Z;;Convierte los movimientos de tipo psychic en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=psychic]: movimiento_z shattered_psyche
+icium_z;Criostal Z;;Convierte los movimientos de tipo ice en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=ice]: movimiento_z subzero_slammer
+dragonium_z;Dracostal Z;;Convierte los movimientos de tipo dragon en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=dragon]: movimiento_z devastating_drake
+darkinium_z;Nictostal Z;;Convierte los movimientos de tipo dark en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=dark]: movimiento_z black_hole_eclipse
+fairium_z;Feeristal Z;;Convierte los movimientos de tipo fairy en movimientos Z.;Held;0;no;no;no;no;siempre [si mov.tipo=fairy]: movimiento_z twinkle_tackle
+pikanium_z;Pikastal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=pikachu & mov.id=volt_tackle]: movimiento_z catastropika
+aloraichium_z;Alo-Raichustal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=raichu_alola & mov.id=thunderbolt]: movimiento_z stoked_sparksurfer
+eevium_z;Eeveestal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=eevee & mov.id=last_resort]: movimiento_z extreme_evoboost
+snorlium_z;Snorlaxstal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=snorlax & mov.id=giga_impact]: movimiento_z pulverizing_pancake
+mewnium_z;Mewstal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=mew & mov.id=psychic]: movimiento_z genesis_supernova
+decidium_z;Decidustal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=decidueye & mov.id=spirit_shackle]: movimiento_z sinister_arrow_raid
+incinium_z;Incinerostal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=incineroar & mov.id=darkest_lariat]: movimiento_z malicious_moonsault
+primarium_z;Primarinastal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=primarina & mov.id=sparkling_aria]: movimiento_z oceanic_operetta
+tapunium_z;Tapustal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=tapu & mov.id=natures_madness]: movimiento_z guardian_of_alola
+marshadium_z;Marshadowstal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=marshadow & mov.id=spectral_thief]: movimiento_z soul_stealing_7_star_strike
+kommonium_z;Kommostal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=kommo_o & mov.id=clanging_scales]: movimiento_z clangorous_soulblaze
+lycanium_z;Lycanrostal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=lycanroc & mov.id=stone_edge]: movimiento_z splintered_stormshards
+mimikium_z;Mimikyustal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=mimikyu & mov.id=play_rough]: movimiento_z lets_snuggle_forever
+pikashunium_z;Pikashustal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=pikachu & mov.id=thunderbolt]: movimiento_z 10_000_000_volt_thunderbolt
+solganium_z;Solgaleostal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=solgaleo & mov.id=sunsteel_strike]: movimiento_z searing_sunraze_smash | siempre [si propio.especie=necrozma_dusk & mov.id=sunsteel_strike]: movimiento_z searing_sunraze_smash
+lunalium_z;Lunalastal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=lunala & mov.id=moongeist_beam]: movimiento_z menacing_moonraze_maelstrom | siempre [si propio.especie=necrozma_dawn & mov.id=moongeist_beam]: movimiento_z menacing_moonraze_maelstrom
+ultranecrozium_z;Ultranecrozestal Z;;Cristal Z exclusivo.;Held;0;no;no;no;no;siempre [si propio.especie=necrozma & mov.id=photon_geyser]: movimiento_z light_that_burns_the_sky

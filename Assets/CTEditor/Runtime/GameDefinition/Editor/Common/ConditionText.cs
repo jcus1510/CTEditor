@@ -64,6 +64,8 @@ namespace CTEditor.GameDefinition.Editor
                 case ConditionKind.OppositeGender: body = $"{(c.Negate ? "NO " : "")}son de género opuesto"; break;
                 case ConditionKind.FieldCondition: body = $"{(c.Negate ? "NO " : "")}está activo el efecto de campo '{c.Text}'"; break;
                 case ConditionKind.CanEvolve: body = $"{whoCap} {not}puede evolucionar"; break;
+                case ConditionKind.MoveIs: body = $"el movimiento {not}es {c.Text}"; break;
+                case ConditionKind.IsSpecies: body = $"{whoCap} {not}es un {c.Text}"; break;
                 default: body = c.Kind.ToString(); break;
             }
             return body;
@@ -197,6 +199,8 @@ namespace CTEditor.GameDefinition.Editor
                 case ConditionKind.OppositeGender: return $"{not}genero_opuesto";
                 case ConditionKind.FieldCondition: return $"{not}campo={c.Text}";
                 case ConditionKind.CanEvolve: return $"{not}{s}.puede_evolucionar";
+                case ConditionKind.MoveIs: return $"{not}mov.id={c.Text}";
+                case ConditionKind.IsSpecies: return $"{not}{s}.especie={c.Text}";
                 default: return "";
             }
         }
@@ -282,10 +286,12 @@ namespace CTEditor.GameDefinition.Editor
                 case "genero_opuesto": return new Condition(ConditionKind.OppositeGender, ConditionSubject.Self, Comparison.Equal, 0, null, negate);
                 case "campo": return new Condition(ConditionKind.FieldCondition, ConditionSubject.Self, Comparison.Equal, 0, Id(), negate);
                 case "puede_evolucionar": return new Condition(ConditionKind.CanEvolve, subject, Comparison.Equal, 0, null, negate);
+                case "mov.id": return new Condition(ConditionKind.MoveIs, ConditionSubject.Self, Comparison.Equal, 0, Id(), negate);
+                case "especie": return new Condition(ConditionKind.IsSpecies, subject, Comparison.Equal, 0, Id(), negate);
             }
             throw new FormatException($"'{text}': condición desconocida. Usa, por ejemplo: rival.vida<50, propio.estado, rival.estado=poison, clima=rain, " +
                                       "propio.amistad>=200, propio.nivel>=30, rival.tipo=water, mov.contacto, mov.etiqueta=puño, azar<30, " +
-                                      "propio.dañado, propio.turnos_campo<1, rival.va_a_atacar, propio.reserva>=1, rival.eficacia>1, mov.secundario, propio.objeto, rival.peso>=100, campo=grassy_terrain, propio.puede_evolucionar.");
+                                      "propio.dañado, propio.turnos_campo<1, rival.va_a_atacar, propio.reserva>=1, rival.eficacia>1, mov.secundario, propio.objeto, rival.peso>=100, campo=grassy_terrain, propio.puede_evolucionar, mov.id=thunderbolt, propio.especie=pikachu.");
         }
 
         // ---------------- Modificadores de potencia en texto: "x2 [si propio.estado] | x1,5 [si clima=rain]" ----------------

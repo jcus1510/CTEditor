@@ -137,6 +137,9 @@ namespace CTEditor.GameDefinition.Domain.Moves
         public Id<ElementType> TypeIn(string weatherId)
             => !string.IsNullOrEmpty(weatherId) && TypeByWeather.TryGetValue(weatherId, out var t) ? t : Type;
 
+        /// <summary>Extra effects when this STATUS move is used as a Z move (they run before its own effects).</summary>
+        public IReadOnlyList<MoveEffect> ZEffects { get; }
+
         public bool HasTag(string tag)
         {
             foreach (var t in Tags) if (string.Equals(t, tag, StringComparison.OrdinalIgnoreCase)) return true;
@@ -169,8 +172,10 @@ namespace CTEditor.GameDefinition.Domain.Moves
             bool attackStatFromTarget = false,
             IReadOnlyList<string> tags = null,
             IReadOnlyList<Condition> requirements = null,
-            IReadOnlyDictionary<string, Id<ElementType>> typeByWeather = null)
+            IReadOnlyDictionary<string, Id<ElementType>> typeByWeather = null,
+            IReadOnlyList<MoveEffect> zEffects = null)
         {
+            ZEffects = zEffects == null ? Array.Empty<MoveEffect>() : new List<MoveEffect>(zEffects);
             var tbw = new Dictionary<string, Id<ElementType>>(StringComparer.OrdinalIgnoreCase);
             if (typeByWeather != null) foreach (var kv in typeByWeather) if (!string.IsNullOrWhiteSpace(kv.Key)) tbw[kv.Key.Trim()] = kv.Value;
             TypeByWeather = tbw;

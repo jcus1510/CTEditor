@@ -1,191 +1,232 @@
-﻿id;nombre;stab;resquicio;anula_clima;potencia_al_atacar;irascible;avisa_al_entrar;atrapa;atrapa_en_suelo;mal_sueño;sin_criticos;no_bajan;poca_vida_tipo;poca_vida_umbral;poca_vida_mult;stats_condicionales;inmune_climas;impide_bajadas;cambio_color;si_bajan_stat;si_bajan_etapas;precision_mod;invierte_etapas;anula_al_recibir;estado_por_contacto;prob_contacto;bloquea_etiquetas;descarga;clima_al_entrar;clima_al_entrar_turnos;ps_por_clima;inmune_tipos;cura_al_absorber;potencia_al_recibir;madrugar;estados_por_contacto;potencia_absorbido;tipo_por_clima;umbral_bayas;con_estado_stat;con_estado_mult;cosecha;peso_mult;modificadores;cura_con_clima;inmune_estados;impostor;allanamiento;sin_retroceder;entrada_stat;entrada_etapas;al_recibir_golpe;zoquete;sin_estados_con_clima;al_absorber_stat;al_absorber_etapas;lodo_liquido;espejo_magico;solo_daño_directo;atrapa_tipos;rompemoldes;veleta;al_debilitar_stat;al_debilitar_etapas;cura_al_retirarse;cura_ps_al_retirarse;gas_reactivo;indefenso;normalidad;inmune_etiquetas;hurto;fin_turno_cura;fin_turno_con_estado;anula_daño_estado;estado_al_golpear;prob_al_golpear;prioridad_estado;presion;mutatipo;sin_retroceso;daño_por_contacto;siempre_escapa;evasion_mod;ignora_inmunidad;secundarios_mult;fin_turno_curar_estado;sin_secundarios;bloquea_secundarios;etapas_mult;encadenado;daño_critico;critico_extra;fin_turno_stat;fin_turno_etapas;rezagado;al_retroceder_stat;al_retroceder_etapas;hace_retroceder;viscosidad;sin_ko_directo;robustez;no_cambio_forzado;sincronia;daño_recibido_tipo;rastro;ausente;ignorante;nerviosismo;superguarda;contagia_habilidad;baya_extra;roba_objeto;normal_a_tipo;normal_a_tipo_x;tipo_prioridad;prioridad_tipo;contacto_baja_stat;contacto_baja_etapas
-adaptability;Adaptable;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-aftermath;Detonación;;25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-air_lock;Bucle Aire;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-analytic;Cálculo Final;;;;x1,3 [si rival.ya_actuo];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-anger_point;Irascible;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-anticipation;Anticipación;;;;;;peligro;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-arena_trap;Trampa Arena;;;;;;;si;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-aroma_veil;Velo Aroma;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;taunt|torment|heal_block|infatuation;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-aura_break;Rompeaura;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-bad_dreams;Mal Sueño;;;;;;;;;12,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-battle_armor;Armadura Batalla;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-big_pecks;Sacapecho;;;;;;;;;;;defense;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-blaze;Mar Llamas;;;;;;;;;;;;fire;33;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-bulletproof;Antibalas;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;bomba;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-cheek_pouch;Carrillo;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;33,33;;;;;;;
-chlorophyll;Clorofila;;;;;;;;;;;;;;;speed:x2 [si clima=sun];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-clear_body;Cuerpo Puro;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-cloud_nine;Aclimatación;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-color_change;Cambio Color;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-competitive;Tenacidad;;;;;;;;;;;;;;;;;;;sp_attack;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-compound_eyes;Ojo Compuesto;;;;;;;;;;;;;;;;;;;;;x1,3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-contrary;Respondón;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-cursed_body;Cuerpo Maldito;;;;;;;;;;;;;;;;;;;;;;;30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-cute_charm;Gran Encanto;;;;;;;;;;;;;;;;;;;;;;;;infatuation;30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-damp;Humedad;;;;;;;;;;;;;;;;;;;;;;;;;;explosion;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-dark_aura;Aura Oscura;;;;x1,33 [si mov.tipo=dark];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-defeatist;Flaqueza;;;;;;;;;;;;;;;attack:x0,5 [si propio.vida<=50] | sp_attack:x0,5 [si propio.vida<=50];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-defiant;Competitivo;;;;;;;;;;;;;;;;;;;attack;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-download;Descarga;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-drizzle;Llovizna;;;;;;;;;;;;;;;;;;;;;;;;;;;;rain;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-drought;Sequía;;;;;;;;;;;;;;;;;;;;;;;;;;;;sun;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-dry_skin;Piel Seca;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;rain:12,5|sun:-12,5;water;25;x1,25 [si mov.tipo=fire];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-early_bird;Madrugar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-effect_spore;Efecto Espora;;;;;;;;;;;;;;;;;;;;;;;;;30;;;;;;;;;;poison|paralysis|sleep;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-fairy_aura;Aura Feérica;;;;x1,33 [si mov.tipo=fairy];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-filter;Filtro;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;x0,75 [si propio.eficacia>1];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-flame_body;Cuerpo Llama;;;;;;;;;;;;;;;;;;;;;;;;burn;30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-flare_boost;Ímpetu Ardiente;;;;x1,5 [si propio.estado=burn & mov.categoria=especial];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-flash_fire;Absorbe Fuego;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;fire;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-flower_gift;Don Floral;;;;;;;;;;;;;;;attack:x1,5 [si clima=sun] | sp_defense:x1,5 [si clima=sun];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-flower_veil;Velo Flor;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-forecast;Predicción;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;rain:water|sun:fire|hail:ice;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-forewarn;Alerta;;;;;;movimiento;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-friend_guard;Compiescolta;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-frisk;Cacheo;;;;;;objeto;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-fur_coat;Pelaje Recio;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;defense:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-gale_wings;Alas Vendaval;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;flying;1;;
-gluttony;Gula;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;50;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-gooey;Baba;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;speed;-1
-grass_pelt;Manto Frondoso;;;;;;;;;;;;;;;defense:x1,5 [si campo=grassy_terrain];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-guts;Agallas;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;attack;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-harvest;Cosecha;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;50;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-healer;Alma Cura;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-heatproof;Ignífugo;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;x0,5 [si mov.tipo=fire];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-heavy_metal;Metal Pesado;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-honey_gather;Recogemiel;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-huge_power;Potencia;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;attack:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-hustle;Entusiasmo;;;;;;;;;;;;;;;;;;;;;x0,8 [si mov.categoria=fisico];;;;;;;;;;;;;;;;;;;;;;attack:1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-hydration;Hidratación;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;rain;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-hyper_cutter;Corte Fuerte;;;;;;;;;;;attack;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-ice_body;Gélido;;;;;;;;;;;;;;;;hail;;;;;;;;;;;;;;hail:6,25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-illuminate;Iluminación;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-illusion;Ilusión;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-immunity;Inmunidad;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;poison|toxic;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-imposter;Impostor;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-infiltrator;Allanamiento;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-inner_focus;Fuerza Mental;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-insomnia;Insomnio;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sleep|drowsy;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-intimidate;Intimidación;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;attack;-1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-iron_barbs;Punta Acero;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;12,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-iron_fist;Puño Férreo;;;;x1,2 [si mov.etiqueta=puño];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-justified;Justiciero;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;attack:+1 [si mov.tipo=dark];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-keen_eye;Vista Lince;;;;;;;;;;;accuracy;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-klutz;Zoquete;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-leaf_guard;Defensa Hoja;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sun;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-levitate;Levitación;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ground;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-light_metal;Metal Liviano;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;0,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-lightning_rod;Pararrayos;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;electric;;;;;;;;;;;;;;;;;;;;;;;sp_attack;1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-limber;Flexibilidad;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;paralysis;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-liquid_ooze;Lodo Líquido;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-magic_bounce;Espejo Mágico;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-magic_guard;Muro Mágico;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-magician;Prestidigitador;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;
-magma_armor;Escudo Magma;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;freeze;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-magnet_pull;Imán;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;steel;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-marvel_scale;Escama Especial;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;defense;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-mega_launcher;Megadisparador;;;;x1,5 [si mov.etiqueta=pulso];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-minus;Menos;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-mold_breaker;Rompemoldes;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-moody;Veleta;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-motor_drive;Electromotor;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;electric;;;;;;;;;;;;;;;;;;;;;;;speed;1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-moxie;Autoestima;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;attack;1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-multiscale;Multiescamas;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;x0,5 [si propio.vida>=100];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-multitype;Multitipo;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-mummy;Momia;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;
-natural_cure;Cura Natural;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-neutralizing_gas;Gas Reactivo;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-no_guard;Indefenso;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-normalize;Normalidad;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-oblivious;Despiste;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;infatuation;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-overcoat;Funda;;;;;;;;;;;;;;;;sandstorm|hail;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;polvo;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-overgrow;Espesura;;;;;;;;;;;;grass;33;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-own_tempo;Ritmo Propio;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;confusion;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-pickpocket;Hurto;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-pickup;Recogida;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-pixilate;Piel Feérica;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;fairy;1,3;;;;
-plus;Más;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-poison_heal;Antídoto;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;12,5;si;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-poison_point;Punto Tóxico;;;;;;;;;;;;;;;;;;;;;;;;poison;30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-poison_touch;Toque Tóxico;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;poison;30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-prankster;Bromista;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-pressure;Presión;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-protean;Mutatipo;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-pure_power;Energía Pura;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;attack:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-quick_feet;Pies Rápidos;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;speed;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-rain_dish;Cura Lluvia;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;rain:6,25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-rattled;Cobardía;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;speed:+1 [si mov.tipo=dark] | speed:+1 [si mov.tipo=bug] | speed:+1 [si mov.tipo=ghost];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-reckless;Audaz;;;;x1,2 [si mov.etiqueta=retroceso];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-refrigerate;Piel Helada;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;ice;1,3;;;;
-regenerator;Regeneración;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;33,33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-rivalry;Rivalidad;;;;x1,25 [si mismo_genero] | x0,75 [si genero_opuesto];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-rock_head;Cabeza Roca;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-rough_skin;Piel Tosca;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;12,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-run_away;Fuga;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sand_force;Poder Arena;;;;x1,3 [si clima=sandstorm & mov.tipo=rock] | x1,3 [si clima=sandstorm & mov.tipo=ground] | x1,3 [si clima=sandstorm & mov.tipo=steel];;;;;;;;;;;;sandstorm;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sand_rush;Ímpetu Arena;;;;;;;;;;;;;;;speed:x2 [si clima=sandstorm];sandstorm;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sand_stream;Chorro Arena;;;;;;;;;;;;;;;;sandstorm;;;;;;;;;;;;sandstorm;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sand_veil;Velo Arena;;;;;;;;;;;;;;;;sandstorm;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;x0,8 [si clima=sandstorm];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sap_sipper;Herbívoro;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;grass;;;;;;;;;;;;;;;;;;;;;;;attack;1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-scrappy;Intrépido;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;normal|fighting;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-serene_grace;Dicha;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-shadow_tag;Sombra Trampa;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sharpness;Cortante;;;;x1,5 [si mov.etiqueta=corte];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-shed_skin;Mudar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;33,33;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sheer_force;Potencia Bruta;;;;x1,3 [si mov.secundario];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-shell_armor;Caparazón;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-shield_dust;Polvo Escudo;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-simple;Simple;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-skill_link;Encadenado;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-slow_start;Inicio Lento;;;;;;;;;;;;;;;attack:x0,5 [si propio.turnos_campo<5] | speed:x0,5 [si propio.turnos_campo<5];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-slush_rush;Quitanieves;;;;;;;;;;;;;;;speed:x2 [si clima=hail];hail;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sniper;Francotirador;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;
-snow_cloak;Manto Níveo;;;;;;;;;;;;;;;;hail;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;x0,8 [si clima=hail];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-snow_warning;Nevada;;;;;;;;;;;;;;;;hail;;;;;;;;;;;;hail;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-solar_power;Poder Solar;;;;x1,5 [si mov.categoria=especial & clima=sun];;;;;;;;;;;;;;;;;;;;;;;;;;sun:-12,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-solid_rock;Roca Sólida;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;x0,75 [si propio.eficacia>1];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-soundproof;Insonorizar;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sonido;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-speed_boost;Impulso;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;speed;1;;;;;;;;;;;;;;;;;;;;;;;;
-stall;Rezagado;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;
-stance_change;Cambio Táctico;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-static;Electricidad Estática;;;;;;;;;;;;;;;;;;;;;;;;paralysis;30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-steadfast;Impasible;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;speed;1;;;;;;;;;;;;;;;;;;;;;
-stench;Hedor;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;10;;;;;;;;;;;;;;;;;;;;
-sticky_hold;Viscosidad;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;
-storm_drain;Colector;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;water;;;;;;;;;;;;;;;;;;;;;;;sp_attack;1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-strong_jaw;Mandíbula Fuerte;;;;x1,5 [si mov.etiqueta=mordisco];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sturdy;Robustez;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;si;;;;;;;;;;;;;;;;;
-suction_cups;Ventosas;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;
-super_luck;Afortunado;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1;;;;;;;;;;;;;;;;;;;;;;;;;;
-swarm;Enjambre;;;;;;;;;;;;bug;33;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-sweet_veil;Velo Dulce;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sleep|drowsy;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-swift_swim;Nado Rápido;;;;;;;;;;;;;;;speed:x2 [si clima=rain];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-symbiosis;Simbiosis;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-synchronize;Sincronía;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;
-tangled_feet;Tumbos;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;x0,5 [si propio.estado=confusion];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-technician;Experto;;;;x1,5 [si mov.potencia<=60];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-telepathy;Telepatía;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-teravolt;Terravoltaje;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-thick_fat;Sebo;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;fire:0,5|ice:0,5;;;;;;;;;;;;;;
-tinted_lens;Cromolente;;;;x2 [si rival.eficacia<1];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-torrent;Torrente;;;;;;;;;;;;water;33;1,5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-tough_claws;Garra Dura;;;;x1,3 [si mov.contacto];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-toxic_boost;Ímpetu Tóxico;;;;x1,5 [si propio.estado=poison & mov.categoria=fisico] | x1,5 [si propio.estado=toxic & mov.categoria=fisico];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-trace;Calco;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;
-truant;Ausente;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;
-turboblaze;Turbollama;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-unaware;Ignorante;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;;
-unburden;Liviano;;;;;;;;;;;;;;;speed:x2 [si propio.perdio_objeto];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-unnerve;Nerviosismo;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;;
-victory_star;Tinovictoria;;;;;;;;;;;;;;;;;;;;;x1,1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-vital_spirit;Espíritu Vital;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;sleep|drowsy;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-volt_absorb;Absorbe Electricidad;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;electric;25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-water_absorb;Absorbe Agua;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;water;25;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-water_veil;Velo Agua;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;burn;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-weak_armor;Armadura Frágil;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;defense:-1 [si mov.categoria=fisico] | speed:+1 [si mov.categoria=fisico];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-white_smoke;Humo Blanco;;;;;;;;;;;;;;;;;si;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-wind_rider;Surcavientos;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-wonder_guard;Superguarda;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;si;;;;;;;;;
-wonder_skin;Piel Milagro;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;x0,5 [si mov.categoria=estado];;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-zen_mode;Modo Daruma;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+﻿id;nombre;efectos
+adaptability;Adaptable;siempre: stab x2
+aftermath;Detonación;"contacto [si propio.vida<=0]: perder 25%; al_rival"
+air_lock;Bucle Aire;siempre: anula_clima
+analytic;Cálculo Final;siempre [si rival.ya_actuo]: potencia x1,3
+anger_point;Irascible;tras_golpe: irascible
+anticipation;Anticipación;al_entrar: avisar peligro
+arena_trap;Trampa Arena;siempre: atrapar | siempre: atrapar_en_suelo
+aroma_veil;Velo Aroma;siempre: inmune_estado taunt,torment,heal_block,infatuation
+aura_break;Rompeaura;
+bad_dreams;Mal Sueño;"fin_de_turno [si rival.estado=sleep]: perder 12,5%; al_rival"
+battery;Batería;
+battle_armor;Armadura Batalla;siempre: sin_criticos
+battle_bond;Fuerte Afecto;
+beast_boost;Ultraimpulso;
+berserk;Cólera;"tras_golpe [si propio.vida<=50]: etapa sp_attack +1; veces=1"
+big_pecks;Sacapecho;siempre: sin_bajadas defense
+blaze;Mar Llamas;siempre [si mov.tipo=fire & propio.vida<=33]: daño x1,5
+bulletproof;Antibalas;siempre: inmune_etiqueta bomba
+cheek_pouch;Carrillo;siempre: baya_extra 33,33%
+chlorophyll;Clorofila;siempre [si clima=sun]: stat speed x2
+clear_body;Cuerpo Puro;siempre: sin_bajadas
+cloud_nine;Aclimatación;siempre: anula_clima
+color_change;Cambio Color;siempre: cambio_color
+comatose;Letargo Perenne;siempre: inmune_estado paralysis,sleep,freeze,burn,poison,toxic
+competitive;Tenacidad;al_bajarle_stat: etapa sp_attack +2
+compound_eyes;Ojo Compuesto;siempre: precision x1,3
+contrary;Respondón;siempre: invierte_etapas
+corrosion;Corrosión;
+cursed_body;Cuerpo Maldito;"tras_golpe: anular; prob=30"
+cute_charm;Gran Encanto;"contacto: poner_estado infatuation; al_rival; prob=30"
+damp;Humedad;siempre: bloquea_etiqueta explosion
+dancer;Pareja de Baile;
+dark_aura;Aura Oscura;siempre [si mov.tipo=dark]: potencia x1,33
+dazzling;Cuerpo Vívido;
+defeatist;Flaqueza;siempre [si propio.vida<=50]: stat attack x0,5 | siempre [si propio.vida<=50]: stat sp_attack x0,5
+defiant;Competitivo;al_bajarle_stat: etapa attack +2
+disguise;Disfraz;"antes_de_golpe: daño_recibido x0; veces=1"
+download;Descarga;al_entrar: descarga
+drizzle;Llovizna;al_entrar: poner_clima rain 0
+drought;Sequía;al_entrar: poner_clima sun 0
+dry_skin;Piel Seca;siempre: inmune water | al_absorber: curar 25% | siempre [si mov.tipo=fire]: potencia_recibida x1,25 | fin_de_turno [si clima=rain]: curar 12,5% | fin_de_turno [si clima=sun]: perder 12,5%
+early_bird;Madrugar;siempre: madrugar
+effect_spore;Efecto Espora;"contacto: poner_estado poison,paralysis,sleep; al_rival; prob=30"
+electric_surge;Electrogénesis;al_entrar: poner_lado electric_terrain
+emergency_exit;Retirada;
+fairy_aura;Aura Feérica;siempre [si mov.tipo=fairy]: potencia x1,33
+filter;Filtro;siempre [si propio.eficacia>1]: potencia_recibida x0,75
+flame_body;Cuerpo Llama;"contacto: poner_estado burn; al_rival; prob=30"
+flare_boost;Ímpetu Ardiente;siempre [si propio.estado=burn & mov.categoria=especial]: potencia x1,5
+flash_fire;Absorbe Fuego;siempre: inmune fire | al_absorber: potencia_absorbido
+flower_gift;Don Floral;siempre [si clima=sun]: stat attack x1,5 | siempre [si clima=sun]: stat sp_defense x1,5
+flower_veil;Velo Flor;
+fluffy;Peluche;siempre [si mov.contacto]: potencia_recibida x0,5 | siempre [si mov.tipo=fire]: potencia_recibida x2
+forecast;Predicción;siempre [si clima=rain]: cambiar_tipo water | siempre [si clima=sun]: cambiar_tipo fire | siempre [si clima=hail]: cambiar_tipo ice
+forewarn;Alerta;al_entrar: avisar movimiento
+friend_guard;Compiescolta;
+frisk;Cacheo;al_entrar: avisar objeto
+full_metal_body;Guardia Metálica;siempre: sin_bajadas
+fur_coat;Pelaje Recio;siempre: stat defense x2
+gale_wings;Alas Vendaval;siempre [si mov.tipo=flying]: prioridad +1
+galvanize;Piel Eléctrica;siempre: normal_a_tipo electric x1,2
+gluttony;Gula;siempre: umbral_bayas 50%
+gooey;Baba;"contacto: etapa speed -1; al_rival"
+grass_pelt;Manto Frondoso;siempre [si campo=grassy_terrain]: stat defense x1,5
+grassy_surge;Herbogénesis;al_entrar: poner_lado grassy_terrain
+guts;Agallas;siempre [si propio.estado]: stat attack x1,5
+harvest;Cosecha;fin_de_turno: cosecha 50%
+healer;Alma Cura;
+heatproof;Ignífugo;siempre [si mov.tipo=fire]: potencia_recibida x0,5
+heavy_metal;Metal Pesado;siempre: peso x2
+honey_gather;Recogemiel;
+huge_power;Potencia;siempre: stat attack x2
+hustle;Entusiasmo;siempre: stat attack x1,5 | siempre [si mov.categoria=fisico]: precision x0,8
+hydration;Hidratación;fin_de_turno [si clima=rain]: curar_estado
+hyper_cutter;Corte Fuerte;siempre: sin_bajadas attack
+ice_body;Gélido;siempre: inmune_clima hail | fin_de_turno [si clima=hail]: curar 6,25%
+illuminate;Iluminación;
+illusion;Ilusión;
+immunity;Inmunidad;siempre: inmune_estado poison,toxic
+imposter;Impostor;al_entrar: impostor
+infiltrator;Allanamiento;siempre: allanamiento
+innards_out;Revés;
+inner_focus;Fuerza Mental;siempre: sin_retroceder
+insomnia;Insomnio;siempre: inmune_estado sleep,drowsy
+intimidate;Intimidación;"al_entrar: etapa attack -1; al_rival"
+iron_barbs;Punta Acero;"contacto: perder 12,5%; al_rival"
+iron_fist;Puño Férreo;siempre [si mov.etiqueta=puño]: potencia x1,2
+justified;Justiciero;tras_golpe [si mov.tipo=dark]: etapa attack +1
+keen_eye;Vista Lince;siempre: sin_bajadas accuracy
+klutz;Zoquete;siempre: zoquete
+leaf_guard;Defensa Hoja;siempre [si clima=sun]: inmune_estado
+levitate;Levitación;siempre: inmune ground
+light_metal;Metal Liviano;siempre: peso x0,5
+lightning_rod;Pararrayos;siempre: inmune electric | al_absorber: etapa sp_attack +1
+limber;Flexibilidad;siempre: inmune_estado paralysis
+liquid_ooze;Lodo Líquido;siempre: lodo_liquido
+liquid_voice;Voz Fluida;
+long_reach;Remoto;
+magic_bounce;Espejo Mágico;siempre: espejo_magico
+magic_guard;Muro Mágico;siempre: solo_daño_directo
+magician;Prestidigitador;al_hacer_daño: roba_objeto
+magma_armor;Escudo Magma;siempre: inmune_estado freeze
+magnet_pull;Imán;siempre: atrapar steel
+marvel_scale;Escama Especial;siempre [si propio.estado]: stat defense x1,5
+mega_launcher;Megadisparador;siempre [si mov.etiqueta=pulso]: potencia x1,5
+merciless;Ensañamiento;siempre [si rival.estado=poison]: critico +3 | siempre [si rival.estado=toxic]: critico +3
+minus;Menos;
+misty_surge;Nebulogénesis;al_entrar: poner_lado misty_terrain
+mold_breaker;Rompemoldes;siempre: rompemoldes
+moody;Veleta;fin_de_turno: veleta
+motor_drive;Electromotor;siempre: inmune electric | al_absorber: etapa speed +1
+moxie;Autoestima;al_debilitar: etapa attack +1
+multiscale;Multiescamas;siempre [si propio.vida>=100]: potencia_recibida x0,5
+multitype;Multitipo;
+mummy;Momia;contacto: contagia_habilidad
+natural_cure;Cura Natural;al_retirarse: curar_estado
+neuroforce;Fuerza Cerebral;siempre [si rival.eficacia>1]: daño x1,25
+neutralizing_gas;Gas Reactivo;siempre: gas_reactivo
+no_guard;Indefenso;siempre: indefenso
+normalize;Normalidad;siempre: normalidad
+oblivious;Despiste;siempre: inmune_estado infatuation
+overcoat;Funda;siempre: inmune_clima sandstorm,hail | siempre: inmune_etiqueta polvo
+overgrow;Espesura;siempre [si mov.tipo=grass & propio.vida<=33]: daño x1,5
+own_tempo;Ritmo Propio;siempre: inmune_estado confusion
+pickpocket;Hurto;contacto: hurto
+pickup;Recogida;
+pixilate;Piel Feérica;siempre: normal_a_tipo fairy x1,3
+plus;Más;
+poison_heal;Antídoto;fin_de_turno [si propio.estado]: curar 12,5% | siempre: anula_daño_estado
+poison_point;Punto Tóxico;"contacto: poner_estado poison; al_rival; prob=30"
+poison_touch;Toque Tóxico;"al_hacer_daño [si mov.contacto]: poner_estado poison; al_rival; prob=30"
+power_construct;Agrupamiento;
+power_of_alchemy;Reacción Química;
+prankster;Bromista;siempre [si mov.categoria=estado]: prioridad +1
+pressure;Presión;siempre: presion
+prism_armor;Armadura Prisma;siempre [si propio.eficacia>1]: potencia_recibida x0,75
+protean;Mutatipo;siempre: mutatipo
+psychic_surge;Psicogénesis;al_entrar: poner_lado psychic_terrain
+pure_power;Energía Pura;siempre: stat attack x2
+queenly_majesty;Regia Presencia;
+quick_feet;Pies Rápidos;siempre [si propio.estado]: stat speed x1,5
+rain_dish;Cura Lluvia;fin_de_turno [si clima=rain]: curar 6,25%
+rattled;Cobardía;tras_golpe [si mov.tipo=dark]: etapa speed +1 | tras_golpe [si mov.tipo=bug]: etapa speed +1 | tras_golpe [si mov.tipo=ghost]: etapa speed +1
+receiver;Receptor;
+reckless;Audaz;siempre [si mov.etiqueta=retroceso]: potencia x1,2
+refrigerate;Piel Helada;siempre: normal_a_tipo ice x1,3
+regenerator;Regeneración;al_retirarse: curar 33,33%
+rivalry;Rivalidad;siempre [si mismo_genero]: potencia x1,25 | siempre [si genero_opuesto]: potencia x0,75
+rks_system;Sistema Alfa;
+rock_head;Cabeza Roca;siempre: sin_retroceso
+rough_skin;Piel Tosca;"contacto: perder 12,5%; al_rival"
+run_away;Fuga;siempre: siempre_escapa
+sand_force;Poder Arena;siempre: inmune_clima sandstorm | siempre [si clima=sandstorm & mov.tipo=rock]: potencia x1,3 | siempre [si clima=sandstorm & mov.tipo=ground]: potencia x1,3 | siempre [si clima=sandstorm & mov.tipo=steel]: potencia x1,3
+sand_rush;Ímpetu Arena;siempre [si clima=sandstorm]: stat speed x2 | siempre: inmune_clima sandstorm
+sand_stream;Chorro Arena;siempre: inmune_clima sandstorm | al_entrar: poner_clima sandstorm 0
+sand_veil;Velo Arena;siempre: inmune_clima sandstorm | siempre [si clima=sandstorm]: evasion x0,8
+sap_sipper;Herbívoro;siempre: inmune grass | al_absorber: etapa attack +1
+schooling;Banco;
+scrappy;Intrépido;siempre: ignora_inmunidad normal,fighting
+serene_grace;Dicha;siempre: prob_secundarios x2
+shadow_shield;Guardia Espectro;siempre [si propio.vida>=100]: potencia_recibida x0,5
+shadow_tag;Sombra Trampa;siempre: atrapar
+sharpness;Cortante;siempre [si mov.etiqueta=corte]: potencia x1,5
+shed_skin;Mudar;"fin_de_turno: curar_estado; prob=33,33"
+sheer_force;Potencia Bruta;siempre [si mov.secundario]: potencia x1,3 | siempre: sin_secundarios
+shell_armor;Caparazón;siempre: sin_criticos
+shield_dust;Polvo Escudo;siempre: bloquea_secundarios
+shields_down;Escudo Limitado;siempre [si propio.vida>50]: inmune_estado
+simple;Simple;siempre: etapas_x x2
+skill_link;Encadenado;siempre: encadenado
+slow_start;Inicio Lento;siempre [si propio.turnos_campo<5]: stat attack x0,5 | siempre [si propio.turnos_campo<5]: stat speed x0,5
+slush_rush;Quitanieves;siempre [si clima=hail]: stat speed x2 | siempre: inmune_clima hail
+sniper;Francotirador;siempre: daño_critico x1,5
+snow_cloak;Manto Níveo;siempre: inmune_clima hail | siempre [si clima=hail]: evasion x0,8
+snow_warning;Nevada;siempre: inmune_clima hail | al_entrar: poner_clima hail 0
+solar_power;Poder Solar;siempre [si mov.categoria=especial & clima=sun]: potencia x1,5 | fin_de_turno [si clima=sun]: perder 12,5%
+solid_rock;Roca Sólida;siempre [si propio.eficacia>1]: potencia_recibida x0,75
+soul_heart;Coránima;al_debilitar: etapa sp_attack +1
+soundproof;Insonorizar;siempre: inmune_etiqueta sonido
+speed_boost;Impulso;fin_de_turno: etapa speed +1
+stakeout;Vigilante;siempre [si rival.turnos_campo<1]: daño x2
+stall;Rezagado;siempre: rezagado
+stamina;Firmeza;tras_golpe: etapa defense +1
+stance_change;Cambio Táctico;
+static;Electricidad Estática;"contacto: poner_estado paralysis; al_rival; prob=30"
+steadfast;Impasible;al_retroceder: etapa speed +1
+steelworker;Acero Templado;siempre [si mov.tipo=steel]: potencia x1,5
+stench;Hedor;"al_hacer_daño: retroceso; prob=10"
+sticky_hold;Viscosidad;siempre: viscosidad
+storm_drain;Colector;siempre: inmune water | al_absorber: etapa sp_attack +1
+strong_jaw;Mandíbula Fuerte;siempre [si mov.etiqueta=mordisco]: potencia x1,5
+sturdy;Robustez;antes_de_golpe [si propio.vida>=100]: aguantar | siempre: sin_ko_directo
+suction_cups;Ventosas;siempre: no_cambio_forzado
+super_luck;Afortunado;siempre: critico +1
+surge_surfer;Cola Surf;siempre [si campo=electric_terrain]: stat speed x2
+swarm;Enjambre;siempre [si mov.tipo=bug & propio.vida<=33]: daño x1,5
+sweet_veil;Velo Dulce;siempre: inmune_estado sleep,drowsy
+swift_swim;Nado Rápido;siempre [si clima=rain]: stat speed x2
+symbiosis;Simbiosis;
+synchronize;Sincronía;al_sufrir_estado: sincronia
+tangled_feet;Tumbos;siempre [si propio.estado=confusion]: evasion x0,5
+tangling_hair;Rizos Rebeldes;"contacto: etapa speed -1; al_rival"
+technician;Experto;siempre [si mov.potencia<=60]: potencia x1,5
+telepathy;Telepatía;
+teravolt;Terravoltaje;siempre: rompemoldes
+thick_fat;Sebo;antes_de_golpe [si mov.tipo=fire]: daño_recibido x0,5 | antes_de_golpe [si mov.tipo=ice]: daño_recibido x0,5
+tinted_lens;Cromolente;siempre [si rival.eficacia<1]: potencia x2
+torrent;Torrente;siempre [si mov.tipo=water & propio.vida<=33]: daño x1,5
+tough_claws;Garra Dura;siempre [si mov.contacto]: potencia x1,3
+toxic_boost;Ímpetu Tóxico;siempre [si propio.estado=poison & mov.categoria=fisico]: potencia x1,5 | siempre [si propio.estado=toxic & mov.categoria=fisico]: potencia x1,5
+trace;Calco;al_entrar: rastro
+triage;Primer Auxilio;
+truant;Ausente;siempre: ausente
+turboblaze;Turbollama;siempre: rompemoldes
+unaware;Ignorante;siempre: ignorante
+unburden;Liviano;siempre [si propio.perdio_objeto]: stat speed x2
+unnerve;Nerviosismo;siempre: nerviosismo
+victory_star;Tinovictoria;siempre: precision x1,1
+vital_spirit;Espíritu Vital;siempre: inmune_estado sleep,drowsy
+volt_absorb;Absorbe Electricidad;siempre: inmune electric | al_absorber: curar 25%
+water_absorb;Absorbe Agua;siempre: inmune water | al_absorber: curar 25%
+water_bubble;Pompa;antes_de_golpe [si mov.tipo=fire]: daño_recibido x0,5 | siempre [si mov.tipo=water]: potencia x2 | siempre: inmune_estado burn
+water_compaction;Hidrorrefuerzo;tras_golpe [si mov.tipo=water]: etapa defense +2
+water_veil;Velo Agua;siempre: inmune_estado burn
+weak_armor;Armadura Frágil;tras_golpe [si mov.categoria=fisico]: etapa defense -1 | tras_golpe [si mov.categoria=fisico]: etapa speed +1
+white_smoke;Humo Blanco;siempre: sin_bajadas
+wimp_out;Huida;
+wind_rider;Surcavientos;
+wonder_guard;Superguarda;siempre: superguarda
+wonder_skin;Piel Milagro;siempre [si mov.categoria=estado]: evasion x0,5
+zen_mode;Modo Daruma;

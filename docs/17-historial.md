@@ -36,7 +36,7 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
 | 5 | Importar/exportar en formato Showdown + nombres en inglés | ✅ |
 | 6 | Sets de competición de Smogon (IA por nivel, fijo o cambiante, selector) | ✅ |
 | 7 | Asistente «Cambiar de generación» (papelera por grupos, copia, Adaptar a las reglas) | ✅ |
-| 8 | 7.ª generación (variantes de Alola, movimientos Z, pack Gen7) | ⏳ |
+| 8 | 7.ª generación (variantes de Alola, movimientos Z, pack Gen7) | ✅ |
 
 ## Después del paso 7
 
@@ -50,4 +50,32 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   traen todos sus objetos con todos sus efectos; el verificador revisa los efectos.
 - **Editor más rápido**: validación en caché, búsquedas por id indexadas, referencias en una sola pasada, listas
   virtuales, sin repintar al mover el ratón, papelera y recuentos en caché ([11](11-editor.md)).
+- **Sin carpeta de Plantillas**: las plantillas del editor de objetos son los objetos del pack/Excel elegido; la fuente de
+  efectos para generar packs pasa a `Tools/datos_fuente/objetos.csv`.
+- **Árbol de familia rápido**: grafo (padres, bases, variantes, cadenas) en caché por cambio de contenido y lista virtual.
+- **Habilidades por bloques**: `AbilityData` = nombre + efectos; momentos, acciones y comportamientos especiales nuevos;
+  las 190 habilidades convertidas y comparadas propiedad a propiedad con las antiguas (idénticas); bloques libres
+  ejecutados como los de un objeto; editor con tarjetas y plantillas del pack; `efectos` en Excel y en los packs;
+  «¿quién usa esto?» mira dentro de los efectos.
+- **Paso 8 — 7.ª generación**: pack Gen7 (807 especies, variantes de Alola, 709 movimientos, 231 habilidades, 195
+  entrenadores, 1301 sets); `completar_fuente.py` para completar `datos_fuente` de una generación nueva; momentos y
+  acciones nuevos para las habilidades de la 7.ª (campos al entrar `poner_lado`, Búnker, Campo Psíquico bloquea la
+  prioridad); **movimientos Z** (mecánica con usos, Pulsera Z, tabla de potencias y 25 % a través de Protección;
+  35 cristales Z como objetos con bloques `movimiento_z`; efectos Z de los movimientos de estado; botón Z; IA;
+  `usa_z` en entrenadores); condiciones `mov.id` y `especie`; reglas de la 7.ª activan los movimientos Z.
+- **Aplicación CTEditor — fase 0-1**: propuesta ([PROPUESTA_APLICACION](PROPUESTA_APLICACION.md)); ensamblados
+  `CTEditor.Art.Domain` (imagen de píxeles, corte con tamaño/desplazamiento/separación, tiles vacíos y repetidos,
+  sugerencia de tamaño, hojas de personaje XP y VX/MV) y `CTEditor.Project` (PNG sin Unity, lectura y escritura;
+  catálogo de «graficos/»), con `TileSlicingTests`.
+- **Aplicación — base del entorno**: decisiones (base RPG Maker XP / Essentials, tile de 32 px elegible al crear,
+  tema oscuro, entorno editable); JSON propio, `proyecto.json`, archivo de corte con propiedades de tile de RPG Maker XP
+  y etiquetas de Essentials; `CTEditor.Workspace` (temas, paneles acoplables, distribuciones guardadas, atajos).
+- **Aplicación — fase 2** ([20](20-aplicacion.md)): decisiones de exportación (motor listo + datos, Windows primero,
+  datos empaquetados con cifrado opcional; después proyecto Unity). `Assets/CTEditor/App` con UI Toolkit: ventana
+  única a pantalla completa, inicio, menús, paneles acoplables, Recursos, asistente de corte, explorador,
+  personalización; `Tools/compilar_app` para compilarla sin Unity.
+- **Revisión DDD + fases 3 y 4**: `World.Domain`, `Editing` (casos de uso), repositorios, deshacer común y registros
+  extensibles ([03](03-arquitectura.md)); editor de mapas (árbol, herramientas, capas, propiedades de tile, inicio,
+  autoguardado), ▶ Jugar / Probar aquí con el jugador andando, editor de píxeles Retoque. Tests `MapEditingTests`,
+  `PixelEditingTests`.
 - **Documentación** completa por capítulos (esta carpeta).

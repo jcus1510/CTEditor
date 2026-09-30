@@ -39,7 +39,7 @@ Consecuencias de diseño que se repiten en todo el proyecto:
 - 7 niveles de IA (Novato → Injusto) con memoria del rival, predicción, sets de Smogon y megas.
 - Partida: equipo, PC, mochila, dinero, derrota, evoluciones, aprender movimientos, acciones fuera del combate.
 - Editor: ~30 ventanas en español, Centro de Contenido, papelera, validador, Excel, Showdown, asistente «Cambiar de
-  generación», packs Gen1…Gen6 fieles a su generación.
+  generación», packs Gen1…Gen7 fieles a su generación.
 - Interfaz del juego: menús y caja de texto editables (o diseñados en la escena), controles configurables.
 
 Lo pendiente está en [18](18-pendientes.md).

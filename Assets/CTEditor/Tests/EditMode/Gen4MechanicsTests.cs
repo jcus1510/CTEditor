@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.SharedKernel.Abstractions;
 using CTEditor.SharedKernel.Events;
 using CTEditor.SharedKernel.ValueObjects;
@@ -79,8 +80,8 @@ namespace CTEditor.Tests.EditMode
 
         private static readonly AbilityDefinition[] Abilities =
         {
-            new AbilityDefinition(new AbilityId("liquid_ooze"), "Lodo Líquido", extras: new AbilityExtras { LiquidOoze = true }),
-            new AbilityDefinition(new AbilityId("unaware"), "Ignorante", extras: new AbilityExtras { IgnoresStages = true }),
+            new AbilityDefinition(new AbilityId("liquid_ooze"), "Lodo Líquido", new[] { new EffectBlock(EffectTrigger.Passive, EffectAction.Special, reference: "lodo_liquido") }),
+            new AbilityDefinition(new AbilityId("unaware"), "Ignorante", new[] { new EffectBlock(EffectTrigger.Passive, EffectAction.Special, reference: "ignorante") }),
         };
 
         private static BattleParticipant Mon(string id, string type, int speed, float kg = 50f, string ability = null, int hp = 300,

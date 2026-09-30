@@ -13,6 +13,12 @@ contextos; Unity solo aporta el almacenamiento (ScriptableObjects), la interfaz 
 | `CTEditor.Party.Domain` | `Runtime/Party/Domain` | SharedKernel, GameDefinition.Domain | Individuos y equipo ([07](07-equipo-y-progresion.md)). |
 | `CTEditor.Battle.Domain` | `Runtime/Battle/Domain` | SharedKernel, GameDefinition.Domain | Motor de combate ([06](06-combate.md)). **No conoce Party.** |
 | `CTEditor.Eventing.Domain` | `Runtime/Eventing/Domain` | SharedKernel, GameDefinition.Domain, GameContracts | Guiones de efectos del mundo. |
+| `CTEditor.Art.Domain` | `Runtime/Art/Domain` | SharedKernel | Imagen de píxeles, corte (`SliceDefinition`), hojas de personaje, herramientas de píxeles y sus comandos, `IImageRepository`. |
+| `CTEditor.World.Domain` | `Runtime/World/Domain` | SharedKernel, Art.Domain | El MUNDO: tilesets y propiedades de tile, terrenos, mapas, capas, árbol de mapas, herramientas de mapa y sus comandos, reglas de paso, el jugador andando (`OverworldSim`), `IMapRepository`, `ITilesetRepository`. |
+| `CTEditor.Editing` | `Runtime/Editing` | SharedKernel, Art.Domain, World.Domain | Capa de APLICACIÓN del editor: casos de uso `MapEditorSession` y `PixelEditorSession` (estado compartido por los paneles, deshacer, guardar). |
+| `CTEditor.Project` | `Runtime/Project` | Art.Domain, World.Domain | INFRAESTRUCTURA de la carpeta de proyecto: `proyecto.json`, JSON propio, PNG, catálogo de «graficos/», archivo de corte y los repositorios (`JsonMapRepository`, `FolderTilesetRepository`, `PngImageRepository`). |
+| `CTEditor.Workspace` | `Runtime/Workspace` | Project | Entorno de trabajo del usuario: tema, paneles, atajos (con registro para módulos nuevos). |
+| `CTEditor.App` | `App` | todo lo anterior + Input System | La aplicación (UI Toolkit): solo dibuja y reenvía el ratón y el teclado a las sesiones ([20](20-aplicacion.md)). |
 | `CTEditor.Adventure.Domain` | `Runtime/Adventure/Domain` | SharedKernel, GameDefinition.Domain, Party.Domain, Battle.Domain | La partida: orquesta combate y equipo ([08](08-aventura.md)). |
 | `CTEditor.GameDefinition` | `Runtime/GameDefinition/Infrastructure` | GameDefinition.Domain, SharedKernel, Adventure.Domain | ScriptableObjects y mappers ([10](10-infraestructura-unity.md)). |
 | `CTEditor.GameDefinition.Editor` | `Runtime/GameDefinition/Editor` | todo lo anterior (menos Eventing/Contracts) | El editor (solo plataforma Editor) ([11](11-editor.md)). |
@@ -78,3 +84,36 @@ AUTOR ──► ventanas del Editor / Excel ──► ScriptableObject *Data (.a
 | un efecto nuevo de objeto | `EffectAction` (al FINAL del enum) + ejecución en `TurnResolver.Items` (o Party/Adventure si es fuera de combate) + `EffectText` (etiqueta, parámetros, frase, clave Excel) + `EffectRules.IsSupported`. Ver [09](09-efectos-por-bloques.md). |
 | una categoría de contenido nueva | dominio + `*Data` + mapper + `ContentFolders` + ventana (`ContentEditorWindow<T>`) + `EditorCatalog` + esquema CSV + validador + catálogo en `GameData`/`ContentLibrary`/`EditorGameData`. |
 | una mecánica especial (Z, Dinamax...) | `MechanicKind` + ajustes en `MechanicDefinition` + `MechanicData`/mapper + un partial `TurnResolver.<Mecánica>.cs` + UI de combate. |
+
+
+## Aplicación: capas y revisión DDD
+
+```
+  App (UI Toolkit, Unity)              ← presentación: paneles, dibujo, ratón y teclado
+    │ llama a
+  Editing (casos de uso)               ← MapEditorSession, PixelEditorSession: estado, deshacer, guardar
+    │ usa                    ▲ implementa las interfaces del dominio
+  World.Domain · Art.Domain            ← reglas: mapas, tiles, paso, movimiento, píxeles (sin Unity, sin archivos)
+    ▲
+  Project (infraestructura)            ← JSON, PNG, carpetas: JsonMapRepository, FolderTilesetRepository...
+  SharedKernel                         ← CommandHistory / IEditCommand (deshacer común), Id, eventos
+```
+
+**Revisión (fase 3) — qué se corrigió para que escale:**
+- Las propiedades de tile, los terrenos y las reglas de paso estaban en `Project` (infraestructura). Ahora están en
+  `World.Domain`; `Project` solo traduce JSON ↔ dominio.
+- La interfaz leía y escribía archivos directamente. Ahora pasa por los casos de uso (`Editing`) y los repositorios:
+  el dominio define `IMapRepository`, `ITilesetRepository` e `IImageRepository`; `Project` los implementa. Cambiar
+  JSON por otra cosa (o usar memoria en los tests) no toca nada más.
+- Deshacer era por editor; ahora hay un historial común (`SharedKernel.Editing.CommandHistory`) y cada módulo aporta
+  sus comandos (`TilePaintCommand`, `MapStructureCommand`, `TileAttributeCommand`, `PixelPaintCommand`).
+- Listas cerradas convertidas en registros: `PanelCatalog.Register`, `ShortcutMap.RegisterAction`,
+  `PanelRegistry.Register` (App) y `TerrainCatalog.Register`. Un módulo nuevo se añade sin tocar el código existente.
+
+**Cómo añadir un módulo nuevo (p. ej. eventos, fase 7):**
+1. Dominio puro en `Runtime/<Contexto>/Domain` (modelo, reglas, comandos deshacibles, interfaz de repositorio).
+2. Caso de uso en `Runtime/Editing` (sesión con eventos que los paneles escuchan).
+3. Repositorio en `Runtime/Project` (archivos del proyecto).
+4. Panel en `App/Panels` registrado con `PanelCatalog.Register` + `PanelRegistry.Register`; acciones con
+   `ShortcutMap.RegisterAction`.
+5. Tests del dominio y del caso de uso (sin Unity).

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using CTEditor.GameDefinition.Domain.Abilities;
 using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Infrastructure.Acl;
@@ -13,7 +14,7 @@ namespace CTEditor.GameDefinition.Editor
     /// <summary>
     /// Draws an EffectBlockData[] as CARDS grouped by «when»: each card is «if [conditions] → [action] [parameters]» with
     /// dropdowns of what exists in the project (types, statuses, stats, weathers, moves...), never ids typed by hand.
-    /// Used by the item inspector (and later the ability inspector).
+    /// Used by the item inspector and the ability inspector ('ability' = true: ability triggers, actions and specials).
     /// </summary>
     public static class EffectBlocksGui
     {
@@ -49,12 +50,20 @@ namespace CTEditor.GameDefinition.Editor
                 case EffectRefKind.Type: return Options<ElementTypeData>();
                 case EffectRefKind.Status: case EffectRefKind.StatusList: return Options<StatusConditionData>();
                 case EffectRefKind.Stat: return StatOptions(a == EffectAction.ChangeStage);
-                case EffectRefKind.Weather: return Options<WeatherData>();
+                case EffectRefKind.StatList: return StatOptions(true);
+                case EffectRefKind.TypeList: return Options<ElementTypeData>();
+                case EffectRefKind.Weather: case EffectRefKind.WeatherList: return Options<WeatherData>();
+                case EffectRefKind.SideCondition: return Options<SideConditionData>();
+                case EffectRefKind.Announce: return (AnnounceIds, AnnounceNames);
+                case EffectRefKind.Special: return (AbilityEffects.Specials.Select(x => x.Key).ToArray(), AbilityEffects.Specials.Select(x => x.Label).ToArray());
                 case EffectRefKind.Move: return Options<MoveData>();
                 case EffectRefKind.Mechanic: return Options<MechanicData>();
                 default: return (new string[0], new string[0]);
             }
         }
+
+        private static readonly string[] AnnounceIds = { "objeto", "peligro", "movimiento" };
+        private static readonly string[] AnnounceNames = { "El objeto del rival (Cacheo)", "Si el rival tiene un movimiento peligroso (Anticipación)", "El movimiento más fuerte del rival (Alerta)" };
 
         /// <summary>Readable name of an id (for the sentences).</summary>
         public static string Name(EffectRefKind k, string id)
@@ -62,8 +71,10 @@ namespace CTEditor.GameDefinition.Editor
             if (string.IsNullOrWhiteSpace(id)) return "?";
             switch (k)
             {
-                case EffectRefKind.Stat: return StatLabels.NameOf(id);
-                case EffectRefKind.Type: return NameOf<ElementTypeData>(id);
+                case EffectRefKind.Stat: case EffectRefKind.StatList: return StatLabels.NameOf(id);
+                case EffectRefKind.Type: case EffectRefKind.TypeList: return NameOf<ElementTypeData>(id);
+                case EffectRefKind.WeatherList: return id == "*" ? "todos" : NameOf<WeatherData>(id);
+                case EffectRefKind.SideCondition: return NameOf<SideConditionData>(id);
                 case EffectRefKind.Status: case EffectRefKind.StatusList: return NameOf<StatusConditionData>(id);
                 case EffectRefKind.Weather: return NameOf<WeatherData>(id);
                 case EffectRefKind.Move: return NameOf<MoveData>(id);
@@ -80,8 +91,8 @@ namespace CTEditor.GameDefinition.Editor
 
         // ---------------- The list ----------------
 
-        /// <summary>Draws the whole list. 'accent' = the editor's colour.</summary>
-        public static void Draw(SerializedProperty effects, Color accent)
+        /// <summary>Draws the whole list. 'accent' = the editor's colour; 'ability' = the list of an ability.</summary>
+        public static void Draw(SerializedProperty effects, Color accent, bool ability = false)
         {
             if (effects == null) return;
             EditorTheme.Section($"Qué hace  ({effects.arraySize} efecto{(effects.arraySize == 1 ? "" : "s")})", accent);
@@ -89,16 +100,16 @@ namespace CTEditor.GameDefinition.Editor
                 EditorTheme.Paragraph("Todavía no hace nada. Añade un efecto («cuándo → qué») o parte de una plantilla por piezas.");
 
             int remove = -1, up = -1, down = -1;
-            foreach (var trigger in EffectText.AllTriggers)
+            foreach (var trigger in ability ? EffectText.AbilityTriggers : EffectText.AllTriggers)
             {
                 var indices = Enumerable.Range(0, effects.arraySize)
                     .Where(i => effects.GetArrayElementAtIndex(i).FindPropertyRelative("trigger").intValue == (int)trigger).ToList();
                 if (indices.Count == 0) continue;
                 EditorGUILayout.Space(2);
-                EditorGUILayout.LabelField(new GUIContent("▸ " + EffectText.Label(trigger), EffectText.Help(trigger)), EditorStyles.boldLabel);
+                EditorGUILayout.LabelField(new GUIContent("▸ " + EffectText.Label(trigger, ability), EffectText.Help(trigger)), EditorStyles.boldLabel);
                 foreach (int i in indices)
                 {
-                    var r = DrawCard(effects.GetArrayElementAtIndex(i), i, effects.arraySize, accent);
+                    var r = DrawCard(effects.GetArrayElementAtIndex(i), i, effects.arraySize, accent, ability);
                     if (r == CardResult.Remove) remove = i;
                     else if (r == CardResult.Up) up = i;
                     else if (r == CardResult.Down) down = i;
@@ -109,19 +120,34 @@ namespace CTEditor.GameDefinition.Editor
             else if (down >= 0 && down < effects.arraySize - 1) effects.MoveArrayElement(down, down + 1);
 
             EditorGUILayout.Space(4);
-            if (GUILayout.Button("+ Añadir efecto…", GUILayout.Height(22))) AddMenu(effects).ShowAsContext();
+            if (GUILayout.Button("+ Añadir efecto…", GUILayout.Height(22))) AddMenu(effects, ability).ShowAsContext();
         }
 
-        private static GenericMenu AddMenu(SerializedProperty effects)
+        private static GenericMenu AddMenu(SerializedProperty effects, bool ability)
         {
             var menu = new GenericMenu();
             var so = effects.serializedObject;
             string path = effects.propertyPath;
-            foreach (var t in EffectText.AllTriggers)
-                foreach (var a in EffectText.ActionsFor(t))
+            foreach (var t in ability ? EffectText.AbilityTriggers : EffectText.AllTriggers)
+                foreach (var a in ability ? EffectText.AbilityActionsFor(t) : EffectText.ActionsFor(t))
                 {
                     var trig = t; var act = a;
-                    menu.AddItem(new GUIContent($"{EffectText.Label(t)}/{EffectText.Label(a)}"), false, () =>
+                    if (act == EffectAction.Special)
+                    {
+                        // One entry per special behaviour (Rastro, Ausente...), under «Especial».
+                        foreach (var sp in AbilityEffects.Specials.Where(x => x.Trigger == trig))
+                        {
+                            var key = sp.Key; var amount = sp.UsesAmount ? 50f : 0f;
+                            menu.AddItem(new GUIContent($"{EffectText.Label(t, ability)}/Especial/{sp.Label}"), false, () =>
+                            {
+                                so.Update();
+                                Append(so.FindProperty(path), new EffectBlock(trig, EffectAction.Special, amount, key));
+                                so.ApplyModifiedProperties();
+                            });
+                        }
+                        continue;
+                    }
+                    menu.AddItem(new GUIContent($"{EffectText.Label(t, ability)}/{EffectText.Label(a)}"), false, () =>
                     {
                         so.Update();
                         Append(so.FindProperty(path), EffectText.Default(trig, act));
@@ -141,7 +167,7 @@ namespace CTEditor.GameDefinition.Editor
 
         private enum CardResult { None, Remove, Up, Down }
 
-        private static CardResult DrawCard(SerializedProperty el, int index, int count, Color accent)
+        private static CardResult DrawCard(SerializedProperty el, int index, int count, Color accent, bool ability)
         {
             var result = CardResult.None;
             var pTrigger = el.FindPropertyRelative("trigger");
@@ -152,10 +178,10 @@ namespace CTEditor.GameDefinition.Editor
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
             // Row 1: when / what / order / delete
             EditorGUILayout.BeginHorizontal();
-            var triggers = EffectText.AllTriggers;
-            int ti = EditorGUILayout.Popup(Array.IndexOf(triggers, trigger), triggers.Select(EffectText.Label).ToArray(), GUILayout.MinWidth(120));
+            var triggers = ability ? EffectText.AbilityTriggers : EffectText.AllTriggers;
+            int ti = EditorGUILayout.Popup(Array.IndexOf(triggers, trigger), triggers.Select(t => EffectText.Label(t, ability)).ToArray(), GUILayout.MinWidth(120));
             if (ti >= 0 && triggers[ti] != trigger) { pTrigger.intValue = (int)triggers[ti]; trigger = triggers[ti]; }
-            var actions = EffectText.ActionsFor(trigger).ToList();
+            var actions = (ability ? EffectText.AbilityActionsFor(trigger) : EffectText.ActionsFor(trigger)).ToList();
             if (!actions.Contains(action)) actions.Insert(0, action);
             int ai = EditorGUILayout.Popup(actions.IndexOf(action), actions.Select(EffectText.Label).ToArray(), GUILayout.MinWidth(140));
             if (ai >= 0 && actions[ai] != action)
@@ -180,12 +206,15 @@ namespace CTEditor.GameDefinition.Editor
             }
 
             // Parameters of the action
-            DrawReference(el.FindPropertyRelative("reference"), EffectText.RefOf(action), action);
-            DrawAmount(el.FindPropertyRelative("amount"), EffectText.AmountOf(action));
+            var pRef = el.FindPropertyRelative("reference");
+            DrawReference(pRef, EffectText.RefOf(action), action);
+            var amountKind = EffectText.AmountOf(action);
+            if (action == EffectAction.Special) amountKind = AbilityEffects.Special(pRef.stringValue)?.UsesAmount == true ? EffectAmountKind.Percent : EffectAmountKind.None;
+            DrawAmount(el.FindPropertyRelative("amount"), amountKind);
             if (EffectText.UsesTarget(action))
             {
                 var tp = el.FindPropertyRelative("target");
-                tp.intValue = EditorGUILayout.Popup("A quién", tp.intValue, new[] { "A quien lo lleva", "Al rival" });
+                tp.intValue = EditorGUILayout.Popup("A quién", tp.intValue, new[] { ability ? "A quien la tiene" : "A quien lo lleva", "Al rival" });
             }
 
             // Conditions
@@ -204,7 +233,8 @@ namespace CTEditor.GameDefinition.Editor
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("+ Condición", EditorStyles.miniButton, GUILayout.Width(90))) { conds.arraySize++; }
             var consumes = el.FindPropertyRelative("consumes");
-            consumes.boolValue = GUILayout.Toggle(consumes.boolValue, "Se gasta", GUILayout.Width(80));
+            if (!ability) consumes.boolValue = GUILayout.Toggle(consumes.boolValue, "Se gasta", GUILayout.Width(80));
+            else consumes.boolValue = false;   // an ability is never used up
             GUILayout.Label("Prob. %", GUILayout.Width(48));
             var chance = el.FindPropertyRelative("chance");
             chance.floatValue = Mathf.Clamp(EditorGUILayout.FloatField(chance.floatValue, GUILayout.Width(40)), 0f, 100f);
@@ -217,8 +247,8 @@ namespace CTEditor.GameDefinition.Editor
             // The sentence (what the engine will do)
             el.serializedObject.ApplyModifiedProperties();
             var block = ItemMapper.ToDomain(ReadData(el));
-            EditorTheme.Paragraph("→ " + EffectText.Describe(block, Name));
-            if (!EffectRules.IsSupported(block))
+            EditorTheme.Paragraph("→ " + EffectText.Describe(block, Name, ability));
+            if (!(ability ? AbilityEffects.IsSupported(block) : EffectRules.IsSupported(block)))
                 EditorGUILayout.HelpBox("Este efecto se guarda, pero el motor todavía no lo aplica con este «cuándo».", MessageType.Warning);
             EditorGUILayout.EndVertical();
             return result;
@@ -270,14 +300,40 @@ namespace CTEditor.GameDefinition.Editor
                 case EffectRefKind.StatusList:
                     StatusListButton(p);
                     return;
+                case EffectRefKind.TypeList:
+                {
+                    var (tids, tnames) = Options<ElementTypeData>();
+                    ListButton(p, "Tipos", action == EffectAction.Trap ? "Todos" : "— elige —", tids, tnames);
+                    return;
+                }
+                case EffectRefKind.StatList:
+                {
+                    var (sids, snames) = StatOptions(true);
+                    ListButton(p, "Estadísticas", "Todas", sids, snames);
+                    return;
+                }
+                case EffectRefKind.WeatherList:
+                {
+                    var (wids, wnames) = Options<WeatherData>();
+                    ListButton(p, "Climas", "— elige —", new[] { "*" }.Concat(wids).ToArray(), new[] { "Todos" }.Concat(wnames).ToArray());
+                    return;
+                }
+                case EffectRefKind.TagList:
+                {
+                    string shown = string.Join(", ", (p.stringValue ?? "").Split('|').Select(x => x.Trim()).Where(x => x.Length > 0));
+                    string typed = EditorGUILayout.TextField(new GUIContent("Etiquetas", "Las etiquetas de los movimientos, separadas por comas (sonido, polvo, bomba...)."), shown);
+                    if (typed != shown) p.stringValue = string.Join("|", typed.Split(',', '|').Select(x => x.Trim()).Where(x => x.Length > 0));
+                    return;
+                }
                 case EffectRefKind.Move:
                     MoveButton(p);
                     return;
             }
             var (ids, names) = OptionsFor(kind, action);
             string label = kind == EffectRefKind.Type ? "Tipo" : kind == EffectRefKind.Status ? "Estado" : kind == EffectRefKind.Stat ? "Estadística"
-                : kind == EffectRefKind.Weather ? "Clima" : kind == EffectRefKind.Mechanic ? "Mecánica" : "Qué";
-            bool allowAny = kind == EffectRefKind.Weather;
+                : kind == EffectRefKind.Weather ? "Clima" : kind == EffectRefKind.Mechanic ? "Mecánica" : kind == EffectRefKind.Special ? "Comportamiento"
+                : kind == EffectRefKind.Announce ? "Avisa de" : kind == EffectRefKind.SideCondition ? "Efecto / campo" : "Qué";
+            bool allowAny = kind == EffectRefKind.Weather && action != EffectAction.SetWeather;
             var shownIds = (allowAny ? new[] { "" } : new string[0]).Concat(ids).ToList();
             var shownNames = (allowAny ? new[] { "(cualquiera)" } : new string[0]).Concat(names).ToList();
             int cur = shownIds.IndexOf(p.stringValue ?? "");
@@ -285,6 +341,36 @@ namespace CTEditor.GameDefinition.Editor
             if (cur < 0) { shownIds.Insert(0, ""); shownNames.Insert(0, "— elige —"); cur = 0; }
             int pick = EditorGUILayout.Popup(label, cur, shownNames.ToArray());
             if (pick != cur) p.stringValue = shownIds[pick];
+        }
+
+        /// <summary>A multi-choice list stored as «a|b» (empty = 'empty').</summary>
+        private static void ListButton(SerializedProperty p, string label, string empty, string[] ids, string[] names)
+        {
+            var current = (p.stringValue ?? "").Split('|').Select(s => s.Trim()).Where(s => s.Length > 0).ToList();
+            string shown = current.Count == 0 ? empty : string.Join(", ", current.Select(id => { int i = Array.IndexOf(ids, id); return i >= 0 ? names[i] : id + " (no existe)"; }));
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel(label);
+            if (GUILayout.Button(shown + "  ▾", EditorStyles.popup))
+            {
+                var menu = new GenericMenu();
+                var so = p.serializedObject; string path = p.propertyPath;
+                menu.AddItem(new GUIContent(empty), current.Count == 0, () => { so.Update(); so.FindProperty(path).stringValue = ""; so.ApplyModifiedProperties(); });
+                menu.AddSeparator("");
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    string id = ids[i];
+                    menu.AddItem(new GUIContent(names[i]), current.Contains(id), () =>
+                    {
+                        so.Update();
+                        var list = (so.FindProperty(path).stringValue ?? "").Split('|').Select(s => s.Trim()).Where(s => s.Length > 0).ToList();
+                        if (list.Contains(id)) list.Remove(id); else list.Add(id);
+                        so.FindProperty(path).stringValue = string.Join("|", list);
+                        so.ApplyModifiedProperties();
+                    });
+                }
+                menu.ShowAsContext();
+            }
+            EditorGUILayout.EndHorizontal();
         }
 
         private static void StatusListButton(SerializedProperty p)

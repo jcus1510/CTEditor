@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
+using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 using Object = UnityEngine.Object;
 
@@ -138,7 +139,7 @@ namespace CTEditor.GameDefinition.Editor
             public ScriptableObject Owner;
         }
 
-        private enum FieldKind { ObjectRef, IdString, Nested }
+        private enum FieldKind { ObjectRef, IdString, Nested, Effect, Condition }
 
         private sealed class FieldPlan
         {
@@ -169,6 +170,9 @@ namespace CTEditor.GameDefinition.Editor
                 Type et = isList ? (ft.IsArray ? ft.GetElementType() : ft.GetGenericArguments()[0]) : ft;
                 FieldPlan fp = null;
                 if (typeof(Object).IsAssignableFrom(et)) fp = new FieldPlan { Kind = FieldKind.ObjectRef };
+                // Effect blocks and conditions keep ids as plain text whose kind depends on the action / condition.
+                else if (et == typeof(EffectBlockData)) fp = new FieldPlan { Kind = FieldKind.Effect };
+                else if (et == typeof(ConditionData)) fp = new FieldPlan { Kind = FieldKind.Condition };
                 else if (et == typeof(string))
                 {
                     var target = IdTargetOf(field);
@@ -226,6 +230,54 @@ namespace CTEditor.GameDefinition.Editor
                 case FieldKind.Nested:
                     Walk(value, fp.ElementType, path, s, depth + 1);
                     break;
+                case FieldKind.Effect:
+                {
+                    var b = (EffectBlockData)value;
+                    var refType = RefTarget(EffectText.RefOf(b.action));
+                    if (refType != null)
+                        foreach (var rid in (b.reference ?? "").Split('|'))
+                            FoundId(refType, rid.Trim(), path + ".reference", s);
+                    var conds = b.conditions ?? new ConditionData[0];
+                    for (int i = 0; i < conds.Length; i++) CheckCondition(conds[i], $"{path}.conditions.Array.data[{i}]", s);
+                    break;
+                }
+                case FieldKind.Condition:
+                    CheckCondition((ConditionData)value, path, s);
+                    break;
+            }
+        }
+
+        private static void FoundId(Type type, string id, string path, Search s)
+        {
+            if (id.Length > 0 && s.Ids.TryGetValue((type, id), out var target))
+                s.Found.Add((target, new ContentReference { Owner = s.Owner, PropertyPath = path, ById = true }));
+        }
+
+        private static void CheckCondition(ConditionData c, string path, Search s)
+        {
+            if (c == null) return;
+            Type type = null;
+            switch (c.kind)
+            {
+                case ConditionKind.MoveType: case ConditionKind.IsType: type = typeof(ElementTypeData); break;
+                case ConditionKind.Weather: type = typeof(WeatherData); break;
+                case ConditionKind.HasStatus: type = typeof(StatusConditionData); break;
+            }
+            if (type != null) FoundId(type, (c.text ?? "").Trim(), path + ".text", s);
+        }
+
+        // What kind of asset the id of an effect block's «reference» names.
+        private static Type RefTarget(EffectRefKind k)
+        {
+            switch (k)
+            {
+                case EffectRefKind.Type: case EffectRefKind.TypeList: return typeof(ElementTypeData);
+                case EffectRefKind.Status: case EffectRefKind.StatusList: return typeof(StatusConditionData);
+                case EffectRefKind.Weather: case EffectRefKind.WeatherList: return typeof(WeatherData);
+                case EffectRefKind.Move: return typeof(MoveData);
+                case EffectRefKind.Mechanic: return typeof(MechanicData);
+                case EffectRefKind.SideCondition: return typeof(SideConditionData);
+                default: return null;
             }
         }
 

@@ -1,0 +1,17 @@
+{
+    "name": "CTEditor.Project",
+    "rootNamespace": "CTEditor.Project",
+    "references": [
+        "CTEditor.Art.Domain",
+        "CTEditor.World.Domain"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

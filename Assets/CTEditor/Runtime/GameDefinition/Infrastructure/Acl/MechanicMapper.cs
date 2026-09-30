@@ -13,6 +13,9 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
             return new MechanicDefinition(d.Id, d.DisplayName, d.Kind,
                 d.Kind == MechanicKind.MegaEvolution
                     ? new MegaEvolutionSettings(d.MegaMaxPerBattle, d.MegaRequiredKeyItem, d.MegaRevertOnSwitch)
+                    : null,
+                d.Kind == MechanicKind.ZMove
+                    ? new ZMoveSettings(d.ZMaxPerBattle, d.ZRequiredKeyItem, d.ZProtectDamagePercent, d.ZPowerTable)
                     : null);
         }
     }

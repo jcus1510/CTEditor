@@ -1,0 +1,28 @@
+{
+    "name": "CTEditor.App",
+    "rootNamespace": "CTEditor.App",
+    "references": [
+        "CTEditor.Art.Domain",
+        "CTEditor.Project",
+        "CTEditor.Workspace",
+        "CTEditor.SharedKernel",
+        "CTEditor.World.Domain",
+        "CTEditor.Editing",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "1.0.0",
+            "define": "CTEDITOR_INPUT_SYSTEM"
+        }
+    ],
+    "noEngineReferences": false
+}

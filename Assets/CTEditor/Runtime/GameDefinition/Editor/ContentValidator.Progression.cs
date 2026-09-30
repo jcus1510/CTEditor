@@ -119,21 +119,15 @@ namespace CTEditor.GameDefinition.Editor
 
         private static void ValidateAbilities(List<AbilityData> abilities, HashSet<string> statusIds, HashSet<string> knownStats, List<ValidationIssue> issues)
         {
+            // The effect blocks are checked like an item's: ids that do not exist, pieces the engine does not run yet.
             foreach (var a in abilities)
             {
                 string name = string.IsNullOrWhiteSpace(a.Id) ? a.name : a.Id;
-                if (a.StatusImmunities != null)
-                    foreach (var st in a.StatusImmunities)
-                        if (!string.IsNullOrWhiteSpace(st) && !statusIds.Contains(st))
-                            issues.Add(Error($"La habilidad '{name}' da inmunidad al estado '{st}', que no existe.", a));
-                if (!string.IsNullOrWhiteSpace(a.ContactReactionStatus) && !statusIds.Contains(a.ContactReactionStatus))
-                    issues.Add(Error($"La habilidad '{name}' inflige por contacto el estado '{a.ContactReactionStatus}', que no existe.", a));
-                if (a.TypeImmunities != null && a.TypeImmunities.Any(t => t == null))
-                    issues.Add(Warning($"La habilidad '{name}' tiene una inmunidad de tipo vacía (se ignorará).", a));
-
-                CheckStat(a.OnEntryStatId, $"La habilidad '{name}' (al entrar) usa", knownStats, a, issues);
-                CheckStat(a.StatusStatBoostStatId, $"La habilidad '{name}' (con estado) usa", knownStats, a, issues);
-                CheckStat(a.EndOfTurnStatId, $"La habilidad '{name}' (fin de turno) usa", knownStats, a, issues);
+                List<Domain.Effects.EffectBlock> blocks;
+                try { blocks = ItemEffectsEditing.Blocks(a); }
+                catch (System.Exception e) { issues.Add(Error($"La habilidad '{name}' tiene un efecto que no se puede leer: {e.Message}", a)); continue; }
+                foreach (var w in EffectChecks.Warnings(blocks, true))
+                    issues.Add(w.Contains("no existe") ? Error($"La habilidad '{name}': {w}", a) : Warning($"La habilidad '{name}': {w}", a));
             }
         }
 

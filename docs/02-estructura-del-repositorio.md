@@ -17,6 +17,12 @@ CTEditor/
 │  │  │  ├─ Adventure/Domain/         la partida: GameData, BattleSession, TeamBuilder, TrainerBrain, FieldActions,
 │  │  │  │                            PlayerSave, AiTournament, RulesReview, Interface/ (menús, input, texto)
 │  │  │  ├─ Eventing/Domain/          EventScript + EffectDispatcher (efectos del mundo)
+│  │  │  ├─ Art/Domain/               imagen de píxeles, corte de tilesets y hojas de personaje (aplicación)
+│  │  │  ├─ Project/                  carpeta de proyecto: proyecto.json, JSON, PNG, catálogo, corte (aplicación)
+│  │  │  ├─ Workspace/                entorno de trabajo: tema, paneles, atajos (aplicación)
+│  │  │  ├─ World/Domain/             el mundo: tilesets, mapas, capas, paso, jugador andando
+│  │  │  ├─ Editing/                  casos de uso del editor: sesión de mapas y de píxeles
+│  │  ├─ App/                        la APLICACIÓN CTEditor (UI Toolkit): ventana, paneles, recursos, corte ([20](20-aplicacion.md))
 │  │  │  └─ GameContracts/            contratos entre contextos (IPartyCommands, IInventoryCommands)
 │  │  ├─ Bootstrap/                   escena y juego: GameBootstrap, ContentLibrary, BattleScreen, BattleLab,
 │  │  │                               PartyHolder, Interface/ (UI), GameFlow/, Platform/ (EventBus, SystemRng)
@@ -25,7 +31,7 @@ CTEditor/
 │  └─ GameContent/
 │     ├─ Resources/<Categoría>/       las FICHAS del proyecto (.asset): Species, Moves, Items, Types, Rulesets...
 │     ├─ Papelera/                    fichas «borradas» (recuperables); grupos «~nombre» (cambios de generación)
-│     ├─ Packs/Gen1 … Gen6/           un pack por generación: hojas CSV + INFORME.txt
+│     ├─ Packs/Gen1 … Gen7/           un pack por generación: hojas CSV + INFORME.txt
 │     └─ README.md                    MANUAL DEL AUTOR
 ├─ Excel/                             carpeta por defecto de exportación CSV (fuera de Assets, Unity no la importa)
 │  └─ copias/                         copias de seguridad automáticas (importaciones, cambios de generación)

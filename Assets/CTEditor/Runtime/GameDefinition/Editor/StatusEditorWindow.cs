@@ -83,6 +83,8 @@ namespace CTEditor.GameDefinition.Editor
                                                                     : "• Los movimientos del rival contra él fallan (protección).");
             if (d.BlocksIncomingMoves && !string.IsNullOrEmpty(d.ProtectContactStat) && d.ProtectContactStages != 0)
                 l.Add($"• Quien le golpea con contacto mientras se protege: {StatLabels.NameOf(d.ProtectContactStat)} {d.ProtectContactStages}.");
+            if (d.BlocksIncomingMoves && !string.IsNullOrWhiteSpace(d.ProtectContactStatus))
+                l.Add($"• Quien le golpea con contacto mientras se protege sufre el estado '{d.ProtectContactStatus}' (Búnker).");
             if (d.BlocksIncomingMoves && d.ProtectContactDamagePercent > 0)
                 l.Add($"• Quien le golpea con contacto mientras se protege pierde el {d.ProtectContactDamagePercent:0.#}% de sus PS (Barrera Espinosa).");
             if (d.RequiresOppositeGender) l.Add("• Solo funciona entre géneros opuestos (Atracción).");

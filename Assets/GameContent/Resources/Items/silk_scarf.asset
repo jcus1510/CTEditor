@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: silk_scarf
   displayName: "Pa\xF1uelo Seda"
+  englishName: Silk Scarf
   description: "Movimientos de Normal \xD71,2."
   category: 7
   icon: {fileID: 0}
@@ -21,29 +22,21 @@ MonoBehaviour:
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0
-  healHp: 0
-  healPercent: 0
-  curesAllStatus: 0
-  curesStatusId: 
-  revives: 0
-  reviveHpPercent: 50
-  restorePp: 0
-  restorePpAllMoves: 0
-  friendshipChange: 0
-  catchMultiplier: 0
-  battleStatId: 
-  battleStages: 0
-  heldPowerModifiers:
-  - multiplier: 1.2
+  isBerry: 0
+  effects:
+  - trigger: 1
     conditions:
     - kind: 10
       subject: 0
-      comparison: 3
+      comparison: 2
       number: 0
       text: normal
       negate: 0
-  heldEndOfTurnHealPercent: 0
-  heldTriggerHpPercent: 0
-  heldTriggerHealHp: 0
-  heldTriggerHealPercent: 0
-  heldConsumedOnTrigger: 1
+    action: 14
+    target: 0
+    reference: 
+    amount: 1.2
+    threshold: 0
+    consumes: 0
+    chance: 100
+    maxPerBattle: 0

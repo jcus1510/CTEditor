@@ -67,6 +67,8 @@ específicos por objeto ni secciones por generación. Un objeto es una **lista d
 | `Evs`, `LevelUp`, `TeachMove`, `EscapeBattle`, `Repel` | `evs`, `nivel`, `enseñar`, `huir`, `repelente` | — | **Aún no** (se guardan; el editor avisa) |
 | `ChangeForm` | `forma id` | forma | Al usar: las variantes funcionan por `SpeciesData.variantItem` |
 | `EnableMechanic` | `mecanica id` | mecánica | Informativo: las megapiedras se leen de la regla de forma de la especie |
+| `SetSideCondition` | `poner_lado id` | efecto de lado o campo | Sí (instantáneos; los campos de la 7.ª al entrar) |
+| `ZMove` | `movimiento_z id` | movimiento Z | Sí (siempre; cristal Z, ver abajo) |
 
 `EffectRules.IsSupported(bloque)` es la fuente de verdad de la columna de la derecha (la usa el editor para avisar).
 
@@ -103,9 +105,11 @@ Fuera del combate, los bloques «Al usarlo» se leen a través de las vistas de 
 - `ItemData` = identidad + dónde se usa + `isBerry` + **`effects`** (`EffectBlockData[]`). No hay otros campos de efecto:
   el sistema antiguo (campos sueltos, `ItemExtras`) se eliminó por completo.
 - `ItemMapper.Effects(d)` traduce los bloques al dominio.
-- **Plantillas = DATOS**: `Assets/GameContent/Plantillas/objetos.csv` (135 objetos clásicos con TODOS sus efectos, mismo
-  formato que `objetos.csv`). La leen el editor (crear / restaurar / «Actualizar desde las plantillas»), el Centro de
-  Contenido (sin pack) y los generadores de packs. Una sola fuente de verdad.
+- **Plantillas = el pack**: no hay hoja de plantillas aparte. Las plantillas del editor de objetos son los objetos del
+  `objetos.csv` de la FUENTE elegida (el pack de la generación o tu carpeta de Excel, `PackTools.Folder`), con todos sus
+  efectos. Cada objeto guarda sus efectos DENTRO: usar una plantilla los copia a la ficha.
+- **Fuente para generar los packs**: `Tools/datos_fuente/objetos.csv` (los objetos clásicos con TODOS sus efectos; solo lo
+  usan los generadores y el verificador, no el editor).
 - **Packs**: el `objetos.csv` de cada generación trae TODOS sus objetos con TODOS sus efectos (los de la plantilla, con
   nombre, descripción y precio oficiales). Al importar un pack con «Actualizar también» cada objeto queda completo.
 
@@ -146,10 +150,59 @@ Opciones: `se_gasta`, `al_rival`, `a_si_mismo`, `prob=N`, `veces=N`. Errores exp
 4. `EffectText`: etiqueta, clave Excel, tipo de id y de cantidad, `ActionsFor`, frase en `Describe`, valor por defecto.
 5. Tests en `EffectBlockTests` (motor) y `EffectTextTests` (Excel).
 
-## Habilidades (siguiente paso)
+## Habilidades: el mismo sistema
 
-Las habilidades (`AbilityDefinition` + `AbilityExtras`) tienen el mismo problema que tenían los objetos (decenas de
-perillas con nombre de habilidad concreta). El plan es reutilizar **el mismo modelo, el mismo editor y el mismo
-formato Excel**: `AbilityData.effects`, conversión de lo antiguo a bloques, y que el motor lea los bloques de la
-habilidad en los mismos puntos del turno (con los disparadores y acciones que falten: al entrar sobre el rival
-—Intimidación—, clima al entrar, cambio de tipo, etc.). Ver [18](18-pendientes.md).
+Una habilidad es **una lista de bloques**, igual que un objeto: `AbilityData` solo guarda `id`, `displayName`,
+`englishName` y `effects`. El Excel es `id;nombre;nombre_en;efectos`, y el editor muestra las mismas tarjetas (con
+`ability: true`: sin «Se gasta», con los momentos y acciones de habilidades y con «Especial»). No hay efectos guardados
+fuera de la habilidad.
+
+**Momentos nuevos** (también valen para objetos): `al_retirarse`, `al_absorber` (una inmunidad anula un golpe),
+`al_debilitar` (debilita a un rival), `al_bajarle_stat` (el rival le baja una estadística) y `al_retroceder`.
+
+**Acciones nuevas**: `inmune_estado`, `potencia_recibida`, `stab`, `prioridad`, `sin_bajadas`, `poner_clima`,
+`inmune_clima`, `cambiar_tipo`, `daño_critico`, `prob_secundarios`, `etapas_x`, `peso`, `normal_a_tipo`, `avisar`,
+`atrapar`, `atrapar_en_suelo`, `ignora_inmunidad`, `inmune_etiqueta`, `bloquea_etiqueta`, `anular` y **`especial`**.
+Las listas se escriben con comas (`poner_estado poison,paralysis,sleep`), porque `|` separa bloques.
+
+**Especiales** (`AbilityEffects.Specials`): lo que es único de una habilidad y no se descompone en piezas (Rastro,
+Impostor, Ausente, Rompemoldes, Gas Reactivo, Espejo Mágico, Gula `umbral_bayas 50%`...). En Excel se escriben por su
+clave: `al_entrar: rastro`, `siempre: umbral_bayas 50%`. Cada uno tiene etiqueta y ayuda en español.
+
+**Cómo lo usa el motor** (`AbilityEffects.Read`): cada bloque con una «forma clásica» se traduce a lo que el motor ya
+consulta (las propiedades de `AbilityDefinition` y `AbilityExtras`), así el combate es idéntico al de antes. Ejemplos:
+
+| Habilidad | Bloques |
+|---|---|
+| Intimidación | `al_entrar: etapa attack -1; al_rival` |
+| Mar Llamas | `siempre [si mov.tipo=fire & propio.vida<=33]: daño x1,5` |
+| Efecto Espora | `contacto: poner_estado poison,paralysis,sleep; al_rival; prob=30` |
+| Piel Seca | `siempre: inmune water \| al_absorber: curar 25% \| siempre [si mov.tipo=fire]: potencia_recibida x1,25 \| fin_de_turno [si clima=rain]: curar 12,5% \| fin_de_turno [si clima=sun]: perder 12,5%` |
+| Robustez | `antes_de_golpe [si propio.vida>=100]: aguantar \| siempre: sin_ko_directo` |
+| Predicción | `siempre [si clima=rain]: cambiar_tipo water \| siempre [si clima=sun]: cambiar_tipo fire \| ...` |
+
+Los bloques que **no** tienen forma clásica (`AbilityDefinition.GenericEffects`: «al entrar: curar 10 %», un
+multiplicador con probabilidad o con límite de veces...) **se ejecutan como los de un objeto equipado**
+(`TurnResolver.Items`, `EffectSource`), con su probabilidad y sus veces por combate. Así el autor puede inventar
+habilidades combinando piezas. `AbilityEffects.IsSupported` dice qué hace el motor con cada bloque (el editor avisa si
+algo se guarda pero no tiene efecto).
+
+**Verificación de la conversión**: las 190 habilidades se construyeron con las columnas antiguas y con los bloques
+nuevos, y se compararon **todas** sus propiedades: salen idénticas. Tests: `EffectTextTests` (todas las habilidades de
+todos los packs se leen, se reescriben igual, no dejan bloques genéricos y el motor las soporta) y `AbilityBlockTests`
+(bloques libres en combate, veces por combate, momento «al debilitar»).
+
+## Cristales Z y condiciones nuevas (7.ª)
+
+Un **cristal Z** es un objeto con bloques `siempre [condiciones]: movimiento_z <id del Z>`. Las condiciones dicen qué
+movimientos convierte: `mov.tipo=fire` (los genéricos), `mov.id=thunderbolt` (un movimiento concreto) y
+`propio.especie=pikachu` (los exclusivos; `pikachu_` vale para todas sus formas). Ejemplos:
+
+```
+Firium Z:    siempre [si mov.tipo=fire]: movimiento_z inferno_overdrive
+Pikanium Z:  siempre [si mov.id=volt_tackle & propio.especie=pikachu]: movimiento_z catastropika
+```
+
+Condiciones nuevas: `mov.id=x` (`MoveIs`) y `propio.especie=x` / `rival.especie=x` (`IsSpecies`), útiles también para
+objetos y habilidades normales. La mecánica en sí (usos por combate, Pulsera Z, tabla de potencias, % que atraviesa
+Protección) está en la ficha de la mecánica, cap. [06](06-combate.md).

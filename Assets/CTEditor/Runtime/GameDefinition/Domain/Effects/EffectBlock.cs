@@ -19,6 +19,12 @@ namespace CTEditor.GameDefinition.Domain.Effects
         OnStatus,       // when the holder gets a status
         LowHp,          // when the holder's HP drops to Threshold % or below
         OnWalk,         // each step in the overworld (repels)
+        // --- abilities ---
+        OnSwitchOut,    // when the holder leaves the field (Natural Cure, Regenerator)
+        OnAbsorb,       // after an immunity cancels a hit on the holder (Volt Absorb, Motor Drive)
+        OnKo,           // after the holder knocks out a foe (Moxie)
+        OnStatDropped,  // after a foe lowers one of the holder's stats (Defiant)
+        OnFlinch,       // after the holder flinches (Steadfast)
     }
 
     /// <summary>WHAT a block does. Values are serialized as integers: only append at the END.</summary>
@@ -59,13 +65,37 @@ namespace CTEditor.GameDefinition.Domain.Effects
         Repel,                  // Amount = steps
         ChangeForm,             // Ref = form id
         EnableMechanic,         // Ref = mechanic id (mega stones, Z crystals...)
+        // --- abilities ---
+        ImmuneToStatus,         // Ref = status ids «a|b» (empty = every status)
+        PowerTakenMultiplier,   // Amount = × to the power of the moves that hit the holder
+        StabMultiplier,         // Amount = same-type bonus (Adaptability 2)
+        PriorityBonus,          // Amount = + priority of its moves (with conditions: status moves, a type...)
+        BlockStatDrops,         // Ref = stat ids «a|b» the foe cannot lower (empty = all)
+        SetWeather,             // Ref = weather id, Amount = turns (0 = until another one)
+        ImmuneToWeather,        // Ref = weather ids «a|b» («*» = all) that do not hurt it
+        SetType,                // Ref = type id: the holder becomes this type
+        CritDamageMultiplier,   // Amount = × damage of its critical hits
+        SecondaryChanceMultiplier, // Amount = × chance of its moves' secondary effects
+        StageMultiplier,        // Amount = × its stage changes (Simple 2)
+        WeightMultiplier,       // Amount = × its weight
+        ConvertNormalType,      // Ref = type its Normal moves become, Amount = × power
+        Announce,               // Ref = objeto | peligro | movimiento
+        Trap,                   // the foe cannot switch or flee; Ref = only these types «a|b» (empty = all)
+        TrapGrounded,           // Trap only catches grounded foes
+        IgnoreImmunity,         // Ref = types «a|b» whose moves hit foes immune to them
+        ImmuneToMoveTag,        // Ref = move tags «a|b» that do not affect it
+        BlockMoveTag,           // Ref = move tags «a|b» NOBODY can use while it is on the field
+        DisableMove,            // disables the move that hit it (use Chance)
+        Special,                // Ref = a one-of-a-kind behaviour (see AbilityEffects.Specials); Amount if it needs one
+        SetSideCondition,       // Ref = side / field condition id (terrains, screens...); on the holder's side (field ones: both)
+        ZMove,                  // Z crystal: with its conditions (move type, move, species), the move becomes the Z move Ref
     }
 
     /// <summary>Who an action affects: the holder or the other combatant.</summary>
     public enum BlockTarget { Self, Other }
 
     /// <summary>
-    /// An EFFECT BLOCK: «WHEN [trigger], IF [conditions], THEN [action] on [target]». Items (and, later, abilities) are just
+    /// An EFFECT BLOCK: «WHEN [trigger], IF [conditions], THEN [action] on [target]». Items and abilities are just
     /// a list of these, so any item of any generation — or a brand new one — is built from the same pieces. Every block can
     /// have a chance, a limit of uses per battle and consume the item.
     /// </summary>
@@ -142,7 +172,8 @@ namespace CTEditor.GameDefinition.Domain.Effects
                         case EffectAction.EvasionMultiplier: case EffectAction.PowerMultiplier: case EffectAction.DamageDealtMultiplier:
                         case EffectAction.ImmuneToType: case EffectAction.ActFirst: case EffectAction.ChoiceLock:
                         case EffectAction.BlockStatusMoves: case EffectAction.ExtendWeather: case EffectAction.ExtendScreens:
-                        case EffectAction.EnableMechanic:
+                        case EffectAction.EnableMechanic: case EffectAction.PriorityBonus: case EffectAction.ImmuneToStatus:
+                        case EffectAction.ZMove:
                             return true;
                         default: return false;
                     }
@@ -160,6 +191,7 @@ namespace CTEditor.GameDefinition.Domain.Effects
         {
             EffectAction.HealHp, EffectAction.HealPercent, EffectAction.LoseHpPercent, EffectAction.HealFromDamagePercent,
             EffectAction.CureStatus, EffectAction.InflictStatus, EffectAction.ChangeStage, EffectAction.Flinch, EffectAction.ConsumeItem,
+            EffectAction.SetSideCondition,
         };
     }
 }

@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Compila la APLICACIÓN (Assets/CTEditor/App, UI Toolkit en tiempo de ejecución) y los dominios que usa contra las DLL
+    de referencia de Unity 2021.3 (paquete NuGet UnityEngine.Modules), fuera de Unity:
+        dotnet build Tools/compilar_app
+    Límites: son DLL de Unity 2021.3, así que la aplicación solo usa lo que ya existía entonces (sin IntegerField ni
+    Painter2D). El código del Input System va entre #if CTEDITOR_INPUT_SYSTEM y aquí no se compila. App/Editor (crear la
+    escena) tampoco: usa UnityEditor.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <OutputType>Library</OutputType>
+    <NoWarn>CS0414;CS0169;CS0649;CS1701;CS1702;MSB3277;NU1701</NoWarn>
+    <Runtime>$(MSBuildThisFileDirectory)../../Assets/CTEditor/Runtime/</Runtime>
+    <App>$(MSBuildThisFileDirectory)../../Assets/CTEditor/App/</App>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(Runtime)Art/**/*.cs" />
+    <Compile Include="$(Runtime)Project/**/*.cs" />
+    <Compile Include="$(Runtime)SharedKernel/**/*.cs" />
+    <Compile Include="$(Runtime)Workspace/**/*.cs" />
+    <Compile Include="$(Runtime)World/**/*.cs" />
+    <Compile Include="$(Runtime)Editing/**/*.cs" />
+    <Compile Include="$(App)**/*.cs" Exclude="$(App)Editor/**/*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="UnityEngine.Modules" Version="2021.3.33" />
+  </ItemGroup>
+</Project>

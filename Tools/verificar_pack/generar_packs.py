@@ -28,7 +28,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from csvlib import load, save, split_list  # noqa: E402
 from pokeapi import PokeApi, table, pack_id, SPANISH  # noqa: E402
 import generar_base  # noqa: E402
-from formas import Forms, VARIANTS  # noqa: E402
+from formas import Forms, VARIANTS, BASE_TO_VARIANT_EVOS  # noqa: E402
 
 VARIANT_ITEMS = {item for _, _, item in VARIANTS.values() if item}   # se usan fuera del combate para cambiar de variante
 
@@ -38,15 +38,22 @@ PACKS = os.path.join(ROOT, 'Assets', 'GameContent', 'Packs')
 
 # gen: (última especie, grupo de versiones de referencia para el aprendizaje por nivel, juego de referencia)
 GENS = {1: (151, '1', 'Rojo/Azul'), 2: (251, '4', 'Cristal'), 3: (386, '6', 'Esmeralda'),
-        4: (493, '9', 'Platino'), 5: (649, '14', 'Negro 2/Blanco 2'), 6: (721, '16', 'Rubí Omega/Zafiro Alfa')}
-MAIN_VGS = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '14', '15', '16'}   # sin Colosseum/XD
+        4: (493, '9', 'Platino'), 5: (649, '14', 'Negro 2/Blanco 2'), 6: (721, '16', 'Rubí Omega/Zafiro Alfa'),
+        7: (807, '18', 'Ultrasol/Ultraluna')}
+MAIN_VGS = {'1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '14', '15', '16', '17', '18'}   # sin Colosseum/XD ni Let's Go
 CAT_ES = {'physical': 'fisico', 'special': 'especial', 'status': 'estado'}
 LAB = {1: 'dragonite@50 | alakazam@50 | gyarados@50 | gengar@50 | snorlax@50 | jolteon@50',
        2: 'tyranitar@50 | alakazam@50 | gyarados@50 | gengar@50 | snorlax@50 | skarmory@50',
        3: 'salamence@50 | metagross@50 | gyarados@50 | gengar@50 | swampert@50 | blaziken@50',
        4: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | scizor@50 | togekiss@50',
        5: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | scizor@50 | togekiss@50',
-       6: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | scizor@50 | togekiss@50'}
+       6: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | scizor@50 | togekiss@50',
+       7: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | toxapex@50 | kommo_o@50'}
+# Entrenadores que solo existen desde una generación (los de Alola usan especies antiguas y, sin esto, entrarían en
+# los packs anteriores).
+TRAINER_FROM_GEN = {t: 7 for t in ('kahuna_hala', 'kahuna_olivia', 'kahuna_nanu', 'kahuna_hapu', 'alto_mando_hala',
+                                   'alto_mando_olivia', 'alto_mando_acerola', 'alto_mando_kahili', 'alto_mando_molayne',
+                                   'campeon_kukui', 'rival_hau_liga', 'gladio', 'jefe_guzman', 'presidenta_samina')}
 # Entrenadores que megaevolucionan en los juegos (desde la 6.ª gen.): (especie, megapiedra).
 MEGA_TRAINERS = {'campeona_dianta': ('gardevoir', 'gardevoirite')}
 MEMBER = re.compile(r'^(?P<sp>[^@\[\]{}~#"%!()]+)@(?P<lvl>\d+)(?P<g>%[mhMH])?(?:\[(?P<moves>[^\]]*)\])?'
@@ -142,7 +149,7 @@ def build(n, verbose=True):
     mh, mrows, _, _ = load(os.path.join(SRC, 'movimientos.csv'))
     moves = []
     for r in mrows:
-        a = g.moves_vals.get(r['id'])
+        a = g.moves_vals.get(r['id']) or g.moves_vals.get(r['id'] + '__physical')   # movimientos Z genéricos
         if not a:
             continue   # no existe en esta generación
         r = dict(r)
@@ -160,6 +167,8 @@ def build(n, verbose=True):
     sh, srows, _, _ = load(os.path.join(SRC, 'especies.csv'))
     species = [dict(r) for r in srows if g.dex.get(r['id'], 99999) <= g.max_dex]
     ids = {s['id'] for s in species}
+    # Las variantes de esta generación también son destinos de evolución válidos (Rockruff → Lycanroc Nocturno...).
+    variant_ids = {pack_id(k) for k, (b, gmin, _) in VARIANTS.items() if n >= gmin and b in ids}
     used_abilities = set()
     for s in species:
         sp, pid = s['id'], g.pid[s['id']]
@@ -190,9 +199,10 @@ def build(n, verbose=True):
             s['grupos_huevo'] = ''
             s['hembras'] = 'sin_genero'      # en la 1.ª generación no hay géneros
         evos = []
-        for e in split_list(s['evoluciona']):
+        extra_evo = BASE_TO_VARIANT_EVOS.get(sp) if n >= 7 else None
+        for e in split_list(s['evoluciona']) + ([extra_evo] if extra_evo else []):
             tgt = e.split('@')[0].strip()
-            if tgt not in ids:
+            if tgt not in ids and tgt not in variant_ids:
                 continue
             bad = [m for m in re.findall(r'sabe:(\w+)', e) if m not in move_ids]
             if bad:
@@ -242,6 +252,8 @@ def build(n, verbose=True):
         candidates, extra = [dict(r) for r in trows if not r['id'].startswith('prueba_nivel_')], []
     trainers = []
     for r in candidates + extra:
+        if TRAINER_FROM_GEN.get(r['id'], 0) > n:
+            continue
         if not r.get('nivel_ia'):
             r['nivel_ia'] = level_of.get(r['id']) or legacy.get(r.get('ia', ''), '')
         team, dropped = [], []
@@ -340,7 +352,7 @@ def english_names(species, moves, abil, sh, mh, ah):
     mv = {r['id']: pack_id(r['identifier']) for r in table('moves')}
     mv_en = {mv[r['move_id']]: r['name'] for r in table('move_names') if r['local_language_id'] == ENGLISH and r['move_id'] in mv}
     for m in moves:
-        m['nombre_en'] = mv_en.get(m['id'], '')
+        m['nombre_en'] = mv_en.get(m['id'], '') or mv_en.get(m['id'] + '__physical', '').replace(' (Physical)', '')
     ab = {r['id']: pack_id(r['identifier']) for r in table('abilities')}
     ab_en = {ab[r['ability_id']]: r['name'] for r in table('ability_names') if r['local_language_id'] == ENGLISH and r['ability_id'] in ab}
     for a in abil:
@@ -352,7 +364,7 @@ def english_names(species, moves, abil, sh, mh, ah):
 
 def items_for(n):
     """Filas de objetos.csv: TODOS los objetos que existen en la generación n (salvo las MT), con sus efectos. Los que tienen
-    plantilla (Assets/GameContent/Plantillas/objetos.csv) llevan su categoría, dónde se usan, si son baya y sus EFECTOS; el
+    plantilla (Tools/datos_fuente/objetos.csv) llevan su categoría, dónde se usan, si son baya y sus EFECTOS; el
     nombre, la descripción y el precio son los oficiales de PokeAPI. Los demás: categoría según el bolsillo y, las bolas,
     su efecto de captura."""
     import verificar_pack
@@ -375,11 +387,15 @@ def items_for(n):
             flavor[r['item_id']] = (int(r['version_group_id']), ' '.join(r['flavor_text'].split()))
     rows = []
     for it in table('items'):
-        iid = pack_id(it['identifier'])
+        if it['identifier'].endswith('--bag'):
+            continue   # Cristales Z: PokeAPI tiene la versión «de la mochila» y la «para llevar»; el editor usa una sola
+        iid = pack_id(it['identifier'].replace('--held', ''))
         pocket, cat = cats.get(it['category_id'], ('', ''))
-        if first_gen.get(it['id'], 99) > n or pocket == '4' or cat in ('unused', 'all-machines'):
-            continue
         tpl = templates.get(iid)
+        # Sin índice de juego en PokeAPI (los cristales Z de Ultrasol/Ultraluna): cuenta desde la 7.ª si tiene datos en la fuente.
+        gen_of = first_gen.get(it['id'], 7 if tpl and '--held' in it['identifier'] else 99)
+        if gen_of > n or pocket == '4' or (cat in ('unused', 'all-machines') and not tpl):
+            continue
         name = names.get(it['id']) or (tpl or {}).get('nombre') or iid
         desc = flavor.get(it['id'], (0, ''))[1] or (tpl or {}).get('descripcion', '')
         if tpl:
@@ -418,7 +434,8 @@ def write_report(n, g, out, species, moves, abil, trainers, notes):
              f'• {len(trainers)} entrenadores con su nivel de IA: ' + ', '.join(f'nivel {k}: {v}' for k, v in sorted(by.items()) if k) + '.',
              '  Incluye el Laboratorio de IA (prueba_nivel_1 … 7: el mismo equipo en cada nivel) para el Torneo de IAs.', '',
              'APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):',
-             '  • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.',
+             '  • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.'
+             + (' (los que llegaron en la 7.ª, los suyos; algunas habilidades de la 7.ª solo tienen nombre).' if n >= 7 else ''),
              '  • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.',
              ]
     if n <= 2:

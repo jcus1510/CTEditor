@@ -32,6 +32,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Tooltip("¿Puede megaevolucionar? Solo cuenta si las reglas tienen la Megaevolución activa y un miembro lleva su megapiedra. " +
                  "Cuándo lo hace lo decide su nivel de IA.")]
         [SerializeField] private bool canMegaEvolve = true;
+        [Tooltip("¿Puede usar movimientos Z? Solo cuenta si las reglas los tienen activos y un miembro lleva su cristal Z.")]
+        [SerializeField] private bool canUseZMoves = true;
         [Tooltip("SETS DE COMPETICIÓN (si su IA los usa): de qué formatos los coge, separados por coma (ou, uu...). Vacío = de cualquiera.")]
         [SerializeField] private string setFormats = "";
         [Tooltip("MOVESET CAMBIANTE: en cada combate elige otro set al azar (nunca sabes qué llevará). Desmarcado (FIJO): siempre el mismo. " +
@@ -72,6 +74,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         /// <summary>Id de su IA personalizada (vacío = la de su nivel).</summary>
         public string AiProfileId => aiProfileId;
         public bool CanMegaEvolve => canMegaEvolve;
+        public bool CanUseZMoves => canUseZMoves;
         public string SetFormats => setFormats;
         public bool VariableSets => variableSets;
         /// <summary>El nivel efectivo (1-7).</summary>
