@@ -395,10 +395,10 @@ namespace CTEditor.GameDefinition.Editor
             if (BaseOf(s) != null && Event.current.type == EventType.Repaint)
             {
                 Handles.color = EditorTheme.Species;
-                Handles.DrawDashedLine(new Vector3(r.x, r.y), new Vector3(r.xMax, r.y), 4f);
-                Handles.DrawDashedLine(new Vector3(r.xMax, r.y), new Vector3(r.xMax, r.yMax), 4f);
-                Handles.DrawDashedLine(new Vector3(r.xMax, r.yMax), new Vector3(r.x, r.yMax), 4f);
-                Handles.DrawDashedLine(new Vector3(r.x, r.yMax), new Vector3(r.x, r.y), 4f);
+                Handles.DrawDottedLine(new Vector3(r.x, r.y), new Vector3(r.xMax, r.y), 4f);
+                Handles.DrawDottedLine(new Vector3(r.xMax, r.y), new Vector3(r.xMax, r.yMax), 4f);
+                Handles.DrawDottedLine(new Vector3(r.xMax, r.yMax), new Vector3(r.x, r.yMax), 4f);
+                Handles.DrawDottedLine(new Vector3(r.x, r.yMax), new Vector3(r.x, r.y), 4f);
             }
 
             // Insignias de sus formas de combate (debajo de la tarjeta).
@@ -442,7 +442,7 @@ namespace CTEditor.GameDefinition.Editor
             if (Event.current.type == EventType.Repaint)
             {
                 Handles.color = EditorGUIUtility.isProSkin ? new Color(1, 1, 1, 0.6f) : new Color(0, 0, 0, 0.6f);
-                Handles.DrawDashedLine(p1, p2, 4f);
+                Handles.DrawDottedLine(p1, p2, 4f);
             }
             string how = string.IsNullOrWhiteSpace(variant.VariantItem) ? "con un personaje" : "con " + ItemName(variant.VariantItem);
             GUI.Label(new Rect(p1.x + 6, (p1.y + p2.y) / 2 - 8, 200, 16), new GUIContent("🔁 " + how, "Cómo se cambia a esta variante fuera del combate"), EditorStyles.miniLabel);

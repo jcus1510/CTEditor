@@ -124,14 +124,16 @@ namespace CTEditor.GameDefinition.Editor.Csv
         {
             var all = CsvSchemas.All();
             if (headers.Count > 0 && headers[0].Contains("\\")) return all.FirstOrDefault(s => s is TypeChartCsvSchema);
-            CsvSchema best = null; int bestScore = 1;
+            CsvSchema best = null; int bestScore = 1, bestUnknown = 0;
             foreach (var s in all)
             {
                 var accepted = new HashSet<string>(s.AcceptedHeaders, StringComparer.OrdinalIgnoreCase);
                 int score = headers.Count(h => accepted.Contains(h));
-                if (score > bestScore) { best = s; bestScore = score; }
+                if (score > bestScore) { best = s; bestScore = score; bestUnknown = headers.Count(h => h.Length > 0 && !accepted.Contains(h)); }
             }
-            return best;
+            // Si la mayoría de sus columnas no son de esa categoría, no se adivina (antes un sets.csv sin su esquema se leía
+            // como «Especies» por compartir id/nombre/habilidad/evs): mejor que el autor elija la categoría.
+            return best != null && bestUnknown > bestScore ? null : best;
         }
 
         /// <summary>Analiza una lista concreta de archivos (con su categoría ya decidida), SIN aplicar nada.</summary>

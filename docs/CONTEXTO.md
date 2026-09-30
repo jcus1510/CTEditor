@@ -209,8 +209,9 @@ Unity no está en el contenedor de desarrollo. Se verifica así:
    tests que no usan Unity (la lista de exclusiones está en el propio `.csproj`).
 2. **Infrastructure** (opcional): compilarla contra *stubs* de UnityEngine (`UnityStubs.cs` con `ScriptableObject`,
    `SerializeField`, `Range`, `Tooltip`…) en un proyecto de consola aparte. Se usó en la sesión; no está en el repo.
-3. **Editor**: no se puede compilar fuera de Unity → revisión manual cuidadosa y, al abrir Unity, comprobar la
-   Consola y el Test Runner (EditMode).
+3. **Editor**: `dotnet build Tools/compilar_unity` compila TODO Runtime (incluido el editor) y los tests contra las DLL
+   de referencia de Unity (NuGet `Unity3D.SDK`, Unity 2021: lo exclusivo de Unity 6 daría falso error). **Hacerlo antes de
+   cada commit que toque el editor**: si no compila, Unity se queda con el código viejo sin que se note.
 4. **Packs**: `python3 Tools/verificar_pack/verificar_pack.py Assets/GameContent/Packs/GenN [--pokeapi --gen N]`.
 
 ## 9. Pendiente / siguientes pasos

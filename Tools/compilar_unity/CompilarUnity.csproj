@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Compila TODO el código de Runtime (dominio, fichas, EDITOR) y los tests contra las DLL de referencia de Unity
+    (paquete NuGet Unity3D.SDK), fuera de Unity:
+        dotnet build Tools/compilar_unity
+    Sirve para pillar errores de compilación del editor ANTES de abrir Unity: si el editor no compila, Unity se queda
+    con el último código que sí compiló (y parece que «no ha cambiado nada»).
+    Límites: las DLL son de Unity 2021, así que algo exclusivo de Unity 6 daría un falso error; Bootstrap (escenas, UI
+    con uGUI/TextMeshPro) no se incluye.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsPackable>false</IsPackable>
+    <NoWarn>CS0414;CS0169;CS0649;CS0219;CS0162;CS0168;CS0618;CS1701;CS1702;MSB3277;NU1701</NoWarn>
+    <Runtime>$(MSBuildThisFileDirectory)../../Assets/CTEditor/Runtime/</Runtime>
+    <Tests>$(MSBuildThisFileDirectory)../../Assets/CTEditor/Tests/EditMode/</Tests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(Runtime)**/*.cs" />
+    <Compile Include="$(Tests)*.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Unity3D.SDK" Version="2021.1.14.1" />
+    <PackageReference Include="NUnit" Version="3.14.0" />
+  </ItemGroup>
+</Project>
