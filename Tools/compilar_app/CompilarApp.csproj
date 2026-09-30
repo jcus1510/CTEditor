@@ -21,7 +21,10 @@
   <ItemGroup>
     <Compile Include="$(Runtime)Art/**/*.cs" />
     <Compile Include="$(Runtime)Project/**/*.cs" />
+    <Compile Include="$(Runtime)SharedKernel/**/*.cs" />
     <Compile Include="$(Runtime)Workspace/**/*.cs" />
+    <Compile Include="$(Runtime)World/**/*.cs" />
+    <Compile Include="$(Runtime)Editing/**/*.cs" />
     <Compile Include="$(App)**/*.cs" Exclude="$(App)Editor/**/*.cs" />
   </ItemGroup>
   <ItemGroup>

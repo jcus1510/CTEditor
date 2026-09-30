@@ -1,8 +1,10 @@
 {
-    "name": "CTEditor.Art.Domain",
-    "rootNamespace": "CTEditor.Art.Domain",
+    "name": "CTEditor.Editing",
+    "rootNamespace": "CTEditor.Editing",
     "references": [
-        "CTEditor.SharedKernel"
+        "CTEditor.SharedKernel",
+        "CTEditor.Art.Domain",
+        "CTEditor.World.Domain"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

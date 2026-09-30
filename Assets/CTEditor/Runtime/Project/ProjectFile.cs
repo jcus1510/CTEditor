@@ -37,6 +37,11 @@ namespace CTEditor.Project
         public int ScreenHeight { get; set; } = DefaultScreenHeight;
         /// <summary>Mapa donde empieza la partida (vacío = aún no hay).</summary>
         public string StartMap { get; set; } = "";
+        /// <summary>Casilla de inicio en ese mapa.</summary>
+        public int StartX { get; set; }
+        public int StartY { get; set; }
+        /// <summary>Hoja de personaje del jugador (ruta relativa de su imagen; vacío = la primera que haya).</summary>
+        public string PlayerCharacter { get; set; } = "";
         public int Format { get; set; } = CurrentFormat;
 
         /// <summary>Errores que impiden usar estos ajustes (vacío = bien).</summary>
@@ -56,7 +61,10 @@ namespace CTEditor.Project
             .Set("tamaño_tile", TileSize)
             .Set("pantalla_ancho", ScreenWidth)
             .Set("pantalla_alto", ScreenHeight)
-            .Set("mapa_inicial", StartMap);
+            .Set("mapa_inicial", StartMap)
+            .Set("inicio_x", StartX)
+            .Set("inicio_y", StartY)
+            .Set("personaje_jugador", PlayerCharacter);
 
         public static ProjectSettings FromJson(JsonObject o) => new ProjectSettings
         {
@@ -66,6 +74,9 @@ namespace CTEditor.Project
             ScreenWidth = o.GetInt("pantalla_ancho", DefaultScreenWidth),
             ScreenHeight = o.GetInt("pantalla_alto", DefaultScreenHeight),
             StartMap = o.GetString("mapa_inicial", ""),
+            StartX = o.GetInt("inicio_x"),
+            StartY = o.GetInt("inicio_y"),
+            PlayerCharacter = o.GetString("personaje_jugador", ""),
         };
     }
 

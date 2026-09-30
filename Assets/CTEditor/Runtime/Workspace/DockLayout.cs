@@ -28,7 +28,7 @@ namespace CTEditor.Workspace
         public const string Game = "juego";
         public const string Database = "base_datos";
 
-        public static IReadOnlyList<PanelInfo> All { get; } = new[]
+        private static readonly List<PanelInfo> Panels = new List<PanelInfo>
         {
             new PanelInfo(Map, "Mapa"),
             new PanelInfo(MapTree, "Mapas"),
@@ -43,7 +43,17 @@ namespace CTEditor.Workspace
             new PanelInfo(Database, "Base de datos"),
         };
 
-        public static PanelInfo Find(string id) => All.FirstOrDefault(p => p.Id == id);
+        public static IReadOnlyList<PanelInfo> All => Panels;
+
+        /// <summary>Un módulo nuevo añade su panel (o cambia el nombre de uno que ya existe) sin tocar esta lista.</summary>
+        public static void Register(string id, string label)
+        {
+            if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("El panel necesita un id.", nameof(id));
+            Panels.RemoveAll(p => p.Id == id);
+            Panels.Add(new PanelInfo(id, label));
+        }
+
+        public static PanelInfo Find(string id) => Panels.FirstOrDefault(p => p.Id == id);
         public static string LabelOf(string id) => Find(id)?.Label ?? id;
     }
 

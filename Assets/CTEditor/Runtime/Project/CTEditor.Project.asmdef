@@ -2,7 +2,8 @@
     "name": "CTEditor.Project",
     "rootNamespace": "CTEditor.Project",
     "references": [
-        "CTEditor.Art.Domain"
+        "CTEditor.Art.Domain",
+        "CTEditor.World.Domain"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

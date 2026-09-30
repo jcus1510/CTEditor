@@ -5,6 +5,9 @@
         "CTEditor.Art.Domain",
         "CTEditor.Project",
         "CTEditor.Workspace",
+        "CTEditor.SharedKernel",
+        "CTEditor.World.Domain",
+        "CTEditor.Editing",
         "Unity.InputSystem"
     ],
     "includePlatforms": [],

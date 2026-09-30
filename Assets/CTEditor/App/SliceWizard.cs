@@ -28,7 +28,7 @@ namespace CTEditor.App
 
         private int _tw, _th, _ox, _oy, _sx, _sy;
         private bool _linked = true;
-        private string _kind;
+        private SheetKind _kind;
         private CharacterSheetLayout _layout;
         private float _zoom = 2f;
         private bool _showEmpty = true, _showDuplicates = true, _showGrid = true;
@@ -74,10 +74,10 @@ namespace CTEditor.App
             else
             {
                 _file = new SliceFile(null);
-                _kind = kind == AssetKind.Character ? SliceFile.KindCharacter : kind == AssetKind.Tileset ? SliceFile.KindTileset : SliceFile.KindSprites;
+                _kind = kind == AssetKind.Character ? SheetKind.Character : kind == AssetKind.Tileset ? SheetKind.Tileset : SheetKind.Sprites;
                 int size = shell.Project?.TileSize ?? ProjectSettings.DefaultTileSize;
                 (_tw, _th) = (size, size);
-                if (_kind == SliceFile.KindCharacter && (_layout = CharacterSheetLayout.Detect(_image.Width, _image.Height)) != null)
+                if (_kind == SheetKind.Character && (_layout = CharacterSheetLayout.Detect(_image.Width, _image.Height)) != null)
                 {
                     var s = _layout.SliceFor(_image.Width, _image.Height);
                     (_tw, _th) = (s.TileWidth, s.TileHeight);
@@ -159,12 +159,12 @@ namespace CTEditor.App
             // Kind.
             var kinds = Ui.Row(6);
             kinds.With(
-                Ui.Chip("Tileset", _kind == SliceFile.KindTileset, () => SetKind(SliceFile.KindTileset)),
-                Ui.Chip("Personaje", _kind == SliceFile.KindCharacter, () => SetKind(SliceFile.KindCharacter)),
-                Ui.Chip("Sprites", _kind == SliceFile.KindSprites, () => SetKind(SliceFile.KindSprites)));
+                Ui.Chip("Tileset", _kind == SheetKind.Tileset, () => SetKind(SheetKind.Tileset)),
+                Ui.Chip("Personaje", _kind == SheetKind.Character, () => SetKind(SheetKind.Character)),
+                Ui.Chip("Sprites", _kind == SheetKind.Sprites, () => SetKind(SheetKind.Sprites)));
             _controls.With(Section("Qué es", kinds));
 
-            if (_kind == SliceFile.KindCharacter)
+            if (_kind == SheetKind.Character)
             {
                 var layouts = Ui.Column(6);
                 foreach (var l in CharacterSheetLayout.Presets)
@@ -247,25 +247,25 @@ namespace CTEditor.App
                 foreach (var p in _sheet.Problems) box.Add(Ui.Text(p, wrap: true).Colored("error"));
                 return box;
             }
-            box.Add(Ui.Text($"{_sheet.Columns} columnas × {_sheet.Rows} filas = {_sheet.Cells.Count} {(_kind == SliceFile.KindCharacter ? "fotogramas" : "tiles")}"));
+            box.Add(Ui.Text($"{_sheet.Columns} columnas × {_sheet.Rows} filas = {_sheet.Cells.Count} {(_kind == SheetKind.Character ? "fotogramas" : "tiles")}"));
             box.Add(Ui.Text($"Vacíos: {_sheet.EmptyCount} (no salen en la paleta)", dim: _sheet.EmptyCount == 0));
             box.Add(Ui.Text($"Repetidos: {_sheet.DuplicateCount} (se ven igual que otro)", dim: _sheet.DuplicateCount == 0));
             box.Add(Ui.Text($"Distintos: {_sheet.UniqueCount}", bold: true).Colored("exito"));
             foreach (var w in _sheet.Warnings) box.Add(Ui.Text(w, wrap: true).Colored("aviso"));
             int projectTile = _shell.Project?.TileSize ?? 0;
-            if (_kind == SliceFile.KindTileset && projectTile > 0 && (_tw != projectTile || _th != projectTile))
+            if (_kind == SheetKind.Tileset && projectTile > 0 && (_tw != projectTile || _th != projectTile))
                 box.Add(Ui.Text($"Ojo: el proyecto usa tiles de {projectTile} px y este corte es de {_tw} × {_th}.", wrap: true).Colored("aviso"));
-            if (_kind == SliceFile.KindCharacter && _layout != null && (_sheet.Columns != _layout.Columns || _sheet.Rows != _layout.Rows))
+            if (_kind == SheetKind.Character && _layout != null && (_sheet.Columns != _layout.Columns || _sheet.Rows != _layout.Rows))
                 box.Add(Ui.Text($"La plantilla espera {_layout.Columns} × {_layout.Rows} y el corte da {_sheet.Columns} × {_sheet.Rows}.", wrap: true).Colored("aviso"));
             return box;
         }
 
         // ── Changes ──────────────────────────────────────────────────────────────────────────────
 
-        private void SetKind(string kind)
+        private void SetKind(SheetKind kind)
         {
             _kind = kind;
-            if (kind == SliceFile.KindCharacter && _layout == null)
+            if (kind == SheetKind.Character && _layout == null)
             {
                 var detected = CharacterSheetLayout.Detect(_image.Width, _image.Height);
                 if (detected != null) { UseLayout(detected); return; }
@@ -332,7 +332,7 @@ namespace CTEditor.App
             if (!_sheet.Ok) return;
             DrawMarks();
             if (_showGrid) DrawGrid();
-            if (_kind == SliceFile.KindCharacter) DrawRowLabels();
+            if (_kind == SheetKind.Character) DrawRowLabels();
         }
 
         private void DrawMarks()
@@ -485,7 +485,7 @@ namespace CTEditor.App
             }
             var cell = _sheet.At(col, row);
             string state = cell.IsEmpty ? "vacío" : cell.IsDuplicate ? $"repetido del n.º {cell.DuplicateOf}" : "único";
-            string what = _kind == SliceFile.KindCharacter && _layout != null && row < _layout.Rows
+            string what = _kind == SheetKind.Character && _layout != null && row < _layout.Rows
                 ? $" · {DirectionNames[(int)_layout.RowDirections[row]]}, paso {col + 1}"
                 : "";
             _hover.text = $"Tile n.º {cell.Index} · columna {col + 1}, fila {row + 1}{what} · {state}";
@@ -500,7 +500,7 @@ namespace CTEditor.App
             {
                 _file.Settings = Settings;
                 _file.Kind = _kind;
-                _file.CharacterLayout = _kind == SliceFile.KindCharacter && _layout != null ? _layout.Name : "";
+                _file.CharacterLayout = _kind == SheetKind.Character && _layout != null ? _layout.Name : "";
                 _file.SaveFor(_path);
                 _shell.NotifyAssetsChanged();
                 _shell.Success($"Corte guardado: {Path.GetFileName(_path)} ({_sheet.Columns} × {_sheet.Rows}, {_sheet.UniqueCount} distintos).");

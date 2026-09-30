@@ -6,6 +6,7 @@ using NUnit.Framework;
 using CTEditor.Art.Domain;
 using CTEditor.Project;
 using CTEditor.Workspace;
+using CTEditor.World.Domain;
 
 namespace CTEditor.Tests.EditMode
 {
@@ -102,7 +103,8 @@ namespace CTEditor.Tests.EditMode
             Assert.AreEqual(PassageBlock.Down | PassageBlock.Up, back.Get(12).Blocked);
             Assert.IsTrue(back.Get(12).Counter);
             Assert.IsTrue(back.Get(100).IsDefault);
-            Assert.AreEqual("hierba", SliceFile.EssentialsTerrainTags[2].Key);
+            Assert.AreEqual("hierba", TerrainCatalog.Essentials().Find(2).Key);
+            Assert.IsTrue(TerrainCatalog.Essentials().Find(2).Encounters);
 
             // Get returns a copy: changing it without Set changes nothing.
             back.Get(5).Priority = 4;

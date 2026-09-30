@@ -21,7 +21,7 @@ namespace CTEditor.Workspace
     /// </summary>
     public sealed class ShortcutMap
     {
-        public static IReadOnlyList<ShortcutAction> Actions { get; } = new[]
+        private static readonly List<ShortcutAction> ActionList = new List<ShortcutAction>
         {
             new ShortcutAction("jugar", "Jugar desde el principio", "F5"),
             new ShortcutAction("probar_aqui", "Probar desde aquí", "Ctrl+F5"),
@@ -42,11 +42,32 @@ namespace CTEditor.Workspace
             new ShortcutAction("capa_anterior", "Capa anterior", "PageUp"),
         };
 
+        public static IReadOnlyList<ShortcutAction> Actions => ActionList;
+
+        /// <summary>
+        /// Un módulo nuevo añade sus acciones con atajo. Los entornos ya guardados la reciben con su atajo de fábrica (si ese
+        /// atajo está libre).
+        /// </summary>
+        public static void RegisterAction(ShortcutAction action)
+        {
+            if (action == null) throw new ArgumentNullException(nameof(action));
+            ActionList.RemoveAll(a => a.Id == action.Id);
+            ActionList.Add(action);
+        }
+
         private readonly Dictionary<string, string> _keys = new Dictionary<string, string>();
 
         public ShortcutMap() { foreach (var a in Actions) _keys[a.Id] = a.DefaultKeys; }
 
-        public string KeysFor(string action) => _keys.TryGetValue(action, out var k) ? k : "";
+        public string KeysFor(string action)
+        {
+            if (_keys.TryGetValue(action, out var k)) return k;
+            // An action registered after this map was made: its default, unless someone else already uses it.
+            var a = Actions.FirstOrDefault(x => x.Id == action);
+            if (a == null) return "";
+            var norm = Normalize(a.DefaultKeys);
+            return _keys.Values.Contains(norm) ? "" : norm;
+        }
 
         /// <summary>Cambia el atajo ("" = sin atajo). Devuelve las acciones que ya lo usaban (se quedan sin atajo).</summary>
         public IReadOnlyList<string> Rebind(string action, string keys)
@@ -65,7 +86,7 @@ namespace CTEditor.Workspace
         public string ActionFor(string keys)
         {
             var norm = Normalize(keys);
-            return norm.Length == 0 ? null : _keys.FirstOrDefault(kv => kv.Value == norm).Key;
+            return norm.Length == 0 ? null : Actions.Select(a => a.Id).FirstOrDefault(id => KeysFor(id) == norm);
         }
 
         public void ResetToDefaults() { foreach (var a in Actions) _keys[a.Id] = a.DefaultKeys; }
