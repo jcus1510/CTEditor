@@ -24,6 +24,7 @@ namespace CTEditor.GameDefinition.Editor
             // Comunes
             ["id"] = ("Id (único, sin espacios)", "id"),
             ["displayName"] = ("Nombre visible", "nombre"),
+            ["englishName"] = ("Nombre en inglés (Showdown)", "nombre_en"),
             ["description"] = ("Descripción", "descripcion"),
             ["color"] = ("Color", "color"),
             ["icon"] = ("Icono", "icono"),
@@ -186,6 +187,37 @@ namespace CTEditor.GameDefinition.Editor
             ["specialAttackStat"] = ("Especial: estadística de ataque", "especial_ataque"),
             ["specialDefenseStat"] = ("Especial: estadística de defensa", "especial_defensa"),
 
+            // Sets de competición
+            ["speciesId"] = ("Especie", "especie"),
+            ["setFormat"] = ("Formato (ou, uu, ubers...)", "formato"),
+            ["setScore"] = ("Puntuación (uso, 0-100)", "puntuacion"),
+            ["itemOptions"] = ("Objetos (alternativas)", "objeto"),
+            ["abilityOptions"] = ("Habilidades (alternativas)", "habilidad"),
+            ["natureOptions"] = ("Naturalezas (alternativas)", "naturaleza"),
+            ["moveSlots"] = ("Movimientos (huecos / alternativas)", "movimientos"),
+            ["competitiveSets"] = ("Usa sets de competición (Smogon)", "sets_competicion"),
+            ["setFormats"] = ("Formatos de sus sets (vacío = todos)", "formatos_sets"),
+            ["variableSets"] = ("Moveset cambiante (otro set cada combate)", "moveset_cambiante"),
+            // Megaevolución (entrenadores y niveles de IA)
+            ["canMegaEvolve"] = ("Puede megaevolucionar", "megaevoluciona"),
+            ["megaTiming"] = ("Cuándo megaevoluciona", "cuando_mega"),
+            // Formas y variantes
+            ["formOf"] = ("Es forma de (variante)", "forma_de"),
+            ["variantItem"] = ("Objeto que cambia a esta variante", "objeto_variante"),
+            ["forms"] = ("Formas de combate", "formas"),
+            ["formChanges"] = ("Cambios de forma", "cambios_forma"),
+            ["type1"] = ("Tipo 1", "tipo1"),
+            ["type2"] = ("Tipo 2", "tipo2"),
+            ["ability"] = ("Habilidad", "habilidad"),
+            ["revertsOnSwitch"] = ("Vuelve a la normal al retirarse", "vuelve_al_retirarse"),
+            ["from"] = ("Desde la forma", "desde"),
+            ["to"] = ("A la forma", "a"),
+            ["trigger"] = ("Qué lo provoca", "disparador"),
+            ["item"] = ("Objeto", "objeto"),
+            ["hpPercent"] = ("% de PS", "pct_ps"),
+            ["weather"] = ("Clima", "clima"),
+            ["requiredAbility"] = ("Con la habilidad", "con_habilidad"),
+            ["afterMove"] = ("Después del movimiento", "tras_movimiento"),
             // Reglas de generación
             ["generation"] = ("Generación de referencia (0 = personalizada)", "generacion"),
             ["categoryByType"] = ("Categoría por tipo (1.ª-3.ª gen.)", "categoria_por_tipo"),
@@ -236,6 +268,8 @@ namespace CTEditor.GameDefinition.Editor
             ["moves"] = ("Movimientos", "movimientos"),
             ["nature"] = ("Naturaleza", "naturaleza"),
             ["fixedIvs"] = ("IV fijos (−1 = al azar)", "ivs"),
+            ["evs"] = ("EVs (252 Atq / 4 PS / 252 Vel)", "evs_miembro"),
+            ["ivs"] = ("IVs por estadística (0 Atq / 0 Vel)", "ivs_miembro"),
             ["heldItem"] = ("Objeto equipado", "objeto_equipado"),
             ["persistAcrossScenes"] = ("Mantener entre escenas", "persistir"),
             ["geneticsSeed"] = ("Semilla de la genética (0 = al azar)", "semilla"),
@@ -638,6 +672,9 @@ namespace CTEditor.GameDefinition.Editor
         {
             // Categoría de movimiento
             ["MegaEvolution"] = "Megaevolución",
+            ["ByLevel"] = "Según su nivel", ["Yes"] = "Sí", ["No"] = "No", ["AsSoonAsPossible"] = "En cuanto puede",
+            ["HeldItem"] = "Lleva un objeto", ["UseMove"] = "Usa un movimiento", ["DamagingMove"] = "Usa un ataque",
+            ["HpBelow"] = "PS por debajo de un %", ["HpAtLeast"] = "PS desde un %", ["Weather"] = "Clima",
             ["Physical"] = "Físico", ["Special"] = "Especial", ["Status"] = "Estado",
             // Objetivo
             ["SingleEnemy"] = "Un rival", ["Self"] = "Uno mismo", ["AllEnemies"] = "Todos los rivales",

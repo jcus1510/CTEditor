@@ -1,0 +1,218 @@
+﻿id;especie;formato;nombre;puntuacion;objeto;habilidad;naturaleza;evs;ivs;movimientos
+venusaur_ou_1;venusaur;ou;Swords Dance;58;;;;;;sleep_powder/razor_leaf/swords_dance/hyper_beam
+charizard_ou_1;charizard;ou;Swords Dance;47;;;;;;swords_dance/hyper_beam/earthquake/slash,fire_blast,counter,fire_spin
+raticate_ou_1;raticate;ou;Biggie Cheese (Super Fang);41;;;;;;super_fang/hyper_beam/body_slam/bubble_beam
+arbok_ou_1;arbok;ou;Wrapper;59;;;;;;glare/wrap/earthquake/hyper_beam
+raichu_ou_1;raichu;ou;Mixed Attacker;47;;;;;;thunderbolt/thunder_wave/submission/surf
+sandslash_ou_1;sandslash;ou;Swords Dance;47;;;;;;swords_dance/earthquake/body_slam,rock_slide,substitute,submission/hyper_beam,body_slam
+clefable_ou_1;clefable;ou;Status Spreader;26;;;;;;mega_kick,body_slam/hyper_beam/blizzard/thunder_wave,sing
+clefable_ou_2;clefable;ou;Offensive;24;;;;;;blizzard/body_slam/hyper_beam/thunderbolt,thunder_wave
+clefable_ou_3;clefable;ou;Status Inducer;26;;;;;;blizzard/thunder_wave/sing,counter/thunderbolt,thunder
+persian_ou_1;persian;ou;Slash;44;;;;;;slash/body_slam/bubble_beam/thunderbolt,growl,hyper_beam
+poliwrath_ou_1;poliwrath;ou;Amnesia;46;;;;;;amnesia/hydro_pump/blizzard,hypnosis/hypnosis,submission,surf
+alakazam_ou_1;alakazam;ou;Standard;57;;;;;;psychic/seismic_toss,reflect/thunder_wave/recover
+machamp_ou_1;machamp;ou;Wallbreaker;44;;;;;;low_kick,submission/body_slam/hyper_beam/earthquake
+victreebel_ou_1;victreebel;ou;Standard;52;;;;;;sleep_powder/wrap/razor_leaf/stun_spore,hyper_beam
+victreebel_ou_2;victreebel;ou;Swords Dance;36;;;;;;swords_dance/hyper_beam/razor_leaf/wrap,sleep_powder,stun_spore
+golem_ou_1;golem;ou;Explosion;52;;;;;;rock_slide/earthquake/body_slam/explosion
+slowbro_ou_1;slowbro;ou;TobyBro (Amnesia);52;;;;;;amnesia/surf,psychic/thunder_wave,reflect/rest
+dodrio_ou_1;dodrio;ou;Agility Sweeper;57;;;;;;body_slam/drill_peck/hyper_beam/agility
+cloyster_ou_1;cloyster;ou;Standard;55;;;;;;clamp/blizzard/rest,hyper_beam/explosion
+gengar_ou_1;gengar;ou;Sleeper;55;;;;;;hypnosis/explosion/psychic,thunderbolt,night_shade/thunderbolt,night_shade,psychic
+hypno_ou_1;hypno;ou;Double Status;53;;;;;;hypnosis/thunder_wave/psychic/seismic_toss,rest
+kingler_ou_1;kingler;ou;Swords Dance;56;;;;;;swords_dance/hyper_beam/body_slam/crabhammer
+exeggutor_ou_1;exeggutor;ou;Sleeper;49;;;;;;sleep_powder/psychic/explosion/double_edge,stun_spore,mega_drain,hyper_beam
+lickitung_ou_1;lickitung;ou;Swords Dance Sweeper;59;;;;;;swords_dance/hyper_beam/earthquake,wrap/earthquake,bubble_beam,surf,body_slam
+rhydon_ou_1;rhydon;ou;Standard;53;;;;;;earthquake/rock_slide/body_slam/substitute
+chansey_ou_1;chansey;ou;BoltBeam;47;;;;;;thunderbolt/ice_beam/soft_boiled/thunder_wave
+chansey_ou_2;chansey;ou;Sing;45;;;;;;sing/ice_beam,seismic_toss/soft_boiled/thunder_wave,counter
+chansey_ou_3;chansey;ou;Reflect;41;;;;;;reflect/seismic_toss,ice_beam/soft_boiled/thunder_wave
+kangaskhan_ou_1;kangaskhan;ou;Wallbreaker;41;;;;;;body_slam/hyper_beam/earthquake/surf
+starmie_ou_1;starmie;ou;Special Attacker;49;;;;;;recover/thunder_wave/blizzard,thunderbolt/psychic,thunderbolt,surf
+jynx_ou_1;jynx;ou;Lead Sleeper;52;;;;;;lovely_kiss/blizzard/psychic/rest
+pinsir_ou_1;pinsir;ou;Swords Dance;43;;;;;;swords_dance/hyper_beam/slash,body_slam,bind/submission,bind
+tauros_ou_1;tauros;ou;The Bull;55;;;;;;body_slam/hyper_beam/blizzard/earthquake
+gyarados_ou_1;gyarados;ou;Wallbreaker;56;;;;;;hydro_pump/thunderbolt,blizzard/body_slam/hyper_beam
+lapras_ou_1;lapras;ou;Standard;48;;;;;;blizzard/thunderbolt/hyper_beam,body_slam/sing,confuse_ray
+jolteon_ou_1;jolteon;ou;Offensive;55;;;;;;thunder_wave/thunderbolt/double_kick/rest,pin_missile
+flareon_ou_1;flareon;ou;Mixed Attacker;56;;;;;;fire_blast/body_slam/hyper_beam/fire_spin,tail_whip
+porygon_ou_1;porygon;ou;Wall;48;;;;;;recover/thunder_wave/ice_beam/thunderbolt,tri_attack,hyper_beam
+omastar_ou_1;omastar;ou;Tank;45;;;;;;hydro_pump,surf/ice_beam/body_slam,seismic_toss/rest
+kabutops_ou_1;kabutops;ou;Standard;30;;;;;;swords_dance/slash/hyper_beam/surf
+snorlax_ou_1;snorlax;ou;Reflect;38;;;;;;body_slam/reflect/rest/ice_beam,self_destruct,hyper_beam,earthquake
+snorlax_ou_2;snorlax;ou;Physical Attacker;39;;;;;;body_slam/hyper_beam,counter/self_destruct/earthquake,counter
+snorlax_ou_3;snorlax;ou;Mixed Attacker;27;;;;;;body_slam/blizzard,ice_beam/amnesia/rest,self_destruct
+articuno_ou_1;articuno;ou;Standard;48;;;;;;blizzard/agility/double_edge,ice_beam,rest/hyper_beam
+zapdos_ou_1;zapdos;ou;Mixed Attacker;55;;;;;;thunderbolt/drill_peck/thunder_wave/agility
+moltres_ou_1;moltres;ou;Standard;59;;;;;;fire_blast/hyper_beam/agility/fire_spin
+dragonair_ou_1;dragonair;ou;Wrap;45;;;;;;thunder_wave/wrap/blizzard/thunderbolt,hyper_beam,agility
+dragonite_ou_1;dragonite;ou;Wrap;50;;;;;;wrap/hyper_beam/blizzard/thunder_wave,agility
+persian_ubers_1;persian;ubers;Slash;46;;;;;;slash/hyper_beam/thunderbolt/bubble_beam
+alakazam_ubers_1;alakazam;ubers;Standard;48;;;;;;thunder_wave/seismic_toss,counter/psychic/recover
+victreebel_ubers_1;victreebel;ubers;Wrap;44;;;;;;sleep_powder/wrap/stun_spore/razor_leaf
+golem_ubers_1;golem;ubers;Explosion;54;;;;;;earthquake/rock_slide/explosion/substitute,body_slam
+slowbro_ubers_1;slowbro;ubers;TobyBro (Amnesia);56;;;;;;surf/amnesia/rest/thunder_wave
+cloyster_ubers_1;cloyster;ubers;Physical Tank;54;;;;;;blizzard/clamp/explosion/rest
+gengar_ubers_1;gengar;ubers;Sleeper;48;;;;;;hypnosis/night_shade/thunderbolt/explosion
+hypno_ubers_1;hypno;ubers;Lead Sleeper;52;;;;;;psychic/hypnosis/thunder_wave/seismic_toss,submission,counter
+electrode_ubers_1;electrode;ubers;Offensive;53;;;;;;thunderbolt/thunder_wave/flash,screech/explosion
+exeggutor_ubers_1;exeggutor;ubers;Bulky Sleeper;57;;;;;;sleep_powder/stun_spore/psychic/explosion
+rhydon_ubers_1;rhydon;ubers;Physical Attacker;52;;;;;;earthquake/body_slam/substitute/rock_slide,leer,rest
+chansey_ubers_1;chansey;ubers;Sing;43;;;;;;sing/seismic_toss,ice_beam/thunder_wave/soft_boiled
+chansey_ubers_2;chansey;ubers;Light Screen;43;;;;;;light_screen/seismic_toss,ice_beam/thunder_wave/soft_boiled
+starmie_ubers_1;starmie;ubers;Paralysis Lead;44;;;;;;thunder_wave/recover/psychic/blizzard
+jynx_ubers_1;jynx;ubers;Sleep Lead;46;;;;;;lovely_kiss/blizzard/psychic/counter,rest
+tauros_ubers_1;tauros;ubers;The Bull;50;;;;;;body_slam/hyper_beam/earthquake/blizzard,leer,stomp
+lapras_ubers_1;lapras;ubers;Confuse Ray;47;;;;;;blizzard/thunderbolt/confuse_ray/body_slam
+lapras_ubers_2;lapras;ubers;Sing Lead;30;;;;;;sing/blizzard/thunderbolt/hyper_beam
+ditto_ubers_1;ditto;ubers;Blob;60;;;;;;transform
+jolteon_ubers_1;jolteon;ubers;Paralysis Lead;57;;;;;;thunder_wave/thunderbolt/pin_missile/double_kick
+aerodactyl_ubers_1;aerodactyl;ubers;Defensive Wall;45;;;;;;reflect/rest/double_edge/fire_blast
+snorlax_ubers_1;snorlax;ubers;PhysLax (All-out Attacker);53;;;;;;body_slam/self_destruct/hyper_beam,counter/earthquake,counter
+snorlax_ubers_2;snorlax;ubers;Reflect;31;;;;;;body_slam/reflect/rest/earthquake,self_destruct
+articuno_ubers_1;articuno;ubers;Bulky Attacker;45;;;;;;blizzard/hyper_beam,double_edge/rest/agility
+zapdos_ubers_1;zapdos;ubers;Mixed Attacker;57;;;;;;thunderbolt/drill_peck/thunder_wave/agility,hyper_beam
+dragonite_ubers_1;dragonite;ubers;Wrap;53;;;;;;wrap/thunder_wave,agility/surf,blizzard/hyper_beam,body_slam,agility
+mewtwo_ubers_1;mewtwo;ubers;Standard;40;;;;;;amnesia/psychic,thunderbolt,submission/thunderbolt,ice_beam/recover
+mewtwo_ubers_2;mewtwo;ubers;BooM2 (Self-Destruct);33;;;;;;amnesia/recover,thunder_wave/thunderbolt/self_destruct
+mewtwo_ubers_3;mewtwo;ubers;Staller;35;;;;;26 AtqE;amnesia/thunderbolt,ice_beam,psychic/flash,barrier/recover
+mew_ubers_1;mew;ubers;Traditional Sweeper;38;;;;;;swords_dance/earthquake/body_slam,hyper_beam/soft_boiled,explosion
+mew_ubers_2;mew;ubers;GGMew (Reflect Sweeper);37;;;;;;reflect/swords_dance/body_slam,earthquake/soft_boiled
+mew_ubers_3;mew;ubers;Explosive Lure;36;;;;;;thunder_wave/swords_dance/body_slam,earthquake,reflect/explosion
+mew_ubers_4;mew;ubers;Lutrew / PaRaSiTe Mew (Transform);24;;;;;;transform/thunder_wave/soft_boiled/reflect
+raichu_uu_1;raichu;uu;Offensive;55;;;;;;thunderbolt/thunder_wave/surf/hyper_beam,body_slam
+raichu_uu_2;raichu;uu;Agility;48;;;;;;agility/thunderbolt/surf,seismic_toss,hyper_beam/thunder_wave,hyper_beam
+nidoking_uu_1;nidoking;uu;Mixed Attacker;51;;;;;;earthquake/blizzard/thunderbolt/rock_slide,substitute
+clefable_uu_1;clefable;uu;Support;52;;;;;;thunder_wave/hyper_beam/blizzard,sing,seismic_toss/body_slam,thunderbolt,counter
+ninetales_uu_1;ninetales;uu;Offensive;50;;;;;;fire_blast/body_slam/hyper_beam/quick_attack,flamethrower
+venomoth_uu_1;venomoth;uu;Double Powder;49;;;;;;sleep_powder/stun_spore/psychic/double_edge,hyper_beam,psywave
+dugtrio_uu_1;dugtrio;uu;Offensive;57;;;;;;earthquake/rock_slide/slash,sand_attack/substitute
+persian_uu_1;persian;uu;Offensive;54;;;;;;slash/hyper_beam,body_slam/thunderbolt/bubble_beam
+kadabra_uu_1;kadabra;uu;Support;59;;;;;;thunder_wave/psychic/seismic_toss,reflect/recover
+victreebel_uu_1;victreebel;uu;Double Powder;44;;;;;;sleep_powder/stun_spore/razor_leaf/hyper_beam
+tentacruel_uu_1;tentacruel;uu;Swords Dance;60;;;;;;swords_dance/hyper_beam/surf,hydro_pump/blizzard
+tentacruel_uu_2;tentacruel;uu;Substitute + Toxic;30;;;;;;surf,hydro_pump/blizzard/substitute/toxic
+golem_uu_1;golem;uu;Explosion;53;;;;;;earthquake/rock_slide/substitute/explosion
+rapidash_uu_1;rapidash;uu;Offensive;43;;;;;;fire_blast/body_slam/hyper_beam/agility
+slowbro_uu_1;slowbro;uu;Amnesia;48;;;;;;amnesia/psychic,surf/thunder_wave/rest
+slowbro_uu_2;slowbro;uu;Support;30;;;;;;thunder_wave/psychic,surf/blizzard,surf/seismic_toss
+dodrio_uu_1;dodrio;uu;Offensive;57;;;;;;body_slam/hyper_beam/drill_peck/agility
+haunter_uu_1;haunter;uu;Sleeper;47;;;;;;hypnosis/night_shade/thunderbolt/explosion
+hypno_uu_1;hypno;uu;Support;52;;;;;;thunder_wave/psychic/hypnosis,rest/seismic_toss,rest
+electrode_uu_1;electrode;uu;Offensive;48;;;;;;thunderbolt/thunder_wave/hyper_beam/explosion
+tangela_uu_1;tangela;uu;Double Powder;42;;;;;;sleep_powder/stun_spore/hyper_beam,body_slam/swords_dance,body_slam
+kangaskhan_uu_1;kangaskhan;uu;Offensive;50;;;;;;body_slam/hyper_beam/earthquake/blizzard,counter
+electabuzz_uu_1;electabuzz;uu;Offensive;47;;;;;;thunder_wave/thunderbolt/body_slam/psychic,hyper_beam
+gyarados_uu_1;gyarados;uu;Mixed Attacker;60;;;;;;blizzard/thunderbolt/surf,body_slam,hydro_pump/hyper_beam,body_slam
+lapras_uu_1;lapras;uu;Bulky Attacker;51;;;;;;blizzard/thunderbolt/sing/rest
+omastar_uu_1;omastar;uu;Support;0;;;;;;surf,hydro_pump/blizzard/seismic_toss/substitute,rest
+articuno_uu_1;articuno;uu;Agility;51;;;;;;agility/blizzard/hyper_beam/double_edge,ice_beam
+moltres_uu_1;moltres;uu;Agility;59;;;;;;agility/fire_blast/double_edge/hyper_beam
+dragonite_uu_1;dragonite;uu;Support;50;;;;;;thunder_wave/blizzard/thunderbolt,body_slam/hyper_beam,body_slam
+dragonite_uu_2;dragonite;uu;Agility;39;;;;;;thunder_wave/agility/blizzard/hyper_beam
+venusaur_nu_1;venusaur;nu;Sleeper;52;;;;;;sleep_powder/razor_leaf/body_slam,swords_dance/hyper_beam,swords_dance
+charizard_nu_1;charizard;nu;Swords Dance;37;;;;;;swords_dance/hyper_beam/earthquake/fire_blast,body_slam
+charizard_nu_2;charizard;nu;Mixed Attacker;38;;;;;;fire_blast/slash/earthquake/body_slam,counter
+blastoise_nu_1;blastoise;nu;Bulky Attacker;42;;;;;;surf/body_slam/seismic_toss/blizzard,earthquake
+raticate_nu_1;raticate;nu;Offensive;47;;;;;;body_slam/hyper_beam/blizzard/super_fang,thunderbolt
+fearow_nu_1;fearow;nu;Offensive;55;;;;;;double_edge/hyper_beam/drill_peck/agility
+nidoking_nu_1;nidoking;nu;Mixed Attacker;51;;;;;;earthquake/blizzard/thunderbolt,rock_slide/substitute,rock_slide
+wigglytuff_nu_1;wigglytuff;nu;Support;43;;;;;;thunder_wave/hyper_beam/blizzard/body_slam,seismic_toss
+venomoth_nu_1;venomoth;nu;Double Powder;57;;;;;;sleep_powder/stun_spore/double_edge,hyper_beam/psychic
+golduck_nu_1;golduck;nu;Amnesia;47;;;;;;amnesia/surf,hydro_pump/blizzard,hydro_pump/counter,seismic_toss,hydro_pump
+arcanine_nu_1;arcanine;nu;Offensive;60;;;;;;fire_blast/body_slam/hyper_beam/agility
+poliwhirl_nu_1;poliwhirl;nu;Amnesia;49;;;;;;hypnosis/amnesia/hydro_pump,surf/blizzard,psychic,seismic_toss,body_slam
+poliwrath_nu_1;poliwrath;nu;Sleeper;39;;;;;;hypnosis/surf/amnesia,body_slam/seismic_toss,body_slam,psychic
+kadabra_nu_1;kadabra;nu;Support;0;;;;;;thunder_wave/psychic/recover/seismic_toss
+victreebel_nu_1;victreebel;nu;Double Powder;42;;;;;;sleep_powder/stun_spore/razor_leaf/hyper_beam
+tentacruel_nu_1;tentacruel;nu;Swords Dance;0;;;;;;swords_dance/hyper_beam/surf,hydro_pump,blizzard/substitute,blizzard
+golem_nu_1;golem;nu;Explosion;53;;;;;;earthquake/rock_slide/substitute,body_slam/explosion
+magneton_nu_1;magneton;nu;Support;44;;;;;;thunderbolt/thunder_wave/hyper_beam/rest
+dewgong_nu_1;dewgong;nu;Bulky Attacker;0;;;;;;blizzard/body_slam/surf,ice_beam,substitute/rest,ice_beam
+gastly_nu_1;gastly;nu;Hypnosis;45;;;;;;hypnosis/thunderbolt/night_shade/explosion
+electrode_nu_1;electrode;nu;Offensive;57;;;;;;thunderbolt/thunder_wave/hyper_beam/explosion
+exeggcute_nu_1;exeggcute;nu;Double Powder;59;;;;;;sleep_powder/stun_spore/psychic/explosion
+tangela_nu_1;tangela;nu;Double Powder;0;;;;;;sleep_powder/stun_spore/mega_drain,swords_dance/hyper_beam,body_slam
+seadra_nu_1;seadra;nu;Agility;54;;;;;;agility/surf/blizzard/hydro_pump
+seadra_nu_2;seadra;nu;Smokescreen + Rest;32;;;;;;agility/surf/smokescreen/rest
+mr_mime_nu_1;mr_mime;nu;Support;58;;;;;;thunder_wave/psychic/thunderbolt/seismic_toss
+vaporeon_nu_1;vaporeon;nu;Defensive;0;;;;;;surf/body_slam/blizzard/rest,sand_attack
+vaporeon_nu_2;vaporeon;nu;Acid Armor;0;;;;;;surf/acid_armor/body_slam,blizzard,ice_beam/rest
+porygon_nu_1;porygon;nu;Support;36;;;;;;thunder_wave/recover/double_edge/blizzard
+omastar_nu_1;omastar;nu;Defensive;0;;;;;;hydro_pump,surf/blizzard/seismic_toss/body_slam
+kabutops_nu_1;kabutops;nu;Bulky Attacker;53;;;;;;slash/surf/swords_dance,body_slam/hyper_beam
+aerodactyl_nu_1;aerodactyl;nu;Don't use Aerodactyl;43;;;;;;double_edge/hyper_beam/fire_blast/substitute
+venusaur_pu_1;venusaur;pu;Sleeper;50;;;;;;sleep_powder/razor_leaf/body_slam,swords_dance/hyper_beam
+pidgeot_pu_1;pidgeot;pu;Offensive;45;;;;;;double_edge/hyper_beam/agility/sand_attack,mirror_move
+nidoking_pu_1;nidoking;pu;Mixed Attacker;56;;;;;;earthquake/blizzard/thunderbolt/substitute,counter,fire_blast
+wigglytuff_pu_1;wigglytuff;pu;Bulky Support;43;;;;;;thunder_wave/hyper_beam/seismic_toss/blizzard,sing
+golduck_pu_1;golduck;pu;All-Out Attacker;53;;;;;;surf/blizzard/seismic_toss,counter/amnesia,counter
+primeape_pu_1;primeape;pu;Offensive;51;;;;;;body_slam,seismic_toss/hyper_beam/rock_slide,thunderbolt/submission,thunderbolt
+abra_pu_1;abra;pu;Special Attacker;57;;;;;;psychic/thunder_wave/substitute/seismic_toss,counter
+machamp_pu_1;machamp;pu;Bulky Attacker;54;;;;;;body_slam/hyper_beam/earthquake/submission,rock_slide
+graveler_pu_1;graveler;pu;Tank;46;;;;;;earthquake/rock_slide/substitute/explosion
+gastly_pu_1;gastly;pu;Offensive Sleeper;55;;;;;;hypnosis/thunderbolt/psychic/explosion
+drowzee_pu_1;drowzee;pu;Support;51;;;;;;psychic/thunder_wave/hypnosis/substitute,seismic_toss
+kingler_pu_1;kingler;pu;Swords Dance;57;;;;;;swords_dance/body_slam/hyper_beam/crabhammer
+exeggcute_pu_1;exeggcute;pu;Double Powder;59;;;;;;sleep_powder/stun_spore/psychic/explosion
+seaking_pu_1;seaking;pu;Agility;47;;;;;;agility/surf/blizzard/hyper_beam
+staryu_pu_1;staryu;pu;Support;50;;;;;;thunder_wave/surf/thunderbolt/recover,blizzard
+scyther_pu_1;scyther;pu;Swords Dance;52;;;;;;swords_dance/slash/hyper_beam/wing_attack,agility
+magmar_pu_1;magmar;pu;Swagmar;47;;;;;;fire_blast/body_slam/hyper_beam/counter,seismic_toss,psychic,smokescreen
+pinsir_pu_1;pinsir;pu;Swords Dance;40;;;;;;swords_dance/slash/hyper_beam/seismic_toss
+porygon_pu_1;porygon;pu;Support;44;;;;;;thunder_wave/recover/blizzard/psychic,double_edge,hyper_beam
+porygon_pu_2;porygon;pu;Agility;49;;;;;;agility/recover/psychic,blizzard/thunder_wave,hyper_beam,blizzard
+bulbasaur_lc_1;bulbasaur;lc;Sleeper;45;;;;;;sleep_powder/razor_leaf/body_slam/swords_dance,substitute
+charmander_lc_1;charmander;lc;Mixed Attacker;43;;;;;;fire_blast,flamethrower/body_slam/counter/substitute,counter,swords_dance
+squirtle_lc_1;squirtle;lc;Special Attacker;0;;;;;;surf/blizzard/body_slam/counter
+caterpie_lc_1;caterpie;lc;"""Support""";0;;;;;;string_shot/tackle
+weedle_lc_1;weedle;lc;"""Support""";0;;;;;;string_shot/poison_sting
+pidgey_lc_1;pidgey;lc;Priority Attacker;52;;;;;;double_edge/quick_attack/wing_attack,agility,substitute/mirror_move
+rattata_lc_1;rattata;lc;Priority Attacker;46;;;;;;body_slam/quick_attack/blizzard/super_fang,bubble_beam
+spearow_lc_1;spearow;lc;Agility Sweeper;60;;;;;;double_edge/drill_peck/mirror_move/agility
+ekans_lc_1;ekans;lc;Physical Attacker;0;;;;;;glare/body_slam,mega_drain/rock_slide/earthquake
+pikachu_lc_1;pikachu;lc;Mixed Attacker;50;;;;;;thunderbolt/surf,body_slam/quick_attack,body_slam/thunder_wave,body_slam,agility
+sandshrew_lc_1;sandshrew;lc;Physical Attacker;0;;;;;;earthquake/body_slam,rock_slide/substitute/slash,swords_dance
+nidoran_f_lc_1;nidoran_f;lc;Mixed Attacker;0;;;;;;body_slam/double_kick/blizzard/thunderbolt
+nidoran_m_lc_1;nidoran_m;lc;Mixed Attacker;0;;;;;;body_slam/double_kick/blizzard/thunderbolt
+clefairy_lc_1;clefairy;lc;Mixed Attacker;55;;;;;;body_slam/blizzard/thunderbolt,psychic/thunder_wave
+vulpix_lc_1;vulpix;lc;Mixed Attacker;46;;;;;;fire_blast,flamethrower/body_slam/confuse_ray/substitute,quick_attack
+jigglypuff_lc_1;jigglypuff;lc;Mixed Attacker;36;;;;;;body_slam/thunder_wave/blizzard,thunderbolt/thunderbolt,counter
+zubat_lc_1;zubat;lc;Mixed Attacker;45;;;;;;confuse_ray/double_edge/mega_drain/leech_life
+oddish_lc_1;oddish;lc;Status Spreader;0;;;;;;sleep_powder/stun_spore/double_edge/mega_drain
+paras_lc_1;paras;lc;Status Spreader;40;;;;;;spore/stun_spore/body_slam/mega_drain,leech_life
+venonat_lc_1;venonat;lc;Status Spreader;60;;;;;;sleep_powder/stun_spore/psychic/double_edge,leech_life,mega_drain
+diglett_lc_1;diglett;lc;Physical Sweeper;49;;;;;6 PS/28 Atq/28 Def;earthquake/rock_slide/body_slam/substitute
+meowth_lc_1;meowth;lc;Mixed Attacker;57;;;;;;slash/body_slam/thunderbolt/bubble_beam
+psyduck_lc_1;psyduck;lc;Amnesia;56;;;;;;amnesia/surf/blizzard/body_slam,counter
+mankey_lc_1;mankey;lc;Physical Attacker;41;;;;;;submission,low_kick/rock_slide/thunderbolt/body_slam
+growlithe_lc_1;growlithe;lc;Agility Sweeper;0;;;;;;agility/body_slam/fire_blast,flamethrower/double_edge,substitute
+poliwag_lc_1;poliwag;lc;Sleeper;54;;;;;;hypnosis/amnesia/surf,blizzard,hydro_pump/psychic,blizzard
+abra_lc_1;abra;lc;Mixed Attacker;49;;;;;;psychic/body_slam/thunder_wave/substitute,counter
+machop_lc_1;machop;lc;Physical Attacker;44;;;;;;submission/earthquake/rock_slide/body_slam
+bellsprout_lc_1;bellsprout;lc;Status Spreader;30;;;;;;sleep_powder/stun_spore/double_edge/mega_drain
+tentacool_lc_1;tentacool;lc;Special Attacker;45;;;;;;surf/blizzard/mega_drain,double_edge/hydro_pump,bubble_beam
+geodude_lc_1;geodude;lc;Physical Attacker;49;;;;;;earthquake/rock_slide/body_slam/explosion
+ponyta_lc_1;ponyta;lc;Agility Sweeper;53;;;;;;agility/fire_blast/body_slam/stomp,double_edge,substitute
+slowpoke_lc_1;slowpoke;lc;Mixed Attacker;46;;;;;;blizzard,surf/psychic/earthquake/thunder_wave
+magnemite_lc_1;magnemite;lc;Special Attacker;43;;;;;;thunderbolt/thunder_wave/double_edge/substitute,thunder
+doduo_lc_1;doduo;lc;Agility Sweeper;54;;;;;;body_slam/double_edge/drill_peck/agility
+seel_lc_1;seel;lc;Special Attacker;45;;;;;;surf/blizzard/body_slam/bubble_beam,double_edge,substitute
+grimer_lc_1;grimer;lc;Mixed Attacker;0;;;;;;body_slam,sludge/thunderbolt/fire_blast,mega_drain/explosion
+shellder_lc_1;shellder;lc;Clamp;48;;;;;;clamp/surf,double_edge/blizzard,double_edge/explosion
+gastly_lc_1;gastly;lc;Sleeper;53;;;;;;hypnosis/thunderbolt,mega_drain/psychic,mega_drain/explosion
+drowzee_lc_1;drowzee;lc;Status Spreader;50;;;;;;hypnosis/thunder_wave/psychic/body_slam
+krabby_lc_1;krabby;lc;Setup Attacker;45;;;;;;body_slam/crabhammer/blizzard,stomp/substitute,swords_dance
+voltorb_lc_1;voltorb;lc;Fast Attacker;54;;;;;;thunderbolt/thunder_wave/take_down/explosion
+exeggcute_lc_1;exeggcute;lc;Status Spreader;54;;;;;;sleep_powder/stun_spore/psychic/explosion
+cubone_lc_1;cubone;lc;Mixed Attacker;30;;;;;;earthquake/body_slam/blizzard/counter
+koffing_lc_1;koffing;lc;Mixed Attacker;52;;;;;;sludge/fire_blast/thunderbolt/explosion
+rhyhorn_lc_1;rhyhorn;lc;Physical Attacker;48;;;;;;earthquake/body_slam/fire_blast/substitute,rock_slide
+horsea_lc_1;horsea;lc;Agility Sweeper;60;;;;;;surf/blizzard/double_edge,hydro_pump/agility
+goldeen_lc_1;goldeen;lc;Agility Sweeper;60;;;;;;surf/blizzard/double_edge/agility
+staryu_lc_1;staryu;lc;Special Attacker;50;;;;;;surf,hydro_pump/thunderbolt/blizzard/thunder_wave
+magikarp_lc_1;magikarp;lc;...It's Magikarp.;0;;;;;;splash/tackle
+eevee_lc_1;eevee;lc;Physical Attacker;58;;;;;;body_slam/double_edge/quick_attack/sand_attack,substitute
+omanyte_lc_1;omanyte;lc;Special Attacker;45;;;;;;surf/blizzard/body_slam/hydro_pump,bubble_beam
+kabuto_lc_1;kabuto;lc;Mixed Attacker;45;;;;;;surf,hydro_pump/blizzard/slash/body_slam,hydro_pump
+dratini_lc_1;dratini;lc;Agility Sweeper;55;;;;;;agility/blizzard/thunderbolt/hyper_beam,thunder_wave

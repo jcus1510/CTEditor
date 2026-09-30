@@ -1,7 +1,7 @@
 ﻿PACK 4.ª GENERACIÓN — fiel a su generación (generado por Tools/verificar_pack/generar_packs.py)
 ========================================================================================
 
-• 493 especies (hasta la n.º 493) con los datos QUE TENÍAN EN LA 4.ª GENERACIÓN (PokeAPI):
+• 504 especies (hasta la n.º 493) con los datos QUE TENÍAN EN LA 4.ª GENERACIÓN (PokeAPI):
   tipos, estadísticas base,
   aprendizaje por nivel de Platino y MT/tutor/huevo de los juegos de la generación.
 • 466 movimientos: solo los que existen en la 4.ª gen., con su tipo, potencia, precisión, PP y prioridad
@@ -15,6 +15,12 @@
 APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):
   • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.
   • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.
+
+FORMAS DE COMBATE (SE CAMBIAN EN MITAD DEL COMBATE) (4):
+   arceus, castform, cherrim, giratina
+
+VARIANTES (ESPECIES CON «FORMA_DE») (11):
+   deoxys_attack → deoxys, deoxys_defense → deoxys, deoxys_speed → deoxys, rotom_fan → rotom, rotom_frost → rotom, rotom_heat → rotom, rotom_mow → rotom, rotom_wash → rotom, shaymin_sky → shaymin (gracidea), wormadam_sandy → wormadam, wormadam_trash → wormadam
 
 ENTRENADORES CON MIEMBROS DE GENERACIONES POSTERIORES (QUITADOS) (13):
    especialista_dark, especialista_dragon, especialista_electric, especialista_fairy, especialista_flying, especialista_ghost, especialista_grass, especialista_ground, especialista_ice, especialista_normal, especialista_poison, especialista_steel, especialista_water

@@ -65,6 +65,12 @@ namespace CTEditor.Battle.Domain
 
         // ---------------- Clima (Lote A) ----------------
 
+        // --- Megaevoluciones usadas por cada lado en este combate ---
+        private int _megasPlayer, _megasEnemy;
+        /// <summary>Cuántas veces ha megaevolucionado un lado en este combate.</summary>
+        public int MegasUsed(bool playerSide) => playerSide ? _megasPlayer : _megasEnemy;
+        internal void NoteMega(bool playerSide) { if (playerSide) _megasPlayer++; else _megasEnemy++; }
+
         /// <summary>Id del clima activo ("rain", "sun"...). Null = despejado.</summary>
         public string WeatherId { get; private set; }
 

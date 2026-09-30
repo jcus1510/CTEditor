@@ -13,6 +13,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
     {
         [SerializeField] private string id;
         [SerializeField] private string displayName;
+        [Tooltip("Nombre en INGLÉS (el de Showdown): sirve para importar y exportar equipos. Vacío = se deduce del id.")]
+        [SerializeField] private string englishName = "";
 
         // Lista de tipos (arrastrables). El '[]' es un arreglo serializable: Unity lo muestra como
         // una lista editable. Soporta mono, doble o más tipos: la libertad de la que hablamos.
@@ -94,8 +96,20 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField] private EggGroupData[] eggGroups = new EggGroupData[0];
 
         // --- Getters de solo lectura ---
+        [Header("Formas y variantes")]
+        [Tooltip("VARIANTE: esta especie es forma de otra (Rotom Lavado es forma de Rotom). Vacío = no es variante.")]
+        [ContentIdReference(typeof(SpeciesData)), SerializeField] private string formOf = "";
+        [Tooltip("Con «Es forma de»: objeto que, usado fuera del combate, cambia a esta variante (y la devuelve a la base). " +
+                 "Vacío = solo cambia con un personaje del mapa.")]
+        [ContentIdReference(typeof(ItemData)), SerializeField] private string variantItem = "";
+        [Tooltip("Formas de COMBATE: cambian tipos, estadísticas o habilidad en mitad del combate y al acabar vuelven a la normal.")]
+        [SerializeField] private FormEntry[] forms = new FormEntry[0];
+        [Tooltip("Qué provoca cada cambio de forma en combate (objeto, movimiento, PS, clima, megaevolución).")]
+        [SerializeField] private FormChangeEntry[] formChanges = new FormChangeEntry[0];
+
         public string Id => id;
         public string DisplayName => displayName;
+        public string EnglishName => englishName;
         public ElementTypeData[] Types => types;
         public string AbilityId => abilityId;
         public string SecondAbilityId => secondAbilityId;
@@ -126,6 +140,44 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public CustomStatValue[] CustomStats => customStats;
         public LearnableMoveEntry[] Learnset => learnset;
         public EvolutionEntry[] Evolutions => evolutions;
+        public string FormOf => formOf;
+        public string VariantItem => variantItem;
+        public FormEntry[] Forms => forms;
+        public FormChangeEntry[] FormChanges => formChanges;
+
+        /// <summary>
+        /// Una forma de combate: lo que no se rellena (tipos vacíos, estadística 0, habilidad vacía) se queda como en la
+        /// especie. Los PS no cambian en combate.
+        /// </summary>
+        [Serializable]
+        public sealed class FormEntry
+        {
+            [Tooltip("Id de la forma dentro de la especie (zen, blade, mega...).")]
+            public string id = "";
+            public string displayName = "";
+            [ContentIdReference(typeof(ElementTypeData))] public string type1 = "";
+            [ContentIdReference(typeof(ElementTypeData))] public string type2 = "";
+            [Tooltip("0 = igual que la especie.")] public int attack, defense, spAttack, spDefense, speed;
+            [ContentIdReference(typeof(AbilityData))] public string ability = "";
+            [Tooltip("Al retirarse vuelve a la forma normal (Modo Daruma, Aegislash). Desmarcado: se queda hasta el final.")]
+            public bool revertsOnSwitch;
+        }
+
+        /// <summary>Una regla de cambio de forma: de 'from' a 'to' ("" = la forma normal, "*" = desde cualquiera) cuando...</summary>
+        [Serializable]
+        public sealed class FormChangeEntry
+        {
+            [Tooltip("Desde qué forma (vacío = la normal, * = cualquiera).")] public string from = "";
+            [Tooltip("A qué forma (vacío = vuelve a la normal).")] public string to = "";
+            public CTEditor.GameDefinition.Domain.Species.FormTrigger trigger;
+            [ContentIdReference(typeof(ItemData))] public string item = "";
+            [ContentIdReference(typeof(MoveData))] public string move = "";
+            [Range(0, 100)] public int hpPercent = 50;
+            [ContentIdReference(typeof(WeatherData))] public string weather = "";
+            [ContentIdReference(typeof(AbilityData))] public string requiredAbility = "";
+            [Tooltip("Con movimientos: cambia DESPUÉS de usarlo (Meloetta). Desmarcado: antes (Aegislash).")]
+            public bool afterMove;
+        }
 
         // --- Structs anidados y serializables ---
         // '[Serializable]' le dice a Unity "sabes dibujar esto en el Inspector". Sin él, estas

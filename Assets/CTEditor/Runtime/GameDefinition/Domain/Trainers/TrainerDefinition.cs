@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace CTEditor.GameDefinition.Domain.Trainers
@@ -83,8 +84,12 @@ namespace CTEditor.GameDefinition.Domain.Trainers
         public TrainerDefinition(string id, string displayName, IReadOnlyList<TeamMemberSpec> team,
             string trainerClass = "", TrainerAi ai = TrainerAi.Smart, int baseMoney = 20,
             string introLine = "", string defeatLine = "", string victoryLine = "", TrainerAiSettings aiSettings = null,
-            int aiLevel = 0, string aiProfileId = "")
+            int aiLevel = 0, string aiProfileId = "", bool canMegaEvolve = true,
+            IEnumerable<string> setFormats = null, bool variableSets = false)
         {
+            SetFormats = (setFormats ?? Array.Empty<string>()).Where(f => !string.IsNullOrWhiteSpace(f)).Select(f => f.Trim().ToLowerInvariant()).Distinct().ToList();
+            VariableSets = variableSets;
+            CanMegaEvolve = canMegaEvolve;
             _aiLevel = Math.Max(0, Math.Min(AiProfile.MaxLevel, aiLevel));
             AiProfileId = (aiProfileId ?? "").Trim();
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("El entrenador necesita un id.", nameof(id));
@@ -99,6 +104,18 @@ namespace CTEditor.GameDefinition.Domain.Trainers
             DefeatLine = defeatLine ?? "";
             VictoryLine = victoryLine ?? "";
         }
+
+        /// <summary>Formatos de los que coge sets de competición (ou, uu...). Vacío = de cualquiera.</summary>
+        public IReadOnlyList<string> SetFormats { get; }
+
+        /// <summary>
+        /// MOVESET CAMBIANTE: si es true, en cada combate elige otro set (y otras alternativas) al azar: nunca sabes qué
+        /// llevará. false (FIJO): siempre el mismo set para el mismo miembro.
+        /// </summary>
+        public bool VariableSets { get; }
+
+        /// <summary>¿Puede megaevolucionar? (si las reglas tienen la mecánica y un miembro lleva su megapiedra). Por defecto, sí.</summary>
+        public bool CanMegaEvolve { get; }
 
         /// <summary>"Cazabichos Pepe" (o solo el nombre si no tiene clase).</summary>
         public string FullName => string.IsNullOrWhiteSpace(TrainerClass) ? DisplayName : TrainerClass + " " + DisplayName;

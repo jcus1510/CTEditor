@@ -157,6 +157,74 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - Los efectos de movimientos y habilidades aún son los de la 6.ª gen. (ver «Aproximaciones» en el INFORME de cada
   pack). Las reglas de cada generación se ponen en **Reglas del juego → Reglas de generación** (ver abajo).
 
+## Cambiar de generación (asistente)
+**Herramientas → Cambiar de generación** pasa TODO el proyecto a otro pack en cuatro pasos:
+1. **Pack** de destino (con su INFORME).
+2. **Qué cambia** (lista para marcar): reglas de la generación (plantilla: categoría por tipo, «Especial» único,
+   habilidades, objetos equipados, naturalezas, géneros; Megaevolución solo en 6.ª y 7.ª), tipos y tabla de tipos,
+   especies, movimientos (Forcejeo se queda siempre), habilidades, objetos (los objetos con efecto de las plantillas se
+   quedan siempre), naturalezas, grupos huevo, sets de Smogon y los entrenadores del pack. Si el pack no trae la hoja de
+   una categoría (p. ej. habilidades en la 1.ª), lo tuyo se queda y las reglas lo apagan.
+3. **Aplicar**: primero una **copia de seguridad** en `Excel/copias/antes_de_<pack>_<fecha>`. Lo que el pack no trae va,
+   a tu elección, a la **papelera en un grupo** («Cambio a Gen3 …», se recupera entero con *↩ Recuperar todo el grupo*),
+   se **borra para siempre** o se **deja**. Después se importa el pack (se reenlazan las referencias por id) y se limpian
+   de la tabla de tipos los cruces de tipos que ya no existen.
+4. **Adaptar a las reglas**: revisa tus entrenadores, equipos prearmados y zonas (que **nunca** se borran). Cada cosa que
+   ya no encaja (especie o movimiento que no existe, objeto sin objetos equipados, megapiedra sin Megaevolución,
+   naturaleza/género/habilidad/EVs que la generación no tiene) sale en una fila: **arreglar** (quitar el miembro, el
+   movimiento, el objeto…) o **dejar y avisar** (el juego no falla: ignora lo que no existe; el validador lo sigue avisando).
+
+## EVs, IVs y habilidad de cada miembro
+- En cada miembro de un entrenador o equipo prearmado: **Habilidad** (1.ª, 2.ª u oculta de su especie; vacío = la que le
+  toque), **EVs** («252 Atq / 4 PS / 252 Vel») e **IVs por estadística** («0 Atq / 0 Vel»; las demás, «IVs fijos» o al
+  azar). Se escriben con PS, Atq, Def, AtqE, DefE, Vel (también HP/Atk/SpA/SpD/Spe de Showdown o el id de una estadística
+  inventada). Los EVs se recortan a los topes de las reglas.
+- Vacío = automático: los niveles de IA con entrenamiento de competición (Maestro, Injusto) ponen sus EVs; «✨ Sugerir»
+  los rellena para verlos y retocarlos. La vista previa enseña las estadísticas con esos EVs.
+- Excel (columna `equipo`): `especie@nivel…~naturaleza!habilidad(252 Atq/4 PS/252 Vel)#31(0 Vel)"mote"`.
+
+## Sets de competición (Smogon)
+- **Personajes → 🏆 Sets de competición**: sets de los análisis de Smogon (o tuyos) por especie y formato (OU, Ubers, UU,
+  RU, NU, PU, LC): movimientos en 4 huecos con alternativas, objeto/habilidad/naturaleza con alternativas, EVs e IVs, y
+  una **puntuación** (0-100) de cuánto se usa de verdad según las estadísticas de Smogon. Los packs traen `sets.csv`
+  (se importa con el pack; se regenera con `Tools/verificar_pack/generar_sets.py`).
+- Los entrenadores cuya IA tiene **«Usa sets de competición»** (por defecto Campeón, Maestro e Injusto; editable en cada
+  nivel de IA) arman a los miembros SIN movimientos escritos con un set de su especie, elegido al azar con más peso para
+  los más usados. Lo escrito a mano se respeta (objeto, naturaleza, EVs...).
+- En el entrenador: **«Formatos de sus sets»** (ou, uu...; vacío = todos) y **«Moveset cambiante»**: marcado, en cada
+  combate elige otro set y otras alternativas (nunca sabes qué llevará); desmarcado (FIJO), siempre el mismo.
+  **«🏆 Set de Smogon…»** (en entrenadores y equipos) elige un set por miembro con buscador de formato y lo guarda en la
+  ficha. «✨ Sugerir» con una IA que usa sets propone el más usado (con su habilidad e IVs).
+
+## Importar y exportar equipos en formato Showdown
+- En el editor de **entrenadores** y en el de **equipos prearmados**: «📤 Exportar a Showdown» copia el equipo al
+  portapapeles en el formato estándar (nombres en inglés) y «📥 Importar de Showdown…» abre una ventana para pegar un
+  equipo de Showdown o Smogon, analizarlo (avisa de lo que no existe en tu juego y lo deja automático) y reemplazar el
+  equipo o añadirlo al final. «Nivel si no lo dice»: Showdown da por hecho el 100.
+- Los nombres se reconocen por el **nombre en inglés** de cada ficha (campo «Nombre en inglés», columna `nombre_en`) o,
+  si no lo tiene, por su id sin guiones ni espacios («U-turn» = `u_turn`, «Rotom-Wash» = `rotom_wash`). Los packs traen
+  los nombres en inglés de PokeAPI (especies, variantes al estilo Showdown, movimientos, habilidades, objetos y
+  naturalezas).
+- Se importan especie, mote, género, objeto, habilidad, nivel, EVs, naturaleza, IVs (lo no escrito = 31) y movimientos;
+  Tera Type, Shiny, Happiness y demás se ignoran.
+
+## Formas y variantes
+- **Formas de COMBATE** (dentro de la especie): cambian tipos, estadísticas (menos los PS) o habilidad EN MITAD del combate
+  y al acabar vuelven a la normal. Qué las provoca (editable, se pueden combinar varias reglas):
+  llevar un objeto (Giratina, Arceus, Kyogre/Groudon primigenios), usar un movimiento (Meloetta, antes o después),
+  usar cualquier ataque (Aegislash), PS por debajo / desde un % (Modo Daruma), un clima (Castform, Cherrim) y la
+  megaevolución (la pide el entrenador). Cada regla puede pedir una habilidad. «Vuelve al retirarse» = la forma se pierde
+  al cambiar.
+- **VARIANTES**: especies completas enlazadas con «Es forma de» (Rotom Lavado, Deoxys Ataque, Shaymin Cielo, los Tótem,
+  Kyurem Negro/Blanco, Hoopa Desatado...). «Objeto que cambia a esta variante»: usado fuera del combate la cambia (y la
+  devuelve a la base); vacío = con un personaje del mapa (`FieldActions.ChangeVariant`, para los eventos).
+- Editores: ficha de especie → «Formas y variantes» (+ Forma de combate con plantilla, + Variante); **Criaturas →
+  🌳 Árbol de familia**: evoluciones, insignias ⚔ de las formas (se editan en el panel) y variantes punteadas debajo de su
+  base.
+- Excel (`especies.csv`): `forma_de`, `objeto_variante`, `formas` (`id;nombre;tipo1/tipo2;atq/def/atq_esp/def_esp/vel;habilidad;vuelve`)
+  y `cambios_forma` (`desde>hasta:disparador[:valor][;con=habilidad][;despues]`; disparadores objeto, movimiento, ataque,
+  ps_bajo, ps_desde, clima, mega). Los packs Gen3-Gen6 las traen de PokeAPI.
+
 ## Reglas de generación y mecánicas especiales
 - **Reglas del juego → Reglas de generación**: botones «1.ª gen.» … «9.ª gen.» / «Moderno» ponen todas las perillas de
   golpe, y después se retoca cada una:
@@ -169,6 +237,13 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
   límite—, objeto clave del jugador —Megapulsera— y si vuelve a su forma al retirarse). Puedes tener varias fichas y
   **activar en las Reglas** las que quieras, incluso varias a la vez (Excel: `mecanicas.csv`, columna `mecanicas` de
   `reglas.csv`). Una ficha que no está activa no hace nada.
+- **Megaevolución**: un monstruo con una forma «mega» y la regla `>mega:mega:<megapiedra>` (Rayquaza: `;sabe=dragon_ascent`)
+  megaevoluciona al principio del turno si la pide su entrenador: el jugador con el botón «💎 Megaevolucionar» del panel
+  de movimientos (necesita el objeto clave de la ficha, la Megapulsera/Mega-Aro), el rival según su nivel de IA
+  («Cuándo megaevoluciona»: Novato y Aficionado nunca, Veterano y Élite en cuanto pueden, de Campeón arriba con cabeza;
+  editable) y solo si su ficha dice «Puede megaevolucionar» (Excel: `megaevoluciona`). Megas por combate, objeto clave
+  y volver al retirarse se cambian en la ficha de mecánica. Las plantillas «6.ª gen.» y «7.ª gen.» de las reglas la
+  activan; las demás generaciones la quitan. El pack Gen6 trae las 48 megas y a Dianta con su Gardevoirita.
 
 ## Niveles de IA (Lote E + Lote F)
 Siete niveles, cada uno una ficha editable (CTEditor → Personajes → **Niveles de IA**) hecha de **4 bloques combinables**:

@@ -129,6 +129,8 @@ namespace CTEditor.GameDefinition.Editor
             so.FindProperty("knowledge").enumValueIndex = (int)p.Knowledge;
             so.FindProperty("competitiveTraining").boolValue = p.CompetitiveTraining;
             so.FindProperty("predictPercent").intValue = p.Brain == MoveBrain.Predictor ? p.PredictPercent : 60;
+            so.FindProperty("megaTiming").enumValueIndex = (int)AiLevelData.MegaTimingChoice.ByLevel;
+            so.FindProperty("competitiveSets").enumValueIndex = (int)AiLevelData.SetsChoice.ByLevel;
             var bag = so.FindProperty("defaultBag");
             bag.arraySize = p.DefaultBag.Count;
             for (int i = 0; i < p.DefaultBag.Count; i++)

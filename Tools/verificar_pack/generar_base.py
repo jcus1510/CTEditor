@@ -66,9 +66,10 @@ def main():
     if args.gen >= 3:
         stat = {s['id']: s['identifier'].replace('special-', 'sp_') for s in table('stats')}
         nn = {r['nature_id']: r['name'] for r in table('nature_names') if r['local_language_id'] == SPANISH}
-        nat = [{'id': n['identifier'], 'nombre': nn[n['id']], 'sube': stat[n['increased_stat_id']],
+        en = {r['nature_id']: r['name'] for r in table('nature_names') if r['local_language_id'] == '9'}
+        nat = [{'id': n['identifier'], 'nombre': nn[n['id']], 'nombre_en': en.get(n['id'], ''), 'sube': stat[n['increased_stat_id']],
                 'baja': stat[n['decreased_stat_id']], 'porcentaje': '10'} for n in table('natures')]
-        save(os.path.join(args.carpeta, 'naturalezas.csv'), ['id', 'nombre', 'sube', 'baja', 'porcentaje'],
+        save(os.path.join(args.carpeta, 'naturalezas.csv'), ['id', 'nombre', 'nombre_en', 'sube', 'baja', 'porcentaje'],
              sorted(nat, key=lambda r: r['id']))
         written.append('naturalezas.csv')
 

@@ -125,8 +125,16 @@ namespace CTEditor.GameDefinition.Domain.Species
             IReadOnlyList<Id<Moves.Move>> machineMoves = null,
             IReadOnlyList<Id<Moves.Move>> tutorMoves = null,
             IReadOnlyList<Id<Moves.Move>> eggMoves = null,
-            IReadOnlyList<string> eggGroups = null)
+            IReadOnlyList<string> eggGroups = null,
+            IReadOnlyList<SpeciesForm> forms = null,
+            IReadOnlyList<FormChange> formChanges = null,
+            Id<Species>? formOf = null,
+            string variantItem = null)
         {
+            Forms = CopyOrEmpty(forms);
+            FormChanges = CopyOrEmpty(formChanges);
+            FormOf = formOf.HasValue && formOf.Value.Value != id.Value ? formOf : null;
+            VariantItem = string.IsNullOrWhiteSpace(variantItem) ? "" : variantItem.Trim();
             SecondAbility = secondAbility;
             HiddenAbility = hiddenAbility;
             MachineMoves = CopyOrEmpty(machineMoves);
@@ -163,6 +171,35 @@ namespace CTEditor.GameDefinition.Domain.Species
         }
 
         /// <summary>¿Tiene más de un tipo?</summary>
+        // ---------------- Formas ----------------
+
+        /// <summary>Formas de COMBATE (Modo Daruma, megas...). Vacía = no cambia de forma en combate.</summary>
+        public IReadOnlyList<SpeciesForm> Forms { get; }
+
+        /// <summary>Reglas de cambio de forma en combate (qué lo provoca y a qué forma pasa).</summary>
+        public IReadOnlyList<FormChange> FormChanges { get; }
+
+        /// <summary>
+        /// VARIANTE: esta especie «es forma de» otra (Rotom Lavado es forma de Rotom; Deoxys Ataque, de Deoxys). Es una
+        /// especie completa con sus datos; el enlace sirve para agruparlas y para cambiar de una a otra fuera del combate.
+        /// </summary>
+        public Id<Species>? FormOf { get; }
+
+        /// <summary>
+        /// Objeto que, usado fuera del combate sobre la especie base (o cualquier variante de la familia), la convierte en
+        /// esta variante; usado sobre esta, la devuelve a la base (Gracídea, Espejo Veraz, Punta ADN...). Vacío = solo por
+        /// eventos (hablar con un personaje).
+        /// </summary>
+        public string VariantItem { get; }
+
+        /// <summary>Una forma de combate por id (null si no existe).</summary>
+        public SpeciesForm FormById(string formId)
+        {
+            if (string.IsNullOrEmpty(formId)) return null;
+            foreach (var f in Forms) if (string.Equals(f.Id, formId, StringComparison.OrdinalIgnoreCase)) return f;
+            return null;
+        }
+
         public bool IsDualType => Types.Count >= 2;
 
         /// <summary>¿Puede evolucionar en algo?</summary>

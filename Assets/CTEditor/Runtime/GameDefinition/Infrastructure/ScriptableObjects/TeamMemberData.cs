@@ -35,6 +35,13 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public string nickname = "";
         [Tooltip("Género: al azar (según el % de hembras de su especie), macho o hembra. Las especies sin género lo ignoran.")]
         public MemberGender gender = MemberGender.Random;
+        [Tooltip("Habilidad elegida (1.ª, 2.ª u oculta de su especie). Vacío = la que le toque al nacer.")]
+        [ContentIdReference(typeof(AbilityData))] public string abilityId = "";
+        [Tooltip("EVs por estadística, p. ej. «252 Atq / 4 PS / 252 Vel» (PS, Atq, Def, AtqE, DefE, Vel; también HP/Atk/SpA...). " +
+                 "Vacío = los que ponga su nivel de IA (entrenamiento de competición) o ninguno.")]
+        public string evs = "";
+        [Tooltip("IVs de estadísticas concretas, p. ej. «0 Atq / 0 Vel». Las demás: «IVs fijos» o al azar.")]
+        public string ivs = "";
 
         // --- Ids de respaldo (se rellenan solos; ver arriba) ---
         [HideInInspector] public string speciesId = "";

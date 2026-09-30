@@ -46,6 +46,12 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [SerializeField, Range(1, 100)] private int healBelowPercent = 25;
         [Tooltip("¿Retira a su monstruo si pierde claramente el duelo?")]
         [SerializeField] private bool canSwitch;
+        [Tooltip("Cuándo MEGAEVOLUCIONA (si su entrenador puede y lleva megapiedra): según su nivel (Novato y Aficionado nunca, " +
+                 "Veterano y Élite en cuanto pueden, del Campeón arriba con cabeza), nunca, en cuanto puede o con cabeza.")]
+        [SerializeField] private MegaTimingChoice megaTiming = MegaTimingChoice.ByLevel;
+        [Tooltip("¿Arma a los miembros sin movimientos escritos con SETS DE COMPETICIÓN (Smogon) de su especie? " +
+                 "Según su nivel = Campeón, Maestro e Injusto sí; los demás no.")]
+        [SerializeField] private SetsChoice competitiveSets = SetsChoice.ByLevel;
         [Tooltip("Mochila por defecto si el entrenador no trae la suya.")]
         [SerializeField] private BagEntryData[] defaultBag = new BagEntryData[0];
 
@@ -96,6 +102,14 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public HeldItemStyle HeldItems => heldItemsMigrated ? heldItems : (autoHeldItems ? HeldItemStyle.Basic : heldItems);
         public AiKnowledge Knowledge => knowledge;
         public int PredictPercent => predictPercent;
+        public MegaTimingChoice MegaTiming => megaTiming;
+        public SetsChoice CompetitiveSets => competitiveSets;
+
+        /// <summary>¿Usa sets de competición? Según su nivel, no o sí.</summary>
+        public enum SetsChoice { ByLevel, No, Yes }
+
+        /// <summary>Cuándo megaevoluciona, o «según su nivel».</summary>
+        public enum MegaTimingChoice { ByLevel, Never, AsSoonAsPossible, Smart }
         public bool CompetitiveTraining => competitiveTraining;
     }
 }

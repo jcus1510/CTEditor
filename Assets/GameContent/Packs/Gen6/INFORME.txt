@@ -1,12 +1,12 @@
 ﻿PACK 6.ª GENERACIÓN — fiel a su generación (generado por Tools/verificar_pack/generar_packs.py)
 ========================================================================================
 
-• 721 especies (hasta la n.º 721) con los datos QUE TENÍAN EN LA 6.ª GENERACIÓN (PokeAPI):
+• 746 especies (hasta la n.º 721) con los datos QUE TENÍAN EN LA 6.ª GENERACIÓN (PokeAPI):
   tipos, estadísticas base,
   aprendizaje por nivel de Rubí Omega/Zafiro Alfa y MT/tutor/huevo de los juegos de la generación.
 • 620 movimientos: solo los que existen en la 6.ª gen., con su tipo, potencia, precisión, PP y prioridad
   de entonces.
-• 186 habilidades (con ocultas).
+• 191 habilidades (con ocultas).
 • Tipos y TABLA DE TIPOS de la generación (con Hada).
 • Naturalezas y grupos huevo.
 • 181 entrenadores con su nivel de IA: nivel 1: 17, nivel 2: 22, nivel 3: 41, nivel 4: 56, nivel 5: 29, nivel 6: 12, nivel 7: 4.
@@ -15,6 +15,15 @@
 APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):
   • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.
   • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.
+
+FORMAS DE COMBATE (SE CAMBIAN EN MITAD DEL COMBATE) (55):
+   abomasnow, absol, aegislash, aerodactyl, aggron, alakazam, altaria, ampharos, arceus, audino, banette, beedrill, blastoise, blaziken, camerupt, castform, charizard, cherrim, darmanitan, diancie, gallade, garchomp, gardevoir, gengar, giratina, glalie, groudon, gyarados, heracross, houndoom, kangaskhan, kyogre, latias, latios, lopunny, lucario, manectric, mawile, medicham, meloetta, metagross, mewtwo, pidgeot, pinsir, rayquaza, sableye, salamence, sceptile, scizor, sharpedo, slowbro, steelix, swampert, tyranitar, venusaur
+
+VARIANTES (ESPECIES CON «FORMA_DE») (25):
+   basculin_blue_striped → basculin, deoxys_attack → deoxys, deoxys_defense → deoxys, deoxys_speed → deoxys, gourgeist_large → gourgeist, gourgeist_small → gourgeist, gourgeist_super → gourgeist, hoopa_unbound → hoopa (prison_bottle), keldeo_resolute → keldeo, kyurem_black → kyurem (dna_splicers), kyurem_white → kyurem (dna_splicers), landorus_therian → landorus (reveal_glass), pumpkaboo_large → pumpkaboo, pumpkaboo_small → pumpkaboo, pumpkaboo_super → pumpkaboo, rotom_fan → rotom, rotom_frost → rotom, rotom_heat → rotom, rotom_mow → rotom, rotom_wash → rotom, shaymin_sky → shaymin (gracidea), thundurus_therian → thundurus (reveal_glass), tornadus_therian → tornadus (reveal_glass), wormadam_sandy → wormadam, wormadam_trash → wormadam
+
+HABILIDADES SOLO CON NOMBRE (SIN EFECTO CONFIGURADO) (5):
+   aerilate, delta_stream, desolate_land, parental_bond, primordial_sea
 
 OBJETOS AÑADIDOS SOLO CON SUS DATOS (SIN EFECTO EN COMBATE TODAVÍA), POR CATEGORÍA (4):
    Ball: 22, Key: 176, Other: 334, Vitamin: 16

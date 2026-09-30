@@ -309,7 +309,7 @@ namespace CTEditor.GameDefinition.Editor
         }
 
         /// <summary>Qué hojas trae la carpeta de un pack y qué ids hay en cada una (para no pisarlas con plantillas).</summary>
-        private sealed class PackContents
+        internal sealed class PackContents
         {
             private readonly string _folder;
             private readonly Dictionary<string, HashSet<string>> _ids = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
@@ -346,7 +346,7 @@ namespace CTEditor.GameDefinition.Editor
 
         // Crea la base clásica que falte (no toca lo existente). Devuelve el informe en 'report'.
         // Con 'pack': las categorías cuya hoja trae el pack NO se crean desde las plantillas (el pack manda).
-        private static void CreateClassicBase(List<string> report, PackContents pack = null)
+        internal static void CreateClassicBase(List<string> report, PackContents pack = null)
         {
             void Step(string file, string label, Func<int> create)
             {
@@ -371,6 +371,7 @@ namespace CTEditor.GameDefinition.Editor
             report.Add($"Movimientos-plantilla (Forcejeo{(skipMoves == null ? " y los clásicos" : "")}): {ClassicMovePresets.CreateAll(out _, skipMoves)} nuevos");
             Step("naturalezas.csv", "Naturalezas", NatureEditorWindow.CreateClassicSet);
             Step("curvas.csv", "Curvas", GrowthCurveEditorWindow.CreateClassicSet);
+            Step("mecanicas.csv", "Mecánicas especiales", MechanicEditorWindow.CreateClassicSet);
             Step("reglas.csv", "Reglas", RulesetEditorWindow.CreateClassicSet);
             report.Add($"Menús: {MenuEditorWindow.CreateClassicSet()} nuevos");
             report.Add($"Controles y caja de texto: {ControlsEditorWindow.CreateClassicSet()} nuevos");

@@ -282,6 +282,22 @@ namespace CTEditor.Party.Domain
         }
 
         /// <summary>
+        /// Las estadísticas que tendría ESTE individuo (nivel, IVs, EVs, naturaleza) con otras estadísticas base, sin
+        /// cambiar nada. Sirve para las formas de combate (Modo Daruma, megas...).
+        /// </summary>
+        public StatBlock StatsFor(StatBlock baseStats, IStatGrowthFormula growth)
+        {
+            var b = new StatBlock.Builder();
+            foreach (var statId in baseStats.Stats)
+            {
+                int naturePct = Nature != null ? Nature.PercentFor(statId) : 100;
+                b.Set(statId, growth.Compute(statId, baseStats.Of(statId), Level.Value,
+                    IvOf(statId), EvOf(statId), naturePct));
+            }
+            return b.Build();
+        }
+
+        /// <summary>
         /// Recalcula los stats efectivos con la fórmula y TODA la genética del individuo (nivel actual,
         /// IVs, EVs y naturaleza). Mantiene coherentes los PS: si los PS máximos suben, los actuales
         /// suben lo mismo (si sigue en pie); si quedaran por encima del máximo, se recortan.
@@ -293,15 +309,7 @@ namespace CTEditor.Party.Domain
             if (baseStats == null || growth == null) return;
 
             int oldMaxHp = MaxHp;
-
-            var b = new StatBlock.Builder();
-            foreach (var statId in baseStats.Stats)
-            {
-                int naturePct = Nature != null ? Nature.PercentFor(statId) : 100;
-                b.Set(statId, growth.Compute(statId, baseStats.Of(statId), Level.Value,
-                    IvOf(statId), EvOf(statId), naturePct));
-            }
-            Stats = b.Build();
+            Stats = StatsFor(baseStats, growth);
 
             int newMaxHp = MaxHp;
             if (CurrentHp > 0)

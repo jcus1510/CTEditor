@@ -125,4 +125,28 @@ namespace CTEditor.Battle.Domain.Events
         public int Count { get; }
         public PerishCountEvent(Id<BattleParticipant> combatant, int count) { Combatant = combatant; Count = count; }
     }
+
+    /// <summary>Un combatiente CAMBIA DE FORMA: «¡Darmanitan activó el Modo Daruma!». To = "" → vuelve a la forma normal.</summary>
+    public sealed class FormChangedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public string From { get; }
+        public string To { get; }
+        /// <summary>Nombre de la forma nueva ("" = la normal).</summary>
+        public string FormName { get; }
+        public FormChangedEvent(Id<BattleParticipant> combatant, string from, string to, string formName)
+        { Combatant = combatant; From = from ?? ""; To = to ?? ""; FormName = formName ?? ""; }
+    }
+
+    /// <summary>MEGAEVOLUCIÓN: «¡La Charizardita X de Charizard reacciona con la Megapulsera! ¡Charizard megaevolucionó en Mega-Charizard X!».</summary>
+    public sealed class MegaEvolvedEvent : IDomainEvent
+    {
+        public Id<BattleParticipant> Combatant { get; }
+        public string FormId { get; }
+        public string FormName { get; }
+        /// <summary>La megapiedra (vacío si no hace falta: Rayquaza).</summary>
+        public string StoneId { get; }
+        public MegaEvolvedEvent(Id<BattleParticipant> combatant, string formId, string formName, string stoneId)
+        { Combatant = combatant; FormId = formId ?? ""; FormName = formName ?? ""; StoneId = stoneId ?? ""; }
+    }
 }

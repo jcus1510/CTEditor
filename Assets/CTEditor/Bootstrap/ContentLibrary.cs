@@ -93,6 +93,22 @@ namespace CTEditor.Bootstrap
             return null;
         }
 
+        /// <summary>Sets de competición (GameContent/Resources/Sets). Los rotos se saltan con un aviso.</summary>
+        public static List<CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet> CompetitiveSets
+        {
+            get
+            {
+                var list = new List<CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet>();
+                foreach (var d in Resources.LoadAll<CompetitiveSetData>(ContentPaths.Sets))
+                {
+                    if (d == null) continue;
+                    try { list.Add(CompetitiveSetMapper.ToDomain(d)); }
+                    catch (Exception e) { Debug.LogWarning($"[CTEditor] Set '{d.name}' no válido: {e.Message}"); }
+                }
+                return list;
+            }
+        }
+
         /// <summary>Niveles de IA del autor (GameContent/Resources/AiLevels). Los que falten usan el clásico.</summary>
         public static List<AiProfile> AiProfiles
         {
@@ -132,7 +148,7 @@ namespace CTEditor.Bootstrap
                 if (_gameData != null) return _gameData;
                 if (TypeChart == null || Ruleset == null) return null;
                 _gameData = new GameData(Species, Moves, TypeChart, Ruleset, Statuses, Abilities, Items, Weathers, Natures, Curves, types: Types, hazards: Hazards, sideConditions: SideConditions,
-                    aiProfiles: AiProfiles);
+                    aiProfiles: AiProfiles, sets: CompetitiveSets);
                 return _gameData;
             }
         }

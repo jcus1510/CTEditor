@@ -154,7 +154,7 @@ namespace CTEditor.GameDefinition.Editor
 
             // Criaturas
             Add(EditorCategory.Creatures, 1, "Especies", "🐾", "Estadísticas, tipos, movimientos que aprende y evoluciones (con calculadora).", EditorTheme.Species, SpeciesEditorWindow.Open, Count<SpeciesData>, "pokemon monstruos");
-            Add(EditorCategory.Creatures, 2, "Cadenas evolutivas", "🌱", "Árbol visual: métodos y CONDICIONES combinadas (amistad + de día, nivel + Ataque > Defensa...).", EditorTheme.Species, EvolutionChainWindow.Open, null, "evolucion evoluciones");
+            Add(EditorCategory.Creatures, 2, "Árbol de familia", "🌳", "Evoluciones (con CONDICIONES combinadas), formas de combate (Modo Daruma, megas...) y variantes (Rotom, Deoxys, regionales).", EditorTheme.Species, EvolutionChainWindow.Open, null, "evolucion evoluciones cadenas formas variantes mega");
             Add(EditorCategory.Creatures, 3, "Habilidades", "✨", "Efectos pasivos: inmunidades, potenciadores, al entrar, al final del turno...", EditorTheme.Abilities, AbilityEditorWindow.Open, Count<AbilityData>);
             Add(EditorCategory.Creatures, 4, "Naturalezas", "🎭", "Las 25 clásicas o las tuyas: qué estadística sube y cuál baja.", EditorTheme.Natures, NatureEditorWindow.Open, Count<NatureData>);
             Add(EditorCategory.Creatures, 6, "Grupos huevo", "🥚", "Los 15 grupos clásicos y qué especies hay en cada uno (para la crianza).", EditorTheme.Species, EggGroupEditorWindow.Open, Count<EggGroupData>, "crianza huevo");
@@ -178,6 +178,7 @@ namespace CTEditor.GameDefinition.Editor
             // Personajes
             Add(EditorCategory.Characters, 1, "Entrenadores", "🧑", "Equipo, nivel de IA, mochila, premio y frases de cada rival.", EditorTheme.Trainers, TrainerEditorWindow.Open, Count<TrainerData>, "rivales ia lideres");
             Add(EditorCategory.Characters, 2, "Niveles de IA", "🧠", "Los 5 niveles (Novato → Campeón): errores, curación, cambios y a qué movimientos llegan.", EditorTheme.Trainers, AiLevelEditorWindow.Open, Count<AiLevelData>, "dificultad ia reto");
+            Add(EditorCategory.Characters, 5, "Sets de competición", "🏆", "Sets de Smogon (o tuyos) por especie y formato: los usan las IA de Campeón en adelante.", EditorTheme.Trainers, SetsEditorWindow.Open, Count<CompetitiveSetData>, "smogon competitivo ou uu ubers moveset");
             Add(EditorCategory.Characters, 3, "Equipos prearmados", "👥", "Equipos listos para empezar la partida o para probar.", EditorTheme.Teams, TeamPresetEditorWindow.Open, Count<TeamPresetData>);
             Add(EditorCategory.Characters, 4, "Personajes y diálogos", "💬", "NPC del mapa: sprite, frases y qué hacen al hablarles.", EditorTheme.Trainers, null, null, "npc");
 
@@ -195,6 +196,7 @@ namespace CTEditor.GameDefinition.Editor
             Add(EditorCategory.Tools, 1, "Excel y compartir (CSV)", "📊", "Exporta todo a Excel, edita en bloque e impórtalo; comparte tu configuración.", EditorTheme.Tools, () => Csv.CsvWindow.OpenTab(0), null, "csv importar exportar");
             Add(EditorCategory.Tools, 2, "Validar contenido", "✅", "Busca errores y avisos en todo el contenido.", EditorTheme.Tools, ContentValidationWindow.Open, null, "errores");
             Add(EditorCategory.Tools, 3, "Papelera", "🗑", "Lo que borraste: recupéralo con todas sus referencias o bórralo para siempre.", EditorTheme.Tools, TrashWindow.Open, () => ContentTrash.Count, "borrar recuperar deshacer");
+            Add(EditorCategory.Tools, 4, "Cambiar de generación", "🔁", "Pasa todo el proyecto a otro pack (Gen1 … Gen6): copia de seguridad, lo que sobra a la papelera en un grupo, reglas de la generación y revisión de tus equipos.", EditorTheme.Tools, GenerationWizardWindow.Open, null, "generacion pack gen1 gen6 migrar");
 
             // Pruebas
             Add(EditorCategory.Testing, 1, "Calculadora de daño", "🎯", "Cuánto quita un movimiento con el cálculo real del combate.", EditorTheme.Ok, DamageCalculatorWindow.Open, null);

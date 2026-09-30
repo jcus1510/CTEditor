@@ -17,7 +17,9 @@ namespace CTEditor.Battle.Domain.Actions
     public sealed class UseMove : BattleAction
     {
         public Id<Move> Move { get; }
-        public UseMove(Id<Move> move) => Move = move;
+        /// <summary>true = antes de atacar, MEGAEVOLUCIONA (si puede: mecánica activa, megapiedra, le quedan megas).</summary>
+        public bool MegaEvolve { get; }
+        public UseMove(Id<Move> move, bool megaEvolve = false) { Move = move; MegaEvolve = megaEvolve; }
     }
 
     /// <summary>Intentar huir del combate.</summary>

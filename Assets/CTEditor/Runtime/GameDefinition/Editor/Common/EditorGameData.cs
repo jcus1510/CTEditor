@@ -55,9 +55,19 @@ namespace CTEditor.GameDefinition.Editor
                 types: Catalog<ElementTypeData, ElementType>(ElementTypeMapper.ToDomain),
                 hazards: Catalog<HazardData, HazardDefinition>(HazardMapper.ToDomain),
                 sideConditions: Catalog<SideConditionData, SideConditionDefinition>(SideConditionMapper.ToDomain),
-                aiProfiles: profiles);
+                aiProfiles: profiles,
+                sets: Sets());
             _version = ContentAssets.Version;
             return _data;
+        }
+
+        // Sets de competición del proyecto (los rotos se saltan: el validador los reporta).
+        private static List<CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet> Sets()
+        {
+            var list = new List<CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet>();
+            foreach (var s in ContentAssets.LoadAll<CompetitiveSetData>())
+                try { list.Add(CompetitiveSetMapper.ToDomain(s)); } catch (Exception) { /* el validador lo reporta */ }
+            return list;
         }
 
         /// <summary>Una ficha de mecánica especial del proyecto por id (null si no existe o está rota).</summary>

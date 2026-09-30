@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CTEditor.SharedKernel.Abstractions;
 using CTEditor.SharedKernel.ValueObjects;
 using CTEditor.GameDefinition.Domain.Abilities;
@@ -85,8 +86,10 @@ namespace CTEditor.Adventure.Domain
             ICatalog<ElementType> types = null,
             ICatalog<HazardDefinition> hazards = null,
             ICatalog<SideConditionDefinition> sideConditions = null,
-            IEnumerable<AiProfile> aiProfiles = null)
+            IEnumerable<AiProfile> aiProfiles = null,
+            IEnumerable<CompetitiveSet> sets = null)
         {
+            Sets = sets == null ? new List<CompetitiveSet>() : new List<CompetitiveSet>(sets.Where(x => x != null));
             if (aiProfiles != null)
                 foreach (var p in aiProfiles)
                 {
@@ -108,6 +111,23 @@ namespace CTEditor.Adventure.Domain
             Hazards = hazards ?? MemoryCatalog<HazardDefinition>.Empty();
             SideConditions = sideConditions ?? MemoryCatalog<SideConditionDefinition>.Empty();
             Growth = growth ?? new ClassicStatGrowthFormula();
+        }
+
+        /// <summary>Sets de competición (Smogon o del autor) que usan los entrenadores con esa IA.</summary>
+        public IReadOnlyList<CompetitiveSet> Sets { get; }
+
+        /// <summary>¿Existe este id en el juego? (kind: move, item, ability, nature). Para no usar lo que no hay.</summary>
+        public bool Exists(string kind, string id)
+        {
+            if (string.IsNullOrWhiteSpace(id)) return false;
+            switch (kind)
+            {
+                case "move": return Moves.Contains(new Id<Move>(id));
+                case "item": return TryGetItem(id, out _);
+                case "ability": return Abilities.Contains(new Id<AbilityDefinition>(id));
+                case "nature": return Natures.Contains(new Id<Nature>(id));
+                default: return true;
+            }
         }
 
         /// <summary>Las reglas de la aventura (huir, capturar, dinero...).</summary>
@@ -217,7 +237,19 @@ namespace CTEditor.Adventure.Domain
                 new Id<BattleParticipant>(mon.Id.Value), mon.SpeciesId, mon.Level.Value,
                 mon.Stats, mon.CurrentHp, species.Types, mon.Moves, mon.Status, species.AbilityFor(mon.AbilitySlot),
                 species.BaseExpYield, species.EvYield, mon.CurrentPp, mon.Friendship, mon.HeldItem, species.CatchRate, species.Dex.WeightKg,
-                mon.Gender, species.Evolutions.Count > 0);
+                mon.Gender, species.Evolutions.Count > 0, FormsFor(mon, species), species.FormChanges);
+        }
+
+        /// <summary>Las formas de combate de la especie, calculadas para este individuo (nivel, IVs, EVs, naturaleza).</summary>
+        public List<BattleForm> FormsFor(MonsterInstance mon, SpeciesDef species)
+        {
+            var list = new List<BattleForm>();
+            foreach (var f in species.Forms)
+            {
+                var stats = f.BaseStats != null ? mon.StatsFor(f.BaseStats, Growth) : mon.Stats;
+                list.Add(new BattleForm(f.Id, f.DisplayName, stats, f.Types, f.Ability, f.RevertsOnSwitch));
+            }
+            return list;
         }
     }
 

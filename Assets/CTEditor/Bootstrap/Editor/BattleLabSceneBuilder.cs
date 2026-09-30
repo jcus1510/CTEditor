@@ -205,6 +205,9 @@ namespace CTEditor.Bootstrap.Editor
             // Atrás (común a los menús).
             var back = ButtonUi(root, "Atrás", "Atrás", Grey);
             Place((RectTransform)back.transform, 1100, 452, 160, 42);
+            // Megaevolución (se enciende en el panel de movimientos si se puede).
+            var mega = ButtonUi(root, "Megaevolución", "💎 Megaevolucionar", Purple);
+            Place((RectTransform)mega.transform, 890, 452, 200, 42);
 
             // Cablear todo en el componente.
             var so = new SerializedObject(screen);
@@ -219,12 +222,14 @@ namespace CTEditor.Bootstrap.Editor
             Set(so, "confirmPanel", confirm.gameObject);
             Set(so, "fightButton", fight); Set(so, "bagButton", bag); Set(so, "switchButton", team);
             Set(so, "catchButton", ball); Set(so, "fleeButton", run); Set(so, "backButton", back);
+            Set(so, "megaButton", mega);
             Set(so, "yesButton", yes); Set(so, "noButton", no);
             SetArray(so, "moveButtons", moves); SetArray(so, "switchButtons", switches); SetArray(so, "bagButtons", bagButtons);
             so.ApplyModifiedPropertiesWithoutUndo();
 
             foreach (var p in new[] { action, movePanel, switchPanel, bagPanel, confirm }) p.gameObject.SetActive(false);
             back.gameObject.SetActive(false);
+            mega.gameObject.SetActive(false);
             return screen;
         }
 

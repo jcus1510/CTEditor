@@ -28,6 +28,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from csvlib import load, save, split_list  # noqa: E402
 from pokeapi import PokeApi, table, pack_id, SPANISH  # noqa: E402
 import generar_base  # noqa: E402
+from formas import Forms, VARIANTS  # noqa: E402
+
+VARIANT_ITEMS = {item for _, _, item in VARIANTS.values() if item}   # se usan fuera del combate para cambiar de variante
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 SRC = os.path.join(ROOT, 'Tools', 'datos_fuente')
@@ -44,8 +47,11 @@ LAB = {1: 'dragonite@50 | alakazam@50 | gyarados@50 | gengar@50 | snorlax@50 | j
        4: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | scizor@50 | togekiss@50',
        5: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | scizor@50 | togekiss@50',
        6: 'garchomp@50 | metagross@50 | gyarados@50 | gengar@50 | scizor@50 | togekiss@50'}
-MEMBER = re.compile(r'^(?P<sp>[^@\[\]{}~#"%]+)@(?P<lvl>\d+)(?P<g>%[mhMH])?(?:\[(?P<moves>[^\]]*)\])?'
-                    r'(?:\{(?P<held>[^}]*)\})?(?:~(?P<nat>[^#"]+))?(?P<iv>#\d+)?(?P<nick>"[^"]*")?$')
+# Entrenadores que megaevolucionan en los juegos (desde la 6.ª gen.): (especie, megapiedra).
+MEGA_TRAINERS = {'campeona_dianta': ('gardevoir', 'gardevoirite')}
+MEMBER = re.compile(r'^(?P<sp>[^@\[\]{}~#"%!()]+)@(?P<lvl>\d+)(?P<g>%[mhMH])?(?:\[(?P<moves>[^\]]*)\])?'
+                    r'(?:\{(?P<held>[^}]*)\})?(?:~(?P<nat>[^#"!(]+))?(?:!(?P<ab>[^#"(]+))?(?P<ev>\([^)]*\))?'
+                    r'(?P<iv>#\d*(?:\([^)]*\))?)?(?P<nick>"[^"]*")?$')
 
 
 def num(x):
@@ -110,7 +116,9 @@ class Gen:
         self.gen_vgs = gen_vgs
 
     def learnset(self, sp):
-        pid = self.pid.get(sp)
+        return self.learnset_of_pid(self.pid.get(sp))
+
+    def learnset_of_pid(self, pid):
         by_vg = self.level_moves.get(pid, {})
         # El juego de referencia; si la especie no está en él, el primero de la generación que la tenga.
         order = [self.ref_vg] + sorted(v for v in self.gen_vgs if v != self.ref_vg)
@@ -194,6 +202,24 @@ def build(n, verbose=True):
                 notes['evolución con un método posterior a la 1.ª gen. (se deja)'].append(f'{sp}→{tgt}')
             evos.append(e)
         s['evoluciona'] = ' | '.join(evos) if evos else ''
+    # ---------------- Formas de combate y variantes ----------------
+    for col in ('forma_de', 'objeto_variante', 'formas', 'cambios_forma'):
+        if col not in sh:
+            sh.append(col)
+    fm = Forms(g)
+    with_forms = []
+    for s in species:
+        for col in ('forma_de', 'objeto_variante', 'formas', 'cambios_forma'):
+            s.setdefault(col, '')
+        if n >= 3 and fm.battle_forms(s, n, used_abilities):
+            with_forms.append(s['id'])
+    variants = fm.variants({s['id']: s for s in species}, n, move_ids, used_abilities) if n >= 3 else []
+    species.extend(variants)
+    if with_forms:
+        notes['formas de combate (se cambian en mitad del combate)'] = with_forms
+    if variants:
+        notes['variantes (especies con «forma_de»)'] = [f"{v['id']} → {v['forma_de']}" + (f" ({v['objeto_variante']})" if v['objeto_variante'] else '') for v in variants]
+
     # ---------------- Habilidades ----------------
     ah, arows, _, _ = load(os.path.join(SRC, 'habilidades.csv'))
     abil = [r for r in arows if r['id'] in used_abilities]
@@ -232,8 +258,20 @@ def build(n, verbose=True):
                 txt += '{' + m['held'] + '}'
             if m['nat'] and n >= 3:
                 txt += '~' + m['nat']
+            if m['ab'] and n >= 3:
+                txt += '!' + m['ab']
+            if m['ev'] and n >= 3:
+                txt += m['ev']
             txt += (m['iv'] or '') + (m['nick'] or '')
             team.append(txt)
+        if n >= 6 and r['id'] in MEGA_TRAINERS:   # los que megaevolucionan en los juegos: su megapiedra
+            sp_mega, stone = MEGA_TRAINERS[r['id']]
+            for i, t in enumerate(team):
+                if t.startswith(sp_mega + '@'):
+                    team[i] = re.sub(r'\{[^}]*\}', '', t)
+                    head = re.match(r'^[^\[{~#"]+(?:\[[^\]]*\])?', team[i]).group(0)
+                    team[i] = head + '{' + stone + '}' + team[i][len(head):]
+                    break
         if len(team) < max(1, len(split_list(r.get('equipo', ''))) // 2) or not team:
             continue   # le faltan la mayoría de sus especies en esta generación
         if dropped:
@@ -248,6 +286,9 @@ def build(n, verbose=True):
                          'equipo': LAB[n], 'frase_inicio': f'Soy la IA de nivel {lv}: mismo equipo que todos, distinta cabeza.',
                          'frase_derrota': 'Anotado en el laboratorio.', 'frase_victoria': 'La cabeza también cuenta.'})
 
+    # ---------------- Nombres en inglés (para importar/exportar en formato Showdown) ----------------
+    english_names(species, moves, abil, sh, mh, ah)
+
     # ---------------- Escribir ----------------
     save(os.path.join(out, 'especies.csv'), sh, species)
     save(os.path.join(out, 'movimientos.csv'), mh, moves)
@@ -257,7 +298,7 @@ def build(n, verbose=True):
         os.remove(os.path.join(out, 'habilidades.csv'))
     save(os.path.join(out, 'entrenadores.csv'), th, trainers)
     items = items_for(n)
-    save(os.path.join(out, 'objetos.csv'), ['id', 'nombre', 'descripcion', 'categoria', 'precio', 'en_combate', 'fuera_combate',
+    save(os.path.join(out, 'objetos.csv'), ['id', 'nombre', 'nombre_en', 'descripcion', 'categoria', 'precio', 'en_combate', 'fuera_combate',
                                           'se_gasta', 'captura'], items)
     notes_items = collections.Counter(r['categoria'] for r in items)
     notes['objetos añadidos solo con sus datos (sin efecto en combate todavía), por categoría'] = [f'{k}: {v}' for k, v in sorted(notes_items.items())]
@@ -275,6 +316,38 @@ def build(n, verbose=True):
 ITEM_CATEGORY = {'evolution': 'Evolution', 'vitamins': 'Vitamin'}
 
 
+ENGLISH = '9'   # local_language_id del inglés (los nombres de Showdown)
+
+
+def english_names(species, moves, abil, sh, mh, ah):
+    """Columna nombre_en (el nombre de Showdown) en especies, movimientos y habilidades. Variantes al estilo Showdown:
+    «Rotom-Wash», «Deoxys-Attack» (el nombre de la especie base + la parte de su forma)."""
+    sp_en = {pack_id(s['identifier']): None for s in table('pokemon_species')}
+    ids = {r['id']: pack_id(r['identifier']) for r in table('pokemon_species')}
+    for r in table('pokemon_species_names'):
+        if r['local_language_id'] == ENGLISH and r['pokemon_species_id'] in ids:
+            # Showdown: Nidoran♀ = «Nidoran-F», Nidoran♂ = «Nidoran-M».
+            sp_en[ids[r['pokemon_species_id']]] = r['name'].replace('♀', '-F').replace('♂', '-M')
+    for s in species:
+        base = s.get('forma_de') or ''
+        if base:
+            suffix = s['id'][len(base):].strip('_')
+            s['nombre_en'] = (sp_en.get(base) or base) + ''.join('-' + p.capitalize() for p in suffix.split('_') if p)
+        else:
+            s['nombre_en'] = sp_en.get(s['id']) or ''
+    mv = {r['id']: pack_id(r['identifier']) for r in table('moves')}
+    mv_en = {mv[r['move_id']]: r['name'] for r in table('move_names') if r['local_language_id'] == ENGLISH and r['move_id'] in mv}
+    for m in moves:
+        m['nombre_en'] = mv_en.get(m['id'], '')
+    ab = {r['id']: pack_id(r['identifier']) for r in table('abilities')}
+    ab_en = {ab[r['ability_id']]: r['name'] for r in table('ability_names') if r['local_language_id'] == ENGLISH and r['ability_id'] in ab}
+    for a in abil:
+        a['nombre_en'] = ab_en.get(a['id'], '')
+    for headers in (sh, mh, ah):
+        if 'nombre_en' not in headers:
+            headers.insert(headers.index('nombre') + 1 if 'nombre' in headers else 1, 'nombre_en')
+
+
 def items_for(n):
     """Filas de objetos.csv: todos los objetos que existen en la generación n, salvo las MT y los que ya crean (con su
     efecto) las plantillas del código. Categoría del editor según el bolsillo de PokeAPI; nombre, descripción y precio
@@ -287,13 +360,16 @@ def items_for(n):
         first_gen[r['item_id']] = min(first_gen.get(r['item_id'], 99), g)
     cats = {r['id']: (r['pocket_id'], r['identifier']) for r in table('item_categories')}
     names = {r['item_id']: r['name'] for r in table('item_names') if r['local_language_id'] == SPANISH}
+    english = {r['item_id']: r['name'] for r in table('item_names') if r['local_language_id'] == ENGLISH}
     vg_gen = {r['id']: int(r['generation_id']) for r in table('version_groups')}
     flavor = {}
     for r in table('item_flavor_text'):
-        if r['language_id'] != SPANISH or vg_gen.get(r['version_group_id'], 99) > max(n, 5):
-            continue   # los textos en español empiezan en la 5.ª gen.
+        # Los textos en español de PokeAPI para X/Y y ROZA (grupos 15-16) están DESCOLOCADOS (la Venusaurita habla de
+        # Charizard, el Mega-Aro de una gema): se usa el primer texto en español correcto, de Sol/Luna en adelante.
+        if r['language_id'] != SPANISH or int(r['version_group_id']) < 17:
+            continue
         prev = flavor.get(r['item_id'])
-        if prev is None or int(r['version_group_id']) > prev[0]:
+        if prev is None or int(r['version_group_id']) < prev[0]:
             flavor[r['item_id']] = (int(r['version_group_id']), ' '.join(r['flavor_text'].split()))
     rows = []
     for it in table('items'):
@@ -302,10 +378,11 @@ def items_for(n):
         if first_gen.get(it['id'], 99) > n or pocket == '4' or iid in preset or cat in ('unused', 'all-machines'):
             continue
         category = 'Ball' if pocket == '3' else 'Key' if pocket == '8' else ITEM_CATEGORY.get(cat, 'Other')
-        row = {'id': iid, 'nombre': names.get(it['id'], iid), 'descripcion': flavor.get(it['id'], (0, ''))[1],
+        row = {'id': iid, 'nombre': names.get(it['id'], iid), 'nombre_en': english.get(it['id'], ''),
+               'descripcion': flavor.get(it['id'], (0, ''))[1],
                'categoria': category, 'precio': it['cost'] or '0',
                'en_combate': 'si' if category == 'Ball' else 'no',
-               'fuera_combate': 'si' if category in ('Evolution', 'Vitamin') else 'no',
+               'fuera_combate': 'si' if category in ('Evolution', 'Vitamin') or iid in VARIANT_ITEMS else 'no',
                'se_gasta': 'si' if category in ('Ball', 'Evolution', 'Vitamin') else 'no'}
         if category == 'Ball':
             row['captura'] = '1'   # aproximado: como una Poké Ball (el efecto especial se configura en el editor)

@@ -9,7 +9,10 @@ using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 namespace CTEditor.GameDefinition.Editor
 {
     /// <summary>
-    /// EDITOR VISUAL DE CADENAS EVOLUTIVAS (menú CTEditor → Criaturas → Cadenas evolutivas).
+    /// ÁRBOL DE FAMILIA (menú CTEditor → Criaturas → Árbol de familia): evoluciones, FORMAS DE COMBATE (insignias ⚔ en
+    /// cada tarjeta: Modo Daruma, megas...) y VARIANTES (tarjetas punteadas debajo de su base: Rotom Lavado, Deoxys
+    /// Ataque, formas regionales). «+ Forma» y «+ Variante» las crean; al pulsar una insignia se edita en el panel.
+    ///
     ///
     /// Izquierda: las cadenas del juego (cada una empieza en una especie que nadie produce al evolucionar).
     /// Derecha: el árbol dibujado — tarjetas con los colores de sus tipos, flechas con el NIVEL editable
@@ -22,7 +25,7 @@ namespace CTEditor.GameDefinition.Editor
     /// </summary>
     public sealed class EvolutionChainWindow : EditorWindow
     {
-        private const float NodeW = 170f, NodeH = 66f, ColW = 250f, RowH = 92f, Pad = 20f;
+        private const float NodeW = 170f, NodeH = 86f, ColW = 250f, RowH = 118f, Pad = 20f;
 
         private List<SpeciesData> _species = new List<SpeciesData>();
         private SpeciesData _root;
@@ -39,14 +42,18 @@ namespace CTEditor.GameDefinition.Editor
         private SpeciesData _editFrom;
         private int _editIndex = -1;
 
-        [MenuItem(EditorMenus.Creatures + "Cadenas evolutivas", false, EditorMenus.CreaturesOrder + 2)]
+        // Forma de combate elegida (insignia ⚔): se edita en el panel de la derecha.
+        private SpeciesData _formSpecies;
+        private string _formId;
+
+        [MenuItem(EditorMenus.Creatures + "Árbol de familia (evoluciones y formas)", false, EditorMenus.CreaturesOrder + 2)]
         public static void Open() => OpenFor(null);
 
         /// <summary>Abre el editor mostrando la cadena a la que pertenece una especie.</summary>
         public static void OpenFor(SpeciesData species)
         {
             var w = GetWindow<EvolutionChainWindow>();
-            w.titleContent = new GUIContent("Cadenas evolutivas");
+            w.titleContent = new GUIContent("Árbol de familia");
             w.minSize = new Vector2(1100, 560);
             w.Reload();
             if (species != null) w._root = w.RootOf(species);
@@ -74,12 +81,19 @@ namespace CTEditor.GameDefinition.Editor
         private SpeciesData ParentOf(SpeciesData s)
             => _species.FirstOrDefault(p => Children(p).Any(c => c.target == s));
 
+        // La base de una variante (null si no es variante o su base no existe).
+        private SpeciesData BaseOf(SpeciesData s)
+            => s == null || string.IsNullOrWhiteSpace(s.FormOf) ? null
+                : _species.FirstOrDefault(x => x != s && string.Equals(x.Id, s.FormOf, StringComparison.OrdinalIgnoreCase));
+
+        private List<SpeciesData> VariantsOf(SpeciesData s) => FormEditing.VariantsOf(s, _species);
+
         private SpeciesData RootOf(SpeciesData s)
         {
             var seen = new HashSet<SpeciesData>();
             while (s != null && seen.Add(s))
             {
-                var parent = ParentOf(s);
+                var parent = ParentOf(s) ?? BaseOf(s);
                 if (parent == null) return s;
                 s = parent;
             }
@@ -90,7 +104,8 @@ namespace CTEditor.GameDefinition.Editor
         {
             var targets = new HashSet<SpeciesData>();
             foreach (var s in _species) foreach (var c in Children(s)) targets.Add(c.target);
-            return _species.Where(s => !targets.Contains(s) && (_showSingles || Children(s).Any())).ToList();
+            return _species.Where(s => !targets.Contains(s) && BaseOf(s) == null
+                && (_showSingles || Children(s).Any() || VariantsOf(s).Count > 0 || (s.Forms != null && s.Forms.Length > 0))).ToList();
         }
 
         // ---------------- UI ----------------
@@ -105,15 +120,17 @@ namespace CTEditor.GameDefinition.Editor
 
         private void DrawWindow()
         {
-            EditorTheme.TitleBand("Cadenas evolutivas",
-                "Elige una cadena a la izquierda. En el árbol: edita cómo evoluciona sobre cada flecha, «+ Evolución» añade una etapa (o una rama) y «✕» la quita.",
-                EditorTheme.Species, "🌱");
+            EditorTheme.TitleBand("Árbol de familia",
+                "Evoluciones (flechas), formas de combate (insignias ⚔) y variantes (tarjetas punteadas). «+ Evolución», «+ Forma» y «+ Variante» en cada tarjeta.",
+                EditorTheme.Species, "🌳");
             EditorTheme.Guide("EvolutionChain", new[]
             {
                 "Elige una cadena en la lista (o «Mostrar especies sin evolución» para empezar una nueva).",
                 "Sobre cada flecha ves cómo evoluciona; pulsa «✎» para editarla: método, nivel, objeto, amistad y CONDICIONES EXTRA.",
                 "Las condiciones se combinan (todas a la vez): amistad + de día, nivel + Ataque > Defensa, objeto equipado + de noche... Usa las plantillas.",
                 "«+ Evolución» añade la siguiente etapa; si ya tiene una, crea una RAMA (como Eevee).",
+                "«+ Forma» añade una forma de COMBATE (Modo Daruma, megas...) con una plantilla de qué la provoca; pulsa su insignia ⚔ para editarla.",
+                "«+ Variante» crea otra especie enlazada con «es forma de» (Rotom Lavado, Deoxys Ataque, formas regionales): se dibuja punteada debajo.",
             }, EditorTheme.Species);
             EditorGUILayout.BeginHorizontal();
             DrawChainList();
@@ -129,7 +146,7 @@ namespace CTEditor.GameDefinition.Editor
         {
             EditorGUILayout.BeginVertical(GUILayout.Width(380));
             _sideScroll = EditorGUILayout.BeginScrollView(_sideScroll);
-            if (_addFrom == null && _editFrom == null)
+            if (_addFrom == null && _editFrom == null && _formSpecies == null)
             {
                 EditorTheme.Section("Editar", EditorTheme.Species);
                 EditorTheme.Paragraph("Pulsa «✎» sobre una flecha para editar cómo evoluciona (método, nivel, objeto y CONDICIONES), " +
@@ -137,6 +154,7 @@ namespace CTEditor.GameDefinition.Editor
             }
             DrawAddPanel();
             DrawEvolutionDetail();
+            DrawFormDetail();
             EditorGUILayout.EndScrollView();
             EditorGUILayout.EndVertical();
         }
@@ -214,7 +232,8 @@ namespace CTEditor.GameDefinition.Editor
                 parts.Add(string.Join(" / ", level.Select(s => s.DisplayName)));
                 level = level.Where(seen.Add).SelectMany(s => Children(s).Select(c => c.target)).ToList();
             }
-            return string.Join(" → ", parts);
+            int variants = _species.Count(v => BaseOf(v) != null && RootOf(v) == root);
+            return string.Join(" → ", parts) + (variants > 0 ? $"  (+{variants} variante{(variants == 1 ? "" : "s")})" : "");
         }
 
         private void DrawCanvas()
@@ -266,6 +285,13 @@ namespace CTEditor.GameDefinition.Editor
                     if (!pos.TryGetValue(c.target, out var to)) continue;
                     DrawEdge(kv.Key, kv.Value, to, c.level, c.index, warnings);
                 }
+
+            // Variantes: línea punteada desde su base.
+            foreach (var kv in pos.ToList())
+            {
+                var b = BaseOf(kv.Key);
+                if (b != null && pos.TryGetValue(b, out var br)) DrawVariantEdge(b, br, kv.Key, kv.Value);
+            }
 
             // Tarjetas.
             foreach (var kv in pos) DrawNode(kv.Key, kv.Value);
@@ -335,6 +361,9 @@ namespace CTEditor.GameDefinition.Editor
             // Centrado verticalmente respecto a sus hijos.
             float rowCenter = (firstRow + Math.Max(firstRow, nextRow - 1)) / 2f;
             pos[s] = new Rect(Pad + depth * ColW, Pad + rowCenter * RowH, NodeW, NodeH);
+            // Variantes: debajo, en la misma columna (con sus propias evoluciones, si las tienen).
+            foreach (var v in VariantsOf(s))
+                if (!pos.ContainsKey(v)) Layout(v, depth, path, pos, warnings, ref nextRow, ref maxDepth);
             path.Remove(s);
         }
 
@@ -353,7 +382,146 @@ namespace CTEditor.GameDefinition.Editor
                 (types.Count > 0 ? string.Join("/", types.Select(t => t.DisplayName)) : "sin tipo") + $" · BST {bst}", EditorStyles.miniLabel);
 
             if (GUI.Button(new Rect(r.x + 6, r.y + 43, 70, 18), "Abrir")) SpeciesEditorWindow.OpenAndSelect(s);
-            if (GUI.Button(new Rect(r.x + 80, r.y + 43, r.width - 86, 18), "+ Evolución")) { _addFrom = s; _addLevel = 16; }
+            if (GUI.Button(new Rect(r.x + 80, r.y + 43, r.width - 86, 18), "+ Evolución")) { _addFrom = s; _formSpecies = null; _addLevel = 16; }
+            if (GUI.Button(new Rect(r.x + 6, r.y + 63, 70, 18), new GUIContent("+ Forma", "Forma de COMBATE (cambia en mitad del combate)")))
+                ShowAddFormMenu(s);
+            if (GUI.Button(new Rect(r.x + 80, r.y + 63, r.width - 86, 18), new GUIContent("+ Variante", "Otra especie enlazada con «es forma de»")))
+            {
+                var v = FormEditing.CreateVariant(s);
+                if (v != null) { Reload(); SpeciesEditorWindow.OpenAndSelect(v); GUIUtility.ExitGUI(); }
+            }
+
+            // Variante: borde punteado.
+            if (BaseOf(s) != null && Event.current.type == EventType.Repaint)
+            {
+                Handles.color = EditorTheme.Species;
+                Handles.DrawDashedLine(new Vector3(r.x, r.y), new Vector3(r.xMax, r.y), 4f);
+                Handles.DrawDashedLine(new Vector3(r.xMax, r.y), new Vector3(r.xMax, r.yMax), 4f);
+                Handles.DrawDashedLine(new Vector3(r.xMax, r.yMax), new Vector3(r.x, r.yMax), 4f);
+                Handles.DrawDashedLine(new Vector3(r.x, r.yMax), new Vector3(r.x, r.y), 4f);
+            }
+
+            // Insignias de sus formas de combate (debajo de la tarjeta).
+            var forms = (s.Forms ?? new SpeciesData.FormEntry[0]).Where(f => f != null && !string.IsNullOrWhiteSpace(f.id)).ToList();
+            float x = r.x;
+            foreach (var f in forms)
+            {
+                string label = "⚔ " + FormEditing.FormName(s, f.id);
+                float w = Math.Min(r.width, EditorStyles.miniButton.CalcSize(new GUIContent(label)).x + 4);
+                if (x + w > r.x + ColW - 20) break;
+                bool sel = _formSpecies == s && string.Equals(_formId, f.id, StringComparison.OrdinalIgnoreCase);
+                var br = new Rect(x, r.yMax + 3, w, 17);
+                if (sel) EditorGUI.DrawRect(br, EditorTheme.WithAlpha(EditorTheme.Species, 0.45f));
+                if (GUI.Button(br, new GUIContent(label, "Forma de combate: pulsa para editarla"), EditorStyles.miniButton))
+                { _formSpecies = s; _formId = f.id; _addFrom = null; _editFrom = null; }
+                x += w + 3;
+            }
+        }
+
+        private void ShowAddFormMenu(SpeciesData s)
+        {
+            var menu = new GenericMenu();
+            for (int i = -1; i < FormEditing.Templates.Length; i++)
+            {
+                int t = i;
+                string name = t < 0 ? "Sin cambios (los pongo yo)" : FormEditing.Templates[t].name;
+                menu.AddItem(new GUIContent(name), false, () =>
+                {
+                    string id = FormEditing.AddForm(s, t, t == FormEditing.Templates.Length - 1 ? "mega" : null);
+                    _formSpecies = s; _formId = id; _addFrom = null; _editFrom = null;
+                    Repaint();
+                });
+            }
+            menu.ShowAsContext();
+        }
+
+        private static void DrawVariantEdge(SpeciesData baseSpecies, Rect a, SpeciesData variant, Rect b)
+        {
+            var p1 = new Vector3(a.x + 14, a.yMax, 0);
+            var p2 = new Vector3(b.x + 14, b.y, 0);
+            if (Event.current.type == EventType.Repaint)
+            {
+                Handles.color = EditorGUIUtility.isProSkin ? new Color(1, 1, 1, 0.6f) : new Color(0, 0, 0, 0.6f);
+                Handles.DrawDashedLine(p1, p2, 4f);
+            }
+            string how = string.IsNullOrWhiteSpace(variant.VariantItem) ? "con un personaje" : "con " + ItemName(variant.VariantItem);
+            GUI.Label(new Rect(p1.x + 6, (p1.y + p2.y) / 2 - 8, 200, 16), new GUIContent("🔁 " + how, "Cómo se cambia a esta variante fuera del combate"), EditorStyles.miniLabel);
+        }
+
+        // ---------------- Panel de una forma de combate ----------------
+
+        private int _formRuleTemplate;
+
+        private void DrawFormDetail()
+        {
+            if (_formSpecies == null) return;
+            var so = new SerializedObject(_formSpecies);
+            so.Update();
+            var forms = so.FindProperty("forms");
+            int index = -1;
+            for (int i = 0; i < forms.arraySize; i++)
+                if (string.Equals(forms.GetArrayElementAtIndex(i).FindPropertyRelative("id").stringValue, _formId, StringComparison.OrdinalIgnoreCase)) index = i;
+            if (index < 0) { _formSpecies = null; return; }
+
+            EditorGUILayout.Space();
+            EditorGUILayout.BeginHorizontal();
+            EditorTheme.Section($"⚔ {_formSpecies.DisplayName}: {FormEditing.FormName(_formSpecies, _formId)}", EditorTheme.Species);
+            if (GUILayout.Button("Cerrar", GUILayout.Width(70))) { _formSpecies = null; EditorGUILayout.EndHorizontal(); return; }
+            EditorGUILayout.EndHorizontal();
+            EditorTheme.Paragraph("Tipos vacíos, estadística 0 o habilidad vacía = igual que la especie. Los PS no cambian en combate.");
+
+            EditorGUILayout.PropertyField(forms.GetArrayElementAtIndex(index), new GUIContent("Forma"), true);
+
+            // Comparación de estadísticas con la forma normal.
+            var f = _formSpecies.Forms[index];
+            if (f != null)
+            {
+                var rows = new[] { ("Ataque", f.attack, _formSpecies.Attack), ("Defensa", f.defense, _formSpecies.Defense), ("Atq. Esp.", f.spAttack, _formSpecies.SpAttack),
+                                   ("Def. Esp.", f.spDefense, _formSpecies.SpDefense), ("Velocidad", f.speed, _formSpecies.Speed) };
+                foreach (var (label, v, normal) in rows)
+                {
+                    int value = v > 0 ? v : normal;
+                    var rr = EditorGUILayout.GetControlRect();
+                    EditorGUI.ProgressBar(rr, Mathf.Clamp01(value / 255f), $"{label}: {value}" + (value != normal ? $"  ({(value > normal ? "+" : "")}{value - normal})" : ""));
+                }
+            }
+
+            // Cambios de forma que llevan a ella o salen de ella.
+            EditorGUILayout.LabelField("Qué la provoca", EditorStyles.boldLabel);
+            var rules = so.FindProperty("formChanges");
+            int shown = 0;
+            for (int i = 0; i < rules.arraySize; i++)
+            {
+                var el = rules.GetArrayElementAtIndex(i);
+                string from = el.FindPropertyRelative("from").stringValue, to = el.FindPropertyRelative("to").stringValue;
+                if (!string.Equals(from, _formId, StringComparison.OrdinalIgnoreCase) && !string.Equals(to, _formId, StringComparison.OrdinalIgnoreCase)
+                    && from != FormChange.AnyForm) continue;
+                shown++;
+                string text = i < (_formSpecies.FormChanges?.Length ?? 0) ? FormEditing.Describe(_formSpecies, _formSpecies.FormChanges[i]) : "Cambio";
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PropertyField(el, new GUIContent(text), true);
+                if (GUILayout.Button("✕", GUILayout.Width(22))) { rules.DeleteArrayElementAtIndex(i); EditorGUILayout.EndHorizontal(); break; }
+                EditorGUILayout.EndHorizontal();
+            }
+            if (shown == 0) EditorGUILayout.HelpBox("Nada la provoca todavía: añade un cambio con una plantilla.", MessageType.Info);
+            so.ApplyModifiedProperties();
+
+            EditorGUILayout.BeginHorizontal();
+            _formRuleTemplate = EditorGUILayout.Popup(_formRuleTemplate, FormEditing.Templates.Select(t => t.name).ToArray());
+            if (GUILayout.Button("+ Cambio", GUILayout.Width(80))) FormEditing.AddRules(_formSpecies, _formId, _formRuleTemplate);
+            EditorGUILayout.EndHorizontal();
+
+            foreach (var p in FormEditing.Problems(_formSpecies)) EditorGUILayout.HelpBox(p, MessageType.Warning);
+
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Abrir la especie")) SpeciesEditorWindow.OpenAndSelect(_formSpecies);
+            if (GUILayout.Button("Quitar esta forma")
+                && EditorUtility.DisplayDialog("Quitar forma", $"¿Quitar la forma «{FormEditing.FormName(_formSpecies, _formId)}» y sus cambios?", "Quitar", "Cancelar"))
+            {
+                FormEditing.RemoveForm(_formSpecies, _formId);
+                _formSpecies = null;
+            }
+            EditorGUILayout.EndHorizontal();
         }
 
         private void DrawEdge(SpeciesData from, Rect a, Rect b, int level, int index, List<string> warnings)
@@ -385,7 +553,7 @@ namespace CTEditor.GameDefinition.Editor
             if (selected) EditorGUI.DrawRect(labelRect, EditorTheme.WithAlpha(EditorTheme.Species, 0.35f));
             GUI.Label(labelRect, new GUIContent(shortText, "Evoluciona " + EvolutionText.Describe(entry)), EditorStyles.miniLabel);
             if (GUI.Button(new Rect(mid.x - 62, p2.y - 20, 16, 16), new GUIContent("✎", "Editar cómo evoluciona (método y condiciones)")))
-            { _editFrom = from; _editIndex = index; _addFrom = null; }
+            { _editFrom = from; _editIndex = index; _addFrom = null; _formSpecies = null; }
             if (entry.method == EvolutionMethod.Item && string.IsNullOrWhiteSpace(entry.itemId))
                 warnings.Add($"La evolución de {from.DisplayName} es con un objeto, pero no tiene objeto elegido.");
             foreach (var c in entry.conditions ?? new SpeciesData.EvolutionConditionData[0])

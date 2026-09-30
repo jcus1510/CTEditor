@@ -119,6 +119,7 @@ namespace CTEditor.GameDefinition.Editor
                 Enumerable.Range(1, AiProfile.MaxLevel).ToArray());
             var prof = TrainerEditorWindow.ProfileFor(_suggestLevel);
             TeamPreview.DrawSuggestButtons("members", d.Members, prof, prof.Moveset, "un " + AiProfile.ClassicName(_suggestLevel), EditSelected);
+            ShowdownWindow.DrawButtons(d, "members", d.Members);
         }
 
         private static int _suggestLevel = 4;

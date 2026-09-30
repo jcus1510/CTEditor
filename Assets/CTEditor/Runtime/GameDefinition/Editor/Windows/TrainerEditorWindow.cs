@@ -382,6 +382,7 @@ namespace CTEditor.GameDefinition.Editor
             var sugProfile = ProfileFor(d);
             var sugStyle = d.MovesetStyle != MovesetStyle.ByAi ? d.MovesetStyle : sugProfile.Moveset;
             TeamPreview.DrawSuggestButtons("team", d.Team, sugProfile, sugStyle, "su IA", EditSelected);
+            ShowdownWindow.DrawButtons(d, "team", d.Team);
             DrawBagEditor(d);
         }
 

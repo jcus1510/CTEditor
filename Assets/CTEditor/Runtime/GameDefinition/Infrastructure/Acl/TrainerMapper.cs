@@ -32,8 +32,15 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                 d.nickname,
                 d.gender == MemberGender.Male ? CTEditor.GameDefinition.Domain.Species.Gender.Male
                 : d.gender == MemberGender.Female ? CTEditor.GameDefinition.Domain.Species.Gender.Female
-                : (CTEditor.GameDefinition.Domain.Species.Gender?)null);
+                : (CTEditor.GameDefinition.Domain.Species.Gender?)null,
+                Spread(d.ivs), Spread(d.evs),
+                string.IsNullOrWhiteSpace(d.abilityId) ? (CTEditor.GameDefinition.Domain.Abilities.AbilityId?)null
+                    : new CTEditor.GameDefinition.Domain.Abilities.AbilityId(d.abilityId.Trim()));
         }
+
+        // Un reparto mal escrito no rompe el juego: se ignora (el validador del editor lo avisa).
+        private static StatSpread Spread(string text)
+            => StatSpread.TryParse(text, out var s, out _) ? s : StatSpread.Empty;
 
         public static List<TeamMemberSpec> ToDomain(TeamMemberData[] team)
         {
@@ -52,7 +59,8 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
                     if (it != null && !string.IsNullOrWhiteSpace(it.itemId)) bag.Add((it.itemId.Trim(), Math.Max(1, it.quantity)));
             var ai = new TrainerAiSettings(d.UseItems, bag, d.HealBelowPercent, d.CanSwitch, d.MovesetStyle);
             return new TrainerDefinition(d.Id, d.DisplayName, ToDomain(d.Team), d.TrainerClass, d.Ai, d.BaseMoney,
-                d.IntroLine, d.DefeatLine, d.VictoryLine, ai, d.AiLevel, d.AiProfileId);
+                d.IntroLine, d.DefeatLine, d.VictoryLine, ai, d.AiLevel, d.AiProfileId, d.CanMegaEvolve,
+                (d.SetFormats ?? "").Split(','), d.VariableSets);
         }
 
         public static TeamPreset ToDomain(TeamPresetData d)

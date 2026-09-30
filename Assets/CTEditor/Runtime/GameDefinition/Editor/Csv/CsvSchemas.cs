@@ -33,13 +33,57 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 new CsvReflectiveSchema<GrowthCurveData>("curvas.csv", "Curvas de XP", ContentFolders.Curves, 50),
                 new CsvReflectiveSchema<MechanicData>("mecanicas.csv", "Mecánicas especiales", ContentFolders.Mechanics, 58),
                 new CsvReflectiveSchema<RulesetData>("reglas.csv", "Reglas", ContentFolders.Rulesets, 60),
-                Moves(), Species(),
+                Moves(), Species(), Sets(),
                 Trainers(), Zones(), TeamPresets(),
                 new CsvReflectiveSchema<EggGroupData>("grupos_huevo.csv", "Grupos huevo", ContentFolders.EggGroups, 15),
                 new CsvReflectiveSchema<AiLevelData>("niveles_ia.csv", "Niveles de IA", ContentFolders.AiLevels, 88),
             };
             list.Sort((a, b) => a.Order.CompareTo(b.Order));
             return list;
+        }
+
+        // ---------------- Sets de competición (Smogon o del autor) ----------------
+
+        public static CsvSchema<CompetitiveSetData> Sets()
+            => new CsvSchema<CompetitiveSetData>("sets.csv", "Sets de competición", ContentFolders.Sets, 85)
+                .Col("id", "Id único (ej. garchomp_ou_1).", d => d.Id, (so, v, c) => so.FindProperty("id").stringValue = v)
+                .Col("especie", "Id de la especie.", d => d.SpeciesId, (so, v, c) =>
+                {
+                    v = (v ?? "").Trim();
+                    if (v.Length == 0) throw new CsvCellException("Un set necesita especie.");
+                    if (!c.Exists<SpeciesData>(v)) c.Warnings.Add($"La especie '{v}' aún no existe.");
+                    so.FindProperty("speciesId").stringValue = v;
+                })
+                .Col("formato", "ou, ubers, uu, ru, nu, pu, lc... (o el tuyo).", d => d.Format, (so, v, c) => so.FindProperty("setFormat").stringValue = (v ?? "").Trim().ToLowerInvariant())
+                .Col("nombre", "Nombre del set (Choice Scarf, Dragon Dance...).", d => d.DisplayName, (so, v, c) => so.FindProperty("displayName").stringValue = v)
+                .Col("puntuacion", "0-100: cuánto se usa (la IA elige con más peso los altos).", d => d.Score.ToString(),
+                    (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<CompetitiveSetData>.SetInt(so, "setScore", v, "puntuación", 0); })
+                .Col("objeto", "Objetos posibles separados por coma.", d => d.Items, (so, v, c) => SetOptions<ItemData>(so, "itemOptions", v, c, "El objeto"))
+                .Col("habilidad", "Habilidades posibles separadas por coma.", d => d.Abilities, (so, v, c) => SetOptions<AbilityData>(so, "abilityOptions", v, c, "La habilidad"))
+                .Col("naturaleza", "Naturalezas posibles separadas por coma.", d => d.Natures, (so, v, c) => SetOptions<NatureData>(so, "natureOptions", v, c, "La naturaleza"))
+                .Col("evs", "EVs: 252 Atq/4 DefE/252 Vel.", d => d.Evs, (so, v, c) => SetSpread(so, "evs", v, "EVs"))
+                .Col("ivs", "IVs distintos de 31: 0 Atq.", d => d.Ivs, (so, v, c) => SetSpread(so, "ivs", v, "IVs"))
+                .Col("movimientos", "4 huecos separados por /; alternativas de cada hueco separadas por coma.", d => d.Moves, (so, v, c) =>
+                {
+                    var slots = CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet.ParseSlots(v);
+                    if (slots.Count == 0) throw new CsvCellException("Un set necesita al menos un movimiento.");
+                    foreach (var m in slots.SelectMany(s => s))
+                        if (!c.Exists<MoveData>(m)) c.Warnings.Add($"El movimiento '{m}' aún no existe (el set lo saltará).");
+                    so.FindProperty("moveSlots").stringValue = CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet.FormatSlots(slots);
+                });
+
+        private static void SetOptions<T>(SerializedObject so, string field, string v, ImportContext c, string what) where T : ScriptableObject
+        {
+            var opts = CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet.ParseOptions(v);
+            foreach (var o in opts) if (!c.Exists<T>(o)) c.Warnings.Add($"{what} '{o}' aún no existe (el set lo saltará).");
+            so.FindProperty(field).stringValue = CTEditor.GameDefinition.Domain.Trainers.CompetitiveSet.FormatOptions(opts);
+        }
+
+        private static void SetSpread(SerializedObject so, string field, string v, string what)
+        {
+            if (!CTEditor.GameDefinition.Domain.Stats.StatSpread.TryParse(v, out var s, out var error))
+                throw new CsvCellException($"{what} no válidos: {error}");
+            so.FindProperty(field).stringValue = s.Format(" / ");
         }
 
         // ---------------- Tipos ----------------
@@ -64,6 +108,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
             => new CsvSchema<MoveData>("movimientos.csv", "Movimientos", ContentFolders.Moves, 70)
                 .Col("id", "Id único (ej. ember).", d => d.Id, (so, v, c) => so.FindProperty("id").stringValue = v)
                 .Col("nombre", "Nombre visible.", d => d.DisplayName, (so, v, c) => so.FindProperty("displayName").stringValue = v)
+                .Col("nombre_en", "Nombre en inglés (Showdown). Vacío = se deduce del id.", d => d.EnglishName, (so, v, c) => so.FindProperty("englishName").stringValue = (v ?? "").Trim())
                 .Col("tipo", "Id del tipo (ej. fire).", d => d.Type != null ? d.Type.Id : "",
                     (so, v, c) => so.FindProperty("type").objectReferenceValue = c.Require<ElementTypeData>(v, "El tipo"))
                 .Col("categoria", "fisico, especial o estado.", d => CsvCodecs.FormatCategory(d.Category),
@@ -323,6 +368,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
             => new CsvSchema<SpeciesData>("especies.csv", "Especies", ContentFolders.Species, 80)
                 .Col("id", "Id único (ej. bulbasaur).", d => d.Id, (so, v, c) => so.FindProperty("id").stringValue = v)
                 .Col("nombre", "Nombre visible.", d => d.DisplayName, (so, v, c) => so.FindProperty("displayName").stringValue = v)
+                .Col("nombre_en", "Nombre en inglés (Showdown): Garchomp, Rotom-Wash... Vacío = se deduce del id.", d => d.EnglishName, (so, v, c) => so.FindProperty("englishName").stringValue = (v ?? "").Trim())
                 .Col("tipos", "Uno o dos ids de tipo: grass|poison.", d => CsvCodecs.JoinList((d.Types ?? new ElementTypeData[0]).Where(t => t != null).Select(t => t.Id)), (so, v, c) =>
                 {
                     var ids = CsvCodecs.SplitList(v);
@@ -455,6 +501,84 @@ namespace CTEditor.GameDefinition.Editor.Csv
                         }
                         arr.arraySize = found.Count;
                         for (int i = 0; i < found.Count; i++) arr.GetArrayElementAtIndex(i).objectReferenceValue = found[i];
+                    }, true)
+                // --- Formas y variantes (columnas opcionales) ---
+                .Col("forma_de", "VARIANTE: id de la especie de la que es forma (rotom_wash → rotom). Vacío = no es variante.", d => d.FormOf,
+                    (so, v, c) =>
+                    {
+                        v = (v ?? "").Trim();
+                        if (v.Length > 0 && !c.Exists<SpeciesData>(v)) c.Warnings.Add($"La especie '{v}' (forma_de) aún no existe.");
+                        so.FindProperty("formOf").stringValue = v;
+                    }, true)
+                .Col("objeto_variante", "Objeto que cambia a esta variante fuera del combate (gracidea). Vacío = solo con un personaje.", d => d.VariantItem,
+                    (so, v, c) =>
+                    {
+                        v = (v ?? "").Trim();
+                        if (v.Length > 0 && !c.Exists<ItemData>(v)) c.Warnings.Add($"El objeto '{v}' (objeto_variante) aún no existe.");
+                        so.FindProperty("variantItem").stringValue = v;
+                    })
+                .Col("formas", "Formas de combate: id;nombre;tipo1/tipo2;atq/def/atq_esp/def_esp/vel;habilidad;vuelve  (vacío o 0 = igual). " +
+                               "Ej.: zen;Modo Daruma;fire/psychic;30/105/140/105/55;zen_mode;vuelve", d => CsvFormCodecs.FormatForms(d.Forms),
+                    (so, v, c) =>
+                    {
+                        var forms = CsvFormCodecs.ParseForms(v);
+                        foreach (var f in forms)
+                        {
+                            foreach (var t in new[] { f.type1, f.type2 })
+                                if (!string.IsNullOrWhiteSpace(t) && !c.Exists<ElementTypeData>(t)) c.Warnings.Add($"El tipo '{t}' (forma {f.id}) no existe.");
+                            if (!string.IsNullOrWhiteSpace(f.ability) && !c.Exists<AbilityData>(f.ability)) c.Warnings.Add($"La habilidad '{f.ability}' (forma {f.id}) aún no existe.");
+                        }
+                        var arr = so.FindProperty("forms");
+                        arr.arraySize = forms.Count;
+                        for (int i = 0; i < forms.Count; i++)
+                        {
+                            var el = arr.GetArrayElementAtIndex(i); var f = forms[i];
+                            el.FindPropertyRelative("id").stringValue = f.id;
+                            el.FindPropertyRelative("displayName").stringValue = f.displayName ?? "";
+                            el.FindPropertyRelative("type1").stringValue = f.type1 ?? "";
+                            el.FindPropertyRelative("type2").stringValue = f.type2 ?? "";
+                            el.FindPropertyRelative("attack").intValue = f.attack;
+                            el.FindPropertyRelative("defense").intValue = f.defense;
+                            el.FindPropertyRelative("spAttack").intValue = f.spAttack;
+                            el.FindPropertyRelative("spDefense").intValue = f.spDefense;
+                            el.FindPropertyRelative("speed").intValue = f.speed;
+                            el.FindPropertyRelative("ability").stringValue = f.ability ?? "";
+                            el.FindPropertyRelative("revertsOnSwitch").boolValue = f.revertsOnSwitch;
+                        }
+                    })
+                .Col("cambios_forma", "Qué cambia la forma en combate: desde>hasta:disparador[:valor][;con=habilidad][;despues]. " +
+                                      "Disparadores: objeto, movimiento, ataque, ps_bajo, ps_desde, clima, mega. Ej.: >zen:ps_bajo:50;con=zen_mode|zen>:ps_desde:50;con=zen_mode",
+                    d => CsvFormCodecs.FormatChanges(d.FormChanges),
+                    (so, v, c) =>
+                    {
+                        var changes = CsvFormCodecs.ParseChanges(v);
+                        var formIds = new List<string>();
+                        var formsProp = so.FindProperty("forms");
+                        for (int i = 0; i < formsProp.arraySize; i++) formIds.Add(formsProp.GetArrayElementAtIndex(i).FindPropertyRelative("id").stringValue);
+                        foreach (var ch in changes)
+                        {
+                            foreach (var fid in new[] { ch.from, ch.to })
+                                if (!string.IsNullOrEmpty(fid) && fid != "*" && !formIds.Any(x => string.Equals(x, fid, StringComparison.OrdinalIgnoreCase)))
+                                    c.Warnings.Add($"El cambio de forma usa la forma '{fid}', que no está en la columna formas.");
+                            if (ch.item.Length > 0 && !c.Exists<ItemData>(ch.item)) c.Warnings.Add($"El objeto '{ch.item}' (cambio de forma) aún no existe.");
+                            if (ch.move.Length > 0 && !c.Exists<MoveData>(ch.move)) c.Warnings.Add($"El movimiento '{ch.move}' (cambio de forma) aún no existe.");
+                            if (ch.requiredAbility.Length > 0 && !c.Exists<AbilityData>(ch.requiredAbility)) c.Warnings.Add($"La habilidad '{ch.requiredAbility}' (cambio de forma) aún no existe.");
+                        }
+                        var arr = so.FindProperty("formChanges");
+                        arr.arraySize = changes.Count;
+                        for (int i = 0; i < changes.Count; i++)
+                        {
+                            var el = arr.GetArrayElementAtIndex(i); var ch = changes[i];
+                            el.FindPropertyRelative("from").stringValue = ch.from;
+                            el.FindPropertyRelative("to").stringValue = ch.to;
+                            el.FindPropertyRelative("trigger").enumValueIndex = (int)ch.trigger;
+                            el.FindPropertyRelative("item").stringValue = ch.item;
+                            el.FindPropertyRelative("move").stringValue = ch.move;
+                            el.FindPropertyRelative("hpPercent").intValue = ch.hpPercent;
+                            el.FindPropertyRelative("weather").stringValue = ch.weather;
+                            el.FindPropertyRelative("requiredAbility").stringValue = ch.requiredAbility;
+                            el.FindPropertyRelative("afterMove").boolValue = ch.afterMove;
+                        }
                     }, true);
 
         private static void SetAbility(SerializedObject so, string field, string v, ImportContext c)
@@ -490,6 +614,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
             {
                 Species = m.SpeciesKey, Level = m.level, Held = m.heldItem ?? "", Nature = m.NatureKey,
                 Iv = m.fixedIvs, Nickname = m.nickname ?? "",
+                Ability = m.abilityId ?? "", Evs = m.evs ?? "", Ivs = m.ivs ?? "",
                 Gender = m.gender == MemberGender.Male ? "m" : m.gender == MemberGender.Female ? "h" : "",
                 Moves = m.MoveKeys().ToList(),
             }));
@@ -522,6 +647,10 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 el.FindPropertyRelative("fixedIvs").intValue = p.Iv < 0 ? -1 : System.Math.Min(31, p.Iv);
                 el.FindPropertyRelative("nickname").stringValue = p.Nickname;
                 el.FindPropertyRelative("gender").enumValueIndex = p.Gender == "m" ? (int)MemberGender.Male : p.Gender == "h" ? (int)MemberGender.Female : 0;
+                if (p.Ability.Length > 0 && !c.Exists<AbilityData>(p.Ability)) c.Warnings.Add($"La habilidad '{p.Ability}' aún no existe.");
+                el.FindPropertyRelative("abilityId").stringValue = p.Ability;
+                el.FindPropertyRelative("evs").stringValue = p.Evs;
+                el.FindPropertyRelative("ivs").stringValue = p.Ivs;
             }
         }
 
@@ -559,7 +688,9 @@ namespace CTEditor.GameDefinition.Editor.Csv
             }
         }
 
-        private const string TeamHelp = "Miembros separados por |. especie@nivel y, opcional: %m / %h (macho/hembra) [mov1/mov2] {objeto} ~naturaleza #iv \"mote\". Ej.: pidgey@5%h | onix@14[tackle/rock_throw]{oran_berry}";
+        private const string TeamHelp = "Miembros separados por |. especie@nivel y, opcional: %m / %h (macho/hembra) [mov1/mov2] {objeto} ~naturaleza !habilidad " +
+            "(EVs: 252 Atq/4 PS/252 Vel) #iv (o #31(0 Atq): IVs por estadística) \"mote\". Ej.: pidgey@5%h | onix@14[tackle/rock_throw]{oran_berry} | " +
+            "garchomp@62[earthquake/dragon_claw]{choice_scarf}~jolly!rough_skin(252 Atq/4 PS/252 Vel)#31";
 
         public static CsvSchema<TrainerData> Trainers()
             => new CsvSchema<TrainerData>("entrenadores.csv", "Entrenadores", ContentFolders.Trainers, 90)
@@ -616,6 +747,13 @@ namespace CTEditor.GameDefinition.Editor.Csv
                     (so, v, c) => CsvSchema<TrainerData>.SetInt(so, "healBelowPercent", v, "curar_bajo", 1))
                 .Col("puede_cambiar", "si / no: ¿puede cambiar de monstruo? (solo la IA experta lo hace).", d => d.CanSwitch ? "si" : "no",
                     (so, v, c) => CsvSchema<TrainerData>.SetBool(so, "canSwitch", v, "puede_cambiar"))
+                .Col("megaevoluciona", "si / no: ¿puede megaevolucionar? (si las reglas tienen la Megaevolución y lleva megapiedra). Vacío = sí.",
+                    d => d.CanMegaEvolve ? "si" : "no",
+                    (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<TrainerData>.SetBool(so, "canMegaEvolve", v, "megaevoluciona"); })
+                .Col("formatos_sets", "Sets de competición: de qué formatos (ou,uu...). Vacío = de cualquiera.", d => d.SetFormats,
+                    (so, v, c) => so.FindProperty("setFormats").stringValue = (v ?? "").Trim().ToLowerInvariant())
+                .Col("moveset_cambiante", "si = otro set al azar en cada combate; no (vacío) = siempre el mismo.", d => d.VariableSets ? "si" : "no",
+                    (so, v, c) => { if (!string.IsNullOrWhiteSpace(v)) CsvSchema<TrainerData>.SetBool(so, "variableSets", v, "moveset_cambiante"); })
                 .Col("movimientos_auto", "Miembros sin movimientos escritos: ia (según su IA), clasico (4 últimos), equilibrado, fuerte o competitivo.",
                     d => d.MovesetStyle == Domain.Trainers.MovesetStyle.Classic ? "clasico" : d.MovesetStyle == Domain.Trainers.MovesetStyle.Balanced ? "equilibrado"
                        : d.MovesetStyle == Domain.Trainers.MovesetStyle.Strong ? "fuerte"

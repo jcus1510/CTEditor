@@ -34,7 +34,13 @@ namespace CTEditor.GameDefinition.Editor
 
         private void Reload()
         {
-            _items = ContentTrash.Items().OrderBy(a => ContentTrash.CategoryOfPath(AssetDatabase.GetAssetPath(a))).ThenBy(a => a.name).ToList();
+            var all = ContentTrash.Items();
+            // Los GRUPOS (un cambio de generación entero) se ven como una sola tarjeta: no se busca quién usa cada ficha.
+            _groups = all.Where(a => ContentTrash.GroupOfPath(AssetDatabase.GetAssetPath(a)).Length > 0)
+                .GroupBy(a => ContentTrash.GroupOfPath(AssetDatabase.GetAssetPath(a))).OrderBy(g => g.Key)
+                .ToDictionary(g => g.Key, g => g.ToList());
+            _items = all.Where(a => ContentTrash.GroupOfPath(AssetDatabase.GetAssetPath(a)).Length == 0)
+                .OrderBy(a => ContentTrash.CategoryOfPath(AssetDatabase.GetAssetPath(a))).ThenBy(a => a.name).ToList();
             _uses.Clear();
             foreach (var a in _items) _uses[a] = ReferenceFinder.FindReferencesTo(a).Count;
             Repaint();
@@ -61,9 +67,31 @@ namespace CTEditor.GameDefinition.Editor
             GUI.enabled = true;
             EditorGUILayout.EndHorizontal();
 
-            if (_items.Count == 0) { EditorTheme.Chip("✔ La papelera está vacía.", EditorTheme.Ok); return; }
+            if (_items.Count == 0 && _groups.Count == 0) { EditorTheme.Chip("✔ La papelera está vacía.", EditorTheme.Ok); return; }
 
             _scroll = EditorGUILayout.BeginScrollView(_scroll);
+            foreach (var g in _groups.ToList())
+            {
+                EditorTheme.BeginCard(EditorTheme.Tools, "📦 " + g.Key);
+                var byCategory = g.Value.GroupBy(a => ContentTrash.CategoryOfPath(AssetDatabase.GetAssetPath(a)))
+                    .Select(c => $"{c.Key}: {c.Count()}");
+                EditorTheme.Paragraph($"{g.Value.Count} fichas ({string.Join(" · ", byCategory)}). Se mandaron juntas (p. ej. al cambiar de generación).");
+                EditorGUILayout.BeginHorizontal();
+                if (GUILayout.Button("↩ Recuperar todo el grupo")) RestoreGroup(g.Key, g.Value);
+                if (GUILayout.Button("✖ Borrar el grupo para siempre", GUILayout.Width(210))
+                    && EditorUtility.DisplayDialog("Borrar el grupo", $"¿Borrar para siempre las {g.Value.Count} fichas de «{g.Key}»? No se puede deshacer. " +
+                                                   "Lo que aún las use quedará con referencias rotas (el validador lo avisa).", "Borrar", "Cancelar"))
+                {
+                    foreach (var a in g.Value) if (a != null) AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(a));
+                    AssetDatabase.DeleteAsset(ContentTrash.Root + "/" + ContentTrash.GroupPrefix + g.Key);
+                    AssetDatabase.SaveAssets();
+                    ContentAssets.ClearCache();
+                    Reload();
+                    GUIUtility.ExitGUI();
+                }
+                EditorGUILayout.EndHorizontal();
+                EditorTheme.EndCard();
+            }
             string lastCategory = null;
             foreach (var a in _items.ToList())
             {
@@ -91,6 +119,30 @@ namespace CTEditor.GameDefinition.Editor
                 EditorTheme.EndCard();
             }
             EditorGUILayout.EndScrollView();
+        }
+
+        private Dictionary<string, List<ScriptableObject>> _groups = new Dictionary<string, List<ScriptableObject>>();
+
+        private void RestoreGroup(string name, List<ScriptableObject> items)
+        {
+            var failed = new List<string>();
+            try
+            {
+                for (int i = 0; i < items.Count; i++)
+                {
+                    var a = items[i];
+                    if (EditorUtility.DisplayCancelableProgressBar("Recuperar el grupo", ContentAssets.Label(a), (float)i / items.Count)) break;
+                    string error = a == null ? "" : ContentTrash.Restore(a);
+                    if (!string.IsNullOrEmpty(error)) failed.Add($"{ContentAssets.Label(a)}: {error}");
+                }
+            }
+            finally { EditorUtility.ClearProgressBar(); AssetDatabase.SaveAssets(); ContentAssets.ClearCache(); }
+            EditorUtility.DisplayDialog("Recuperar el grupo", failed.Count == 0
+                ? $"Recuperadas las {items.Count} fichas de «{name}»."
+                : $"Recuperadas {items.Count - failed.Count}. No se pudieron recuperar {failed.Count} (ya hay otra con su id):\n" + string.Join("\n", failed.Take(10)), "Vale");
+            EditorCatalog.ClearCounts();
+            Reload();
+            GUIUtility.ExitGUI();
         }
 
         private void Restore(ScriptableObject a)

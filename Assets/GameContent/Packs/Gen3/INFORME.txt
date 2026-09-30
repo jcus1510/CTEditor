@@ -1,7 +1,7 @@
 ﻿PACK 3.ª GENERACIÓN — fiel a su generación (generado por Tools/verificar_pack/generar_packs.py)
 ========================================================================================
 
-• 386 especies (hasta la n.º 386) con los datos QUE TENÍAN EN LA 3.ª GENERACIÓN (PokeAPI):
+• 389 especies (hasta la n.º 386) con los datos QUE TENÍAN EN LA 3.ª GENERACIÓN (PokeAPI):
   tipos, estadísticas base,
   aprendizaje por nivel de Esmeralda y MT/tutor/huevo de los juegos de la generación.
 • 353 movimientos: solo los que existen en la 3.ª gen., con su tipo, potencia, precisión, PP y prioridad
@@ -15,6 +15,12 @@
 APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con las mecánicas por generación):
   • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.
   • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.
+
+FORMAS DE COMBATE (SE CAMBIAN EN MITAD DEL COMBATE) (1):
+   castform
+
+VARIANTES (ESPECIES CON «FORMA_DE») (3):
+   deoxys_attack → deoxys, deoxys_defense → deoxys, deoxys_speed → deoxys
 
 ENTRENADORES CON MIEMBROS DE GENERACIONES POSTERIORES (QUITADOS) (26):
    alto_mando_alecran, alto_mando_delos, alto_mando_fausto, alto_mando_gaia, cazabichos_bruno_s, comandante_saturno, especialista_dark, especialista_dragon, especialista_electric, especialista_fairy, especialista_flying, especialista_grass, especialista_ground, especialista_rock, especialista_steel, especialista_water, galactico_soldado, jefe_helio, lider_acero, lider_brega, lider_fantina, lider_inverna, lider_lectro, lider_mananti, lider_roco, pescador_mateo

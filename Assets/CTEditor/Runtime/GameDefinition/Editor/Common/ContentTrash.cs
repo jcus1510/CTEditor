@@ -26,6 +26,20 @@ namespace CTEditor.GameDefinition.Editor
     {
         public const string Root = "Assets/GameContent/Papelera";
 
+        /// <summary>
+        /// Las carpetas de GRUPO de la papelera empiezan por este signo («~Cambio a Gen3 2026-09-30»): lo que se manda a la
+        /// papelera de una vez (un cambio de generación) queda junto y se recupera o se borra en bloque.
+        /// </summary>
+        public const string GroupPrefix = "~";
+
+        /// <summary>Grupo de una ficha de la papelera ("" si no está en ninguno).</summary>
+        public static string GroupOfPath(string assetPath)
+        {
+            if (!IsTrashedPath(assetPath)) return "";
+            string rest = assetPath.Replace('\\', '/').Substring(Root.Length + 1);
+            return rest.StartsWith(GroupPrefix) && rest.IndexOf('/') > 0 ? rest.Substring(GroupPrefix.Length, rest.IndexOf('/') - GroupPrefix.Length) : "";
+        }
+
         /// <summary>¿Esta ruta de asset está dentro de la papelera? (puro: se prueba sin Unity)</summary>
         public static bool IsTrashedPath(string assetPath)
             => !string.IsNullOrEmpty(assetPath) && assetPath.Replace('\\', '/').StartsWith(Root + "/", StringComparison.OrdinalIgnoreCase);
@@ -39,6 +53,8 @@ namespace CTEditor.GameDefinition.Editor
                 if (p.StartsWith(root, StringComparison.OrdinalIgnoreCase))
                 {
                     string rest = p.Substring(root.Length);
+                    // En la papelera, la carpeta de grupo no es parte de la categoría.
+                    if (root == Root + "/" && rest.StartsWith(GroupPrefix) && rest.IndexOf('/') > 0) rest = rest.Substring(rest.IndexOf('/') + 1);
                     int slash = rest.LastIndexOf('/');
                     return slash > 0 ? rest.Substring(0, slash) : "";
                 }
@@ -61,19 +77,31 @@ namespace CTEditor.GameDefinition.Editor
         public static int Count => Items().Count;
 
         /// <summary>Manda la ficha a la papelera. Devuelve "" si fue bien, o el motivo del fallo.</summary>
-        public static string MoveToTrash(ScriptableObject asset)
+        public static string MoveToTrash(ScriptableObject asset) => MoveToTrash(asset, null, true);
+
+        /// <summary>
+        /// Manda la ficha a la papelera, dentro del GRUPO 'group' si se da (carpeta «~grupo»). 'save' = guardar y refrescar
+        /// al terminar (en bloque, mejor false y guardar una vez al final).
+        /// </summary>
+        public static string MoveToTrash(ScriptableObject asset, string group, bool save)
         {
             if (asset == null) return "No hay ficha.";
             string path = AssetDatabase.GetAssetPath(asset);
             if (IsTrashedPath(path)) return "Ya está en la papelera.";
             string category = CategoryOfPath(path);
-            string folder = string.IsNullOrEmpty(category) ? Root : Root + "/" + category;
+            string root = string.IsNullOrWhiteSpace(group) ? Root : Root + "/" + GroupPrefix + SafeGroup(group);
+            string folder = string.IsNullOrEmpty(category) ? root : root + "/" + category;
             ContentAssets.EnsureFolder(folder);
             string target = AssetDatabase.GenerateUniqueAssetPath(folder + "/" + Path.GetFileName(path));
             string error = AssetDatabase.MoveAsset(path, target);
-            AssetDatabase.SaveAssets();
-            ContentAssets.ClearCache();
+            if (save) { AssetDatabase.SaveAssets(); ContentAssets.ClearCache(); }
             return error ?? "";
+        }
+
+        private static string SafeGroup(string group)
+        {
+            foreach (var c in Path.GetInvalidFileNameChars()) group = group.Replace(c, '-');
+            return group.Replace('/', '-').Trim();
         }
 
         /// <summary>

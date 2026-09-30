@@ -61,8 +61,17 @@ namespace CTEditor.Adventure.Domain
             if (nature == null && !spec.Nature.HasValue) nature = RandomNature(data, rng);
 
             var mon = MonsterFactory.Create(id, species, spec.Level, data.Ruleset, data.Growth, moves,
-                data.CurveFor(species), rng, nature, spec.FixedIv ?? (training ? 31 : (int?)null));
-            if (training) ApplyCompetitiveEvs(mon, species, data);
+                data.CurveFor(species), rng, nature, spec.FixedIv ?? (training ? 31 : (int?)null), spec.Ivs);
+            // EVs: los escritos por el autor mandan; si no, los de su entrenamiento de competición.
+            if (!spec.Evs.IsEmpty) ApplyEvs(mon, species, data, spec.Evs, problems);
+            else if (training) ApplyCompetitiveEvs(mon, species, data);
+            // Habilidad elegida: una de las de su especie (1.ª, 2.ª u oculta).
+            if (spec.Ability.HasValue)
+            {
+                int slot = AbilitySlotOf(species, spec.Ability.Value);
+                if (slot >= 0) mon.SetAbilitySlot(slot);
+                else problems?.Add($"{species.DisplayName} no puede tener la habilidad '{spec.Ability.Value.Value}': se queda con la suya.");
+            }
             // Reglas de generación: sin objetos equipados (1.ª gen.) no se le pone ninguno.
             bool items = data.Ruleset.Generation.HeldItems;
             if (items && !string.IsNullOrWhiteSpace(spec.HeldItem)) mon.SetHeldItem(spec.HeldItem);
@@ -132,10 +141,42 @@ namespace CTEditor.Adventure.Domain
             var style = trainer.AiSettings.Moveset != MovesetStyle.ByAi ? trainer.AiSettings.Moveset : profile.Moveset;
             for (int i = 0; i < trainer.Team.Count && team.Count < data.Ruleset.MaxPartySize; i++)
             {
-                var mon = Build(trainer.Team[i], new Id<MonsterInstance>($"t:{trainer.Id}:{i + 1}"), data, rng, problems, style, profile);
+                var spec = WithCompetitiveSet(trainer, i, data, profile, rng);
+                var mon = Build(spec, new Id<MonsterInstance>($"t:{trainer.Id}:{i + 1}"), data, rng, problems, style, profile);
                 if (mon != null) team.Add(mon);
             }
             return team;
+        }
+
+        /// <summary>
+        /// SETS DE COMPETICIÓN: si su IA los usa y el miembro no tiene movimientos escritos, se le aplica un set de su especie
+        /// (de los formatos del entrenador). MOVESET FIJO: el mismo set y alternativas en cada combate (azar con semilla del
+        /// entrenador y el hueco). CAMBIANTE: al azar en cada combate.
+        /// </summary>
+        public static TeamMemberSpec WithCompetitiveSet(TrainerDefinition trainer, int index, GameData data, AiProfile profile, IRng rng)
+        {
+            var spec = trainer.Team[index];
+            if (profile == null || !profile.UseCompetitiveSets || spec.Moves.Count > 0 || data.Sets.Count == 0) return spec;
+            var pick = trainer.VariableSets && rng != null ? rng : new HashRng($"{trainer.Id}:{index}");
+            var set = CompetitiveSet.Choose(data.Sets, spec.Species, trainer.SetFormats, pick);
+            return set == null ? spec : set.ApplyTo(spec, pick, data.Exists);
+        }
+
+        /// <summary>Azar con semilla fija por texto (siempre igual para el mismo entrenador y hueco).</summary>
+        private sealed class HashRng : IRng
+        {
+            private readonly Random _r;
+            public HashRng(string seed)
+            {
+                unchecked
+                {
+                    int h = 17;
+                    foreach (char c in seed ?? "") h = h * 31 + c;
+                    _r = new Random(h);
+                }
+            }
+            public int Next(int minInclusive, int maxExclusive) => maxExclusive <= minInclusive ? minInclusive : _r.Next(minInclusive, maxExclusive);
+            public float NextFloat() => (float)_r.NextDouble();
         }
 
         // Objeto equipado automático (Élite y Campeón): lo más útil que exista en el juego.
@@ -178,6 +219,32 @@ namespace CTEditor.Adventure.Domain
         }
 
         /// <summary>EVs de competición: 252 en su mejor ataque, 252 en Velocidad (o PS si es lento) y 4 en PS/Defensa.</summary>
+        /// <summary>Hueco de habilidad (0 = 1.ª, 1 = 2.ª, 2 = oculta) de una habilidad de la especie; -1 si no la tiene.</summary>
+        public static int AbilitySlotOf(SpeciesDef species, CTEditor.GameDefinition.Domain.Abilities.AbilityId ability)
+        {
+            if (species.Ability.HasValue && species.Ability.Value == ability) return 0;
+            if (species.SecondAbility.HasValue && species.SecondAbility.Value == ability) return 1;
+            if (species.HiddenAbility.HasValue && species.HiddenAbility.Value == ability) return 2;
+            return -1;
+        }
+
+        /// <summary>Pone los EVs escritos (recortados a los topes de las reglas) y recalcula sus estadísticas.</summary>
+        public static void ApplyEvs(MonsterInstance mon, SpeciesDef species, GameData data, StatSpread evs, List<string> problems = null)
+        {
+            if (data.Ruleset.MaxEvPerStat <= 0) return;   // juego sin EVs
+            int total = 0;
+            foreach (var kv in evs.Values)
+            {
+                int given = mon.AddEffort(kv.Key, kv.Value);
+                total += given;
+                if (given < kv.Value)
+                    problems?.Add($"{species.DisplayName}: {kv.Value} EVs de {kv.Key.Value} pasan del tope de las reglas; se quedan en {given}.");
+            }
+            if (total == 0) return;
+            mon.RecomputeStats(species.BaseStats, data.Growth);
+            mon.Heal(mon.MaxHp);
+        }
+
         public static void ApplyCompetitiveEvs(MonsterInstance mon, SpeciesDef species, GameData data)
         {
             var atk = IsPhysical(species) ? StatId.Attack : StatId.SpAttack;
@@ -271,6 +338,11 @@ namespace CTEditor.Adventure.Domain
             public IReadOnlyList<Id<Move>> Moves = Array.Empty<Id<Move>>();
             public string NatureId = "";
             public string HeldItem = "";
+            /// <summary>EVs que le pondría su entrenamiento de competición (vacío si su nivel de IA no entrena).</summary>
+            public StatSpread Evs = StatSpread.Empty;
+            /// <summary>Con sets de competición: el set usado («ou: Choice Scarf»), su habilidad y sus IVs.</summary>
+            public string SetName = "", AbilityId = "";
+            public StatSpread Ivs = StatSpread.Empty;
         }
 
         /// <summary>
@@ -278,11 +350,25 @@ namespace CTEditor.Adventure.Domain
         /// movimientos, objeto y naturaleza escritos, y devuelve lo que el juego elegiría. La naturaleza solo se sugiere si
         /// el nivel de IA entrena como en competición (si no, en el juego sale al azar). Null si la especie no existe.
         /// </summary>
-        public static MemberSuggestion Suggest(TeamMemberSpec spec, GameData data, AiProfile profile, MovesetStyle style)
+        public static MemberSuggestion Suggest(TeamMemberSpec spec, GameData data, AiProfile profile, MovesetStyle style,
+            IReadOnlyCollection<string> setFormats = null)
         {
             if (spec == null || data == null) return null;
             if (style == MovesetStyle.ByAi) style = profile?.Moveset ?? MovesetStyle.Classic;
             var blank = new TeamMemberSpec(spec.Species, spec.Level, null, "", null, spec.FixedIv, spec.Nickname, spec.Gender);
+            // Su IA usa sets de competición: el más usado de su especie (en los formatos pedidos).
+            var set = profile != null && profile.UseCompetitiveSets ? CompetitiveSet.Choose(data.Sets, spec.Species, setFormats, null) : null;
+            if (set != null)
+            {
+                var withSet = set.ApplyTo(blank, null, data.Exists);
+                var sm = Build(withSet, new Id<MonsterInstance>("sugerencia"), data, new FirstRng(), null, style, profile);
+                if (sm == null) return null;
+                return new MemberSuggestion
+                {
+                    Moves = sm.Moves.ToList(), NatureId = withSet.Nature?.Value ?? "", HeldItem = sm.HeldItem ?? "",
+                    Evs = withSet.Evs, Ivs = withSet.Ivs, AbilityId = withSet.Ability?.Value ?? "", SetName = $"{set.Format}: {set.Name}",
+                };
+            }
             var mon = Build(blank, new Id<MonsterInstance>("sugerencia"), data, new FirstRng(), null, style, profile);
             if (mon == null) return null;
             bool training = profile != null && profile.CompetitiveTraining;
@@ -291,6 +377,8 @@ namespace CTEditor.Adventure.Domain
                 Moves = mon.Moves.ToList(),
                 NatureId = training && mon.Nature != null ? mon.Nature.Id.Value : "",
                 HeldItem = mon.HeldItem ?? "",
+                Evs = training ? new StatSpread(mon.Stats.Stats.Where(st => mon.EvOf(st) > 0).Select(st => new KeyValuePair<StatId, int>(st, mon.EvOf(st))))
+                               : StatSpread.Empty,
             };
         }
 

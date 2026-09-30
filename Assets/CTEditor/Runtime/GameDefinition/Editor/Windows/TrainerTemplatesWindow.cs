@@ -207,6 +207,9 @@ namespace CTEditor.GameDefinition.Editor
                 pills.Add((m.Held.Length > 0 ? "🎒 " + m.Held : profile.HeldItems != HeldItemStyle.None ? "🎒 automático" : "sin objeto", EditorTheme.Items));
                 pills.Add((m.Nature.Length > 0 ? m.Nature : profile.CompetitiveTraining ? "naturaleza automática" : "naturaleza al azar", EditorTheme.Natures));
                 if (m.Iv >= 0) pills.Add(($"IV {m.Iv}", EditorTheme.Tools));
+                if (m.Ivs.Length > 0) pills.Add(("IV " + m.Ivs, EditorTheme.Tools));
+                if (m.Evs.Length > 0) pills.Add(("EV " + m.Evs, EditorTheme.Tools));
+                if (m.Ability.Length > 0) pills.Add(("✨ " + m.Ability, EditorTheme.Abilities));
                 if (m.Gender == "m" || m.Gender == "h") pills.Add((m.Gender == "m" ? "♂" : "♀", EditorTheme.Tools));
                 if (!inProject) pills.Add(("se creará la especie", EditorTheme.Warn));
                 EditorTheme.Pills(pills.ToArray());

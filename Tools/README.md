@@ -37,6 +37,8 @@ que tenían entonces (PokeAPI, deshaciendo los cambios posteriores):
 |---|---|
 | Especies | Tipos, estadísticas (1.ª gen.: una sola Especial), habilidades (desde la 3.ª; ocultas desde la 5.ª), aprendizaje por nivel del juego de referencia (Rojo/Azul, Cristal, Esmeralda, Platino, N2/B2, ROZA) y MT/tutor/huevo de sus juegos, grupos huevo (desde la 2.ª), sin géneros en la 1.ª. |
 | Movimientos | Solo los que existen, con tipo, potencia, precisión, PP y prioridad de entonces; físico/especial **según el tipo** hasta la 3.ª gen.; Maldición «???» (typeless) en la 2.ª-4.ª. |
+| Nombres en inglés | Columna `nombre_en` (el nombre de Showdown) en especies —variantes al estilo «Rotom-Wash», «Nidoran-F»—, movimientos, habilidades, objetos y naturalezas: sirve para importar y exportar equipos en formato Showdown. |
+| Formas y variantes | Formas de combate (Castform, Cherrim, Darmanitan, Meloetta, Aegislash, Giratina, Arceus, Kyogre/Groudon primigenios) con qué las provoca, y variantes como especies con `forma_de` (Deoxys, Wormadam, Rotom, Shaymin, Basculin, Tótem, Kyurem, Keldeo, Pumpkaboo/Gourgeist, Hoopa) con sus datos de PokeAPI (`formas.py`). |
 | Tabla de tipos | La de la generación (sin Siniestro/Acero en la 1.ª, sin Hada hasta la 6.ª, Fantasma→Acero ×0,5 hasta la 5.ª...). |
 | Objetos | Todos los de la generación (nombre, descripción y precio oficiales) salvo las MT y los que ya tienen efecto en las plantillas del código: Balls, objetos clave, bayas, placas, Megapiedras, mails... (los nuevos, solo con sus datos). |
 | Entrenadores | Los de los juegos hasta esa generación, con movimientos válidos (sin objetos en la 1.ª, sin naturalezas antes de la 3.ª), especialistas de tipo, Ases del Frente (5.ª y 6.ª) y el Laboratorio de IA. |
@@ -72,6 +74,19 @@ código («el pack manda»).
 - `datos_fuente/` — datos maestros (efectos, habilidades, Pokédex, entrenadores) y los INFORME de los packs antiguos.
 
 Pokémon y sus nombres son marcas de Nintendo / Game Freak / The Pokémon Company: proyecto personal y educativo.
+
+## generar_sets.py — sets de competición de Smogon para cada pack
+
+```bash
+python3 Tools/verificar_pack/generar_sets.py            # Gen1 … Gen6
+python3 Tools/verificar_pack/generar_sets.py --gen 6
+```
+
+Escribe `Packs/GenN/sets.csv` con los sets de los análisis de Smogon (de https://pkmn.github.io/smogon, formatos de
+individuales OU, Ubers, UU, RU, NU, PU y LC que existan en esa generación) y una **puntuación** 0-100 sacada de sus
+estadísticas de uso (movimientos, objeto y habilidad). Los nombres se traducen a los ids del pack (por `nombre_en` o por
+el id); lo que no existe en el pack se quita y los sets de especies que no están se descartan (se cuenta al terminar).
+Hace falta haber generado antes los packs (usa sus nombres en inglés). Se descarga una vez a `Tools/.cache/smogon`.
 
 ## probar_dominio — compilar el dominio y pasar sus tests sin abrir Unity
 

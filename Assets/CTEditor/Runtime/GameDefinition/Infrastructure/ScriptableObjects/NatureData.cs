@@ -13,6 +13,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         [Tooltip("Id estable (lo guarda cada individuo). Único entre naturalezas. Ej: 'adamant'.")]
         [SerializeField] private string id;
         [SerializeField] private string displayName;
+        [Tooltip("Nombre en INGLÉS (el de Showdown): sirve para importar y exportar equipos. Vacío = se deduce del id.")]
+        [SerializeField] private string englishName = "";
 
         [Tooltip("Id de la estadística que SUBE (hp, attack, defense, sp_attack, sp_defense, speed o inventada). Vacío = ninguna.")]
         [StatIdReference, SerializeField] private string boostedStatId;
@@ -25,6 +27,7 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
 
         public string Id => id;
         public string DisplayName => displayName;
+        public string EnglishName => englishName;
         public string BoostedStatId => boostedStatId;
         public string HinderedStatId => hinderedStatId;
         public int BoostPercent => boostPercent;

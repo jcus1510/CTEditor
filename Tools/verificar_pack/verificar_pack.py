@@ -27,8 +27,10 @@ KEY = {'tipos.csv': 'types', 'estados.csv': 'status', 'climas.csv': 'weather', '
        'efectos_lado.csv': 'side', 'habilidades.csv': 'ability', 'objetos.csv': 'item', 'naturalezas.csv': 'nature',
        'curvas.csv': 'curve', 'movimientos.csv': 'move', 'especies.csv': 'species', 'grupos_huevo.csv': 'egg',
        'niveles_ia.csv': 'ai', 'entrenadores.csv': 'trainer', 'zonas.csv': 'zone', 'equipos.csv': 'team'}
-MEMBER = re.compile(r'^(?P<sp>[^@\[\]{}~#"%]+)@(?P<lvl>\d+)(?:%(?P<g>[mhMH]))?(?:\[(?P<moves>[^\]]*)\])?'
-                    r'(?:\{(?P<held>[^}]*)\})?(?:~(?P<nat>[^#"]+))?(?:#(?P<iv>\d+))?(?:"(?P<nick>[^"]*)")?$')
+# especie@nivel%g[movs]{objeto}~naturaleza!habilidad(EVs)#iv(IVs)"mote" (igual que CsvTeamCodecs.cs)
+MEMBER = re.compile(r'^(?P<sp>[^@\[\]{}~#"%!()]+)@(?P<lvl>\d+)(?:%(?P<g>[mhMH]))?(?:\[(?P<moves>[^\]]*)\])?'
+                    r'(?:\{(?P<held>[^}]*)\})?(?:~(?P<nat>[^#"!(]+))?(?:!(?P<ab>[^#"(]+))?(?:\((?P<ev>[^)]*)\))?'
+                    r'(?:#(?P<iv>\d+)?(?:\((?P<ivs>[^)]*)\))?)?(?:"(?P<nick>[^"]*)")?$')
 
 
 class Report:
@@ -125,6 +127,44 @@ def check_references(sheets, rep):
                 need('species', e.split('@')[0].strip(), w)
                 for it in re.findall(r'(?:objeto|lleva|intercambio):(\w+)', e): need('item', it, w, soft=True)
                 for mv in re.findall(r'sabe:(\w+)', e): need('move', mv, w)
+            # Formas y variantes
+            need('species', r.get('forma_de', ''), w)
+            if r.get('forma_de') == r['id']:
+                rep.error(f'{w}: es forma de sí misma')
+            need('item', r.get('objeto_variante', ''), w, soft=True)
+            form_ids = set()
+            for f in split_list(r.get('formas', '')):
+                p = [x.strip() for x in f.split(';')] + [''] * 6
+                if not p[0]:
+                    rep.error(f'{w}: forma sin id «{f}»'); continue
+                form_ids.add(p[0])
+                for t in [x for x in p[2].split('/') if x]: need('types', t, w)
+                if p[3] and (len(p[3].split('/')) != 5 or not all(x.strip().isdigit() for x in p[3].split('/'))):
+                    rep.error(f'{w}: forma {p[0]}: las estadísticas son 5 números atq/def/atq_esp/def_esp/vel')
+                need('ability', p[4], w, soft=True)
+            for c in split_list(r.get('cambios_forma', '')):
+                parts = [x.strip() for x in c.split(';') if x.strip()]
+                main = parts[0]
+                if '>' not in main or ':' not in main.split('>', 1)[1]:
+                    rep.error(f'{w}: cambio de forma no válido «{c}» (desde>hasta:disparador[:valor])'); continue
+                frm, rest = main.split('>', 1)
+                to, trig, *val = rest.split(':')
+                val = ':'.join(val)
+                for fid in (frm, to):
+                    if fid and fid != '*' and fid not in form_ids:
+                        rep.error(f'{w}: el cambio «{c}» usa la forma «{fid}», que no está en formas')
+                if trig == 'objeto': need('item', val, w, soft=True)
+                elif trig == 'mega':
+                    need('item', val, w, soft=True)
+                    if not val and not any(o.startswith('sabe=') for o in parts[1:]):
+                        rep.error(f'{w}: la megaevolución «{c}» necesita megapiedra o ;sabe=movimiento')
+                elif trig == 'movimiento': need('move', val, w)
+                elif trig == 'clima': need('weather', val, w, soft=True)
+                elif trig not in ('ataque', 'ps_bajo', 'ps_desde'):
+                    rep.error(f'{w}: disparador desconocido «{trig}» en «{c}»')
+                for o in parts[1:]:
+                    if o.startswith('con='): need('ability', o[4:], w, soft=True)
+                    elif o.startswith('sabe='): need('move', o[5:], w)
     if 'movimientos.csv' in sheets:
         _, rows, lines = sheets['movimientos.csv']
         refs = {'estado': 'status', 'estado_propio': 'status', 'clima': 'weather', 'trampa': 'hazard',
@@ -137,6 +177,10 @@ def check_references(sheets, rep):
                 p = [x.strip() for x in e.split(':')]
                 if p[0] in refs and len(p) > 1 and p[1] and not p[1].isdigit():
                     need(refs[p[0]], p[1], w, soft=True)
+    species_abilities = {}
+    if 'especies.csv' in sheets:
+        for r in sheets['especies.csv'][1]:
+            species_abilities[r['id']] = {r.get(c, '') for c in ('habilidad', 'habilidad_2', 'habilidad_oculta') if r.get(c, '')}
     for sheet, col in (('entrenadores.csv', 'equipo'), ('equipos.csv', 'equipo')):
         if sheet not in sheets:
             continue
@@ -154,14 +198,67 @@ def check_references(sheets, rep):
                 for mv in (m['moves'] or '').split('/'): need('move', mv.strip(), w)
                 need('item', (m['held'] or '').strip(), w, soft=True)
                 need('nature', (m['nat'] or '').strip(), w)
+                sp = m['sp'].strip()
+                ab = (m['ab'] or '').strip()
+                if ab:
+                    need('ability', ab, w, soft=True)
+                    own = species_abilities.get(sp)
+                    if own is not None and ab not in own:
+                        rep.warn(f'{w}: {sp} no puede tener la habilidad «{ab}» (tiene: {", ".join(sorted(own)) or "ninguna"})')
+                for label, text, top, total_top in (('EVs', m['ev'], 252, 510), ('IVs', m['ivs'], 31, None)):
+                    vals, err = parse_spread(text or '')
+                    if err:
+                        rep.error(f'{w}: {label} de {sp} no válidos: {err}'); continue
+                    if any(v > top for v in vals.values()):
+                        rep.warn(f'{w}: {label} de {sp} por encima de {top} en alguna estadística (clásico)')
+                    if total_top and sum(vals.values()) > total_top:
+                        rep.warn(f'{w}: {label} de {sp} suman {sum(vals.values())} (clásico: máximo {total_top})')
             for it in split_list(r.get('mochila', '')): need('item', it.split(':')[0].strip(), w, soft=True)
             ai = r.get('nivel_ia', '')
             if ai and not (ai.isdigit() and 0 <= int(ai) <= 7):
                 need('ai', ai, w)
+    if 'sets.csv' in sheets:
+        _, rows, lines = sheets['sets.csv']
+        for r, ln in zip(rows, lines):
+            w = f'sets.csv:{ln} {r["id"]}'
+            need('species', r.get('especie', ''), w)
+            for slot in (r.get('movimientos', '') or '').split('/'):
+                for mv in slot.split(','): need('move', mv.strip(), w)
+            for it in (r.get('objeto', '') or '').split(','): need('item', it.strip(), w, soft=True)
+            for ab in (r.get('habilidad', '') or '').split(','): need('ability', ab.strip(), w, soft=True)
+            for nat in (r.get('naturaleza', '') or '').split(','): need('nature', nat.strip(), w)
+            for label, col in (('EVs', 'evs'), ('IVs', 'ivs')):
+                _, err = parse_spread(r.get(col, '') or '')
+                if err:
+                    rep.error(f'{w}: {label} no válidos: {err}')
     if 'zonas.csv' in sheets:
         _, rows, lines = sheets['zonas.csv']
         for r, ln in zip(rows, lines):
             for e in split_list(r.get('especies', '')): need('species', e.split('@')[0].strip(), f'zonas.csv:{ln} {r["id"]}')
+
+
+STAT_ALIASES = {'ps': 'hp', 'hp': 'hp', 'atq': 'attack', 'atk': 'attack', 'def': 'defense', 'atqe': 'sp_attack', 'spa': 'sp_attack',
+                'defe': 'sp_defense', 'spd': 'sp_defense', 'vel': 'speed', 'spe': 'speed'}
+
+
+def parse_spread(text):
+    """«252 Atq/4 PS/252 Vel» (como StatSpread.cs) -> ({stat: n}, error)."""
+    vals = {}
+    for part in re.split(r'[/,]', text):
+        part = part.strip()
+        if not part:
+            continue
+        tok = re.split(r'[\s:=]+', part)
+        if len(tok) != 2:
+            return {}, f'«{part}» no es «número estadística»'
+        num, name = (tok[0], tok[1]) if tok[0].isdigit() else (tok[1], tok[0])
+        if not num.isdigit():
+            return {}, f'«{part}» no tiene un número'
+        key = STAT_ALIASES.get(re.sub(r'[^a-z0-9]', '', name.lower()), name.lower())
+        if key in vals:
+            return {}, f'estadística repetida en «{part}»'
+        vals[key] = int(num)
+    return vals, None
 
 
 # ---------------- 3. Datos contra PokeAPI ----------------
@@ -172,8 +269,12 @@ def check_pokeapi(sheets, gen, rep):
     if 'especies.csv' in sheets:
         ref = api.species()
         _, rows, lines = sheets['especies.csv']
+        from pokeapi import table, pack_id
+        form_pid = {pack_id(p['identifier']): p['id'] for p in table('pokemon') if p['is_default'] == '0'}
         for r, ln in zip(rows, lines):
             a = ref.get(r['id'])
+            if not a and r.get('forma_de') and r['id'] in form_pid:   # variante: sus datos de PokeAPI son los de su forma
+                a = api.pokemon_vals({form_pid[r['id']]: r['id']})[form_pid[r['id']]]
             if not a:
                 rep.warn(f'especies.csv:{ln} {r["id"]}: no está en PokeAPI (¿especie inventada?)'); continue
             for col in ('ps', 'ataque', 'defensa', 'atq_esp', 'def_esp', 'velocidad', 'tipos'):

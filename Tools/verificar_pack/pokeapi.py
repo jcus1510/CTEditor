@@ -65,9 +65,12 @@ class PokeApi:
         """{id del editor: {'tipos': 'a|b', 'ps': ..., ...}} con los valores de la generación."""
         pk = {r['id']: r for r in table('pokemon') if r['is_default'] == '1'}
         sp_of = {r['id']: r['identifier'] for r in table('pokemon_species')}
-        out = {}
-        for pid, r in pk.items():
-            out[pid] = {'id': pack_id(sp_of[r['species_id']])}
+        return {v['id']: v for v in self.pokemon_vals({pid: pack_id(sp_of[r['species_id']]) for pid, r in pk.items()}).values()}
+
+    def pokemon_vals(self, ids):
+        """{pokemon_id: {'id', 'tipos', 'ps', ...}} de cualquier Pokémon (también formas: 10001...) en la generación.
+        'ids' = {pokemon_id: id del editor}."""
+        out = {pid: {'id': i} for pid, i in ids.items()}
         for r in table('pokemon_stats'):
             if r['pokemon_id'] in out and r['stat_id'] in STAT_COL:
                 out[r['pokemon_id']][STAT_COL[r['stat_id']]] = r['base_stat']
@@ -93,7 +96,7 @@ class PokeApi:
             gens = sorted(g for g in tpast[pid] if g >= self.gen)
             chosen = tpast[pid][gens[0]] if gens else types[pid]
             out[pid]['tipos'] = '|'.join(t for _, t in sorted(chosen))
-        return {v['id']: v for v in out.values()}
+        return out
 
     # ---------------- Movimientos ----------------
     def moves(self):
