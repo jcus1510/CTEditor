@@ -1,40 +1,71 @@
-﻿id;nombre;nombre_en;descripcion;categoria;precio;en_combate;fuera_combate;se_gasta;captura
-safari_ball;Safari Ball;Safari Ball;Poké Ball con un diseño de camuflaje que se utiliza únicamente en la Zona Safari.;Ball;0;si;no;si;1
-fresh_water;Agua Fresca;Fresh Water;Agua de alto contenido mineral que restaura 30 PS de un Pokémon.;Other;200;no;no;no;
-soda_pop;Refresco;Soda Pop;Chispeante bebida gaseosa que restaura 50 PS de un Pokémon.;Other;300;no;no;no;
-lemonade;Limonada;Lemonade;Bebida muy dulce que restaura 70 PS de un Pokémon.;Other;400;no;no;no;
-hp_up;Más PS;HP Up;Nutritiva bebida que potencia los PS de base de un Pokémon.;Vitamin;10000;no;si;si;
-protein;Proteína;Protein;Nutritiva bebida que potencia el Ataque de base de un Pokémon.;Vitamin;10000;no;si;si;
-iron;Hierro;Iron;Nutritiva bebida que potencia la Defensa de base de un Pokémon.;Vitamin;10000;no;si;si;
-carbos;Carburante;Carbos;Nutritiva bebida que potencia la Velocidad de base de un Pokémon.;Vitamin;10000;no;si;si;
-calcium;Calcio;Calcium;Nutritiva bebida que potencia el Ataque Especial de base de un Pokémon.;Vitamin;10000;no;si;si;
-rare_candy;Caramelo Raro;Rare Candy;Caramelo energético que sube a un Pokémon de nivel.;Vitamin;10000;no;si;si;
-pp_up;Más PP;PP Up;Aumenta ligeramente los PP máximos del movimiento elegido de un Pokémon.;Vitamin;10000;no;si;si;
-guard_spec;Protección X;Guard Spec.;Evita que bajen las características del equipo Pokémon durante cinco turnos.;Other;1500;no;no;no;
-dire_hit;Crítico X;Dire Hit;Aumenta el índice de golpe crítico en combate. Solo se puede usar una vez y, al cambiar de Pokémon, el efecto desaparece.;Other;1000;no;no;no;
-poke_doll;Poké Muñeco;Poké Doll;Un muñeco que atrae a los Pokémon. Es útil para huir de un combate contra un Pokémon salvaje.;Other;300;no;no;no;
-super_repel;Superrepelente;Super Repel;Evita encuentros con Pokémon salvajes débiles durante más tiempo que un Repelente normal.;Other;700;no;no;no;
-max_repel;Repelente Máximo;Max Repel;Evita encuentros con Pokémon salvajes débiles durante más tiempo que un Superrepelente.;Other;900;no;no;no;
-escape_rope;Cuerda Huida;Escape Rope;Cuerda larga y resistente que sirve para huir de cuevas y sitios cerrados en general.;Other;300;no;no;no;
-repel;Repelente;Repel;Evita encuentros con Pokémon salvajes débiles durante un corto período de tiempo.;Other;400;no;no;no;
-nugget;Pepita;Nugget;Pepita de oro puro que desprende un brillo espectacular. Puede venderse a un precio muy alto en las tiendas.;Other;10000;no;no;no;
-helix_fossil;Fósil Hélix;Helix Fossil;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser un fragmento de concha marina.;Other;7000;no;no;no;
-dome_fossil;Fósil Domo;Dome Fossil;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser un fragmento de caparazón.;Other;7000;no;no;no;
-old_amber;Ámbar Viejo;Old Amber;Fragmento de ámbar que contiene información genética de un Pokémon prehistórico. Es de color amarillo.;Other;10000;no;no;no;
-exp_share;Repartir Exp;Exp. Share;Al activar el dispositivo, todos los Pokémon de tu equipo ganan Puntos de Experiencia tras los combates, aunque no salgan a luchar.;Other;0;no;no;no;
-town_map;Mapa;Town Map;Un mapa muy útil que puede consultarse en cualquier momento y que, además, te indica dónde te encuentras.;Key;0;no;no;no;
-coin_case;Monedero;Coin Case;Puedes obtenerlo en el Casino. Tiene capacidad para 50 000 Fichas.;Key;0;no;no;no;
-old_rod;Caña Vieja;Old Rod;Caña de pescar bastante usada y desgastada. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;
-good_rod;Caña Buena;Good Rod;Caña de pescar nuevecita y de gran calidad. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;
-super_rod;Supercaña;Super Rod;Increíble caña de pescar de alta tecnología. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;
-bicycle;Bici;Bicycle;;Key;0;no;no;no;
-ss_ticket;Ticket Barco;S.S. Ticket;Es el billete válido para embarcar en el Ferry S.S. Aqua. Tiene dibujado un barco.;Key;0;no;no;no;
-parcel;Paquete;Parcel;Paquete encomendado a tu cuidado que tienes que entregar a tu amigo de la infancia que dejó Pueblo Hojaverde.;Key;0;no;no;no;
-secret_key;Llave Secreta;Secret Key;Una llave de alta tecnología que debe usarse en un lugar concreto. Emite una señal eléctrica que abre una puerta.;Key;0;no;no;no;
-dowsing_machine;Zahorí;Dowsing Machine;Aparato de precisión que reacciona ante objetos que no se ven. Para usarlo, es necesario colocárselo en la cabeza.;Key;0;no;no;no;
-card_key;Llave Magnética;Card Key;Llave con forma de tarjeta que abre las puertas de la Torre Radio.;Key;0;no;no;no;
-poke_flute;Poké Flauta;Poké Flute;Una flauta con un timbre tan dulce y hermoso que despierta hasta al Pokémon más profundamente dormido.;Key;0;no;no;no;
-bike_voucher;Bono Bici;Bike Voucher;;Key;0;no;no;no;
-gold_teeth;Dentadura de Oro;Gold Teeth;Unos dientes de oro que perdió el Guarda de la Zona Safari con los que tiene una sonrisa deslumbrante.;Key;0;no;no;no;
-lift_key;Llave Ascensor;Lift Key;Llave que permite acceder al ascensor de la Guarida del Team Rocket. Lleva grabado el símbolo del Team Rocket.;Key;0;no;no;no;
-silph_scope;Visor Silph;Silph Scope;Dispositivo que permite ver cosas que, de otra forma, resultarían invisibles para el ojo humano. Fabricado por Silph S. A.;Key;0;no;no;no;
+﻿id;nombre;nombre_en;descripcion;categoria;precio;en_combate;fuera_combate;se_gasta;es_baya;efectos
+master_ball;Master Ball;Master Ball;La Poké Ball definitiva. Atrapa cualquier Pokémon salvaje y no falla nunca.;Ball;0;si;no;si;no;al_usar: captura x255
+ultra_ball;Ultra Ball;Ultra Ball;Poké Ball de rendimiento superior. Tiene un índice de éxito mayor al de la Super Ball.;Ball;800;si;no;si;no;al_usar: captura x2
+great_ball;Super Ball;Great Ball;Poké Ball de alto rendimiento. Tiene un índice de éxito superior al de la Poké Ball.;Ball;600;si;no;si;no;al_usar: captura x1,5
+poke_ball;Poké Ball;Poké Ball;Dispositivo con diseño capsular que atrapa Pokémon salvajes. Se lanza como una bola contra el blanco.;Ball;200;si;no;si;no;al_usar: captura x1
+safari_ball;Safari Ball;Safari Ball;Poké Ball con un diseño de camuflaje que se utiliza únicamente en la Zona Safari.;Ball;0;si;no;si;no;al_usar: captura x1
+potion;Poción;Potion;Medicina en espray que cura heridas y restaura 20 PS a un Pokémon.;Medicine;200;si;si;si;no;al_usar: curar 20
+antidote;Antídoto;Antidote;Medicina en espray que contrarresta los efectos del veneno en un Pokémon.;StatusCure;200;si;si;si;no;al_usar: curar_estado poison,toxic
+burn_heal;Antiquemar;Burn Heal;Medicina en espray que cura las quemaduras a un Pokémon.;StatusCure;200;si;si;si;no;al_usar: curar_estado burn
+ice_heal;Antihielo;Ice Heal;Medicina en espray que descongela a un Pokémon.;StatusCure;200;si;si;si;no;al_usar: curar_estado freeze
+awakening;Despertar;Awakening;Medicina en espray que libera a un Pokémon de las garras del sueño.;StatusCure;200;si;si;si;no;al_usar: curar_estado sleep
+paralyze_heal;Antiparalizador;Paralyze Heal;Medicina en espray que cura a un Pokémon paralizado.;StatusCure;200;si;si;si;no;al_usar: curar_estado paralysis
+full_restore;Restaurar Todo;Full Restore;Medicina que restaura todos los PS y cura todos los problemas de estado de un Pokémon.;Medicine;3000;si;si;si;no;al_usar: curar 100% | al_usar: curar_estado
+max_potion;Poción Máxima;Max Potion;Medicina en espray que cura heridas y restaura todos los PS de un Pokémon.;Medicine;2500;si;si;si;no;al_usar: curar 100%
+hyper_potion;Hiperpoción;Hyper Potion;Medicina en espray que cura heridas y restaura 120 PS de un Pokémon.;Medicine;1500;si;si;si;no;al_usar: curar 120
+super_potion;Superpoción;Super Potion;Medicina en espray que cura heridas y restaura 60 PS de un Pokémon.;Medicine;700;si;si;si;no;al_usar: curar 60
+full_heal;Cura Total;Full Heal;Medicina en espray que cura todos los problemas de estado de un Pokémon.;StatusCure;400;si;si;si;no;al_usar: curar_estado
+revive;Revivir;Revive;Medicina que revive a un Pokémon debilitado y le devuelve la mitad de sus PS.;Revive;2000;si;si;si;no;al_usar: revivir 50%
+max_revive;Revivir Máximo;Max Revive;Medicina que revive a un Pokémon debilitado y le devuelve todos sus PS.;Revive;4000;si;si;si;no;al_usar: revivir 100%
+fresh_water;Agua Fresca;Fresh Water;Agua de alto contenido mineral que restaura 30 PS de un Pokémon.;Other;200;no;no;no;no;
+soda_pop;Refresco;Soda Pop;Chispeante bebida gaseosa que restaura 50 PS de un Pokémon.;Other;300;no;no;no;no;
+lemonade;Limonada;Lemonade;Bebida muy dulce que restaura 70 PS de un Pokémon.;Other;400;no;no;no;no;
+ether;Éter;Ether;Restaura 10 PP del movimiento elegido de un Pokémon.;PpRestore;1200;si;si;si;no;al_usar: pp 10
+max_ether;Éter Máximo;Max Ether;Restaura completamente los PP del movimiento elegido de un Pokémon.;PpRestore;2000;si;si;si;no;al_usar: pp 999
+elixir;Elixir;Elixir;Restaura 10 PP de todos los movimientos aprendidos por el Pokémon elegido.;PpRestore;3000;si;si;si;no;al_usar: pp_todos 10
+max_elixir;Elixir Máximo;Max Elixir;Restaura completamente los PP de todos los movimientos aprendidos por el Pokémon elegido.;PpRestore;4500;si;si;si;no;al_usar: pp_todos 999
+hp_up;Más PS;HP Up;Nutritiva bebida que potencia los PS de base de un Pokémon.;Vitamin;10000;no;si;si;no;
+protein;Proteína;Protein;Nutritiva bebida que potencia el Ataque de base de un Pokémon.;Vitamin;10000;no;si;si;no;
+iron;Hierro;Iron;Nutritiva bebida que potencia la Defensa de base de un Pokémon.;Vitamin;10000;no;si;si;no;
+carbos;Carburante;Carbos;Nutritiva bebida que potencia la Velocidad de base de un Pokémon.;Vitamin;10000;no;si;si;no;
+calcium;Calcio;Calcium;Nutritiva bebida que potencia el Ataque Especial de base de un Pokémon.;Vitamin;10000;no;si;si;no;
+rare_candy;Caramelo Raro;Rare Candy;Caramelo energético que sube a un Pokémon de nivel.;Vitamin;10000;no;si;si;no;
+pp_up;Más PP;PP Up;Aumenta ligeramente los PP máximos del movimiento elegido de un Pokémon.;Vitamin;10000;no;si;si;no;
+guard_spec;Protección X;Guard Spec.;Evita que bajen las características del equipo Pokémon durante cinco turnos.;Other;1500;no;no;no;no;
+dire_hit;Crítico X;Dire Hit;Aumenta el índice de golpe crítico en combate. Solo se puede usar una vez y, al cambiar de Pokémon, el efecto desaparece.;Other;1000;no;no;no;no;
+x_attack;Ataque X;X Attack;Aumenta mucho el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.;BattleBoost;1000;si;no;si;no;al_usar: etapa attack +2
+x_defense;Defensa X;X Defense;Aumenta mucho la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.;BattleBoost;2000;si;no;si;no;al_usar: etapa defense +2
+x_speed;Velocidad X;X Speed;Aumenta mucho la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.;BattleBoost;1000;si;no;si;no;al_usar: etapa speed +2
+x_accuracy;Precisión X;X Accuracy;Aumenta mucho la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.;BattleBoost;1000;si;no;si;no;al_usar: etapa accuracy +2
+x_sp_atk;At. Especial X;X Sp. Atk;Aumenta mucho el Ataque Especial en combate. Al cambiar de Pokémon, el efecto desaparece.;BattleBoost;1000;si;no;si;no;al_usar: etapa sp_attack +2
+poke_doll;Poké Muñeco;Poké Doll;Un muñeco que atrae a los Pokémon. Es útil para huir de un combate contra un Pokémon salvaje.;Other;300;no;no;no;no;
+super_repel;Superrepelente;Super Repel;Evita encuentros con Pokémon salvajes débiles durante más tiempo que un Repelente normal.;Other;700;no;no;no;no;
+max_repel;Repelente Máximo;Max Repel;Evita encuentros con Pokémon salvajes débiles durante más tiempo que un Superrepelente.;Other;900;no;no;no;no;
+escape_rope;Cuerda Huida;Escape Rope;Cuerda larga y resistente que sirve para huir de cuevas y sitios cerrados en general.;Other;300;no;no;no;no;
+repel;Repelente;Repel;Evita encuentros con Pokémon salvajes débiles durante un corto período de tiempo.;Other;400;no;no;no;no;
+moon_stone;Piedra Lunar;Moon Stone;Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es oscura como la noche.;Evolution;3000;no;si;si;no;
+fire_stone;Piedra Fuego;Fire Stone;Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es amarilla con una marca naranja.;Evolution;3000;no;si;si;no;
+thunder_stone;Piedra Trueno;Thunder Stone;Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Tiene grabado un rayo.;Evolution;3000;no;si;si;no;
+water_stone;Piedra Agua;Water Stone;Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es de color azul.;Evolution;3000;no;si;si;no;
+leaf_stone;Piedra Hoja;Leaf Stone;Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Tiene grabada una hoja.;Evolution;3000;no;si;si;no;
+nugget;Pepita;Nugget;Pepita de oro puro que desprende un brillo espectacular. Puede venderse a un precio muy alto en las tiendas.;Other;10000;no;no;no;no;
+helix_fossil;Fósil Hélix;Helix Fossil;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser un fragmento de concha marina.;Other;7000;no;no;no;no;
+dome_fossil;Fósil Domo;Dome Fossil;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser un fragmento de caparazón.;Other;7000;no;no;no;no;
+old_amber;Ámbar Viejo;Old Amber;Fragmento de ámbar que contiene información genética de un Pokémon prehistórico. Es de color amarillo.;Other;10000;no;no;no;no;
+exp_share;Repartir Exp;Exp. Share;Al activar el dispositivo, todos los Pokémon de tu equipo ganan Puntos de Experiencia tras los combates, aunque no salgan a luchar.;Other;0;no;no;no;no;
+town_map;Mapa;Town Map;Un mapa muy útil que puede consultarse en cualquier momento y que, además, te indica dónde te encuentras.;Key;0;no;no;no;no;
+coin_case;Monedero;Coin Case;Puedes obtenerlo en el Casino. Tiene capacidad para 50 000 Fichas.;Key;0;no;no;no;no;
+old_rod;Caña Vieja;Old Rod;Caña de pescar bastante usada y desgastada. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;no;
+good_rod;Caña Buena;Good Rod;Caña de pescar nuevecita y de gran calidad. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;no;
+super_rod;Supercaña;Super Rod;Increíble caña de pescar de alta tecnología. Pesca Pokémon salvajes en todo tipo de aguas.;Key;0;no;no;no;no;
+bicycle;Bici;Bicycle;;Key;0;no;no;no;no;
+ss_ticket;Ticket Barco;S.S. Ticket;Es el billete válido para embarcar en el Ferry S.S. Aqua. Tiene dibujado un barco.;Key;0;no;no;no;no;
+parcel;Paquete;Parcel;Paquete encomendado a tu cuidado que tienes que entregar a tu amigo de la infancia que dejó Pueblo Hojaverde.;Key;0;no;no;no;no;
+secret_key;Llave Secreta;Secret Key;Una llave de alta tecnología que debe usarse en un lugar concreto. Emite una señal eléctrica que abre una puerta.;Key;0;no;no;no;no;
+dowsing_machine;Zahorí;Dowsing Machine;Aparato de precisión que reacciona ante objetos que no se ven. Para usarlo, es necesario colocárselo en la cabeza.;Key;0;no;no;no;no;
+card_key;Llave Magnética;Card Key;Llave con forma de tarjeta que abre las puertas de la Torre Radio.;Key;0;no;no;no;no;
+poke_flute;Poké Flauta;Poké Flute;Una flauta con un timbre tan dulce y hermoso que despierta hasta al Pokémon más profundamente dormido.;Key;0;no;no;no;no;
+bike_voucher;Bono Bici;Bike Voucher;;Key;0;no;no;no;no;
+gold_teeth;Dentadura de Oro;Gold Teeth;Unos dientes de oro que perdió el Guarda de la Zona Safari con los que tiene una sonrisa deslumbrante.;Key;0;no;no;no;no;
+lift_key;Llave Ascensor;Lift Key;Llave que permite acceder al ascensor de la Guarida del Team Rocket. Lleva grabado el símbolo del Team Rocket.;Key;0;no;no;no;no;
+silph_scope;Visor Silph;Silph Scope;Dispositivo que permite ver cosas que, de otra forma, resultarían invisibles para el ojo humano. Fabricado por Silph S. A.;Key;0;no;no;no;no;

@@ -298,10 +298,9 @@ def build(n, verbose=True):
         os.remove(os.path.join(out, 'habilidades.csv'))
     save(os.path.join(out, 'entrenadores.csv'), th, trainers)
     items = items_for(n)
-    save(os.path.join(out, 'objetos.csv'), ['id', 'nombre', 'nombre_en', 'descripcion', 'categoria', 'precio', 'en_combate', 'fuera_combate',
-                                          'se_gasta', 'captura'], items)
-    notes_items = collections.Counter(r['categoria'] for r in items)
-    notes['objetos añadidos solo con sus datos (sin efecto en combate todavía), por categoría'] = [f'{k}: {v}' for k, v in sorted(notes_items.items())]
+    save(os.path.join(out, 'objetos.csv'), ITEM_HEADERS, items)
+    notes_items = collections.Counter(r['categoria'] for r in items if not r['efectos'])
+    notes['objetos solo con sus datos (sin efectos todavía), por categoría'] = [f'{k}: {v}' for k, v in sorted(notes_items.items())]
     sys.argv = ['generar_base.py', out, '--gen', str(n)]
     generar_base.main()
     write_report(n, g, out, species, moves, abil, trainers, notes)
@@ -311,7 +310,10 @@ def build(n, verbose=True):
     return notes
 
 
-# ---------------- Objetos: todos los de la generación (los que tienen efecto en el código no se repiten) ----------------
+# ---------------- Objetos: todos los de la generación, con TODOS sus efectos ----------------
+
+ITEM_HEADERS = ['id', 'nombre', 'nombre_en', 'descripcion', 'categoria', 'precio', 'en_combate', 'fuera_combate', 'se_gasta',
+                'es_baya', 'efectos']
 
 ITEM_CATEGORY = {'evolution': 'Evolution', 'vitamins': 'Vitamin'}
 
@@ -349,11 +351,12 @@ def english_names(species, moves, abil, sh, mh, ah):
 
 
 def items_for(n):
-    """Filas de objetos.csv: todos los objetos que existen en la generación n, salvo las MT y los que ya crean (con su
-    efecto) las plantillas del código. Categoría del editor según el bolsillo de PokeAPI; nombre, descripción y precio
-    oficiales en español."""
+    """Filas de objetos.csv: TODOS los objetos que existen en la generación n (salvo las MT), con sus efectos. Los que tienen
+    plantilla (Assets/GameContent/Plantillas/objetos.csv) llevan su categoría, dónde se usan, si son baya y sus EFECTOS; el
+    nombre, la descripción y el precio son los oficiales de PokeAPI. Los demás: categoría según el bolsillo y, las bolas,
+    su efecto de captura."""
     import verificar_pack
-    preset = verificar_pack.code_base()['item']
+    templates = {r['id']: r for r in verificar_pack.item_templates()}
     first_gen = {}
     for r in table('item_game_indices'):
         g = int(r['generation_id'])
@@ -361,7 +364,6 @@ def items_for(n):
     cats = {r['id']: (r['pocket_id'], r['identifier']) for r in table('item_categories')}
     names = {r['item_id']: r['name'] for r in table('item_names') if r['local_language_id'] == SPANISH}
     english = {r['item_id']: r['name'] for r in table('item_names') if r['local_language_id'] == ENGLISH}
-    vg_gen = {r['id']: int(r['generation_id']) for r in table('version_groups')}
     flavor = {}
     for r in table('item_flavor_text'):
         # Los textos en español de PokeAPI para X/Y y ROZA (grupos 15-16) están DESCOLOCADOS (la Venusaurita habla de
@@ -375,17 +377,25 @@ def items_for(n):
     for it in table('items'):
         iid = pack_id(it['identifier'])
         pocket, cat = cats.get(it['category_id'], ('', ''))
-        if first_gen.get(it['id'], 99) > n or pocket == '4' or iid in preset or cat in ('unused', 'all-machines'):
+        if first_gen.get(it['id'], 99) > n or pocket == '4' or cat in ('unused', 'all-machines'):
             continue
-        category = 'Ball' if pocket == '3' else 'Key' if pocket == '8' else ITEM_CATEGORY.get(cat, 'Other')
-        row = {'id': iid, 'nombre': names.get(it['id'], iid), 'nombre_en': english.get(it['id'], ''),
-               'descripcion': flavor.get(it['id'], (0, ''))[1],
-               'categoria': category, 'precio': it['cost'] or '0',
-               'en_combate': 'si' if category == 'Ball' else 'no',
-               'fuera_combate': 'si' if category in ('Evolution', 'Vitamin') or iid in VARIANT_ITEMS else 'no',
-               'se_gasta': 'si' if category in ('Ball', 'Evolution', 'Vitamin') else 'no'}
-        if category == 'Ball':
-            row['captura'] = '1'   # aproximado: como una Poké Ball (el efecto especial se configura en el editor)
+        tpl = templates.get(iid)
+        name = names.get(it['id']) or (tpl or {}).get('nombre') or iid
+        desc = flavor.get(it['id'], (0, ''))[1] or (tpl or {}).get('descripcion', '')
+        if tpl:
+            row = {k: tpl.get(k, '') for k in ITEM_HEADERS}
+            row.update(id=iid, nombre=name, nombre_en=english.get(it['id'], '') or tpl.get('nombre_en', ''), descripcion=desc,
+                       precio=it['cost'] or tpl.get('precio', '0'))
+        else:
+            category = 'Ball' if pocket == '3' else 'Key' if pocket == '8' else ITEM_CATEGORY.get(cat, 'Other')
+            row = {'id': iid, 'nombre': name, 'nombre_en': english.get(it['id'], ''), 'descripcion': desc,
+                   'categoria': category, 'precio': it['cost'] or '0',
+                   'en_combate': 'si' if category == 'Ball' else 'no',
+                   'fuera_combate': 'si' if category in ('Evolution', 'Vitamin') or iid in VARIANT_ITEMS else 'no',
+                   'se_gasta': 'si' if category in ('Ball', 'Evolution', 'Vitamin') else 'no',
+                   'es_baya': 'si' if cat.endswith('berries') or iid.endswith('_berry') else 'no',
+                   # Bolas especiales: de momento como una Poké Ball (sus condiciones se añaden en su efecto).
+                   'efectos': 'al_usar: captura x1' if category == 'Ball' else ''}
         rows.append(row)
     return rows
 

@@ -18,7 +18,6 @@
 ## Ideas abiertas (propuestas, sin decidir)
 
 - **Bolsillos de la mochila como fichas** (`BagPocketData`) en lugar del enum `ItemCategory`.
-- Quitar definitivamente los campos antiguos de `ItemData` (fase de limpieza) cuando todos los proyectos estén convertidos.
 - Condiciones nuevas para bloques: hora del día, zona, turno del combate, especie concreta.
 - Crianza (los grupos huevo ya existen).
 - Efectos de movimientos y habilidades por generación (hoy el motor aplica los de la 6.ª: ver `INFORME.txt` de cada pack).

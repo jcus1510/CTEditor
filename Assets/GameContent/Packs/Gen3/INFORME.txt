@@ -25,8 +25,8 @@ VARIANTES (ESPECIES CON «FORMA_DE») (3):
 ENTRENADORES CON MIEMBROS DE GENERACIONES POSTERIORES (QUITADOS) (26):
    alto_mando_alecran, alto_mando_delos, alto_mando_fausto, alto_mando_gaia, cazabichos_bruno_s, comandante_saturno, especialista_dark, especialista_dragon, especialista_electric, especialista_fairy, especialista_flying, especialista_grass, especialista_ground, especialista_rock, especialista_steel, especialista_water, galactico_soldado, jefe_helio, lider_acero, lider_brega, lider_fantina, lider_inverna, lider_lectro, lider_mananti, lider_roco, pescador_mateo
 
-OBJETOS AÑADIDOS SOLO CON SUS DATOS (SIN EFECTO EN COMBATE TODAVÍA), POR CATEGORÍA (4):
-   Ball: 16, Key: 71, Other: 120, Vitamin: 9
+OBJETOS SOLO CON SUS DATOS (SIN EFECTOS TODAVÍA), POR CATEGORÍA (5):
+   Evolution: 6, Held: 4, Key: 71, Other: 104, Vitamin: 9
 
 Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
 The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.

@@ -24,6 +24,9 @@ namespace CTEditor.GameDefinition.Editor
     /// </summary>
     public sealed class SpeciesEditorWindow : ContentEditorWindow<SpeciesData>
     {
+        // Sus gráficos muestran el valor bajo el ratón: estos sí repintan al moverlo.
+        protected override bool RepaintOnMouseMove => true;
+
         [MenuItem(EditorMenus.Creatures + "Especies", false, EditorMenus.CreaturesOrder + 1)]
         public static void Open() => OpenWindow<SpeciesEditorWindow>("Especies");
 

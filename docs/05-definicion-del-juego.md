@@ -74,7 +74,7 @@ de bloques como los objetos ([09](09-efectos-por-bloques.md), [18](18-pendientes
   propiedades antiguas (`HealHp`, `CatchMultiplier`, `HeldTriggerHpPercent`...) son **vistas** de los bloques.
 - `ItemCategory`: `Medicine, Revive, StatusCure, PpRestore, Ball, Evolution, BattleBoost, Held, Vitamin, Key, Other,
   Machine, Berry` (organiza la mochila y el editor).
-- `ItemLegacy` convierte los campos antiguos (y `ItemExtras`) a bloques con el mismo comportamiento.
+- `ItemEffects`: ayudas para condiciones frecuentes (muy eficaz, vida llena, es de tipo, tipo del movimiento) y para reconocer bayas.
 - `EffectBlock`, `EffectTrigger`, `EffectAction`, `BlockTarget`, `EffectRules` → capítulo [09](09-efectos-por-bloques.md).
 - `IEffect`, `HealPartyEffect`, `GiveItemEffect`: efectos DECLARATIVOS de guiones del mundo (Eventing), otra cosa.
 

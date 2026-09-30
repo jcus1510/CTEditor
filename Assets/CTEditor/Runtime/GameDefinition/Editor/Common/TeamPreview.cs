@@ -144,8 +144,8 @@ namespace CTEditor.GameDefinition.Editor
         }
 
         // El texto del plan se guarda un momento: calcularlo en cada repintado (y en cada tecla) ralentiza el editor.
-        private static readonly Dictionary<(SpeciesData, int, MovesetStyle, int), (string text, int version, double time)> PlanCache
-            = new Dictionary<(SpeciesData, int, MovesetStyle, int), (string, int, double)>();
+        private static readonly Dictionary<(SpeciesData, int, MovesetStyle, int), (string text, int version, int stamp)> PlanCache
+            = new Dictionary<(SpeciesData, int, MovesetStyle, int), (string, int, int)>();
 
         /// <summary>Los movimientos con los que saldrá: los elegidos o los últimos que aprende a su nivel.</summary>
         public static string MovesText(TeamMemberData m, MovesetStyle style = MovesetStyle.Classic, AiProfile profile = null)
@@ -156,11 +156,10 @@ namespace CTEditor.GameDefinition.Editor
             if (style == MovesetStyle.Balanced || style == MovesetStyle.Strong || style == MovesetStyle.Competitive)
             {
                 var key = (m.species, m.level, style, profile?.Level ?? 0);
-                double now = UnityEditor.EditorApplication.timeSinceStartup;
-                if (PlanCache.TryGetValue(key, out var c) && c.version == ContentAssets.Version && now - c.time < 3) return c.text;
+                if (PlanCache.TryGetValue(key, out var c) && c.version == ContentAssets.Version && c.stamp == ContentAssets.EditStamp) return c.text;
                 string text = PlannedText(m, style, profile);
                 if (PlanCache.Count > 200) PlanCache.Clear();
-                PlanCache[key] = (text, ContentAssets.Version, now);
+                PlanCache[key] = (text, ContentAssets.Version, ContentAssets.EditStamp);
                 if (text != null) return text;
             }
             var auto = (m.species.Learnset ?? new SpeciesData.LearnableMoveEntry[0])

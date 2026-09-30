@@ -14,7 +14,7 @@ para el autor (campos con nombre, listas, desplegables) y la traduce su mapper a
 | `ElementTypeData` / `TypeChartData` (`MatchupEntry`) | `Types` | `ElementTypeMapper`, `TypeChartMapper` |
 | `StatusConditionData` | `Status` | `StatusMapper` |
 | `AbilityData` | `Abilities` | `AbilityMapper` |
-| `ItemData` (+ `EffectBlockData`) | `Items` | `ItemMapper` (bloques + conversión de lo antiguo) |
+| `ItemData` (+ `EffectBlockData`) | `Items` | `ItemMapper` (bloques de efecto) |
 | `NatureData`, `GrowthCurveData`, `EggGroupData` | `Natures`, `Curves`, `EggGroups` | `NatureMapper`, `GrowthCurveMapper` |
 | `WeatherData`, `HazardData`, `SideConditionData` | `Weathers`, `Hazards`, `SideConditions` | `WeatherMapper`, `HazardMapper`, `SideConditionMapper` |
 | `RulesetData` | `Rulesets` | `RulesetMapper` (con `Func<string, MechanicDefinition>`) |
@@ -34,7 +34,6 @@ Las carpetas están en `Catalog/ContentFolders.cs` (**única fuente de verdad**,
 - Por **id de texto** con desplegable: `[ContentIdReference(typeof(X))]`, `[StatusIdReference]`, `[StatIdReference]`.
 
 ### Atributos
-- `LegacyFieldAttribute`: campo antiguo conservado solo para convertir fichas viejas (oculto y fuera de Excel).
 
 ## Mappers (`Acl/`)
 

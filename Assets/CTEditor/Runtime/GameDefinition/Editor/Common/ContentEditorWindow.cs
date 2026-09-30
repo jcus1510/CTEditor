@@ -106,7 +106,7 @@ namespace CTEditor.GameDefinition.Editor
         private bool _sortDescending;
 
         /// <summary>Tras cambiar un filtro u orden: vuelve a ordenar y repinta.</summary>
-        protected void FiltersChanged() { SortAll(); Repaint(); }
+        protected void FiltersChanged() { SortAll(); _rowsDirty = true; Repaint(); }
 
         private void SortAll()
         {
@@ -123,8 +123,23 @@ namespace CTEditor.GameDefinition.Editor
             }
         }
 
+        /// <summary>
+        /// ¿Repintar al mover el ratón? Solo los editores con gráficos que siguen al ratón (curvas, especies): repintar toda
+        /// la ventana en cada movimiento hacía lenta la navegación en los demás.
+        /// </summary>
+        protected virtual bool RepaintOnMouseMove => false;
+
         // --- Estado de la ventana ---
         private List<TData> _all = new List<TData>();
+        // Filas de la lista ya preparadas (nombre, marca, ayuda): se rehacen solo al buscar, filtrar o cambiar las fichas.
+        private readonly List<(TData item, string label, Color? mark, string tip)> _rows = new List<(TData, string, Color?, string)>();
+        private bool _rowsDirty = true;
+        private int _rowsHidden, _rowsVersion = -1, _rowsStamp = -1;
+        private string _rowsSearch = "";
+        private const float RowHeight = 20f;
+        // «Actualizar desde las plantillas»: cuántas fichas tienen plantilla (se calcula al cambiar las fichas, no al repintar).
+        private List<(TData asset, (string id, string name, string group) template)> _templateExisting;
+        private int _templateVersion = -1;
         private UnityEditor.Editor _embedded;
         private List<ValidationIssue> _issues = new List<ValidationIssue>();
         private Vector2 _listScroll, _detailScroll;
@@ -163,7 +178,7 @@ namespace CTEditor.GameDefinition.Editor
 
         protected virtual void OnEnable()
         {
-            wantsMouseMove = true; // para que los gráficos reaccionen al pasar el ratón
+            wantsMouseMove = RepaintOnMouseMove; // solo los que tienen gráficos que siguen al ratón
             Refresh();
         }
 
@@ -177,6 +192,8 @@ namespace CTEditor.GameDefinition.Editor
         {
             _all = ContentAssets.LoadAll<TData>();
             SortAll();
+            _rowsDirty = true;
+            _templateExisting = null;
 
             if (_all.Count == 0) Select(null);
             else if (Selected == null || !_all.Contains(Selected)) Select(_all[0]);
@@ -216,7 +233,7 @@ namespace CTEditor.GameDefinition.Editor
         protected void OnGUI()
         {
             // Los gráficos siguen al ratón: redibujar al moverlo.
-            if (Event.current.type == EventType.MouseMove) Repaint();
+            if (RepaintOnMouseMove && Event.current.type == EventType.MouseMove) Repaint();
 
             EditorZoom.Begin(this);
             try
@@ -256,30 +273,33 @@ namespace CTEditor.GameDefinition.Editor
                 if (si != _sortIndex || desc != _sortDescending) { _sortIndex = si; _sortDescending = desc; FiltersChanged(); }
             }
 
+            RebuildRowsIfNeeded();
+            // LISTA VIRTUAL: solo se dibujan las filas que se ven (con cientos de especies o movimientos, dibujarlas todas en
+            // cada repintado era lo que hacía lenta la ventana). El resto es espacio vacío del mismo alto.
             _listScroll = EditorGUILayout.BeginScrollView(_listScroll);
-            int shown = 0, hidden = 0;
-            foreach (var item in _all)
+            int count = _rows.Count;
+            int first = Mathf.Clamp((int)(_listScroll.y / RowHeight) - 2, 0, Mathf.Max(0, count));
+            int visible = (int)(position.height / (RowHeight * 0.75f)) + 6;   // de sobra (también con zoom al 80 %)
+            int last = Mathf.Min(count, first + visible);
+            if (first > 0) GUILayout.Space(first * RowHeight);
+            for (int i = first; i < last; i++)
             {
-                if (item == null) continue;
-                string label = ContentAssets.Label(item);
-                if (!string.IsNullOrEmpty(_search) && label.IndexOf(_search, StringComparison.OrdinalIgnoreCase) < 0) continue;
-                if (!PassesFilter(item)) { hidden++; continue; }
-                shown++;
+                var (item, label, mark, tip) = _rows[i];
                 // Fila: la seleccionada con fondo del color de la categoría; el nombre completo al pasar el ratón.
-                var row = EditorGUILayout.GetControlRect(GUILayout.Height(20));
+                var row = GUILayoutUtility.GetRect(10f, RowHeight, GUILayout.ExpandWidth(true));
                 bool sel = item == Selected;
                 if (sel) EditorGUI.DrawRect(row, EditorTheme.WithAlpha(Accent, 0.35f));
-                else if (row.Contains(Event.current.mousePosition)) EditorGUI.DrawRect(row, EditorTheme.WithAlpha(Accent, 0.12f));
-                var mark = RowMark(item);
+                else if (RepaintOnMouseMove && row.Contains(Event.current.mousePosition)) EditorGUI.DrawRect(row, EditorTheme.WithAlpha(Accent, 0.12f));
                 if (mark.HasValue) EditorGUI.DrawRect(new Rect(row.x, row.y + 3, 4, row.height - 6), mark.Value);
                 if (GUI.Button(new Rect(row.x + 8, row.y, row.width - 8, row.height),
-                        new GUIContent(label, RowTooltip(item) ?? label), sel ? EditorStyles.boldLabel : EditorStyles.label))
+                        new GUIContent(label, tip ?? label), sel ? EditorStyles.boldLabel : EditorStyles.label))
                     Select(item);
             }
-            if (shown == 0)
+            if (last < count) GUILayout.Space((count - last) * RowHeight);
+            if (count == 0)
                 EditorGUILayout.LabelField(_all.Count == 0 ? $"No hay {Ningun} {Noun} todavía." : "Sin resultados.", EditorStyles.miniLabel);
             EditorGUILayout.EndScrollView();
-            if (hidden > 0) EditorGUILayout.LabelField($"{shown} de {shown + hidden} (hay filtros activos)", EditorStyles.miniLabel);
+            if (_rowsHidden > 0) EditorGUILayout.LabelField($"{count} de {count + _rowsHidden} (hay filtros activos)", EditorStyles.miniLabel);
 
             // Crear por id: la ficha aparece directamente en su carpeta de GameContent.
             EditorGUILayout.Space();
@@ -306,6 +326,26 @@ namespace CTEditor.GameDefinition.Editor
 
             if (GUILayout.Button("Refrescar")) Refresh();
             EditorGUILayout.EndVertical();
+        }
+
+        /// <summary>Prepara las filas visibles (búsqueda + filtros). Solo cuando cambian la búsqueda, los filtros o las fichas.</summary>
+        private void RebuildRowsIfNeeded()
+        {
+            if (!_rowsDirty && _rowsSearch == (_search ?? "") && _rowsVersion == ContentAssets.Version && _rowsStamp == ContentAssets.EditStamp) return;
+            _rowsDirty = false;
+            _rowsSearch = _search ?? "";
+            _rowsVersion = ContentAssets.Version;
+            _rowsStamp = ContentAssets.EditStamp;
+            _rows.Clear();
+            _rowsHidden = 0;
+            foreach (var item in _all)
+            {
+                if (item == null) continue;
+                string label = ContentAssets.Label(item);
+                if (_rowsSearch.Length > 0 && label.IndexOf(_rowsSearch, StringComparison.OrdinalIgnoreCase) < 0) continue;
+                if (!PassesFilter(item)) { _rowsHidden++; continue; }
+                _rows.Add((item, label, RowMark(item), RowTooltip(item)));
+            }
         }
 
         private void CreateNew(string id)
@@ -395,7 +435,11 @@ namespace CTEditor.GameDefinition.Editor
             EditorGUI.BeginChangeCheck();
             if (_embedded != null) _embedded.OnInspectorGUI();
             // Validar TODO el contenido en cada tecla hacía que escribir fuera lento: se valida al dejar de escribir.
-            if (EditorGUI.EndChangeCheck()) _revalidateAt = EditorApplication.timeSinceStartup + 0.6;
+            if (EditorGUI.EndChangeCheck())
+            {
+                ContentAssets.NoteEdited();   // la validación en caché y la lista saben que algo cambió
+                _revalidateAt = EditorApplication.timeSinceStartup + 0.6;
+            }
 
             EditorGUILayout.Space();
             DrawPreview(Selected);
@@ -499,7 +543,12 @@ namespace CTEditor.GameDefinition.Editor
         private void DrawTemplateUpdate()
         {
             if (Templates == null) return;
-            var existing = ExistingWithTemplate();
+            if (_templateExisting == null || _templateVersion != ContentAssets.Version)
+            {
+                _templateExisting = ExistingWithTemplate();
+                _templateVersion = ContentAssets.Version;
+            }
+            var existing = _templateExisting;
             GUI.enabled = existing.Count > 0;
             if (GUILayout.Button(new GUIContent($"↻ Actualizar desde las plantillas ({existing.Count}) ▾",
                     "Vuelve a aplicar la plantilla clásica a las fichas que ya tienes (todas o por sección). El id y las referencias se mantienen: no hace falta borrar nada.")))

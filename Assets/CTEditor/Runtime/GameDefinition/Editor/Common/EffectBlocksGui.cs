@@ -19,11 +19,20 @@ namespace CTEditor.GameDefinition.Editor
     {
         // ---------------- Names and dropdown options ----------------
 
+        // Opciones de los desplegables, guardadas hasta que cambien las fichas (antes se ordenaban en cada repintado).
+        private static readonly Dictionary<Type, (int version, int stamp, string[] ids, string[] names)> OptionCache
+            = new Dictionary<Type, (int, int, string[], string[])>();
+
         private static (string[] ids, string[] names) Options<T>() where T : ScriptableObject, IContentAsset
         {
+            if (OptionCache.TryGetValue(typeof(T), out var c) && c.version == ContentAssets.Version && c.stamp == ContentAssets.EditStamp)
+                return (c.ids, c.names);
             var list = ContentAssets.LoadAll<T>().Where(a => !string.IsNullOrWhiteSpace(a.Id))
                 .OrderBy(a => ContentAssets.Label(a), StringComparer.CurrentCultureIgnoreCase).ToList();
-            return (list.Select(a => a.Id).ToArray(), list.Select(a => ContentAssets.Label(a)).ToArray());
+            var ids = list.Select(a => a.Id).ToArray();
+            var names = list.Select(a => ContentAssets.Label(a)).ToArray();
+            OptionCache[typeof(T)] = (ContentAssets.Version, ContentAssets.EditStamp, ids, names);
+            return (ids, names);
         }
 
         private static (string[] ids, string[] names) StatOptions(bool withAccuracy)

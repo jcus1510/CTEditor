@@ -26,7 +26,8 @@ con `items` = «Mochila», etc.). Antes de añadir un campo, buscar si su nombre
   fichas existentes).
 - **Parámetros nuevos de constructores de dominio: opcionales y al final**, para no romper llamadas.
 - Renombrar un campo serializado pierde el dato (usar `[FormerlySerializedAs]` si hace falta).
-- Campos antiguos que ya no se editan: `[LegacyField, HideInInspector]` + conversión (ver [09](09-efectos-por-bloques.md)).
+- Cuando un sistema se sustituye, el antiguo **se elimina por completo** (código, campos y columnas) y los datos se
+  regeneran desde los CSV (packs y plantillas): no se dejan conversiones ni botones de migración.
 - Ids de contenido: minúsculas y guiones bajos (`sp_attack`, `choice_band`). Estadísticas clásicas: `hp, attack,
   defense, sp_attack, sp_defense, speed` (+ `accuracy`, `evasion`).
 

@@ -26,6 +26,9 @@ namespace CTEditor.GameDefinition.Editor
     /// </summary>
     public sealed class GrowthCurveEditorWindow : ContentEditorWindow<GrowthCurveData>
     {
+        // Sus gráficos muestran el valor bajo el ratón: estos sí repintan al moverlo.
+        protected override bool RepaintOnMouseMove => true;
+
         [MenuItem(EditorMenus.Creatures + "Curvas de experiencia", false, EditorMenus.CreaturesOrder + 5)]
         public static void Open() => OpenWindow<GrowthCurveEditorWindow>("Curvas de XP");
 

@@ -20,6 +20,9 @@ using CTEditor.Battle.Domain.Events;
 using CTEditor.Battle.Domain.Formulas;
 using CTEditor.Adventure.Domain;
 
+using CTEditor.GameDefinition.Domain.Effects;
+using static CTEditor.Tests.EditMode.TestItems;
+
 namespace CTEditor.Tests.EditMode
 {
     /// <summary>
@@ -68,9 +71,9 @@ namespace CTEditor.Tests.EditMode
 
         private static readonly ItemDefinition[] Items =
         {
-            new ItemDefinition("potion", "Poción", ItemCategory.Medicine, usableInBattle: true, usableOutsideBattle: true, healHp: 20),
-            new ItemDefinition("poke_ball", "Poké Ball", ItemCategory.Ball, usableInBattle: true, catchMultiplier: 1f),
-            new ItemDefinition("master_ball", "Master Ball", ItemCategory.Ball, usableInBattle: true, catchMultiplier: 255f),
+            new ItemDefinition("potion", "Poción", ItemCategory.Medicine, usableInBattle: true, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.HealHp, 20) }),
+            new ItemDefinition("poke_ball", "Poké Ball", ItemCategory.Ball, usableInBattle: true, effects: new[] { OnUse(EffectAction.Catch, 1f) }),
+            new ItemDefinition("master_ball", "Master Ball", ItemCategory.Ball, usableInBattle: true, effects: new[] { OnUse(EffectAction.Catch, 255f) }),
         };
 
         private static readonly StatusConditionDefinition[] Statuses =

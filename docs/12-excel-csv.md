@@ -15,7 +15,7 @@ Google Sheets) y se vuelve a importar. Sirve para editar en bloque, compartir y 
 - `CsvSchema<T>`: columnas escritas a mano (`.Col(cabecera, ayuda, leer, escribir, diferido, alias)`) — especies,
   movimientos, tipos, sets, entrenadores, zonas, equipos y columnas especiales de objetos/habilidades.
 - `CsvReflectiveSchema<T>`: automático, **una columna por campo** serializado de la ficha (cabecera de `Etiquetas`, el
-  nombre del campo en inglés vale como alias). Se salta los campos `[LegacyField]`. Si se añade un campo a una ficha,
+  nombre del campo en inglés vale como alias). Si se añade un campo a una ficha,
   aparece solo en Excel.
 - `TypeChartCsvSchema`: la tabla de tipos como matriz (`atacante\defensor`).
 

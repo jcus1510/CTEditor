@@ -14,6 +14,9 @@ using CTEditor.GameDefinition.Domain.Types;
 using CTEditor.Party.Domain;
 using CTEditor.Adventure.Domain;
 
+using CTEditor.GameDefinition.Domain.Effects;
+using static CTEditor.Tests.EditMode.TestItems;
+
 namespace CTEditor.Tests.EditMode
 {
     /// <summary>
@@ -50,13 +53,13 @@ namespace CTEditor.Tests.EditMode
 
         private static readonly ItemDefinition[] Items =
         {
-            new ItemDefinition("potion", "Poción", ItemCategory.Medicine, usableInBattle: true, usableOutsideBattle: true, healHp: 20),
-            new ItemDefinition("revive", "Revivir", ItemCategory.Revive, usableOutsideBattle: true, revives: true, reviveHpPercent: 50),
-            new ItemDefinition("antidote", "Antídoto", ItemCategory.StatusCure, usableOutsideBattle: true, curesStatusId: "poison"),
-            new ItemDefinition("ether", "Éter", ItemCategory.PpRestore, usableOutsideBattle: true, restorePp: 10),
+            new ItemDefinition("potion", "Poción", ItemCategory.Medicine, usableInBattle: true, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.HealHp, 20) }),
+            new ItemDefinition("revive", "Revivir", ItemCategory.Revive, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.Revive, 50) }),
+            new ItemDefinition("antidote", "Antídoto", ItemCategory.StatusCure, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.CureStatus, 0, "poison") }),
+            new ItemDefinition("ether", "Éter", ItemCategory.PpRestore, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.RestorePp, 10) }),
             new ItemDefinition("thunder_stone", "Piedra Trueno", ItemCategory.Evolution, usableOutsideBattle: true),
-            new ItemDefinition("leftovers", "Restos", ItemCategory.Held, consumable: false, heldEndOfTurnHealPercent: 6.25f),
-            new ItemDefinition("charcoal", "Carbón", ItemCategory.Held, consumable: false, heldEndOfTurnHealPercent: 1f),
+            new ItemDefinition("leftovers", "Restos", ItemCategory.Held, consumable: false, effects: new[] { EndOfTurnHeal(6.25f) }),
+            new ItemDefinition("charcoal", "Carbón", ItemCategory.Held, consumable: false, effects: new[] { EndOfTurnHeal(1f) }),
             new ItemDefinition("bike", "Bici", ItemCategory.Key, consumable: false),
         };
 

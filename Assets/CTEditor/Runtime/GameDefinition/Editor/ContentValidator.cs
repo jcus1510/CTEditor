@@ -37,13 +37,39 @@ namespace CTEditor.GameDefinition.Editor
     public static partial class ContentValidator
     {
         /// <summary>Devuelve solo los problemas que afectan a un asset concreto (para la UI por-ficha).</summary>
+        // CACHÉ: validar TODO el proyecto cuesta; al navegar entre fichas se reutiliza el último resultado mientras no
+        // cambie nada (ni la lista de fichas: ContentAssets.Version, ni sus datos: ContentAssets.EditStamp).
+        private static Dictionary<Object, List<ValidationIssue>> _byAsset;
+        private static List<ValidationIssue> _all;
+        private static int _version = -1, _stamp = -1;
+
+        /// <summary>Los problemas de UNA ficha (del último análisis completo; se rehace solo si algo cambió).</summary>
         public static List<ValidationIssue> IssuesFor(Object asset)
         {
-            var filtered = new List<ValidationIssue>();
-            foreach (var issue in Validate())
-                if (issue.Context == asset)
-                    filtered.Add(issue);
-            return filtered;
+            EnsureFresh();
+            return asset != null && _byAsset.TryGetValue(asset, out var list) ? new List<ValidationIssue>(list) : new List<ValidationIssue>();
+        }
+
+        /// <summary>Todos los problemas, con la misma caché que <see cref="IssuesFor"/>.</summary>
+        public static List<ValidationIssue> ValidateCached()
+        {
+            EnsureFresh();
+            return new List<ValidationIssue>(_all);
+        }
+
+        private static void EnsureFresh()
+        {
+            if (_all != null && _version == ContentAssets.Version && _stamp == ContentAssets.EditStamp) return;
+            _all = Validate();
+            _byAsset = new Dictionary<Object, List<ValidationIssue>>();
+            foreach (var issue in _all)
+            {
+                if (issue.Context == null) continue;
+                if (!_byAsset.TryGetValue(issue.Context, out var l)) _byAsset[issue.Context] = l = new List<ValidationIssue>();
+                l.Add(issue);
+            }
+            _version = ContentAssets.Version;
+            _stamp = ContentAssets.EditStamp;
         }
 
         public static List<ValidationIssue> Validate()
@@ -92,10 +118,10 @@ namespace CTEditor.GameDefinition.Editor
         // --- Papelera: fichas vivas que todavía usan algo de la papelera ---
         private static void ValidateTrashUsers(List<ValidationIssue> issues)
         {
-            foreach (var trashed in ContentTrash.Items())
-                foreach (var r in ReferenceFinder.FindReferencesTo(trashed))
-                    issues.Add(Warning($"'{ContentAssets.Label(r.Owner)}' usa '{ContentAssets.Label(trashed)}', que está en la PAPELERA ({r.Field}). " +
-                                       "Recupérala (Herramientas → Papelera) o cambia la referencia.", r.Owner));
+            // Una sola pasada por el proyecto para TODA la papelera (antes era una pasada por ficha borrada).
+            foreach (var (trashed, r) in ReferenceFinder.FindReferencesToAny(ContentTrash.Items()))
+                issues.Add(Warning($"'{ContentAssets.Label(r.Owner)}' usa '{ContentAssets.Label(trashed)}', que está en la PAPELERA ({r.Field}). " +
+                                   "Recupérala (Herramientas → Papelera) o cambia la referencia.", r.Owner));
         }
 
         // --- Movimientos ---
@@ -283,18 +309,9 @@ namespace CTEditor.GameDefinition.Editor
             return ids;
         }
 
-        private static List<T> LoadAll<T>() where T : Object
-        {
-            var list = new List<T>();
-            foreach (var guid in AssetDatabase.FindAssets("t:" + typeof(T).Name))
-            {
-                var path = AssetDatabase.GUIDToAssetPath(guid);
-                if (ContentTrash.IsTrashedPath(path)) continue; // lo de la papelera no se valida (ni cuenta como duplicado)
-                var asset = AssetDatabase.LoadAssetAtPath<T>(path);
-                if (asset != null) list.Add(asset);
-            }
-            return list;
-        }
+        // La caché de fichas del editor (lo de la papelera no se valida ni cuenta como duplicado). Antes se buscaba en disco
+        // (FindAssets) en CADA llamada, y el validador corre al elegir cada ficha.
+        private static List<T> LoadAll<T>() where T : ScriptableObject => ContentAssets.LoadAll<T>();
 
         private static string Name(MoveData m) => string.IsNullOrWhiteSpace(m.Id) ? m.name : m.Id;
         private static string Name(StatusConditionData s) => string.IsNullOrWhiteSpace(s.Id) ? s.name : s.Id;

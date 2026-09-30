@@ -358,9 +358,9 @@ namespace CTEditor.GameDefinition.Editor
             Step("tipos.csv", "Tipos", TypeChartTools.CreateClassicSet);
             Step("estados.csv", "Estados", ClassicStatusPresets.CreateClassicSet);
             Step("climas.csv", "Climas", WeatherEditorWindow.CreateClassicSet);
-            // Objetos: las plantillas (los que tienen EFECTO configurado) se crean siempre; el objetos.csv del pack solo trae
-            // los DEMÁS objetos de su generación (clave, bayas, placas, Megapiedras...), así que no se pisan.
-            report.Add($"Objetos con efecto: {ItemEditorWindow.CreateClassicSet()} nuevos" + (pack != null && pack.Has("objetos.csv") ? " (+ el resto, del pack)" : ""));
+            // Objetos: el objetos.csv del pack trae TODOS los de su generación con TODOS sus efectos (manda el pack). Sin pack,
+            // los clásicos de Assets/GameContent/Plantillas/objetos.csv.
+            Step("objetos.csv", "Objetos", ItemEditorWindow.CreateClassicSet);
             Step("trampas.csv", "Trampas de campo", HazardEditorWindow.CreateClassicSet);
             Step("efectos_lado.csv", "Efectos de lado", SideConditionEditorWindow.CreateClassicSet);
             // Movimientos: si el pack trae los suyos, del código SOLO sale Forcejeo (lo necesita el motor): así un pack
@@ -414,7 +414,7 @@ namespace CTEditor.GameDefinition.Editor
         private void RecountIssues()
         {
             _errors = 0; _warnings = 0;
-            foreach (var issue in ContentValidator.Validate())
+            foreach (var issue in ContentValidator.ValidateCached())
             {
                 if (issue.Severity == IssueSeverity.Error) _errors++;
                 else _warnings++;

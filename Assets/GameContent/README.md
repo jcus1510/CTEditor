@@ -90,9 +90,9 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 - Pestaña **? Ayuda de columnas**: qué significa cada columna y ejemplos.
 
 ## Objetos, mochila y evoluciones
-- **CTEditor → Objetos → Todos los objetos**: 119 plantillas clásicas (pociones, revivir, antídotos, éteres, bolas, piedras
+- **CTEditor → Objetos → Todos los objetos**: 135 plantillas clásicas (pociones, revivir, antídotos, éteres, bolas, piedras
   evolutivas, objetos X, Restos, Carbón y demás objetos que potencian un tipo, bayas). Pulsa
-  «Crear los 119 objetos clásicos» (también los de competición de la 5.ª-6.ª gen.) o «✨ Crear TODO» en el Centro de Contenido.
+  «Crear los objetos clásicos» (también los de competición de la 5.ª-6.ª gen.) o «✨ Crear TODO» en el Centro de Contenido.
 - **Un objeto = una lista de EFECTOS** «cuándo → si → qué» (sin secciones por generación):
   - **Cuándo**: al usarlo · mientras lo lleva · al entrar al combate · al final de cada turno · antes de recibir un golpe ·
     tras recibir un golpe · al recibir un golpe con contacto · tras hacer daño · al sufrir un estado · con poca vida (umbral %) ·
@@ -109,9 +109,9 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
   - Si un efecto aún no lo aplica el motor, el editor lo avisa («se guarda, pero aún no tiene efecto»).
   - Excel: columna `efectos`, p. ej. `fin_de_turno: curar 6,25% | antes_de_golpe [si mov.tipo=fire & propio.eficacia>1]:
     daño_recibido x0,5; se_gasta | poca_vida@25: etapa attack +1; se_gasta`. Opciones: `se_gasta`, `al_rival`, `prob=N`,
-    `veces=N`. La columna `captura` sigue funcionando (es el efecto «al usarlo: captura»).
-  - Los objetos antiguos se convierten solos al abrirlos (o todos en **Objetos → Convertir objetos antiguos a efectos**);
-    funcionan exactamente igual.
+    `veces=N`.
+  - Las **plantillas** son datos: `Assets/GameContent/Plantillas/objetos.csv` (edítalas en Excel). Los **packs** traen
+    todos los objetos de su generación con todos sus efectos: importar con «Actualizar también» los deja completos.
 - **MT que se gastan**: es una regla (Reglas → «Las MT se gastan»; 1.ª-4.ª gen. sí, desde la 5.ª no), no del objeto.
 - **Mochila**: el `PartyHolder` trae la `Mochila inicial` (por defecto 5 Pociones y 10 Poké Balls). Los
   botones Mochila y Capturar de la pantalla de combate usan los objetos que elijas.
@@ -177,8 +177,8 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
 1. **Pack** de destino (con su INFORME).
 2. **Qué cambia** (lista para marcar): reglas de la generación (plantilla: categoría por tipo, «Especial» único,
    habilidades, objetos equipados, naturalezas, géneros; Megaevolución solo en 6.ª y 7.ª), tipos y tabla de tipos,
-   especies, movimientos (Forcejeo se queda siempre), habilidades, objetos (los objetos con efecto de las plantillas se
-   quedan siempre), naturalezas, grupos huevo, sets de Smogon y los entrenadores del pack. Si el pack no trae la hoja de
+   especies, movimientos (Forcejeo se queda siempre), habilidades, objetos (con todos sus efectos),
+   naturalezas, grupos huevo, sets de Smogon y los entrenadores del pack. Si el pack no trae la hoja de
    una categoría (p. ej. habilidades en la 1.ª), lo tuyo se queda y las reglas lo apagan.
 3. **Aplicar**: primero una **copia de seguridad** en `Excel/copias/antes_de_<pack>_<fecha>`. Lo que el pack no trae va,
    a tu elección, a la **papelera en un grupo** («Cambio a Gen3 …», se recupera entero con *↩ Recuperar todo el grupo*),

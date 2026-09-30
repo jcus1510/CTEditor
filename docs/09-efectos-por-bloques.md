@@ -100,13 +100,14 @@ Fuera del combate, los bloques «Al usarlo» se leen a través de las vistas de 
 
 ## Datos y compatibilidad
 
-- `ItemData.effects` (`EffectBlockData[]`) + `isBerry`. Los ~40 campos ANTIGUOS siguen en la ficha, **ocultos**
-  (`[LegacyField, HideInInspector]`) y **fuera de Excel**, solo para convertir fichas viejas.
-- `ItemMapper.Effects(d)` = bloques + lo que quede en campos antiguos (convertido con `ItemLegacy`, mismo comportamiento).
-  Así una ficha vieja funciona igual aunque nadie la haya abierto.
-- El inspector del objeto convierte la ficha al abrirla (`ItemEffectsEditing.Convert`, con Deshacer); el menú
-  **Objetos → Convertir objetos antiguos a efectos** las convierte todas.
-- Las plantillas clásicas del editor se escriben con los campos antiguos y se convierten al instante a bloques.
+- `ItemData` = identidad + dónde se usa + `isBerry` + **`effects`** (`EffectBlockData[]`). No hay otros campos de efecto:
+  el sistema antiguo (campos sueltos, `ItemExtras`) se eliminó por completo.
+- `ItemMapper.Effects(d)` traduce los bloques al dominio.
+- **Plantillas = DATOS**: `Assets/GameContent/Plantillas/objetos.csv` (135 objetos clásicos con TODOS sus efectos, mismo
+  formato que `objetos.csv`). La leen el editor (crear / restaurar / «Actualizar desde las plantillas»), el Centro de
+  Contenido (sin pack) y los generadores de packs. Una sola fuente de verdad.
+- **Packs**: el `objetos.csv` de cada generación trae TODOS sus objetos con TODOS sus efectos (los de la plantilla, con
+  nombre, descripción y precio oficiales). Al importar un pack con «Actualizar también» cada objeto queda completo.
 
 ## Editor
 
@@ -133,8 +134,8 @@ fin_de_turno: curar 6,25%
 ```
 Formato por bloque: `cuándo[@umbral] [si condición & condición]: acción [id] [número]; opción; opción`.
 Opciones: `se_gasta`, `al_rival`, `a_si_mismo`, `prob=N`, `veces=N`. Errores explicados en español.
-`EffectText.Format`/`Parse` (ida y vuelta sin pérdidas, con tests). La columna `captura` sigue existiendo por
-compatibilidad con los packs (equivale a `al_usar: captura xN`).
+`EffectText.Format`/`Parse` (ida y vuelta sin pérdidas, con tests sobre la hoja de plantillas y sobre los seis packs).
+`verificar_pack.py` revisa los momentos, las acciones y los ids que nombran los efectos.
 
 ## Añadir una acción nueva
 

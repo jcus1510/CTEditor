@@ -64,15 +64,23 @@ namespace CTEditor.GameDefinition.Editor
         /// <summary>Todas las fichas que hay ahora en la papelera.</summary>
         public static List<ScriptableObject> Items()
         {
+            // Guardada hasta que cambie algún asset (mover a/desde la papelera también cambia ContentAssets.Version): el
+            // Centro de Contenido pregunta el número en cada repintado.
+            if (_items != null && _itemsVersion == ContentAssets.Version) return new List<ScriptableObject>(_items);
             var list = new List<ScriptableObject>();
-            if (!AssetDatabase.IsValidFolder(Root)) return list;
-            foreach (var guid in AssetDatabase.FindAssets("t:ScriptableObject", new[] { Root }))
-            {
-                var a = AssetDatabase.LoadAssetAtPath<ScriptableObject>(AssetDatabase.GUIDToAssetPath(guid));
-                if (a != null) list.Add(a);
-            }
-            return list;
+            if (AssetDatabase.IsValidFolder(Root))
+                foreach (var guid in AssetDatabase.FindAssets("t:ScriptableObject", new[] { Root }))
+                {
+                    var a = AssetDatabase.LoadAssetAtPath<ScriptableObject>(AssetDatabase.GUIDToAssetPath(guid));
+                    if (a != null) list.Add(a);
+                }
+            _items = list;
+            _itemsVersion = ContentAssets.Version;
+            return new List<ScriptableObject>(list);
         }
+
+        private static List<ScriptableObject> _items;
+        private static int _itemsVersion = -1;
 
         public static int Count => Items().Count;
 

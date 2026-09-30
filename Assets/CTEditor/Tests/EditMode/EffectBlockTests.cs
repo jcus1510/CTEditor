@@ -105,22 +105,25 @@ namespace CTEditor.Tests.EditMode
         }
 
         [Test]
-        public void Old_item_fields_become_blocks_and_the_old_properties_still_read_them()
+        public void The_old_properties_are_views_of_the_blocks_and_berries_are_recognised()
         {
-            var potion = new ItemDefinition("potion", "Poción", ItemCategory.Medicine, healHp: 20, usableInBattle: true);
-            Assert.AreEqual(EffectTrigger.OnUse, potion.Effects.Single().Trigger);
+            var potion = new ItemDefinition("potion", "Poción", ItemCategory.Medicine, usableInBattle: true,
+                effects: new[] { new EffectBlock(EffectTrigger.OnUse, EffectAction.HealHp, 20) });
             Assert.AreEqual(20, potion.HealHp);
+            Assert.IsFalse(potion.IsBerry);
 
-            var occa = new ItemDefinition("occa", "Baya Caoca", ItemCategory.Held, extras: new ItemExtras { ResistBerryType = "fire" });
-            var block = occa.Effects.Single();
-            Assert.AreEqual(EffectAction.DamageTakenMultiplier, block.Action);
-            Assert.IsTrue(block.Consumes);
-            Assert.AreEqual(2, block.Conditions.Count, "tipo Fuego + muy eficaz");
+            var occa = new ItemDefinition("occa", "Baya Caoca", ItemCategory.Held, effects: new[]
+            {
+                new EffectBlock(EffectTrigger.BeforeHit, EffectAction.DamageTakenMultiplier, 0.5f,
+                    conditions: new[] { ItemEffects.MoveType("fire"), ItemEffects.SuperEffectiveOn(ConditionSubject.Self) }, consumes: true),
+            });
             Assert.IsTrue(occa.IsBerry, "se reconoce como baya (Nerviosismo, Cosecha...)");
 
-            var oran = new ItemDefinition("oran", "Baya Aranja", ItemCategory.Held, heldTriggerHpPercent: 50, heldTriggerHealHp: 10);
+            var oran = new ItemDefinition("oran", "Baya Aranja", ItemCategory.Berry,
+                effects: new[] { new EffectBlock(EffectTrigger.LowHp, EffectAction.HealHp, 10, threshold: 50, consumes: true) });
             Assert.AreEqual(50f, oran.HeldTriggerHpPercent);
             Assert.AreEqual(10, oran.HeldTriggerHealHp);
+            Assert.IsTrue(oran.IsBerry);
         }
     }
 }

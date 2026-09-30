@@ -19,6 +19,9 @@ using CTEditor.Battle.Domain.Turn;
 using CTEditor.Battle.Domain.Formulas;
 using B = CTEditor.Battle.Domain.Battle;
 
+using CTEditor.GameDefinition.Domain.Effects;
+using static CTEditor.Tests.EditMode.TestItems;
+
 namespace CTEditor.Tests.EditMode
 {
     /// <summary>
@@ -33,31 +36,30 @@ namespace CTEditor.Tests.EditMode
         // ---------------- Contenido de prueba ----------------
 
         private static readonly ItemDefinition Potion = new ItemDefinition("potion", "Poción", ItemCategory.Medicine,
-            usableInBattle: true, usableOutsideBattle: true, healHp: 20);
+            usableInBattle: true, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.HealHp, 20) });
         private static readonly ItemDefinition MaxPotion = new ItemDefinition("max_potion", "Poción Máxima", ItemCategory.Medicine,
-            usableInBattle: true, usableOutsideBattle: true, healPercent: 100);
+            usableInBattle: true, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.HealPercent, 100) });
         private static readonly ItemDefinition Antidote = new ItemDefinition("antidote", "Antídoto", ItemCategory.StatusCure,
-            usableInBattle: true, usableOutsideBattle: true, curesStatusId: "poison|toxic");
+            usableInBattle: true, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.CureStatus, 0, "poison|toxic") });
         private static readonly ItemDefinition Revive = new ItemDefinition("revive", "Revivir", ItemCategory.Revive,
-            usableInBattle: true, usableOutsideBattle: true, revives: true, reviveHpPercent: 50);
+            usableInBattle: true, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.Revive, 50) });
         private static readonly ItemDefinition Ether = new ItemDefinition("ether", "Éter", ItemCategory.PpRestore,
-            usableInBattle: true, usableOutsideBattle: true, restorePp: 10);
+            usableInBattle: true, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.RestorePp, 10) });
         private static readonly ItemDefinition Elixir = new ItemDefinition("elixir", "Elixir", ItemCategory.PpRestore,
-            usableInBattle: true, usableOutsideBattle: true, restorePp: 10, restorePpAllMoves: true);
+            usableInBattle: true, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.RestorePpAll, 10) });
         private static readonly ItemDefinition Candy = new ItemDefinition("soothe", "Caramelo amistoso", ItemCategory.Vitamin,
-            usableOutsideBattle: true, friendshipChange: 50);
+            usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.Friendship, 50) });
         private static readonly ItemDefinition FireStone = new ItemDefinition("fire_stone", "Piedra Fuego", ItemCategory.Evolution,
             usableOutsideBattle: true);
         private static readonly ItemDefinition MasterBall = new ItemDefinition("master_ball", "Master Ball", ItemCategory.Ball,
-            usableInBattle: true, catchMultiplier: 255);
+            usableInBattle: true, effects: new[] { OnUse(EffectAction.Catch, 255) });
         private static readonly ItemDefinition XAttack = new ItemDefinition("x_attack", "Ataque X", ItemCategory.BattleBoost,
-            usableInBattle: true, battleStatId: "attack", battleStages: 2);
+            usableInBattle: true, effects: new[] { OnUse(EffectAction.ChangeStage, 2, "attack") });
         private static readonly ItemDefinition Leftovers = new ItemDefinition("leftovers", "Restos", ItemCategory.Held,
-            consumable: false, heldEndOfTurnHealPercent: 6.25f);
-        private static readonly ItemDefinition OranBerry = new ItemDefinition("oran_berry", "Baya Aranja", ItemCategory.Held,
-            heldTriggerHpPercent: 50, heldTriggerHealHp: 10);
+            consumable: false, effects: new[] { EndOfTurnHeal(6.25f) });
+        private static readonly ItemDefinition OranBerry = new ItemDefinition("oran_berry", "Baya Aranja", ItemCategory.Held, effects: new[] { LowHpHeal(50, 10) });
         private static readonly ItemDefinition Charcoal = new ItemDefinition("charcoal", "Carbón", ItemCategory.Held,
-            consumable: false, heldPowerModifiers: new[] { new PowerModifier(2f, new[] { new Condition(ConditionKind.MoveType, text: "fire") }) });
+            consumable: false, effects: new[] { Power(2f, new Condition(ConditionKind.MoveType, text: "fire")) });
 
         private static Species Sp(string id, params Evolution[] evos) => new Species(
             new Id<Species>(id), id, new List<Id<ElementType>> { new Id<ElementType>("normal") },

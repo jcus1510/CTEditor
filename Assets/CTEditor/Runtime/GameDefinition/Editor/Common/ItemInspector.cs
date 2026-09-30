@@ -11,22 +11,13 @@ using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 namespace CTEditor.GameDefinition.Editor
 {
     /// <summary>
-    /// ITEM inspector: the common fields (name, pocket, price, where it is used) and then its EFFECTS as cards. Old items are
-    /// converted to effects the first time they are opened (same behaviour). «Plantillas por piezas» add ready-made blocks
-    /// with a dropdown for the piece that changes («Baya que resiste un ataque de tipo ▸ Fuego»).
+    /// ITEM inspector: the common fields (name, pocket, price, where it is used) and then its EFFECTS as cards.
+    /// «Plantillas por piezas» add ready-made blocks with a dropdown for the piece that changes
+    /// («Baya que resiste un ataque de tipo ▸ Fuego»).
     /// </summary>
     [CustomEditor(typeof(ItemData))]
     public sealed class ItemDataInspector : SpanishInspector
     {
-        private void OnEnable()
-        {
-            if (target is ItemData d && d.HasLegacyEffects)
-            {
-                ItemEffectsEditing.Convert(d);
-                serializedObject.Update();
-            }
-        }
-
         protected override bool DrawsItself(string propertyName) => propertyName == "effects";
 
         protected override void DrawCustom()
@@ -104,7 +95,7 @@ namespace CTEditor.GameDefinition.Editor
                 Blocks = s => new[] { new EffectBlock(EffectTrigger.EndOfTurn, EffectAction.InflictStatus, 0, s) },
                 Setup = so => { HeldOnly(so); Cat(so, ItemCategory.Held); } },
             new Piece { Menu = "Equipado/Aguanta con 1 PS si tenía la vida llena", Blocks = _ => new[] {
-                    new EffectBlock(EffectTrigger.BeforeHit, EffectAction.SurviveAt1Hp, conditions: new[] { ItemLegacy.FullHp() }, consumes: true) },
+                    new EffectBlock(EffectTrigger.BeforeHit, EffectAction.SurviveAt1Hp, conditions: new[] { ItemEffects.FullHp() }, consumes: true) },
                 Setup = so => { HeldOnly(so); Cat(so, ItemCategory.Held); } },
             new Piece { Menu = "Equipado/Daña a quien le golpea con contacto", Blocks = _ => new[] {
                     new EffectBlock(EffectTrigger.ContactTaken, EffectAction.LoseHpPercent, 16.67f, target: BlockTarget.Other) },
@@ -112,7 +103,7 @@ namespace CTEditor.GameDefinition.Editor
 
             new Piece { Menu = "Bayas/Resiste un ataque de tipo…", Choice = EffectRefKind.Type,
                 Blocks = s => new[] { new EffectBlock(EffectTrigger.BeforeHit, EffectAction.DamageTakenMultiplier, 0.5f,
-                    conditions: new[] { MoveType(s), ItemLegacy.SuperEffectiveOn(ConditionSubject.Self) }, consumes: true) },
+                    conditions: new[] { MoveType(s), ItemEffects.SuperEffectiveOn(ConditionSubject.Self) }, consumes: true) },
                 Setup = Berry },
             new Piece { Menu = "Bayas/Cura PS con poca vida", Blocks = _ => new[] {
                     new EffectBlock(EffectTrigger.LowHp, EffectAction.HealPercent, 25, threshold: 50, consumes: true) },

@@ -18,6 +18,9 @@ using CTEditor.Battle.Domain;
 using CTEditor.Battle.Domain.Events;
 using CTEditor.Adventure.Domain;
 
+using CTEditor.GameDefinition.Domain.Effects;
+using static CTEditor.Tests.EditMode.TestItems;
+
 namespace CTEditor.Tests.EditMode
 {
     /// <summary>
@@ -67,9 +70,9 @@ namespace CTEditor.Tests.EditMode
 
         private static readonly ItemDefinition[] Items =
         {
-            new ItemDefinition("potion", "Poción", ItemCategory.Medicine, usableInBattle: true, usableOutsideBattle: true, healHp: 20),
-            new ItemDefinition("full_heal", "Cura Total", ItemCategory.StatusCure, usableInBattle: true, curesAllStatus: true),
-            new ItemDefinition("x_attack", "Ataque X", ItemCategory.BattleBoost, usableInBattle: true, battleStatId: "attack", battleStages: 2),
+            new ItemDefinition("potion", "Poción", ItemCategory.Medicine, usableInBattle: true, usableOutsideBattle: true, effects: new[] { OnUse(EffectAction.HealHp, 20) }),
+            new ItemDefinition("full_heal", "Cura Total", ItemCategory.StatusCure, usableInBattle: true, effects: new[] { OnUse(EffectAction.CureStatus) }),
+            new ItemDefinition("x_attack", "Ataque X", ItemCategory.BattleBoost, usableInBattle: true, effects: new[] { OnUse(EffectAction.ChangeStage, 2, "attack") }),
         };
 
         private static GameData Data() => new GameData(

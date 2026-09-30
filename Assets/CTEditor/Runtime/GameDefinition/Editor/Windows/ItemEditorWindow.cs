@@ -63,223 +63,80 @@ namespace CTEditor.GameDefinition.Editor
         // «Other» is also a target label («Rival») in Etiquetas: items need their own word.
         public static string NameOf(ItemCategory c) => c == ItemCategory.Other ? "Otros" : Etiquetas.Enum(c.ToString());
 
-        // ---------------- Biblioteca clásica ----------------
+        // ---------------- Biblioteca clásica (DATOS: Assets/GameContent/Plantillas/objetos.csv) ----------------
 
+        /// <summary>Un objeto clásico de la biblioteca: una fila de la hoja de plantillas (mismo formato que objetos.csv).</summary>
         public sealed class Preset
         {
-            public string Id, Name, Summary;
+            public string Id, Name, EnglishName, Summary, EffectsText;
             public ItemCategory Cat;
             public int Price;
-            public Action<SerializedObject> Fill;
+            public bool InBattle, Outside, Consumable, IsBerry;
         }
 
-        private static Preset P(ItemCategory cat, string id, string name, int price, string summary, Action<SerializedObject> fill)
-            => new Preset { Cat = cat, Id = id, Name = name, Price = price, Summary = summary, Fill = fill };
+        /// <summary>La hoja con los objetos clásicos y TODOS sus efectos. La usan este editor, el Centro de Contenido y los
+        /// generadores de packs (Tools/verificar_pack): una sola fuente de verdad.</summary>
+        public const string LibraryPath = "Assets/GameContent/Plantillas/objetos.csv";
 
-        public static readonly Preset[] Library =
-        {
-            // Medicinas
-            P(ItemCategory.Medicine, "potion", "Poción", 200, "Cura 20 PS.", so => Int(so, "healHp", 20)),
-            P(ItemCategory.Medicine, "super_potion", "Superpoción", 700, "Cura 60 PS.", so => Int(so, "healHp", 60)),
-            P(ItemCategory.Medicine, "hyper_potion", "Hiperpoción", 1500, "Cura 120 PS.", so => Int(so, "healHp", 120)),
-            P(ItemCategory.Medicine, "max_potion", "Poción Máxima", 2500, "Cura todos los PS.", so => Flt(so, "healPercent", 100)),
-            P(ItemCategory.Medicine, "full_restore", "Restaurar Todo", 3000, "Cura todos los PS y cualquier estado.",
-                so => { Flt(so, "healPercent", 100); Bool(so, "curesAllStatus", true); }),
-            // Revivir
-            P(ItemCategory.Revive, "revive", "Revivir", 2000, "Revive con la mitad de los PS.", so => { Bool(so, "revives", true); Flt(so, "reviveHpPercent", 50); }),
-            P(ItemCategory.Revive, "max_revive", "Revivir Máximo", 4000, "Revive con todos los PS.", so => { Bool(so, "revives", true); Flt(so, "reviveHpPercent", 100); }),
-            // Curas de estado
-            P(ItemCategory.StatusCure, "antidote", "Antídoto", 100, "Cura el envenenamiento.", so => Str(so, "curesStatusId", "poison|toxic")),
-            P(ItemCategory.StatusCure, "burn_heal", "Antiquemar", 300, "Cura las quemaduras.", so => Str(so, "curesStatusId", "burn")),
-            P(ItemCategory.StatusCure, "paralyze_heal", "Antiparalizador", 300, "Cura la parálisis.", so => Str(so, "curesStatusId", "paralysis")),
-            P(ItemCategory.StatusCure, "awakening", "Despertar", 250, "Despierta.", so => Str(so, "curesStatusId", "sleep")),
-            P(ItemCategory.StatusCure, "ice_heal", "Antihielo", 250, "Descongela.", so => Str(so, "curesStatusId", "freeze")),
-            P(ItemCategory.StatusCure, "full_heal", "Cura Total", 400, "Cura cualquier estado.", so => Bool(so, "curesAllStatus", true)),
-            // PP
-            P(ItemCategory.PpRestore, "ether", "Éter", 1200, "Recupera 10 PP de un movimiento.", so => Int(so, "restorePp", 10)),
-            P(ItemCategory.PpRestore, "max_ether", "Éter Máximo", 2000, "Recupera todos los PP de un movimiento.", so => Int(so, "restorePp", 999)),
-            P(ItemCategory.PpRestore, "elixir", "Elixir", 3000, "Recupera 10 PP de todos los movimientos.", so => { Int(so, "restorePp", 10); Bool(so, "restorePpAllMoves", true); }),
-            P(ItemCategory.PpRestore, "max_elixir", "Elixir Máximo", 4500, "Recupera todos los PP de todos los movimientos.", so => { Int(so, "restorePp", 999); Bool(so, "restorePpAllMoves", true); }),
-            // Bolas
-            P(ItemCategory.Ball, "poke_ball", "Poké Ball", 200, "Bola básica (×1).", so => Ball(so, 1f)),
-            P(ItemCategory.Ball, "great_ball", "Super Ball", 600, "Mejor que la Poké Ball (×1,5).", so => Ball(so, 1.5f)),
-            P(ItemCategory.Ball, "ultra_ball", "Ultra Ball", 800, "Muy buena (×2).", so => Ball(so, 2f)),
-            P(ItemCategory.Ball, "master_ball", "Master Ball", 0, "Captura siempre.", so => Ball(so, 255f)),
-            // Piedras evolutivas (se usan desde la evolución de la especie)
-            P(ItemCategory.Evolution, "fire_stone", "Piedra Fuego", 3000, "Hace evolucionar a ciertas especies.", Stone),
-            P(ItemCategory.Evolution, "water_stone", "Piedra Agua", 3000, "Hace evolucionar a ciertas especies.", Stone),
-            P(ItemCategory.Evolution, "thunder_stone", "Piedra Trueno", 3000, "Hace evolucionar a ciertas especies.", Stone),
-            P(ItemCategory.Evolution, "leaf_stone", "Piedra Hoja", 3000, "Hace evolucionar a ciertas especies.", Stone),
-            P(ItemCategory.Evolution, "moon_stone", "Piedra Lunar", 3000, "Hace evolucionar a ciertas especies.", Stone),
-            P(ItemCategory.Evolution, "sun_stone", "Piedra Solar", 3000, "Hace evolucionar a ciertas especies (Gloom, Sunkern).", Stone),
-            // Objetos que hacen evolucionar al intercambiarse llevándolos (2ª gen.)
-            P(ItemCategory.Held, "kings_rock", "Roca del Rey", 5000, "Sus ataques pueden hacer retroceder (10 %). Llevándolo al intercambiarse: Slowpoke y Poliwhirl evolucionan.",
-                so => { Held(so); Flt(so, "heldFlinchChance", 10f); }),
-            P(ItemCategory.Held, "metal_coat", "Revestimiento Metálico", 2000, "Movimientos de Acero ×1,2. Llevándolo al intercambiarse: Onix y Scyther evolucionan.", so => TypeBoost(so, "steel")),
-            P(ItemCategory.Held, "dragon_scale", "Escama Dragón", 2000, "Llevándolo al intercambiarse: Seadra evoluciona.", Held),
-            P(ItemCategory.Held, "up_grade", "Mejora", 2000, "Llevándolo al intercambiarse: Porygon evoluciona.", Held),
-            // 3.ª y 4.ª gen.: piedras nuevas y objetos que hacen evolucionar llevándolos (al intercambiar o al subir de nivel)
-            P(ItemCategory.Evolution, "dusk_stone", "Piedra Noche", 3000, "Hace evolucionar a Murkrow, Misdreavus...", Stone),
-            P(ItemCategory.Evolution, "shiny_stone", "Piedra Día", 3000, "Hace evolucionar a Togetic, Roselia...", Stone),
-            P(ItemCategory.Evolution, "dawn_stone", "Piedra Alba", 3000, "Hace evolucionar a Kirlia macho y Snorunt hembra.", Stone),
-            P(ItemCategory.Held, "oval_stone", "Piedra Oval", 2000, "Llevándola al subir de nivel de día: Happiny evoluciona.", Held),
-            P(ItemCategory.Held, "razor_claw", "Garra Afilada", 2000, "Sube el índice de crítico. Llevándola al subir de nivel de noche: Sneasel evoluciona.",
-                so => { Held(so); Int(so, "heldCritStageBonus", 1); }),
-            P(ItemCategory.Held, "razor_fang", "Colmillo Agudo", 2000, "Sus ataques pueden hacer retroceder (10 %). Llevándolo al subir de nivel de noche: Gligar evoluciona.",
-                so => { Held(so); Flt(so, "heldFlinchChance", 10f); }),
-            P(ItemCategory.Held, "protector", "Protector", 2000, "Llevándolo al intercambiarse: Rhydon evoluciona.", Held),
-            P(ItemCategory.Held, "electirizer", "Electrizador", 2000, "Llevándolo al intercambiarse: Electabuzz evoluciona.", Held),
-            P(ItemCategory.Held, "magmarizer", "Magmatizador", 2000, "Llevándolo al intercambiarse: Magmar evoluciona.", Held),
-            P(ItemCategory.Held, "dubious_disc", "Disco Extraño", 2000, "Llevándolo al intercambiarse: Porygon2 evoluciona.", Held),
-            P(ItemCategory.Held, "reaper_cloth", "Tela Terrible", 2000, "Llevándola al intercambiarse: Dusclops evoluciona.", Held),
-            P(ItemCategory.Held, "deep_sea_tooth", "Diente Marino", 2000, "Llevándolo al intercambiarse: Clamperl evoluciona a Huntail.", Held),
-            P(ItemCategory.Held, "deep_sea_scale", "Escama Marina", 2000, "Llevándola al intercambiarse: Clamperl evoluciona a Gorebyss.", Held),
-            // Objetos de combate
-            P(ItemCategory.BattleBoost, "x_attack", "Ataque X", 1000, "+2 al Ataque durante el combate.", so => Boost(so, "attack")),
-            P(ItemCategory.BattleBoost, "x_defense", "Defensa X", 2000, "+2 a la Defensa.", so => Boost(so, "defense")),
-            P(ItemCategory.BattleBoost, "x_sp_atk", "Ataque Esp. X", 1000, "+2 al Ataque Especial.", so => Boost(so, "sp_attack")),
-            P(ItemCategory.BattleBoost, "x_sp_def", "Defensa Esp. X", 2000, "+2 a la Defensa Especial.", so => Boost(so, "sp_defense")),
-            P(ItemCategory.BattleBoost, "x_speed", "Velocidad X", 1000, "+2 a la Velocidad.", so => Boost(so, "speed")),
-            P(ItemCategory.BattleBoost, "x_accuracy", "Precisión X", 1000, "+2 a la Precisión.", so => Boost(so, "accuracy")),
-            // Equipables
-            P(ItemCategory.Held, "leftovers", "Restos", 4000, "Recupera 1/16 de PS cada turno.", so => { Held(so); Flt(so, "heldEndOfTurnHealPercent", 6.25f); }),
-            P(ItemCategory.Held, "charcoal", "Carbón", 3000, "Movimientos de Fuego ×1,2.", so => TypeBoost(so, "fire")),
-            P(ItemCategory.Held, "mystic_water", "Agua Mística", 3000, "Movimientos de Agua ×1,2.", so => TypeBoost(so, "water")),
-            P(ItemCategory.Held, "miracle_seed", "Semilla Milagro", 3000, "Movimientos de Planta ×1,2.", so => TypeBoost(so, "grass")),
-            P(ItemCategory.Held, "magnet", "Imán", 3000, "Movimientos de Eléctrico ×1,2.", so => TypeBoost(so, "electric")),
-            // El resto de potenciadores de tipo (2.ª gen. en adelante): los reparte la IA a partir de nivel Élite.
-            P(ItemCategory.Held, "black_belt", "Cinturón Negro", 3000, "Movimientos de Lucha ×1,2.", so => TypeBoost(so, "fighting")),
-            P(ItemCategory.Held, "black_glasses", "Gafas de Sol", 3000, "Movimientos de Siniestro ×1,2.", so => TypeBoost(so, "dark")),
-            P(ItemCategory.Held, "hard_stone", "Piedra Dura", 3000, "Movimientos de Roca ×1,2.", so => TypeBoost(so, "rock")),
-            P(ItemCategory.Held, "never_melt_ice", "Antiderretir", 3000, "Movimientos de Hielo ×1,2.", so => TypeBoost(so, "ice")),
-            P(ItemCategory.Held, "dragon_fang", "Colmillo Dragón", 3000, "Movimientos de Dragón ×1,2.", so => TypeBoost(so, "dragon")),
-            P(ItemCategory.Held, "poison_barb", "Flecha Venenosa", 3000, "Movimientos de Veneno ×1,2.", so => TypeBoost(so, "poison")),
-            P(ItemCategory.Held, "sharp_beak", "Pico Afilado", 3000, "Movimientos de Volador ×1,2.", so => TypeBoost(so, "flying")),
-            P(ItemCategory.Held, "silk_scarf", "Pañuelo Seda", 3000, "Movimientos de Normal ×1,2.", so => TypeBoost(so, "normal")),
-            P(ItemCategory.Held, "silver_powder", "Polvo Plata", 3000, "Movimientos de Bicho ×1,2.", so => TypeBoost(so, "bug")),
-            P(ItemCategory.Held, "soft_sand", "Arena Fina", 3000, "Movimientos de Tierra ×1,2.", so => TypeBoost(so, "ground")),
-            P(ItemCategory.Held, "spell_tag", "Hechizo", 3000, "Movimientos de Fantasma ×1,2.", so => TypeBoost(so, "ghost")),
-            P(ItemCategory.Held, "twisted_spoon", "Cuchara Torcida", 3000, "Movimientos de Psíquico ×1,2.", so => TypeBoost(so, "psychic")),
-            P(ItemCategory.Held, "muscle_band", "Cinta Fuerte", 3000, "Movimientos físicos ×1,1.",
-                so => HeldMod(so, 1.1f, new Condition(ConditionKind.MoveCategory, text: "Physical"))),
-            P(ItemCategory.Held, "wise_glasses", "Gafas Especiales", 3000, "Movimientos especiales ×1,1.",
-                so => HeldMod(so, 1.1f, new Condition(ConditionKind.MoveCategory, text: "Special"))),
-            P(ItemCategory.Held, "oran_berry", "Baya Aranja", 100, "Con la mitad de PS o menos, recupera 10 PS (se consume).",
-                so => { Held(so); Flt(so, "heldTriggerHpPercent", 50); Int(so, "heldTriggerHealHp", 10); Bool(so, "heldConsumedOnTrigger", true); }),
-            P(ItemCategory.Held, "sitrus_berry", "Baya Zidra", 200, "Con la mitad de PS o menos, recupera 1/4 de PS (se consume).",
-                so => { Held(so); Flt(so, "heldTriggerHpPercent", 50); Flt(so, "heldTriggerHealPercent", 25); Bool(so, "heldConsumedOnTrigger", true); }),
-            // ===== 5.ª y 6.ª gen.: objetos de COMPETICIÓN (los reparte la IA Maestro / Injusto) =====
-            P(ItemCategory.Held, "choice_band", "Cinta Elección", 4000, "Ataque ×1,5, pero solo puede usar el primer movimiento que elija hasta que se retire.",
-                so => { Held(so); Stats(so, "attack:x1,5"); Bool(so, "heldChoiceLock", true); }),
-            P(ItemCategory.Held, "choice_specs", "Gafas Elección", 4000, "Ataque Esp. ×1,5, pero solo puede usar el primer movimiento que elija.",
-                so => { Held(so); Stats(so, "sp_attack:x1,5"); Bool(so, "heldChoiceLock", true); }),
-            P(ItemCategory.Held, "choice_scarf", "Pañuelo Elección", 4000, "Velocidad ×1,5, pero solo puede usar el primer movimiento que elija.",
-                so => { Held(so); Stats(so, "speed:x1,5"); Bool(so, "heldChoiceLock", true); }),
-            P(ItemCategory.Held, "life_orb", "Vidasfera", 4000, "Sus ataques ×1,3, pero pierde 1/10 de sus PS cada vez que hace daño.",
-                so => { HeldMod(so, 1.3f); Flt(so, "heldAttackRecoilPercent", 10f); }),
-            P(ItemCategory.Held, "focus_sash", "Banda Focus", 4000, "Con los PS al máximo, aguanta con 1 PS un golpe que le debilitaría (se gasta).",
-                so => { Held(so); Bool(so, "heldSurviveFromFullHp", true); }),
-            P(ItemCategory.Held, "assault_vest", "Chaleco Asalto", 4000, "Def. Esp. ×1,5, pero no puede usar movimientos de estado.",
-                so => { Held(so); Stats(so, "sp_defense:x1,5"); Bool(so, "heldBlocksStatusMoves", true); }),
-            P(ItemCategory.Held, "rocky_helmet", "Casco Dentado", 4000, "Quien le golpea con contacto pierde 1/6 de sus PS.",
-                so => { Held(so); Flt(so, "heldContactDamagePercent", 16.67f); }),
-            P(ItemCategory.Held, "weakness_policy", "Seguro Debilidad", 4000, "Si recibe un golpe muy eficaz: Ataque y Ataque Esp. +2 (se gasta).",
-                so => { Held(so); OnHit(so, "attack:+2 [si propio.eficacia>1] | sp_attack:+2 [si propio.eficacia>1]"); Bool(so, "heldOnHitConsumed", true); }),
-            P(ItemCategory.Held, "air_balloon", "Globo Helio", 4000, "Inmune a Tierra hasta que le golpean (entonces revienta).",
-                so => { Held(so); Bool(so, "heldAirBalloon", true); }),
-            P(ItemCategory.Held, "expert_belt", "Cinta Experto", 4000, "Sus golpes muy eficaces hacen ×1,2.",
-                so => { Held(so); Flt(so, "heldSuperEffectiveBoost", 1.2f); }),
-            P(ItemCategory.Held, "eviolite", "Mineral Evolutivo", 4000, "Defensa y Def. Esp. ×1,5 si aún puede evolucionar.",
-                so => { Held(so); Stats(so, "defense:x1,5 [si propio.puede_evolucionar] | sp_defense:x1,5 [si propio.puede_evolucionar]"); }),
-            P(ItemCategory.Held, "black_sludge", "Lodo Negro", 4000, "Si es de tipo Veneno recupera 1/16 de PS por turno; si no, pierde 1/8.",
-                so => { Held(so); Bool(so, "heldBlackSludge", true); }),
-            P(ItemCategory.Held, "flame_orb", "Llamasfera", 4000, "Al final del turno le quema (útil con Agallas).",
-                so => { Held(so); Str(so, "heldSelfStatusEndOfTurn", "burn"); }),
-            P(ItemCategory.Held, "toxic_orb", "Toxisfera", 4000, "Al final del turno le envenena gravemente (útil con Antídoto / Ímpetu Tóxico).",
-                so => { Held(so); Str(so, "heldSelfStatusEndOfTurn", "toxic"); }),
-            P(ItemCategory.Held, "lum_berry", "Baya Ziuela", 200, "Se cura de cualquier estado en cuanto lo sufre (se consume).",
-                so => { Held(so); Bool(so, "heldCuresAnyStatus", true); }),
-            P(ItemCategory.Held, "scope_lens", "Periscopio", 4000, "Sube el índice de crítico.",
-                so => { Held(so); Int(so, "heldCritStageBonus", 1); }),
-            P(ItemCategory.Held, "wide_lens", "Lupa", 4000, "Precisión de sus movimientos ×1,1.",
-                so => { Held(so); Flt(so, "heldAccuracyMultiplier", 1.1f); }),
-            P(ItemCategory.Held, "bright_powder", "Polvo Brillo", 4000, "Los que le atacan tienen precisión ×0,9.",
-                so => { Held(so); Flt(so, "heldEvasionMultiplier", 0.9f); }),
-            P(ItemCategory.Held, "quick_claw", "Garra Rápida", 4000, "20 % de actuar el primero dentro de su prioridad.",
-                so => { Held(so); Flt(so, "heldQuickClawChance", 20f); }),
-            P(ItemCategory.Held, "shell_bell", "Campana Concha", 4000, "Recupera 1/8 del daño que hace.",
-                so => { Held(so); Flt(so, "heldHealOnDamagePercent", 12.5f); }),
-            P(ItemCategory.Held, "damp_rock", "Roca Lluvia", 4000, "Su lluvia dura 3 turnos más.", so => { Held(so); Int(so, "heldWeatherTurnsBonus", 3); }),
-            P(ItemCategory.Held, "heat_rock", "Roca Calor", 4000, "Su sol dura 3 turnos más.", so => { Held(so); Int(so, "heldWeatherTurnsBonus", 3); }),
-            P(ItemCategory.Held, "smooth_rock", "Roca Lisa", 4000, "Su tormenta de arena dura 3 turnos más.", so => { Held(so); Int(so, "heldWeatherTurnsBonus", 3); }),
-            P(ItemCategory.Held, "icy_rock", "Roca Helada", 4000, "Su granizo dura 3 turnos más.", so => { Held(so); Int(so, "heldWeatherTurnsBonus", 3); }),
-            P(ItemCategory.Held, "light_clay", "Refleluz", 4000, "Sus pantallas (Reflejo, Pantalla de Luz) duran 3 turnos más.", so => { Held(so); Int(so, "heldScreenTurnsBonus", 3); }),
-            P(ItemCategory.Held, "pixie_plate", "Tabla Duende", 4000, "Movimientos de Hada ×1,2.", so => TypeBoost(so, "fairy")),
-            // Bayas de resistencia: un golpe muy eficaz de su tipo hace la mitad (se consumen).
-            Berry("occa_berry", "Baya Caoca", "fire", "Fuego"), Berry("passho_berry", "Baya Pasio", "water", "Agua"),
-            Berry("wacan_berry", "Baya Gualot", "electric", "Eléctrico"), Berry("rindo_berry", "Baya Tamar", "grass", "Planta"),
-            Berry("yache_berry", "Baya Rimoya", "ice", "Hielo"), Berry("chople_berry", "Baya Pomaro", "fighting", "Lucha"),
-            Berry("kebia_berry", "Baya Kebia", "poison", "Veneno"), Berry("shuca_berry", "Baya Acardo", "ground", "Tierra"),
-            Berry("coba_berry", "Baya Kouba", "flying", "Volador"), Berry("payapa_berry", "Baya Payapa", "psychic", "Psíquico"),
-            Berry("tanga_berry", "Baya Yecana", "bug", "Bicho"), Berry("charti_berry", "Baya Alcho", "rock", "Roca"),
-            Berry("kasib_berry", "Baya Drasi", "ghost", "Fantasma"), Berry("haban_berry", "Baya Anjiro", "dragon", "Dragón"),
-            Berry("colbur_berry", "Baya Dillo", "dark", "Siniestro"), Berry("babiri_berry", "Baya Baribá", "steel", "Acero"),
-            Berry("roseli_berry", "Baya Hibis", "fairy", "Hada"), Berry("chilan_berry", "Baya Chilan", "normal", "Normal"),
-            // 5.ª y 6.ª gen.: objetos que hacen evolucionar al intercambiarse llevándolos
-            P(ItemCategory.Held, "prism_scale", "Escama Bella", 2000, "Llevándola al intercambiarse: Feebas evoluciona.", Held),
-            P(ItemCategory.Held, "whipped_dream", "Dulce de Nata", 2000, "Llevándolo al intercambiarse: Swirlix evoluciona.", Held),
-            P(ItemCategory.Held, "sachet", "Saquito Fragante", 2000, "Llevándolo al intercambiarse: Spritzee evoluciona.", Held),
-            // Amistad
-            P(ItemCategory.Vitamin, "pomeg_berry", "Baya Grana", 100, "Sube la amistad.", so => { Bool(so, "usableInBattle", false); Int(so, "friendshipChange", 10); }),
-        };
+        private static Preset[] _library;
+        private static DateTime _libraryStamp;
+        private static double _libraryCheckedAt = -10;
 
-        /// <summary>Deja la ficha "en blanco" (sin efectos) antes de aplicar una plantilla.</summary>
-        private static void Reset(SerializedObject so)
+        /// <summary>Los objetos clásicos (se vuelven a leer si la hoja cambia).</summary>
+        public static Preset[] Library
         {
-            so.FindProperty("effects").arraySize = 0;
-            so.FindProperty("isBerry").boolValue = false;
-            ItemEffectsEditing.ClearLegacy(so);
-            Bool(so, "usableInBattle", true); Bool(so, "usableOutsideBattle", true); Bool(so, "consumable", true);
+            get
+            {
+                double now = EditorApplication.timeSinceStartup;
+                if (_library != null && now - _libraryCheckedAt < 2) return _library;   // se mira el archivo como mucho cada 2 s
+                _libraryCheckedAt = now;
+                string full = System.IO.Path.GetFullPath(LibraryPath);
+                var stamp = System.IO.File.Exists(full) ? System.IO.File.GetLastWriteTimeUtc(full) : DateTime.MinValue;
+                if (_library != null && stamp == _libraryStamp) return _library;
+                _libraryStamp = stamp;
+                _library = LoadLibrary(full);
+                return _library;
+            }
         }
 
+        private static Preset[] LoadLibrary(string path)
+        {
+            var list = new List<Preset>();
+            if (!System.IO.File.Exists(path)) { Debug.LogWarning("No encuentro la hoja de objetos clásicos: " + LibraryPath); return list.ToArray(); }
+            string Cell(Dictionary<string, string> r, string k) => r.TryGetValue(k, out var v) ? (v ?? "").Trim() : "";
+            bool Yes(string v) => v == "si" || v == "sí" || v == "true" || v == "1";
+            foreach (var r in Csv.CsvTable.Load(path).Rows)
+            {
+                string id = Cell(r, "id");
+                if (id.Length == 0) continue;
+                Enum.TryParse(Cell(r, "categoria"), true, out ItemCategory cat);
+                int.TryParse(Cell(r, "precio"), out int price);
+                list.Add(new Preset
+                {
+                    Id = id, Name = Cell(r, "nombre"), EnglishName = Cell(r, "nombre_en"), Summary = Cell(r, "descripcion"), Cat = cat,
+                    Price = price, InBattle = Yes(Cell(r, "en_combate")), Outside = Yes(Cell(r, "fuera_combate")),
+                    Consumable = Yes(Cell(r, "se_gasta")), IsBerry = Yes(Cell(r, "es_baya")), EffectsText = Cell(r, "efectos"),
+                });
+            }
+            return list.ToArray();
+        }
+
+        /// <summary>Pone en la ficha los datos y los efectos de un objeto clásico (el id no se toca).</summary>
         public static void Fill(SerializedObject so, Preset p)
         {
-            Reset(so);
             so.FindProperty("category").intValue = (int)p.Cat;
             so.FindProperty("price").intValue = p.Price;
             so.FindProperty("description").stringValue = p.Summary;
-            p.Fill(so);
-            // The presets are written with the classic fields; they become EFFECT BLOCKS right away (same behaviour).
-            so.ApplyModifiedPropertiesWithoutUndo();
-            so.Update();
-            var d = (ItemData)so.targetObject;
-            var blocks = CTEditor.GameDefinition.Infrastructure.Acl.ItemMapper.LegacyBlocks(d);
+            if (p.EnglishName.Length > 0) so.FindProperty("englishName").stringValue = p.EnglishName;
+            so.FindProperty("usableInBattle").boolValue = p.InBattle;
+            so.FindProperty("usableOutsideBattle").boolValue = p.Outside;
+            so.FindProperty("consumable").boolValue = p.Consumable;
+            so.FindProperty("isBerry").boolValue = p.IsBerry;
+            List<EffectBlock> blocks;
+            try { blocks = EffectText.Parse(p.EffectsText); }
+            catch (FormatException e) { Debug.LogError($"Plantilla de objeto '{p.Id}': {e.Message}"); blocks = new List<EffectBlock>(); }
             ItemEffectsEditing.SetBlocks(so, blocks);
-            so.FindProperty("isBerry").boolValue = ItemLegacy.LooksLikeBerry(blocks);
         }
-
-        private static void Int(SerializedObject so, string f, int v) => so.FindProperty(f).intValue = v;
-        private static void Flt(SerializedObject so, string f, float v) => so.FindProperty(f).floatValue = v;
-        private static void Bool(SerializedObject so, string f, bool v) => so.FindProperty(f).boolValue = v;
-        private static void Str(SerializedObject so, string f, string v) => so.FindProperty(f).stringValue = v;
-        private static void Ball(SerializedObject so, float m) { Flt(so, "catchMultiplier", m); Bool(so, "usableOutsideBattle", false); }
-        private static void Stone(SerializedObject so) { Bool(so, "usableInBattle", false); }
-        private static void Boost(SerializedObject so, string stat) { Str(so, "battleStatId", stat); Int(so, "battleStages", 2); Bool(so, "usableOutsideBattle", false); }
-        private static void Held(SerializedObject so) { Bool(so, "usableInBattle", false); Bool(so, "usableOutsideBattle", false); Bool(so, "consumable", false); }
-        private static void HeldMod(SerializedObject so, float mult, params Condition[] c)
-        {
-            Held(so);
-            ConditionText.WriteModifiers(so.FindProperty("heldPowerModifiers"), new List<(float, Condition[])> { (mult, c) });
-        }
-        private static void TypeBoost(SerializedObject so, string type) => HeldMod(so, 1.2f, new Condition(ConditionKind.MoveType, text: type));
-        // Estadísticas con condiciones ("attack:x1,5 | defense:x1,5 [si propio.puede_evolucionar]") y cambios al recibir golpe.
-        private static void Stats(SerializedObject so, string text) => Csv.CsvSchemas.WriteStatMods(so, text, "heldStatMultipliers");
-        private static void OnHit(SerializedObject so, string text) => Csv.CsvSchemas.WriteOnHit(so, text, "heldOnHitStats");
-        private static Preset Berry(string id, string name, string type, string typeName)
-            => P(ItemCategory.Held, id, name, 200, type == "normal"
-                    ? $"El primer golpe de tipo {typeName} que recibe hace la mitad (se consume)."
-                    : $"El primer golpe MUY EFICAZ de tipo {typeName} que recibe hace la mitad (se consume).",
-                so => { Held(so); Str(so, "heldResistBerryType", type); });
 
         /// <summary>Crea los objetos clásicos que falten. Público: lo usa el Centro de Contenido.</summary>
         public static int CreateClassicSet()
@@ -315,6 +172,8 @@ namespace CTEditor.GameDefinition.Editor
 
         protected override void DrawPresets(ItemData d)
         {
+            if (Library.Length == 0) return;
+            _preset = Mathf.Clamp(_preset, 0, Library.Length - 1);
             EditorGUILayout.LabelField("Plantilla (reemplaza los efectos; el id se mantiene)", EditorStyles.boldLabel);
             var labels = Library.Select(p => $"{NameOf(p.Cat)}/{p.Name}").ToArray();
             EditorGUILayout.BeginHorizontal();

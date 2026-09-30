@@ -13,11 +13,11 @@ Un pack = una generación **fiel a sí misma**, en hojas CSV + `INFORME.txt` (qu
 Contenido: 151/251/386/493/649/721 especies con los datos de su época (PokeAPI deshaciendo cambios posteriores),
 movimientos con tipo/potencia/precisión/PP/prioridad de entonces (categoría por tipo hasta la 3.ª), aprendizaje de su
 juego de referencia + MT/tutor/huevo, habilidades (3.ª+, ocultas 5.ª+), tabla de tipos de la generación, objetos
-(salvo MT y los que ya tienen efecto en las plantillas), entrenadores de los juegos, formas y variantes, **48 megas**
+(salvo MT) **con todos sus efectos** (los de `Assets/GameContent/Plantillas/objetos.csv`), entrenadores de los juegos, formas y variantes, **48 megas**
 con su megapiedra (Gen6), nombres en inglés (`nombre_en`) y sets de Smogon.
 
 **Importar**: Centro de Contenido → Pack → «📦 Importar». Primero se crea la base que el pack no trae desde las
-plantillas del código (estados, climas, efectos de lado, trampas, objetos con efecto, Forcejeo, curvas, menús,
+plantillas del código (estados, climas, efectos de lado, trampas, Forcejeo, curvas, menús,
 controles, niveles de IA); **si el pack trae la hoja de una categoría, manda el pack**. Para pasar TODO el proyecto a
 otra generación: Herramientas → **Cambiar de generación** ([11](11-editor.md)).
 

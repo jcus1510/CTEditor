@@ -1,0 +1,136 @@
+﻿id;nombre;nombre_en;descripcion;categoria;precio;en_combate;fuera_combate;se_gasta;es_baya;efectos
+potion;Poción;;Cura 20 PS.;Medicine;200;si;si;si;no;al_usar: curar 20
+super_potion;Superpoción;;Cura 60 PS.;Medicine;700;si;si;si;no;al_usar: curar 60
+hyper_potion;Hiperpoción;;Cura 120 PS.;Medicine;1500;si;si;si;no;al_usar: curar 120
+max_potion;Poción Máxima;;Cura todos los PS.;Medicine;2500;si;si;si;no;al_usar: curar 100%
+full_restore;Restaurar Todo;;Cura todos los PS y cualquier estado.;Medicine;3000;si;si;si;no;al_usar: curar 100% | al_usar: curar_estado
+revive;Revivir;;Revive con la mitad de los PS.;Revive;2000;si;si;si;no;al_usar: revivir 50%
+max_revive;Revivir Máximo;;Revive con todos los PS.;Revive;4000;si;si;si;no;al_usar: revivir 100%
+antidote;Antídoto;;Cura el envenenamiento.;StatusCure;100;si;si;si;no;al_usar: curar_estado poison,toxic
+burn_heal;Antiquemar;;Cura las quemaduras.;StatusCure;300;si;si;si;no;al_usar: curar_estado burn
+paralyze_heal;Antiparalizador;;Cura la parálisis.;StatusCure;300;si;si;si;no;al_usar: curar_estado paralysis
+awakening;Despertar;;Despierta.;StatusCure;250;si;si;si;no;al_usar: curar_estado sleep
+ice_heal;Antihielo;;Descongela.;StatusCure;250;si;si;si;no;al_usar: curar_estado freeze
+full_heal;Cura Total;;Cura cualquier estado.;StatusCure;400;si;si;si;no;al_usar: curar_estado
+ether;Éter;;Recupera 10 PP de un movimiento.;PpRestore;1200;si;si;si;no;al_usar: pp 10
+max_ether;Éter Máximo;;Recupera todos los PP de un movimiento.;PpRestore;2000;si;si;si;no;al_usar: pp 999
+elixir;Elixir;;Recupera 10 PP de todos los movimientos.;PpRestore;3000;si;si;si;no;al_usar: pp_todos 10
+max_elixir;Elixir Máximo;;Recupera todos los PP de todos los movimientos.;PpRestore;4500;si;si;si;no;al_usar: pp_todos 999
+poke_ball;Poké Ball;;Bola básica (×1).;Ball;200;si;no;si;no;al_usar: captura x1
+great_ball;Super Ball;;Mejor que la Poké Ball (×1,5).;Ball;600;si;no;si;no;al_usar: captura x1,5
+ultra_ball;Ultra Ball;;Muy buena (×2).;Ball;800;si;no;si;no;al_usar: captura x2
+master_ball;Master Ball;;Captura siempre.;Ball;0;si;no;si;no;al_usar: captura x255
+fire_stone;Piedra Fuego;;Hace evolucionar a ciertas especies.;Evolution;3000;no;si;si;no;
+water_stone;Piedra Agua;;Hace evolucionar a ciertas especies.;Evolution;3000;no;si;si;no;
+thunder_stone;Piedra Trueno;;Hace evolucionar a ciertas especies.;Evolution;3000;no;si;si;no;
+leaf_stone;Piedra Hoja;;Hace evolucionar a ciertas especies.;Evolution;3000;no;si;si;no;
+moon_stone;Piedra Lunar;;Hace evolucionar a ciertas especies.;Evolution;3000;no;si;si;no;
+sun_stone;Piedra Solar;;Hace evolucionar a ciertas especies (Gloom, Sunkern).;Evolution;3000;no;si;si;no;
+kings_rock;Roca del Rey;;Sus ataques pueden hacer retroceder (10 %). Llevándolo al intercambiarse: Slowpoke y Poliwhirl evolucionan.;Held;5000;no;no;no;no;"al_hacer_daño: retroceso; prob=10"
+metal_coat;Revestimiento Metálico;;Movimientos de Acero ×1,2. Llevándolo al intercambiarse: Onix y Scyther evolucionan.;Held;2000;no;no;no;no;siempre [si mov.tipo=steel]: potencia x1,2
+dragon_scale;Escama Dragón;;Llevándolo al intercambiarse: Seadra evoluciona.;Held;2000;no;no;no;no;
+up_grade;Mejora;;Llevándolo al intercambiarse: Porygon evoluciona.;Held;2000;no;no;no;no;
+dusk_stone;Piedra Noche;;Hace evolucionar a Murkrow, Misdreavus...;Evolution;3000;no;si;si;no;
+shiny_stone;Piedra Día;;Hace evolucionar a Togetic, Roselia...;Evolution;3000;no;si;si;no;
+dawn_stone;Piedra Alba;;Hace evolucionar a Kirlia macho y Snorunt hembra.;Evolution;3000;no;si;si;no;
+oval_stone;Piedra Oval;;Llevándola al subir de nivel de día: Happiny evoluciona.;Held;2000;no;no;no;no;
+razor_claw;Garra Afilada;;Sube el índice de crítico. Llevándola al subir de nivel de noche: Sneasel evoluciona.;Held;2000;no;no;no;no;siempre: critico +1
+razor_fang;Colmillo Agudo;;Sus ataques pueden hacer retroceder (10 %). Llevándolo al subir de nivel de noche: Gligar evoluciona.;Held;2000;no;no;no;no;"al_hacer_daño: retroceso; prob=10"
+protector;Protector;;Llevándolo al intercambiarse: Rhydon evoluciona.;Held;2000;no;no;no;no;
+electirizer;Electrizador;;Llevándolo al intercambiarse: Electabuzz evoluciona.;Held;2000;no;no;no;no;
+magmarizer;Magmatizador;;Llevándolo al intercambiarse: Magmar evoluciona.;Held;2000;no;no;no;no;
+dubious_disc;Disco Extraño;;Llevándolo al intercambiarse: Porygon2 evoluciona.;Held;2000;no;no;no;no;
+reaper_cloth;Tela Terrible;;Llevándola al intercambiarse: Dusclops evoluciona.;Held;2000;no;no;no;no;
+deep_sea_tooth;Diente Marino;;Llevándolo al intercambiarse: Clamperl evoluciona a Huntail.;Held;2000;no;no;no;no;
+deep_sea_scale;Escama Marina;;Llevándola al intercambiarse: Clamperl evoluciona a Gorebyss.;Held;2000;no;no;no;no;
+x_attack;Ataque X;;+2 al Ataque durante el combate.;BattleBoost;1000;si;no;si;no;al_usar: etapa attack +2
+x_defense;Defensa X;;+2 a la Defensa.;BattleBoost;2000;si;no;si;no;al_usar: etapa defense +2
+x_sp_atk;Ataque Esp. X;;+2 al Ataque Especial.;BattleBoost;1000;si;no;si;no;al_usar: etapa sp_attack +2
+x_sp_def;Defensa Esp. X;;+2 a la Defensa Especial.;BattleBoost;2000;si;no;si;no;al_usar: etapa sp_defense +2
+x_speed;Velocidad X;;+2 a la Velocidad.;BattleBoost;1000;si;no;si;no;al_usar: etapa speed +2
+x_accuracy;Precisión X;;+2 a la Precisión.;BattleBoost;1000;si;no;si;no;al_usar: etapa accuracy +2
+leftovers;Restos;;Recupera 1/16 de PS cada turno.;Held;4000;no;no;no;no;fin_de_turno: curar 6,25%
+charcoal;Carbón;;Movimientos de Fuego ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=fire]: potencia x1,2
+mystic_water;Agua Mística;;Movimientos de Agua ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=water]: potencia x1,2
+miracle_seed;Semilla Milagro;;Movimientos de Planta ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=grass]: potencia x1,2
+magnet;Imán;;Movimientos de Eléctrico ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=electric]: potencia x1,2
+black_belt;Cinturón Negro;;Movimientos de Lucha ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=fighting]: potencia x1,2
+black_glasses;Gafas de Sol;;Movimientos de Siniestro ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=dark]: potencia x1,2
+hard_stone;Piedra Dura;;Movimientos de Roca ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=rock]: potencia x1,2
+never_melt_ice;Antiderretir;;Movimientos de Hielo ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=ice]: potencia x1,2
+dragon_fang;Colmillo Dragón;;Movimientos de Dragón ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=dragon]: potencia x1,2
+poison_barb;Flecha Venenosa;;Movimientos de Veneno ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=poison]: potencia x1,2
+sharp_beak;Pico Afilado;;Movimientos de Volador ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=flying]: potencia x1,2
+silk_scarf;Pañuelo Seda;;Movimientos de Normal ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=normal]: potencia x1,2
+silver_powder;Polvo Plata;;Movimientos de Bicho ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=bug]: potencia x1,2
+soft_sand;Arena Fina;;Movimientos de Tierra ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=ground]: potencia x1,2
+spell_tag;Hechizo;;Movimientos de Fantasma ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=ghost]: potencia x1,2
+twisted_spoon;Cuchara Torcida;;Movimientos de Psíquico ×1,2.;Held;3000;no;no;no;no;siempre [si mov.tipo=psychic]: potencia x1,2
+muscle_band;Cinta Fuerte;;Movimientos físicos ×1,1.;Held;3000;no;no;no;no;siempre [si mov.categoria=fisico]: potencia x1,1
+wise_glasses;Gafas Especiales;;Movimientos especiales ×1,1.;Held;3000;no;no;no;no;siempre [si mov.categoria=especial]: potencia x1,1
+oran_berry;Baya Aranja;;Con la mitad de PS o menos, recupera 10 PS (se consume).;Berry;100;no;no;no;si;"poca_vida@50: curar 10; se_gasta"
+sitrus_berry;Baya Zidra;;Con la mitad de PS o menos, recupera 1/4 de PS (se consume).;Berry;200;no;no;no;si;"poca_vida@50: curar 25%; se_gasta"
+choice_band;Cinta Elección;;Ataque ×1,5, pero solo puede usar el primer movimiento que elija hasta que se retire.;Held;4000;no;no;no;no;siempre: stat attack x1,5 | siempre: eleccion
+choice_specs;Gafas Elección;;Ataque Esp. ×1,5, pero solo puede usar el primer movimiento que elija.;Held;4000;no;no;no;no;siempre: stat sp_attack x1,5 | siempre: eleccion
+choice_scarf;Pañuelo Elección;;Velocidad ×1,5, pero solo puede usar el primer movimiento que elija.;Held;4000;no;no;no;no;siempre: stat speed x1,5 | siempre: eleccion
+life_orb;Vidasfera;;Sus ataques ×1,3, pero pierde 1/10 de sus PS cada vez que hace daño.;Held;4000;no;no;no;no;siempre: potencia x1,3 | al_hacer_daño: perder 10%
+focus_sash;Banda Focus;;Con los PS al máximo, aguanta con 1 PS un golpe que le debilitaría (se gasta).;Held;4000;no;no;no;no;"antes_de_golpe [si propio.vida>=100]: aguantar; se_gasta"
+assault_vest;Chaleco Asalto;;Def. Esp. ×1,5, pero no puede usar movimientos de estado.;Held;4000;no;no;no;no;siempre: stat sp_defense x1,5 | siempre: sin_movs_estado
+rocky_helmet;Casco Dentado;;Quien le golpea con contacto pierde 1/6 de sus PS.;Held;4000;no;no;no;no;"contacto: perder 16,67%; al_rival"
+weakness_policy;Seguro Debilidad;;Si recibe un golpe muy eficaz: Ataque y Ataque Esp. +2 (se gasta).;Held;4000;no;no;no;no;"tras_golpe [si propio.eficacia>1]: etapa attack +2; se_gasta | tras_golpe [si propio.eficacia>1]: etapa sp_attack +2; se_gasta"
+air_balloon;Globo Helio;;Inmune a Tierra hasta que le golpean (entonces revienta).;Held;4000;no;no;no;no;"siempre: inmune ground | tras_golpe: gastar; se_gasta"
+expert_belt;Cinta Experto;;Sus golpes muy eficaces hacen ×1,2.;Held;4000;no;no;no;no;siempre [si rival.eficacia>1]: daño x1,2
+eviolite;Mineral Evolutivo;;Defensa y Def. Esp. ×1,5 si aún puede evolucionar.;Held;4000;no;no;no;no;siempre [si propio.puede_evolucionar]: stat defense x1,5 | siempre [si propio.puede_evolucionar]: stat sp_defense x1,5
+black_sludge;Lodo Negro;;"Si es de tipo Veneno recupera 1/16 de PS por turno; si no, pierde 1/8.";Held;4000;no;no;no;no;fin_de_turno [si propio.tipo=poison]: curar 6,25% | fin_de_turno [si !propio.tipo=poison]: perder 12,5%
+flame_orb;Llamasfera;;Al final del turno le quema (útil con Agallas).;Held;4000;no;no;no;no;fin_de_turno: poner_estado burn
+toxic_orb;Toxisfera;;Al final del turno le envenena gravemente (útil con Antídoto / Ímpetu Tóxico).;Held;4000;no;no;no;no;fin_de_turno: poner_estado toxic
+lum_berry;Baya Ziuela;;Se cura de cualquier estado en cuanto lo sufre (se consume).;Berry;200;no;no;no;si;"al_sufrir_estado: curar_estado; se_gasta"
+scope_lens;Periscopio;;Sube el índice de crítico.;Held;4000;no;no;no;no;siempre: critico +1
+wide_lens;Lupa;;Precisión de sus movimientos ×1,1.;Held;4000;no;no;no;no;siempre: precision x1,1
+bright_powder;Polvo Brillo;;Los que le atacan tienen precisión ×0,9.;Held;4000;no;no;no;no;siempre: evasion x0,9
+quick_claw;Garra Rápida;;20 % de actuar el primero dentro de su prioridad.;Held;4000;no;no;no;no;"siempre: primero; prob=20"
+shell_bell;Campana Concha;;Recupera 1/8 del daño que hace.;Held;4000;no;no;no;no;al_hacer_daño: curar_del_daño 12,5%
+damp_rock;Roca Lluvia;;Su lluvia dura 3 turnos más.;Held;4000;no;no;no;no;siempre: clima rain +3
+heat_rock;Roca Calor;;Su sol dura 3 turnos más.;Held;4000;no;no;no;no;siempre: clima sun +3
+smooth_rock;Roca Lisa;;Su tormenta de arena dura 3 turnos más.;Held;4000;no;no;no;no;siempre: clima sandstorm +3
+icy_rock;Roca Helada;;Su granizo dura 3 turnos más.;Held;4000;no;no;no;no;siempre: clima hail +3
+light_clay;Refleluz;;Sus pantallas (Reflejo, Pantalla de Luz) duran 3 turnos más.;Held;4000;no;no;no;no;siempre: pantallas +3
+pixie_plate;Tabla Duende;;Movimientos de Hada ×1,2.;Held;4000;no;no;no;no;siempre [si mov.tipo=fairy]: potencia x1,2
+occa_berry;Baya Caoca;;El primer golpe MUY EFICAZ de tipo Fuego que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=fire & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+passho_berry;Baya Pasio;;El primer golpe MUY EFICAZ de tipo Agua que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=water & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+wacan_berry;Baya Gualot;;El primer golpe MUY EFICAZ de tipo Eléctrico que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=electric & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+rindo_berry;Baya Tamar;;El primer golpe MUY EFICAZ de tipo Planta que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=grass & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+yache_berry;Baya Rimoya;;El primer golpe MUY EFICAZ de tipo Hielo que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=ice & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+chople_berry;Baya Pomaro;;El primer golpe MUY EFICAZ de tipo Lucha que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=fighting & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+kebia_berry;Baya Kebia;;El primer golpe MUY EFICAZ de tipo Veneno que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=poison & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+shuca_berry;Baya Acardo;;El primer golpe MUY EFICAZ de tipo Tierra que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=ground & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+coba_berry;Baya Kouba;;El primer golpe MUY EFICAZ de tipo Volador que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=flying & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+payapa_berry;Baya Payapa;;El primer golpe MUY EFICAZ de tipo Psíquico que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=psychic & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+tanga_berry;Baya Yecana;;El primer golpe MUY EFICAZ de tipo Bicho que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=bug & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+charti_berry;Baya Alcho;;El primer golpe MUY EFICAZ de tipo Roca que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=rock & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+kasib_berry;Baya Drasi;;El primer golpe MUY EFICAZ de tipo Fantasma que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=ghost & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+haban_berry;Baya Anjiro;;El primer golpe MUY EFICAZ de tipo Dragón que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=dragon & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+colbur_berry;Baya Dillo;;El primer golpe MUY EFICAZ de tipo Siniestro que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=dark & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+babiri_berry;Baya Baribá;;El primer golpe MUY EFICAZ de tipo Acero que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=steel & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+roseli_berry;Baya Hibis;;El primer golpe MUY EFICAZ de tipo Hada que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=fairy & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+chilan_berry;Baya Chilan;;El primer golpe de tipo Normal que recibe hace la mitad (se consume).;Berry;200;no;no;no;si;"antes_de_golpe [si mov.tipo=normal]: daño_recibido x0,5; se_gasta"
+prism_scale;Escama Bella;;Llevándola al intercambiarse: Feebas evoluciona.;Held;2000;no;no;no;no;
+whipped_dream;Dulce de Nata;;Llevándolo al intercambiarse: Swirlix evoluciona.;Held;2000;no;no;no;no;
+sachet;Saquito Fragante;;Llevándolo al intercambiarse: Spritzee evoluciona.;Held;2000;no;no;no;no;
+pomeg_berry;Baya Grana;;Sube la amistad.;Vitamin;100;no;si;si;si;al_usar: amistad +10
+cheri_berry;Baya Zreza;Cheri Berry;Cura la parálisis en cuanto le afecta (se consume).;Berry;80;no;no;no;si;"al_sufrir_estado: curar_estado paralysis; se_gasta"
+chesto_berry;Baya Atania;Chesto Berry;Se despierta en cuanto se duerme (se consume).;Berry;80;no;no;no;si;"al_sufrir_estado: curar_estado sleep; se_gasta"
+pecha_berry;Baya Meloc;Pecha Berry;Cura el envenenamiento en cuanto le afecta (se consume).;Berry;80;no;no;no;si;"al_sufrir_estado: curar_estado poison,toxic; se_gasta"
+rawst_berry;Baya Safre;Rawst Berry;Cura las quemaduras en cuanto le afecta (se consume).;Berry;80;no;no;no;si;"al_sufrir_estado: curar_estado burn; se_gasta"
+aspear_berry;Baya Perasi;Aspear Berry;Cura la congelación en cuanto le afecta (se consume).;Berry;80;no;no;no;si;"al_sufrir_estado: curar_estado freeze; se_gasta"
+persim_berry;Baya Caquic;Persim Berry;Cura la confusión en cuanto le afecta (se consume).;Berry;80;no;no;no;si;"al_sufrir_estado: curar_estado confusion; se_gasta"
+liechi_berry;Baya Lichi;Liechi Berry;Con un cuarto de sus PS o menos, sube el Ataque (se consume).;Berry;80;no;no;no;si;"poca_vida@25: etapa attack +1; se_gasta"
+ganlon_berry;Baya Gonlan;Ganlon Berry;Con un cuarto de sus PS o menos, sube la Defensa (se consume).;Berry;80;no;no;no;si;"poca_vida@25: etapa defense +1; se_gasta"
+salac_berry;Baya Aslac;Salac Berry;Con un cuarto de sus PS o menos, sube la Velocidad (se consume).;Berry;80;no;no;no;si;"poca_vida@25: etapa speed +1; se_gasta"
+petaya_berry;Baya Yapati;Petaya Berry;Con un cuarto de sus PS o menos, sube el Ataque Especial (se consume).;Berry;80;no;no;no;si;"poca_vida@25: etapa sp_attack +1; se_gasta"
+apicot_berry;Baya Aricoc;Apicot Berry;Con un cuarto de sus PS o menos, sube la Defensa Especial (se consume).;Berry;80;no;no;no;si;"poca_vida@25: etapa sp_defense +1; se_gasta"
+figy_berry;Baya Higog;Figy Berry;Con la mitad de sus PS o menos, recupera 1/8 de sus PS (se consume).;Berry;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
+wiki_berry;Baya Wiki;Wiki Berry;Con la mitad de sus PS o menos, recupera 1/8 de sus PS (se consume).;Berry;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
+mago_berry;Baya Ango;Mago Berry;Con la mitad de sus PS o menos, recupera 1/8 de sus PS (se consume).;Berry;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
+aguav_berry;Baya Guaya;Aguav Berry;Con la mitad de sus PS o menos, recupera 1/8 de sus PS (se consume).;Berry;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
+iapapa_berry;Baya Pabaya;Iapapa Berry;Con la mitad de sus PS o menos, recupera 1/8 de sus PS (se consume).;Berry;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
