@@ -60,7 +60,8 @@ namespace CTEditor.GameDefinition.Editor
             }
         }
 
-        public static string NameOf(ItemCategory c) => Etiquetas.Enum(c.ToString());
+        // «Other» is also a target label («Rival») in Etiquetas: items need their own word.
+        public static string NameOf(ItemCategory c) => c == ItemCategory.Other ? "Otros" : Etiquetas.Enum(c.ToString());
 
         // ---------------- Biblioteca clásica ----------------
 
