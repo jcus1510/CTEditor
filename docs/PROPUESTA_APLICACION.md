@@ -175,21 +175,30 @@ ficha con **línea de visión** dibujada, plantillas (enfermera, tendero, profes
 - Validador y «¿quién usa esto?» para mapas, NPC, interruptores y eventos.
 - Diálogos exportables a Excel (traducción).
 
-## 8. Fases
+## 8. Fases (replanteadas tras la fase 4)
 
-| Fase | Qué | Resultado visible |
+**Decisiones de la cuarta ronda:** capas **automáticas + manuales**; **mundo continuo** para exteriores + interiores con
+puertas; eventos con **las cuatro formas** (recetas arrastrables, bloques en lista, grafo de nodos y guion de
+diálogos, todas sobre el mismo modelo); orden **Mundo → Juego jugable → Eventos**.
+
+**Principio:** el usuario dice QUÉ quiere que pase; el editor se encarga de CÓMO. Se copia de RPG Maker lo que la gente
+ya conoce y se mejora donde algo cuesta.
+
+| Fase | Qué | Mejora sobre RPG Maker / Maker Studio |
 |---|---|---|
-| **0** | Carpeta de proyecto, lector PNG puro, catálogo de recursos | Tests (sin Unity) |
-| **1** | Corte de tilesets y hojas de personaje (tamaño, desplazamiento, separación, vacíos, repetidos, sugerencia) | Tests |
-| **2** | Esqueleto de la aplicación (UI Toolkit): abrir proyecto, panel de recursos, **asistente de corte** | Primera ventana de la aplicación |
-| **3** | Modelo de mapa + **editor de mapas** (capas, pincel, paso, terreno) + **▶ Jugar / Probar aquí** | Pintar y pasear |
-| **4** | **Editor de píxeles** (lápiz, relleno, colores, modo tile, retocar desde el mapa) | Retocar y ver al momento |
-| **5** | Conexiones, teletransportes, zonas de encuentro, vista del mundo | Un mundo recorrible con combates |
-| **6** | NPC, movimiento, entrenadores con visión | Mapas con vida |
-| **7** | Eventos: modelo de grafo + intérprete + editor (lista y nodos) | Historias |
-| **8** | Recetas, mapa de la historia, depurador, validador | Lo que nadie más tiene |
-| **9** | Importadores (RPG Maker XP / Essentials, Tiled) | Atraer proyectos existentes |
-| **10** | Pasar los editores antiguos a la aplicación, uno a uno | Todo en la aplicación |
+| 0-4 ✅ | Proyecto, corte, aplicación, mapas, jugar, retoque | — |
+| **5 · Comodidad base** | Buscador de órdenes (Ctrl+P), panel **Problemas** siempre al día (clic = ir al sitio), **historial de versiones** local («volver a como estaba ayer»), **jugar en un panel** con cambios en vivo, **perfiles de prueba** (equipo, medallas, objetos) | Nadie lo tiene junto; es la red de seguridad de quien no programa |
+| **6 · El mundo** | **Mundo continuo** (exteriores en un lienzo, sin cargas) + interiores; **puertas que se enlazan solas**; zonas de encuentro pintadas; **capas automáticas** (según la prioridad y el tipo de tile) con capas manuales opcionales; **pinceles de terreno** (orillas solas), **pincel aleatorio** con pesos; **piezas reutilizables** (casa, árbol grande) | Construir un mapa es colocar cosas, no pelear con capas y bordes |
+| **7 · Juego jugable** | Combates dentro de la aplicación (motor existente), menús (equipo, mochila, Pokédex, guardar), Centro, tienda, pantalla de título, partida guardada | Una partida de principio a fin sin salir del editor |
+| **8 · Personajes y eventos** | NPC con rutas dibujadas, entrenadores con visión; eventos con **un solo modelo** y cuatro vistas: **recetas arrastrables** (puerta, cartel, objeto oculto, entrenador, enfermera, tienda, líder), **bloques «cuándo / si / qué»** (los de objetos y habilidades), **grafo de nodos**, **guion de diálogos** (`Profesor: ¡Hola!`) que se convierte en nodos y al revés; interruptores con nombre creados solos; **mapa de la historia** | El mismo sistema en todo el editor; escribir historia como un guion |
+| **9 · Cinemáticas y depurador** | Línea de tiempo (cámara, movimientos, esperas), pausar en un nodo mientras se juega, paso a paso, ver y cambiar interruptores | Depurar sin mensajes de prueba |
+| **10 · Importador Essentials** | Mapas, tilesets, autotiles, eventos básicos y PBS | Traer los proyectos que ya existen |
+| **11 · Exportar Windows** | Motor listo + datos empaquetados con cifrado opcional, nombre e icono | Publicar sin Unity |
+| **12 · Base de datos en la aplicación** | Especies, movimientos, objetos, habilidades, entrenadores… | Todo en un solo programa |
+| Después | Idiomas del juego, Web y Android, exportar a proyecto Unity, proyecto de ejemplo y guía de primeros pasos, tienda de módulos | — |
+
+**Cada fase, por capas (DDD):** dominio puro con tests → caso de uso en `Editing` → repositorio en `Project` → panel
+registrado en la aplicación ([03](03-arquitectura.md)).
 
 ## 9. Hecho hasta ahora
 
@@ -207,4 +216,4 @@ ficha con **línea de visión** dibujada, plantillas (enfermera, tendero, profes
 - **Fase 3**: árbol de mapas, editor de mapas con herramientas y deshacer, propiedades de tile pintadas sobre el tileset,
   capas, propiedades del mapa, inicio del jugador, autoguardado y **▶ Jugar / Probar aquí** con el jugador andando.
 - **Fase 4**: editor de píxeles Retoque con modo tile y retoque desde el mapa, Tiles y Recursos.
-- **Siguiente**: fase 5 (conexiones entre mapas, teletransportes, zonas de encuentro pintadas, vista del mundo).
+- **Siguiente**: fase 5 (comodidad base), según el plan replanteado de la sección 8.

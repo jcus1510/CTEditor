@@ -20,5 +20,6 @@
   ▶ jugar al instante, editor de píxeles, NPC y eventos por nodos ([PROPUESTA_APLICACION](PROPUESTA_APLICACION.md)).
   La aplicación ya abre y se pueden hacer mapas y jugarlos (fases 2-4): CTEditor → Aplicación → Abrir la aplicación
   ([20](20-aplicacion.md)). Arquitectura por capas de la aplicación y cómo añadir módulos: [03](03-arquitectura.md).
+  Plan de fases (5-12) en la sección 8 de la propuesta.
   Las generaciones quedan en pausa ([18](18-pendientes.md)).
 - **Migrar**: [19](19-migrar.md).
