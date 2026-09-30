@@ -22,20 +22,36 @@
   Escudo Real, Barrera Espinosa, Zona Extraña, Red Viscosa, Liofilización, Plancha, Mil Flechas...).
 • OBJETOS DE COMPETICIÓN (plantillas del editor de Objetos): Elección, Vidasfera, Banda Focus, Chaleco Asalto,
   Casco Dentado, Seguro Debilidad, Globo Helio, Mineral Evolutivo, Lodo Negro, esferas, bayas de resistencia...
-• 152 ENTRENADORES de Kanto, Johto, Hoenn, Sinnoh, Teselia y Kalos con su NIVEL DE IA:
-     nivel 1: 16 entrenadores
-     nivel 2: 21 entrenadores
-     nivel 3: 22 entrenadores
-     nivel 4: 55 entrenadores
-     nivel 5: 33 entrenadores
-     nivel 6: 3 entrenadores
-     nivel 7: 2 entrenadores
+• 181 ENTRENADORES con su NIVEL DE IA (curva de dificultad: fáciles al principio del viaje, difíciles al final):
+     nivel 1 (Novato): 17 entrenadores
+     nivel 2 (Aficionado): 22 entrenadores
+     nivel 3 (Veterano): 41 entrenadores
+     nivel 4 (Élite): 56 entrenadores
+     nivel 5 (Campeón): 29 entrenadores
+     nivel 6 (Maestro): 12 entrenadores
+     nivel 7 (Injusto): 4 entrenadores
   Los movimientos que no están escritos los elige su nivel de IA (MT desde Aficionado, tutor desde Veterano,
   huevo desde Élite, con sinergias). Cambia el nivel en la columna "nivel_ia" o en el editor de Entrenadores.
 
   Nivel 6 (Maestro): predice tus cambios, entrena a su equipo como en competición y recuerda lo que te vio.
   Nivel 7 (Injusto): conoce TODO tu equipo desde el principio (movimientos, IVs, EVs) y lleva objetos de competición.
-  Pruébalos con Benga (Torre Negra) y Dana (Palacio Batalla).
+
+  EQUIPOS DE COMPETICIÓN escritos a mano (movimientos, objeto, naturaleza e IVs 31) para los más fuertes:
+     Campeones (Azul, Lance, Plubio, Cintia; ahora nivel 6), Iris, Dianta, la Maestra de la Torre (6), Benga,
+     Dana y ROJO (7: jefe secreto, «Injusto»). Cada movimiento se comprobó contra lo que la especie puede
+     aprender en X/Y y Rubí Omega/Zafiro Alfa (PokeAPI). Ojo: las especies antiguas del pack aprenden según su
+     juego (Cristal, Esmeralda...), así que algún movimiento de estos sets no sale en su columna "mt"/"tutor";
+     es legal en la 6.ª gen. Los EVs los pone el nivel de IA (Maestro e Injusto: 252 en sus dos mejores stats).
+     Las habilidades no se eligen (salen al azar entre la 1.ª y la 2.ª), por eso ningún set depende de una.
+
+  ENTRENADORES NUEVOS:
+     • Ases del Frente de Batalla (nivel 6, a nivel 50): Rocío (arena y trampas), Leo (hiperofensivo),
+       Crono (Espacio Raro) y Petra (muralla: estados y desgaste).
+     • Laboratorio de IA: prueba_nivel_1 … prueba_nivel_7, el MISMO equipo (Garchomp, Metagross, Gyarados, Gengar,
+       Scizor y Togekiss a nivel 50) con cada nivel de IA. Úsalos en CTEditor → Pruebas → 🏆 Torneo de IAs para
+       comprobar que cada nivel gana al anterior, o para sentir la diferencia jugando.
+     • 18 Especialistas de tipo (nivel 3, niveles 42-46): cuatro especies finales no legendarias de su tipo,
+       que se pueden tener a ese nivel según su cadena evolutiva. Buenos para gimnasios o rutas de mitad de viaje.
 
 CÓMO SE IMPORTA (Centro de Contenido → «📦 Importar»)
   1. Base: lo que el pack referencia y no trae en sus hojas (estados como Escudo Real o Mofa, climas, efectos de lado
