@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: golbat
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 7e85960e09af29548b1a27ee87106cc6, type: 2}
     level: 28
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: magnemite
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 9f8050426d9ce95438006f82732fc8a8, type: 2}
     level: 30
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: haunter
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 3dbf17266b8c8fd4dbb56262d71fc03f, type: 2}
     level: 32
     moves: []
@@ -45,6 +57,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: sneasel
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 9f9deeb97b7ca744abc7151a909cec0f, type: 2}
     level: 34
     moves: []
@@ -52,7 +68,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: feraligatr
+    moveIds: []
+    natureId: 
   aiLevel: 3
+  aiProfileId: 
   ai: 1
   useItems: 1
   items:

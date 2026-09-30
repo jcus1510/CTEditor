@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: maestra_torre_ann
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: maestra_torre_ann
+  displayName: "Ana Mar\xEDa"
+  trainerClass: Maestra de la Torre
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 9d1760e089a1570478b93741e470979b, type: 2}
+    level: 60
+    moves:
+    - {fileID: 11400000, guid: 925ae97a6eaa23a43a56b467c529ccbb, type: 2}
+    - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 1d7a6fcbd33d8ba46a53fd951d741f10, type: 2}
+    heldItem: choice_band
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: metagross
+    moveIds:
+    - meteor_mash
+    - zen_headbutt
+    - earthquake
+    - bullet_punch
+    natureId: adamant
+  - species: {fileID: 11400000, guid: 25e7d92cf45e58843a3118fdc42edf79, type: 2}
+    level: 60
+    moves:
+    - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
+    - {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 79c16ae15564dfe4c90f01ef6a28087a, type: 2}
+    heldItem: lum_berry
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: salamence
+    moveIds:
+    - dragon_dance
+    - outrage
+    - earthquake
+    - fire_fang
+    natureId: jolly
+  - species: {fileID: 11400000, guid: 085417c8a5c44d64b95099ec5cff0022, type: 2}
+    level: 60
+    moves:
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    - {fileID: 11400000, guid: 8f4fb832c81f5bc4f83d784621bf3494, type: 2}
+    - {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
+    heldItem: choice_scarf
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: rotom
+    moveIds:
+    - thunderbolt
+    - shadow_ball
+    - volt_switch
+    - trick
+    natureId: timid
+  - species: {fileID: 11400000, guid: 1e52485df7c2e1b4682548519c83fecb, type: 2}
+    level: 60
+    moves:
+    - {fileID: 11400000, guid: c5455309fb8e55c40b5981fc5704feb2, type: 2}
+    - {fileID: 11400000, guid: 9a515c34c94d9f846a43fbb08b64617b, type: 2}
+    - {fileID: 11400000, guid: c49703054ffc0dc40a9619b9efe13529, type: 2}
+    - {fileID: 11400000, guid: 48286ae37c66de646b9c191e8b054d47, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: fc093f1c50139f94f93c3c279c783297, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: ferrothorn
+    moveIds:
+    - spikes
+    - leech_seed
+    - gyro_ball
+    - power_whip
+    natureId: relaxed
+  - species: {fileID: 11400000, guid: 97114403a57385b4d8845623ad4ccb5e, type: 2}
+    level: 60
+    moves:
+    - {fileID: 11400000, guid: e096ddf076ed7e241ba30d62ab46123c, type: 2}
+    - {fileID: 11400000, guid: fa03bdd225dc1ab408335b9f558a87d3, type: 2}
+    - {fileID: 11400000, guid: 630606dd415e65a4ca5db9fbffaaa633, type: 2}
+    - {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
+    heldItem: choice_band
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: azumarill
+    moveIds:
+    - aqua_jet
+    - play_rough
+    - waterfall
+    - superpower
+    natureId: adamant
+  - species: {fileID: 11400000, guid: 2d48c443db6539d43a0b6f71ffae5b4c, type: 2}
+    level: 60
+    moves:
+    - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
+    - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+    - {fileID: 11400000, guid: b2c063ae9f8542b4a946e7619d7bc4b6, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    heldItem: lum_berry
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: tyranitar
+    moveIds:
+    - dragon_dance
+    - stone_edge
+    - crunch
+    - earthquake
+    natureId: jolly
+  aiLevel: 6
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 150
+  introLine: "Juego a lo que haces antes de que lo hagas. \xBFPreparado?"
+  defeatLine: "Me has le\xEDdo t\xFA a m\xED."
+  victoryLine: Predecible.

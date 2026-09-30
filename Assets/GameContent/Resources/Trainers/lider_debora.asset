@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: dragonair
+    moveIds:
+    - thunder_wave
+    - surf
+    - slam
+    - dragon_breath
+    natureId: 
   - species: {fileID: 11400000, guid: 9c5fd62bc8be5f44dae872cff7d5db61, type: 2}
     level: 37
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: dragonair
+    moveIds:
+    - thunder_wave
+    - thunderbolt
+    - slam
+    - dragon_breath
+    natureId: 
   - species: {fileID: 11400000, guid: 9c5fd62bc8be5f44dae872cff7d5db61, type: 2}
     level: 37
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: dragonair
+    moveIds:
+    - thunder_wave
+    - ice_beam
+    - slam
+    - dragon_breath
+    natureId: 
   - species: {fileID: 11400000, guid: a3c9f350020996444a386db693e8919d, type: 2}
     level: 40
     moves:
@@ -61,7 +85,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: kingdra
+    moveIds:
+    - smokescreen
+    - surf
+    - hyper_beam
+    - dragon_breath
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

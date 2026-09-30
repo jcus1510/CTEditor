@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: gyarados
+    moveIds:
+    - hydro_pump
+    - dragon_rage
+    - hyper_beam
+    - bite
+    natureId: 
   - species: {fileID: 11400000, guid: 9c5fd62bc8be5f44dae872cff7d5db61, type: 2}
     level: 54
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: dragonair
+    moveIds:
+    - agility
+    - slam
+    - dragon_rage
+    - hyper_beam
+    natureId: 
   - species: {fileID: 11400000, guid: 9c5fd62bc8be5f44dae872cff7d5db61, type: 2}
     level: 54
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: dragonair
+    moveIds:
+    - thunder_wave
+    - slam
+    - dragon_rage
+    - hyper_beam
+    natureId: 
   - species: {fileID: 11400000, guid: d466aec97053dd84582f5ccf4c454e38, type: 2}
     level: 58
     moves:
@@ -61,6 +85,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: aerodactyl
+    moveIds:
+    - supersonic
+    - bite
+    - take_down
+    - hyper_beam
+    natureId: 
   - species: {fileID: 11400000, guid: 79469bbd6417e3d448e4f41069216d91, type: 2}
     level: 60
     moves:
@@ -72,7 +104,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: dragonite
+    moveIds:
+    - barrier
+    - slam
+    - agility
+    - hyper_beam
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

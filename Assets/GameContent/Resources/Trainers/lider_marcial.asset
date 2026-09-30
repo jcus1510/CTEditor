@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: machop
+    moveIds:
+    - karate_chop
+    - low_kick
+    - seismic_toss
+    - bulk_up
+    natureId: 
   - species: {fileID: 11400000, guid: 7720a3677cc6b4444987a343c3dd65bf, type: 2}
     level: 16
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: meditite
+    moveIds:
+    - focus_punch
+    - light_screen
+    - reflect
+    - bulk_up
+    natureId: 
   - species: {fileID: 11400000, guid: cb02779026408bd4f991ef4b1b316150, type: 2}
     level: 19
     moves:
@@ -50,7 +66,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: makuhita
+    moveIds:
+    - arm_thrust
+    - vital_throw
+    - reversal
+    - bulk_up
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

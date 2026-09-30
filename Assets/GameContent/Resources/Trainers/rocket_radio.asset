@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: koffing
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 7cdf366ace17ff648994afeb75727613, type: 2}
     level: 24
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: raticate
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 57a9b4deca86cc547958c1a00b6d44f5, type: 2}
     level: 26
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: golbat
+    moveIds: []
+    natureId: 
   aiLevel: 3
+  aiProfileId: 
   ai: 1
   useItems: 1
   items:

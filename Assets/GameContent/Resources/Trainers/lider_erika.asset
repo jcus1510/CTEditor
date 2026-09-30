@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: victreebel
+    moveIds:
+    - razor_leaf
+    - wrap
+    - poison_powder
+    - sleep_powder
+    natureId: 
   - species: {fileID: 11400000, guid: 09fb406433427174880b49565707f3f5, type: 2}
     level: 24
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: tangela
+    moveIds:
+    - constrict
+    - vine_whip
+    - absorb
+    - poison_powder
+    natureId: 
   - species: {fileID: 11400000, guid: 2ad8f294dc6a06f45b6ad7cdc0c03f49, type: 2}
     level: 29
     moves:
@@ -50,7 +66,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: vileplume
+    moveIds:
+    - petal_dance
+    - mega_drain
+    - sleep_powder
+    - stun_spore
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

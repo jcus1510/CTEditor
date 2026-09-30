@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: especialista_water
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: especialista_water
+  displayName: Marina
+  trainerClass: Especialista Agua
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 52044e738a8e7b74594945cf91075a16, type: 2}
+    level: 42
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: gorebyss
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: f3bfc645eb483da4c89427bb16760681, type: 2}
+    level: 43
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: huntail
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: e1f62e65d53bd9a488096460a52bc8aa, type: 2}
+    level: 44
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: relicanth
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 7becf3dc1dfb68b4ab8198ce1ae01460, type: 2}
+    level: 46
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: jellicent
+    moveIds: []
+    natureId: 
+  aiLevel: 3
+  aiProfileId: 
+  ai: 1
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 48
+  introLine: "\xA1Solo conf\xEDo en el tipo Agua! \xBFTienes con qu\xE9 contrarrestarlo?"
+  defeatLine: 'Me ganaste con cabeza: el tipo Agua no lo es todo.'
+  victoryLine: "\xA1El tipo Agua nunca falla!"

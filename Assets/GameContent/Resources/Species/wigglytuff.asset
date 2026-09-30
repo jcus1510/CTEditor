@@ -52,6 +52,8 @@ MonoBehaviour:
     level: 1
   - move: {fileID: 11400000, guid: c4d7ccc5d1e19aa4493aae534a4889b1, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: fa03bdd225dc1ab408335b9f558a87d3, type: 2}
+    level: 1
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}

@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: kadabra
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: a13f559a4be4d06499cdbf81b5ef0fba, type: 2}
     level: 35
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: bronzor
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 5ae83ccd286431b44accfbcb5d5dd5b5, type: 2}
     level: 37
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: toxicroak
+    moveIds: []
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

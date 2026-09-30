@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: rattata
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 48137f4a5ce288d4f81b8268482104cb, type: 2}
     level: 5
     moves: []
@@ -31,7 +35,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: pidgey
+    moveIds: []
+    natureId: 
   aiLevel: 0
+  aiProfileId: 
   ai: 0
   useItems: 1
   items: []

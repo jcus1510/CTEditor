@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: shelgon
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: edb702e45bf39ba4aa75438971cfd2fd, type: 2}
     level: 54
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: altaria
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 5537d5c1064d8864793d697be5ad2d0d, type: 2}
     level: 53
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: flygon
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 5537d5c1064d8864793d697be5ad2d0d, type: 2}
     level: 53
     moves: []
@@ -45,6 +57,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: flygon
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 25e7d92cf45e58843a3118fdc42edf79, type: 2}
     level: 55
     moves: []
@@ -52,7 +68,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: salamence
+    moveIds: []
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

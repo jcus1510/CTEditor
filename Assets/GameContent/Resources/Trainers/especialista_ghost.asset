@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: especialista_ghost
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: especialista_ghost
+  displayName: Umbra
+  trainerClass: Especialista Fantasma
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 3ce5e4fae93d3dc43ae108c4e590d7d5, type: 2}
+    level: 42
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: spiritomb
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: b852cbfe631126a4c8018352c3b4a8cc, type: 2}
+    level: 43
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: cofagrigus
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 5c7ac578cdf431c4c86dfb2edaf82466, type: 2}
+    level: 44
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: gourgeist
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: c19f1c9a94d4d0744a76ba70bdd73b05, type: 2}
+    level: 46
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: mismagius
+    moveIds: []
+    natureId: 
+  aiLevel: 3
+  aiProfileId: 
+  ai: 1
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 48
+  introLine: "\xA1Solo conf\xEDo en el tipo Fantasma! \xBFTienes con qu\xE9 contrarrestarlo?"
+  defeatLine: 'Me ganaste con cabeza: el tipo Fantasma no lo es todo.'
+  victoryLine: "\xA1El tipo Fantasma nunca falla!"

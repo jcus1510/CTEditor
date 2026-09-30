@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: persian
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: a24635d125a097c4a81db51b1faa2273, type: 2}
     level: 42
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: ninetales
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 23e4f24d2b4841f4abd6b1696364be7c, type: 2}
     level: 44
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: rapidash
+    moveIds: []
+    natureId: 
   aiLevel: 3
+  aiProfileId: 
   ai: 1
   useItems: 1
   items:

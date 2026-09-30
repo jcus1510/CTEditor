@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: machop
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 91fb98b4ca542b540b55f5981c969f0e, type: 2}
     level: 31
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: mankey
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 6c675651f69a71247a386c70fd6007c5, type: 2}
     level: 34
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: primeape
+    moveIds: []
+    natureId: 
   aiLevel: 2
+  aiProfileId: 
   ai: 1
   useItems: 1
   items: []

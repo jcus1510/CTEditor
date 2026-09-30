@@ -19,47 +19,120 @@ MonoBehaviour:
   team:
   - species: {fileID: 11400000, guid: 3ce5e4fae93d3dc43ae108c4e590d7d5, type: 2}
     level: 58
-    moves: []
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: 967dec9d4d420ef4a9c9f67d1395f3ac, type: 2}
+    - {fileID: 11400000, guid: 73c995529de98aa4ea05633c95125a39, type: 2}
+    - {fileID: 11400000, guid: 08a4346f4805fd543915dd9660411ba8, type: 2}
+    - {fileID: 11400000, guid: d8e92f9a08c72494da330a1912c78045, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 176be360849467e42b61840286e53668, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: spiritomb
+    moveIds:
+    - shadow_sneak
+    - sucker_punch
+    - will_o_wisp
+    - pain_split
+    natureId: careful
   - species: {fileID: 11400000, guid: a78a4ae9a7bb0594c95f41fd5ef36d3b, type: 2}
     level: 58
-    moves: []
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+    - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    - {fileID: 11400000, guid: a79bea7b221d868448e8f97e0fb060cc, type: 2}
+    heldItem: black_sludge
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: roserade
+    moveIds:
+    - giga_drain
+    - sludge_bomb
+    - shadow_ball
+    - toxic_spikes
+    natureId: timid
   - species: {fileID: 11400000, guid: 9533862dd63a809478c128cbba83eedf, type: 2}
     level: 60
-    moves: []
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: e58af6e84f63b4f4ba6b9ba942911e57, type: 2}
+    - {fileID: 11400000, guid: 10be1f04302cde6428ab49dabe6d3072, type: 2}
+    - {fileID: 11400000, guid: 2c668dd6f5f45e8468390d9e05b0ce18, type: 2}
+    - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: togekiss
+    moveIds:
+    - air_slash
+    - aura_sphere
+    - nasty_plot
+    - roost
+    natureId: timid
   - species: {fileID: 11400000, guid: ec1a172ab8771cc47ac5520570de699c, type: 2}
     level: 60
-    moves: []
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: 2c668dd6f5f45e8468390d9e05b0ce18, type: 2}
+    - {fileID: 11400000, guid: 10be1f04302cde6428ab49dabe6d3072, type: 2}
+    - {fileID: 11400000, guid: 2fd745dccb0947b42b56bb569dde9db2, type: 2}
+    - {fileID: 11400000, guid: 72dff021c9495b448a8aa13b708cd16d, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: lucario
+    moveIds:
+    - nasty_plot
+    - aura_sphere
+    - flash_cannon
+    - vacuum_wave
+    natureId: timid
   - species: {fileID: 11400000, guid: 8fc72c85164573a4aa2e44e0d254ac48, type: 2}
     level: 58
-    moves: []
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
+    - {fileID: 11400000, guid: 0eb8b27313372d04b914fe06dab256f8, type: 2}
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    - {fileID: 11400000, guid: 304e733cbfef103478c9a958679a1156, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: cf36dc122159e1840bceda761357f5d3, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: milotic
+    moveIds:
+    - scald
+    - recover
+    - ice_beam
+    - dragon_tail
+    natureId: bold
   - species: {fileID: 11400000, guid: aa3cf5b61c8f6ec478bd71db5634bceb, type: 2}
     level: 62
-    moves: []
-    heldItem: sitrus_berry
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 6e47f34420dc9c74eb3d04177fb23c56, type: 2}
+    - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+    heldItem: yache_berry
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
     nickname: 
-  aiLevel: 5
+    gender: 0
+    speciesId: garchomp
+    moveIds:
+    - swords_dance
+    - earthquake
+    - dragon_claw
+    - stone_edge
+    natureId: jolly
+  aiLevel: 6
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

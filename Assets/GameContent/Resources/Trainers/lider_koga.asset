@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: koffing
+    moveIds:
+    - tackle
+    - smog
+    - sludge
+    - smokescreen
+    natureId: 
   - species: {fileID: 11400000, guid: 41c955b95fd49f64b89a5399e820b5de, type: 2}
     level: 39
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: muk
+    moveIds:
+    - minimize
+    - sludge
+    - acid_armor
+    - toxic
+    natureId: 
   - species: {fileID: 11400000, guid: b8cf11e0451606e41b8a6a3f41a6cc71, type: 2}
     level: 37
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: koffing
+    moveIds:
+    - tackle
+    - smog
+    - sludge
+    - smokescreen
+    natureId: 
   - species: {fileID: 11400000, guid: 68ba0a53327458043b1af266965e358b, type: 2}
     level: 43
     moves:
@@ -61,7 +85,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: weezing
+    moveIds:
+    - sludge
+    - smokescreen
+    - toxic
+    - self_destruct
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

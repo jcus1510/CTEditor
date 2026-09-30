@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: clefairy
+    moveIds:
+    - double_slap
+    - mimic
+    - encore
+    - metronome
+    natureId: 
   - species: {fileID: 11400000, guid: 91ff2f84d4a83cb409b3896e42293ca2, type: 2}
     level: 20
     moves:
@@ -39,7 +47,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: miltank
+    moveIds:
+    - rollout
+    - attract
+    - stomp
+    - milk_drink
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

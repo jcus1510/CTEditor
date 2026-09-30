@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: rhyhorn
+    moveIds:
+    - take_down
+    - rock_slide
+    - scary_face
+    - earthquake
+    natureId: 
   - species: {fileID: 11400000, guid: 7fac91a3249ee0e4fb7c45f8578efb65, type: 2}
     level: 42
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: dugtrio
+    moveIds:
+    - dig
+    - slash
+    - earthquake
+    - sand_attack
+    natureId: 
   - species: {fileID: 11400000, guid: 3e090d00ea04b2541b49369bd5a5fdb2, type: 2}
     level: 44
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: nidoqueen
+    moveIds:
+    - body_slam
+    - double_kick
+    - earthquake
+    - thunderbolt
+    natureId: 
   - species: {fileID: 11400000, guid: c34ac3e2d8b672c4584847084d883763, type: 2}
     level: 45
     moves:
@@ -61,6 +85,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: nidoking
+    moveIds:
+    - thrash
+    - double_kick
+    - earthquake
+    - ice_beam
+    natureId: 
   - species: {fileID: 11400000, guid: 3329ed16d767ae64385f3a1141560ee2, type: 2}
     level: 50
     moves:
@@ -72,7 +104,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: rhyhorn
+    moveIds:
+    - take_down
+    - rock_slide
+    - earthquake
+    - horn_drill
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

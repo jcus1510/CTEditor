@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: castellana_dana
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: castellana_dana
+  displayName: Dana
+  trainerClass: Castellana del Palacio Batalla
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: b25ba875c9253a746bac2e4ac68ee9bd, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 7a0456cf200dd7343833303d4521c97b, type: 2}
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
+    - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: cf36dc122159e1840bceda761357f5d3, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: aegislash
+    moveIds:
+    - kings_shield
+    - shadow_ball
+    - iron_head
+    - toxic
+    natureId: bold
+  - species: {fileID: 11400000, guid: 05a9978d6adac7c48981950c1c61ca8b, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: d47cc258ebd8daf478118213e60c0582, type: 2}
+    - {fileID: 11400000, guid: 310b368bbee24ff4a9be7e1ef098fb21, type: 2}
+    - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+    heldItem: sharp_beak
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: talonflame
+    moveIds:
+    - brave_bird
+    - flare_blitz
+    - swords_dance
+    - roost
+    natureId: jolly
+  - species: {fileID: 11400000, guid: 3a5afc58774dc6d49926afb811fff265, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 63c7218d2af498c4f9d214b944b0dc43, type: 2}
+    - {fileID: 11400000, guid: 67e39177df7f57a4cb582344e81b4f4b, type: 2}
+    - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    heldItem: assault_vest
+    nature: {fileID: 11400000, guid: 417342a86f1356144b635971dd808ada, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: goodra
+    moveIds:
+    - draco_meteor
+    - fire_blast
+    - sludge_bomb
+    - thunderbolt
+    natureId: modest
+  - species: {fileID: 11400000, guid: 04187eedaa400984faed7a4cf12dd29c, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: baa7ee72081a7cb45b25899d0f1bfad0, type: 2}
+    - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 2
+    speciesId: gardevoir
+    moveIds:
+    - moonblast
+    - psychic
+    - shadow_ball
+    - calm_mind
+    natureId: timid
+  - species: {fileID: 11400000, guid: aa3cf5b61c8f6ec478bd71db5634bceb, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 6e47f34420dc9c74eb3d04177fb23c56, type: 2}
+    - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: garchomp
+    moveIds:
+    - swords_dance
+    - earthquake
+    - dragon_claw
+    - stone_edge
+    natureId: jolly
+  - species: {fileID: 11400000, guid: 18245524a5ef6264c9906281cbda3319, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+    - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    - {fileID: 11400000, guid: 2142ec87c94158f47928ed9a938e18b0, type: 2}
+    heldItem: choice_specs
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: greninja
+    moveIds:
+    - hydro_pump
+    - dark_pulse
+    - ice_beam
+    - u_turn
+    natureId: timid
+  aiLevel: 7
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 3
+  - itemId: full_heal
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 200
+  introLine: "Bienvenido al Palacio. Aqu\xED conozco cada movimiento de tu equipo
+    antes de que lo uses."
+  defeatLine: "Oh... Ni conoci\xE9ndote entero pude ganar."
+  victoryLine: "Lo sab\xEDa todo de ti. Todo."

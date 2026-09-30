@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: gastly
+    moveIds:
+    - lick
+    - spite
+    - mean_look
+    - curse
+    natureId: 
   - species: {fileID: 11400000, guid: 9f8050426d9ce95438006f82732fc8a8, type: 2}
     level: 21
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: haunter
+    moveIds:
+    - hypnosis
+    - mimic
+    - curse
+    - night_shade
+    natureId: 
   - species: {fileID: 11400000, guid: bc0caf2b3ee63b540acec34fe72ee456, type: 2}
     level: 25
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: gengar
+    moveIds:
+    - hypnosis
+    - shadow_ball
+    - mean_look
+    - dream_eater
+    natureId: 
   - species: {fileID: 11400000, guid: 9f8050426d9ce95438006f82732fc8a8, type: 2}
     level: 23
     moves:
@@ -61,7 +85,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: haunter
+    moveIds:
+    - spite
+    - mean_look
+    - mimic
+    - night_shade
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

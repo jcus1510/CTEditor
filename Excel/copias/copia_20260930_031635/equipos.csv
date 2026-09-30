@@ -1,0 +1,4 @@
+﻿id;nombre;descripcion;dinero;equipo;mochila
+equipo_prueba_50;Equipo de prueba (Nv. 50);Seis monstruos a nivel 50 con IVs perfectos y una mochila completa: para probarlo todo.;50000;;hyper_potion:10|full_restore:5|revive:5|full_heal:5|ether:5|poke_ball:20|great_ball:10|ultra_ball:10|master_ball:3|x_attack:3
+equipo_ruta;Equipo de ruta (Nv. 12-15);Tres monstruos a mitad de la primera ruta: para probar entrenadores novatos y capturas.;3000;;potion:10|super_potion:3|antidote:3|paralyze_heal:3|poke_ball:15|great_ball:5
+inicial_fuego;Inicial de fuego (desde el principio);Un solo monstruo de nivel 5, como al empezar la aventura.;-1;;potion:5|poke_ball:10

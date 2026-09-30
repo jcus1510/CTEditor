@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_corelia
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_corelia
+  displayName: Corelia
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 08bb227038cc7b04dac22303074ddc94, type: 2}
+    level: 29
+    moves:
+    - {fileID: 11400000, guid: 4d65741fa51432b4daae4ac90df90f00, type: 2}
+    - {fileID: 11400000, guid: 072891eab0ca8804abe49a40dcaff9f0, type: 2}
+    - {fileID: 11400000, guid: e7f9f507129688542bac3c5fdbf9ba82, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: mienfoo
+    moveIds:
+    - power_up_punch
+    - fake_out
+    - detect
+    natureId: 
+  - species: {fileID: 11400000, guid: 62027c40f4edcc44db6f77c61069e456, type: 2}
+    level: 28
+    moves:
+    - {fileID: 11400000, guid: 4d65741fa51432b4daae4ac90df90f00, type: 2}
+    - {fileID: 11400000, guid: 91d7d14655e701d40b528f342c361bfc, type: 2}
+    - {fileID: 11400000, guid: feab26950a1f67b44ace975036f11911, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: machoke
+    moveIds:
+    - power_up_punch
+    - leer
+    - revenge
+    natureId: 
+  - species: {fileID: 11400000, guid: 30a0263a29aec8342bb84b07f5b30678, type: 2}
+    level: 32
+    moves:
+    - {fileID: 11400000, guid: 4d65741fa51432b4daae4ac90df90f00, type: 2}
+    - {fileID: 11400000, guid: 66c275afc83a841408bd4914de66e493, type: 2}
+    - {fileID: 11400000, guid: 15e14e7a89c9ee249adf570342cbcd52, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: hawlucha
+    moveIds:
+    - power_up_punch
+    - flying_press
+    - hone_claws
+    natureId: 
+  aiLevel: 4
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "\xA1Corelia al ataque! \xA1Mis pu\xF1os van en serio!"
+  defeatLine: "\xA1Guau! Toma la Medalla Lid."
+  victoryLine: "\xA1Directo al KO!"

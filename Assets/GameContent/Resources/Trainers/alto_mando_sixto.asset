@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: mightyena
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: e3a981e66f5289c428a2d28831a9e036, type: 2}
     level: 48
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: shiftry
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: dd8cde34a3f7c964db2a7416dfe2fb0d, type: 2}
     level: 46
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: cacturne
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 31c5dcf663c15914fa21049039c03e5b, type: 2}
     level: 48
     moves: []
@@ -45,6 +57,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: crawdaunt
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 46c73d6a2e824a64898ff50a9ddb3b1e, type: 2}
     level: 49
     moves: []
@@ -52,7 +68,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: absol
+    moveIds: []
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

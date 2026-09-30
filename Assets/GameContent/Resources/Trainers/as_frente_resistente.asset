@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: as_frente_resistente
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: as_frente_resistente
+  displayName: Petra
+  trainerClass: As del Frente
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: a9498e1fd8d796f47845f00064f8e493, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: ac29be17f9ef25047809e1bae0119a7f, type: 2}
+    - {fileID: 11400000, guid: 2d126c52368d9144c8a37aa9ea9d9238, type: 2}
+    - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+    - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+    heldItem: eviolite
+    nature: {fileID: 11400000, guid: cf36dc122159e1840bceda761357f5d3, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: chansey
+    moveIds:
+    - soft_boiled
+    - seismic_toss
+    - toxic
+    - stealth_rock
+    natureId: bold
+  - species: {fileID: 11400000, guid: 1fdeebc48b4832347ba76f2dd6ebaa0e, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: c5455309fb8e55c40b5981fc5704feb2, type: 2}
+    - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+    - {fileID: 11400000, guid: d47cc258ebd8daf478118213e60c0582, type: 2}
+    - {fileID: 11400000, guid: bcccef566519fe44c8d5402f12197963, type: 2}
+    heldItem: rocky_helmet
+    nature: {fileID: 11400000, guid: d245b2695513c6b46ad886c4c8cdb507, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: skarmory
+    moveIds:
+    - spikes
+    - roost
+    - brave_bird
+    - whirlwind
+    natureId: impish
+  - species: {fileID: 11400000, guid: 922ea78ad8e76234eaf9682c1fe6b218, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+    - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+    - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: d245b2695513c6b46ad886c4c8cdb507, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: gliscor
+    moveIds:
+    - earthquake
+    - toxic
+    - protect
+    - roost
+    natureId: impish
+  - species: {fileID: 11400000, guid: 342f593bef94bbd4c9d03b70ea37cb08, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
+    - {fileID: 11400000, guid: 1882f11bae2f46045a0557195d62dc4d, type: 2}
+    - {fileID: 11400000, guid: be3592e8f82f0974aab83fb23edfd6fb, type: 2}
+    - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: cf36dc122159e1840bceda761357f5d3, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: slowbro
+    moveIds:
+    - scald
+    - slack_off
+    - psyshock
+    - thunder_wave
+    natureId: bold
+  - species: {fileID: 11400000, guid: 2f44a6efd5fc2ea4383af1e1da91dca8, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 08a4346f4805fd543915dd9660411ba8, type: 2}
+    - {fileID: 11400000, guid: 0eb8b27313372d04b914fe06dab256f8, type: 2}
+    - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+    - {fileID: 11400000, guid: 7cc24518557b0444793d5659a81b3362, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 176be360849467e42b61840286e53668, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: sableye
+    moveIds:
+    - will_o_wisp
+    - recover
+    - knock_off
+    - foul_play
+    natureId: careful
+  - species: {fileID: 11400000, guid: 20ea613583088054295dd6d32f71fa6a, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 535ad57b13bbaf4489189374aaab09c2, type: 2}
+    - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+    - {fileID: 11400000, guid: 7cc24518557b0444793d5659a81b3362, type: 2}
+    - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 66aa17f2c12c18141a66d3854d23fb24, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: umbreon
+    moveIds:
+    - wish
+    - protect
+    - foul_play
+    - toxic
+    natureId: calm
+  aiLevel: 6
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  - itemId: full_heal
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 150
+  introLine: "Muralla. \xBFAguantar\xE1s mi estrategia?"
+  defeatLine: "Has le\xEDdo mi estrategia de principio a fin."
+  victoryLine: La estrategia siempre gana.

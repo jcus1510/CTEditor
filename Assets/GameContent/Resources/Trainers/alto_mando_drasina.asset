@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: alto_mando_drasina
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: alto_mando_drasina
+  displayName: "Dr\xE1sina"
+  trainerClass: Alto Mando
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 171503e8673764e4ea08b94525cef55e, type: 2}
+    level: 63
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: dragalge
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 70662d00e815c72448d0f3c2c3eeee22, type: 2}
+    level: 63
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: druddigon
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: edb702e45bf39ba4aa75438971cfd2fd, type: 2}
+    level: 63
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: altaria
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: ea3b1703a6c44984290e40ffb5b46965, type: 2}
+    level: 65
+    moves: []
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: noivern
+    moveIds: []
+    natureId: 
+  aiLevel: 5
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "\xA1Oh, qu\xE9 ilusi\xF3n! \xA1Juguemos!"
+  defeatLine: "Qu\xE9 fuerte eres, de verdad."
+  victoryLine: "\xA1Los dragones mandan!"

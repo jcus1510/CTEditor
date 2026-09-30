@@ -50,6 +50,8 @@ MonoBehaviour:
     level: 1
   - move: {fileID: 11400000, guid: 084492ece2b582a4ea777de99ff9ff8a, type: 2}
     level: 7
+  - move: {fileID: 11400000, guid: b8f4de817c276c24bb56f79455c80a2b, type: 2}
+    level: 14
   - move: {fileID: 11400000, guid: d713e067fff9f444f97a5ea155af1720, type: 2}
     level: 18
   - move: {fileID: 11400000, guid: d08e6cd61a2206c47b36ca5a67274a88, type: 2}

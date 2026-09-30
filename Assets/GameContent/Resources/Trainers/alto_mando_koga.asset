@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: ariados
+    moveIds:
+    - double_team
+    - spider_web
+    - baton_pass
+    - giga_drain
+    natureId: 
   - species: {fileID: 11400000, guid: 502de4add62494a4c8e7903af4207518, type: 2}
     level: 41
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: venomoth
+    moveIds:
+    - supersonic
+    - gust
+    - psychic
+    - toxic
+    natureId: 
   - species: {fileID: 11400000, guid: cae10078774ff63498129b2b07d1e980, type: 2}
     level: 43
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: forretress
+    moveIds:
+    - protect
+    - swift
+    - explosion
+    - spikes
+    natureId: 
   - species: {fileID: 11400000, guid: 41c955b95fd49f64b89a5399e820b5de, type: 2}
     level: 42
     moves:
@@ -61,6 +85,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: muk
+    moveIds:
+    - minimize
+    - acid_armor
+    - sludge_bomb
+    - toxic
+    natureId: 
   - species: {fileID: 11400000, guid: bb2fd4af0928cbb488f950bea5a6a676, type: 2}
     level: 44
     moves:
@@ -72,7 +104,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: crobat
+    moveIds:
+    - double_team
+    - quick_attack
+    - wing_attack
+    - toxic
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

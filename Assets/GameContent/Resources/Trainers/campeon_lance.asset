@@ -20,70 +20,119 @@ MonoBehaviour:
   - species: {fileID: 11400000, guid: ae9fd7d998bc49a4ea5829d7a235ced9, type: 2}
     level: 44
     moves:
-    - {fileID: 11400000, guid: b435b36c8dbbe774f8cf6a571a66badd, type: 2}
-    - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
-    - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
-    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
+    - {fileID: 11400000, guid: 630606dd415e65a4ca5db9fbffaaa633, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: c1df94702d81ed2418d2beeba0ecb2f1, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: gyarados
+    moveIds:
+    - dragon_dance
+    - waterfall
+    - earthquake
+    - ice_fang
+    natureId: adamant
+  - species: {fileID: 11400000, guid: 79469bbd6417e3d448e4f41069216d91, type: 2}
+    level: 47
+    moves:
+    - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
+    - {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: f688138a081b68d48a33415bdf250b90, type: 2}
+    heldItem: lum_berry
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: dragonite
+    moveIds:
+    - dragon_dance
+    - outrage
+    - earthquake
+    - extreme_speed
+    natureId: adamant
   - species: {fileID: 11400000, guid: 79469bbd6417e3d448e4f41069216d91, type: 2}
     level: 47
     moves:
     - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
-    - {fileID: 11400000, guid: ca9fc4c5693cb354082fe227793967b3, type: 2}
-    - {fileID: 11400000, guid: 62c6a97d50c2ff54dacf531594dd4df0, type: 2}
-    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    - {fileID: 11400000, guid: 6e47f34420dc9c74eb3d04177fb23c56, type: 2}
+    - {fileID: 11400000, guid: 4f9f91ece063c54449c2b9d6a8c067d6, type: 2}
+    - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 176be360849467e42b61840286e53668, type: 2}
+    fixedIvs: 31
     nickname: 
-  - species: {fileID: 11400000, guid: 79469bbd6417e3d448e4f41069216d91, type: 2}
-    level: 47
-    moves:
-    - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
-    - {fileID: 11400000, guid: ca9fc4c5693cb354082fe227793967b3, type: 2}
-    - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
-    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
-    nickname: 
+    gender: 0
+    speciesId: dragonite
+    moveIds:
+    - thunder_wave
+    - dragon_claw
+    - fire_punch
+    - roost
+    natureId: careful
   - species: {fileID: 11400000, guid: d466aec97053dd84582f5ccf4c454e38, type: 2}
     level: 46
     moves:
-    - {fileID: 11400000, guid: dd8887e1ce438d547a8d865bd70a8ed7, type: 2}
-    - {fileID: 11400000, guid: 9f157f347c6812e4ca50a9355fdfa9de, type: 2}
-    - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
-    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 2958df99c8d8ca34ea9fdb47154368c8, type: 2}
+    - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+    heldItem: focus_sash
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: aerodactyl
+    moveIds:
+    - stone_edge
+    - earthquake
+    - aqua_tail
+    - roost
+    natureId: jolly
   - species: {fileID: 11400000, guid: 2ca17a2317036b2469359a38a07a614a, type: 2}
     level: 46
     moves:
     - {fileID: 11400000, guid: a69a5906d0943504fb50821889185528, type: 2}
-    - {fileID: 11400000, guid: dd8887e1ce438d547a8d865bd70a8ed7, type: 2}
-    - {fileID: 11400000, guid: 41fecb803ec631c42ae3e13be0a7d87f, type: 2}
-    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    - {fileID: 11400000, guid: e58af6e84f63b4f4ba6b9ba942911e57, type: 2}
+    - {fileID: 11400000, guid: dd4884f42955eb740b13d5099da28245, type: 2}
+    - {fileID: 11400000, guid: c3b6da97600a239478d3b1629781f284, type: 2}
+    heldItem: choice_specs
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: charizard
+    moveIds:
+    - flamethrower
+    - air_slash
+    - dragon_pulse
+    - focus_blast
+    natureId: timid
   - species: {fileID: 11400000, guid: 79469bbd6417e3d448e4f41069216d91, type: 2}
     level: 50
     moves:
-    - {fileID: 11400000, guid: 67e39177df7f57a4cb582344e81b4f4b, type: 2}
-    - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
     - {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
-    - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
-    heldItem: sitrus_berry
-    nature: {fileID: 0}
-    fixedIvs: -1
+    - {fileID: 11400000, guid: 4f9f91ece063c54449c2b9d6a8c067d6, type: 2}
+    - {fileID: 11400000, guid: f688138a081b68d48a33415bdf250b90, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    heldItem: choice_band
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
     nickname: 
-  aiLevel: 5
+    gender: 0
+    speciesId: dragonite
+    moveIds:
+    - outrage
+    - fire_punch
+    - extreme_speed
+    - earthquake
+    natureId: adamant
+  aiLevel: 6
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

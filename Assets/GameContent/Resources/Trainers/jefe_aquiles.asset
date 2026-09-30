@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: mightyena
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: bb2fd4af0928cbb488f950bea5a6a676, type: 2}
     level: 41
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: crobat
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: d019285bc02b31d41a6a233894c7c419, type: 2}
     level: 43
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: sharpedo
+    moveIds: []
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: bulbasaur
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 7a222c698438ac34d81e440c3ce22905, type: 2}
     level: 15
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: pidgeotto
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: d148172c1ce1a0947a931dda22f9f42e, type: 2}
     level: 12
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: pikachu
+    moveIds: []
+    natureId: 
   money: 3000
   items:
   - itemId: potion

@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: magikarp
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 6f771f2b9caadf0468e42bab8a55a014, type: 2}
     level: 22
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: finneon
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: ae9fd7d998bc49a4ea5829d7a235ced9, type: 2}
     level: 24
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: gyarados
+    moveIds: []
+    natureId: 
   aiLevel: 2
+  aiProfileId: 
   ai: 1
   useItems: 1
   items: []

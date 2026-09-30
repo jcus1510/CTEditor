@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: jefe_lysson
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: jefe_lysson
+  displayName: Lysson
+  trainerClass: Jefe del Team Flare
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 113b3b0bf1f9c91499ce12991d2ae1f6, type: 2}
+    level: 49
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: mienshao
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: db236a26f18a308478ef2a7b104e19d4, type: 2}
+    level: 49
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: honchkrow
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 29a1bf46bc121134fbf2518c5056069f, type: 2}
+    level: 51
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 1
+    speciesId: pyroar
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: ae9fd7d998bc49a4ea5829d7a235ced9, type: 2}
+    level: 51
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: gyarados
+    moveIds: []
+    natureId: 
+  aiLevel: 5
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "Un mundo bello necesita menos gente. No me detendr\xE1s."
+  defeatLine: "Qu\xE9... \xBFAs\xED acaba mi sue\xF1o?"
+  victoryLine: El futuro es nuestro.

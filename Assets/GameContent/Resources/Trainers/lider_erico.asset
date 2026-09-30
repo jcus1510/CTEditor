@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: voltorb
+    moveIds:
+    - rollout
+    - spark
+    - self_destruct
+    - shock_wave
+    natureId: 
   - species: {fileID: 11400000, guid: 95764aba71d51f84f9f3995f0279b043, type: 2}
     level: 20
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: electrike
+    moveIds:
+    - shock_wave
+    - leer
+    - quick_attack
+    - howl
+    natureId: 
   - species: {fileID: 11400000, guid: dd39c9e7c324f124197628311bc79ff1, type: 2}
     level: 22
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: magneton
+    moveIds:
+    - supersonic
+    - shock_wave
+    - thunder_wave
+    - sonic_boom
+    natureId: 
   - species: {fileID: 11400000, guid: e62fd91b3b8714c468e44af1606f3c23, type: 2}
     level: 24
     moves:
@@ -61,7 +85,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: manectric
+    moveIds:
+    - quick_attack
+    - howl
+    - shock_wave
+    - thunder_wave
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

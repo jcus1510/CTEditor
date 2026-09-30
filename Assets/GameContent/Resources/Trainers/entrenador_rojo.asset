@@ -20,70 +20,119 @@ MonoBehaviour:
   - species: {fileID: 11400000, guid: d148172c1ce1a0947a931dda22f9f42e, type: 2}
     level: 81
     moves:
-    - {fileID: 11400000, guid: 5d29e88ccdc542d4696bf4230ca1a84e, type: 2}
-    - {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
     - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
-    - {fileID: 11400000, guid: 62c6a97d50c2ff54dacf531594dd4df0, type: 2}
-    heldItem: leftovers
-    nature: {fileID: 0}
-    fixedIvs: -1
+    - {fileID: 11400000, guid: 61fa77a4f48df8343acd2c2437d3608c, type: 2}
+    - {fileID: 11400000, guid: 8f4fb832c81f5bc4f83d784621bf3494, type: 2}
+    - {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: pikachu
+    moveIds:
+    - thunderbolt
+    - grass_knot
+    - volt_switch
+    - quick_attack
+    natureId: timid
   - species: {fileID: 11400000, guid: b085d108fa9c4aa4abe06d4e6adac945, type: 2}
     level: 73
     moves:
-    - {fileID: 11400000, guid: f050730ea6b643346a1bd3c76ba306a1, type: 2}
-    - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
-    - {fileID: 11400000, guid: 36afc492c55a0744fbfa3fb385bebc1d, type: 2}
     - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+    - {fileID: 11400000, guid: d5fa562649d338d46a2da519b46c977e, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: espeon
+    moveIds:
+    - psychic
+    - shadow_ball
+    - calm_mind
+    - morning_sun
+    natureId: timid
   - species: {fileID: 11400000, guid: e82dc14f3f7028040bd4c208195566b2, type: 2}
     level: 75
     moves:
-    - {fileID: 11400000, guid: 5d68f7ae3f19057498187d163e8bf589, type: 2}
-    - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
-    - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+    - {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
     - {fileID: 11400000, guid: ee44701bbc792004f8c744056ac5452d, type: 2}
+    - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+    - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
     heldItem: leftovers
-    nature: {fileID: 0}
-    fixedIvs: -1
+    nature: {fileID: 11400000, guid: 176be360849467e42b61840286e53668, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: snorlax
+    moveIds:
+    - curse
+    - body_slam
+    - rest
+    - sleep_talk
+    natureId: careful
   - species: {fileID: 11400000, guid: 90db4dc28ed5d35438001cded61f1cf6, type: 2}
     level: 77
     moves:
-    - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
     - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+    - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
+    - {fileID: 11400000, guid: 36d61ae0543c3c047861588b54ff9311, type: 2}
     - {fileID: 11400000, guid: 7b31ca7e65ab8664298f232da45d96ca, type: 2}
-    - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    heldItem: black_sludge
+    nature: {fileID: 11400000, guid: cf36dc122159e1840bceda761357f5d3, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: venusaur
+    moveIds:
+    - giga_drain
+    - sludge_bomb
+    - sleep_powder
+    - synthesis
+    natureId: bold
   - species: {fileID: 11400000, guid: 2ca17a2317036b2469359a38a07a614a, type: 2}
     level: 77
     moves:
     - {fileID: 11400000, guid: a69a5906d0943504fb50821889185528, type: 2}
-    - {fileID: 11400000, guid: dd8887e1ce438d547a8d865bd70a8ed7, type: 2}
-    - {fileID: 11400000, guid: 41fecb803ec631c42ae3e13be0a7d87f, type: 2}
-    - {fileID: 11400000, guid: c77de5c4f73123949bb608823bc41a5b, type: 2}
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    - {fileID: 11400000, guid: e58af6e84f63b4f4ba6b9ba942911e57, type: 2}
+    - {fileID: 11400000, guid: c3b6da97600a239478d3b1629781f284, type: 2}
+    - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: charizard
+    moveIds:
+    - flamethrower
+    - air_slash
+    - focus_blast
+    - roost
+    natureId: timid
   - species: {fileID: 11400000, guid: f7bdd799cc1a6484ab6addd4b51b9f78, type: 2}
     level: 77
     moves:
-    - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
-    - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
-    - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
-    - {fileID: 11400000, guid: 1df4f4a3194cca948bc22c7ba6dc44a0, type: 2}
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    - {fileID: 11400000, guid: 69635592b0c0e8143974cc17729d57f4, type: 2}
+    - {fileID: 11400000, guid: 034c48472772d604caaa172d102c6f0c, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: cf36dc122159e1840bceda761357f5d3, type: 2}
+    fixedIvs: 31
     nickname: 
-  aiLevel: 5
+    gender: 0
+    speciesId: blastoise
+    moveIds:
+    - scald
+    - ice_beam
+    - rapid_spin
+    - roar
+    natureId: bold
+  aiLevel: 7
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

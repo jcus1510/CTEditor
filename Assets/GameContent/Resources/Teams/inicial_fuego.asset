@@ -23,6 +23,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: charmander
+    moveIds: []
+    natureId: 
   money: -1
   items:
   - itemId: potion

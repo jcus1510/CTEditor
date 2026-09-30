@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_edel
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_edel
+  displayName: "\xC9del"
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 0188e1ce990c18a43a4808f5f14a1a15, type: 2}
+    level: 56
+    moves:
+    - {fileID: 11400000, guid: ffaa0c9df25d20848a44a1f77b5aba3f, type: 2}
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    - {fileID: 11400000, guid: ff87c561ab2d5d5488da04047c6f5db4, type: 2}
+    - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: abomasnow
+    moveIds:
+    - ice_shard
+    - ice_beam
+    - energy_ball
+    - giga_drain
+    natureId: 
+  - species: {fileID: 11400000, guid: e05dcd1b1fb0b0249bcf3442a66c2d54, type: 2}
+    level: 55
+    moves:
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+    - {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
+    - {fileID: 11400000, guid: 69635592b0c0e8143974cc17729d57f4, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: cryogonal
+    moveIds:
+    - ice_beam
+    - reflect
+    - confuse_ray
+    - rapid_spin
+    natureId: 
+  - species: {fileID: 11400000, guid: 734ae9012dac60f499882e51c8ae744e, type: 2}
+    level: 59
+    moves:
+    - {fileID: 11400000, guid: 1aaafdb0ee5fcd14d940a6b23e321294, type: 2}
+    - {fileID: 11400000, guid: b2c063ae9f8542b4a946e7619d7bc4b6, type: 2}
+    - {fileID: 11400000, guid: c49703054ffc0dc40a9619b9efe13529, type: 2}
+    - {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: avalugg
+    moveIds:
+    - avalanche
+    - crunch
+    - gyro_ball
+    - curse
+    natureId: 
+  aiLevel: 4
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 1
+  - itemId: hyper_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "\xA1Jo, jo! \xA1Veamos si aguantas el fr\xEDo!"
+  defeatLine: "\xA1Qu\xE9 calor me has hecho pasar! Toma la Medalla Iceberg."
+  victoryLine: "\xA1Congelado hasta los huesos!"

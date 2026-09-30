@@ -19,7 +19,9 @@ MonoBehaviour:
     minLevel: 2
     maxLevel: 5
     weight: 50
+    speciesId: pidgey
   - species: {fileID: 11400000, guid: 48f8136df4867e843a06d54153335c89, type: 2}
     minLevel: 2
     maxLevel: 4
     weight: 50
+    speciesId: rattata

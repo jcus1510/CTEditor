@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: rival_matis_liga
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: rival_matis_liga
+  displayName: "Mat\xEDs"
+  trainerClass: Rival
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 4e5cfcac7da35d34b84a9d0197d567cf, type: 2}
+    level: 55
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: unfezant
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 7955bd843a70e0e45ae6c3cd08c1e806, type: 2}
+    level: 55
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: simipour
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: b11d1c0d92a2be241bbbde098c636fe5, type: 2}
+    level: 55
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: bouffalant
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 5f606360e5db4b843b09ff0334aa9f51, type: 2}
+    level: 55
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: eelektross
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 40ccfa227f319d34b93b1234f2682a71, type: 2}
+    level: 57
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: serperior
+    moveIds: []
+    natureId: 
+  aiLevel: 5
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 1
+  - itemId: hyper_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 60
+  introLine: "\xA1He entrenado d\xEDa y noche para esto!"
+  defeatLine: "Ahora s\xE9 lo que me falta."
+  victoryLine: "\xA1Por fin!"

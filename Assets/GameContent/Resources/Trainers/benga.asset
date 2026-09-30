@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: benga
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: benga
+  displayName: Benga
+  trainerClass: Maestro de la Torre Negra
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 47959b4daecc22946bcc937a4cdb0b88, type: 2}
+    level: 70
+    moves:
+    - {fileID: 11400000, guid: c597e297f17bace489178d1ec0dcbc91, type: 2}
+    - {fileID: 11400000, guid: 94bb3367e54aab044983bdff39f2df80, type: 2}
+    - {fileID: 11400000, guid: 864f13fee3c5ce84d90871a93cbb3670, type: 2}
+    - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+    heldItem: lum_berry
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: volcarona
+    moveIds:
+    - quiver_dance
+    - fiery_dance
+    - bug_buzz
+    - giga_drain
+    natureId: timid
+  - species: {fileID: 11400000, guid: dce0d02662dd06449bc2477dd75ac2ba, type: 2}
+    level: 70
+    moves:
+    - {fileID: 11400000, guid: 63c7218d2af498c4f9d214b944b0dc43, type: 2}
+    - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
+    - {fileID: 11400000, guid: a69a5906d0943504fb50821889185528, type: 2}
+    - {fileID: 11400000, guid: 2142ec87c94158f47928ed9a938e18b0, type: 2}
+    heldItem: choice_specs
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: hydreigon
+    moveIds:
+    - draco_meteor
+    - dark_pulse
+    - flamethrower
+    - u_turn
+    natureId: timid
+  - species: {fileID: 11400000, guid: 255d9e8a02243744fa7c6b8f2fbdfc49, type: 2}
+    level: 70
+    moves:
+    - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
+    - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+    heldItem: focus_sash
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: excadrill
+    moveIds:
+    - swords_dance
+    - earthquake
+    - iron_head
+    - rock_slide
+    natureId: jolly
+  - species: {fileID: 11400000, guid: 5b134710a37703e4ab3c2f34327997cb, type: 2}
+    level: 70
+    moves:
+    - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    - {fileID: 11400000, guid: 67e39177df7f57a4cb582344e81b4f4b, type: 2}
+    - {fileID: 11400000, guid: ff87c561ab2d5d5488da04047c6f5db4, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: chandelure
+    moveIds:
+    - calm_mind
+    - shadow_ball
+    - fire_blast
+    - energy_ball
+    natureId: timid
+  - species: {fileID: 11400000, guid: 9778c4041abcb264b92fb1b3aa29b3a8, type: 2}
+    level: 70
+    moves:
+    - {fileID: 11400000, guid: 13d60738e9b44814b80557dd96b5063d, type: 2}
+    - {fileID: 11400000, guid: 92a135ffd9400eb4795a760f2163ffec, type: 2}
+    - {fileID: 11400000, guid: 0dff38465403d64468cee754c6fab39c, type: 2}
+    - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+    heldItem: assault_vest
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: conkeldurr
+    moveIds:
+    - drain_punch
+    - mach_punch
+    - ice_punch
+    - knock_off
+    natureId: adamant
+  - species: {fileID: 11400000, guid: 0abca9277bf5c6542a302aa92cd2233e, type: 2}
+    level: 70
+    moves:
+    - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
+    - {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: e241c34283f45a343b6140504cd58b9e, type: 2}
+    heldItem: lum_berry
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: haxorus
+    moveIds:
+    - dragon_dance
+    - outrage
+    - earthquake
+    - poison_jab
+    natureId: jolly
+  aiLevel: 7
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 3
+  - itemId: full_heal
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 200
+  introLine: "Soy Benga. Aqu\xED arriba no hay piedad: s\xE9 todo lo que tu equipo
+    sabe hacer."
+  defeatLine: "Incre\xEDble... Ni sabi\xE9ndolo todo pude contigo."
+  victoryLine: "Te lo dije: aqu\xED no hay piedad."

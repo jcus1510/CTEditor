@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: guay_victor
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: guay_victor
+  displayName: "V\xEDctor"
+  trainerClass: Entrenador guay
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 255d9e8a02243744fa7c6b8f2fbdfc49, type: 2}
+    level: 52
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: excadrill
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 16eb3f06e69f2524cb61c5464fc02648, type: 2}
+    level: 52
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: zoroark
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 5b134710a37703e4ab3c2f34327997cb, type: 2}
+    level: 53
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: chandelure
+    moveIds: []
+    natureId: 
+  aiLevel: 3
+  aiProfileId: 
+  ai: 1
+  useItems: 1
+  items:
+  - itemId: hyper_potion
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 0
+  movesetStyle: 0
+  baseMoney: 35
+  introLine: "La Calle Victoria es el \xFAltimo reto antes de la Liga."
+  defeatLine: "\xA1Impresionante!"
+  victoryLine: "A\xFAn no est\xE1s listo."

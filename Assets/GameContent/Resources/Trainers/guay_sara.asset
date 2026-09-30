@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: gardevoir
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 99a6502731a462e44b0698276355c1b4, type: 2}
     level: 42
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: medicham
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 186f5f89fad245e4bb72565b4f8a922e, type: 2}
     level: 43
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: camerupt
+    moveIds: []
+    natureId: 
   aiLevel: 3
+  aiProfileId: 
   ai: 1
   useItems: 1
   items:

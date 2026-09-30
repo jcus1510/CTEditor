@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: campeona_dianta
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: campeona_dianta
+  displayName: Dianta
+  trainerClass: "Campe\xF3n"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 30a0263a29aec8342bb84b07f5b30678, type: 2}
+    level: 64
+    moves:
+    - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    - {fileID: 11400000, guid: c235500ff1e169b419fc4cf1d5629113, type: 2}
+    - {fileID: 11400000, guid: 61f5c64e93bc85b48aecaa66d733c5d2, type: 2}
+    - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+    heldItem: black_belt
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: hawlucha
+    moveIds:
+    - swords_dance
+    - high_jump_kick
+    - acrobatics
+    - roost
+    natureId: jolly
+  - species: {fileID: 11400000, guid: a682e312cfc4399498081c820528d8bb, type: 2}
+    level: 65
+    moves:
+    - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
+    - {fileID: 11400000, guid: 6135443f3a09a53488875430dc21600b, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 6e47f34420dc9c74eb3d04177fb23c56, type: 2}
+    heldItem: lum_berry
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: tyrantrum
+    moveIds:
+    - dragon_dance
+    - head_smash
+    - earthquake
+    - dragon_claw
+    natureId: jolly
+  - species: {fileID: 11400000, guid: adc24ac743eab6c43af93264aa12d304, type: 2}
+    level: 65
+    moves:
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
+    - {fileID: 11400000, guid: 9f157f347c6812e4ca50a9355fdfa9de, type: 2}
+    - {fileID: 11400000, guid: 2ece1a59d6e44104080c17d2aeaf4b81, type: 2}
+    heldItem: assault_vest
+    nature: {fileID: 11400000, guid: 417342a86f1356144b635971dd808ada, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: aurorus
+    moveIds:
+    - thunderbolt
+    - blizzard
+    - ancient_power
+    - freeze_dry
+    natureId: modest
+  - species: {fileID: 11400000, guid: 5c7ac578cdf431c4c86dfb2edaf82466, type: 2}
+    level: 65
+    moves:
+    - {fileID: 11400000, guid: 08a4346f4805fd543915dd9660411ba8, type: 2}
+    - {fileID: 11400000, guid: 9a515c34c94d9f846a43fbb08b64617b, type: 2}
+    - {fileID: 11400000, guid: f9b934ad3cc59fc468d8184a25248dee, type: 2}
+    - {fileID: 11400000, guid: 967dec9d4d420ef4a9c9f67d1395f3ac, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: d245b2695513c6b46ad886c4c8cdb507, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: gourgeist
+    moveIds:
+    - will_o_wisp
+    - leech_seed
+    - seed_bomb
+    - shadow_sneak
+    natureId: impish
+  - species: {fileID: 11400000, guid: 3a5afc58774dc6d49926afb811fff265, type: 2}
+    level: 66
+    moves:
+    - {fileID: 11400000, guid: 63c7218d2af498c4f9d214b944b0dc43, type: 2}
+    - {fileID: 11400000, guid: 67e39177df7f57a4cb582344e81b4f4b, type: 2}
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
+    heldItem: assault_vest
+    nature: {fileID: 11400000, guid: 417342a86f1356144b635971dd808ada, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: goodra
+    moveIds:
+    - draco_meteor
+    - fire_blast
+    - thunderbolt
+    - sludge_bomb
+    natureId: modest
+  - species: {fileID: 11400000, guid: 04187eedaa400984faed7a4cf12dd29c, type: 2}
+    level: 68
+    moves:
+    - {fileID: 11400000, guid: baa7ee72081a7cb45b25899d0f1bfad0, type: 2}
+    - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 2
+    speciesId: gardevoir
+    moveIds:
+    - moonblast
+    - psychic
+    - thunderbolt
+    - calm_mind
+    natureId: timid
+  aiLevel: 6
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 3
+  - itemId: full_heal
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 150
+  introLine: Soy Dianta, la Campeona. Veamos la belleza de tu combate.
+  defeatLine: "Ha sido precioso. Eres el nuevo Campe\xF3n de Kalos."
+  victoryLine: "Todav\xEDa brillas poco."

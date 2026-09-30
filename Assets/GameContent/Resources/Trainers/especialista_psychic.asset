@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: especialista_psychic
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: especialista_psychic
+  displayName: Psique
+  trainerClass: "Especialista Ps\xEDquico"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 2d0feea6e6a446c4d9e936a55131f0a9, type: 2}
+    level: 42
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: beheeyem
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 15fbd483ad140fe4e8f39115f7c29c4c, type: 2}
+    level: 43
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: hypno
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: c4e74fc709e2602439e17c2443e41fd5, type: 2}
+    level: 44
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: musharna
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: f1b79e5c59ed8fc40b69397ae6183afc, type: 2}
+    level: 46
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: gothitelle
+    moveIds: []
+    natureId: 
+  aiLevel: 3
+  aiProfileId: 
+  ai: 1
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 48
+  introLine: "\xA1Solo conf\xEDo en el tipo Ps\xEDquico! \xBFTienes con qu\xE9 contrarrestarlo?"
+  defeatLine: "Me ganaste con cabeza: el tipo Ps\xEDquico no lo es todo."
+  victoryLine: "\xA1El tipo Ps\xEDquico nunca falla!"

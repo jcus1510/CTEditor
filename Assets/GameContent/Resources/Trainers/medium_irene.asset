@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: gastly
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 9e3431a9ffd1b8347bc36d19573fd587, type: 2}
     level: 24
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: gastly
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 9f8050426d9ce95438006f82732fc8a8, type: 2}
     level: 26
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: haunter
+    moveIds: []
+    natureId: 
   aiLevel: 2
+  aiProfileId: 
   ai: 1
   useItems: 1
   items: []

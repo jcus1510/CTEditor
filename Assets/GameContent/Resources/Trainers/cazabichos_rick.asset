@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: caterpie
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: c96956f6c0532084b9ffc5adb3705e97, type: 2}
     level: 6
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: weedle
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: c1f4e757011ee6140a15f30c4c946459, type: 2}
     level: 7
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: metapod
+    moveIds: []
+    natureId: 
   aiLevel: 0
+  aiProfileId: 
   ai: 0
   useItems: 1
   items:
