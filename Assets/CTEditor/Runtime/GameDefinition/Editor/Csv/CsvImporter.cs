@@ -228,6 +228,14 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
             }
+            // Equipos y zonas que apuntaban a fichas borradas y vueltas a crear: se reenlazan por id.
+            try
+            {
+                var relink = ReferenceRelinker.RelinkAll();
+                if (relink.Relinked > 0) report.Add($"Referencias reenlazadas por id: {relink.Relinked}");
+                if (relink.Unresolved.Count > 0) report.Add($"Referencias sin reenlazar (el id no existe): {relink.Unresolved.Count}. Usa «🔗 Reenlazar por id» para ver cuáles.");
+            }
+            catch (Exception e) { UnityEngine.Debug.LogError("[Excel] Error al reenlazar: " + e); }
             return string.Join("\n", report);
         }
     }

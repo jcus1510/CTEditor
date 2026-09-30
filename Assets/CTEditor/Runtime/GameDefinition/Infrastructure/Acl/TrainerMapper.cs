@@ -13,17 +13,21 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
     /// <summary>ACL de entrenadores, equipos prearmados y zonas: fichas de Unity → dominio.</summary>
     public static class TrainerMapper
     {
-        /// <summary>Un miembro de equipo. Null si no tiene especie (fila vacía).</summary>
+        /// <summary>
+        /// Un miembro de equipo. Null si no tiene especie (fila vacía). Usa los IDS: el de la referencia si está
+        /// viva y, si se rompió (la especie se borró y se volvió a crear), el id guardado de respaldo.
+        /// </summary>
         public static TeamMemberSpec ToDomain(TeamMemberData d)
         {
-            if (d == null || d.species == null || string.IsNullOrWhiteSpace(d.species.Id)) return null;
+            if (d == null) return null;
+            string species = d.SpeciesKey;
+            if (string.IsNullOrWhiteSpace(species)) return null;
             var moves = new List<Id<Move>>();
-            if (d.moves != null)
-                foreach (var m in d.moves)
-                    if (m != null && !string.IsNullOrWhiteSpace(m.Id)) moves.Add(new Id<Move>(m.Id));
-            return new TeamMemberSpec(new Id<SpeciesDef>(d.species.Id), d.level, moves,
+            foreach (var m in d.MoveKeys()) moves.Add(new Id<Move>(m));
+            string nature = d.NatureKey;
+            return new TeamMemberSpec(new Id<SpeciesDef>(species), d.level, moves,
                 (d.heldItem ?? "").Trim(),
-                d.nature != null && !string.IsNullOrWhiteSpace(d.nature.Id) ? new Id<Nature>(d.nature.Id) : (Id<Nature>?)null,
+                nature.Length > 0 ? new Id<Nature>(nature) : (Id<Nature>?)null,
                 d.fixedIvs >= 0 ? d.fixedIvs : (int?)null,
                 d.nickname,
                 d.gender == MemberGender.Male ? CTEditor.GameDefinition.Domain.Species.Gender.Male
@@ -67,8 +71,8 @@ namespace CTEditor.GameDefinition.Infrastructure.Acl
             var entries = new List<EncounterEntry>();
             if (d.Entries != null)
                 foreach (var e in d.Entries)
-                    if (e != null && e.species != null && !string.IsNullOrWhiteSpace(e.species.Id))
-                        entries.Add(new EncounterEntry(new Id<SpeciesDef>(e.species.Id), e.minLevel, e.maxLevel, e.weight));
+                    if (e != null && !string.IsNullOrWhiteSpace(e.SpeciesKey))
+                        entries.Add(new EncounterEntry(new Id<SpeciesDef>(e.SpeciesKey), e.minLevel, e.maxLevel, e.weight));
             return new EncounterZone(d.Id, d.DisplayName, entries);
         }
     }

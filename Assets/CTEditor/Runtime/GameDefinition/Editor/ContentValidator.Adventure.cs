@@ -51,12 +51,13 @@ namespace CTEditor.GameDefinition.Editor
             CollectIds(zones, z => z.Id, "zona salvaje", issues);
             foreach (var z in zones)
             {
-                if (z.Entries == null || z.Entries.Count(e => e != null && e.species != null) == 0)
+                if (z.Entries == null || z.Entries.Count(e => e != null && e.SpeciesKey.Length > 0) == 0)
                 { issues.Add(Error($"La zona '{Name(z)}' no tiene ninguna especie.", z)); continue; }
                 foreach (var e in z.Entries)
                 {
                     if (e == null) continue;
-                    if (e.species == null) issues.Add(Warning($"La zona '{Name(z)}' tiene una fila sin especie (se ignora).", z));
+                    if (e.species == null && e.SpeciesKey.Length > 0) issues.Add(Warning($"La zona '{Name(z)}': '{e.SpeciesKey}' tiene la referencia rota (se usa su id). Pulsa «🔗 Reenlazar por id».", z));
+                    else if (e.species == null) issues.Add(Warning($"La zona '{Name(z)}' tiene una fila sin especie (se ignora).", z));
                     else if (e.minLevel > e.maxLevel) issues.Add(Warning($"La zona '{Name(z)}': {Name(e.species)} tiene el nivel mínimo ({e.minLevel}) mayor que el máximo ({e.maxLevel}); se intercambian.", z));
                     else if (e.maxLevel > levelCap) issues.Add(Warning($"La zona '{Name(z)}': {Name(e.species)} pasa del nivel máximo del juego ({levelCap}).", z));
                 }
@@ -70,8 +71,18 @@ namespace CTEditor.GameDefinition.Editor
         private static void ValidateTeam(TeamMemberData[] team, Object owner, string who, int maxParty, int maxMoves, int levelCap,
             HashSet<string> itemIds, List<ValidationIssue> issues)
         {
+            // Referencias rotas: si hay id de respaldo el juego lo usa igual (aviso); si no, ese miembro se pierde (error).
+            foreach (var m in team ?? new TeamMemberData[0])
+            {
+                if (m == null || m.species != null) continue;
+                if (m.SpeciesKey.Length > 0)
+                    issues.Add(Warning($"{who}: el miembro '{m.SpeciesKey}' tiene la referencia rota (se usa su id). Pulsa «🔗 Reenlazar por id».", owner));
+                else
+                    issues.Add(Error($"{who} tiene un miembro SIN especie ni id (se ignora). Reimporta su CSV o elige la especie.", owner));
+            }
             var members = (team ?? new TeamMemberData[0]).Where(m => m != null && m.species != null).ToList();
-            if (members.Count == 0) { issues.Add(Error($"{who} no tiene ningún miembro con especie.", owner)); return; }
+            if (members.Count == 0 && (team ?? new TeamMemberData[0]).All(m => m == null || m.SpeciesKey.Length == 0))
+            { issues.Add(Error($"{who} no tiene ningún miembro con especie.", owner)); return; }
             if (members.Count > maxParty) issues.Add(Warning($"{who} tiene {members.Count} miembros; las reglas permiten {maxParty} (los demás no combaten).", owner));
 
             foreach (var m in members)

@@ -68,5 +68,8 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public string IntroLine => introLine;
         public string DefeatLine => defeatLine;
         public string VictoryLine => victoryLine;
+
+        // Guarda los ids junto a las referencias (si una especie se vuelve a crear, el equipo no se pierde).
+        private void OnValidate() => TeamMemberData.SyncIds(team);
     }
 }

@@ -32,6 +32,9 @@ namespace CTEditor.GameDefinition.Infrastructure.ScriptableObjects
         public TeamMemberData[] Members => members;
         public int Money => money;
         public BagEntryData[] Items => items;
+
+        // Guarda los ids junto a las referencias (si una especie se vuelve a crear, el equipo no se pierde).
+        private void OnValidate() => TeamMemberData.SyncIds(members);
     }
 
     /// <summary>Una línea de la mochila: qué objeto y cuántos.</summary>

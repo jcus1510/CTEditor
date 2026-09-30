@@ -76,6 +76,11 @@ namespace CTEditor.GameDefinition.Editor
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button("Revisar de nuevo")) RecountIssues();
             if (GUILayout.Button("Abrir el validador")) ContentValidationWindow.Open();
+            if (GUILayout.Button(new GUIContent("🔗 Reenlazar por id", "Arregla los equipos y zonas con referencias rotas (especies o movimientos borrados y vueltos a crear) usando su id.")))
+            {
+                EditorUtility.DisplayDialog("Reenlazar por id", ReferenceRelinker.RelinkAll().ToString(), "Vale");
+                RecountIssues();
+            }
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.EndScrollView();

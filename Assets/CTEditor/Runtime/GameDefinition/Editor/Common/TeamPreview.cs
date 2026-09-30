@@ -208,10 +208,13 @@ namespace CTEditor.GameDefinition.Editor
             {
                 var el = list.GetArrayElementAtIndex(i);
                 el.FindPropertyRelative("species").objectReferenceValue = found[i].Item1;
+                el.FindPropertyRelative("speciesId").stringValue = found[i].Item1.Id;
                 el.FindPropertyRelative("level").intValue = found[i].Item2;
                 el.FindPropertyRelative("moves").arraySize = 0;
+                el.FindPropertyRelative("moveIds").arraySize = 0;
                 el.FindPropertyRelative("heldItem").stringValue = "";
                 el.FindPropertyRelative("nature").objectReferenceValue = null;
+                el.FindPropertyRelative("natureId").stringValue = "";
                 el.FindPropertyRelative("fixedIvs").intValue = -1;
                 el.FindPropertyRelative("nickname").stringValue = "";
             }

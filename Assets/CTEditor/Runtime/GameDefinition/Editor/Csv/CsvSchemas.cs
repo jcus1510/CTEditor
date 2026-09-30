@@ -484,12 +484,13 @@ namespace CTEditor.GameDefinition.Editor.Csv
         // ---------------- Entrenadores, zonas y equipos prearmados ----------------
 
         private static string TeamText(TeamMemberData[] team)
-            => CsvTeamCodecs.FormatTeam((team ?? new TeamMemberData[0]).Where(m => m != null && m.species != null).Select(m => new CsvTeamCodecs.ParsedMember
+            // Por IDS (referencia viva o id de respaldo): un miembro con la referencia rota NO se pierde al exportar.
+            => CsvTeamCodecs.FormatTeam((team ?? new TeamMemberData[0]).Where(m => m != null && m.SpeciesKey.Length > 0).Select(m => new CsvTeamCodecs.ParsedMember
             {
-                Species = m.species.Id, Level = m.level, Held = m.heldItem ?? "", Nature = m.nature != null ? m.nature.Id : "",
+                Species = m.SpeciesKey, Level = m.level, Held = m.heldItem ?? "", Nature = m.NatureKey,
                 Iv = m.fixedIvs, Nickname = m.nickname ?? "",
                 Gender = m.gender == MemberGender.Male ? "m" : m.gender == MemberGender.Female ? "h" : "",
-                Moves = (m.moves ?? new MoveData[0]).Where(x => x != null).Select(x => x.Id).ToList(),
+                Moves = m.MoveKeys().ToList(),
             }));
 
         private static void SetTeam(SerializedObject so, string field, string cell, ImportContext c)
@@ -502,14 +503,21 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 var p = members[i];
                 var el = arr.GetArrayElementAtIndex(i);
                 el.FindPropertyRelative("species").objectReferenceValue = c.Require<SpeciesData>(p.Species, "La especie");
+                el.FindPropertyRelative("speciesId").stringValue = p.Species;
                 el.FindPropertyRelative("level").intValue = p.Level;
                 var moves = el.FindPropertyRelative("moves");
+                var moveIds = el.FindPropertyRelative("moveIds");
                 moves.arraySize = p.Moves.Count;
+                moveIds.arraySize = p.Moves.Count;
                 for (int k = 0; k < p.Moves.Count; k++)
+                {
                     moves.GetArrayElementAtIndex(k).objectReferenceValue = c.Require<MoveData>(p.Moves[k], "El movimiento");
+                    moveIds.GetArrayElementAtIndex(k).stringValue = p.Moves[k];
+                }
                 if (p.Held.Length > 0 && !c.Exists<ItemData>(p.Held)) c.Warnings.Add($"El objeto '{p.Held}' aún no existe.");
                 el.FindPropertyRelative("heldItem").stringValue = p.Held;
                 el.FindPropertyRelative("nature").objectReferenceValue = p.Nature.Length > 0 ? c.Require<NatureData>(p.Nature, "La naturaleza") : null;
+                el.FindPropertyRelative("natureId").stringValue = p.Nature;
                 el.FindPropertyRelative("fixedIvs").intValue = p.Iv < 0 ? -1 : System.Math.Min(31, p.Iv);
                 el.FindPropertyRelative("nickname").stringValue = p.Nickname;
                 el.FindPropertyRelative("gender").enumValueIndex = p.Gender == "m" ? (int)MemberGender.Male : p.Gender == "h" ? (int)MemberGender.Female : 0;
@@ -620,8 +628,8 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 .Col("id", "Id único (ej. ruta_1).", d => d.Id, (so, v, c) => so.FindProperty("id").stringValue = v)
                 .Col("nombre", "Nombre visible.", d => d.DisplayName, (so, v, c) => so.FindProperty("displayName").stringValue = v)
                 .Col("especies", "especie@min-max:frecuencia separadas por |. Ej.: pidgey@2-5:50 | rattata@2-4:50",
-                    d => CsvTeamCodecs.FormatZone((d.Entries ?? new EncounterEntryData[0]).Where(e => e != null && e.species != null)
-                        .Select(e => (e.species.Id, e.minLevel, e.maxLevel, e.weight))),
+                    d => CsvTeamCodecs.FormatZone((d.Entries ?? new EncounterEntryData[0]).Where(e => e != null && e.SpeciesKey.Length > 0)
+                        .Select(e => (e.SpeciesKey, e.minLevel, e.maxLevel, e.weight))),
                     (so, v, c) =>
                     {
                         var entries = CsvTeamCodecs.ParseZone(v);
@@ -631,6 +639,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                         {
                             var el = arr.GetArrayElementAtIndex(i);
                             el.FindPropertyRelative("species").objectReferenceValue = c.Require<SpeciesData>(entries[i].species, "La especie");
+                            el.FindPropertyRelative("speciesId").stringValue = entries[i].species;
                             el.FindPropertyRelative("minLevel").intValue = System.Math.Max(1, entries[i].min);
                             el.FindPropertyRelative("maxLevel").intValue = System.Math.Max(1, entries[i].max);
                             el.FindPropertyRelative("weight").intValue = System.Math.Max(1, entries[i].weight);
