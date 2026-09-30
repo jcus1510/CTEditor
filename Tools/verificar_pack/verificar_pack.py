@@ -46,11 +46,11 @@ class Report:
 
 # ---------------- La base que crean las plantillas del código ----------------
 
-ITEM_TEMPLATES = os.path.join(ROOT, 'Assets', 'GameContent', 'Plantillas', 'objetos.csv')
+ITEM_TEMPLATES = os.path.join(ROOT, 'Tools', 'datos_fuente', 'objetos.csv')
 
 
 def item_templates():
-    """Los objetos clásicos con TODOS sus efectos (Assets/GameContent/Plantillas/objetos.csv): una fila por objeto."""
+    """Los objetos clásicos con TODOS sus efectos (Tools/datos_fuente/objetos.csv): una fila por objeto."""
     return load(ITEM_TEMPLATES)[1] if os.path.exists(ITEM_TEMPLATES) else []
 
 
@@ -73,8 +73,8 @@ def code_base():
         'ability': set(re.findall(r'P\("[^"]+",\s*"([a-z0-9_]+)"', read('Windows/AbilityEditorWindow.cs'))),
         'ai': {f'nivel_{i}' for i in range(1, 8)},
     }
-    # Objetos clásicos: la hoja de plantillas (datos, no código).
-    base['item'] = {r['id'] for r in item_templates()}
+    # Objetos: no hay base; los trae el objetos.csv del pack (con todos sus efectos).
+    base['item'] = set()
     return base
 
 

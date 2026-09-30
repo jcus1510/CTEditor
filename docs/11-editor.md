@@ -10,7 +10,7 @@ Todo en español; los textos de campos y opciones salen de `Common/Etiquetas.cs`
 | **Centro de Contenido** | Puerta de entrada: catálogo de todos los editores con recuento, elegir **pack** e **importar** («solo lo que falta» / «actualizar también»), «✨ Crear TODO» (contenido clásico), errores del validador. |
 | **Criaturas** | Especies (stats con barras, calculadora de stats reales, formas y variantes, Pokédex) · **Árbol de familia** (evoluciones, formas ⚔, variantes punteadas, «+ Forma», «+ Variante») · Habilidades (37 plantillas) · Naturalezas (tabla 5×5) · Grupos huevo · Curvas de experiencia (gráfico, fórmulas propias). |
 | **Combate** | Movimientos (plantillas por mecánica) · Tipos + **Tabla de tipos** (matriz, por épocas) · Estados · Climas · Trampas de campo · Efectos de lado · **Mecánicas especiales** (Megaevolución) · **Reglas del juego** (plantillas por generación, mecánicas activas, aventura). |
-| **Objetos** | Todos los objetos (efectos por bloques, [09](09-efectos-por-bloques.md)); plantillas en `Assets/GameContent/Plantillas/objetos.csv`. |
+| **Objetos** | Todos los objetos (efectos por bloques, [09](09-efectos-por-bloques.md)); plantillas = los objetos del pack o Excel elegido como fuente. |
 | **Personajes** | Entrenadores (equipo, IA, mochila, frases, «✨ Sugerir según la IA», «🏆 Set de Smogon…», Showdown) · Plantillas de entrenadores (del pack) · Niveles de IA (7 clásicos) · Sets de competición · Equipos prearmados. |
 | **Mundo** | Zonas salvajes (con % real de aparición). |
 | **Interfaz** | Menús (vista previa jugable) · Controles y caja de texto · Mapa de menús (Bootstrap.Editor). |
@@ -71,3 +71,5 @@ Con cientos de especies, movimientos y objetos, lo que se hace en cada repintado
 5. **No repintar al mover el ratón** salvo las ventanas con gráficos que lo necesitan (`RepaintOnMouseMove`).
 6. Todo lo que se calcule para dibujar (opciones de desplegables, planes de movimientos, recuentos) se guarda y se
    invalida con `ContentAssets.Version` / `EditStamp`, nunca por tiempo.
+7. **Relaciones entre fichas en caché**: el Árbol de familia calcula padres, bases, variantes y etiquetas de cadena una vez
+   por cambio de contenido (diccionarios), no buscando en toda la lista en cada evento (eso era O(n²)-O(n³)).

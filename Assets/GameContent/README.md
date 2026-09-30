@@ -110,7 +110,7 @@ archivo**: cada catálogo indexa por el **campo `Id`**. **No repitas un Id** den
   - Excel: columna `efectos`, p. ej. `fin_de_turno: curar 6,25% | antes_de_golpe [si mov.tipo=fire & propio.eficacia>1]:
     daño_recibido x0,5; se_gasta | poca_vida@25: etapa attack +1; se_gasta`. Opciones: `se_gasta`, `al_rival`, `prob=N`,
     `veces=N`.
-  - Las **plantillas** son datos: `Assets/GameContent/Plantillas/objetos.csv` (edítalas en Excel). Los **packs** traen
+  - Las **plantillas** son los objetos del pack elegido (o de tu Excel): no hay hoja aparte. Los **packs** traen
     todos los objetos de su generación con todos sus efectos: importar con «Actualizar también» los deja completos.
 - **MT que se gastan**: es una regla (Reglas → «Las MT se gastan»; 1.ª-4.ª gen. sí, desde la 5.ª no), no del objeto.
 - **Mochila**: el `PartyHolder` trae la `Mochila inicial` (por defecto 5 Pociones y 10 Poké Balls). Los

@@ -352,7 +352,7 @@ def english_names(species, moves, abil, sh, mh, ah):
 
 def items_for(n):
     """Filas de objetos.csv: TODOS los objetos que existen en la generación n (salvo las MT), con sus efectos. Los que tienen
-    plantilla (Assets/GameContent/Plantillas/objetos.csv) llevan su categoría, dónde se usan, si son baya y sus EFECTOS; el
+    plantilla (Tools/datos_fuente/objetos.csv) llevan su categoría, dónde se usan, si son baya y sus EFECTOS; el
     nombre, la descripción y el precio son los oficiales de PokeAPI. Los demás: categoría según el bolsillo y, las bolas,
     su efecto de captura."""
     import verificar_pack

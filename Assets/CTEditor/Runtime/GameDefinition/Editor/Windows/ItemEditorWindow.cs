@@ -63,9 +63,9 @@ namespace CTEditor.GameDefinition.Editor
         // «Other» is also a target label («Rival») in Etiquetas: items need their own word.
         public static string NameOf(ItemCategory c) => c == ItemCategory.Other ? "Otros" : Etiquetas.Enum(c.ToString());
 
-        // ---------------- Biblioteca clásica (DATOS: Assets/GameContent/Plantillas/objetos.csv) ----------------
+        // ---------------- Plantillas = los objetos de la FUENTE (el pack elegido o tu Excel) ----------------
 
-        /// <summary>Un objeto clásico de la biblioteca: una fila de la hoja de plantillas (mismo formato que objetos.csv).</summary>
+        /// <summary>Un objeto de la fuente: una fila de su objetos.csv (con todos sus efectos).</summary>
         public sealed class Preset
         {
             public string Id, Name, EnglishName, Summary, EffectsText;
@@ -74,35 +74,42 @@ namespace CTEditor.GameDefinition.Editor
             public bool InBattle, Outside, Consumable, IsBerry;
         }
 
-        /// <summary>La hoja con los objetos clásicos y TODOS sus efectos. La usan este editor, el Centro de Contenido y los
-        /// generadores de packs (Tools/verificar_pack): una sola fuente de verdad.</summary>
-        public const string LibraryPath = "Assets/GameContent/Plantillas/objetos.csv";
+        /// <summary>The objetos.csv the templates come from: the one of the chosen pack or of the author's own Excel
+        /// folder (PackTools.Folder). There is no separate templates sheet: the pack IS the catalogue.</summary>
+        public static string LibraryPath => System.IO.Path.Combine(PackTools.Folder, "objetos.csv");
 
         private static Preset[] _library;
+        private static string _libraryPath;
         private static DateTime _libraryStamp;
         private static double _libraryCheckedAt = -10;
+        private static string[] _libraryLabels;
 
-        /// <summary>Los objetos clásicos (se vuelven a leer si la hoja cambia).</summary>
+        /// <summary>Los objetos de la fuente (se vuelven a leer si cambia la fuente o el archivo).</summary>
         public static Preset[] Library
         {
             get
             {
                 double now = EditorApplication.timeSinceStartup;
-                if (_library != null && now - _libraryCheckedAt < 2) return _library;   // se mira el archivo como mucho cada 2 s
+                if (_library != null && now - _libraryCheckedAt < 2) return _library;   // the file is checked at most every 2 s
                 _libraryCheckedAt = now;
                 string full = System.IO.Path.GetFullPath(LibraryPath);
                 var stamp = System.IO.File.Exists(full) ? System.IO.File.GetLastWriteTimeUtc(full) : DateTime.MinValue;
-                if (_library != null && stamp == _libraryStamp) return _library;
+                if (_library != null && stamp == _libraryStamp && full == _libraryPath) return _library;
                 _libraryStamp = stamp;
+                _libraryPath = full;
                 _library = LoadLibrary(full);
+                _libraryLabels = null;
                 return _library;
             }
         }
 
+        private static string[] LibraryLabels
+            => _libraryLabels ??= Library.Select(p => $"{NameOf(p.Cat)}/{p.Name}").ToArray();
+
         private static Preset[] LoadLibrary(string path)
         {
             var list = new List<Preset>();
-            if (!System.IO.File.Exists(path)) { Debug.LogWarning("No encuentro la hoja de objetos clásicos: " + LibraryPath); return list.ToArray(); }
+            if (!System.IO.File.Exists(path)) { Debug.LogWarning("La fuente no tiene objetos.csv: " + path); return list.ToArray(); }
             string Cell(Dictionary<string, string> r, string k) => r.TryGetValue(k, out var v) ? (v ?? "").Trim() : "";
             bool Yes(string v) => v == "si" || v == "sí" || v == "true" || v == "1";
             foreach (var r in Csv.CsvTable.Load(path).Rows)
@@ -138,7 +145,7 @@ namespace CTEditor.GameDefinition.Editor
             ItemEffectsEditing.SetBlocks(so, blocks);
         }
 
-        /// <summary>Crea los objetos clásicos que falten. Público: lo usa el Centro de Contenido.</summary>
+        /// <summary>Crea los objetos de la fuente que falten. Público: lo usa el Centro de Contenido.</summary>
         public static int CreateClassicSet()
         {
             int created = 0;
@@ -154,8 +161,19 @@ namespace CTEditor.GameDefinition.Editor
 
         private int _preset;
 
+        private static Preset[] _templatesOf;
+        private static List<(string id, string name, string group)> _templates;
+
+        // Cached per library (the base window asks for it on every GUI event).
         protected override IReadOnlyList<(string id, string name, string group)> Templates
-            => Library.Select(p => (p.Id, p.Name, NameOf(p.Cat))).ToList();
+        {
+            get
+            {
+                var lib = Library;
+                if (_templates == null || _templatesOf != lib) { _templatesOf = lib; _templates = lib.Select(p => (p.Id, p.Name, NameOf(p.Cat))).ToList(); }
+                return _templates;
+            }
+        }
 
         protected override void ApplyTemplate(SerializedObject so, string id)
         {
@@ -167,15 +185,15 @@ namespace CTEditor.GameDefinition.Editor
 
         protected override void DrawBulkPresets()
         {
-            if (GUILayout.Button($"Crear los {Library.Length} objetos clásicos")) FinishBulk(CreateClassicSet(), "objetos");
+            if (GUILayout.Button($"Crear los {Library.Length} objetos de {PackTools.SourceName}")) FinishBulk(CreateClassicSet(), "objetos");
         }
 
         protected override void DrawPresets(ItemData d)
         {
             if (Library.Length == 0) return;
             _preset = Mathf.Clamp(_preset, 0, Library.Length - 1);
-            EditorGUILayout.LabelField("Plantilla (reemplaza los efectos; el id se mantiene)", EditorStyles.boldLabel);
-            var labels = Library.Select(p => $"{NameOf(p.Cat)}/{p.Name}").ToArray();
+            EditorGUILayout.LabelField($"Plantilla de {PackTools.SourceName} (reemplaza los efectos; el id se mantiene)", EditorStyles.boldLabel);
+            var labels = LibraryLabels;
             EditorGUILayout.BeginHorizontal();
             _preset = EditorGUILayout.Popup(_preset, labels);
             if (GUILayout.Button("Aplicar", GUILayout.Width(70)))

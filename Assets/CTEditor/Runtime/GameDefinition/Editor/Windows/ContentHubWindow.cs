@@ -358,8 +358,8 @@ namespace CTEditor.GameDefinition.Editor
             Step("tipos.csv", "Tipos", TypeChartTools.CreateClassicSet);
             Step("estados.csv", "Estados", ClassicStatusPresets.CreateClassicSet);
             Step("climas.csv", "Climas", WeatherEditorWindow.CreateClassicSet);
-            // Objetos: el objetos.csv del pack trae TODOS los de su generación con TODOS sus efectos (manda el pack). Sin pack,
-            // los clásicos de Assets/GameContent/Plantillas/objetos.csv.
+            // Objetos: the pack's objetos.csv brings every item of its generation with all its effects (the pack rules).
+            // Without a pack, the items of the chosen source (pack or own Excel).
             Step("objetos.csv", "Objetos", ItemEditorWindow.CreateClassicSet);
             Step("trampas.csv", "Trampas de campo", HazardEditorWindow.CreateClassicSet);
             Step("efectos_lado.csv", "Efectos de lado", SideConditionEditorWindow.CreateClassicSet);

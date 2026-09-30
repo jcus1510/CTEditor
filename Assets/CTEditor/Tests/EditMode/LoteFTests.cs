@@ -93,7 +93,7 @@ namespace CTEditor.Tests.EditMode
             }),
         };
 
-        // The same effect text as Assets/GameContent/Plantillas/objetos.csv: these tests check that the DATA gives the right battle.
+        // The same effect text as Tools/datos_fuente/objetos.csv: these tests check that the DATA gives the right battle.
         private static ItemDefinition Held(string id, string effects)
             => new ItemDefinition(id, id, ItemCategory.Held, effects: EffectText.Parse(effects));
 

@@ -33,19 +33,24 @@ namespace CTEditor.Tests.EditMode
             }
         }
 
-        /// <summary>The classic items sheet (Assets/GameContent/Plantillas/objetos.csv), from Unity or from Tools/compilar_unity.</summary>
-        private static string LibraryFile()
+        /// <summary>A file of the repository, from Unity (project root) or from Tools/compilar_unity (walks up).</summary>
+        private static string RepoFile(string rel)
         {
-            const string rel = "Assets/GameContent/Plantillas/objetos.csv";
-            if (File.Exists(rel)) return rel;
+            if (File.Exists(rel) || Directory.Exists(rel)) return rel;
             for (var dir = new DirectoryInfo(TestContext.CurrentContext.TestDirectory); dir != null; dir = dir.Parent)
-                if (File.Exists(Path.Combine(dir.FullName, rel))) return Path.Combine(dir.FullName, rel);
+            {
+                string full = Path.Combine(dir.FullName, rel);
+                if (File.Exists(full) || Directory.Exists(full)) return full;
+            }
             Assert.Fail("No se encuentra " + rel);
             return null;
         }
 
+        /// <summary>The source sheet the pack generators take the item effects from (Tools/datos_fuente/objetos.csv).</summary>
+        private static string LibraryFile() => RepoFile("Tools/datos_fuente/objetos.csv");
+
         [Test]
-        public void Every_classic_item_of_the_templates_sheet_is_read_and_written_back_without_losses()
+        public void Every_item_of_the_source_sheet_is_read_and_written_back_without_losses()
         {
             var rows = CsvTable.Load(LibraryFile()).Rows;
             Assert.Greater(rows.Count, 100);
@@ -64,7 +69,7 @@ namespace CTEditor.Tests.EditMode
         [Test]
         public void The_effects_of_every_pack_are_read()
         {
-            var packs = Path.Combine(Path.GetDirectoryName(Path.GetDirectoryName(LibraryFile())), "Packs");
+            var packs = RepoFile("Assets/GameContent/Packs");
             int files = 0;
             foreach (var file in Directory.GetFiles(packs, "objetos.csv", SearchOption.AllDirectories))
             {

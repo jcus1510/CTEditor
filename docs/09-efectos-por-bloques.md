@@ -103,9 +103,11 @@ Fuera del combate, los bloques «Al usarlo» se leen a través de las vistas de 
 - `ItemData` = identidad + dónde se usa + `isBerry` + **`effects`** (`EffectBlockData[]`). No hay otros campos de efecto:
   el sistema antiguo (campos sueltos, `ItemExtras`) se eliminó por completo.
 - `ItemMapper.Effects(d)` traduce los bloques al dominio.
-- **Plantillas = DATOS**: `Assets/GameContent/Plantillas/objetos.csv` (135 objetos clásicos con TODOS sus efectos, mismo
-  formato que `objetos.csv`). La leen el editor (crear / restaurar / «Actualizar desde las plantillas»), el Centro de
-  Contenido (sin pack) y los generadores de packs. Una sola fuente de verdad.
+- **Plantillas = el pack**: no hay hoja de plantillas aparte. Las plantillas del editor de objetos son los objetos del
+  `objetos.csv` de la FUENTE elegida (el pack de la generación o tu carpeta de Excel, `PackTools.Folder`), con todos sus
+  efectos. Cada objeto guarda sus efectos DENTRO: usar una plantilla los copia a la ficha.
+- **Fuente para generar los packs**: `Tools/datos_fuente/objetos.csv` (los objetos clásicos con TODOS sus efectos; solo lo
+  usan los generadores y el verificador, no el editor).
 - **Packs**: el `objetos.csv` de cada generación trae TODOS sus objetos con TODOS sus efectos (los de la plantilla, con
   nombre, descripción y precio oficiales). Al importar un pack con «Actualizar también» cada objeto queda completo.
 

@@ -13,7 +13,7 @@ Un pack = una generación **fiel a sí misma**, en hojas CSV + `INFORME.txt` (qu
 Contenido: 151/251/386/493/649/721 especies con los datos de su época (PokeAPI deshaciendo cambios posteriores),
 movimientos con tipo/potencia/precisión/PP/prioridad de entonces (categoría por tipo hasta la 3.ª), aprendizaje de su
 juego de referencia + MT/tutor/huevo, habilidades (3.ª+, ocultas 5.ª+), tabla de tipos de la generación, objetos
-(salvo MT) **con todos sus efectos** (los de `Assets/GameContent/Plantillas/objetos.csv`), entrenadores de los juegos, formas y variantes, **48 megas**
+(salvo MT) **con todos sus efectos** (sacados de `Tools/datos_fuente/objetos.csv`), entrenadores de los juegos, formas y variantes, **48 megas**
 con su megapiedra (Gen6), nombres en inglés (`nombre_en`) y sets de Smogon.
 
 **Importar**: Centro de Contenido → Pack → «📦 Importar». Primero se crea la base que el pack no trae desde las

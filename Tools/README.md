@@ -40,7 +40,7 @@ que tenían entonces (PokeAPI, deshaciendo los cambios posteriores):
 | Nombres en inglés | Columna `nombre_en` (el nombre de Showdown) en especies —variantes al estilo «Rotom-Wash», «Nidoran-F»—, movimientos, habilidades, objetos y naturalezas: sirve para importar y exportar equipos en formato Showdown. |
 | Formas y variantes | Formas de combate (Castform, Cherrim, Darmanitan, Meloetta, Aegislash, Giratina, Arceus, Kyogre/Groudon primigenios) con qué las provoca, y variantes como especies con `forma_de` (Deoxys, Wormadam, Rotom, Shaymin, Basculin, Tótem, Kyurem, Keldeo, Pumpkaboo/Gourgeist, Hoopa) con sus datos de PokeAPI (`formas.py`). |
 | Tabla de tipos | La de la generación (sin Siniestro/Acero en la 1.ª, sin Hada hasta la 6.ª, Fantasma→Acero ×0,5 hasta la 5.ª...). |
-| Objetos | Todos los de la generación salvo las MT (nombre, descripción y precio oficiales) con TODOS sus efectos (columna `efectos`, sacada de `Assets/GameContent/Plantillas/objetos.csv`); las bolas sin plantilla capturan como una Poké Ball, y el resto de objetos sin plantilla van solo con sus datos. |
+| Objetos | Todos los de la generación salvo las MT (nombre, descripción y precio oficiales) con TODOS sus efectos (columna `efectos`, sacada de `Tools/datos_fuente/objetos.csv`); las bolas sin plantilla capturan como una Poké Ball, y el resto de objetos sin plantilla van solo con sus datos. |
 | Entrenadores | Los de los juegos hasta esa generación, con movimientos válidos (sin objetos en la 1.ª, sin naturalezas antes de la 3.ª), especialistas de tipo, Ases del Frente (5.ª y 6.ª) y el Laboratorio de IA. |
 
 Lo que PokeAPI no tiene (efectos de movimientos, configuración de habilidades, Pokédex, entrenadores) sale de

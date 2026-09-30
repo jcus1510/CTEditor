@@ -50,4 +50,7 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   traen todos sus objetos con todos sus efectos; el verificador revisa los efectos.
 - **Editor más rápido**: validación en caché, búsquedas por id indexadas, referencias en una sola pasada, listas
   virtuales, sin repintar al mover el ratón, papelera y recuentos en caché ([11](11-editor.md)).
+- **Sin carpeta de Plantillas**: las plantillas del editor de objetos son los objetos del pack/Excel elegido; la fuente de
+  efectos para generar packs pasa a `Tools/datos_fuente/objetos.csv`.
+- **Árbol de familia rápido**: grafo (padres, bases, variantes, cadenas) en caché por cambio de contenido y lista virtual.
 - **Documentación** completa por capítulos (esta carpeta).
