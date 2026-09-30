@@ -98,3 +98,13 @@ Compila con .NET 8 el código puro del juego (SharedKernel, GameDefinition.Domai
 los tests de `Tests/EditMode` que no dependen de Unity. Sirve para comprobar un cambio del motor en segundos. Los tests
 que usan el editor o las fichas (Excel, catálogo, papelera...) están excluidos en el `.csproj`: esos se pasan en el
 Test Runner de Unity. Si creas un test nuevo que use Unity, añádelo a la lista `Exclude`.
+
+## compilar_unity — ¿compila el EDITOR? (sin abrir Unity)
+
+```bash
+dotnet build Tools/compilar_unity      # Runtime completo (dominio, fichas, editor) + tests, contra las DLL de Unity
+```
+
+Usa las DLL de referencia de Unity del paquete NuGet `Unity3D.SDK` (se descargan solas). **Si el editor no compila,
+Unity se queda con el último código que sí compiló** y parece que los cambios no han llegado (p. ej. `sets.csv` se
+leía como «Especies»). Las DLL son de Unity 2021: algo exclusivo de Unity 6 daría un falso error. No incluye Bootstrap.

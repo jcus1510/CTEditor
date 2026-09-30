@@ -114,3 +114,6 @@ __pycache__/
 /Tools/probar_dominio/bin/
 /Tools/probar_dominio/obj/
 !/Tools/probar_dominio/*.csproj
+/Tools/compilar_unity/bin/
+/Tools/compilar_unity/obj/
+!/Tools/compilar_unity/*.csproj
