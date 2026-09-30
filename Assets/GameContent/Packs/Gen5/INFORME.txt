@@ -19,5 +19,8 @@ APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con
 ENTRENADORES CON MIEMBROS DE GENERACIONES POSTERIORES (QUITADOS) (21):
    alto_mando_drasina, alto_mando_malva, alto_mando_narciso, alto_mando_tileo, especialista_dark, especialista_dragon, especialista_electric, especialista_fairy, especialista_fighting, especialista_fire, especialista_ghost, especialista_steel, jefe_lysson, lider_amaro, lider_astra, lider_corelia, lider_edel, lider_lem, lider_valeria, lider_violeta, rival_serena_liga
 
+OBJETOS AÑADIDOS SOLO CON SUS DATOS (SIN EFECTO EN COMBATE TODAVÍA), POR CATEGORÍA (4):
+   Ball: 22, Key: 147, Other: 271, Vitamin: 15
+
 Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
 The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.

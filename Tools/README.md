@@ -38,6 +38,7 @@ que tenían entonces (PokeAPI, deshaciendo los cambios posteriores):
 | Especies | Tipos, estadísticas (1.ª gen.: una sola Especial), habilidades (desde la 3.ª; ocultas desde la 5.ª), aprendizaje por nivel del juego de referencia (Rojo/Azul, Cristal, Esmeralda, Platino, N2/B2, ROZA) y MT/tutor/huevo de sus juegos, grupos huevo (desde la 2.ª), sin géneros en la 1.ª. |
 | Movimientos | Solo los que existen, con tipo, potencia, precisión, PP y prioridad de entonces; físico/especial **según el tipo** hasta la 3.ª gen.; Maldición «???» (typeless) en la 2.ª-4.ª. |
 | Tabla de tipos | La de la generación (sin Siniestro/Acero en la 1.ª, sin Hada hasta la 6.ª, Fantasma→Acero ×0,5 hasta la 5.ª...). |
+| Objetos | Todos los de la generación (nombre, descripción y precio oficiales) salvo las MT y los que ya tienen efecto en las plantillas del código: Balls, objetos clave, bayas, placas, Megapiedras, mails... (los nuevos, solo con sus datos). |
 | Entrenadores | Los de los juegos hasta esa generación, con movimientos válidos (sin objetos en la 1.ª, sin naturalezas antes de la 3.ª), especialistas de tipo, Ases del Frente (5.ª y 6.ª) y el Laboratorio de IA. |
 
 Lo que PokeAPI no tiene (efectos de movimientos, configuración de habilidades, Pokédex, entrenadores) sale de

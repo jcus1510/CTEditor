@@ -1,0 +1,101 @@
+﻿id;nombre;descripcion;categoria;precio;en_combate;fuera_combate;se_gasta;captura
+safari_ball;Safari Ball;;Ball;0;si;no;si;1
+fresh_water;Agua Fresca;;Other;200;no;no;no;
+soda_pop;Refresco;;Other;300;no;no;no;
+lemonade;Limonada;;Other;400;no;no;no;
+moomoo_milk;Leche Mu-mu;;Other;600;no;no;no;
+energy_powder;Polvo Energía;;Other;500;no;no;no;
+energy_root;Raíz Energía;;Other;1200;no;no;no;
+heal_powder;Polvo Curación;;Other;300;no;no;no;
+revival_herb;Hierba Revivir;;Other;2800;no;no;no;
+berry_juice;Zumo de Baya;;Other;200;no;no;no;
+sacred_ash;Ceniza Sagrada;;Other;50000;no;no;no;
+hp_up;Más PS;;Vitamin;10000;no;si;si;
+protein;Proteína;;Vitamin;10000;no;si;si;
+iron;Hierro;;Vitamin;10000;no;si;si;
+carbos;Carburante;;Vitamin;10000;no;si;si;
+calcium;Calcio;;Vitamin;10000;no;si;si;
+rare_candy;Caramelo Raro;;Vitamin;10000;no;si;si;
+pp_up;Más PP;;Vitamin;10000;no;si;si;
+guard_spec;Protección X;;Other;1500;no;no;no;
+dire_hit;Crítico X;;Other;1000;no;no;no;
+poke_doll;Poké Muñeco;;Other;300;no;no;no;
+super_repel;Superrepelente;;Other;700;no;no;no;
+max_repel;Repelente Máximo;;Other;900;no;no;no;
+escape_rope;Cuerda Huida;;Other;300;no;no;no;
+repel;Repelente;;Other;400;no;no;no;
+tiny_mushroom;Miniseta;;Other;500;no;no;no;
+big_mushroom;Seta Grande;;Other;5000;no;no;no;
+pearl;Perla;;Other;2000;no;no;no;
+big_pearl;Perla Grande;;Other;8000;no;no;no;
+stardust;Polvo Estelar;;Other;3000;no;no;no;
+star_piece;Trozo Estrella;;Other;12000;no;no;no;
+nugget;Pepita;;Other;10000;no;no;no;
+helix_fossil;Fósil Hélix;;Other;7000;no;no;no;
+dome_fossil;Fósil Domo;;Other;7000;no;no;no;
+old_amber;Ámbar Viejo;;Other;10000;no;no;no;
+cheri_berry;Baya Zreza;;Other;80;no;no;no;
+chesto_berry;Baya Atania;;Other;80;no;no;no;
+pecha_berry;Baya Meloc;;Other;80;no;no;no;
+rawst_berry;Baya Safre;;Other;80;no;no;no;
+aspear_berry;Baya Perasi;;Other;80;no;no;no;
+leppa_berry;Baya Zanama;;Other;80;no;no;no;
+persim_berry;Baya Caquic;;Other;80;no;no;no;
+exp_share;Repartir Exp;;Other;0;no;no;no;
+amulet_coin;Moneda Amuleto;;Other;10000;no;no;no;
+cleanse_tag;Amuleto;;Other;5000;no;no;no;
+smoke_ball;Bola de Humo;;Other;4000;no;no;no;
+everstone;Piedra Eterna;;Other;3000;no;no;no;
+focus_band;Cinta Aguante;;Other;4000;no;no;no;
+lucky_egg;Huevo Suerte;;Other;10000;no;no;no;
+light_ball;Bola Luminosa;;Other;1000;no;no;no;
+lucky_punch;Puño Suerte;;Other;1000;no;no;no;
+metal_powder;Polvo Metálico;;Other;1000;no;no;no;
+thick_club;Hueso Grueso;;Other;1000;no;no;no;
+stick;Puerro;;Other;1000;no;no;no;
+town_map;Mapa;;Key;0;no;no;no;
+coin_case;Monedero;;Key;0;no;no;no;
+old_rod;Caña Vieja;;Key;0;no;no;no;
+good_rod;Caña Buena;;Key;0;no;no;no;
+super_rod;Supercaña;;Key;0;no;no;no;
+bicycle;Bici;;Key;0;no;no;no;
+ss_ticket;Ticket Barco;;Key;0;no;no;no;
+parcel;Paquete;;Key;0;no;no;no;
+secret_potion;Poción Secreta;;Key;0;no;no;no;
+secret_key;Llave Secreta;;Key;0;no;no;no;
+squirt_bottle;Regadera;;Key;0;no;no;no;
+lure_ball;Cebo Ball;;Ball;0;si;no;si;1
+level_ball;Nivel Ball;;Ball;0;si;no;si;1
+moon_ball;Luna Ball;;Ball;0;si;no;si;1
+heavy_ball;Peso Ball;;Ball;0;si;no;si;1
+fast_ball;Rapid Ball;;Ball;0;si;no;si;1
+friend_ball;Amigo Ball;;Ball;0;si;no;si;1
+love_ball;Amor Ball;;Ball;0;si;no;si;1
+park_ball;Parque Ball;;Ball;0;si;no;si;1
+red_apricorn;Bonguri Rojo;;Key;200;no;no;no;
+blue_apricorn;Bonguri Azul;;Key;200;no;no;no;
+yellow_apricorn;Bonguri Amarillo;;Key;200;no;no;no;
+green_apricorn;Bonguri Verde;;Key;200;no;no;no;
+pink_apricorn;Bonguri Rosa;;Key;200;no;no;no;
+white_apricorn;Bonguri Blanco;;Key;200;no;no;no;
+black_apricorn;Bonguri Negro;;Key;200;no;no;no;
+dowsing_machine;Zahorí;;Key;0;no;no;no;
+rage_candy_bar;Caramelo Furia;;Key;350;no;no;no;
+blue_card;Tarjeta Azul;;Key;0;no;no;no;
+clear_bell;Cascabel Claro;;Key;0;no;no;no;
+card_key;Llave Magnética;;Key;0;no;no;no;
+basement_key;Llave Sótano;;Key;0;no;no;no;
+red_scale;Escama Roja;;Key;0;no;no;no;
+lost_item;Objeto Perdido;;Key;0;no;no;no;
+pass;Magnetopase;;Key;0;no;no;no;
+machine_part;Maquinaria;;Key;0;no;no;no;
+silver_wing;Ala Plateada;;Key;0;no;no;no;
+rainbow_wing;Ala Arcoíris;;Key;0;no;no;no;
+mystery_egg;Huevo Misterioso;;Key;0;no;no;no;
+poke_flute;Poké Flauta;;Key;0;no;no;no;
+bike_voucher;Bono Bici;;Key;0;no;no;no;
+gold_teeth;Dentadura de Oro;;Key;0;no;no;no;
+lift_key;Llave Ascensor;;Key;0;no;no;no;
+silph_scope;Visor Silph;;Key;0;no;no;no;
+gold_leaf;Hoja de Oro;;Other;1000;no;no;no;
+silver_leaf;Hoja de Plata;;Other;1000;no;no;no;

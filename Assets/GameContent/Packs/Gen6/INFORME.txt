@@ -16,5 +16,8 @@ APROXIMACIONES (lo que el MOTOR aún hace como en la 6.ª gen.; se ajustará con
   • Los EFECTOS de los movimientos y de las habilidades son los de la 6.ª gen.
   • Críticos, fórmula de daño, EVs (en vez de «experiencia de estadística») y demás reglas: las del Ruleset.
 
+OBJETOS AÑADIDOS SOLO CON SUS DATOS (SIN EFECTO EN COMBATE TODAVÍA), POR CATEGORÍA (4):
+   Ball: 22, Key: 176, Other: 334, Vitamin: 16
+
 Datos: PokeAPI (github.com/PokeAPI/pokeapi). Pokémon y sus nombres son marcas de Nintendo / Game Freak /
 The Pokémon Company: úsalo para aprender y para proyectos personales, no para publicar un juego.

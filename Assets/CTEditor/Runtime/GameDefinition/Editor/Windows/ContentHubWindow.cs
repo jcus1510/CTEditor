@@ -358,7 +358,9 @@ namespace CTEditor.GameDefinition.Editor
             Step("tipos.csv", "Tipos", TypeChartTools.CreateClassicSet);
             Step("estados.csv", "Estados", ClassicStatusPresets.CreateClassicSet);
             Step("climas.csv", "Climas", WeatherEditorWindow.CreateClassicSet);
-            Step("objetos.csv", "Objetos", ItemEditorWindow.CreateClassicSet);
+            // Objetos: las plantillas (los que tienen EFECTO configurado) se crean siempre; el objetos.csv del pack solo trae
+            // los DEMÁS objetos de su generación (clave, bayas, placas, Megapiedras...), así que no se pisan.
+            report.Add($"Objetos con efecto: {ItemEditorWindow.CreateClassicSet()} nuevos" + (pack != null && pack.Has("objetos.csv") ? " (+ el resto, del pack)" : ""));
             Step("trampas.csv", "Trampas de campo", HazardEditorWindow.CreateClassicSet);
             Step("efectos_lado.csv", "Efectos de lado", SideConditionEditorWindow.CreateClassicSet);
             // Movimientos: si el pack trae los suyos, del código SOLO sale Forcejeo (lo necesita el motor): así un pack

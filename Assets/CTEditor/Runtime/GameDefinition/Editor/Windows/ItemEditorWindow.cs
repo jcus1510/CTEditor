@@ -407,13 +407,36 @@ namespace CTEditor.GameDefinition.Editor
             return l;
         }
 
+        private static HashSet<string> _evoItems;
+        private static int _evoVersion = -1;
+
+        /// <summary>Ids de objetos que usa alguna evolución (con objeto, por intercambio o «lleva: objeto»).</summary>
+        public static HashSet<string> EvolutionItems()
+        {
+            if (_evoItems != null && _evoVersion == ContentAssets.Version) return _evoItems;
+            var set = new HashSet<string>();
+            foreach (var sp in ContentAssets.LoadAll<SpeciesData>())
+                foreach (var e in sp.Evolutions ?? new SpeciesData.EvolutionEntry[0])
+                {
+                    if (!string.IsNullOrWhiteSpace(e.itemId)) set.Add(e.itemId.Trim());
+                    foreach (var c in e.conditions ?? new SpeciesData.EvolutionConditionData[0])
+                        if (c != null && !string.IsNullOrWhiteSpace(c.itemId)) set.Add(c.itemId.Trim());
+                }
+            _evoItems = set;
+            _evoVersion = ContentAssets.Version;
+            return set;
+        }
+
         public static List<string> Check(ItemData d)
         {
             var w = new List<string>();
             if (d.CatchMultiplier > 0 && !d.UsableInBattle) w.Add("Es una bola pero no se puede usar en combate: nunca servirá para capturar.");
+            // Los objetos que hacen EVOLUCIONAR (al llevarlos o al intercambiar: Roca del Rey, Revestimiento Metálico, Escama
+            // Bella, Saquito Fragante...) no necesitan efecto en combate: su efecto es la evolución.
             if (d.Category == ItemCategory.Held && !(d.HeldPowerModifiers?.Length > 0 || d.HeldEndOfTurnHealPercent > 0 || d.HeldTriggerHpPercent > 0
-                                                     || CTEditor.GameDefinition.Infrastructure.Acl.ItemMapper.Extras(d).DoesSomething))
-                w.Add("Es de categoría «Equipable» pero no tiene efectos al llevarlo.");
+                                                     || CTEditor.GameDefinition.Infrastructure.Acl.ItemMapper.Extras(d).DoesSomething)
+                && !EvolutionItems().Contains(d.Id ?? ""))
+                w.Add("Es de categoría «Equipable» pero no tiene efectos al llevarlo (ni hace evolucionar a ninguna especie).");
             if (d.HeldTriggerHpPercent > 0 && d.HeldTriggerHealHp <= 0 && d.HeldTriggerHealPercent <= 0)
                 w.Add("Se activa con poca vida pero no cura nada.");
             if (!string.IsNullOrWhiteSpace(d.CuresStatusId))

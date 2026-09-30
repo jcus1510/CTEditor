@@ -256,6 +256,11 @@ def build(n, verbose=True):
     elif os.path.exists(os.path.join(out, 'habilidades.csv')):
         os.remove(os.path.join(out, 'habilidades.csv'))
     save(os.path.join(out, 'entrenadores.csv'), th, trainers)
+    items = items_for(n)
+    save(os.path.join(out, 'objetos.csv'), ['id', 'nombre', 'descripcion', 'categoria', 'precio', 'en_combate', 'fuera_combate',
+                                          'se_gasta', 'captura'], items)
+    notes_items = collections.Counter(r['categoria'] for r in items)
+    notes['objetos añadidos solo con sus datos (sin efecto en combate todavía), por categoría'] = [f'{k}: {v}' for k, v in sorted(notes_items.items())]
     sys.argv = ['generar_base.py', out, '--gen', str(n)]
     generar_base.main()
     write_report(n, g, out, species, moves, abil, trainers, notes)
@@ -263,6 +268,49 @@ def build(n, verbose=True):
     if verbose:
         print(f'Gen{n}: {len(species)} especies, {len(moves)} movimientos, {len(abil)} habilidades, {len(trainers)} entrenadores')
     return notes
+
+
+# ---------------- Objetos: todos los de la generación (los que tienen efecto en el código no se repiten) ----------------
+
+ITEM_CATEGORY = {'evolution': 'Evolution', 'vitamins': 'Vitamin'}
+
+
+def items_for(n):
+    """Filas de objetos.csv: todos los objetos que existen en la generación n, salvo las MT y los que ya crean (con su
+    efecto) las plantillas del código. Categoría del editor según el bolsillo de PokeAPI; nombre, descripción y precio
+    oficiales en español."""
+    import verificar_pack
+    preset = verificar_pack.code_base()['item']
+    first_gen = {}
+    for r in table('item_game_indices'):
+        g = int(r['generation_id'])
+        first_gen[r['item_id']] = min(first_gen.get(r['item_id'], 99), g)
+    cats = {r['id']: (r['pocket_id'], r['identifier']) for r in table('item_categories')}
+    names = {r['item_id']: r['name'] for r in table('item_names') if r['local_language_id'] == SPANISH}
+    vg_gen = {r['id']: int(r['generation_id']) for r in table('version_groups')}
+    flavor = {}
+    for r in table('item_flavor_text'):
+        if r['language_id'] != SPANISH or vg_gen.get(r['version_group_id'], 99) > max(n, 5):
+            continue   # los textos en español empiezan en la 5.ª gen.
+        prev = flavor.get(r['item_id'])
+        if prev is None or int(r['version_group_id']) > prev[0]:
+            flavor[r['item_id']] = (int(r['version_group_id']), ' '.join(r['flavor_text'].split()))
+    rows = []
+    for it in table('items'):
+        iid = pack_id(it['identifier'])
+        pocket, cat = cats.get(it['category_id'], ('', ''))
+        if first_gen.get(it['id'], 99) > n or pocket == '4' or iid in preset or cat in ('unused', 'all-machines'):
+            continue
+        category = 'Ball' if pocket == '3' else 'Key' if pocket == '8' else ITEM_CATEGORY.get(cat, 'Other')
+        row = {'id': iid, 'nombre': names.get(it['id'], iid), 'descripcion': flavor.get(it['id'], (0, ''))[1],
+               'categoria': category, 'precio': it['cost'] or '0',
+               'en_combate': 'si' if category == 'Ball' else 'no',
+               'fuera_combate': 'si' if category in ('Evolution', 'Vitamin') else 'no',
+               'se_gasta': 'si' if category in ('Ball', 'Evolution', 'Vitamin') else 'no'}
+        if category == 'Ball':
+            row['captura'] = '1'   # aproximado: como una Poké Ball (el efecto especial se configura en el editor)
+        rows.append(row)
+    return rows
 
 
 def write_report(n, g, out, species, moves, abil, trainers, notes):
