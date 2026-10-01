@@ -322,7 +322,7 @@ namespace CTEditor.App
         }
 
         /// <summary>A condition as a sentence to edit: [of whom] [what is asked] [NO], then its value, then the sentence.</summary>
-        private static VisualElement ConditionRow(AppShell shell, Condition c, string prefix, Action<Condition> put)
+        public static VisualElement ConditionRow(AppShell shell, Condition c, string prefix, Action<Condition> put)
         {
             var box = Ui.Column(3).Pad(6, 4).Round(4).Border(1, "borde", 4);
             Condition Make(ConditionKind? kind = null, ConditionSubject? subject = null, Comparison? cmp = null, float? number = null, string text = null, bool? negate = null) =>

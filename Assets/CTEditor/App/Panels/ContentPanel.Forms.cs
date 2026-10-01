@@ -110,7 +110,7 @@ namespace CTEditor.App
         private VisualElement Field(ContentRecord r, ColumnSpec col)
         {
             // The effect blocks take the whole width (their section already says what they are).
-            if (col.Name == "efectos" && (_category == ContentSchemas.Items || _category == ContentSchemas.Abilities)) return Editor(r, col);
+            if (col.Name == "efectos" && (_category == ContentSchemas.Items || _category == ContentSchemas.Abilities || _category == ContentSchemas.Moves)) return Editor(r, col);
             var row = Ui.Row(8);
             row.style.alignItems = Align.FlexStart;
             var label = Ui.Text(col.Label + (col.Required ? " *" : ""), 0.9f).NoShrink();
@@ -145,6 +145,11 @@ namespace CTEditor.App
                 }
                 case "objetos.efectos": return EffectBlocksEditor.Build(_shell, value, false, Save, Key("bloques"));
                 case "habilidades.efectos": return EffectBlocksEditor.Build(_shell, value, true, Save, Key("bloques"));
+                case "movimientos.efectos": return MoveEffectsEditor.Effects(_shell, value, Save);
+                case "movimientos.efecto_z": return MoveEffectsEditor.Effects(_shell, value, Save);
+                case "movimientos.requisitos": return MoveEffectsEditor.Conditions(_shell, value, Save, "Funciona siempre.");
+                case "movimientos.potencia_mod": return MoveEffectsEditor.PowerModifiers(_shell, value, Save);
+                case "movimientos.tipo_clima": return MoveEffectsEditor.TypeByWeather(_shell, value, Save);
                 case "entrenadores.equipo":
                 case "equipos.equipo":
                     return TeamEditor(value, Save);

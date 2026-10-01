@@ -470,4 +470,12 @@ efecto…» pregunta primero CUÁNDO y luego QUÉ (con los comportamientos espec
 los packs Gen1…Gen7 se leen (prueba `PackEffectsTests`). El traductor vive ahora en `CTEditor.GameDefinition.Text`,
 compartido por Unity y la aplicación.
 
-Pendiente: efectos de **movimientos** por bloques y el resto de validadores de Unity.
+**Movimientos por bloques**: los **efectos** (y el efecto Z) en tarjetas elegidas de un menú agrupado (Estados,
+Estadísticas, Daño y curación, Clima y campo, Cambios, Control, Tipos y forma, Objetos y habilidades, Usar otros
+movimientos), cada una con solo los datos que pide (estado, estadística y etapas, %, clima y turnos, trampa, efecto de
+lado, tipo, habilidad, movimiento…), a quién, probabilidad, «mismo dado que el anterior» y condiciones; los
+**requisitos** («solo funciona si…»), los **cambios de potencia** («×2 si…») y el **tipo según el clima** también con
+desplegables. Todos los movimientos de los packs se leen (prueba). El traductor de movimientos también está ya en
+`CTEditor.GameDefinition.Text`.
+
+Pendiente: el resto de validadores de Unity.
