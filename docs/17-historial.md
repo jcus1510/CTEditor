@@ -78,4 +78,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   extensibles ([03](03-arquitectura.md)); editor de mapas (árbol, herramientas, capas, propiedades de tile, inicio,
   autoguardado), ▶ Jugar / Probar aquí con el jugador andando, editor de píxeles Retoque. Tests `MapEditingTests`,
   `PixelEditingTests`.
+- **Fase 4.5 — consolidación**: tramos en el mundo continuo (panel Mundo: mover, ver/bloquear/solo, nuevo tramo al
+  lado, mapa de la región), encuentros como en los juegos (panel Encuentros), varios tilesets por mapa, capas
+  automáticas, selección/copiar/pegar, vista previa del sello, ids fijos de tilesets (con conversión de mapas
+  antiguos), importar y cortar en un paso, datos de un pack. `WorldTests`.
 - **Documentación** completa por capítulos (esta carpeta).

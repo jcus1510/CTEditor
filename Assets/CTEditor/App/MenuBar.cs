@@ -83,6 +83,8 @@ namespace CTEditor.App
             {
                 new MenuItem("Guardar", () => _shell.RunAction("guardar"), Keys("guardar")),
                 new MenuItem("Abrir la carpeta del proyecto", () => Application.OpenURL("file://" + _shell.ProjectRoot)),
+                new MenuItem("Copiar datos de un pack…", _shell.PackDialog),
+                new MenuItem("Mapa de la región…", () => RegionMapDialog.Show(_shell)),
                 MenuItem.Separator,
             };
             foreach (var recent in _shell.Workspace.RecentProjects.Where(p => p != _shell.ProjectRoot).Take(6))

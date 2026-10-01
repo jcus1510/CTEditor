@@ -4,7 +4,7 @@
 
 0. **Ahora: la aplicación CTEditor** ([PROPUESTA_APLICACION](PROPUESTA_APLICACION.md)): aplicación propia hecha con
    Unity; recursos y corte de tilesets; editor de mapas con ▶ jugar al instante y cambios en caliente; editor de
-   píxeles; NPC; eventos en lista y en grafo de nodos. Fases 0 a 4 hechas ([20](20-aplicacion.md)); plan replanteado
+   píxeles; NPC; eventos en lista y en grafo de nodos. Fases 0 a 4.5 hechas ([20](20-aplicacion.md)); plan replanteado
    (sección 8 de la propuesta): 5 comodidad base → 6 el mundo (continuo, puertas automáticas, capas automáticas,
    pinceles de terreno) → 7 juego jugable → 8 personajes y eventos (recetas, bloques, nodos, guion) → 9 cinemáticas
    y depurador → 10 importador → 11 exportar → 12 base de datos en la aplicación. **Las generaciones quedan en pausa**

@@ -178,15 +178,17 @@ namespace CTEditor.App
                 }
                 layouts.Add(Ui.Hint("Cada fila es una dirección y cada columna un paso."));
                 _controls.Add(Section("Plantilla de hoja", layouts));
-                _controls.Add(Section("Andando", WalkPreview()));
+                _walkHost = Ui.Column(0);
+                _walkHost.Add(WalkPreview());
+                _controls.Add(Section("Andando", _walkHost));
             }
 
             // Size.
             var size = Ui.Column(6);
             size.With(
-                Ui.NumberBox("Ancho", _tw, 1, _image.Width, v => { _tw = v; if (_linked) _th = v; Changed(); }),
-                Ui.NumberBox("Alto", _th, 1, _image.Height, v => { _th = v; if (_linked) _tw = v; Changed(); }),
-                Ui.Check("Cuadrado (ancho = alto)", _linked, v => { _linked = v; if (v) { _th = _tw; Changed(); } }));
+                Ui.NumberBox("Ancho", _tw, 1, _image.Width, v => { _tw = v; if (_linked) { _th = v; Recompute(); } else Changed(); }),
+                Ui.NumberBox("Alto", _th, 1, _image.Height, v => { _th = v; if (_linked) { _tw = v; Recompute(); } else Changed(); }),
+                Ui.Check("Cuadrado (ancho = alto)", _linked, v => { _linked = v; if (v) { _th = _tw; Recompute(); } }));
             _controls.Add(Section("Tamaño del tile", size));
 
             var suggestions = Ui.Row(6);
@@ -197,7 +199,7 @@ namespace CTEditor.App
                 var chip = Ui.Chip($"{s.Width} × {s.Height}", _tw == s.Width && _th == s.Height, () =>
                 {
                     (_tw, _th) = (sug.Width, sug.Height);
-                    Changed();
+                    Recompute();
                 }, s.Reason);
                 chip.Margin(0, 0, 6, 6);
                 suggestions.Add(chip);
@@ -228,7 +230,9 @@ namespace CTEditor.App
                 Ui.Check("Marcar tiles repetidos (naranja)", _showDuplicates, v => { _showDuplicates = v; Redraw(); }));
             _controls.Add(Section("Vista", view));
 
-            _controls.Add(Section("Resumen", Summary()));
+            _summaryHost = Ui.Column(0);
+            _summaryHost.Add(Summary());
+            _controls.Add(Section("Resumen", _summaryHost));
         }
 
         private static VisualElement Section(string title, VisualElement content)
@@ -270,7 +274,7 @@ namespace CTEditor.App
                 var detected = CharacterSheetLayout.Detect(_image.Width, _image.Height);
                 if (detected != null) { UseLayout(detected); return; }
             }
-            Changed();
+            Recompute();
         }
 
         private void UseLayout(CharacterSheetLayout layout)
@@ -286,10 +290,23 @@ namespace CTEditor.App
                 (_tw, _th, _ox, _oy, _sx, _sy) = (s.TileWidth, s.TileHeight, 0, 0, 0, 0);
                 _linked = _tw == _th;
             }
-            Changed();
+            Recompute();
         }
 
-        private void Changed() => Recompute();
+        private VisualElement _summaryHost, _walkHost;
+
+        /// <summary>
+        /// A number changed: recompute and redraw the image, the summary and the walking preview, but NOT the controls
+        /// (rebuilding them would take the keyboard focus away from the box being typed in).
+        /// </summary>
+        private void Changed()
+        {
+            _sheet = TileSlicer.Slice(_image, Settings);
+            if (_summaryHost != null) { _summaryHost.Clear(); _summaryHost.Add(Summary()); }
+            if (_walkHost != null && _kind == SheetKind.Character) { _walkHost.Clear(); _walkHost.Add(WalkPreview()); }
+            Redraw();
+            _save.SetEnabledLook(_sheet.Ok);
+        }
 
         private void Recompute()
         {

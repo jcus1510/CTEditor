@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections.Generic;
 using CTEditor.Project;
 
 namespace CTEditor.App
@@ -19,7 +20,8 @@ namespace CTEditor.App
         private string _parent;
         private int _tileSize = ProjectSettings.DefaultTileSize;
         private int _screenW = ProjectSettings.DefaultScreenWidth, _screenH = ProjectSettings.DefaultScreenHeight;
-        private VisualElement _sizeRow;
+        private VisualElement _sizeRow, _packRow;
+        private string _pack;
         private Label _destination;
 
         public StartScreen(AppShell shell)
@@ -89,6 +91,15 @@ namespace CTEditor.App
             body.Add(screen);
             body.Add(Ui.Hint("512 × 384 es la de Essentials. El juego se amplía a pantalla completa en múltiplos exactos (píxeles nítidos)."));
 
+            body.Add(Ui.Text("Datos iniciales", bold: true));
+            _packRow = Ui.Row(6);
+            _packRow.style.flexWrap = Wrap.Wrap;
+            body.Add(_packRow);
+            body.Add(Ui.Hint("Especies, movimientos, objetos... de una generación (se pueden cambiar o copiar después)."));
+            var packs = PackInstaller.Find(AppShell.PacksRoot);
+            _pack = packs.LastOrDefault();
+            BuildPacks(packs);
+
             var create = Ui.Button("Crear proyecto", Create, Ui.ButtonKind.Primary);
             create.style.alignSelf = Align.FlexStart;
             create.style.height = Ui.FontSize + 20;
@@ -112,6 +123,17 @@ namespace CTEditor.App
             _sizeRow.Add(Ui.NumberBox(custom ? "Otro (elegido)" : "Otro", _tileSize, 8, 256, v => { _tileSize = v; BuildSizes(); }));
         }
 
+        private void BuildPacks(IReadOnlyList<string> packs)
+        {
+            _packRow.Clear();
+            _packRow.Add(Ui.Chip("Ninguno", _pack == null, () => { _pack = null; BuildPacks(packs); }).Margin(0, 0, 6, 6));
+            foreach (var p in packs)
+            {
+                var folder = p;
+                _packRow.Add(Ui.Chip(Path.GetFileName(p), _pack == p, () => { _pack = folder; BuildPacks(packs); }).Margin(0, 0, 6, 6));
+            }
+        }
+
         private string Destination() => Path.Combine(_parent ?? "", Sanitize(_name));
 
         private void UpdateDestination()
@@ -126,7 +148,7 @@ namespace CTEditor.App
         private void Create()
         {
             if (string.IsNullOrWhiteSpace(_name)) { _shell.Warn("Ponle un nombre al proyecto."); return; }
-            _shell.CreateProject(Destination(), _name.Trim(), _tileSize, _screenW, _screenH);
+            _shell.CreateProject(Destination(), _name.Trim(), _tileSize, _screenW, _screenH, _pack);
         }
 
         private static string Sanitize(string name)

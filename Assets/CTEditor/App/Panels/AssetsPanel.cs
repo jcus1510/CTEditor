@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using CTEditor.Art.Domain;
 using CTEditor.Project;
 
 namespace CTEditor.App
@@ -40,6 +41,7 @@ namespace CTEditor.App
             search.Grow();
             bar.With(search,
                 Ui.Button("Importar…", ImportImage, Ui.ButtonKind.Primary, "Copiar un PNG al proyecto"),
+                Ui.Button("Carpeta…", ImportFolder, Ui.ButtonKind.Normal, "Importar todas las imágenes de una carpeta"),
                 Ui.Button("Recargar", Refresh, Ui.ButtonKind.Normal, "Volver a leer la carpeta"),
                 Ui.Button("Carpeta", () => Application.OpenURL("file://" + _shell.GraphicsFolder), Ui.ButtonKind.Normal, "Abrir la carpeta de gráficos"));
             Add(bar);
@@ -170,45 +172,81 @@ namespace CTEditor.App
 
         private void ImportImage()
         {
-            FolderBrowser.PickFile(_shell, "Importar una imagen", ".png", file =>
+            FolderBrowser.PickFile(_shell, "Importar una imagen", ".png", file => AskKind(new[] { file }, Path.GetFileName(file)));
+        }
+
+        /// <summary>Imports every PNG of a folder (e.g. Graphics/Tilesets of an Essentials project) with the same kind.</summary>
+        private void ImportFolder()
+        {
+            FolderBrowser.PickFolder(_shell, "Importar todas las imágenes de una carpeta", folder =>
             {
-                var d = _shell.ShowDialog("¿Qué es esta imagen?");
-                d.Body.Add(Ui.Hint(Path.GetFileName(file)));
-                var kinds = Ui.Row(6);
-                kinds.style.flexWrap = Wrap.Wrap;
-                foreach (var kv in ProjectLayout.KindFolders)
-                {
-                    var kind = kv.Key;
-                    var folder = kv.Value;
-                    kinds.Add(Ui.Button(KindLabels[(int)kind], () =>
-                    {
-                        _shell.CloseDialog(d);
-                        try
-                        {
-                            var dest = Path.Combine(_shell.GraphicsFolder, folder, Path.GetFileName(file));
-                            if (File.Exists(dest))
-                            {
-                                _shell.Confirm("Ya existe", $"Ya hay una imagen «{Path.GetFileName(file)}» en {folder}. ¿Sustituirla?",
-                                    "Sustituir", () => Copy(file, dest, kind), danger: true);
-                                return;
-                            }
-                            Copy(file, dest, kind);
-                        }
-                        catch (Exception e) { _shell.Error("No se pudo importar: " + e.Message); }
-                    }).Margin(0, 0, 6, 6));
-                }
-                d.Body.Add(kinds);
-                d.Buttons.Add(Ui.Button("Cancelar", () => _shell.CloseDialog(d)));
+                var files = Directory.GetFiles(folder, "*.png");
+                if (files.Length == 0) { _shell.Warn("En esa carpeta no hay imágenes PNG."); return; }
+                AskKind(files, $"{files.Length} imágenes de «{Path.GetFileName(folder)}»");
             });
         }
 
-        private void Copy(string from, string dest, AssetKind kind)
+        private void AskKind(IReadOnlyList<string> files, string what)
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(dest));
-            File.Copy(from, dest, true);
-            _shell.Success($"Importada: {Path.GetFileName(dest)}");
-            Refresh();
-            if (kind == AssetKind.Tileset || kind == AssetKind.Character) SliceWizard.Show(_shell, dest, kind);
+            var d = _shell.ShowDialog("¿Qué son?");
+            d.Body.Add(Ui.Hint(what + ". Las que se puedan se cortan solas (las de 8 columnas de 32 px, las hojas de personaje 4 × 4 o 3 × 4); las demás abren el asistente."));
+            var kinds = Ui.Row(6);
+            kinds.style.flexWrap = Wrap.Wrap;
+            foreach (var kv in ProjectLayout.KindFolders)
+            {
+                var kind = kv.Key;
+                var folder = kv.Value;
+                kinds.Add(Ui.Button(KindLabels[(int)kind], () =>
+                {
+                    _shell.CloseDialog(d);
+                    int done = 0, auto = 0;
+                    string firstManual = null;
+                    foreach (var file in files)
+                    {
+                        try
+                        {
+                            var dest = Path.Combine(_shell.GraphicsFolder, folder, Path.GetFileName(file));
+                            Directory.CreateDirectory(Path.GetDirectoryName(dest));
+                            File.Copy(file, dest, true);
+                            done++;
+                            if (kind == AssetKind.Tileset || kind == AssetKind.Character)
+                            {
+                                if (AutoSlice(dest, kind)) auto++;
+                                else firstManual ??= dest;
+                            }
+                        }
+                        catch (Exception e) { _shell.Error($"No se pudo importar {Path.GetFileName(file)}: {e.Message}"); }
+                    }
+                    _shell.Success($"Importadas {done}" + (auto > 0 ? $" · {auto} cortadas solas (puedes cambiarlo con «Editar corte…»)" : ""));
+                    _shell.NotifyAssetsChanged();
+                    Refresh();
+                    if (firstManual != null) SliceWizard.Show(_shell, firstManual, kind);
+                }).Margin(0, 0, 6, 6));
+            }
+            d.Body.Add(kinds);
+            d.Buttons.Add(Ui.Button("Cancelar", () => _shell.CloseDialog(d)));
+        }
+
+        /// <summary>
+        /// Cuts an image without asking when its size leaves no doubt: a character sheet that fits RPG Maker XP (4 × 4) or
+        /// VX/MV (3 × 4), or a tileset whose suggested tile size divides it exactly. False = it needs the wizard.
+        /// </summary>
+        private bool AutoSlice(string path, AssetKind kind)
+        {
+            if (SliceFile.LoadFor(path) != null) return true; // already cut (kept)
+            if (!Png.TryReadSize(path, out int w, out int h)) return false;
+            if (kind == AssetKind.Character)
+            {
+                var layout = CharacterSheetLayout.Detect(w, h);
+                if (layout == null) return false;
+                new SliceFile(layout.SliceFor(w, h), SheetKind.Character) { CharacterLayout = layout.Name }.SaveFor(path);
+                return true;
+            }
+            int tile = _shell.Project?.TileSize ?? ProjectSettings.DefaultTileSize;
+            var best = TileSizeSuggester.Suggest(w, h, tile).FirstOrDefault();
+            if (best == null || w % best.Width != 0 || h % best.Height != 0) return false;
+            new SliceFile(best.ToSettings(), SheetKind.Tileset).SaveFor(path);
+            return true;
         }
     }
 }

@@ -215,7 +215,7 @@ namespace CTEditor.App
             }
         }
 
-        public bool CreateProject(string root, string name, int tileSize, int screenWidth, int screenHeight)
+        public bool CreateProject(string root, string name, int tileSize, int screenWidth, int screenHeight, string packFolder = null)
         {
             try
             {
@@ -228,6 +228,7 @@ namespace CTEditor.App
                 s.ScreenWidth = screenWidth;
                 s.ScreenHeight = screenHeight;
                 ProjectFile.Save(root, s);
+                if (!string.IsNullOrEmpty(packFolder)) PackInstaller.Install(packFolder, root, overwrite: false);
                 return OpenProject(root);
             }
             catch (Exception e)
@@ -268,7 +269,8 @@ namespace CTEditor.App
 
         private void OpenSessions()
         {
-            Maps = new MapEditorSession(new JsonMapRepository(ProjectRoot), new FolderTilesetRepository(ProjectRoot));
+            Maps = new MapEditorSession(new JsonMapRepository(ProjectRoot), new FolderTilesetRepository(ProjectRoot),
+                new JsonEncounterMethodRepository(ProjectRoot), new CsvSpeciesDirectory(ProjectRoot));
             Maps.LoadPlayerStart(Project.StartMap, Project.StartX, Project.StartY);
             Maps.Message += OnSessionMessage;
             Maps.DirtyChanged += ScheduleAutosave;
@@ -394,6 +396,52 @@ namespace CTEditor.App
         }
 
         public string GraphicsFolder => HasProject ? Path.Combine(ProjectRoot, ProjectLayout.GraphicsFolder) : null;
+
+        /// <summary>Where the generation packs are (inside Unity: Assets/GameContent/Packs; built app: StreamingAssets/Packs).</summary>
+        public static string PacksRoot
+        {
+            get
+            {
+                var editor = Path.Combine(Application.dataPath, "GameContent", "Packs");
+                return Directory.Exists(editor) ? editor : Path.Combine(Application.streamingAssetsPath, "Packs");
+            }
+        }
+
+        /// <summary>Copies a pack's sheets (species, moves, items...) into datos/. 'overwrite' replaces existing ones.</summary>
+        public void InstallPack(string packFolder, bool overwrite)
+        {
+            if (!HasProject) return;
+            try
+            {
+                var done = PackInstaller.Install(packFolder, ProjectRoot, overwrite);
+                Success(done.Count == 0
+                    ? "No se copió nada (ya estaban las hojas; elige «sustituir» para cambiarlas)."
+                    : $"Datos de {Path.GetFileName(packFolder)} copiados: {string.Join(", ", done)}.");
+                ProjectChanged?.Invoke();
+                Maps?.Species?.All();
+            }
+            catch (Exception e) { Error("No se pudieron copiar los datos: " + e.Message); }
+        }
+
+        /// <summary>Dialog to pick a pack and copy its data into the project.</summary>
+        public void PackDialog()
+        {
+            var packs = PackInstaller.Find(PacksRoot);
+            var d = ShowDialog("Copiar datos de un pack");
+            if (packs.Count == 0) d.Body.Add(Ui.Hint("No se encuentran los packs (Assets/GameContent/Packs)."));
+            bool overwrite = false;
+            d.Body.Add(Ui.Hint("Copia a datos/ las hojas de la generación: especies, movimientos, objetos, habilidades, entrenadores... Las zonas de encuentros usan sus especies."));
+            d.Body.Add(Ui.Check("Sustituir las hojas que ya existan", false, v => overwrite = v));
+            var row = Ui.Row(6);
+            row.style.flexWrap = Wrap.Wrap;
+            foreach (var pack in packs)
+            {
+                var folder = pack;
+                row.Add(Ui.Button(Path.GetFileName(pack), () => { CloseDialog(d); InstallPack(folder, overwrite); }, Ui.ButtonKind.Primary).Margin(0, 0, 6, 6));
+            }
+            d.Body.Add(row);
+            d.Buttons.Add(Ui.Button("Cancelar", () => CloseDialog(d)));
+        }
 
         public void NotifyAssetsChanged() => _assetsDirty = true;
 
@@ -697,6 +745,10 @@ namespace CTEditor.App
                 case "rectangulo": Tool(MapTool.Rectangle, PixelTool.Rectangle); break;
                 case "cuentagotas": Tool(MapTool.Picker, PixelTool.Picker); break;
                 case "goma": Tool(MapTool.Eraser, PixelTool.Eraser); break;
+                case "copiar": if (ActiveEditor == "mapa") Maps?.Copy(); break;
+                case "cortar": if (ActiveEditor == "mapa") Maps?.Cut(); break;
+                case "pegar": if (ActiveEditor == "mapa" && Maps?.Clipboard != null) Maps.BeginPaste(); break;
+                case "borrar_seleccion": if (ActiveEditor == "mapa") Maps?.DeleteSelection(); break;
                 case "capa_siguiente": if (Maps?.Map != null) Maps.SetActiveLayer(Maps.ActiveLayer + 1); break;
                 case "capa_anterior": if (Maps?.Map != null) Maps.SetActiveLayer(Maps.ActiveLayer - 1); break;
                 case "buscar": Info("La búsqueda en todo el proyecto llegará con los editores de mapas y eventos."); break;

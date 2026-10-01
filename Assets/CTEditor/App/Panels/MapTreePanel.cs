@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using CTEditor.Art.Domain;
 using CTEditor.Editing;
 using CTEditor.World.Domain;
 
@@ -122,8 +123,11 @@ namespace CTEditor.App
         private void Rename(MapEntry e) =>
             _shell.Prompt("Cambiar el nombre del mapa", "Nombre", e.Name, "Cambiar", name => S.RenameMap(e.Id, name));
 
-        /// <summary>Diálogo «Nuevo mapa»: nombre, tamaño (20 × 15 como RPG Maker XP), tileset y dónde va.</summary>
-        public static void NewMapDialog(AppShell shell, string parentId)
+        /// <summary>
+        /// Diálogo «Nuevo mapa»: nombre, tipo (tramo exterior del mundo o interior), categoría (pueblo, ruta...), tamaño
+        /// (20 × 15 como RPG Maker XP), tileset y, para exteriores, junto a qué tramo y por qué lado se coloca.
+        /// </summary>
+        public static void NewMapDialog(AppShell shell, string parentId, string nextTo = null)
         {
             var s = shell.Maps;
             if (s == null) return;
@@ -133,40 +137,85 @@ namespace CTEditor.App
             var tilesets = s.AvailableTilesets();
             string tileset = s.Map?.TilesetId is string cur && tilesets.Contains(cur) ? cur : tilesets.FirstOrDefault() ?? "";
             string parent = parentId ?? "";
+            var kind = MapKind.Exterior;
+            var category = SectionCategory.Route;
+            string anchor = nextTo ?? (s.Map != null && s.Map.InWorld ? s.Map.Id : null);
+            FacingDirection? side = anchor != null ? FacingDirection.Right : (FacingDirection?)null;
 
-            var tsRow = Ui.Row(6);
-            tsRow.style.flexWrap = Wrap.Wrap;
-            var parentRow = Ui.Row(6);
-            parentRow.style.flexWrap = Wrap.Wrap;
+            var body = Ui.Column(10);
             void Fill()
             {
-                tsRow.Clear();
+                body.Clear();
+                body.Add(Ui.TextBox("Nombre", name, v => name = v));
+
+                var kinds = Ui.Row(6);
+                kinds.With(Ui.Text("Tipo", bold: true),
+                    Ui.Chip("Exterior (tramo del mundo)", kind == MapKind.Exterior, () => { kind = MapKind.Exterior; Fill(); }),
+                    Ui.Chip("Interior (casa, cueva, edificio)", kind == MapKind.Interior, () => { kind = MapKind.Interior; Fill(); }));
+                body.Add(kinds);
+
+                var cats = Ui.Row(4);
+                cats.style.flexWrap = Wrap.Wrap;
+                cats.Add(Ui.Text("Categoría", bold: true).Margin(0, 0, 6, 0));
+                for (int i = 0; i < WorldPanel.CategoryNames.Length; i++)
+                {
+                    var c = (SectionCategory)i;
+                    cats.Add(Ui.Chip(WorldPanel.CategoryNames[i], category == c, () => { category = c; Fill(); }).Margin(0, 0, 4, 4));
+                }
+                body.Add(cats);
+
+                var size = Ui.Row(10);
+                size.With(Ui.NumberBox("Ancho", w, 1, MapDefinition.MaxSize, v => w = v), Ui.NumberBox("Alto", h, 1, MapDefinition.MaxSize, v => h = v));
+                body.With(Ui.Text("Tamaño en tiles", bold: true), size,
+                    Ui.Hint("20 × 15 es el tamaño de RPG Maker XP. Se puede cambiar luego en Propiedades."));
+
+                if (kind == MapKind.Exterior)
+                {
+                    var where = Ui.Row(4);
+                    where.style.flexWrap = Wrap.Wrap;
+                    var anchorMap = s.Find(anchor);
+                    if (anchorMap != null && anchorMap.InWorld)
+                    {
+                        where.Add(Ui.Text($"Junto a «{anchorMap.Name}»:", bold: true).Margin(0, 0, 6, 0));
+                        foreach (var (label, dir) in new[] { ("arriba", FacingDirection.Up), ("abajo", FacingDirection.Down), ("a la izquierda", FacingDirection.Left), ("a la derecha", FacingDirection.Right) })
+                        {
+                            var dd = dir;
+                            where.Add(Ui.Chip(label, side == dd, () => { side = dd; Fill(); }).Margin(0, 0, 4, 4));
+                        }
+                        where.Add(Ui.Chip("en un hueco libre", side == null, () => { side = null; Fill(); }).Margin(0, 0, 4, 4));
+                    }
+                    else where.Add(Ui.Hint("Se coloca en un hueco libre del mundo; luego lo puedes arrastrar en el panel Mundo."));
+                    body.With(Ui.Text("Dónde en el mundo", bold: true), where);
+                }
+                else body.Add(Ui.Hint("Los interiores no van en el mundo: se entra por puertas (fase de eventos)."));
+
+                var tsRow = Ui.Row(6);
+                tsRow.style.flexWrap = Wrap.Wrap;
                 if (tilesets.Count == 0) tsRow.Add(Ui.Hint("No hay tilesets cortados: el mapa se crea sin tileset. Corta uno en Recursos."));
                 foreach (var t in tilesets)
                 {
                     var id = t;
-                    tsRow.Add(Ui.Chip(Path.GetFileNameWithoutExtension(t), tileset == t, () => { tileset = id; Fill(); }, t).Margin(0, 0, 6, 6));
+                    tsRow.Add(Ui.Chip(s.TilesetFor(t)?.Name ?? t, tileset == t, () => { tileset = id; Fill(); }, t).Margin(0, 0, 6, 6));
                 }
-                parentRow.Clear();
-                parentRow.Add(Ui.Chip("En la raíz", parent.Length == 0, () => { parent = ""; Fill(); }).Margin(0, 0, 6, 6));
-                if (!string.IsNullOrEmpty(parentId))
-                {
-                    var p = s.Tree.Find(parentId);
-                    if (p != null) parentRow.Add(Ui.Chip("Dentro de «" + p.Name + "»", parent == parentId, () => { parent = parentId; Fill(); }).Margin(0, 0, 6, 6));
-                }
+                body.With(Ui.Text("Tileset", bold: true), tsRow);
+
+                var parentRow = Ui.Row(6);
+                parentRow.style.flexWrap = Wrap.Wrap;
+                parentRow.Add(Ui.Chip("En la raíz del árbol", parent.Length == 0, () => { parent = ""; Fill(); }).Margin(0, 0, 6, 6));
+                if (!string.IsNullOrEmpty(parentId) && s.Tree.Find(parentId) is MapEntry p)
+                    parentRow.Add(Ui.Chip("Dentro de «" + p.Name + "»", parent == parentId, () => { parent = parentId; Fill(); }).Margin(0, 0, 6, 6));
+                body.With(Ui.Text("En el árbol de mapas", bold: true), parentRow);
             }
             Fill();
-            var size = Ui.Row(10);
-            size.With(Ui.NumberBox("Ancho", w, 1, MapDefinition.MaxSize, v => w = v), Ui.NumberBox("Alto", h, 1, MapDefinition.MaxSize, v => h = v));
-            d.Body.With(Ui.TextBox("Nombre", name, v => name = v),
-                Ui.Text("Tamaño en tiles", bold: true), size,
-                Ui.Hint("20 × 15 es el tamaño de RPG Maker XP. Se puede cambiar luego en Propiedades."),
-                Ui.Text("Tileset", bold: true), tsRow,
-                Ui.Text("Dónde", bold: true), parentRow);
+            var scroll = Ui.Scroll();
+            scroll.style.maxHeight = 560;
+            scroll.Add(body);
+            d.Body.Add(scroll);
             d.Buttons.With(Ui.Button("Cancelar", () => shell.CloseDialog(d)), Ui.Button("Crear", () =>
             {
                 shell.CloseDialog(d);
-                s.CreateMap(name, parent, w, h, tileset);
+                s.CreateMap(name, parent, w, h, tileset, kind, category, kind == MapKind.Exterior && side.HasValue ? anchor : null,
+                    side ?? FacingDirection.Right);
                 shell.Success($"Mapa «{name}» creado.");
             }, Ui.ButtonKind.Primary));
         }
@@ -226,7 +275,8 @@ namespace CTEditor.App
                 var l = m.Layers[i];
                 var row = Ui.Row(6).Pad(8, 4);
                 if (i == active) row.style.backgroundColor = Ui.C("seleccion");
-                var name = Ui.Text(l.Name, bold: i == active).Grow();
+                string[] roles = { "", " · suelo", " · detalles", " · encima" };
+                var name = Ui.Text(l.Name + roles[(int)l.Role], bold: i == active).Grow();
                 name.pickingMode = PickingMode.Ignore;
                 var visible = Ui.Chip("Ver", l.Visible, () => S.SetLayerView(index, visible: !l.Visible), "Mostrar u ocultar (solo en el editor)");
                 var locked = Ui.Chip("Bloq.", l.Locked, () => S.SetLayerView(index, locked: !l.Locked), "Bloquear: las herramientas no la cambian");
@@ -243,9 +293,21 @@ namespace CTEditor.App
                     if (e.clickCount == 2 && (e.target == row || e.target == name))
                         _shell.Prompt("Nombre de la capa", "Nombre", l.Name, "Cambiar", n => S.RenameLayer(index, n));
                 });
+                // Right click: what the layer is for (automatic layers send each tile to the layer of its piece).
+                row.RegisterCallback<PointerUpEvent>(e =>
+                {
+                    if (e.button != 1) return;
+                    _shell.ShowMenu(e.position, new List<MenuItem>
+                    {
+                        new MenuItem("Capa de suelo", () => S.SetLayerRole(index, LayerRole.Ground), isChecked: l.Role == LayerRole.Ground),
+                        new MenuItem("Capa de detalles", () => S.SetLayerRole(index, LayerRole.Detail), isChecked: l.Role == LayerRole.Detail),
+                        new MenuItem("Capa de encima", () => S.SetLayerRole(index, LayerRole.Above), isChecked: l.Role == LayerRole.Above),
+                        new MenuItem("Solo a mano", () => S.SetLayerRole(index, LayerRole.Custom), isChecked: l.Role == LayerRole.Custom),
+                    });
+                });
                 _list.Add(row);
             }
-            _list.Add(Ui.Hint("Arriba, la que se dibuja encima. Doble clic: cambiar el nombre. Los tiles con prioridad se ven por encima del jugador sea cual sea su capa.")
+            _list.Add(Ui.Hint("Arriba, la que se dibuja encima. Doble clic: cambiar el nombre. Clic derecho: para qué es (suelo, detalles, encima) — con capas automáticas cada tile va solo a la suya. Los tiles con prioridad se ven por encima del jugador sea cual sea su capa.")
                 .Margin(10, 8, 10, 8));
         }
     }
