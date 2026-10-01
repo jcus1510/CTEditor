@@ -98,4 +98,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   izquierda); elegir una capa = pintar en ella (apaga las capas automáticas y lo avisa); quitar cualquier tileset no
   usado del mapa; etiquetas de terreno pequeñas; ayudas más claras de los modos de Tiles; etiquetas de las cajas de
   número junto a su caja.
+- **Pulido 5**: rejilla dibujada como una malla ajustada al píxel y con sombra (ya no desaparece a trozos); ayudas
+  emergentes con el elemento realmente bajo el ratón; botones de la barra del mapa más grandes y botón para colocarla;
+  «Nuevo mapa» rediseñado (formulario en dos columnas, tamaños habituales, brújula para el lado y ficha resumen con el
+  tileset). Lista de prueba en Unity en el capítulo 20.
 - **Documentación** completa por capítulos (esta carpeta).

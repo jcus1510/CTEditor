@@ -118,6 +118,32 @@ Inspirados en: herramientas de una letra de Photoshop / Aseprite y de [Tiled](ht
 | **Tiles** | Etiquetas de terreno más pequeñas (punto de color + texto corto). Cada modo explica qué es al pasar el ratón (en la ayuda y en la línea de abajo): p. ej. «Arbusto: el jugador se ve medio hundido, como en la hierba alta». |
 | **Cajas de número** | La etiqueta va pegada a su caja («Ancho [12]   Alto [14]»), con más espacio entre parejas; las apiladas (asistente de corte) siguen alineadas en columna. |
 
+## Pulido 5
+
+| Arreglo / novedad | Qué cambia |
+|---|---|
+| **Rejilla** | Era un elemento de 1 punto por línea: en posiciones con decimales algunas se perdían a trozos al hacer zoom o mover el mapa. Ahora es una sola malla (`GridOverlay`) con cada línea en un píxel entero y una sombra oscura al lado: se ve sobre tiles claros y oscuros. |
+| **Ayudas emergentes** | Se busca el elemento que de verdad está bajo el ratón (`panel.Pick`) y se sube hasta el primero con ayuda; la barra ya no tiene ayuda propia que tapara la de sus botones. |
+| **Barra del mapa** | Botones más grandes (con iconos más grandes) y un botón al final para colocarla (además del clic derecho). |
+| **Nuevo mapa** | Formulario en dos columnas (etiquetas a la izquierda, controles a la derecha), tamaños habituales con un clic (20 × 15, 40 × 30, 60 × 40, 12 × 10), **brújula** para elegir por qué lado se pega al tramo, y una **ficha resumen** a la derecha con la miniatura del tileset y lo que se va a crear. |
+
+## Lista de prueba en Unity (antes de seguir)
+
+Marca lo que funcione y mándame captura de lo que no:
+
+1. **Inicio**: crear un proyecto con un pack; abrir uno reciente; la ventana no se estira.
+2. **Recursos**: importar un PNG y un BMP (vista previa y tipo sugerido); cambiar el tipo de una imagen; cortar a 16 px con desplazamiento y separación.
+3. **Mapa**: pintar con cada herramienta (B, U, G, E, I, M), zoom con la rueda / Z / Mayús+Z / F, Espacio + arrastrar; la rejilla siempre entera y alineada.
+4. **Capas**: elegir capa y pintar; arrastrar el asa para reordenar; ver / bloquear; opacidad arrastrando.
+5. **Tiles**: los modos 1-7 (paso, prioridad, terreno...) y que se guarden; varios tilesets por mapa; quitar uno no usado.
+6. **Selección**: Ctrl+A, Ctrl+C, Ctrl+V, Supr, Ctrl+Z / Ctrl+Y.
+7. **Mundo**: crear un tramo al lado de otro (brújula), arrastrarlo, Ver / Bloq. / Solo; mapa de la región.
+8. **Encuentros**: zona de todo el tramo y una zona pintada (H), especies con pesos, pesos clásicos.
+9. **Jugar**: F5 desde el inicio, Ctrl+F5 desde el ratón, cruzar de tramo andando, salen encuentros, Esc vuelve.
+10. **Retoque**: abrir un tile con Ctrl + clic en el mapa, pintar, guardar y ver el cambio en el mapa.
+11. **Entorno**: Ctrl / Alt + rueda y Ctrl+0 / Alt+0; tema claro; F1 y cambiar un atajo pulsándolo; Ver → Ventanas / Distribuciones; guardar una distribución.
+12. **Guardar y reabrir**: cerrar la aplicación y volver a abrir el proyecto: todo sigue igual.
+
 ## Cómo se hace un mapa (flujo)
 
 1. **Recursos** → Importar (o copiar) el tileset en `graficos/tilesets` → **Cortar** (32 px).

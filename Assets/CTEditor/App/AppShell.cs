@@ -203,7 +203,8 @@ namespace CTEditor.App
         private void OnTipMove(PointerMoveEvent e)
         {
             _tipPosition = e.position;
-            var owner = e.target as VisualElement;
+            // The element really under the pointer (the deepest pickable one), then up to the first with a tooltip.
+            var owner = Root.panel?.Pick(e.position) ?? e.target as VisualElement;
             while (owner != null && string.IsNullOrEmpty(owner.tooltip)) owner = owner.parent;
             if (owner == _tipOwner) return;
             HideTip();

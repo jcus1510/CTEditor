@@ -128,6 +128,7 @@ Nunca se escribe un color a mano: se usa `Ui.C("token")`.
 
 | Fecha | Cambio |
 |---|---|
+| 2026-10-01 (5) | Rejilla como malla ajustada al píxel con sombra; ayudas con `panel.Pick`; barra del mapa con botones más grandes y botón para colocarla; «Nuevo mapa» en dos columnas con brújula y ficha resumen. |
 | 2026-10-01 (4) | Barra del mapa colocable con clic derecho (por defecto a la izquierda, en vertical solo iconos); aviso de capas automáticas en Capas; chips de terreno pequeños; ayuda de los modos también en la línea inferior; etiquetas de cajas de número pegadas a su caja. |
 | 2026-10-01 (3) | Mapa sin descuadres (renderizadores en el origen); tilesets de Propiedades compactos; textos largos en botones con «…»; escala por ventana (Alt + rueda / Alt + 0); atajos por categorías, grabables y con buscador. |
 | 2026-10-01 (2) | Tiles compacta con iconos; Capas con iconos, asa para reordenar y deslizador propio con %; barras finas tipo píldora; importar con vista previa y tipo sugerido; menú Ver con submenús Ventanas / Distribuciones; Ctrl + 0; proyección del mapa fijada (los tiles se estrechaban al hacer zoom). |

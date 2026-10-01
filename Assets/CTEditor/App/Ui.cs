@@ -287,9 +287,9 @@ namespace CTEditor.App
         }
 
         /// <summary>An icon button that stays pressed while on (grid, neighbours...).</summary>
-        public static Button IconToggle(string icon, bool on, Action<bool> onChange, string tooltip)
+        public static Button IconToggle(string icon, bool on, Action<bool> onChange, string tooltip, float iconSize = 0)
         {
-            var b = IconButton(icon, null, tooltip);
+            var b = IconButton(icon, null, tooltip, false, iconSize);
             void Look()
             {
                 b.style.backgroundColor = on ? WithAlpha(C("acento"), 0.35f) : new Color(0, 0, 0, 0);

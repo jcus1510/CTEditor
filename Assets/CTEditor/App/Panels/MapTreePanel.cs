@@ -127,11 +127,19 @@ namespace CTEditor.App
         /// Diálogo «Nuevo mapa»: nombre, tipo (tramo exterior del mundo o interior), categoría (pueblo, ruta...), tamaño
         /// (20 × 15 como RPG Maker XP), tileset y, para exteriores, junto a qué tramo y por qué lado se coloca.
         /// </summary>
+        private static string SideName(FacingDirection d) => d switch
+        {
+            FacingDirection.Up => "encima",
+            FacingDirection.Down => "debajo",
+            FacingDirection.Left => "a la izquierda",
+            _ => "a la derecha",
+        };
+
         public static void NewMapDialog(AppShell shell, string parentId, string nextTo = null)
         {
             var s = shell.Maps;
             if (s == null) return;
-            var d = shell.ShowDialog("Nuevo mapa");
+            var d = shell.ShowDialog("Nuevo mapa", 58);
             string name = "Mapa nuevo";
             int w = MapDefinition.DefaultWidth, h = MapDefinition.DefaultHeight;
             var tilesets = s.AvailableTilesets();
@@ -142,74 +150,147 @@ namespace CTEditor.App
             string anchor = nextTo ?? (s.Map != null && s.Map.InWorld ? s.Map.Id : null);
             FacingDirection? side = anchor != null ? FacingDirection.Right : (FacingDirection?)null;
 
-            var body = Ui.Column(10);
+            // Two columns: the form on the left (a label column and its controls), a summary with the tileset on the right.
+            var columns = Ui.Row(18);
+            columns.style.alignItems = Align.FlexStart;
+            var body = Ui.Column(12).Grow();
+            var side_ = Ui.Column(8).NoShrink();
+            side_.style.width = 230;
+            columns.With(body, side_);
+
+            VisualElement Field(string label, VisualElement content, string hint = null)
+            {
+                var row = Ui.Row(12);
+                row.style.alignItems = Align.FlexStart;
+                var l = Ui.Text(label, 0.95f, dim: true).NoShrink();
+                l.style.width = 110;
+                l.style.marginTop = 5;
+                var right = Ui.Column(4).Grow();
+                right.Add(content);
+                if (hint != null) right.Add(Ui.Hint(hint));
+                row.With(l, right);
+                return row;
+            }
+
+            VisualElement Chips() => Ui.Row(0).Wrap();
+            Button Pick(string text, bool on, System.Action a, string tip = null) => (Button)Ui.Chip(text, on, a, tip).Margin(0, 0, 4, 4);
+
             void Fill()
             {
                 body.Clear();
-                body.Add(Ui.TextBox("Nombre", name, v => name = v));
+                side_.Clear();
+                var nameBox = Ui.TextBox(null, name, v => name = v);
+                body.Add(Field("Nombre", nameBox));
 
-                var kinds = Ui.Row(6);
-                kinds.With(Ui.Text("Tipo", bold: true),
-                    Ui.Chip("Exterior (tramo del mundo)", kind == MapKind.Exterior, () => { kind = MapKind.Exterior; Fill(); }),
-                    Ui.Chip("Interior (casa, cueva, edificio)", kind == MapKind.Interior, () => { kind = MapKind.Interior; Fill(); }));
-                body.Add(kinds);
+                var kinds = Chips();
+                kinds.With(Pick("Exterior", kind == MapKind.Exterior, () => { kind = MapKind.Exterior; Fill(); }, "Un tramo del mundo continuo: se pasa andando de uno a otro"),
+                    Pick("Interior", kind == MapKind.Interior, () => { kind = MapKind.Interior; Fill(); }, "Casa, cueva, edificio: se entra por una puerta"));
+                body.Add(Field("Tipo", kinds, kind == MapKind.Exterior ? "Tramo del mundo continuo (pueblo, ruta...)." : "Aparte del mundo: se entra por puertas."));
 
-                var cats = Ui.Row(4);
-                cats.style.flexWrap = Wrap.Wrap;
-                cats.Add(Ui.Text("Categoría", bold: true).Margin(0, 0, 6, 0));
+                var cats = Chips();
                 for (int i = 0; i < WorldPanel.CategoryNames.Length; i++)
                 {
                     var c = (SectionCategory)i;
-                    cats.Add(Ui.Chip(WorldPanel.CategoryNames[i], category == c, () => { category = c; Fill(); }).Margin(0, 0, 4, 4));
+                    cats.Add(Pick(WorldPanel.CategoryNames[i], category == c, () => { category = c; Fill(); }));
                 }
-                body.Add(cats);
+                body.Add(Field("Categoría", cats));
 
-                var size = Ui.Row(22);
-                size.With(Ui.NumberBox("Ancho", w, 1, MapDefinition.MaxSize, v => w = v), Ui.NumberBox("Alto", h, 1, MapDefinition.MaxSize, v => h = v));
-                body.With(Ui.Text("Tamaño en tiles", bold: true), size,
-                    Ui.Hint("20 × 15 es el tamaño de RPG Maker XP. Se puede cambiar luego en Propiedades."));
+                // Size: the usual ones in one click, or any.
+                var sizes = Ui.Column(6);
+                var presets = Chips();
+                foreach (var (pw, ph, label) in new[] { (20, 15, "20 × 15 (pantalla de XP)"), (40, 30, "40 × 30"), (60, 40, "60 × 40 (ruta larga)"), (12, 10, "12 × 10 (casa)") })
+                {
+                    int ww = pw, hh = ph;
+                    presets.Add(Pick(label, w == ww && h == hh, () => { w = ww; h = hh; Fill(); }));
+                }
+                var custom = Ui.Row(22).Wrap();
+                custom.With(Ui.NumberBox("Ancho", w, 1, MapDefinition.MaxSize, v => w = v), Ui.NumberBox("Alto", h, 1, MapDefinition.MaxSize, v => h = v));
+                sizes.With(presets, custom);
+                body.Add(Field("Tamaño (tiles)", sizes, "Se puede cambiar luego en Propiedades."));
 
                 if (kind == MapKind.Exterior)
                 {
-                    var where = Ui.Row(4);
-                    where.style.flexWrap = Wrap.Wrap;
                     var anchorMap = s.Find(anchor);
                     if (anchorMap != null && anchorMap.InWorld)
                     {
-                        where.Add(Ui.Text($"Junto a «{anchorMap.Name}»:", bold: true).Margin(0, 0, 6, 0));
-                        foreach (var (label, dir) in new[] { ("arriba", FacingDirection.Up), ("abajo", FacingDirection.Down), ("a la izquierda", FacingDirection.Left), ("a la derecha", FacingDirection.Right) })
+                        // A small compass: the existing section in the middle, the new one goes to the chosen side.
+                        var compass = Ui.Column(2);
+                        float cell = Ui.ControlHeight + 4;
+                        VisualElement Cell(FacingDirection? dir, string icon, string tip)
                         {
-                            var dd = dir;
-                            where.Add(Ui.Chip(label, side == dd, () => { side = dd; Fill(); }).Margin(0, 0, 4, 4));
+                            if (dir == null) { var e = new VisualElement(); e.style.width = cell; e.style.height = cell; return e; }
+                            var dd = dir.Value;
+                            var b = Ui.IconButton(icon, () => { side = dd; Fill(); }, tip, side == dd);
+                            b.style.width = cell; b.style.height = cell; b.style.minHeight = cell;
+                            if (side != dd) { b.style.backgroundColor = Ui.Mix(Ui.C("panel_alt"), Ui.C("texto"), 0.08f); b.Border(1, "borde", Ui.Radius); }
+                            return b;
                         }
-                        where.Add(Ui.Chip("en un hueco libre", side == null, () => { side = null; Fill(); }).Margin(0, 0, 4, 4));
+                        var center = Ui.Text(anchorMap.Name, 0.75f, bold: true);
+                        center.style.width = cell * 1.6f; center.style.height = cell;
+                        center.style.unityTextAlign = TextAnchor.MiddleCenter;
+                        center.Bg("fondo").Border(1, "acento", Ui.Radius);
+                        center.tooltip = anchorMap.Name;
+                        var r1 = Ui.Row(2); r1.style.justifyContent = Justify.Center;
+                        r1.With(Cell(FacingDirection.Up, "arriba", "Encima de «" + anchorMap.Name + "»"));
+                        var r2 = Ui.Row(2); r2.style.justifyContent = Justify.Center;
+                        r2.With(Cell(FacingDirection.Left, "anterior", "A la izquierda"), center, Cell(FacingDirection.Right, "siguiente", "A la derecha"));
+                        var r3 = Ui.Row(2); r3.style.justifyContent = Justify.Center;
+                        r3.With(Cell(FacingDirection.Down, "abajo", "Debajo"));
+                        compass.With(r1, r2, r3);
+                        compass.style.alignSelf = Align.FlexStart;
+                        var where = Ui.Row(14);
+                        where.style.alignItems = Align.Center;
+                        where.With(compass, Pick("en un hueco libre", side == null, () => { side = null; Fill(); }, "Lejos de los demás; se puede arrastrar luego en la ventana Mundo"));
+                        body.Add(Field("Junto a", where, $"El nuevo tramo se pega a «{anchorMap.Name}» por el lado elegido."));
                     }
-                    else where.Add(Ui.Hint("Se coloca en un hueco libre del mundo; luego lo puedes arrastrar en la ventana Mundo."));
-                    body.With(Ui.Text("Dónde en el mundo", bold: true), where);
+                    else body.Add(Field("En el mundo", Ui.Hint("En un hueco libre; luego lo puedes arrastrar en la ventana Mundo.")));
                 }
-                else body.Add(Ui.Hint("Los interiores no van en el mundo: se entra por puertas (fase de eventos)."));
 
-                var tsRow = Ui.Row(6);
-                tsRow.style.flexWrap = Wrap.Wrap;
+                var tsRow = Chips();
                 if (tilesets.Count == 0) tsRow.Add(Ui.Hint("No hay tilesets cortados: el mapa se crea sin tileset. Corta uno en Recursos."));
                 foreach (var t in tilesets)
                 {
                     var id = t;
-                    tsRow.Add(Ui.Chip(s.TilesetFor(t)?.Name ?? t, tileset == t, () => { tileset = id; Fill(); }, t).Margin(0, 0, 6, 6));
+                    var chip = Pick(s.TilesetFor(t)?.Name ?? t, tileset == t, () => { tileset = id; Fill(); }, s.TilesetFor(t)?.Name ?? t);
+                    chip.style.maxWidth = 220;
+                    tsRow.Add(chip);
                 }
-                body.With(Ui.Text("Tileset", bold: true), tsRow);
+                body.Add(Field("Tileset", tsRow));
 
-                var parentRow = Ui.Row(6);
-                parentRow.style.flexWrap = Wrap.Wrap;
-                parentRow.Add(Ui.Chip("En la raíz del árbol", parent.Length == 0, () => { parent = ""; Fill(); }).Margin(0, 0, 6, 6));
+                var parentRow = Chips();
+                parentRow.Add(Pick("En la raíz", parent.Length == 0, () => { parent = ""; Fill(); }));
                 if (!string.IsNullOrEmpty(parentId) && s.Tree.Find(parentId) is MapEntry p)
-                    parentRow.Add(Ui.Chip("Dentro de «" + p.Name + "»", parent == parentId, () => { parent = parentId; Fill(); }).Margin(0, 0, 6, 6));
-                body.With(Ui.Text("En el árbol de mapas", bold: true), parentRow);
+                    parentRow.Add(Pick("Dentro de «" + p.Name + "»", parent == parentId, () => { parent = parentId; Fill(); }));
+                body.Add(Field("En el árbol", parentRow));
+
+                // Summary card: the tileset and what will be created.
+                var card = Ui.Card();
+                var ts = s.TilesetFor(tileset);
+                var thumbBox = new VisualElement().Bg("fondo").Round(4);
+                thumbBox.style.height = 150;
+                thumbBox.style.alignItems = Align.Center;
+                thumbBox.style.justifyContent = Justify.Center;
+                var tex = ts != null ? Textures.Thumbnail(System.IO.Path.Combine(shell.ProjectRoot, ts.ImagePath), 300) : null;
+                if (tex != null)
+                {
+                    var img = new Image { image = tex, scaleMode = ScaleMode.ScaleToFit };
+                    img.style.width = 200; img.style.height = 144;
+                    thumbBox.Add(img);
+                }
+                else thumbBox.Add(Ui.Hint("Sin tileset"));
+                string where2 = kind == MapKind.Interior ? "interior" : side.HasValue && s.Find(anchor) is MapDefinition am && am.InWorld
+                    ? $"{SideName(side.Value)} de «{am.Name}»" : "en un hueco libre del mundo";
+                card.With(thumbBox,
+                    Ui.Text(string.IsNullOrWhiteSpace(name) ? "(sin nombre)" : name, bold: true).Margin(0, 8, 0, 0),
+                    Ui.Text($"{WorldPanel.CategoryNames[(int)category]} · {w} × {h} tiles", 0.9f, dim: true),
+                    Ui.Text(where2, 0.9f, dim: true),
+                    Ui.Text(ts?.Name ?? "", 0.85f, dim: true));
+                side_.Add(card);
             }
             Fill();
             var scroll = Ui.Scroll();
-            scroll.style.maxHeight = 560;
-            scroll.Add(body);
+            scroll.style.maxHeight = 600;
+            scroll.Add(columns);
             d.Body.Add(scroll);
             d.Buttons.With(Ui.Button("Cancelar", () => shell.CloseDialog(d)), Ui.Button("Crear", () =>
             {

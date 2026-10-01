@@ -38,6 +38,7 @@ namespace CTEditor.App
 
         private readonly AppShell _shell;
         private readonly VisualElement _main;
+        private readonly GridOverlay _grid;
         private const string ToolbarPref = "barra_mapa";
         /// <summary>Where the toolbar goes: «arriba», «izquierda», «derecha» or «abajo».</summary>
         private string ToolbarSide => _shell.Workspace.Pref(ToolbarPref, "izquierda");
@@ -74,14 +75,7 @@ namespace CTEditor.App
             _toolbar.RegisterCallback<PointerUpEvent>(e =>
             {
                 if (e.button != 1) return;
-                string now = ToolbarSide;
-                _shell.ShowMenu(e.position, new List<MenuItem>
-                {
-                    new MenuItem("Barra arriba", () => SetToolbarSide("arriba"), isChecked: now == "arriba"),
-                    new MenuItem("Barra a la izquierda (recomendado)", () => SetToolbarSide("izquierda"), isChecked: now == "izquierda"),
-                    new MenuItem("Barra a la derecha", () => SetToolbarSide("derecha"), isChecked: now == "derecha"),
-                    new MenuItem("Barra abajo", () => SetToolbarSide("abajo"), isChecked: now == "abajo"),
-                });
+                ToolbarSideMenu(e.position);
                 e.StopPropagation();
             });
             _main = new VisualElement().Grow();
@@ -92,10 +86,12 @@ namespace CTEditor.App
             _viewport.style.backgroundColor = Ui.Mix(Ui.C("fondo"), Color.black, 0.3f);
             _image = new Image { scaleMode = ScaleMode.StretchToFill, pickingMode = PickingMode.Ignore }.Fill();
             _overlay = new VisualElement { pickingMode = PickingMode.Ignore }.Fill();
+            _grid = new GridOverlay().Fill();
             _empty = Ui.Column(8).Fill();
             _empty.style.alignItems = Align.Center;
             _empty.style.justifyContent = Justify.Center;
             _viewport.Add(_image);
+            _viewport.Add(_grid);
             _viewport.Add(_overlay);
             _viewport.Add(_empty);
             PlaceToolbar();
@@ -317,7 +313,7 @@ namespace CTEditor.App
                 var t = tool;
                 var keys = action == null ? "" : ShortcutMap.Pretty(_shell.Workspace.Shortcuts.KeysFor(action));
                 var button = Ui.IconButton(IconOf(t), () => { _shell.ActiveEditor = "mapa"; S.SetTool(t); },
-                    label + ": " + help + (keys.Length > 0 ? $" ({keys})" : ""), S.Tool == t);
+                    label + ": " + help + (keys.Length > 0 ? $" ({keys})" : ""), S.Tool == t, BigIcon);
                 _toolbar.Add(button.Margin(0, 2, 2, 2));
             }
             _toolbar.Add(ToolbarGap());
@@ -325,28 +321,28 @@ namespace CTEditor.App
             bool vertical = VerticalToolbar;
             if (vertical)
                 _toolbar.Add(Ui.IconToggle("pieza", S.AutoLayers, v => S.SetAutoLayers(v),
-                    "Capas automáticas: cada tile va solo a su capa (suelo, detalles, encima). Apagado = se pinta en la capa elegida (Ctrl+L)"));
+                    "Capas automáticas: cada tile va solo a su capa (suelo, detalles, encima). Apagado = se pinta en la capa elegida (Ctrl+L)", BigIcon));
             else
                 _toolbar.Add(Ui.Check("Capas automáticas", S.AutoLayers, v => S.SetAutoLayers(v)).Margin(0, 0, 6, 0));
             if (!S.AutoLayers && vertical)
             {
                 var layer = S.ActiveLayer < S.Map.Layers.Count ? S.Map.Layers[S.ActiveLayer] : null;
-                _toolbar.Add(Ui.IconButton("arriba", () => S.SetActiveLayer(S.ActiveLayer + 1), "Capa de encima"));
+                _toolbar.Add(Ui.IconButton("arriba", () => S.SetActiveLayer(S.ActiveLayer + 1), "Capa de encima", false, BigIcon));
                 var ln = Ui.Text((S.ActiveLayer + 1).ToString(), 0.85f, bold: true);
                 ln.tooltip = "Pintas en la capa «" + (layer?.Name ?? "-") + "»" + (layer?.Locked == true ? " (bloqueada)" : "");
                 ln.style.unityTextAlign = TextAnchor.MiddleCenter;
                 _toolbar.Add(ln);
-                _toolbar.Add(Ui.IconButton("abajo", () => S.SetActiveLayer(S.ActiveLayer - 1), "Capa de debajo"));
-                _toolbar.Add(Ui.IconToggle("oculto", S.DimOtherLayers, v => S.SetDimOtherLayers(v), "Atenuar las otras capas"));
+                _toolbar.Add(Ui.IconButton("abajo", () => S.SetActiveLayer(S.ActiveLayer - 1), "Capa de debajo", false, BigIcon));
+                _toolbar.Add(Ui.IconToggle("oculto", S.DimOtherLayers, v => S.SetDimOtherLayers(v), "Atenuar las otras capas", BigIcon));
             }
             else if (!S.AutoLayers)
             {
                 var layer = S.ActiveLayer < S.Map.Layers.Count ? S.Map.Layers[S.ActiveLayer] : null;
-                _toolbar.Add(Ui.IconButton("anterior", () => S.SetActiveLayer(S.ActiveLayer - 1), "Capa anterior"));
+                _toolbar.Add(Ui.IconButton("anterior", () => S.SetActiveLayer(S.ActiveLayer - 1), "Capa anterior", false, BigIcon));
                 var ln = Ui.Text("Capa: " + (layer?.Name ?? "-") + (layer?.Locked == true ? " (bloqueada)" : ""), bold: true);
                 ln.style.minWidth = 100;
                 _toolbar.Add(ln);
-                _toolbar.Add(Ui.IconButton("siguiente", () => S.SetActiveLayer(S.ActiveLayer + 1), "Capa siguiente"));
+                _toolbar.Add(Ui.IconButton("siguiente", () => S.SetActiveLayer(S.ActiveLayer + 1), "Capa siguiente", false, BigIcon));
                 _toolbar.Add(Ui.Check("Atenuar las otras", S.DimOtherLayers, v => S.SetDimOtherLayers(v)).Margin(6, 0, 0, 0));
             }
             _toolbar.Add(ToolbarGap());
@@ -355,15 +351,15 @@ namespace CTEditor.App
             var zoom = Ui.Text(Mathf.RoundToInt(ZoomLevels[_zoomIndex] * 100) + " %", vertical ? 0.78f : 1f).NoShrink();
             zoom.style.minWidth = vertical ? 0 : Ui.FontSize * 3.2f;
             zoom.style.unityTextAlign = TextAnchor.MiddleCenter;
-            var minus = Ui.IconButton("menos", () => SetZoom(_zoomIndex - 1), "Alejar (rueda del ratón, Mayús+Z)");
-            var plus = Ui.IconButton("mas", () => SetZoom(_zoomIndex + 1), "Acercar (rueda del ratón, Z)");
+            var minus = Ui.IconButton("menos", () => SetZoom(_zoomIndex - 1), "Alejar (rueda del ratón, Mayús+Z)", false, BigIcon);
+            var plus = Ui.IconButton("mas", () => SetZoom(_zoomIndex + 1), "Acercar (rueda del ratón, Z)", false, BigIcon);
             if (vertical) _toolbar.With(plus, zoom, minus);
             else _toolbar.With(minus, zoom, plus);
-            _toolbar.Add(Ui.IconButton("ajustar", FitMap, "Ajustar: ver el tramo entero"));
-            _toolbar.Add(Ui.IconToggle("rejilla", _showGrid, v => { _showGrid = v; RedrawOverlay(); }, "Rejilla"));
+            _toolbar.Add(Ui.IconButton("ajustar", FitMap, "Ajustar: ver el tramo entero", false, BigIcon));
+            _toolbar.Add(Ui.IconToggle("rejilla", _showGrid, v => { _showGrid = v; RedrawOverlay(); }, "Rejilla", BigIcon));
             if (S.Map.InWorld)
                 _toolbar.Add(Ui.IconToggle("vecinos", _showNeighbors, v => { _showNeighbors = v; RebuildSections(); RedrawOverlay(); },
-                    "Vecinos: ver los tramos de alrededor (doble clic en uno lo abre)"));
+                    "Vecinos: ver los tramos de alrededor (doble clic en uno lo abre)", BigIcon));
             _toolbar.Add(Ui.Spacer());
             var play = Ui.Button("", () => _shell.RunAction("probar_aqui"), Ui.ButtonKind.Normal,
                 "Jugar desde la casilla del ratón (" + ShortcutMap.Pretty(_shell.Workspace.Shortcuts.KeysFor("probar_aqui")) + ")");
@@ -373,10 +369,42 @@ namespace CTEditor.App
             if (vertical) { play.style.width = Ui.ControlHeight; play.style.paddingLeft = 0; play.style.paddingRight = 0; play.style.justifyContent = Justify.Center; }
             else play.Add(Ui.Text("Probar aquí").Margin(6, 0, 0, 0));
             _toolbar.Add(play);
-            _toolbar.tooltip = "Clic derecho en la barra: colocarla arriba, a la izquierda, a la derecha o abajo";
+            // Where the bar goes (also with a right click on the bar).
+            Button place = null;
+            place = Ui.IconButton("asa", () => { var r = place.worldBound; ToolbarSideMenu(new Vector2(r.xMax + 2, r.y)); },
+                "Colocar la barra: arriba, a la izquierda, a la derecha o abajo (también con clic derecho en la barra)", false, BigIcon);
+            place.style.opacity = 0.6f;
+            _toolbar.Add(place);
+            // Bigger tool buttons on the map bar.
+            foreach (var child in _toolbar.Children())
+                if (child is Button btn && btn.childCount == 1 && string.IsNullOrEmpty(btn.text)) Big(btn);
         }
 
         private VisualElement ToolbarGap() => VerticalToolbar ? Ui.Separator().Margin(4, 6, 4, 6) : Ui.Separator(vertical: true).Margin(6, 4, 6, 4);
+
+        private void ToolbarSideMenu(Vector2 at)
+        {
+            string now = ToolbarSide;
+            _shell.ShowMenu(at, new List<MenuItem>
+            {
+                new MenuItem("Barra arriba", () => SetToolbarSide("arriba"), isChecked: now == "arriba"),
+                new MenuItem("Barra a la izquierda (recomendado)", () => SetToolbarSide("izquierda"), isChecked: now == "izquierda"),
+                new MenuItem("Barra a la derecha", () => SetToolbarSide("derecha"), isChecked: now == "derecha"),
+                new MenuItem("Barra abajo", () => SetToolbarSide("abajo"), isChecked: now == "abajo"),
+            });
+        }
+
+        private static float BigIcon => Mathf.Round(Ui.IconSize * 1.25f);
+
+        /// <summary>A tool button of the map bar: a bit bigger than the ones in lists, with a bigger icon.</summary>
+        private static Button Big(Button b)
+        {
+            float size = Ui.ControlHeight + 6;
+            b.style.width = size;
+            b.style.height = size;
+            b.style.minHeight = size;
+            return b;
+        }
 
         private void SetToolbarSide(string side)
         {
@@ -597,6 +625,7 @@ namespace CTEditor.App
         private void RedrawOverlay()
         {
             _overlay.Clear();
+            _grid.Clear();
             if (_renderer?.Target == null || S?.Map == null) return;
             var m = S.Map;
 
@@ -619,8 +648,12 @@ namespace CTEditor.App
                 var v1 = _renderer.PixelToCell(new Vector2(_renderer.Target.width, _renderer.Target.height));
                 int x0 = Mathf.Max(0, Mathf.FloorToInt(v0.x)), x1 = Mathf.Min(m.Width, Mathf.CeilToInt(v1.x));
                 int y0 = Mathf.Max(0, Mathf.FloorToInt(v0.y)), y1 = Mathf.Min(m.Height, Mathf.CeilToInt(v1.y));
-                for (int x = x0; x <= x1; x++) Line(P(x, y0), P(x, y1), grid);
-                for (int y = y0; y <= y1; y++) Line(P(x0, y), P(x1, y), grid);
+                _grid.Color = grid;
+                _grid.Shadow = new Color(0, 0, 0, Mathf.Min(0.45f, grid.a + 0.1f));
+                _grid.PixelsPerPoint = Ppp;
+                for (int x = x0; x <= x1; x++) _grid.Add(P(x, y0), P(x, y1));
+                for (int y = y0; y <= y1; y++) _grid.Add(P(x0, y), P(x1, y));
+                _grid.Commit();
             }
 
             // Encounter areas: the painted ones as coloured rectangles (the active one stronger).
@@ -708,15 +741,6 @@ namespace CTEditor.App
             e.style.borderLeftWidth = width; e.style.borderRightWidth = width; e.style.borderTopWidth = width; e.style.borderBottomWidth = width;
             e.style.borderLeftColor = color; e.style.borderRightColor = color; e.style.borderTopColor = color; e.style.borderBottomColor = color;
             if (fill > 0) e.style.backgroundColor = Ui.WithAlpha(color, fill);
-            _overlay.Add(e);
-        }
-
-        private void Line(Vector2 a, Vector2 b, Color color)
-        {
-            var e = new VisualElement { pickingMode = PickingMode.Ignore };
-            if (Mathf.Approximately(a.x, b.x)) e.Absolute(a.x, Mathf.Min(a.y, b.y), 1, Mathf.Abs(b.y - a.y));
-            else e.Absolute(Mathf.Min(a.x, b.x), a.y, Mathf.Abs(b.x - a.x), 1);
-            e.style.backgroundColor = color;
             _overlay.Add(e);
         }
 
