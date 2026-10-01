@@ -408,6 +408,37 @@ namespace CTEditor.App
             return row;
         }
 
+        /// <summary>
+        /// A small number box for tables (no − / + buttons): type it, or use the mouse wheel / ↑ ↓ over it.
+        /// </summary>
+        public static TextField MiniNumber(int value, int min, int max, Action<int> onChange, string tooltip = null, float width = 0)
+        {
+            var field = new TextField { value = value.ToString(), isDelayed = true, tooltip = tooltip ?? "" };
+            StyleField(field);
+            field.style.width = width > 0 ? width : Mathf.Max(40, FontSize * 3.2f);
+            field.style.flexShrink = 0;
+            field.style.minHeight = ControlHeight - 4;
+            var box = field.Q(className: TextField.inputUssClassName);
+            if (box != null) { box.style.height = ControlHeight - 4; box.style.minHeight = ControlHeight - 4; box.style.unityTextAlign = TextAnchor.MiddleCenter; box.style.paddingLeft = 2; box.style.paddingRight = 2; }
+            int current = value;
+            void Set(int v)
+            {
+                v = Mathf.Clamp(v, min, max);
+                field.SetValueWithoutNotify(v.ToString());
+                if (v == current) return;
+                current = v;
+                onChange?.Invoke(v);
+            }
+            field.RegisterValueChangedCallback(e => { if (int.TryParse((e.newValue ?? "").Trim(), out int v)) Set(v); else field.SetValueWithoutNotify(current.ToString()); });
+            field.RegisterCallback<WheelEvent>(e => { Set(current + (e.delta.y < 0 ? 1 : -1)); e.StopPropagation(); });
+            field.RegisterCallback<KeyDownEvent>(e =>
+            {
+                if (e.keyCode == KeyCode.UpArrow) { Set(current + 1); e.StopPropagation(); }
+                else if (e.keyCode == KeyCode.DownArrow) { Set(current - 1); e.StopPropagation(); }
+            }, TrickleDown.TrickleDown);
+            return field;
+        }
+
         public static Toggle Check(string label, bool value, Action<bool> onChange)
         {
             var t = new Toggle(label) { value = value };

@@ -113,6 +113,12 @@ namespace CTEditor.World.Domain
         public TimeOfDay Times { get; set; }
         /// <summary>Interruptor que tiene que estar activo (vacío = ninguno): «tras vencer a la liga»...</summary>
         public string RequiredFlag { get; set; } = "";
+        /// <summary>Forma (0 = la normal): Alola, Galar, formas de Unown...</summary>
+        public int Form { get; set; }
+        /// <summary>Objeto que lleva equipado (id; vacío = ninguno).</summary>
+        public string HeldItem { get; set; } = "";
+        /// <summary>Variocolor: 1 entre N (0 = lo normal del juego).</summary>
+        public int ShinyOdds { get; set; }
 
         public EncounterSlot(string speciesId, int minLevel, int maxLevel, int weight, TimeOfDay times = TimeOfDay.Any)
         {
@@ -126,7 +132,8 @@ namespace CTEditor.World.Domain
         public bool AvailableAt(TimeOfDay now, Func<string, bool> flag) =>
             (Times == TimeOfDay.Any || (Times & now) != 0) && (string.IsNullOrEmpty(RequiredFlag) || (flag?.Invoke(RequiredFlag) ?? false));
 
-        public EncounterSlot Clone() => new EncounterSlot(SpeciesId, MinLevel, MaxLevel, Weight, Times) { RequiredFlag = RequiredFlag };
+        public EncounterSlot Clone() => new EncounterSlot(SpeciesId, MinLevel, MaxLevel, Weight, Times)
+            { RequiredFlag = RequiredFlag, Form = Form, HeldItem = HeldItem, ShinyOdds = ShinyOdds };
     }
 
     /// <summary>Lo que sale con un método en una zona: la probabilidad de cada comprobación y las especies.</summary>
@@ -136,8 +143,14 @@ namespace CTEditor.World.Domain
         /// <summary>Probabilidad (%) de que salga algo; -1 = la del método.</summary>
         public int Rate { get; set; } = -1;
         public List<EncounterSlot> Slots { get; } = new List<EncounterSlot>();
+        /// <summary>% de que el encuentro sea doble (salen dos a la vez, como en la hierba oscura). 0 = nunca.</summary>
+        public int DoublePercent { get; set; }
 
         public EncounterTable(string methodId) { MethodId = methodId; }
+
+        /// <summary>Pasos de media hasta encontrar esta especie (con la probabilidad por paso y su %), o -1 si no sale.</summary>
+        public static double StepsToFind(int ratePercent, double speciesPercent) =>
+            ratePercent <= 0 || speciesPercent <= 0 ? -1 : 100.0 / ratePercent * (100.0 / speciesPercent);
 
         public int RateWith(EncounterMethod m) => Rate >= 0 ? Rate : m?.DefaultRate ?? 10;
 
@@ -159,7 +172,7 @@ namespace CTEditor.World.Domain
 
         public EncounterTable Clone()
         {
-            var t = new EncounterTable(MethodId) { Rate = Rate };
+            var t = new EncounterTable(MethodId) { Rate = Rate, DoublePercent = DoublePercent };
             t.Slots.AddRange(Slots.Select(s => s.Clone()));
             return t;
         }

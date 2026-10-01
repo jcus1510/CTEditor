@@ -358,6 +358,30 @@ namespace CTEditor.App
             yield return Box(8.5f, 17f, 7f, 1.4f);
         }
 
+        private static IEnumerable<Shape> Sun()
+        {
+            yield return Circle(12f, 12f, 4.4f);
+            for (int i = 0; i < 8; i++)
+            {
+                double a = i * Math.PI / 4;
+                float c = (float)Math.Cos(a), s = (float)Math.Sin(a);
+                yield return Line(12f + c * 7f, 12f + s * 7f, 12f + c * 9.6f, 12f + s * 9.6f, 2f);
+            }
+        }
+
+        private static IEnumerable<Shape> Horizon(bool rising)
+        {
+            // A half sun on the horizon; an arrow up (morning) or down (evening).
+            yield return Box(2f, 17f, 20f, 2f);
+            yield return Circle(12f, 17f, rising ? 5.5f : 4.5f);
+            yield return Cut(Box(0f, 17f, 24f, 7f));
+            yield return Box(2f, 17f, 20f, 2f);
+            if (rising) { yield return Line(9f, 7f, 12f, 4f, 2f); yield return Line(12f, 4f, 15f, 7f, 2f); }
+            else { yield return Line(9f, 4f, 12f, 7f, 2f); yield return Line(12f, 7f, 15f, 4f, 2f); }
+            yield return Line(3.5f, 13f, 5.5f, 14.5f, 1.8f);
+            yield return Line(20.5f, 13f, 18.5f, 14.5f, 1.8f);
+        }
+
         private static IEnumerable<Shape> Switch()
         {
             // A toggle switch: a rounded track with its knob on the right (on).
@@ -430,6 +454,13 @@ namespace CTEditor.App
             ["rect_relleno"] = () => new[] { Box(4f, 5f, 16f, 14f) },
             ["reemplazar"] = Replace,
             ["interruptor"] = Switch,
+            ["dia"] = Sun,
+            ["manana"] = () => Horizon(rising: true),
+            ["tarde"] = () => Horizon(rising: false),
+            ["noche"] = () => new[] { Circle(12f, 12f, 8.5f), Cut(Circle(16.5f, 8.5f, 7.5f)) },
+            ["puntos"] = () => new[] { Circle(5.5f, 12f, 2.1f), Circle(12f, 12f, 2.1f), Circle(18.5f, 12f, 2.1f) },
+            ["copiar"] = () => new[] { Box(8f, 8f, 13f, 13f), Cut(Box(10f, 10f, 9f, 9f)), Box(3f, 3f, 13f, 2f), Box(3f, 3f, 2f, 13f) },
+            ["estrella"] = () => new[] { Poly(12f, 2.5f, 14.6f, 9f, 21.5f, 9.3f, 16.1f, 13.6f, 17.9f, 20.5f, 12f, 16.6f, 6.1f, 20.5f, 7.9f, 13.6f, 2.5f, 9.3f, 9.4f, 9f) },
             ["guardar"] = Floppy,
             ["mapa"] = FoldedMap,
             ["arbol"] = TreeList,

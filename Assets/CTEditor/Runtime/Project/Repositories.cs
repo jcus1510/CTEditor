@@ -145,6 +145,7 @@ namespace CTEditor.Project
                     if (!(t is JsonObject to) || !(to.GetString("metodo") is string method)) continue;
                     var table = area.GetOrAddTable(method);
                     table.Rate = to.GetInt("probabilidad", -1);
+                    table.DoublePercent = to.GetInt("dobles", 0);
                     foreach (var sl in to.GetArray("especies") ?? new List<object>())
                     {
                         if (!(sl is JsonObject so)) continue;
@@ -155,7 +156,10 @@ namespace CTEditor.Project
                             if (i >= 0) times |= (TimeOfDay)(1 << i);
                         }
                         table.Slots.Add(new EncounterSlot(so.GetString("especie", ""), so.GetInt("min", 2), so.GetInt("max", 4), so.GetInt("peso", 10), times)
-                            { RequiredFlag = so.GetString("interruptor", "") });
+                            {
+                                RequiredFlag = so.GetString("interruptor", ""), Form = so.GetInt("forma", 0),
+                                HeldItem = so.GetString("objeto", ""), ShinyOdds = so.GetInt("variocolor", 0),
+                            });
                     }
                 }
                 map.Encounters.Add(area);
@@ -189,13 +193,16 @@ namespace CTEditor.Project
                 .Set("id", a.Id).Set("nombre", a.Name).Set("todo_el_mapa", a.WholeMap).Set("color", a.Color)
                 .Set("zonas", a.ToRectangles().Select(r => (object)new List<object> { r.x, r.y, r.w, r.h }).ToList())
                 .Set("tablas", a.Tables.Select(t => (object)new JsonObject()
-                    .Set("metodo", t.MethodId).Set("probabilidad", t.Rate)
+                    .Set("metodo", t.MethodId).Set("probabilidad", t.Rate).Set("dobles", t.DoublePercent)
                     .Set("especies", t.Slots.Select(sl =>
                     {
                         var so = new JsonObject().Set("especie", sl.SpeciesId).Set("min", sl.MinLevel).Set("max", sl.MaxLevel).Set("peso", sl.Weight);
                         if (sl.Times != TimeOfDay.Any)
                             so["horas"] = Enumerable.Range(0, 4).Where(i => (sl.Times & (TimeOfDay)(1 << i)) != 0).Select(i => (object)TimeKeys[i]).ToList();
                         if (!string.IsNullOrEmpty(sl.RequiredFlag)) so["interruptor"] = sl.RequiredFlag;
+                        if (sl.Form != 0) so["forma"] = sl.Form;
+                        if (!string.IsNullOrEmpty(sl.HeldItem)) so["objeto"] = sl.HeldItem;
+                        if (sl.ShinyOdds > 0) so["variocolor"] = sl.ShinyOdds;
                         return (object)so;
                     }).ToList())).ToList())).ToList();
             var o = new JsonObject()

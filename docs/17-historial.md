@@ -111,4 +111,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
 - **Fase 5a**: historial de versiones (`ProjectBackups`: .zip cada 10 minutos solo si hubo cambios, máximo 5, a mano
   con Ctrl+Mayús+S, restaurar guardando antes cómo estaba); botón Guardar; iconos en las pestañas; paleta de órdenes
   Ctrl+P (`CommandSearch`); ventana Problemas (`ProblemFinder`). `BackupTests`.
+- **Encuentros como tabla** (con referencias de Porymap, Pokémon Studio y Essentials): filas espaciadas con
+  miniatura, niveles y peso en cajas pequeñas (rueda del ratón), % real con barra y pasos de media para encontrarlo,
+  horas con iconos (amanecer, sol, atardecer, luna), menú «⋯» (condición explicada, forma, objeto equipado,
+  variocolor, subir/bajar, duplicar, quitar) y combates dobles por método.
 - **Documentación** completa por capítulos (esta carpeta).

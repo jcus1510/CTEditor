@@ -887,6 +887,28 @@ namespace CTEditor.Editing
         public void RemoveTable(string areaId, string methodId) =>
             EditArea(areaId, "quitar método", (m, a) => a.Tables.RemoveAll(t => t.MethodId == methodId));
 
+        public void SetTableDoubles(string areaId, string methodId, int percent) =>
+            EditArea(areaId, "combates dobles", (m, a) => a.GetOrAddTable(methodId).DoublePercent = Math.Max(0, Math.Min(100, percent)));
+
+        /// <summary>Copia una especie justo debajo (para variantes: otra hora, otra forma...).</summary>
+        public void DuplicateSlot(string areaId, string methodId, int index) =>
+            EditArea(areaId, "duplicar especie", (m, a) =>
+            {
+                var t = a.TableFor(methodId);
+                if (t != null && index >= 0 && index < t.Slots.Count) t.Slots.Insert(index + 1, t.Slots[index].Clone());
+            });
+
+        public void MoveSlot(string areaId, string methodId, int index, int delta) =>
+            EditArea(areaId, "ordenar especies", (m, a) =>
+            {
+                var t = a.TableFor(methodId);
+                int to = index + delta;
+                if (t == null || index < 0 || index >= t.Slots.Count || to < 0 || to >= t.Slots.Count) return;
+                var s = t.Slots[index];
+                t.Slots.RemoveAt(index);
+                t.Slots.Insert(to, s);
+            });
+
         public void SetTableRate(string areaId, string methodId, int rate) =>
             EditArea(areaId, "probabilidad", (m, a) => a.GetOrAddTable(methodId).Rate = Math.Max(-1, Math.Min(100, rate)));
 

@@ -336,6 +336,16 @@ namespace CTEditor.Tests.EditMode
                 Assert.IsTrue(s.HighlightAllAreas);
                 Assert.AreEqual(1, changes);
 
+                // Extras of a species and of a method, and ordering.
+                s.UpdateSlot(area.Id, "hierba", 0, x => { x.Form = 1; x.HeldItem = "baya_aranja"; x.ShinyOdds = 512; });
+                s.SetTableDoubles(area.Id, "hierba", 15);
+                s.DuplicateSlot(area.Id, "hierba", 0);
+                Assert.AreEqual(3, s.Map.Encounters[0].TableFor("hierba").Slots.Count);
+                s.MoveSlot(area.Id, "hierba", 1, +1);
+                Assert.AreEqual("rattata", s.Map.Encounters[0].TableFor("hierba").Slots[1].SpeciesId, "the copy went down one");
+                s.Undo(); s.Undo();
+                Assert.AreEqual(2, s.Map.Encounters[0].TableFor("hierba").Slots.Count);
+
                 s.SaveMethod(new EncounterMethod("volando", "Volando", EncounterTrigger.Script, 100));
                 s.MoveSection("pueblo", 50, 50);
                 Assert.IsTrue(s.World().Overlaps().Count() == 0);
@@ -347,6 +357,10 @@ namespace CTEditor.Tests.EditMode
                 again.OpenMap("ruta_1");
                 Assert.AreEqual(2, again.Map.Encounters.Count);
                 Assert.AreEqual(TimeOfDay.Night, again.Map.Encounters[0].TableFor("hierba").Slots[1].Times);
+                var first = again.Map.Encounters[0].TableFor("hierba").Slots[0];
+                Assert.AreEqual((1, "baya_aranja", 512), (first.Form, first.HeldItem, first.ShinyOdds), "species extras are saved");
+                Assert.AreEqual(15, again.Map.Encounters[0].TableFor("hierba").DoublePercent);
+                Assert.AreEqual(200, EncounterTable.StepsToFind(10, 5), 0.001, "10 % per step and 5 % of the table: about 200 steps");
                 Assert.AreEqual(1, again.Map.Encounters[1].Cells.Count);
                 Assert.AreEqual((50, 50), (again.Find("pueblo").WorldX, again.Find("pueblo").WorldY));
 

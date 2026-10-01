@@ -207,108 +207,225 @@ namespace CTEditor.App
         private VisualElement TableBox(EncounterArea area, EncounterTable table)
         {
             var method = S.Methods.Find(table.MethodId);
-            var box = Ui.Column(8).Bg("fondo").Border(1, "borde", 6).Pad(10, 8);
+            int rate = table.RateWith(method);
+            var box = Ui.Column(0).Bg("fondo").Border(1, "borde", 6);
 
-            var head = Ui.Row(8).Wrap();
-            head.With(Ui.NumberBox("Probabilidad", table.RateWith(method), 0, 100, v => S.SetTableRate(area.Id, table.MethodId, v),
-                    "Probabilidad de que salga algo en cada paso (o en cada uso, con cañas)"),
-                Ui.Text(table.Rate < 0 ? "% (la del método)" : "% por paso", 0.85f, dim: true),
-                Ui.Spacer(),
-                Ui.Button("Pesos clásicos", () => S.ApplyClassicWeights(area.Id, table.MethodId), Ui.ButtonKind.Flat,
+            // Settings of the method in this zone: chance per step, double battles, classic weights.
+            var settings = Ui.Row(16).Wrap().Pad(12, 10);
+            var rateRow = Ui.Row(6);
+            rateRow.With(Ui.Text("Probabilidad por paso", 0.88f, dim: true),
+                Ui.MiniNumber(rate, 0, 100, v => S.SetTableRate(area.Id, table.MethodId, v), "Probabilidad de que salga algo en cada paso (o en cada uso, con cañas)"),
+                Ui.Text("%", 0.88f, dim: true));
+            var doubles = Ui.Row(6);
+            doubles.With(Ui.Text("Dobles", 0.88f, dim: true),
+                Ui.MiniNumber(table.DoublePercent, 0, 100, v => S.SetTableDoubles(area.Id, table.MethodId, v), "% de que salgan dos a la vez (combate doble, como en la hierba oscura)"),
+                Ui.Text("%", 0.88f, dim: true));
+            var actions = Ui.Row(2);
+            actions.With(Ui.Button("Pesos clásicos", () => S.ApplyClassicWeights(area.Id, table.MethodId), Ui.ButtonKind.Flat,
                     "Pone los pesos de los juegos originales en el orden de la lista: hierba 20/20/10/10/10/10/5/5/4/4/1/1 · agua 60/30/5/4/1 · cañas 70/30"),
                 Ui.IconButton("papelera", () => S.RemoveTable(area.Id, table.MethodId), "Quitar este método de la zona"));
-            box.Add(head);
-            if (method != null) box.Add(Ui.Hint(TriggerHelp(method)));
+            settings.With(rateRow, doubles, Ui.Spacer(), actions);
+            box.Add(settings);
+            var explain = Ui.Text((method != null ? TriggerHelp(method) + ". " : "") + (rate > 0 ? $"De media, un encuentro cada {100.0 / rate:0.#} pasos." : "Con 0 % no sale nada."), 0.82f, dim: true, wrap: true);
+            explain.Margin(12, 0, 12, 8);
+            box.Add(explain);
 
-            // Which hour the % are for: all (the weights) or one of them.
-            var hours = Ui.Row(0).Wrap();
-            hours.Add(Ui.Text("Ver %:", 0.85f, dim: true).Margin(0, 0, 6, 0));
-            hours.Add(Ui.Chip("Todas las horas", _viewTime == null, () => { _viewTime = null; Refresh(); }, "Según los pesos, sin mirar la hora").Margin(0, 0, 3, 3));
+            // Which hour the % are for.
+            var hours = Ui.Row(0).Wrap().Pad(12, 4);
+            hours.Add(Ui.Text("Ver % de:", 0.82f, dim: true).Margin(0, 0, 8, 0));
+            void HourChip(string text, string icon, bool on, Action a, string tip)
+            {
+                var c = Ui.Chip(text, on, a, tip);
+                c.style.fontSize = Mathf.Round(Ui.FontSize * 0.82f);
+                c.style.height = Ui.ControlHeight - 8; c.style.minHeight = Ui.ControlHeight - 8;
+                c.style.paddingLeft = 8; c.style.paddingRight = 8;
+                hours.Add(c.Margin(0, 2, 4, 2));
+            }
+            HourChip("Todas las horas", null, _viewTime == null, () => { _viewTime = null; Refresh(); }, "Según los pesos, sin mirar la hora");
             foreach (var (t, label, _) in Times)
             {
                 var tt = t;
-                hours.Add(Ui.Chip(label, _viewTime == t, () => { _viewTime = tt; Refresh(); }, "Lo que sale por la " + label.ToLowerInvariant()).Margin(0, 0, 3, 3));
+                HourChip(label, null, _viewTime == t, () => { _viewTime = tt; Refresh(); }, "Lo que sale por la " + label.ToLowerInvariant());
             }
             box.Add(hours);
 
+            // The species table.
             var chances = (_viewTime.HasValue ? table.Chances(_viewTime.Value, _ => true) : table.BaseChances()).ToDictionary(c => c.slot, c => c.percent);
-            for (int i = 0; i < table.Slots.Count; i++) box.Add(SlotCard(area, table, i, chances));
+            var head = Ui.Row(10).Pad(12, 6);
+            head.style.borderTopWidth = 1; head.style.borderTopColor = Ui.C("borde");
+            head.style.borderBottomWidth = 1; head.style.borderBottomColor = Ui.C("borde");
+            head.With(Col("Especie", 0, true), Col("Nivel", 104), Col("Peso", 52), Col("Sale", 120), Col("Horas", 104), Col("", Ui.ControlHeight));
+            box.Add(head);
+            for (int i = 0; i < table.Slots.Count; i++) box.Add(SlotRow(area, table, i, chances, rate, i % 2 == 1));
+            if (table.Slots.Count == 0)
+                box.Add(Ui.Hint("Sin especies: aquí no sale nada. Añade la primera con «+ Especie».").Margin(12, 10, 12, 10));
 
-            var foot = Ui.Row(8);
+            var foot = Ui.Row(8).Pad(12, 10);
             foot.With(Ui.Button("+ Especie", () => PickSpecies(id => S.AddSlot(area.Id, table.MethodId, new EncounterSlot(id, 2, 4, 10))),
                     Ui.ButtonKind.Primary),
                 Ui.Spacer(),
-                Ui.Text(table.Slots.Count == 0 ? "Sin especies: aquí no sale nada." : $"{chances.Count} de {table.Slots.Count} especies · {chances.Values.Sum():0} %", 0.82f, dim: true));
+                Ui.Text(table.Slots.Count == 0 ? "" : $"{chances.Count} de {table.Slots.Count} especies salen · {chances.Values.Sum():0} %", 0.82f, dim: true));
             box.Add(foot);
             return box;
         }
 
-        /// <summary>One species: name, % with a bar, levels, weight, hours (all lit = always) and switch.</summary>
-        private VisualElement SlotCard(EncounterArea area, EncounterTable table, int index, Dictionary<EncounterSlot, double> chances)
+        private static VisualElement Col(string text, float width, bool grow = false)
+        {
+            var l = Ui.Text(text.ToUpperInvariant(), 0.72f, dim: true, bold: true);
+            if (grow) l.Grow(); else { l.style.width = width; l.NoShrink(); }
+            return l;
+        }
+
+        /// <summary>
+        /// One species, as a table row with room to breathe: picture, name and its extras (form, item, shiny, condition),
+        /// levels, weight, the real % with a bar and the steps it takes to find it, the hours (icons) and a «⋯» menu.
+        /// </summary>
+        private VisualElement SlotRow(EncounterArea area, EncounterTable table, int index, Dictionary<EncounterSlot, double> chances, int rate, bool alt)
         {
             var slot = table.Slots[index];
             string aid = area.Id, mid = table.MethodId;
-            var card = Ui.Column(6).Bg("panel").Border(1, "borde", 4).Pad(8, 6);
+            var row = Ui.Row(10).Pad(12, 8);
+            if (alt) row.style.backgroundColor = Ui.WithAlpha(Ui.C("panel"), 0.5f);
+            row.style.borderBottomWidth = 1;
+            row.style.borderBottomColor = Ui.WithAlpha(Ui.C("borde"), 0.5f);
 
-            var top = Ui.Row(8);
-            var species = Ui.Button(SpeciesName(slot.SpeciesId), () => PickSpecies(id => S.UpdateSlot(aid, mid, index, x => x.SpeciesId = id)),
-                Ui.ButtonKind.Normal, "Cambiar la especie");
-            species.style.flexShrink = 1;
-            species.style.minWidth = 90;
-            species.style.unityTextAlign = TextAnchor.MiddleLeft;
-            species.style.unityFontStyleAndWeight = FontStyle.Bold;
+            // Species: picture + name (click = change) + a line with its extras.
+            var who = Ui.Row(8).Grow();
+            who.style.minWidth = 150;
+            who.Add(SpeciesPicture(slot.SpeciesId, 30));
+            var names = Ui.Column(1).Grow();
+            var name = Ui.Button(SpeciesName(slot.SpeciesId), () => PickSpecies(id => S.UpdateSlot(aid, mid, index, x => x.SpeciesId = id)), Ui.ButtonKind.Flat, "Cambiar la especie");
+            name.style.unityFontStyleAndWeight = FontStyle.Bold;
+            name.style.unityTextAlign = TextAnchor.MiddleLeft;
+            name.style.paddingLeft = 0;
+            name.style.height = Ui.ControlHeight - 6; name.style.minHeight = Ui.ControlHeight - 6;
+            name.style.alignSelf = Align.FlexStart;
+            names.Add(name);
+            var extras = new List<string>();
+            if (slot.Form != 0) extras.Add("forma " + slot.Form);
+            if (!string.IsNullOrEmpty(slot.HeldItem)) extras.Add("lleva " + slot.HeldItem);
+            if (slot.ShinyOdds > 0) extras.Add($"variocolor 1/{slot.ShinyOdds}");
+            if (!string.IsNullOrEmpty(slot.RequiredFlag)) extras.Add($"solo si «{slot.RequiredFlag}»");
+            if (extras.Count > 0) names.Add(Ui.Text(string.Join(" · ", extras), 0.78f).Colored("acento"));
+            who.Add(names);
+
+            var levels = Ui.Row(4).NoShrink();
+            levels.style.width = 104;
+            levels.With(Ui.MiniNumber(slot.MinLevel, 1, 100, v => S.UpdateSlot(aid, mid, index, x => { x.MinLevel = v; if (x.MaxLevel < v) x.MaxLevel = v; }), "Nivel mínimo (rueda del ratón o ↑ ↓)"),
+                Ui.Text("–", dim: true),
+                Ui.MiniNumber(slot.MaxLevel, 1, 100, v => S.UpdateSlot(aid, mid, index, x => { x.MaxLevel = v; if (x.MinLevel > v) x.MinLevel = v; }), "Nivel máximo"));
+            var weightBox = Ui.Row(0).NoShrink();
+            weightBox.style.width = 52;
+            weightBox.Add(Ui.MiniNumber(slot.Weight, 0, 1000, v => S.UpdateSlot(aid, mid, index, x => x.Weight = v), "Peso: frecuencia relativa (con 20 y 10, la primera sale el doble)"));
+
+            // The real %, a bar and the average steps to find it.
             bool shows = chances.TryGetValue(slot, out var p);
-            // A bar with the real %.
-            var bar = new VisualElement().Bg("fondo").Round(3);
-            bar.style.height = 8;
-            bar.Grow();
-            bar.style.minWidth = 40;
-            var fill = new VisualElement().Bg(shows ? "exito" : "borde").Round(3);
+            var odds = Ui.Column(3).NoShrink();
+            odds.style.width = 120;
+            var pctRow = Ui.Row(6);
+            var pct = Ui.Text(shows ? $"{p:0.#} %" : "no sale", 0.9f, bold: true).Colored(shows ? "exito" : "texto_suave");
+            pctRow.Add(pct);
+            double steps = EncounterTable.StepsToFind(rate, shows ? p : 0);
+            if (steps > 0) pctRow.Add(Ui.Text($"≈ {steps:0} pasos", 0.75f, dim: true));
+            var bar = new VisualElement().Bg("panel_alt").Round(2);
+            bar.style.height = 4;
+            var fill = new VisualElement().Bg(shows ? "exito" : "borde").Round(2);
             fill.style.height = Length.Percent(100);
             fill.style.width = Length.Percent(shows ? (float)Math.Max(2, p) : 0);
             bar.Add(fill);
-            var pct = Ui.Text(shows ? $"{p:0.#} %" : "no sale", 0.9f, bold: true).Colored(shows ? "exito" : "texto_suave").NoShrink();
-            pct.style.minWidth = Ui.FontSize * 3.6f;
-            pct.style.unityTextAlign = TextAnchor.MiddleRight;
-            top.With(species, bar, pct, Ui.IconButton("papelera", () => S.RemoveSlot(aid, mid, index), "Quitar esta especie"));
-            card.Add(top);
+            odds.With(pctRow, bar);
+            odds.tooltip = shows ? $"De cada 100 encuentros con este método, unos {p:0.#} son de esta especie. Hacen falta unos {steps:0} pasos de media para verla." : "Con la hora elegida (o su condición) no sale.";
 
-            var bottom = Ui.Row(14).Wrap();
-            var levels = Ui.Row(0);
-            levels.With(Ui.NumberBox("Nv.", slot.MinLevel, 1, 100, v => S.UpdateSlot(aid, mid, index, x => { x.MinLevel = v; if (x.MaxLevel < v) x.MaxLevel = v; }), "Nivel mínimo"),
-                Ui.Text("–", dim: true).Margin(4, 0, 4, 0),
-                Ui.NumberBox(null, slot.MaxLevel, 1, 100, v => S.UpdateSlot(aid, mid, index, x => { x.MaxLevel = v; if (x.MinLevel > v) x.MinLevel = v; }), "Nivel máximo"));
-            var weight = Ui.NumberBox("Peso", slot.Weight, 0, 1000, v => S.UpdateSlot(aid, mid, index, x => x.Weight = v),
-                "Frecuencia relativa: con pesos 20 y 10, la primera sale el doble");
-
-            // Hours: all four lit = always. Clicking one turns it off (or on); at least one must stay.
-            var hours = Ui.Row(2);
+            // Hours as small icons: lit = it shows up then. All four lit = always.
+            var hours = Ui.Row(2).NoShrink();
+            hours.style.width = 104;
             var current = slot.Times == TimeOfDay.Any ? TimeOfDay.AllDay : slot.Times;
-            foreach (var (t, label, letter) in Times)
+            foreach (var (t, label, _) in Times)
             {
                 var tt = t;
                 bool on = (current & t) != 0;
-                var chip = Ui.Chip(letter, on, () =>
+                var b = Ui.IconButton(t == TimeOfDay.Morning ? "manana" : t == TimeOfDay.Day ? "dia" : t == TimeOfDay.Evening ? "tarde" : "noche", () =>
                 {
                     var next = current ^ tt;
                     if (next == 0) { _shell.Warn("Tiene que salir al menos a una hora."); return; }
                     S.UpdateSlot(aid, mid, index, x => x.Times = next == TimeOfDay.AllDay ? TimeOfDay.Any : next);
-                }, label + (on ? ": sale (clic para quitar)" : ": no sale (clic para añadir)"));
-                chip.style.width = Ui.ControlHeight - 2;
-                chip.style.paddingLeft = 0; chip.style.paddingRight = 0;
-                hours.Add(chip);
+                }, label + (on ? ": sale (clic para quitar)" : ": no sale (clic para añadir)"), false, Mathf.Round(Ui.IconSize * 0.95f));
+                b.style.width = 24; b.style.height = 24; b.style.minHeight = 24;
+                var icon = b.Children().FirstOrDefault();
+                if (icon != null) icon.style.unityBackgroundImageTintColor = on ? Ui.C("aviso") : Ui.WithAlpha(Ui.C("texto_suave"), 0.35f);
+                hours.Add(b);
             }
 
-            bool hasFlag = !string.IsNullOrEmpty(slot.RequiredFlag);
-            var flag = Ui.IconButton("interruptor", () => _shell.Prompt("Interruptor necesario",
-                    "Interruptor (vacío = ninguno)", slot.RequiredFlag, "Guardar", v => S.UpdateSlot(aid, mid, index, x => x.RequiredFlag = (v ?? "").Trim())),
-                hasFlag ? $"Solo sale con el interruptor «{slot.RequiredFlag}» activo (clic para cambiarlo)" : "Sale sin condiciones (clic: exigir un interruptor, p. ej. «tras_la_liga»)", hasFlag);
-            var flagBox = Ui.Row(4);
-            flagBox.Add(flag);
-            if (hasFlag) flagBox.Add(Ui.Text(slot.RequiredFlag, 0.8f, dim: true));
-            bottom.With(levels, weight, hours, flagBox);
-            card.Add(bottom);
-            return card;
+            Button more = null;
+            more = Ui.IconButton("puntos", () =>
+            {
+                var r = more.worldBound;
+                _shell.ShowMenu(new Vector2(r.x - 180, r.yMax + 2), new List<MenuItem>
+                {
+                    new MenuItem("Condición (interruptor)…", () => ConditionDialog(aid, mid, index, slot)),
+                    new MenuItem("Forma…", () => _shell.Prompt("Forma", "Número de forma (0 = la normal)", slot.Form.ToString(), "Guardar",
+                        v => { if (int.TryParse(v, out int f)) S.UpdateSlot(aid, mid, index, x => x.Form = Math.Max(0, f)); })),
+                    new MenuItem("Objeto equipado…", () => _shell.Prompt("Objeto equipado", "Id del objeto (vacío = ninguno)", slot.HeldItem, "Guardar",
+                        v => S.UpdateSlot(aid, mid, index, x => x.HeldItem = (v ?? "").Trim()))),
+                    new MenuItem("Variocolor…", () => _shell.Prompt("Variocolor", "1 de cada… (0 = lo normal del juego)", slot.ShinyOdds.ToString(), "Guardar",
+                        v => { if (int.TryParse(v, out int o)) S.UpdateSlot(aid, mid, index, x => x.ShinyOdds = Math.Max(0, o)); })),
+                    MenuItem.Separator,
+                    new MenuItem("Subir", () => S.MoveSlot(aid, mid, index, -1), enabled: index > 0),
+                    new MenuItem("Bajar", () => S.MoveSlot(aid, mid, index, +1), enabled: index < table.Slots.Count - 1),
+                    new MenuItem("Duplicar", () => S.DuplicateSlot(aid, mid, index)),
+                    new MenuItem("Quitar", () => S.RemoveSlot(aid, mid, index)),
+                });
+            }, "Más: condición, forma, objeto, variocolor, ordenar, duplicar, quitar");
+
+            row.With(who, levels, weightBox, odds, hours, more);
+            return row;
+        }
+
+        /// <summary>The species picture: its battle sprite or icon if the project has one, or its initial.</summary>
+        private VisualElement SpeciesPicture(string id, float size)
+        {
+            var box = new VisualElement().Bg("panel_alt").Round(size / 2);
+            box.style.width = size; box.style.height = size;
+            box.style.flexShrink = 0;
+            box.style.alignItems = Align.Center;
+            box.style.justifyContent = Justify.Center;
+            box.style.overflow = Overflow.Hidden;
+            Texture2D tex = null;
+            if (!string.IsNullOrEmpty(id) && _shell.ProjectRoot != null)
+                foreach (var folder in new[] { "iconos", "combate" })
+                {
+                    var path = System.IO.Path.Combine(_shell.ProjectRoot, CTEditor.Project.ProjectLayout.GraphicsFolder, folder, id + ".png");
+                    if (System.IO.File.Exists(path) && (tex = Textures.Thumbnail(path, 96)) != null) break;
+                }
+            if (tex != null)
+            {
+                var img = new Image { image = tex, scaleMode = ScaleMode.ScaleToFit, pickingMode = PickingMode.Ignore };
+                img.style.width = size; img.style.height = size;
+                box.Add(img);
+            }
+            else
+            {
+                var n = SpeciesName(id);
+                var l = Ui.Text(string.IsNullOrEmpty(n) ? "?" : n.Substring(0, 1).ToUpperInvariant(), 0.95f, bold: true);
+                l.style.unityTextAlign = TextAnchor.MiddleCenter;
+                l.pickingMode = PickingMode.Ignore;
+                box.Add(l);
+            }
+            return box;
+        }
+
+        /// <summary>What a condition is, said plainly, and the switch to use.</summary>
+        private void ConditionDialog(string aid, string mid, int index, EncounterSlot slot)
+        {
+            var d = _shell.ShowDialog("Condición de «" + SpeciesName(slot.SpeciesId) + "»", 40);
+            string flag = slot.RequiredFlag ?? "";
+            d.Body.With(
+                Ui.Text("Un interruptor es una marca del juego que encienden los eventos: «liga_vencida» al ganar la Liga, «puente_arreglado» al terminar una misión...", wrap: true),
+                Ui.Hint("Si pones uno, esta especie SOLO sale cuando ese interruptor está encendido. Así aparecen Pokémon nuevos después de la historia o de un evento (como «Activación» en Pokémon Studio). Vacío = sale siempre."),
+                Ui.TextBox("Interruptor", flag, v => flag = v));
+            d.Buttons.With(Ui.Button("Quitar la condición", () => { S.UpdateSlot(aid, mid, index, x => x.RequiredFlag = ""); _shell.CloseDialog(d); }, Ui.ButtonKind.Flat),
+                Ui.Button("Cancelar", () => _shell.CloseDialog(d)),
+                Ui.Button("Guardar", () => { S.UpdateSlot(aid, mid, index, x => x.RequiredFlag = (flag ?? "").Trim()); _shell.CloseDialog(d); }, Ui.ButtonKind.Primary));
         }
 
         private string SpeciesName(string id)

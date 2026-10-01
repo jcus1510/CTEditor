@@ -148,6 +148,26 @@ Inspirados en: herramientas de una letra de Photoshop / Aseprite y de [Tiled](ht
 | **Paleta de órdenes** | **Ctrl+P**, `CommandPalette` + `Workspace/CommandSearch.cs` | Escribe lo que quieres hacer: todas las acciones (con su atajo), ventanas, mapas del proyecto, distribuciones y temas. Sin tildes ni mayúsculas, con iniciales («pp» → «Pueblo Paleta»). ↑ ↓ e Intro. |
 | **Ventana Problemas** | `Editing/ProblemFinder.cs`, `ProblemsPanel` (Ctrl+Mayús+M) | Revisa el proyecto sola tras cada cambio: inicio del jugador, tilesets que faltan, tiles fuera de su tileset, tramos que se pisan, exteriores sin colocar, zonas sin casillas o sin especies, especies que no están en los datos, métodos borrados. Errores primero; clic = abrir el mapa. Un módulo añade comprobaciones con `ProblemFinder.Register`. |
 
+## Encuentros como tabla (referencias de otros editores)
+
+Se miró cómo lo hacen otros:
+- **Porymap** ([manual](https://huderlem.github.io/porymap/manual/editing-wild-encounters.html)): una pestaña por
+  método (hierba, agua, golpe roca, pesca) con una tabla de huecos (especie, nivel mínimo y máximo, % por hueco) y la
+  probabilidad del método arriba; los grupos sirven para variantes por hora.
+- **Pokémon Studio** ([ayuda](https://pokemonworkshop.com/en/help/pokemon-sdk/creating-wild-encounters/)): «grupos»
+  con activación por interruptor (hora o uno propio), combate simple o **doble**, entorno y variación (etiquetas de
+  terreno); cada Pokémon con nivel, probabilidad, habilidad, naturaleza, **variocolor**, sexo, movimientos...
+- **Essentials**: tipos de encuentro por terreno y por hora (LandMorning, LandNight...) con su densidad.
+
+| Qué | Cómo queda en CTEditor |
+|---|---|
+| Tabla (Porymap) | Filas con aire (8 px arriba y abajo, filas alternas, separador): **miniatura** (sprite de `graficos/iconos` o `graficos/combate` con el id de la especie, o su inicial), nombre, **Nivel 2 – 4** y **Peso** en cajas pequeñas (escribir, rueda del ratón o ↑ ↓), **% real con barra** y **≈ pasos de media para encontrarla** (lo que ninguno enseña), **horas** con iconos pequeños y menú **⋯**. |
+| Horas (Essentials) | Cuatro iconos: amanecer, sol, atardecer, luna. Encendido = sale a esa hora. Los cuatro encendidos = siempre. |
+| Activación (Pokémon Studio) | **Condición**: un interruptor que encienden los eventos («liga_vencida»...). Con él, la especie solo sale tras ese momento de la historia. Se explica en su propia ventana y se ve bajo el nombre («solo si «liga_vencida»»). |
+| Extras por especie (Pokémon Studio) | En «⋯»: **forma**, **objeto equipado**, **variocolor 1 de N**; también subir, bajar, **duplicar** (para variantes) y quitar. |
+| Combate doble (Pokémon Studio) | Por método y zona: **Dobles %**. |
+| Probabilidad del método | Arriba de la tabla, con la explicación: «De media, un encuentro cada 10 pasos». |
+
 ## Lista de prueba en Unity (antes de seguir)
 
 Marca lo que funcione y mándame captura de lo que no:

@@ -128,6 +128,7 @@ Nunca se escribe un color a mano: se usa `Ui.C("token")`.
 
 | Fecha | Cambio |
 |---|---|
+| 2026-10-02 (2) | Encuentros como tabla: cabecera de columnas en mayúsculas pequeñas, filas con 8 px de aire y alternas, miniatura redonda, cajas de número pequeñas (`Ui.MiniNumber`, con rueda), barra fina de %, horas con iconos de 24 px, menú «⋯». |
 | 2026-10-02 | Iconos en las pestañas (mapa, árbol, rejilla, capas, propiedades, carpeta, eventos, aviso, base de datos, mundo, zona); botón Guardar (disquete) en la barra de menús; paleta de órdenes (Ctrl+P) con el atajo de cada acción en una «tecla». |
 | 2026-10-01 (6) | Encuentros: lista de zonas, métodos en pestañas, tarjetas de especie con barra de %, horas «todas encendidas = siempre», «Dejar de pintar», resaltar todas las zonas. Encabezados de sección en mayúsculas pequeñas. |
 | 2026-10-01 (5) | Rejilla como malla ajustada al píxel con sombra; ayudas con `panel.Pick`; barra del mapa con botones más grandes y botón para colocarla; «Nuevo mapa» en dos columnas con brújula y ficha resumen. |
