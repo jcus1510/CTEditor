@@ -18,6 +18,8 @@ namespace CTEditor.Art.Domain
         public SheetKind Kind { get; set; }
         /// <summary>Solo personajes: nombre de la plantilla de hoja (CharacterSheetLayout.Name). Vacío = ninguna.</summary>
         public string CharacterLayout { get; set; } = "";
+        /// <summary>Pieces cut by hand with pixel precision (free slicing), laid out under the grid.</summary>
+        public FreePieceSet Free { get; set; } = new FreePieceSet();
 
         public SliceDefinition(SliceSettings settings, SheetKind kind = SheetKind.Tileset)
         {

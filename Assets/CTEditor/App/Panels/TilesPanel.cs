@@ -194,7 +194,9 @@ namespace CTEditor.App
                 Ui.IconButton("menos", () => SetZoom(Step(-1)), "Alejar la paleta"),
                 zoom,
                 Ui.IconButton("mas", () => SetZoom(Step(+1)), "Acercar la paleta"),
-                Ui.IconButton("retocar", RetouchSelected, "Retocar: abrir el tile elegido en el editor de píxeles"));
+                Ui.IconButton("retocar", RetouchSelected, "Retocar: abrir el tile elegido en el editor de píxeles"),
+                Ui.IconButton("seleccion", () => { if (Tileset != null) FreeSliceDialog.Show(_shell, Path.Combine(_shell.ProjectRoot, Tileset.ImagePath)); },
+                    "Corte libre: cortar a mano piezas de cualquier tamaño de este tileset (salen al final de la paleta)"));
             foreach (var (mode, label, help) in Modes)
             {
                 var m = mode;
@@ -572,7 +574,8 @@ namespace CTEditor.App
             string pass = p.Blocked == PassageBlock.All ? "no se pasa" : p.Blocked == PassageBlock.None ? "se pasa" : "bloquea: " + string.Join(", ",
                 new[] { (PassageBlock.Up, "arriba"), (PassageBlock.Down, "abajo"), (PassageBlock.Left, "izquierda"), (PassageBlock.Right, "derecha") }
                     .Where(x => (p.Blocked & x.Item1) != 0).Select(x => x.Item2));
-            _info.text = $"Tile n.º {tile} · {pass} · prioridad {p.Priority} · terreno: {S.Terrains.LabelOf(p.TerrainTag)}"
+            var free = Tileset.FreePieceOf(tile);
+            _info.text = (free != null ? $"Pieza libre «{free.Name}» · " : "") + $"Tile n.º {tile} · {pass} · prioridad {p.Priority} · terreno: {S.Terrains.LabelOf(p.TerrainTag)}"
                          + (p.Bush ? " · arbusto" : "") + (p.Counter ? " · mostrador" : "")
                          + $" · pieza: {PieceNames[(int)Tileset.PieceOf(tile)]}" + (p.Piece == TilePiece.Auto ? " (deducida)" : "");
         }
@@ -581,7 +584,7 @@ namespace CTEditor.App
         {
             if (Tileset == null) return;
             var (c, r, _, _) = _stampRect ?? FindStampInTileset();
-            var rect = Tileset.Slice.CellRect(c, r);
+            var rect = Tileset.SourceRectOf(r * Tileset.Columns + c);
             _shell.OpenRetouch(Path.Combine(_shell.ProjectRoot, Tileset.ImagePath), rect, Tileset.TileWidth, Tileset.TileHeight);
         }
     }

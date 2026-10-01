@@ -267,3 +267,22 @@ lo copia junto a los datos empaquetados (**un archivo, cifrado opcional**), con 
 elegir un bloque de 2×1, pulsar R y X y pintar (sale girado y volteado, también en «Jugar»); guardar con Ctrl+Alt+1,
 elegir otro y recuperarlo con Alt+1; guardar el proyecto y volver a abrirlo: los giros se conservan.
 
+### Corte libre (fase 6, B1)
+
+Para tiles grandes y objetos sueltos de ripeos que no siguen la rejilla. Se abre con **Corte libre…** en Recursos (en
+un tileset ya cortado) o con el botón de selección de la cabecera de Tiles.
+
+- **Arrastrar** en la imagen corta una pieza con precisión de píxel; arrastrar **dentro** la mueve y desde su **esquina**
+  cambia el tamaño. Flechas: mover 1 píxel; Mayús + flechas: cambiar el tamaño; Supr: quitar. «Ajustar a la rejilla»
+  hace que encaje en los tiles.
+- **Lupa** con los píxeles alrededor del ratón, su posición y su color. Alt + rueda: zoom.
+- **Detectar objetos** (el dado): busca los grupos de píxeles sueltos y crea una pieza para cada uno; luego se revisan.
+- Cada pieza ocupa los **tiles enteros** que necesite y se apoya **abajo** de su bloque (los árboles quedan sobre el
+  suelo). Los bloques se colocan en filas nuevas **al final de la paleta**: los números de los demás tiles no cambian, y
+  quitar o añadir piezas no mueve las otras.
+- Se guarda en el `.corte.json` (`piezas_libres`). Retocar un tile de una pieza abre la pieza en la imagen original.
+
+**Probar en Unity**: cortar un tileset ripeado, «Corte libre…», «Detectar objetos», ajustar uno con la lupa, guardar:
+las piezas salen al final de la paleta de Tiles y se pintan como un bloque; cambiar sus propiedades (paso, prioridad)
+y volver a abrir el proyecto: siguen ahí.
+

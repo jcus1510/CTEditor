@@ -179,6 +179,9 @@ namespace CTEditor.App
                 var cut = Ui.Button(a.IsSliced ? "Editar corte…" : "Cortar…", () => SliceWizard.Show(_shell, full, a.Kind),
                     a.IsSliced ? Ui.ButtonKind.Normal : Ui.ButtonKind.Primary, "Asistente de corte: tamaño del tile, vacíos y repetidos");
                 row.Add(cut);
+                if (a.IsSliced && a.Kind == AssetKind.Tileset)
+                    row.Add(Ui.Button("Corte libre…", () => FreeSliceDialog.Show(_shell, full), Ui.ButtonKind.Normal,
+                        "Cortar a mano piezas de cualquier tamaño (árboles grandes, objetos sueltos de ripeos), con lupa y precisión de píxel"));
                 row.Add(Ui.Button("Retocar", () => _shell.OpenRetouch(full), Ui.ButtonKind.Normal, "Abrir en el editor de píxeles"));
             }
             return row;

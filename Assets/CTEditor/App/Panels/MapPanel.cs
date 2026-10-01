@@ -621,7 +621,7 @@ namespace CTEditor.App
             int t = S.Map.TopTile(cell.x, cell.y, out _);
             var ts = S.Tilesets.For(t);
             if (ts == null) { _shell.Info("No hay ningún tile en esa casilla."); return; }
-            _shell.OpenRetouch(Path.Combine(_shell.ProjectRoot, ts.ImagePath), ts.RectOf(MapTile.Index(t)), ts.TileWidth, ts.TileHeight);
+            _shell.OpenRetouch(Path.Combine(_shell.ProjectRoot, ts.ImagePath), ts.SourceRectOf(MapTile.Index(t)), ts.TileWidth, ts.TileHeight);
         }
 
         // ── Overlay ──────────────────────────────────────────────────────────────────────────────

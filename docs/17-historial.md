@@ -130,4 +130,6 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   vacíos (`Ui.EmptyState`). `TestProfileTests`.
 - **B2 edición rápida**: Mayús + clic = línea; voltear (X / Y) y girar (R, Mayús+R) el sello, con el giro guardado en
   cada casilla; sellos guardados en Ctrl+Alt+1-9 / Alt+1-9. Pruebas en `MapEditingTests`.
+- **B1 corte libre**: piezas a mano con lupa y precisión de píxel, detección de objetos sueltos; se colocan como
+  bloques bajo la rejilla sin cambiar los números de los tiles (`FreePieceSet`). `FreeSliceTests`.
 - **Documentación** completa por capítulos (esta carpeta).

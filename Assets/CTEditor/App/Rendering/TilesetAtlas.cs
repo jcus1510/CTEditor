@@ -31,6 +31,7 @@ namespace CTEditor.App
             Tileset = tileset;
             FullPath = fullPath;
             Image = Png.Read(fullPath);
+            if (tileset.Free != null && !tileset.Free.IsEmpty) Image = tileset.Free.Compose(Image, tileset.Slice); // hand-cut pieces under the grid
             // Strips whose height is a whole number of tile rows, so no tile is split between two textures.
             int pitch = tileset.TileHeight + tileset.Slice.SpacingY;
             int max = Math.Max(pitch, Math.Min(SystemInfo.maxTextureSize, 8192) / pitch * pitch);

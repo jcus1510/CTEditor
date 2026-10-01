@@ -227,6 +227,22 @@ namespace CTEditor.World.Domain
             AverageColors = avg;
         }
 
+        /// <summary>Hand-cut pieces (free slicing): their blocks are the rows under the grid of the image.</summary>
+        public FreePieceSet Free { get; set; } = new FreePieceSet();
+        /// <summary>Rows of the grid of the original image (the pieces start under them). -1 = all rows are the grid.</summary>
+        public int GridRows { get; set; } = -1;
+
+        /// <summary>The hand-cut piece a tile belongs to (null for tiles of the grid).</summary>
+        public FreePiece FreePieceOf(int tile) =>
+            Free == null || Free.IsEmpty ? null : Free.PieceAt(tile, Slice, Columns, GridRows < 0 ? Rows : GridRows);
+
+        /// <summary>Where a tile comes from in the ORIGINAL image (for Retoque): its cell, or the part of its piece.</summary>
+        public PixelRect SourceRectOf(int tile)
+        {
+            var piece = FreePieceOf(tile);
+            return piece == null ? RectOf(tile) : piece.Source;
+        }
+
         public int TileWidth => Slice.TileWidth;
         public int TileHeight => Slice.TileHeight;
         public int Count => Columns * Rows;

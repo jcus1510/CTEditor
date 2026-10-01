@@ -301,8 +301,10 @@ namespace CTEditor.Project
             var image = Path.Combine(_root, rel);
             var slice = SliceFile.LoadFor(image);
             if (slice == null) return null;
-            var pixels = Png.Read(image);
-            var ts = new Tileset(id, Path.GetFileNameWithoutExtension(rel), slice.Settings, pixels.Width, pixels.Height, slice.Attributes, rel);
+            var raw = Png.Read(image);
+            var pixels = slice.Free.Compose(raw, slice.Settings);
+            var ts = new Tileset(id, Path.GetFileNameWithoutExtension(rel), slice.Settings, pixels.Width, pixels.Height, slice.Attributes, rel)
+                { Free = slice.Free, GridRows = slice.Settings.RowsFor(raw.Height) };
             ts.ComputeCoverage(pixels);
             return ts;
         }
@@ -311,7 +313,8 @@ namespace CTEditor.Project
         {
             var image = Path.Combine(_root, tileset.ImagePath);
             var slice = SliceFile.LoadFor(image) ?? new SliceFile(tileset.Slice);
-            var file = new SliceFile(slice.Settings, slice.Kind, tileset.Attributes) { CharacterLayout = slice.CharacterLayout, Id = tileset.Id };
+            var file = new SliceFile(slice.Settings, slice.Kind, tileset.Attributes)
+                { CharacterLayout = slice.CharacterLayout, Id = tileset.Id, Free = slice.Free };
             file.SaveFor(image);
         }
 

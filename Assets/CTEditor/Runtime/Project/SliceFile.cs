@@ -30,6 +30,7 @@ namespace CTEditor.Project
         public SliceSettings Settings { get => Slice.Settings; set => Slice.Settings = value; }
         public SheetKind Kind { get => Slice.Kind; set => Slice.Kind = value; }
         public string CharacterLayout { get => Slice.CharacterLayout; set => Slice.CharacterLayout = value ?? ""; }
+        public FreePieceSet Free { get => Slice.Free; set => Slice.Free = value ?? new FreePieceSet(); }
 
         public TileProperties Get(int index) => Attributes.Get(index);
         public void Set(int index, TileProperties props) => Attributes.Set(index, props);
@@ -45,6 +46,15 @@ namespace CTEditor.Project
                 .Set("desplazamiento_x", s.OffsetX).Set("desplazamiento_y", s.OffsetY)
                 .Set("separacion_x", s.SpacingX).Set("separacion_y", s.SpacingY);
             if (Kind == SheetKind.Character) json["plantilla"] = CharacterLayout;
+            if (!Free.IsEmpty)
+            {
+                var pieces = new List<object>();
+                foreach (var f in Free.Pieces)
+                    pieces.Add(new JsonObject().Set("nombre", f.Name ?? "")
+                        .Set("x", f.Source.X).Set("y", f.Source.Y).Set("ancho", f.Source.Width).Set("alto", f.Source.Height)
+                        .Set("columna", f.Column).Set("fila", f.Row));
+                json["piezas_libres"] = new JsonObject().Set("filas_base", Free.BaseRows).Set("piezas", pieces);
+            }
             json["tiles"] = AttributesToJson(Attributes);
             return json;
         }
@@ -75,6 +85,17 @@ namespace CTEditor.Project
             int kind = Array.IndexOf(KindKeys, o.GetString("tipo", "tileset"));
             var file = new SliceFile(settings, kind < 0 ? SheetKind.Tileset : (SheetKind)kind)
                 { CharacterLayout = o.GetString("plantilla", ""), Id = o.GetString("id", "") };
+            if (o.Has("piezas_libres") && o["piezas_libres"] is JsonObject free)
+            {
+                file.Free.BaseRows = free.GetInt("filas_base", -1);
+                foreach (var po in free.GetArray("piezas") ?? new List<object>())
+                {
+                    if (!(po is JsonObject f)) continue;
+                    var rect = new PixelRect(f.GetInt("x"), f.GetInt("y"), f.GetInt("ancho"), f.GetInt("alto"));
+                    if (rect.Width <= 0 || rect.Height <= 0) continue;
+                    file.Free.Restore(new FreePiece(f.GetString("nombre", ""), rect, f.GetInt("columna"), f.GetInt("fila")));
+                }
+            }
             foreach (var t in o.GetArray("tiles") ?? new List<object>())
             {
                 if (!(t is JsonObject to) || !to.Has("tile")) continue;
