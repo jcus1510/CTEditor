@@ -228,9 +228,7 @@ namespace CTEditor.App
             if (k == EffectRefKind.Special) return AbilityEffects.Special(id)?.Label ?? id;
             var cat = CategoryOf(k);
             if (cat == null) return id;
-            var t = shell.Content.Db.Table(cat);
-            var r = t.Find(id);
-            return r != null ? t.NameOf(r) : id + " (no existe)";
+            return shell.Content.Db.NameOf(cat, id) ?? id + " (no existe)";
         }
 
         /// <summary>The id the action needs, chosen from the project's lists (single or several).</summary>

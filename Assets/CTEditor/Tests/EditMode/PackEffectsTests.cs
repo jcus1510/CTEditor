@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using NUnit.Framework;
 using CTEditor.Content;
+using System.Linq;
 using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.Tests.EditMode
@@ -32,6 +33,19 @@ namespace CTEditor.Tests.EditMode
                     }
             }
             Assert.Greater(read, 500);
+        }
+
+        [Test]
+        public void The_packs_have_no_errors_with_the_unity_validator_rules()
+        {
+            var packs = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../Assets/GameContent/Packs"));
+            if (!Directory.Exists(packs)) Assert.Ignore("Packs no encontrados en esta copia.");
+            GameRuleChecks.Register();
+            foreach (var dir in Directory.GetDirectories(packs))
+            {
+                var errors = ContentChecks.Run(ContentDatabase.Load(dir)).Where(i => i.Level == ContentIssueLevel.Error).ToList();
+                Assert.IsEmpty(errors, Path.GetFileName(dir) + ": " + string.Join(" / ", errors.Take(5).Select(e => e.Text)));
+            }
         }
 
         [Test]

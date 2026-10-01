@@ -412,6 +412,7 @@ namespace CTEditor.App
 
         static AppShell()
         {
+            CTEditor.GameDefinition.Text.GameRuleChecks.Register(); // the Unity validator's rules, over the sheets
             // The content checks join the Problems window (each one goes to its sheet, row and column).
             ProblemFinder.Register(_ => _problemsSource?.Content == null ? Enumerable.Empty<Problem>() :
                 ContentChecks.RunCached(_problemsSource.Content.Db).Select(i => new Problem(

@@ -174,7 +174,16 @@ namespace CTEditor.Content
         /// <summary>That id exists (a row, or one the game knows without a row, like the classic curves).</summary>
         public bool Has(string category, string id) =>
             (_tables.TryGetValue(category, out var t) && t.Contains(id))
-            || (ContentSchemas.Find(category)?.BuiltIn.Contains(id, StringComparer.OrdinalIgnoreCase) ?? false);
+            || (ContentSchemas.Find(category)?.BuiltIn.Contains(id, StringComparer.OrdinalIgnoreCase) ?? false)
+            || ClassicContent.Has(category, id);
+
+        /// <summary>The name of a piece of content (its row, or the classic one the engine has); null if it does not exist.</summary>
+        public string NameOf(string category, string id)
+        {
+            if (string.IsNullOrWhiteSpace(id)) return null;
+            if (_tables.TryGetValue(category, out var t) && t.Find(id) is ContentRecord r) return t.NameOf(r);
+            return ClassicContent.NameOf(category, id) ?? (ContentSchemas.Find(category)?.BuiltIn.Contains(id, StringComparer.OrdinalIgnoreCase) == true ? id : null);
+        }
 
         public void Put(ContentTable table)
         {

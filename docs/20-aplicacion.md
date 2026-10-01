@@ -478,4 +478,20 @@ lado, tipo, habilidad, movimiento…), a quién, probabilidad, «mismo dado que 
 desplegables. Todos los movimientos de los packs se leen (prueba). El traductor de movimientos también está ya en
 `CTEditor.GameDefinition.Text`.
 
-Pendiente: el resto de validadores de Unity.
+**Validadores de Unity** sobre los datos (`GameRuleChecks`, en la ventana Problemas y arriba de cada ficha):
+efectos que no se pueden leer o usan cosas que no existen, movimientos de daño con potencia 0, daño especial en un
+movimiento de estado, golpes mín/máx al revés, efectos sin estado o con 0 etapas, especies con más de 2 grupos huevo o
+repetidos, evolución con objeto sin decir cuál o nivel < 1, «al subir de nivel» sin condición, de día y de noche a la
+vez, especies sin aprendizaje por nivel, números de Pokédex repetidos, equipos con más miembros que las reglas, nivel
+por encima del máximo, más de 4 movimientos, un miembro sin movimientos que no aprende ninguno a su nivel, EVs por
+encima de los topes, objetos de la mochila que no se usan en combate, entrenadores que no dan dinero, climas, trampas y
+efectos de lado que no hacen nada, naturalezas de 100 % o más, reglas con topes de EVs incoherentes o Forcejeo que no
+existe. Las comprobaciones de curvas con tabla y tramos quedan para cuando las curvas propias se editen en la
+aplicación.
+
+**Contenido clásico integrado**: los estados, climas, trampas y efectos de lado que el motor ya trae (Quemadura, Lluvia,
+Púas, Reflejo, campos…) cuentan como existentes aunque el proyecto no tenga su hoja, salen en las listas y se ven con
+su nombre en español.
+
+Arreglo de datos: en el pack **Gen5**, 3 entrenadores llevaban Chaleco Asalto (no existe hasta la 6.ª gen.): ahora
+llevan Restos. Ningún pack da errores con estas reglas (prueba).

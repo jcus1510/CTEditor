@@ -26,6 +26,7 @@ namespace CTEditor.App
             // Built-in curves are choosable even without a row.
             if (category == ContentSchemas.Curves && source == null)
                 foreach (var c in ClassicCurves.All) if (!table.Contains(c.id)) all.Add(ClassicCurves.Row(c.id));
+            if (source == null) all.AddRange(ClassicContent.Records(category, table)); // statuses, weathers... the engine already has
             bool restricted = only != null && only.Count > 0;
             var d = shell.ShowDialog(title ?? $"Elegir {schema.Noun}", 46, 76);
             var search = Ui.TextBox("", "");

@@ -26,9 +26,7 @@ namespace CTEditor.App
                 "tipo" => ContentSchemas.Types, "habilidad" => ContentSchemas.Abilities, "movimiento" => ContentSchemas.Moves, _ => null,
             };
             if (cat == null) return id;
-            var t = shell.Content.Db.Table(cat);
-            var r = t.Find(id);
-            return r != null ? t.NameOf(r) : id + " (no existe)";
+            return shell.Content.Db.NameOf(cat, id) ?? id + " (no existe)";
         }
 
         // ── Effects ──────────────────────────────────────────────────────────────────────────────

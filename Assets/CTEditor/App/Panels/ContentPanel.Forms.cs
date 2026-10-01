@@ -69,12 +69,7 @@ namespace CTEditor.App
 
         private string TypeName(string id) => C.Db.Table(ContentSchemas.Types).Find(id)?["nombre"] is string n && n.Length > 0 ? n : id;
 
-        private string NameOf(string category, string id)
-        {
-            var t = C.Db.Table(category);
-            var r = t.Find(id);
-            return r == null ? id : t.NameOf(r);
-        }
+        private string NameOf(string category, string id) => C.Db.NameOf(category, id) ?? id;
 
         private void Set(string column, string value) => C.SetValue(_category, _selected, column, value);
 

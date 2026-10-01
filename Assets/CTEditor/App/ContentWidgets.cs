@@ -102,11 +102,12 @@ namespace CTEditor.App
             var content = shell.Content;
             var t = content.Db.Table(category);
             var r = t.Find(current);
-            string text = r != null ? t.NameOf(r) : string.IsNullOrWhiteSpace(current) ? none : current + " (no existe)";
+            var known = content.Db.NameOf(category, current);
+            string text = known ?? (string.IsNullOrWhiteSpace(current) ? none : current + " (no existe)");
             var b = Dropdown(shell, text, () => new List<MenuItem>(), r == null ? null : ContentLook.Subtitle(content.Db, category, r));
             // A list with search and filters instead of a menu (they can be long).
             b.clickable = new Clickable(() => ContentPicker.Show(shell, category, picked, only: only, onlyLabel: onlyLabel));
-            if (r == null && !string.IsNullOrWhiteSpace(current)) b.Border(1, "error", 4);
+            if (known == null && !string.IsNullOrWhiteSpace(current)) b.Border(1, "error", 4);
             return b;
         }
 

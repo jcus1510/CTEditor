@@ -43,7 +43,7 @@ namespace CTEditor.Content
         public static List<ContentIssue> Run(ContentDatabase db)
         {
             var list = new List<ContentIssue>(db.LoadIssues);
-            foreach (var t in db.Tables) list.AddRange(Cached(db, t));
+            foreach (var t in db.Tables.ToList()) list.AddRange(Cached(db, t));
             return list.OrderBy(i => i.Level).ThenBy(i => i.Category).ThenBy(i => i.Row).ToList();
         }
 
@@ -63,14 +63,31 @@ namespace CTEditor.Content
         public static List<ContentIssue> RunCached(ContentDatabase db)
         {
             var list = new List<ContentIssue>(db.LoadIssues);
-            foreach (var t in db.Tables) list.AddRange(Cached(db, t));
+            foreach (var t in db.Tables.ToList()) list.AddRange(Cached(db, t));
             return list.OrderBy(i => i.Level).ThenBy(i => i.Category).ThenBy(i => i.Row).ToList();
+        }
+
+        private static readonly List<Func<ContentDatabase, ContentTable, IEnumerable<ContentIssue>>> Extra =
+            new List<Func<ContentDatabase, ContentTable, IEnumerable<ContentIssue>>>();
+
+        /// <summary>A module adds its own checks (the game rules: effects, evolutions, teams...).</summary>
+        public static void Register(Func<ContentDatabase, ContentTable, IEnumerable<ContentIssue>> check)
+        {
+            if (!Extra.Contains(check)) Extra.Add(check);
+            Cache.Clear();
         }
 
         public static IEnumerable<ContentIssue> Check(ContentDatabase db, ContentTable t)
         {
             foreach (var i in Basic(db, t)) yield return i;
             foreach (var i in LegalityIssues(db, t)) yield return i;
+            foreach (var check in Extra)
+            {
+                List<ContentIssue> found;
+                try { found = check(db, t)?.ToList() ?? new List<ContentIssue>(); }
+                catch (Exception e) { found = new List<ContentIssue> { new ContentIssue(ContentIssueLevel.Warning, t.Schema.Key, null, null, 0, "Una comprobación falló: " + e.Message) }; }
+                foreach (var i in found) yield return i;
+            }
         }
 
         /// <summary>Warnings (never errors): an ability the species cannot have, a move it cannot learn (sets and teams).</summary>
