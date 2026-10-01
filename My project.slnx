@@ -10,6 +10,7 @@
   <Project Path="CTEditor.Bootstrap.csproj" />
   <Project Path="CTEditor.Adventure.Domain.csproj" />
   <Project Path="CTEditor.World.Domain.csproj" />
+  <Project Path="CTEditor.GameDefinition.Text.csproj" />
   <Project Path="CTEditor.Workspace.csproj" />
   <Project Path="CTEditor.SharedKernel.csproj" />
   <Project Path="CTEditor.Project.csproj" />
