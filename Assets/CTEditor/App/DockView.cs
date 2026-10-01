@@ -165,6 +165,22 @@ namespace CTEditor.App
                 help.style.height = Ui.FontSize + 8; help.style.minHeight = Ui.FontSize + 8; help.style.width = 24;
                 help.style.opacity = 0.7f;
                 header.Add(help);
+                // The first time a window is seen, its «i» blinks three times so it gets noticed (once per window).
+                string seen = "ayuda_vista_" + activeId;
+                if (_shell.Workspace.Pref(seen, "no") != "si")
+                {
+                    _shell.Workspace.SetPref(seen, "si");
+                    _shell.SaveWorkspaceSoon();
+                    int blinks = 0;
+                    IVisualElementScheduledItem pulse = null;
+                    pulse = help.schedule.Execute(() =>
+                    {
+                        bool on = blinks % 2 == 0;
+                        help.style.backgroundColor = on ? Ui.WithAlpha(Ui.C("acento"), 0.55f) : new Color(0, 0, 0, 0);
+                        help.style.opacity = on ? 1f : 0.7f;
+                        if (++blinks >= 6) pulse.Pause();
+                    }).Every(320);
+                }
             }
             var add = Ui.IconButton("mas", null, "Abrir una ventana aquí");
             add.clicked += () => ShowAddMenu(tabs, add);

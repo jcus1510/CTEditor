@@ -120,4 +120,9 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   de pintar alterna); variocolor global en Proyecto → Ajustes del juego; selector de especies con todas, en orden de
   Pokédex y con filtros (tipos exactos, grupo huevo, generación, formas, legendarios: `SpeciesFilter`); botón «i» de
   ayuda en las ventanas (`PanelHelp`).
+- **Sugerencias de diseño 1-6 y 8-10**: la «i» parpadea tres veces la primera vez; tabla de especies más estrecha
+  con asa para arrastrar; **simulador de encuentros** (`EncounterSimulator`) en su ventana; **plantillas de zona**
+  (`EncounterTemplate`); aviso de casillas sin su terreno (`EncounterChecks`, apagado por defecto); títulos de
+  sección iguales (`Ui.SectionTitle`); densidad cómoda/compacta; animaciones rápidas y desactivables
+  (`Ui.Appear`); color de acento sin cambiar el tema. Nace [`HOJA_DE_RUTA.md`](HOJA_DE_RUTA.md). `EncounterToolsTests`.
 - **Documentación** completa por capítulos (esta carpeta).

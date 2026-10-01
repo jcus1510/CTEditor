@@ -56,6 +56,15 @@ namespace CTEditor.App
             Show(shell);
         }
 
+        private static void SetAccent(AppShell shell, string hex, System.Action reopen)
+        {
+            var ws = shell.Workspace;
+            var theme = ws.Theme.Clone(ws.Theme.Name.EndsWith(" (acento)") || ws.Theme.Name == "Personalizado" ? ws.Theme.Name : ws.Theme.Name + " (acento)");
+            theme.Set("acento", hex);
+            shell.SetTheme(theme);
+            reopen();
+        }
+
         private static void ThemeTab(AppShell shell, VisualElement body, System.Action reopen)
         {
             var ws = shell.Workspace;
@@ -65,8 +74,20 @@ namespace CTEditor.App
                 var t = preset();
                 presets.Add(Ui.Chip(t.Name, ws.Theme.Name == t.Name, () => { shell.SetTheme(preset()); reopen(); }));
             }
+            // Accent only: keep the theme, change its main colour (buttons, chosen tool, focus).
+            var accents = Ui.Row(6).Wrap();
+            foreach (var (hex, label) in new[] { ("#4E8CF7", "Azul"), ("#3FB27F", "Verde"), ("#9B6CF0", "Morado"), ("#E0605A", "Rojo"), ("#E39B3A", "Naranja"), ("#D35AA6", "Rosa"), ("#2BB3C0", "Turquesa") })
+            {
+                ColorUtility.TryParseHtmlString(hex, out var ac);
+                var chip = Ui.Chip(label, ws.Theme.Get("acento").Equals(hex, System.StringComparison.OrdinalIgnoreCase), () => SetAccent(shell, hex, reopen));
+                chip.style.borderLeftWidth = 6; chip.style.borderLeftColor = ac;
+                accents.Add(chip.Margin(0, 2, 4, 2));
+            }
+            ColorUtility.TryParseHtmlString(ws.Theme.Get("acento"), out var currentAccent);
+            accents.Add(Ui.Button("Otro…", () => ColorPicker.Show(shell, "Color de acento", currentAccent, c => SetAccent(shell, "#" + ColorUtility.ToHtmlStringRGB(c), reopen))));
             body.With(Ui.Heading("Tema"), presets,
-                Ui.Hint("Cambia cualquier color escribiendo su código (#RRGGBB). Al tocar un color, el tema pasa a llamarse «Personalizado»."),
+                Ui.Heading("Color de acento"), accents,
+                Ui.Hint("Solo cambia el color principal; el resto del tema se queda. Más abajo puedes tocar cualquier color (#RRGGBB o #RRGGBBAA, con transparencia)."),
                 Ui.Separator());
             foreach (var token in Theme.Tokens)
             {
@@ -117,9 +138,40 @@ namespace CTEditor.App
                 Ui.Heading("Letra"),
                 Ui.NumberBox("Tamaño", ws.FontSize, 9, 24, v => { shell.SetFontSize(v); reopen(); }),
                 Ui.Separator(),
+                Ui.Heading("Densidad"),
+                Density(shell, reopen),
+                Ui.Hint("Cómoda (la de siempre) o compacta: menos espacio alrededor de botones y campos, para ver más cosas."),
+                Ui.Separator(),
+                Ui.Heading("Animaciones"),
+                Ui.Check("Animaciones suaves al abrir menús, ventanas y ayudas", ws.Pref("animaciones", "si") == "si", v =>
+                {
+                    ws.SetPref("animaciones", v ? "si" : "no");
+                    shell.SaveWorkspaceSoon();
+                    shell.Rebuild();
+                }),
+                Ui.Hint("Son muy rápidas (0,12 s). Desactívalas si prefieres que todo aparezca de golpe."),
+                Ui.Separator(),
                 Ui.Heading("Ventana"),
                 Ui.Check("Pantalla completa (F11)", shell.IsFullscreen?.Invoke() ?? true, _ => shell.ToggleFullscreen?.Invoke()),
                 Ui.Hint("La aplicación ocupa una sola ventana a la resolución de tu monitor. Las ventanas interiores se ajustan arrastrando sus separadores."));
+        }
+
+        private static VisualElement Density(AppShell shell, System.Action reopen)
+        {
+            var ws = shell.Workspace;
+            var row = Ui.Row(6);
+            foreach (var (id, label) in new[] { ("comoda", "Cómoda (por defecto)"), ("compacta", "Compacta") })
+            {
+                var v = id;
+                row.Add(Ui.Chip(label, ws.Pref("densidad", "comoda") == id, () =>
+                {
+                    ws.SetPref("densidad", v);
+                    shell.SaveWorkspaceSoon();
+                    shell.Rebuild();
+                    reopen();
+                }));
+            }
+            return row;
         }
 
         private static void LayoutsTab(AppShell shell, VisualElement body, System.Action reopen)

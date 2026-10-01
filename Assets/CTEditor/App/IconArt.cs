@@ -382,6 +382,17 @@ namespace CTEditor.App
             yield return Line(20.5f, 13f, 18.5f, 14.5f, 1.8f);
         }
 
+        private static IEnumerable<Shape> Gear()
+        {
+            yield return Circle(12f, 12f, 7f);
+            for (int i = 0; i < 8; i++)
+            {
+                double a = i * Math.PI / 4;
+                yield return Quad(12f + (float)Math.Cos(a) * 6f, 12f + (float)Math.Sin(a) * 6f, 12f + (float)Math.Cos(a) * 10f, 12f + (float)Math.Sin(a) * 10f, 3.6f);
+            }
+            yield return Cut(Circle(12f, 12f, 3f));
+        }
+
         private static IEnumerable<Shape> Switch()
         {
             // A toggle switch: a rounded track with its knob on the right (on).
@@ -454,6 +465,9 @@ namespace CTEditor.App
             ["rect_relleno"] = () => new[] { Box(4f, 5f, 16f, 14f) },
             ["reemplazar"] = Replace,
             ["interruptor"] = Switch,
+            ["dado"] = () => new[] { Line(5f, 5f, 19f, 5f, 0f), Box(3.5f, 3.5f, 17f, 17f), Cut(Circle(8f, 8f, 1.9f)), Cut(Circle(16f, 8f, 1.9f)),
+                Cut(Circle(12f, 12f, 1.9f)), Cut(Circle(8f, 16f, 1.9f)), Cut(Circle(16f, 16f, 1.9f)) },
+            ["ajustes"] = Gear,
             ["info"] = () => new[] { Ring(12f, 12f, 9.5f, 2f), Box(11f, 10.5f, 2f, 7f), Circle(12f, 7.3f, 1.4f) },
             ["reloj"] = () => new[] { Ring(12f, 12f, 9f, 2f), Box(11f, 6.5f, 2f, 6.5f), Quad(12f, 12f, 15.5f, 14.5f, 2f) },
             ["dia"] = Sun,

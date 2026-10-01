@@ -57,14 +57,7 @@ namespace CTEditor.App
             });
         }
 
-        private static VisualElement Section(string title, VisualElement right = null)
-        {
-            var head = Ui.Row(6);
-            head.style.marginTop = 4;
-            head.Add(Ui.Text(title.ToUpperInvariant(), 0.78f, dim: true, bold: true).Grow());
-            if (right != null) head.Add(right);
-            return head;
-        }
+        private static VisualElement Section(string title, VisualElement right = null) => Ui.SectionTitle(title, right);
 
         private void Refresh()
         {
@@ -91,12 +84,15 @@ namespace CTEditor.App
                 var r = add.worldBound;
                 var items = new List<MenuItem>();
                 if (!m.Encounters.Any(a => a.WholeMap))
-                    items.Add(new MenuItem("Todo el tramo (la tabla general)", () => S.AddArea("Todo el tramo", true)));
-                items.Add(new MenuItem("Zona pintada (un trozo del mapa)…", () => _shell.Prompt("Nueva zona", "Nombre", "Zona " + (m.Encounters.Count + 1), "Crear",
-                    n => { S.AddArea(n, false); _shell.ActiveEditor = "mapa"; })));
+                    items.Add(new MenuItem("Todo el tramo (la tabla general)…", () => NewZoneDialog(true)));
+                items.Add(new MenuItem("Zona pintada (un trozo del mapa)…", () => NewZoneDialog(false)));
                 _shell.ShowMenu(new Vector2(r.x, r.yMax + 2), items);
             }, "Añadir una zona: todo el tramo o una zona pintada en el mapa");
-            body.Add(Section("Zonas", add));
+            // Zone tools: simulator and the (optional) checks.
+            var zoneTools = Ui.Row(2);
+            zoneTools.With(Ui.IconButton("dado", SimulatorDialog, "Simular encuentros: anda muchos pasos y mira qué sale (en una ventana aparte)"),
+                Ui.IconButton("ajustes", () => SettingsMenu(), "Ajustes de los encuentros"), add);
+            body.Add(Section("Zonas", zoneTools));
             if (m.Encounters.Count == 0)
             {
                 body.Add(Ui.Hint("Sin zonas: con «+» crea «Todo el tramo» (lo que sale en toda su hierba, su agua...) o una zona pintada (un trozo concreto, que manda sobre la general)."));
@@ -108,6 +104,131 @@ namespace CTEditor.App
 
             var activeArea = S.ActiveArea;
             if (activeArea != null) Detail(body, activeArea);
+        }
+
+        private const string TerrainCheckPref = "encuentros_aviso_terreno";
+        private bool TerrainCheck => _shell.Workspace.Pref(TerrainCheckPref, "no") == "si";
+
+        private void SettingsMenu()
+        {
+            var at = this.worldBound;
+            _shell.ShowMenu(new Vector2(at.x + 20, at.y + 40), new List<MenuItem>
+            {
+                new MenuItem("Avisar de casillas pintadas sin su terreno", () =>
+                {
+                    _shell.Workspace.SetPref(TerrainCheckPref, TerrainCheck ? "no" : "si");
+                    _shell.SaveWorkspaceSoon();
+                    Refresh();
+                    S.SetHighlightAllAreas(S.HighlightAllAreas); // redraw the map marks
+                }, isChecked: TerrainCheck),
+                new MenuItem("Métodos de encuentro…", MethodsDialog),
+            });
+        }
+
+        /// <summary>A new zone: its name (painted ones) and a template to start from (in the same small dialog).</summary>
+        private void NewZoneDialog(bool whole)
+        {
+            var m = S.Map;
+            var d = _shell.ShowDialog(whole ? "Todo el tramo" : "Nueva zona pintada", 40);
+            string name = whole ? "Todo el tramo" : "Zona " + (m.Encounters.Count + 1);
+            var template = EncounterTemplate.BuiltIn[0];
+            var cards = Ui.Column(4);
+            void Fill()
+            {
+                cards.Clear();
+                foreach (var t in EncounterTemplate.BuiltIn)
+                {
+                    var tt = t;
+                    bool on = t == template;
+                    var row = Ui.Row(10).Pad(10, 6).Round(4);
+                    row.style.backgroundColor = on ? Ui.C("seleccion") : new Color(0, 0, 0, 0);
+                    row.Border(1, on ? "acento" : "borde", 4);
+                    var texts = Ui.Column(1).Grow();
+                    texts.pickingMode = PickingMode.Ignore;
+                    var n = Ui.Text(t.Name, bold: true); n.pickingMode = PickingMode.Ignore;
+                    var h = Ui.Text(t.Description, 0.82f, dim: true, wrap: true); h.pickingMode = PickingMode.Ignore;
+                    texts.With(n, h);
+                    row.Add(texts);
+                    row.RegisterCallback<PointerUpEvent>(_ => { template = tt; Fill(); });
+                    cards.Add(row);
+                }
+            }
+            Fill();
+            if (!whole) d.Body.Add(Ui.TextBox("Nombre", name, v => name = v));
+            d.Body.With(Ui.Text("Empezar con", 0.85f, dim: true), cards,
+                Ui.Hint("Las plantillas traen especies típicas con los pesos clásicos; las que no estén en tus datos se saltan. Luego se cambia todo."));
+            d.Buttons.With(Ui.Button("Cancelar", () => _shell.CloseDialog(d)), Ui.Button("Crear", () =>
+            {
+                _shell.CloseDialog(d);
+                var area = S.AddArea(name, whole);
+                if (area != null && template.Id != "vacia") S.ApplyTemplate(area.Id, template);
+                if (!whole) _shell.ActiveEditor = "mapa";
+            }, Ui.ButtonKind.Primary));
+        }
+
+        /// <summary>
+        /// The encounter simulator in its own window: walk N steps with the chosen zone and method, at an hour, and see
+        /// what comes out (how many, %, levels) and how often.
+        /// </summary>
+        private void SimulatorDialog()
+        {
+            var area = S.ActiveArea;
+            if (area == null || area.Tables.Count == 0) { _shell.Warn("Elige una zona con algún método para simular."); return; }
+            var d = _shell.ShowDialog("Simular encuentros · " + area.Name, 46, 74);
+            string method = area.TableFor(_methodId) != null ? _methodId : area.Tables[0].MethodId;
+            TimeOfDay? time = _viewTime;
+            int steps = 1000, seed = 1;
+            bool flags = false;
+            var controls = Ui.Column(8);
+            var results = Ui.Scroll().Grow();
+            void Run()
+            {
+                controls.Clear();
+                var methods = Ui.Row(0).Wrap();
+                methods.Add(Ui.Text("Método", 0.82f, dim: true).Margin(0, 0, 8, 0));
+                foreach (var t in area.Tables)
+                {
+                    var id = t.MethodId;
+                    methods.Add(Small(Ui.Chip(S.Methods.Find(id)?.Label ?? id, id == method, () => { method = id; Run(); })).Margin(0, 2, 4, 2));
+                }
+                var hours = Ui.Row(2);
+                hours.Add(Ui.Text("Hora", 0.82f, dim: true).Margin(0, 0, 8, 0));
+                hours.Add(Ui.IconButton("reloj", () => { time = null; Run(); }, "Todas las horas", time == null));
+                foreach (var (t, label, _) in Times) { var tt = t; hours.Add(Ui.IconButton(TimeIcon(t), () => { time = tt; Run(); }, label, time == t)); }
+                var stepRow = Ui.Row(0).Wrap();
+                stepRow.Add(Ui.Text("Pasos", 0.82f, dim: true).Margin(0, 0, 8, 0));
+                foreach (var n in new[] { 100, 1000, 10000 }) { int nn = n; stepRow.Add(Small(Ui.Chip(n.ToString("N0"), steps == n, () => { steps = nn; Run(); })).Margin(0, 2, 4, 2)); }
+                stepRow.Add(Ui.Check("Interruptores encendidos", flags, v => { flags = v; Run(); }).Margin(10, 0, 0, 0));
+                stepRow.Add(Ui.Spacer());
+                stepRow.Add(Ui.Button("Otra vez", () => { seed++; Run(); }, Ui.ButtonKind.Normal, "Repetir con otra suerte"));
+                controls.With(methods, hours, stepRow);
+
+                var table = area.TableFor(method);
+                var m = S.Methods.Find(method);
+                var r = EncounterSimulator.Run(table, table.RateWith(m), time, _ => flags, steps, seed);
+                results.Clear();
+                string every = r.Encounters == 0 ? "No salió nada." : $"{r.Encounters} encuentros en {steps:N0} pasos: uno cada {r.StepsPerEncounter:0.#} pasos." + (r.Doubles > 0 ? $" {r.Doubles} dobles." : "");
+                results.Add(Ui.Text(every, bold: true).Margin(0, 4, 0, 8));
+                foreach (var row in r.Rows())
+                {
+                    var line = Ui.Row(10).Pad(8, 6);
+                    line.style.borderBottomWidth = 1; line.style.borderBottomColor = Ui.WithAlpha(Ui.C("borde"), 0.5f);
+                    var bar = new VisualElement().Bg("panel_alt").Round(2);
+                    bar.style.width = 90; bar.style.height = 6;
+                    var fill = new VisualElement().Bg("exito").Round(2);
+                    fill.style.height = Length.Percent(100); fill.style.width = Length.Percent((float)row.percent);
+                    bar.Add(fill);
+                    var name = Ui.Text(SpeciesName(row.species), bold: true).Grow();
+                    var pct = Ui.Text($"{row.percent:0.#} %", 0.9f).NoShrink(); pct.style.width = 56;
+                    var cnt = Ui.Text($"{row.count}×", 0.85f, dim: true).NoShrink(); cnt.style.width = 52;
+                    var lv = Ui.Text(row.minLevel == row.maxLevel ? $"Nv. {row.minLevel}" : $"Nv. {row.minLevel}–{row.maxLevel}", 0.85f, dim: true).NoShrink(); lv.style.width = 80;
+                    line.With(SpeciesPicture(row.species, 24), name, bar, pct, cnt, lv);
+                    results.Add(line);
+                }
+            }
+            d.Body.With(controls, Ui.Separator(), results);
+            d.Buttons.With(Ui.Hint("La simulación no cambia nada: solo cuenta."), Ui.Spacer(), Ui.Button("Cerrar", () => _shell.CloseDialog(d), Ui.ButtonKind.Primary));
+            Run();
         }
 
         private VisualElement AreaRow(EncounterArea area)
@@ -131,6 +252,16 @@ namespace CTEditor.App
             var info = Ui.Text((area.WholeMap ? "todo el tramo" : $"{area.Cells.Count} casillas") + $" · {area.Tables.Count} método(s)", 0.78f, dim: true);
             info.pickingMode = PickingMode.Ignore;
             names.With(n, info);
+            if (TerrainCheck)
+            {
+                int off = EncounterChecks.CellsOffTerrain(S.Map, S.Tilesets, area, S.Methods).Count;
+                if (off > 0)
+                {
+                    var warn = Ui.Text($"{off} casillas sin su terreno (marcadas en rojo en el mapa)", 0.75f).Colored("aviso");
+                    warn.pickingMode = PickingMode.Ignore;
+                    names.Add(warn);
+                }
+            }
             row.With(sw, names);
             if (!area.WholeMap)
             {
@@ -206,7 +337,7 @@ namespace CTEditor.App
             var box = Ui.Column(0).Bg("fondo").Border(1, "borde", 6);
 
             // Settings of the method in this zone: chance per step, double battles, classic weights.
-            var settings = Ui.Row(16).Wrap().Pad(12, 10);
+            var settings = Ui.Row(16).Wrap().Pad(10, 10);
             var rateRow = Ui.Row(6);
             rateRow.With(Ui.Text("Probabilidad por paso", 0.88f, dim: true),
                 Ui.MiniNumber(rate, 0, 100, v => S.SetTableRate(area.Id, table.MethodId, v), "Probabilidad de que salga algo en cada paso (o en cada uso, con cañas)"),
@@ -222,11 +353,11 @@ namespace CTEditor.App
             settings.With(rateRow, doubles, Ui.Spacer(), actions);
             box.Add(settings);
             var explain = Ui.Text((method != null ? TriggerHelp(method) + ". " : "") + (rate > 0 ? $"De media, un encuentro cada {100.0 / rate:0.#} pasos." : "Con 0 % no sale nada."), 0.82f, dim: true, wrap: true);
-            explain.Margin(12, 0, 12, 8);
+            explain.Margin(10, 0, 10, 8);
             box.Add(explain);
 
             // Which hour the % are for: icons (all day, morning, day, evening, night).
-            var hours = Ui.Row(2).Pad(12, 4);
+            var hours = Ui.Row(2).Pad(10, 4);
             hours.Add(Ui.Text("Ver % de:", 0.82f, dim: true).Margin(0, 0, 6, 0));
             hours.Add(Ui.IconButton("reloj", () => { _viewTime = null; Refresh(); }, "Todas las horas (según los pesos)", _viewTime == null));
             foreach (var (t, label, _) in Times)
@@ -239,7 +370,8 @@ namespace CTEditor.App
 
             // The species table.
             var chances = (_viewTime.HasValue ? table.Chances(_viewTime.Value, _ => true) : table.BaseChances()).ToDictionary(c => c.slot, c => c.percent);
-            var head = Ui.Row(10).Pad(12, 6);
+            _slotRows.Clear();
+            var head = Ui.Row(8).Pad(10, 6);
             head.style.borderTopWidth = 1; head.style.borderTopColor = Ui.C("borde");
             head.style.borderBottomWidth = 1; head.style.borderBottomColor = Ui.C("borde");
             var species = Col("Especie", 0, true);
@@ -250,7 +382,7 @@ namespace CTEditor.App
             if (table.Slots.Count == 0)
                 box.Add(Ui.Hint("Sin especies: aquí no sale nada. Añade la primera con «+ Especie».").Margin(12, 10, 12, 10));
 
-            var foot = Ui.Row(8).Pad(12, 10);
+            var foot = Ui.Row(8).Pad(10, 10);
             foot.With(Ui.Button("+ Especie", () => PickSpecies(id => S.AddSlot(area.Id, table.MethodId, new EncounterSlot(id, 2, 4, 10))),
                     Ui.ButtonKind.Primary),
                 Ui.Spacer(),
@@ -260,7 +392,9 @@ namespace CTEditor.App
         }
 
         // Column widths shared by the header and the rows (so they line up).
-        private const float SpeciesMin = 130, LevelW = 92, WeightW = 44, OddsW = 78, HoursW = 94, MenuW = 26;
+        private const float SpeciesMin = 104, LevelW = 88, WeightW = 42, OddsW = 74, HoursW = 92, MenuW = 24;
+        private readonly List<(VisualElement row, int index)> _slotRows = new List<(VisualElement, int)>();
+        private int _dragSlot = -1, _dropSlot = -1;
 
         private static string TimeIcon(TimeOfDay t) => t == TimeOfDay.Morning ? "manana" : t == TimeOfDay.Day ? "dia" : t == TimeOfDay.Evening ? "tarde" : "noche";
 
@@ -279,15 +413,24 @@ namespace CTEditor.App
         {
             var slot = table.Slots[index];
             string aid = area.Id, mid = table.MethodId;
-            var row = Ui.Row(10).Pad(12, 8);
+            var row = Ui.Row(8).Pad(10, 7);
+            row.style.borderTopWidth = 2; row.style.borderTopColor = new Color(0, 0, 0, 0);
+            _slotRows.Add((row, index));
             if (alt) row.style.backgroundColor = Ui.WithAlpha(Ui.C("panel"), 0.5f);
             row.style.borderBottomWidth = 1;
             row.style.borderBottomColor = Ui.WithAlpha(Ui.C("borde"), 0.5f);
 
             // Species: picture + name (click = change) + a line with its extras.
-            var who = Ui.Row(8).Grow();
+            var who = Ui.Row(6).Grow();
             who.style.minWidth = SpeciesMin;
-            who.Add(SpeciesPicture(slot.SpeciesId, 30));
+            // Grip: drag to reorder (the order matters for «Pesos clásicos»).
+            var grip = Icons.Element("asa", Mathf.Round(Ui.IconSize * 0.85f), Ui.WithAlpha(Ui.C("texto_suave"), 0.7f));
+            grip.pickingMode = PickingMode.Position;
+            grip.tooltip = "Arrastra para cambiar el orden";
+            grip.style.marginLeft = -4;
+            RegisterSlotDrag(grip, aid, mid, index);
+            who.Add(grip);
+            who.Add(SpeciesPicture(slot.SpeciesId, 24));
             var names = Ui.Column(1).Grow();
             var name = Ui.Button(SpeciesName(slot.SpeciesId), () => PickSpecies(id => S.UpdateSlot(aid, mid, index, x => x.SpeciesId = id)), Ui.ButtonKind.Flat, "Cambiar la especie");
             name.style.unityFontStyleAndWeight = FontStyle.Bold;
@@ -379,6 +522,39 @@ namespace CTEditor.App
 
             row.With(who, levels, weightBox, odds, hours, more);
             return row;
+        }
+
+        private void RegisterSlotDrag(VisualElement grip, string aid, string mid, int index)
+        {
+            grip.RegisterCallback<PointerDownEvent>(e =>
+            {
+                if (e.button != 0) return;
+                grip.CapturePointer(e.pointerId);
+                _dragSlot = _dropSlot = index;
+                e.StopPropagation();
+            });
+            grip.RegisterCallback<PointerMoveEvent>(e =>
+            {
+                if (!grip.HasPointerCapture(e.pointerId)) return;
+                _dropSlot = _dragSlot;
+                foreach (var (row, i) in _slotRows)
+                {
+                    var r = row.worldBound;
+                    bool over = e.position.y >= r.yMin && e.position.y < r.yMax;
+                    if (over) _dropSlot = i;
+                    row.style.borderTopColor = over && i != _dragSlot ? Ui.C("acento") : new Color(0, 0, 0, 0);
+                }
+            });
+            grip.RegisterCallback<PointerUpEvent>(e =>
+            {
+                if (!grip.HasPointerCapture(e.pointerId)) return;
+                grip.ReleasePointer(e.pointerId);
+                int from = _dragSlot, to = _dropSlot;
+                _dragSlot = _dropSlot = -1;
+                e.StopPropagation();
+                if (to >= 0 && to != from) S.MoveSlot(aid, mid, from, to - from);
+                else Refresh();
+            });
         }
 
         /// <summary>The species picture: its battle sprite or icon if the project has one, or its initial.</summary>

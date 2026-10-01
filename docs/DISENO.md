@@ -128,6 +128,7 @@ Nunca se escribe un color a mano: se usa `Ui.C("token")`.
 
 | Fecha | Cambio |
 |---|---|
+| 2026-10-02 (4) | Sugerencias 1-6 y 8-10: parpadeo de la «i», asa de arrastre en filas, simulador y plantillas en ventanas aparte (sin cargar Encuentros), `Ui.SectionTitle` en todas las ventanas, densidad compacta, `Ui.Appear` (120 ms, desactivable), acento del tema. Pendiente: 7 (estados vacíos). Futuro: temas propios con fondos transparentes o imagen. |
 | 2026-10-02 (3) | Tabla de encuentros con columnas compartidas; selector de color con degradado; selector de especies con lista virtual, número, tipos de color y filtros; botón «i» de ayuda en la cabecera de cada ventana. |
 | 2026-10-02 (2) | Encuentros como tabla: cabecera de columnas en mayúsculas pequeñas, filas con 8 px de aire y alternas, miniatura redonda, cajas de número pequeñas (`Ui.MiniNumber`, con rueda), barra fina de %, horas con iconos de 24 px, menú «⋯». |
 | 2026-10-02 | Iconos en las pestañas (mapa, árbol, rejilla, capas, propiedades, carpeta, eventos, aviso, base de datos, mundo, zona); botón Guardar (disquete) en la barra de menús; paleta de órdenes (Ctrl+P) con el atajo de cada acción en una «tecla». |

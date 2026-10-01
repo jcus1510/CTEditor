@@ -134,6 +134,8 @@ namespace CTEditor.App
             StopPlay();
             Ui.Theme = Workspace.Theme;
             Ui.FontSize = Workspace.FontSize;
+            Ui.Compact = Workspace.Pref("densidad", "comoda") == "compacta";
+            Ui.Animations = Workspace.Pref("animaciones", "si") == "si";
             Ui.InvalidateColors();
             Root.Clear();
             Root.style.backgroundColor = Ui.C("fondo");
@@ -216,7 +218,7 @@ namespace CTEditor.App
         {
             if (_tipLayer == null || _tipOwner?.panel == null || string.IsNullOrEmpty(_tipOwner.tooltip)) return;
             _tipLayer.Clear();
-            var tip = Ui.Text(_tipOwner.tooltip, 0.92f, wrap: true);
+            var tip = Ui.Text(_tipOwner.tooltip, 0.92f, wrap: true).Appear();
             tip.style.maxWidth = 360;
             tip.style.position = Position.Absolute;
             tip.Bg("panel_alt").Border(1, "borde", Ui.Radius).Pad(8, 5);
@@ -822,7 +824,7 @@ namespace CTEditor.App
             backdrop.style.justifyContent = Justify.Center;
             backdrop.pickingMode = PickingMode.Position;
 
-            var box = Ui.Column().Bg("panel").Border(1, "borde", 8);
+            var box = Ui.Column().Bg("panel").Border(1, "borde", 8).Appear();
             if (widthPct > 0) box.style.width = Length.Percent(widthPct);
             else { box.style.minWidth = 420; box.style.maxWidth = Length.Percent(90); }
             if (heightPct > 0) box.style.height = Length.Percent(heightPct);
@@ -898,7 +900,7 @@ namespace CTEditor.App
 
             VisualElement BuildList(IList<MenuItem> entries, Vector2 at, int depth)
             {
-                var list = Ui.Column().Bg("panel_alt").Border(1, "borde", 6).Pad(4);
+                var list = Ui.Column().Bg("panel_alt").Border(1, "borde", 6).Pad(4).Appear();
                 list.style.position = Position.Absolute;
                 list.style.left = at.x;
                 list.style.top = at.y;

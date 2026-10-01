@@ -180,6 +180,20 @@ Se miró cómo lo hacen otros:
 | **Selector de especies** | Todas (lista virtual, sin límite), **en orden de Pokédex** con número, miniatura y tipos de color; buscar por nombre, id o «#25»; filtros: **hasta dos tipos (exactos o no)**, **grupo huevo**, **generación**, **formas** (con, sin, solo alternativas) y **legendarios**. Datos de `datos/especies.csv`, `tipos.csv` y `grupos_huevo.csv` (`SpeciesFilter`, `CsvSpeciesDirectory.Entries`). |
 | **Botón «i»** | En la cabecera de cada ventana: qué es, cómo se usa y trucos (`PanelHelp`; un módulo añade la suya con `PanelHelp.Register`). |
 
+## Sugerencias de diseño aplicadas
+
+| # | Qué | Dónde |
+|---|---|---|
+| 1 | La «i» de una ventana **parpadea tres veces** la primera vez que la ves (una vez por ventana) | `DockView`, preferencia `ayuda_vista_<ventana>` |
+| 2 | Tabla de especies **más estrecha** y **asa para arrastrar** y ordenar | Encuentros |
+| 3 | **Simulador de encuentros** en su propia ventana (icono de dado junto a «Zonas»): método, hora, 100/1000/10000 pasos, interruptores; qué sale, %, cuántas veces y niveles | `EncounterSimulator` |
+| 4 | **Plantillas** al crear una zona: vacía, ruta temprana, bosque, cueva, agua (se saltan las especies que no estén en tus datos) | `EncounterTemplate`, `MapEditorSession.ApplyTemplate` |
+| 5 | Aviso de **casillas pintadas sin su terreno** (p. ej. hierba de encuentros sobre un camino): en la fila de la zona y en rojo en el mapa. **Apagado por defecto**: engranaje de Encuentros → «Avisar de casillas pintadas sin su terreno» | `EncounterChecks.CellsOffTerrain` |
+| 6 | **Títulos de sección** iguales en todas las ventanas (mayúsculas pequeñas grises) | `Ui.SectionTitle` |
+| 8 | **Densidad**: cómoda (por defecto, la de siempre) o compacta | Entorno → Interfaz |
+| 9 | **Animaciones** de 0,12 s al abrir menús, ventanas y ayudas; desactivables | Entorno → Interfaz, `Ui.Appear` |
+| 10 | **Color de acento** sin cambiar el tema (azul, verde, morado... u otro con el selector); los colores admiten transparencia (#RRGGBBAA) para temas propios | Entorno → Tema |
+
 ## Lista de prueba en Unity (antes de seguir)
 
 Marca lo que funcione y mándame captura de lo que no:

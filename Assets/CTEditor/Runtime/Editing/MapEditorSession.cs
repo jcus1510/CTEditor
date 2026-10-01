@@ -887,6 +887,14 @@ namespace CTEditor.Editing
         public void RemoveTable(string areaId, string methodId) =>
             EditArea(areaId, "quitar método", (m, a) => a.Tables.RemoveAll(t => t.MethodId == methodId));
 
+        /// <summary>Rellena una zona con una plantilla (solo las especies que estén en los datos del proyecto, si hay).</summary>
+        public void ApplyTemplate(string areaId, EncounterTemplate template)
+        {
+            if (template == null) return;
+            var known = new HashSet<string>((Species?.All() ?? new (string id, string name)[0]).Select(x => x.id), StringComparer.OrdinalIgnoreCase);
+            EditArea(areaId, "plantilla de zona", (m, a) => template.ApplyTo(a, Methods, known.Count == 0 ? (Func<string, bool>)null : known.Contains));
+        }
+
         public void SetTableDoubles(string areaId, string methodId, int percent) =>
             EditArea(areaId, "combates dobles", (m, a) => a.GetOrAddTable(methodId).DoublePercent = Math.Max(0, Math.Min(100, percent)));
 

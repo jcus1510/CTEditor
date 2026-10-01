@@ -51,7 +51,7 @@ namespace CTEditor.App
         private static VisualElement Section(string title)
         {
             var box = Ui.Column(8).Pad(12, 10);
-            box.Add(Ui.Heading(title));
+            box.Add(Ui.SectionTitle(title));
             return box;
         }
 

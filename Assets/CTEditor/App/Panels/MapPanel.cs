@@ -677,6 +677,10 @@ namespace CTEditor.App
                     Box(P(x, y), P(x + w, y + h), Ui.WithAlpha(c, strong ? 0.9f : 0.25f), strong ? 1 : 0, fill);
                 if (all && rects.Count > 0) Tag(area.Name, P(rects[0].x, rects[0].y) + new Vector2(2, 2), c, filled: true);
             }
+            // Optional (Encuentros → ajustes): painted cells where no method of the chosen zone would work.
+            if (_shell.Workspace.Pref("encuentros_aviso_terreno", "no") == "si" && S.ActiveArea != null)
+                foreach (var (x, y) in EncounterChecks.CellsOffTerrain(m, S.Tilesets, S.ActiveArea, S.Methods))
+                    Box(P(x + 0.2f, y + 0.2f), P(x + 0.8f, y + 0.8f), Ui.C("error"), 2, 0.25f);
 
             // Objects (the player start for now).
             foreach (var o in m.Objects)

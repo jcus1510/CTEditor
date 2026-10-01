@@ -30,6 +30,7 @@ interfaz del editor. El manual de uso para el AUTOR (qué hace cada botón) est�
 | 18 | [Pendientes y hoja de ruta](18-pendientes.md) | Lo que falta (paso 8 Gen 7, efectos «Al usarlo»...) y problemas conocidos. |
 | 19 | [Cómo migrar el proyecto](19-migrar.md) | Lista paso a paso para llevar el proyecto a otro sitio sin perder nada. |
 | 20 | [La aplicación CTEditor](20-aplicacion.md) | El editor como programa propio: ventana única, paneles acoplables, recursos, asistente de corte, entorno. |
+| — | [Hoja de ruta](HOJA_DE_RUTA.md) | Lo que queda paso a paso (fase 5b, fase 6, editores de Unity a la aplicación, packs públicos) con la comprobación de cada tarea. |
 | — | [Diseño visual](DISENO.md) | Documento vivo: cómo está hecha la interfaz (UI Toolkit), reglas visuales (colores, medidas, iconos) y lo que falta por pulir. |
 
 **Plan actual**: [`PROPUESTA_APLICACION.md`](PROPUESTA_APLICACION.md) — la aplicación CTEditor (mapas, NPC, eventos por

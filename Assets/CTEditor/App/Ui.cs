@@ -21,7 +21,35 @@ namespace CTEditor.App
         /// <summary>Physical pixels per interface point (user scale × screen dpi): icons are drawn at this resolution.</summary>
         public static float PixelsPerPoint { get; set; } = 1f;
         /// <summary>One height for every control in a row (buttons, fields, steppers), so they always line up.</summary>
-        public static float ControlHeight => FontSize + 14;
+        public static float ControlHeight => FontSize + (Compact ? 8 : 14);
+        /// <summary>Density: comfortable (default) or compact (less room around controls). Entorno → Interfaz.</summary>
+        public static bool Compact { get; set; }
+        /// <summary>Short fades when menus, dialogs and tooltips appear. Entorno → Interfaz (they can be turned off).</summary>
+        public static bool Animations { get; set; } = true;
+
+        /// <summary>A quick fade-in (120 ms) when an element appears, if animations are on.</summary>
+        public static T Appear<T>(this T e) where T : VisualElement
+        {
+            if (!Animations) return e;
+            e.style.opacity = 0f;
+            e.style.transitionProperty = new List<StylePropertyName> { new StylePropertyName("opacity") };
+            e.style.transitionDuration = new List<TimeValue> { new TimeValue(120, TimeUnit.Millisecond) };
+            e.schedule.Execute(() => e.style.opacity = 1f).ExecuteLater(10);
+            return e;
+        }
+
+        /// <summary>
+        /// The one look for section titles in every window: small grey capitals, with an optional control on the right
+        /// («ZONAS  [+]», «TAMAÑO»...).
+        /// </summary>
+        public static VisualElement SectionTitle(string title, VisualElement right = null)
+        {
+            var head = Row(6);
+            head.style.marginTop = 4;
+            head.Add(Text((title ?? "").ToUpperInvariant(), 0.78f, dim: true, bold: true).Grow());
+            if (right != null) head.Add(right);
+            return head;
+        }
         public static float IconSize => Mathf.Round(FontSize * 1.25f);
 
         // ── Colors ───────────────────────────────────────────────────────────────────────────────
