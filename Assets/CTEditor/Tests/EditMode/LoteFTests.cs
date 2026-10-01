@@ -26,6 +26,7 @@ using CTEditor.Battle.Domain.Formulas;
 using CTEditor.Battle.Domain.Turn;
 using CTEditor.Adventure.Domain;
 using CTEditor.Party.Domain;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.Tests.EditMode
 {

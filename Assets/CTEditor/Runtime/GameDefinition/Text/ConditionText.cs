@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using UnityEditor;
 using CTEditor.GameDefinition.Domain.Conditions;
-using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 
-namespace CTEditor.GameDefinition.Editor
+namespace CTEditor.GameDefinition.Text
 {
     /// <summary>
     /// Las CONDICIONES en texto, en dos formatos:
@@ -77,7 +75,6 @@ namespace CTEditor.GameDefinition.Editor
             return list.Count == 0 ? "siempre" : "si " + string.Join(" y ", list.Select(c => LowerFirst(Describe(c))));
         }
 
-        public static string Describe(ConditionData d) => Describe(FromData(d));
 
         private static string LowerFirst(string s) => string.IsNullOrEmpty(s) ? s : char.ToLowerInvariant(s[0]) + s.Substring(1);
 
@@ -120,37 +117,9 @@ namespace CTEditor.GameDefinition.Editor
 
         // ---------------- Datos <-> dominio ----------------
 
-        public static Condition FromData(ConditionData d)
-            => d == null ? new Condition(ConditionKind.HasAnyStatus) : new Condition(d.kind, d.subject, d.comparison, d.number, d.text, d.negate);
 
-        /// <summary>Escribe una condición en un elemento de array serializado (ConditionData).</summary>
-        public static void Write(SerializedProperty el, Condition c)
-        {
-            el.FindPropertyRelative("kind").intValue = (int)c.Kind;
-            el.FindPropertyRelative("subject").intValue = (int)c.Subject;
-            el.FindPropertyRelative("comparison").intValue = (int)c.Comparison;
-            el.FindPropertyRelative("number").floatValue = c.Number;
-            el.FindPropertyRelative("text").stringValue = c.Text ?? "";
-            el.FindPropertyRelative("negate").boolValue = c.Negate;
-        }
 
-        public static void WriteAll(SerializedProperty array, IList<Condition> conditions)
-        {
-            array.arraySize = conditions?.Count ?? 0;
-            for (int i = 0; i < array.arraySize; i++) Write(array.GetArrayElementAtIndex(i), conditions[i]);
-        }
 
-        /// <summary>Escribe una lista de modificadores de potencia (PowerModifierData[]).</summary>
-        public static void WriteModifiers(SerializedProperty array, IList<(float multiplier, Condition[] conditions)> mods)
-        {
-            array.arraySize = mods?.Count ?? 0;
-            for (int i = 0; i < array.arraySize; i++)
-            {
-                var el = array.GetArrayElementAtIndex(i);
-                el.FindPropertyRelative("multiplier").floatValue = mods[i].multiplier;
-                WriteAll(el.FindPropertyRelative("conditions"), mods[i].conditions);
-            }
-        }
 
         // ---------------- Código corto (Excel) ----------------
 
@@ -241,7 +210,7 @@ namespace CTEditor.GameDefinition.Editor
 
             float Number()
             {
-                if (value == null || !Csv.CsvTable.TryNumber(value, out float f))
+                if (value == null || !TextNumbers.TryNumber(value, out float f))
                     throw new FormatException($"'{text}': falta un número tras la comparación (ej. rival.vida<50).");
                 return f;
             }
@@ -318,7 +287,7 @@ namespace CTEditor.GameDefinition.Editor
                     item = item.Substring(0, br).Trim();
                 }
                 if (item.StartsWith("x") || item.StartsWith("×") || item.StartsWith("X")) item = item.Substring(1);
-                if (!Csv.CsvTable.TryNumber(item, out float mult) || mult < 0)
+                if (!TextNumbers.TryNumber(item, out float mult) || mult < 0)
                     throw new FormatException($"'{raw}': usa x<número> [si condición], ej. x2 [si propio.estado].");
                 list.Add((mult, conditions.ToArray()));
             }

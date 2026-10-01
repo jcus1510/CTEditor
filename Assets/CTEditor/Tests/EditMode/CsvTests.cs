@@ -5,6 +5,7 @@ using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Editor;
 using CTEditor.GameDefinition.Editor.Csv;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.Tests.EditMode
 {

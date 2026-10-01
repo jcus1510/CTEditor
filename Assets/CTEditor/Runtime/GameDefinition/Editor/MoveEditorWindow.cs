@@ -7,6 +7,7 @@ using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Domain.Formulas;
 using CTEditor.GameDefinition.Infrastructure.Catalog;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.GameDefinition.Editor
 {
@@ -151,7 +152,7 @@ namespace CTEditor.GameDefinition.Editor
             }
             if (d.PowerModifiers != null)
                 foreach (var m in d.PowerModifiers.Where(m => m != null))
-                    l.Add($"• Potencia ×{m.multiplier:0.##} {ConditionText.Describe((m.conditions ?? new ConditionData[0]).Select(ConditionText.FromData))}.");
+                    l.Add($"• Potencia ×{m.multiplier:0.##} {ConditionText.Describe((m.conditions ?? new ConditionData[0]).Select(ConditionTextUnity.FromData))}.");
 
             if (d.MaxHits > 1) l.Add(d.MinHits == d.MaxHits ? $"• Golpea {d.MinHits} veces." : $"• Golpea de {d.MinHits} a {d.MaxHits} veces.");
             if (d.CritStage > 0) l.Add($"• Crítico: etapa {d.CritStage} (más probable; la tabla está en las Reglas).");
@@ -161,7 +162,7 @@ namespace CTEditor.GameDefinition.Editor
             if (d.RespectsTypeImmunity) l.Add("• No afecta a quien sea inmune por tipo.");
             if (d.Tags != null && d.Tags.Length > 0) l.Add($"• Etiquetas: {string.Join(", ", d.Tags)}.");
             if (d.Requirements.Length > 0)
-                l.Add($"• Solo funciona {ConditionText.Describe(d.Requirements.Where(c => c != null).Select(ConditionText.FromData))}; si no, «¡Pero falló!».");
+                l.Add($"• Solo funciona {ConditionText.Describe(d.Requirements.Where(c => c != null).Select(ConditionTextUnity.FromData))}; si no, «¡Pero falló!».");
 
             if (d.SecondaryEffects != null)
                 foreach (var e in d.SecondaryEffects)
@@ -228,7 +229,7 @@ namespace CTEditor.GameDefinition.Editor
                 case MoveEffectKind.Teleport: what = "escapar de un combate salvaje; contra un entrenador, retirarse como Ida y Vuelta"; break;
                 default: what = e.kind.ToString(); break;
             }
-            var conds = (e.conditions ?? new ConditionData[0]).Select(ConditionText.FromData).ToList();
+            var conds = (e.conditions ?? new ConditionData[0]).Select(ConditionTextUnity.FromData).ToList();
             return $"{chance}{what}" + (conds.Count > 0 ? $" — {ConditionText.Describe(conds)}" : "") + ".";
         }
 
@@ -264,12 +265,12 @@ namespace CTEditor.GameDefinition.Editor
         private static void CheckCondition(ConditionData c, List<(bool, string)> l)
         {
             if (!Condition.UsesText(c.kind) || c.kind == ConditionKind.MoveHasTag || c.kind == ConditionKind.MoveCategory) return;
-            if (string.IsNullOrWhiteSpace(c.text)) { l.Add((true, $"Una condición '{ConditionText.Describe(c)}' no tiene valor elegido.")); return; }
+            if (string.IsNullOrWhiteSpace(c.text)) { l.Add((true, $"Una condición '{ConditionTextUnity.Describe(c)}' no tiene valor elegido.")); return; }
             bool exists = c.kind == ConditionKind.HasStatus ? ContentAssets.FindById<StatusConditionData>(c.text) != null
                         : c.kind == ConditionKind.Weather ? ContentAssets.FindById<WeatherData>(c.text) != null
                         : c.kind == ConditionKind.StatStage ? true
                         : ContentAssets.FindById<ElementTypeData>(c.text) != null;
-            if (!exists) l.Add((false, $"La condición «{ConditionText.Describe(c)}» usa '{c.text}', que no existe."));
+            if (!exists) l.Add((false, $"La condición «{ConditionTextUnity.Describe(c)}» usa '{c.text}', que no existe."));
         }
     }
 }

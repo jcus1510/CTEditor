@@ -3,6 +3,7 @@ using System.Linq;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 using CTEditor.GameDefinition.Infrastructure.Acl;
 using CTEditor.GameDefinition.Domain.Formulas;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.GameDefinition.Editor
 {

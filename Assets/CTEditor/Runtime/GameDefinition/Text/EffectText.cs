@@ -2,13 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using UnityEditor;
 using CTEditor.GameDefinition.Domain.Abilities;
 using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Domain.Effects;
-using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 
-namespace CTEditor.GameDefinition.Editor
+namespace CTEditor.GameDefinition.Text
 {
     /// <summary>What kind of id an action needs (the editor shows the matching dropdown).</summary>
     public enum EffectRefKind { None, Type, StatusList, Status, Stat, Weather, Move, Form, Mechanic,
@@ -384,7 +382,7 @@ namespace CTEditor.GameDefinition.Editor
                 int at = head.IndexOf('@');
                 if (at >= 0)
                 {
-                    if (!Csv.CsvTable.TryNumber(head.Substring(at + 1), out threshold)) throw new FormatException($"'{raw}': umbral no válido tras @ (ej. poca_vida@50).");
+                    if (!TextNumbers.TryNumber(head.Substring(at + 1), out threshold)) throw new FormatException($"'{raw}': umbral no válido tras @ (ej. poca_vida@50).");
                     head = head.Substring(0, at).Trim();
                 }
                 var trig = Triggers.FirstOrDefault(x => x.key == head.ToLowerInvariant());
@@ -413,7 +411,7 @@ namespace CTEditor.GameDefinition.Editor
                     string t = w.Trim().TrimStart('x', 'X', '×', '+').TrimEnd('%');
                     bool neg = w.Trim().StartsWith("-");
                     if (neg) t = t.TrimStart('-');
-                    bool ok = Csv.CsvTable.TryNumber(t, out v);
+                    bool ok = TextNumbers.TryNumber(t, out v);
                     if (neg) v = -v;
                     return ok;
                 }
@@ -436,7 +434,7 @@ namespace CTEditor.GameDefinition.Editor
                     if (op == "se_gasta" || op == "gasta") consumes = true;
                     else if (op == "al_rival") target = BlockTarget.Other;
                     else if (op == "a_si_mismo" || op == "propio") target = BlockTarget.Self;
-                    else if (op.StartsWith("prob=") && Csv.CsvTable.TryNumber(op.Substring(5).TrimEnd('%'), out var p)) chance = p;
+                    else if (op.StartsWith("prob=") && TextNumbers.TryNumber(op.Substring(5).TrimEnd('%'), out var p)) chance = p;
                     else if (op.StartsWith("veces=") && int.TryParse(op.Substring(6), out var n)) times = n;
                     else throw new FormatException($"'{raw}': opción «{o}» desconocida. Usa: se_gasta, al_rival, a_si_mismo, prob=N, veces=N.");
                 }
@@ -445,28 +443,8 @@ namespace CTEditor.GameDefinition.Editor
             return list;
         }
 
-        // ---------------- SerializedProperty helpers ----------------
 
-        /// <summary>Writes blocks into an EffectBlockData[] property.</summary>
-        public static void WriteAll(SerializedProperty array, IList<EffectBlock> blocks)
-        {
-            array.arraySize = blocks.Count;
-            for (int i = 0; i < blocks.Count; i++) Write(array.GetArrayElementAtIndex(i), blocks[i]);
-        }
 
-        public static void Write(SerializedProperty el, EffectBlock b)
-        {
-            el.FindPropertyRelative(nameof(EffectBlockData.trigger)).intValue = (int)b.Trigger;
-            el.FindPropertyRelative(nameof(EffectBlockData.action)).intValue = (int)b.Action;
-            el.FindPropertyRelative(nameof(EffectBlockData.target)).intValue = (int)b.Target;
-            el.FindPropertyRelative(nameof(EffectBlockData.reference)).stringValue = b.Ref;
-            el.FindPropertyRelative(nameof(EffectBlockData.amount)).floatValue = b.Amount;
-            el.FindPropertyRelative(nameof(EffectBlockData.threshold)).floatValue = b.Threshold;
-            el.FindPropertyRelative(nameof(EffectBlockData.consumes)).boolValue = b.Consumes;
-            el.FindPropertyRelative(nameof(EffectBlockData.chance)).floatValue = b.Chance;
-            el.FindPropertyRelative(nameof(EffectBlockData.maxPerBattle)).intValue = b.MaxPerBattle;
-            ConditionText.WriteAll(el.FindPropertyRelative(nameof(EffectBlockData.conditions)), b.Conditions.ToList());
-        }
 
         /// <summary>A new block with sensible defaults for the action.</summary>
         public static EffectBlock Default(EffectTrigger t, EffectAction a)

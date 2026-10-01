@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using CTEditor.GameDefinition.Domain.Moves;
 using CTEditor.GameDefinition.Domain.Conditions;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.GameDefinition.Editor.Csv
 {

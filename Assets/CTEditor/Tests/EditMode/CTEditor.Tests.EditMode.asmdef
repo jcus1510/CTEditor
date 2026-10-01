@@ -18,7 +18,8 @@
         "CTEditor.Project",
         "CTEditor.Workspace",
         "CTEditor.World.Domain",
-        "CTEditor.Editing"
+        "CTEditor.Editing",
+        "CTEditor.GameDefinition.Text"
     ],
     "includePlatforms": [
         "Editor"

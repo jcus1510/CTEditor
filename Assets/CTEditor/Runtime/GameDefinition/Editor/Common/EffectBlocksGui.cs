@@ -8,6 +8,7 @@ using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Infrastructure.Acl;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.GameDefinition.Editor
 {
@@ -162,7 +163,7 @@ namespace CTEditor.GameDefinition.Editor
         {
             int i = effects.arraySize;
             effects.arraySize++;
-            EffectText.Write(effects.GetArrayElementAtIndex(i), b);
+            EffectTextUnity.Write(effects.GetArrayElementAtIndex(i), b);
         }
 
         private enum CardResult { None, Remove, Up, Down }

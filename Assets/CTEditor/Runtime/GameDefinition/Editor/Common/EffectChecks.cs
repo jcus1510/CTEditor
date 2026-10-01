@@ -4,6 +4,7 @@ using CTEditor.GameDefinition.Domain.Abilities;
 using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.GameDefinition.Editor
 {

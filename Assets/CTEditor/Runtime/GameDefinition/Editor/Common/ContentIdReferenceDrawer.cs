@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.GameDefinition.Editor
 {

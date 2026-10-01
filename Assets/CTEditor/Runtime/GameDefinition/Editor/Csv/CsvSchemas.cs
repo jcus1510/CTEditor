@@ -8,6 +8,7 @@ using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Infrastructure.Catalog;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.GameDefinition.Editor.Csv
 {
@@ -170,13 +171,13 @@ namespace CTEditor.GameDefinition.Editor.Csv
                         for (int i = 0; i < tags.Count; i++) arr.GetArrayElementAtIndex(i).stringValue = tags[i];
                     })
                 .Col("requisitos", "Solo funciona si se cumple (vacío = siempre). Ej.: rival.estado=sleep (Comesueños) · propio.estado=sleep (Ronquido). Varias con &.",
-                    d => ConditionText.FormatAll((d.Requirements ?? new ConditionData[0]).Where(c => c != null).Select(ConditionText.FromData)),
+                    d => ConditionText.FormatAll((d.Requirements ?? new ConditionData[0]).Where(c => c != null).Select(ConditionTextUnity.FromData)),
                     (so, v, c) =>
                     {
                         List<Condition> conds;
                         try { conds = ConditionText.ParseAll(v); }
                         catch (FormatException e) { throw new CsvCellException(e.Message); }
-                        ConditionText.WriteAll(so.FindProperty("requirements"), conds);
+                        ConditionTextUnity.WriteAll(so.FindProperty("requirements"), conds);
                     }, false)
                 .Col("efectos", "estado:burn@10 | drenar:50 | retroceso:33 | retroceso_ps:25 | curar:50 | curar_rival:50 | curar_estado | clima:rain | stat:attack:-1 | stat_propio:speed:+2 | amedrentar@30 · condiciones: [si rival.vida<50] · mismo dado que el anterior: &efecto",
                     d => CsvCodecs.FormatEffects(ReadEffects(d.SecondaryEffects)), (so, v, c) => WriteEffects(so, v, c, "secondaryEffects"))
@@ -210,7 +211,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
             {
                 Kind = e.kind, Target = e.target, Chance = e.chancePercent, Status = e.statusId,
                 Amount = e.amountPercent, Stat = e.statStatId, Stages = e.statStages,
-                Conditions = (e.conditions ?? new ConditionData[0]).Where(c => c != null).Select(ConditionText.FromData).ToList(),
+                Conditions = (e.conditions ?? new ConditionData[0]).Where(c => c != null).Select(ConditionTextUnity.FromData).ToList(),
                 Shared = e.sharesPreviousRoll, Weather = e.weatherId, WeatherTurns = e.weatherTurns, Hazard = e.hazardId,
                 Turns = e.turns, Side = e.sideConditionId, TypeId = e.typeId, Text = e.text
             });
@@ -248,7 +249,7 @@ namespace CTEditor.GameDefinition.Editor.Csv
                 if (e.Kind == MoveEffectKind.SetHazard && !ctx.Exists<HazardData>(e.Hazard))
                     ctx.Warnings.Add($"La trampa '{e.Hazard}' aún no existe (créala en Trampas de campo).");
                 el.FindPropertyRelative("sharesPreviousRoll").boolValue = e.Shared;
-                ConditionText.WriteAll(el.FindPropertyRelative("conditions"), e.Conditions);
+                ConditionTextUnity.WriteAll(el.FindPropertyRelative("conditions"), e.Conditions);
                 if (e.Kind == MoveEffectKind.SetWeather && !ctx.Exists<WeatherData>(e.Weather))
                     ctx.Warnings.Add($"El clima '{e.Weather}' aún no existe (créalo en Climas).");
             }
@@ -258,14 +259,14 @@ namespace CTEditor.GameDefinition.Editor.Csv
 
         private static string ReadMods(PowerModifierData[] mods)
             => ConditionText.FormatModifiers((mods ?? new PowerModifierData[0]).Where(m => m != null)
-                .Select(m => (m.multiplier, (IReadOnlyList<Condition>)(m.conditions ?? new ConditionData[0]).Where(c => c != null).Select(ConditionText.FromData).ToList())));
+                .Select(m => (m.multiplier, (IReadOnlyList<Condition>)(m.conditions ?? new ConditionData[0]).Where(c => c != null).Select(ConditionTextUnity.FromData).ToList())));
 
         private static void WriteMods(SerializedObject so, string field, string cell)
         {
             List<(float, Condition[])> mods;
             try { mods = ConditionText.ParseModifiers(cell); }
             catch (FormatException e) { throw new CsvCellException(e.Message); }
-            ConditionText.WriteModifiers(so.FindProperty(field), mods);
+            ConditionTextUnity.WriteModifiers(so.FindProperty(field), mods);
         }
 
         // ---------------- Objetos: automático + EFECTOS (bloques «cuándo / si / entonces») ----------------

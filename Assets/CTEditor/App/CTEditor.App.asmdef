@@ -9,7 +9,9 @@
         "CTEditor.Content",
         "CTEditor.World.Domain",
         "CTEditor.Editing",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "CTEditor.GameDefinition.Domain",
+        "CTEditor.GameDefinition.Text"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

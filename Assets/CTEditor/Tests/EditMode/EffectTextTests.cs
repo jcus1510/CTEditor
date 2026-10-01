@@ -8,6 +8,7 @@ using CTEditor.GameDefinition.Domain.Effects;
 using CTEditor.GameDefinition.Domain.Items;
 using CTEditor.GameDefinition.Editor;
 using CTEditor.GameDefinition.Editor.Csv;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.Tests.EditMode
 {

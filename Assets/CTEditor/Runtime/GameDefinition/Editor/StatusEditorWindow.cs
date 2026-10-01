@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using CTEditor.GameDefinition.Infrastructure.Catalog;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.GameDefinition.Editor
 {

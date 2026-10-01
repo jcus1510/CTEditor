@@ -26,6 +26,8 @@
     <Compile Include="$(Runtime)World/**/*.cs" />
     <Compile Include="$(Runtime)Editing/**/*.cs" />
     <Compile Include="$(Runtime)Content/**/*.cs" />
+    <Compile Include="$(Runtime)GameDefinition/Text/**/*.cs" />
+    <Compile Include="$(Runtime)GameDefinition/Domain/**/*.cs" />
     <Compile Include="$(App)**/*.cs" Exclude="$(App)Editor/**/*.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,6 +9,7 @@ using UnityEngine;
 using CTEditor.GameDefinition.Domain.Conditions;
 using CTEditor.GameDefinition.Infrastructure.ScriptableObjects;
 using Object = UnityEngine.Object;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.GameDefinition.Editor
 {

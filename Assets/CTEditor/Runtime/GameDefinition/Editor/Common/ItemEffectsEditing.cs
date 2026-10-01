@@ -17,6 +17,6 @@ namespace CTEditor.GameDefinition.Editor
 
         /// <summary>Replaces all the blocks (the «effects» field of an item or an ability).</summary>
         public static void SetBlocks(SerializedObject so, IList<EffectBlock> blocks)
-            => EffectText.WriteAll(so.FindProperty("effects"), blocks);
+            => EffectTextUnity.WriteAll(so.FindProperty("effects"), blocks);
     }
 }

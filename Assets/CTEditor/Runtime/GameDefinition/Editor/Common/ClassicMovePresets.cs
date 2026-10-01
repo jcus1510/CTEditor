@@ -286,7 +286,7 @@ namespace CTEditor.GameDefinition.Editor
             so.FindProperty("fixedDamage").intValue = (int)p.Fixed;
             so.FindProperty("fixedDamageAmount").intValue = p.FixedAmount;
             so.FindProperty("respectsTypeImmunity").boolValue = p.RespectsImmunity;
-            ConditionText.WriteModifiers(so.FindProperty("powerModifiers"), p.PowerMods);
+            ConditionTextUnity.WriteModifiers(so.FindProperty("powerModifiers"), p.PowerMods);
             so.FindProperty("powerFormula").stringValue = p.Formula ?? "";
             so.FindProperty("attackStat").stringValue = p.AtkStat ?? "";
             so.FindProperty("defenseStat").stringValue = p.DefStat ?? "";
@@ -318,7 +318,7 @@ namespace CTEditor.GameDefinition.Editor
                 el.FindPropertyRelative("sideConditionId").stringValue = e.Side ?? "";
                 el.FindPropertyRelative("typeId").stringValue = e.TypeId ?? "";
                 el.FindPropertyRelative("sharesPreviousRoll").boolValue = e.Shared;
-                ConditionText.WriteAll(el.FindPropertyRelative("conditions"), e.Conditions);
+                ConditionTextUnity.WriteAll(el.FindPropertyRelative("conditions"), e.Conditions);
             }
             return missing;
         }

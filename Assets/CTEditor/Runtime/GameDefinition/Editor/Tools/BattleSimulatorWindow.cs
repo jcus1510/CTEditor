@@ -13,6 +13,7 @@ using CTEditor.Battle.Domain;
 using CTEditor.Battle.Domain.AI;
 using CTEditor.Battle.Domain.Events;
 using CTEditor.Battle.Domain.Turn;
+using CTEditor.GameDefinition.Text;
 
 namespace CTEditor.GameDefinition.Editor
 {
