@@ -174,6 +174,24 @@ namespace CTEditor.Tests.EditMode
         }
 
         [Test]
+        public void Teams_keep_every_annotation_and_natures_and_abilities_are_uses()
+        {
+            const string member = "haxorus@59%h[dragon_dance/outrage]{lum_berry}~jolly!mold_breaker(252 Atq/252 Vel)#31\"Hacha\"";
+            var m = TeamFormat.ParseMember(member);
+            Assert.AreEqual(("haxorus", 59, "h", "lum_berry", "jolly", "mold_breaker", 31, "Hacha"), (m.Species, m.Level, m.Gender, m.Item, m.Nature, m.Ability, m.Iv, m.Nickname));
+            CollectionAssert.AreEqual(new[] { "dragon_dance", "outrage" }, m.Moves);
+            Assert.AreEqual(member, TeamFormat.FormatMember(m), "written back the same");
+            Assert.AreEqual("¿esto?", TeamFormat.FormatMember(TeamFormat.ParseMember("¿esto?")), "unreadable members are kept");
+
+            File.WriteAllText(Path.Combine(_root, "naturalezas.csv"), "id;nombre;sube;baja\r\njolly;Alegre;speed;sp_attack\r\n");
+            File.WriteAllText(Path.Combine(_root, "entrenadores.csv"), "id;nombre;equipo\r\nvictor;Víctor;pikachu@50~jolly | raichu@52\r\n");
+            var s = new ContentSession(ContentDatabase.Load(_root));
+            Assert.AreEqual(1, s.UsesOf(ContentSchemas.Natures, "jolly").Count);
+            s.Rename(ContentSchemas.Natures, "jolly", "alegre");
+            Assert.AreEqual("pikachu@50~alegre | raichu@52", s.Get(ContentSchemas.Trainers, "victor")["equipo"]);
+        }
+
+        [Test]
         public void Ids_are_made_from_names()
         {
             Assert.AreEqual("bola_sombra", ContentIds.Normalize("Bola Sombra!"));

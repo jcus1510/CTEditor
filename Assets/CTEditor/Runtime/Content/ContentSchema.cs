@@ -329,7 +329,7 @@ namespace CTEditor.Content
                 Yes("puede_cambiar", "Puede cambiar", "IA"),
                 new ColumnSpec("movimientos_auto", "Movimientos", ColumnKind.Text, "IA"),
                 new ColumnSpec("dinero_base", "Dinero base", ColumnKind.Int, "General", min: 0),
-                new ColumnSpec("equipo", "Equipo", ColumnKind.Team, "Equipo", "especie@nivel[mov/mov]{objeto} | ...", required: true, targets: new[] { Species, Moves, Items }),
+                new ColumnSpec("equipo", "Equipo", ColumnKind.Team, "Equipo", "especie@nivel[mov/mov]{objeto} | ...", required: true, targets: new[] { Species, Moves, Items, Natures, Abilities }),
                 new ColumnSpec("frase_inicio", "Frase al empezar", ColumnKind.LongText, "Frases"),
                 new ColumnSpec("frase_derrota", "Frase al perder", ColumnKind.LongText, "Frases"),
                 new ColumnSpec("frase_victoria", "Frase al ganar", ColumnKind.LongText, "Frases"),
@@ -339,7 +339,7 @@ namespace CTEditor.Content
             {
                 Id(), Name(), new ColumnSpec("descripcion", "Descripción", ColumnKind.LongText),
                 new ColumnSpec("dinero", "Dinero", ColumnKind.Int, min: 0),
-                new ColumnSpec("equipo", "Equipo", ColumnKind.Team, "Equipo", "", required: true, targets: new[] { Species, Moves, Items }),
+                new ColumnSpec("equipo", "Equipo", ColumnKind.Team, "Equipo", "", required: true, targets: new[] { Species, Moves, Items, Natures, Abilities }),
                 new ColumnSpec("mochila", "Mochila", ColumnKind.RefAmounts, "Equipo", "", targets: new[] { Items }),
             }, "Equipos listos para empezar o probar combates.", "inicio"));
 

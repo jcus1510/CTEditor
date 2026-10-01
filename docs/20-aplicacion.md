@@ -416,3 +416,13 @@ Pikachu (si una ruta o un entrenador lo usa, el diálogo lo dice) → «Sustitui
 ruta tienen ahora Raichu; Ctrl+Z lo devuelve todo. Cambiar el id de un movimiento: los aprendizajes cambian. Problemas:
 clic en un error de datos abre su ficha.
 
+Lo propio de cada editor de Unity, ya en la aplicación:
+
+- **Entrenadores y equipos**: el equipo en tarjetas (especie con sus tipos, nivel, sexo, hasta 4 movimientos, objeto,
+  naturaleza y habilidad; subir, bajar, quitar; «+ Añadir al equipo», máximo 6) y, debajo, el mismo equipo como texto
+  (como en Excel). Se conservan EVs, IVs y mote. Naturalezas y habilidades de los equipos también cuentan como usos.
+- **Especies**: la **familia** (de quién evoluciona, a qué y cómo, variantes), clicable.
+- **Tabla de tipos**: la **matriz** entera (filas atacan, columnas defienden); clic en una casilla: ×1 → ×2 → ×½ → ×0.
+- **Naturalezas**: el **5 × 5** (sube × baja) con la elegida resaltada.
+- **Curvas de experiencia**: barras de XP cada 5 niveles y los totales de las 6 clásicas para comparar.
+

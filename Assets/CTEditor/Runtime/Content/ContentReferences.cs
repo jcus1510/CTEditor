@@ -35,9 +35,6 @@ namespace CTEditor.Content
     public static class RefFormat
     {
         private static readonly Regex Token = new Regex(@"[A-Za-z0-9_]+", RegexOptions.Compiled);
-        private static readonly Regex Member = new Regex(@"^(?<lead>\s*)(?<sp>[^@\[\{\s|]+)(?<rest>.*?)(?<trail>\s*)$", RegexOptions.Compiled | RegexOptions.Singleline);
-        private static readonly Regex Moves = new Regex(@"\[(?<m>[^\]]*)\]", RegexOptions.Compiled);
-        private static readonly Regex Item = new Regex(@"\{(?<i>[^\}]*)\}", RegexOptions.Compiled);
 
         private static string[] Split(string v, char sep) => (v ?? "").Split(sep);
 
@@ -86,20 +83,9 @@ namespace CTEditor.Content
                     }
                     break;
                 case ColumnKind.Team:
-                    foreach (var m in Split(value, '|'))
-                    {
-                        var mm = Member.Match(m);
-                        if (!mm.Success) continue;
-                        yield return (col.Targets[0], mm.Groups["sp"].Value, true);
-                        var rest = mm.Groups["rest"].Value;
-                        if (col.Targets.Count > 1)
-                            foreach (Match b in Moves.Matches(rest))
-                                foreach (var mv in b.Groups["m"].Value.Split('/'))
-                                    if (mv.Trim().Length > 0) yield return (col.Targets[1], mv.Trim(), true);
-                        if (col.Targets.Count > 2)
-                            foreach (Match b in Item.Matches(rest))
-                                if (b.Groups["i"].Value.Trim().Length > 0) yield return (col.Targets[2], b.Groups["i"].Value.Trim(), true);
-                    }
+                    foreach (var m in TeamFormat.Parse(value))
+                        foreach (var (slot, id) in TeamFormat.Ids(m))
+                            if (slot < col.Targets.Count) yield return (col.Targets[slot], id, true);
                     break;
                 case ColumnKind.Script:
                     foreach (Match t in Token.Matches(value))
@@ -184,36 +170,27 @@ namespace CTEditor.Content
                 case ColumnKind.Team:
                 {
                     int slot = col.Targets.ToList().IndexOf(category);
+                    var parts = value.Split('|');
                     var output = new List<string>();
-                    foreach (var m in value.Split('|'))
+                    foreach (var part in parts)
                     {
-                        var mm = Member.Match(m);
-                        if (!mm.Success) { output.Add(m); continue; }
-                        string lead = mm.Groups["lead"].Value, sp = mm.Groups["sp"].Value, rest = mm.Groups["rest"].Value, trail = mm.Groups["trail"].Value;
-                        if (slot == 0 && Same(sp))
+                        var m = TeamFormat.ParseMember(part);
+                        if (m.Raw != null || !TeamFormat.Ids(m).Any(x => x.slot == slot && Same(x.id))) { output.Add(part); continue; }
+                        ch = true;
+                        string lead = part.Length - part.TrimStart().Length > 0 ? " " : "", trail = part.Length - part.TrimEnd().Length > 0 ? " " : "";
+                        switch (slot)
                         {
-                            ch = true;
-                            if (newId != null) output.Add(lead + newId + rest + trail);
-                            continue;
+                            case 0: if (newId == null) continue; m.Species = newId; break;
+                            case 1:
+                                int at = m.Moves.FindIndex(Same);
+                                m.Moves.RemoveAll(x => Same(x));
+                                if (newId != null) m.Moves.Insert(at, newId);
+                                break;
+                            case 2: m.Item = newId ?? ""; break;
+                            case 3: m.Nature = newId ?? ""; break;
+                            case 4: m.Ability = newId ?? ""; break;
                         }
-                        if (slot == 1)
-                            rest = Moves.Replace(rest, b =>
-                            {
-                                var moves = b.Groups["m"].Value.Split('/').ToList();
-                                if (!moves.Any(Same)) return b.Value;
-                                ch = true;
-                                var kept = moves.Where(x => !Same(x)).ToList();
-                                if (newId != null) kept.Insert(moves.FindIndex(Same), newId);
-                                return "[" + string.Join("/", kept) + "]";
-                            });
-                        if (slot == 2)
-                            rest = Item.Replace(rest, b =>
-                            {
-                                if (!Same(b.Groups["i"].Value)) return b.Value;
-                                ch = true;
-                                return newId == null ? "" : "{" + newId + "}";
-                            });
-                        output.Add(lead + sp + rest + trail);
+                        output.Add(lead + TeamFormat.FormatMember(m) + trail);
                     }
                     result = string.Join("|", output);
                     break;
