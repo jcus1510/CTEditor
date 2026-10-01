@@ -41,6 +41,10 @@ namespace CTEditor.App
             AddMenu("Jugar", PlayItems);
             AddMenu("Ayuda", HelpItems);
             Add(Ui.Spacer());
+            // Save in sight (Ctrl+S): everything also saves itself, this makes it sure and says so.
+            var save = Ui.IconButton("guardar", () => _shell.RunAction("guardar"), "Guardar todo (" + Keys("guardar") + "). Copia de seguridad: " + Keys("copia"));
+            save.style.marginRight = 4;
+            Add(save);
             var play = Ui.Button("Jugar", () => _shell.RunAction("jugar"), Ui.ButtonKind.Primary, "Jugar desde el principio (" + Keys("jugar") + ")");
             play.style.height = Ui.FontSize + 10;
             play.style.marginRight = 8;
@@ -82,6 +86,8 @@ namespace CTEditor.App
             var list = new List<MenuItem>
             {
                 new MenuItem("Guardar", () => _shell.RunAction("guardar"), Keys("guardar")),
+                new MenuItem("Hacer una copia de seguridad", () => _shell.RunAction("copia"), Keys("copia")),
+                new MenuItem("Historial de versiones…", () => _shell.RunAction("historial"), Keys("historial")),
                 new MenuItem("Abrir la carpeta del proyecto", () => Application.OpenURL("file://" + _shell.ProjectRoot)),
                 new MenuItem("Copiar datos de un pack…", _shell.PackDialog),
                 new MenuItem("Mapa de la región…", () => RegionMapDialog.Show(_shell)),

@@ -100,7 +100,7 @@ Detalle y reglas visuales en [`DISENO.md`](DISENO.md) (documento vivo del diseñ
 | Herramientas | B lápiz · U rectángulo · G relleno · E goma · I cuentagotas · M selección · P inicio · H zona de encuentros · L línea (retoque) |
 | Selección | Ctrl+A todo · Ctrl+D quitar · Ctrl+C / Ctrl+X / Ctrl+V · Supr borrar |
 | Vista | Ctrl+G rejilla · N vecinos · Z acercar · Mayús+Z alejar · F encuadrar · Espacio + arrastrar mover · Ctrl / Alt + rueda escala |
-| Capas | Av Pág / Re Pág siguiente / anterior · Ctrl+Mayús+N nueva · Ctrl+H ver · Ctrl+Mayús+H bloquear · Ctrl+L capas automáticas |
+| Capas | Av Pág / Re Pág siguiente / anterior · Ctrl+Mayús+N nueva · Ctrl+H ver · Ctrl+Mayús+K bloquear · Ctrl+L capas automáticas |
 | Tiles | 1 pintar · 2 paso · 3 prioridad · 4 terreno · 5 arbusto · 6 mostrador · 7 pieza |
 | Ventanas | Ctrl+1 Mapa · Ctrl+2 Tiles · Ctrl+3 Capas · Ctrl+4 Mundo · Ctrl+5 Encuentros · Ctrl+6 Recursos · Ctrl+7 Retoque · Ctrl+8 Propiedades · Ctrl+9 Mapas |
 
@@ -137,6 +137,16 @@ Inspirados en: herramientas de una letra de Photoshop / Aseprite y de [Tiled](ht
 | Filas largas de cajas | Cada especie es una **tarjeta**: nombre, **barra con el % real**, niveles «Nv. 2 – 4», peso, horas M D T N y el **interruptor** (icono; encendido si hace falta uno). |
 | Solo se veía la zona elegida | Botón para **resaltar todas las zonas** en el mapa (con su nombre) o volver a resaltar solo la elegida. |
 | Ctrl+Z no deshacía aquí (si antes usaste Retoque) | El editor activo es **la ventana en la que haces clic**: Ctrl+Z deshace en Retoque si estás en Retoque, y en el mapa (encuentros incluidos) en las demás. |
+
+## Fase 5a — copias, Ctrl+P y Problemas
+
+| Pieza | Dónde | Qué hace |
+|---|---|---|
+| **Historial de versiones** | `Project/Backups.cs` (`ProjectBackups`, `BackupSchedule`), Proyecto → Historial de versiones… (Ctrl+Mayús+H) | Una copia comprimida (.zip) del proyecto en `copias/` **cada 10 minutos, solo si cambiaste algo** (si no tocas nada, no guarda nada). **Como mucho 5**: al hacer otra se borra la más vieja. Se hace en segundo plano. A mano: **Ctrl+Mayús+S**. Restaurar: antes guarda una copia de cómo está ahora («antes de restaurar») y luego reabre el proyecto. |
+| **Guardar** | Botón con disquete en la barra de menús, **Ctrl+S** | Todo se guarda solo, pero el botón lo asegura y lo dice. Ctrl+S ya era «Guardar» (no estaba ocupado por otra cosa); Ctrl+G sigue siendo la rejilla. |
+| **Iconos en las pestañas** | `PanelInfo.Icon`, `DockView` | Cada ventana lleva su icono delante del nombre (el nombre se queda). |
+| **Paleta de órdenes** | **Ctrl+P**, `CommandPalette` + `Workspace/CommandSearch.cs` | Escribe lo que quieres hacer: todas las acciones (con su atajo), ventanas, mapas del proyecto, distribuciones y temas. Sin tildes ni mayúsculas, con iniciales («pp» → «Pueblo Paleta»). ↑ ↓ e Intro. |
+| **Ventana Problemas** | `Editing/ProblemFinder.cs`, `ProblemsPanel` (Ctrl+Mayús+M) | Revisa el proyecto sola tras cada cambio: inicio del jugador, tilesets que faltan, tiles fuera de su tileset, tramos que se pisan, exteriores sin colocar, zonas sin casillas o sin especies, especies que no están en los datos, métodos borrados. Errores primero; clic = abrir el mapa. Un módulo añade comprobaciones con `ProblemFinder.Register`. |
 
 ## Lista de prueba en Unity (antes de seguir)
 

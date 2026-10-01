@@ -106,4 +106,9 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   especies en tarjetas con barra de %, horas con las cuatro encendidas = siempre, «Todas las horas», interruptor con
   icono, «Dejar de pintar» (y Esc), resaltar todas las zonas en el mapa o solo la elegida. Ctrl+Z en cada ventana (el
   editor activo es la ventana en la que haces clic).
+- **Consola limpia**: el XmlException venía de «My project.slnx» con marcas de conflicto de un git stash antiguo
+  (también en SampleScene.unity); arreglados además dos avisos (GridOverlay.Clear, PreventDefault).
+- **Fase 5a**: historial de versiones (`ProjectBackups`: .zip cada 10 minutos solo si hubo cambios, máximo 5, a mano
+  con Ctrl+Mayús+S, restaurar guardando antes cómo estaba); botón Guardar; iconos en las pestañas; paleta de órdenes
+  Ctrl+P (`CommandSearch`); ventana Problemas (`ProblemFinder`). `BackupTests`.
 - **Documentación** completa por capítulos (esta carpeta).

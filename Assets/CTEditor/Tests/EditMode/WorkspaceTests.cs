@@ -218,6 +218,26 @@ namespace CTEditor.Tests.EditMode
         }
 
         [Test]
+        public void The_command_palette_finds_without_typing_exactly()
+        {
+            var entries = new[]
+            {
+                new CommandEntry("Mostrar u ocultar la rejilla", "Vista", null, extra: "grid cuadrícula"),
+                new CommandEntry("Guardar", "General", null),
+                new CommandEntry("Hacer una copia de seguridad ahora", "General", null),
+                new CommandEntry("Capa de encima", "Capas", null),
+                new CommandEntry("Pueblo Paleta", "Mapa", null),
+            };
+            Assert.AreEqual("Guardar", CommandSearch.Find(entries, "guar")[0].Label, "starts with it");
+            Assert.AreEqual("Mostrar u ocultar la rejilla", CommandSearch.Find(entries, "REJÍLLA")[0].Label, "no case, no accents");
+            Assert.AreEqual("Mostrar u ocultar la rejilla", CommandSearch.Find(entries, "grid")[0].Label, "extra words");
+            Assert.AreEqual("Pueblo Paleta", CommandSearch.Find(entries, "pp")[0].Label, "initials");
+            Assert.AreEqual("Hacer una copia de seguridad ahora", CommandSearch.Find(entries, "copia seguridad")[0].Label);
+            Assert.IsEmpty(CommandSearch.Find(entries, "zzz"));
+            Assert.AreEqual(entries.Length, CommandSearch.Find(entries, "").Count, "empty = all, in order");
+        }
+
+        [Test]
         public void Each_window_remembers_its_own_scale()
         {
             var w = new WorkspaceSettings();

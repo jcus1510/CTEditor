@@ -26,6 +26,7 @@ namespace CTEditor.App
             Register(PanelCatalog.Game, s => GamePanel(s));
             Register(PanelCatalog.World, s => new WorldPanel(s));
             Register(PanelCatalog.Encounters, s => new EncountersPanel(s));
+            Register(PanelCatalog.Problems, s => new ProblemsPanel(s));
             Register(PanelCatalog.Events, _ => Placeholder("Eventos", "Eventos en lista o en grafo de nodos, con recetas y el mapa de la historia.", "Fase 7"));
             Register(PanelCatalog.Database, _ => Placeholder("Base de datos", "Especies, movimientos, objetos, habilidades, entrenadores… De momento siguen en los editores de Unity.", "Fase 10"));
             ShortcutMap.RegisterAction(new ShortcutAction("linea", "Línea (retoque)", "L", "Herramientas"));

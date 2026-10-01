@@ -128,6 +128,7 @@ Nunca se escribe un color a mano: se usa `Ui.C("token")`.
 
 | Fecha | Cambio |
 |---|---|
+| 2026-10-02 | Iconos en las pestañas (mapa, árbol, rejilla, capas, propiedades, carpeta, eventos, aviso, base de datos, mundo, zona); botón Guardar (disquete) en la barra de menús; paleta de órdenes (Ctrl+P) con el atajo de cada acción en una «tecla». |
 | 2026-10-01 (6) | Encuentros: lista de zonas, métodos en pestañas, tarjetas de especie con barra de %, horas «todas encendidas = siempre», «Dejar de pintar», resaltar todas las zonas. Encabezados de sección en mayúsculas pequeñas. |
 | 2026-10-01 (5) | Rejilla como malla ajustada al píxel con sombra; ayudas con `panel.Pick`; barra del mapa con botones más grandes y botón para colocarla; «Nuevo mapa» en dos columnas con brújula y ficha resumen. |
 | 2026-10-01 (4) | Barra del mapa colocable con clic derecho (por defecto a la izquierda, en vertical solo iconos); aviso de capas automáticas en Capas; chips de terreno pequeños; ayuda de los modos también en la línea inferior; etiquetas de cajas de número pegadas a su caja. |

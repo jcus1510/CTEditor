@@ -267,6 +267,7 @@ namespace CTEditor.App
                 Workspace.NoteRecentProject(root);
                 SaveWorkspaceNow();
                 StartWatching();
+                StartBackups();
                 Rebuild();
                 Info($"Proyecto abierto: {settings.Name}");
                 ProjectChanged?.Invoke();
@@ -308,6 +309,7 @@ namespace CTEditor.App
             SaveEverything(quiet: true);
             CloseSessions();
             StopWatching();
+            StopBackups();
             ProjectRoot = null;
             Project = null;
             Rebuild();
@@ -389,7 +391,125 @@ namespace CTEditor.App
             _autosave.ExecuteLater(1500);
         }
 
-        public void Tick(float dt) => Ticked?.Invoke(dt);
+        public void Tick(float dt)
+        {
+            Ticked?.Invoke(dt);
+            ReportBackup();
+        }
+
+        // ── Version history (backups) ────────────────────────────────────────────────────────────
+        // Every 10 minutes, only if something changed; at most 5 copies (ProjectBackups). Zipping runs in the background.
+
+        public static readonly TimeSpan BackupInterval = TimeSpan.FromMinutes(10);
+        private BackupSchedule _backups;
+        private IVisualElementScheduledItem _backupCheck;
+        private volatile bool _backupRunning;
+        private string _backupDone, _backupError;
+        private readonly object _backupLock = new object();
+
+        private void StartBackups()
+        {
+            StopBackups();
+            _backups = new BackupSchedule(BackupInterval, DateTime.Now);
+            _backupCheck?.Pause();
+            _backupCheck = Root.schedule.Execute(CheckBackup).Every(30000);
+            if (Maps != null) Maps.DirtyChanged += NoteChangeForBackup;
+            if (Pixels != null) Pixels.DirtyChanged += NoteChangeForBackup;
+            AssetsChanged += NoteChangeForBackup;
+        }
+
+        private void StopBackups()
+        {
+            _backupCheck?.Pause();
+            _backupCheck = null;
+            if (Maps != null) Maps.DirtyChanged -= NoteChangeForBackup;
+            if (Pixels != null) Pixels.DirtyChanged -= NoteChangeForBackup;
+            AssetsChanged -= NoteChangeForBackup;
+            _backups = null;
+        }
+
+        private void NoteChangeForBackup() => _backups?.NoteChange();
+
+        private void CheckBackup()
+        {
+            if (_backups == null || _backupRunning || IsPlaying) return;
+            if (_backups.Due(DateTime.Now)) MakeBackup("auto");
+        }
+
+        /// <summary>Saves everything and zips a copy of the project in the background.</summary>
+        public void MakeBackup(string reason)
+        {
+            if (!HasProject || _backupRunning) return;
+            SaveEverything(quiet: true);
+            _backups?.Done(DateTime.Now);
+            _backupRunning = true;
+            string root = ProjectRoot;
+            System.Threading.Tasks.Task.Run(() =>
+            {
+                try
+                {
+                    var b = ProjectBackups.Create(root, reason);
+                    lock (_backupLock) _backupDone = $"{(reason == "manual" ? "Copia de seguridad hecha" : "Copia automática")}: {b.Time:HH:mm} ({b.Bytes / 1024} KB)";
+                }
+                catch (Exception e) { lock (_backupLock) _backupError = "No se pudo hacer la copia de seguridad: " + e.Message; }
+                finally { _backupRunning = false; }
+            });
+        }
+
+        private void ReportBackup()
+        {
+            string done, error;
+            lock (_backupLock) { done = _backupDone; error = _backupError; _backupDone = _backupError = null; }
+            if (done != null) Note(done, "exito");
+            if (error != null) Error(error);
+        }
+
+        /// <summary>Goes back to a copy: saves, restores (keeping a copy of now) and reopens the project.</summary>
+        public void RestoreBackup(BackupInfo copy)
+        {
+            if (!HasProject || copy == null) return;
+            try
+            {
+                SaveEverything(quiet: true);
+                string root = ProjectRoot;
+                CloseSessions();
+                ProjectBackups.Restore(root, copy.Path);
+                OpenProject(root);
+                Success($"Proyecto devuelto a la copia de las {copy.Time:HH:mm} del {copy.Time:dd/MM}. Lo de antes quedó en otra copia.");
+            }
+            catch (Exception e) { Error("No se pudo restaurar: " + e.Message); }
+        }
+
+        /// <summary>The list of copies: when, why and how big; restore or open the folder.</summary>
+        public void HistoryDialog()
+        {
+            if (!HasProject) return;
+            var d = ShowDialog("Historial de versiones", 46);
+            var list = Ui.Column(4);
+            void Fill()
+            {
+                list.Clear();
+                var copies = ProjectBackups.List(ProjectRoot);
+                if (copies.Count == 0) list.Add(Ui.Hint("Aún no hay copias. Se hace una cada 10 minutos si has cambiado algo, o ahora con «Hacer una copia»."));
+                foreach (var c in copies)
+                {
+                    var copy = c;
+                    var row = Ui.Row(10).Pad(10, 6).Bg("panel_alt").Round(4);
+                    var texts = Ui.Column(1).Grow();
+                    string why = c.Reason == "auto" ? "automática" : c.Reason == "manual" ? "a mano" : c.Reason == "antes_de_restaurar" ? "antes de restaurar" : c.Reason;
+                    texts.With(Ui.Text($"{c.Time:dd/MM/yyyy HH:mm}", bold: true), Ui.Text($"{why} · {c.Bytes / 1024} KB", 0.85f, dim: true));
+                    row.With(texts, Ui.Button("Restaurar", () => Confirm("Restaurar copia",
+                        $"¿Volver el proyecto a como estaba el {c.Time:dd/MM} a las {c.Time:HH:mm}? Antes se guarda una copia de cómo está ahora.",
+                        "Restaurar", () => { CloseDialog(d); RestoreBackup(copy); }), Ui.ButtonKind.Normal));
+                    list.Add(row);
+                }
+            }
+            Fill();
+            d.Body.With(Ui.Hint($"Copias en «{ProjectBackups.Folder}/» del proyecto: una cada 10 minutos solo si cambiaste algo, como mucho {ProjectBackups.MaxCopies} (se borran las más viejas)."), list);
+            d.Buttons.With(Ui.Button("Abrir la carpeta", () => Application.OpenURL("file://" + ProjectBackups.FolderOf(ProjectRoot)), Ui.ButtonKind.Flat),
+                Ui.Button("Hacer una copia ahora", () => { MakeBackup("manual"); Root.schedule.Execute(Fill).StartingIn(1500); }, Ui.ButtonKind.Normal),
+                Ui.Button("Cerrar", () => CloseDialog(d), Ui.ButtonKind.Primary));
+        }
 
         /// <summary>Opens an image in the pixel editor (optionally focused on one tile) and shows its panel.</summary>
         public void OpenRetouch(string fullPath, PixelRect? tile = null, int tileWidth = 0, int tileHeight = 0)
@@ -852,7 +972,9 @@ namespace CTEditor.App
                 case "borrar_seleccion": if (ActiveEditor == "mapa") Maps?.DeleteSelection(); break;
                 case "capa_siguiente": if (Maps?.Map != null) Maps.SetActiveLayer(Maps.ActiveLayer + 1); break;
                 case "capa_anterior": if (Maps?.Map != null) Maps.SetActiveLayer(Maps.ActiveLayer - 1); break;
-                case "buscar": Info("La búsqueda en todo el proyecto llegará con los editores de mapas y eventos."); break;
+                case "buscar": CommandPalette.Show(this); break;
+                case "copia": MakeBackup("manual"); break;
+                case "historial": HistoryDialog(); break;
                 case "seleccion": MapOnly(MapTool.Select); break;
                 case "inicio": MapOnly(MapTool.PlayerStart); break;
                 case "zona": MapOnly(MapTool.EncounterPaint); break;

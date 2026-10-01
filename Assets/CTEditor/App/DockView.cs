@@ -200,6 +200,14 @@ namespace CTEditor.App
             tab.style.borderTopColor = active ? Ui.C("acento") : new Color(0, 0, 0, 0);
             tab.style.borderRightWidth = 1;
             tab.style.borderRightColor = Ui.C("borde");
+            // Icon + name (the icon helps to find a window at a glance; the name stays).
+            var info = PanelCatalog.Find(id);
+            if (IconArt.Has(info?.Icon))
+            {
+                var icon = Icons.Element(info.Icon, Mathf.Round(Ui.FontSize * 1.05f), Ui.C(active ? "acento" : "texto_suave"));
+                icon.style.marginRight = -1;
+                tab.Add(icon);
+            }
             var label = Ui.Text(PanelCatalog.LabelOf(id), 0.95f, dim: !active, bold: active);
             label.pickingMode = PickingMode.Ignore;
             tab.Add(label);

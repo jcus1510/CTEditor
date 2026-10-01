@@ -34,9 +34,11 @@ namespace CTEditor.Workspace
         {
             // General
             new ShortcutAction("guardar", "Guardar", "Ctrl+S"),
+            new ShortcutAction("copia", "Hacer una copia de seguridad ahora", "Ctrl+Mayús+S"),
+            new ShortcutAction("historial", "Historial de versiones…", "Ctrl+Mayús+H"),
             new ShortcutAction("deshacer", "Deshacer", "Ctrl+Z"),
             new ShortcutAction("rehacer", "Rehacer", "Ctrl+Y"),
-            new ShortcutAction("buscar", "Buscar en todo el proyecto", "Ctrl+P"),
+            new ShortcutAction("buscar", "Buscar una orden, ventana o mapa", "Ctrl+P"),
             new ShortcutAction("nuevo_mapa", "Nuevo mapa…", "Ctrl+N"),
             new ShortcutAction("atajos", "Ver y cambiar los atajos", "F1"),
             new ShortcutAction("entorno", "Personalizar el entorno…", "Ctrl+Comma"),
@@ -68,7 +70,7 @@ namespace CTEditor.Workspace
             new ShortcutAction("capa_anterior", "Capa anterior", "PageUp", "Capas"),
             new ShortcutAction("capa_nueva", "Nueva capa", "Ctrl+Mayús+N", "Capas"),
             new ShortcutAction("capa_ver", "Mostrar u ocultar la capa elegida", "Ctrl+H", "Capas"),
-            new ShortcutAction("capa_bloquear", "Bloquear o desbloquear la capa elegida", "Ctrl+Mayús+H", "Capas"),
+            new ShortcutAction("capa_bloquear", "Bloquear o desbloquear la capa elegida", "Ctrl+Mayús+K", "Capas"),
             new ShortcutAction("capas_auto", "Capas automáticas sí / no", "Ctrl+L", "Capas"),
             // Tiles: modes by number (like the collision modes of GB Studio)
             new ShortcutAction("modo_pintar", "Tiles: pintar", "Alpha1", "Tiles"),
@@ -88,6 +90,7 @@ namespace CTEditor.Workspace
             new ShortcutAction("ventana_retoque", "Ir a la ventana Retoque", "Ctrl+Alpha7", "Ventanas"),
             new ShortcutAction("ventana_inspector", "Ir a la ventana Propiedades", "Ctrl+Alpha8", "Ventanas"),
             new ShortcutAction("ventana_mapas", "Ir a la ventana Mapas", "Ctrl+Alpha9", "Ventanas"),
+            new ShortcutAction("ventana_problemas", "Ir a la ventana Problemas", "Ctrl+Mayús+M", "Ventanas"),
         };
 
         /// <summary>The order of the categories in lists (others go after, alphabetically).</summary>

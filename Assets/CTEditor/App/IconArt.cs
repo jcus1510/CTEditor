@@ -272,6 +272,92 @@ namespace CTEditor.App
             yield return Poly(12.3f, 9.3f, 14.7f, 11.7f, 11f, 13f);
         }
 
+        private static IEnumerable<Shape> FoldedMap()
+        {
+            // Three folded panels.
+            yield return Poly(3f, 6f, 9f, 3.5f, 9f, 18f, 3f, 20.5f);
+            yield return Poly(10f, 3.5f, 14f, 6f, 14f, 20.5f, 10f, 18f);
+            yield return Poly(15f, 6f, 21f, 3.5f, 21f, 18f, 15f, 20.5f);
+        }
+
+        private static IEnumerable<Shape> TreeList()
+        {
+            yield return Box(3f, 3.5f, 7f, 4.5f);
+            yield return Box(5.6f, 8f, 1.8f, 10.8f);
+            yield return Box(5.6f, 11.6f, 5f, 1.8f);
+            yield return Box(5.6f, 17f, 5f, 1.8f);
+            yield return Box(11f, 10f, 10f, 4.5f);
+            yield return Box(11f, 15.5f, 10f, 4.5f);
+        }
+
+        private static IEnumerable<Shape> Sliders()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                float y = 5f + i * 7f;
+                yield return Box(3f, y - 0.9f, 18f, 1.8f);
+                yield return Circle(i == 1 ? 15f : 8f, y, 2.8f);
+            }
+        }
+
+        private static IEnumerable<Shape> FolderIcon()
+        {
+            yield return Poly(2.5f, 5f, 9.5f, 5f, 11.5f, 7.5f, 21.5f, 7.5f, 21.5f, 19.5f, 2.5f, 19.5f);
+            yield return Cut(Box(4.5f, 10f, 15f, 1.6f));
+        }
+
+        private static IEnumerable<Shape> Warning()
+        {
+            yield return Poly(12f, 2.5f, 22f, 20.5f, 2f, 20.5f);
+            yield return Cut(Box(11f, 8.5f, 2f, 6.5f));
+            yield return Cut(Circle(12f, 17.5f, 1.3f));
+        }
+
+        private static IEnumerable<Shape> Database()
+        {
+            yield return Box(4f, 5f, 16f, 14f);
+            yield return Circle(12f, 5f, 0f);
+            foreach (var y in new[] { 5f, 19f })
+            {
+                // Ellipses approximated by polygons (top and bottom of the cylinder).
+                var pts = new List<float>();
+                for (int i = 0; i < 16; i++) { double a = i / 16.0 * Math.PI * 2; pts.Add(12f + 8f * (float)Math.Cos(a)); pts.Add(y + 2.6f * (float)Math.Sin(a)); }
+                yield return Poly(pts.ToArray());
+            }
+            var top = new List<float>();
+            for (int i = 0; i < 16; i++) { double a = i / 16.0 * Math.PI * 2; top.Add(12f + 6.2f * (float)Math.Cos(a)); top.Add(5f + 1.4f * (float)Math.Sin(a)); }
+            yield return Cut(Poly(top.ToArray()));
+            yield return Cut(Box(4f, 11.2f, 16f, 1.4f));
+        }
+
+        private static IEnumerable<Shape> Globe()
+        {
+            yield return Ring(12f, 12f, 9f, 2f);
+            yield return Box(3.5f, 11.1f, 17f, 1.8f);
+            var meridian = new List<float>();
+            var inner = new List<float>();
+            for (int i = 0; i < 24; i++)
+            {
+                double a = i / 24.0 * Math.PI * 2;
+                meridian.Add(12f + 4.2f * (float)Math.Cos(a)); meridian.Add(12f + 8.5f * (float)Math.Sin(a));
+                inner.Add(12f + 2.4f * (float)Math.Cos(a)); inner.Add(12f + 6.8f * (float)Math.Sin(a));
+            }
+            yield return Poly(meridian.ToArray());
+            yield return Cut(Poly(inner.ToArray()));
+            yield return Box(11.1f, 3.5f, 1.8f, 17f);
+        }
+
+        private static IEnumerable<Shape> Floppy()
+        {
+            // A floppy disk: body with a cut corner, the label below and the shutter on top.
+            yield return Poly(3.5f, 3.5f, 17f, 3.5f, 20.5f, 7f, 20.5f, 20.5f, 3.5f, 20.5f);
+            yield return Cut(Box(7f, 3.5f, 8.5f, 5.5f));
+            yield return Box(12.2f, 4.5f, 2f, 3.5f);
+            yield return Cut(Box(6.5f, 12f, 11f, 8.5f));
+            yield return Box(8.5f, 14.2f, 7f, 1.4f);
+            yield return Box(8.5f, 17f, 7f, 1.4f);
+        }
+
         private static IEnumerable<Shape> Switch()
         {
             // A toggle switch: a rounded track with its knob on the right (on).
@@ -344,6 +430,15 @@ namespace CTEditor.App
             ["rect_relleno"] = () => new[] { Box(4f, 5f, 16f, 14f) },
             ["reemplazar"] = Replace,
             ["interruptor"] = Switch,
+            ["guardar"] = Floppy,
+            ["mapa"] = FoldedMap,
+            ["arbol"] = TreeList,
+            ["propiedades"] = Sliders,
+            ["carpeta"] = FolderIcon,
+            ["eventos"] = () => new[] { Poly(13.5f, 2.5f, 5f, 13.5f, 11f, 13.5f, 9.5f, 21.5f, 19f, 9.5f, 13f, 9.5f) },
+            ["aviso"] = Warning,
+            ["base"] = Database,
+            ["mundo"] = Globe,
             ["capas_todas"] = () => new[] { Box(3f, 3f, 8f, 8f), Box(13f, 3f, 8f, 8f), Box(3f, 13f, 8f, 8f), Box(13f, 13f, 8f, 8f) },
             ["ver"] = () => Eye(true),
             ["oculto"] = () => Eye(false),

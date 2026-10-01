@@ -348,6 +348,27 @@ namespace CTEditor.Tests.EditMode
             Assert.AreEqual(MapTile.Encode(2, 7), session.Map.Layers[0].Get(1, 1));
         }
 
+        [Test]
+        public void The_problem_finder_points_at_what_is_missing()
+        {
+            var session = new MapEditorSession(new MemoryMaps(), new NoTilesets());
+            Assert.AreEqual(ProblemLevel.Tip, ProblemFinder.Check(session).Single().Level, "no maps yet");
+
+            session.CreateMap("Ruta", width: 4, height: 4, tilesetId: "falta");
+            var area = session.AddArea("Hierba del lago", wholeMap: false);
+            session.AddTable(area.Id, "hierba");
+            var problems = ProblemFinder.Check(session);
+            Assert.IsFalse(problems.Any(p => p.Text.Contains("inicio del jugador")), "the first map gets the start");
+            Assert.IsTrue(problems.Any(p => p.Level == ProblemLevel.Error && p.Text.Contains("«falta»")));
+            Assert.IsTrue(problems.Any(p => p.Text.Contains("no tiene casillas pintadas")));
+            Assert.IsTrue(problems.Any(p => p.Text.Contains("sin especies")));
+            Assert.IsTrue(problems.All(p => p.MapId == null || p.MapId == session.Map.Id));
+            Assert.AreEqual(ProblemLevel.Error, problems[0].Level, "errors first");
+
+            session.SetPlayerStart("", 0, 0);
+            Assert.IsTrue(ProblemFinder.Check(session).Any(p => p.Level == ProblemLevel.Error && p.Text.Contains("inicio del jugador")));
+        }
+
         private sealed class MemoryMaps : IMapRepository
         {
             private readonly Dictionary<string, MapDefinition> _maps = new Dictionary<string, MapDefinition>();

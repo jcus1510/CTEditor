@@ -10,7 +10,9 @@ namespace CTEditor.Workspace
     {
         public string Id { get; }
         public string Label { get; }
-        public PanelInfo(string id, string label) { Id = id; Label = label; }
+        /// <summary>Nombre del icono de su pestaña (lo dibuja la aplicación; vacío = sin icono).</summary>
+        public string Icon { get; }
+        public PanelInfo(string id, string label, string icon = "") { Id = id; Label = label; Icon = icon ?? ""; }
     }
 
     /// <summary>Los paneles que existen. Los ids se guardan en el archivo del entorno: no cambiarlos.</summary>
@@ -29,32 +31,34 @@ namespace CTEditor.Workspace
         public const string Database = "base_datos";
         public const string World = "mundo";
         public const string Encounters = "encuentros";
+        public const string Problems = "problemas";
 
         private static readonly List<PanelInfo> Panels = new List<PanelInfo>
         {
-            new PanelInfo(Map, "Mapa"),
-            new PanelInfo(MapTree, "Mapas"),
-            new PanelInfo(Palette, "Tiles"),
-            new PanelInfo(Layers, "Capas"),
-            new PanelInfo(Inspector, "Propiedades"),
-            new PanelInfo(Assets, "Recursos"),
-            new PanelInfo(Events, "Eventos"),
-            new PanelInfo(Messages, "Avisos"),
-            new PanelInfo(PixelEditor, "Retoque"),
-            new PanelInfo(Game, "Juego"),
-            new PanelInfo(Database, "Base de datos"),
-            new PanelInfo(World, "Mundo"),
-            new PanelInfo(Encounters, "Encuentros"),
+            new PanelInfo(Map, "Mapa", "mapa"),
+            new PanelInfo(MapTree, "Mapas", "arbol"),
+            new PanelInfo(Palette, "Tiles", "rejilla"),
+            new PanelInfo(Layers, "Capas", "prioridad"),
+            new PanelInfo(Inspector, "Propiedades", "propiedades"),
+            new PanelInfo(Assets, "Recursos", "carpeta"),
+            new PanelInfo(Events, "Eventos", "eventos"),
+            new PanelInfo(Messages, "Avisos", "aviso"),
+            new PanelInfo(PixelEditor, "Retoque", "retocar"),
+            new PanelInfo(Game, "Juego", "jugar"),
+            new PanelInfo(Database, "Base de datos", "base"),
+            new PanelInfo(World, "Mundo", "mundo"),
+            new PanelInfo(Encounters, "Encuentros", "zona"),
+            new PanelInfo(Problems, "Problemas", "aviso"),
         };
 
         public static IReadOnlyList<PanelInfo> All => Panels;
 
         /// <summary>Un módulo nuevo añade su panel (o cambia el nombre de uno que ya existe) sin tocar esta lista.</summary>
-        public static void Register(string id, string label)
+        public static void Register(string id, string label, string icon = "")
         {
             if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException("El panel necesita un id.", nameof(id));
             Panels.RemoveAll(p => p.Id == id);
-            Panels.Add(new PanelInfo(id, label));
+            Panels.Add(new PanelInfo(id, label, icon));
         }
 
         public static PanelInfo Find(string id) => Panels.FirstOrDefault(p => p.Id == id);
