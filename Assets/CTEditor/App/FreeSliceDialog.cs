@@ -156,8 +156,11 @@ namespace CTEditor.App
                 Ui.Check("Ajustar a la rejilla", _snap, on => _snap = on));
             side.Add(zoomRow);
 
-            side.Add(Ui.SectionTitle("Piezas", Ui.IconButton("dado", DetectPieces,
-                "Detectar objetos: busca los grupos de píxeles sueltos y crea una pieza para cada uno (luego ajústalas)")));
+            var tools = Ui.Row(2);
+            tools.With(
+                Ui.IconButton("relleno", AutotileFromFile, "Autotile desde otra imagen (RPG Maker XP 3×4, VX/MV 2×3 o 47 piezas): se detecta por las medidas"),
+                Ui.IconButton("dado", DetectPieces, "Detectar objetos: busca los grupos de píxeles sueltos y crea una pieza para cada uno (luego ajústalas)"));
+            side.Add(Ui.SectionTitle("Piezas", tools));
             var listScroll = Ui.Scroll().Grow();
             _list = Ui.Column(2);
             listScroll.Add(_list);
@@ -222,7 +225,7 @@ namespace CTEditor.App
         {
             _pieceLayer.Fill();
             _pieceLayer.Clear();
-            foreach (var p in _set.Pieces)
+            foreach (var p in _set.Pieces.Where(x => string.IsNullOrEmpty(x.ImagePath)))
             {
                 var color = ColorOf(p);
                 var r = p.Source;
@@ -284,7 +287,7 @@ namespace CTEditor.App
                     return;
                 }
             }
-            var hit = _set.Pieces.LastOrDefault(pc => p.x >= pc.Source.X && p.x < pc.Source.Right && p.y >= pc.Source.Y && p.y < pc.Source.Bottom);
+            var hit = _set.Pieces.LastOrDefault(pc => string.IsNullOrEmpty(pc.ImagePath) && p.x >= pc.Source.X && p.x < pc.Source.Right && p.y >= pc.Source.Y && p.y < pc.Source.Bottom);
             if (hit != null)
             {
                 Select(hit);
@@ -461,7 +464,9 @@ namespace CTEditor.App
                 row.RegisterCallback<ClickEvent>(_ => Select(piece));
                 var text = Ui.Column();
                 text.Grow();
-                text.With(Ui.Text(p.Name), Ui.Hint($"{p.Source.Width} × {p.Source.Height} px · {Blocks(p.Source)}"));
+                text.With(Ui.Text(p.Name), Ui.Hint(p.IsAutotile
+                    ? $"Autotile {FormatNames[(int)p.Format]}" + (string.IsNullOrEmpty(p.ImagePath) ? "" : $" · {p.ImagePath}")
+                    : $"{p.Source.Width} × {p.Source.Height} px · {Blocks(p.Source)}"));
                 row.With(Ui.Swatch(ColorOf(p), 12), text, Ui.IconButton("papelera", () => Remove(piece), "Quitar la pieza"));
                 _list.Add(row);
             }
@@ -471,6 +476,22 @@ namespace CTEditor.App
             var sel = _selected;
             _details.Add(Ui.SectionTitle("Pieza elegida"));
             _details.Add(Ui.TextBox("Nombre", sel.Name, v => { sel.Name = v; DrawPieces(); }, delayed: true));
+            // Normal piece or autotile (its 47 pieces are built from it and join by themselves when painting).
+            var kinds = Ui.Row(4).Wrap();
+            for (int f = 0; f < FormatNames.Length; f++)
+            {
+                var format = (AutotileFormat)f;
+                kinds.Add(Ui.Chip(f == 0 ? "Pieza" : "Autotile " + FormatNames[f], sel.Format == format, () => SetFormat(sel, format)));
+            }
+            _details.Add(kinds);
+            var detected = AutotileLayout.Detect(sel.Source.Width, sel.Source.Height, out _);
+            if (detected != AutotileFormat.None && sel.Format == AutotileFormat.None)
+                _details.Add(Ui.Hint($"Por las medidas parece un autotile {FormatNames[(int)detected]}."));
+            if (sel.IsAutotile)
+            {
+                _details.Add(Ui.Hint($"En la paleta: sus 47 piezas, desde el tile n.º {_set.FirstTile(sel, _columns, _gridRows)}. Pinta con cualquiera: los bordes salen solos."));
+                return;
+            }
             var r = sel.Source;
             var a = Ui.Row(6);
             a.With(Ui.NumberBox("X", r.X, 0, _image.Width - 1, v => Reshape(sel, new PixelRect(v, sel.Source.Y, sel.Source.Width, sel.Source.Height)), labelWidth: 20),
@@ -479,6 +500,53 @@ namespace CTEditor.App
             b.With(Ui.NumberBox("An.", r.Width, 1, _image.Width, v => Reshape(sel, new PixelRect(sel.Source.X, sel.Source.Y, v, sel.Source.Height)), "Ancho en píxeles", 28),
                    Ui.NumberBox("Al.", r.Height, 1, _image.Height, v => Reshape(sel, new PixelRect(sel.Source.X, sel.Source.Y, sel.Source.Width, v)), "Alto en píxeles", 28));
             _details.With(a, b, Ui.Hint($"En la paleta: {Blocks(r)}, desde el tile n.º {_set.FirstTile(sel, _columns, _gridRows)}. La pieza se apoya abajo del bloque."));
+        }
+
+        private static readonly string[] FormatNames = { "pieza", "XP", "VX / MV", "47 piezas" };
+
+        private void SetFormat(FreePiece piece, AutotileFormat format)
+        {
+            if (piece.Format == format) return;
+            if (format != AutotileFormat.None)
+            {
+                if (_columns < AutotileLayout.BlockWidth) { _shell.Warn($"Un autotile necesita un tileset de al menos {AutotileLayout.BlockWidth} columnas."); return; }
+                var problem = AutotileLayout.Problem(piece.Source, format);
+                if (problem != null) { _shell.Warn(problem); return; }
+            }
+            var old = piece.Format;
+            piece.Format = format;
+            if (!_set.Reshape(piece, piece.Source, _settings, _columns)) { piece.Format = old; _shell.Warn("No cabe."); return; }
+            if (format != AutotileFormat.None && piece.Name.StartsWith("Pieza ")) piece.Name = "Autotile " + (_set.Pieces.Count(p => p.IsAutotile));
+            Redraw();
+            RefreshList();
+        }
+
+        private void AutotileFromFile()
+        {
+            if (_columns < AutotileLayout.BlockWidth) { _shell.Warn($"Un autotile necesita un tileset de al menos {AutotileLayout.BlockWidth} columnas."); return; }
+            FolderBrowser.PickFile(_shell, "Autotile (RPG Maker XP 3×4, VX/MV 2×3 o 47 piezas)", string.Join(",", ImageFile.ImportExtensions), file =>
+            {
+                try
+                {
+                    var img = ImageFile.Read(file);
+                    var format = AutotileLayout.Detect(img.Width, img.Height, out _);
+                    if (format == AutotileFormat.None)
+                    {
+                        _shell.Warn($"No se reconoce como autotile ({img.Width} × {img.Height}): XP mide 3 × 4 tiles, VX/MV 2 × 3 y el de 47 piezas 8 × 6.");
+                        return;
+                    }
+                    var rel = ProjectLayout.Normalize(Path.GetRelativePath(_shell.ProjectRoot, file));
+                    if (rel.StartsWith("..")) { _shell.Warn("La imagen tiene que estar dentro del proyecto (impórtala antes en Recursos)."); return; }
+                    // XP animated autotiles repeat the frame to the right: the first frame is used.
+                    int st = AutotileLayout.SourceTile(new PixelRect(0, 0, img.Width, img.Height), format);
+                    int w = format == AutotileFormat.Xp ? st * 3 : img.Width;
+                    var piece = _set.Add(Path.GetFileNameWithoutExtension(file), new PixelRect(0, 0, w, img.Height), _settings, _columns, _gridRows, format, rel);
+                    Select(piece);
+                    Redraw();
+                    _shell.Success($"Autotile {FormatNames[(int)format]} añadido: «{piece.Name}».");
+                }
+                catch (Exception e) { _shell.Error("No se pudo leer el autotile: " + e.Message); }
+            });
         }
 
         // ── Save ─────────────────────────────────────────────────────────────────────────────────

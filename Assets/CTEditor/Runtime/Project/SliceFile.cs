@@ -14,6 +14,8 @@ namespace CTEditor.Project
     {
         private static readonly string[] KindKeys = { "tileset", "personaje", "sprites" };
 
+        private static readonly string[] AutotileKeys = { "no", "xp", "vx", "47" };
+
         private static readonly string[] PieceKeys = { "auto", "suelo", "detalle", "encima" };
 
         public SliceDefinition Slice { get; }
@@ -50,9 +52,14 @@ namespace CTEditor.Project
             {
                 var pieces = new List<object>();
                 foreach (var f in Free.Pieces)
-                    pieces.Add(new JsonObject().Set("nombre", f.Name ?? "")
+                {
+                    var po = new JsonObject().Set("nombre", f.Name ?? "")
                         .Set("x", f.Source.X).Set("y", f.Source.Y).Set("ancho", f.Source.Width).Set("alto", f.Source.Height)
-                        .Set("columna", f.Column).Set("fila", f.Row));
+                        .Set("columna", f.Column).Set("fila", f.Row);
+                    if (f.IsAutotile) po["autotile"] = AutotileKeys[(int)f.Format];
+                    if (!string.IsNullOrEmpty(f.ImagePath)) po["imagen"] = f.ImagePath;
+                    pieces.Add(po);
+                }
                 json["piezas_libres"] = new JsonObject().Set("filas_base", Free.BaseRows).Set("piezas", pieces);
             }
             json["tiles"] = AttributesToJson(Attributes);
@@ -93,7 +100,9 @@ namespace CTEditor.Project
                     if (!(po is JsonObject f)) continue;
                     var rect = new PixelRect(f.GetInt("x"), f.GetInt("y"), f.GetInt("ancho"), f.GetInt("alto"));
                     if (rect.Width <= 0 || rect.Height <= 0) continue;
-                    file.Free.Restore(new FreePiece(f.GetString("nombre", ""), rect, f.GetInt("columna"), f.GetInt("fila")));
+                    int format = Math.Max(0, Array.IndexOf(AutotileKeys, f.GetString("autotile", "no")));
+                    file.Free.Restore(new FreePiece(f.GetString("nombre", ""), rect, f.GetInt("columna"), f.GetInt("fila"))
+                        { Format = (AutotileFormat)format, ImagePath = f.GetString("imagen", "") });
                 }
             }
             foreach (var t in o.GetArray("tiles") ?? new List<object>())

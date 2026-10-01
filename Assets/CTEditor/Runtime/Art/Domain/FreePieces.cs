@@ -17,6 +17,12 @@ namespace CTEditor.Art.Domain
         /// <summary>Where its block goes in the extra rows under the grid (in tiles). Fixed so the maps keep their tiles.</summary>
         public int Column { get; set; }
         public int Row { get; set; }
+        /// <summary>An autotile (its 47 pieces take a block of 8 × 6 tiles) or a normal piece.</summary>
+        public AutotileFormat Format { get; set; }
+        /// <summary>The image it comes from, when it is not the tileset's own («graficos/autotiles/agua.png»; empty = this image).</summary>
+        public string ImagePath { get; set; } = "";
+
+        public bool IsAutotile => Format != AutotileFormat.None;
 
         public FreePiece(string name, PixelRect source, int column = 0, int row = 0)
         {
@@ -26,10 +32,13 @@ namespace CTEditor.Art.Domain
             Row = row;
         }
 
-        public int TilesWide(SliceSettings s) => Math.Max(1, (Source.Width + s.TileWidth - 1) / s.TileWidth);
-        public int TilesHigh(SliceSettings s) => Math.Max(1, (Source.Height + s.TileHeight - 1) / s.TileHeight);
+        public int TilesWide(SliceSettings s) => IsAutotile ? AutotileLayout.BlockWidth : Math.Max(1, (Source.Width + s.TileWidth - 1) / s.TileWidth);
+        public int TilesHigh(SliceSettings s) => IsAutotile ? AutotileLayout.BlockHeight : Math.Max(1, (Source.Height + s.TileHeight - 1) / s.TileHeight);
 
-        public FreePiece Clone() => new FreePiece(Name, Source, Column, Row);
+        /// <summary>The tile, inside its block, of one of the 47 pieces of an autotile.</summary>
+        public (int column, int row) VariantCell(int variant) => (Column + variant % AutotileLayout.BlockWidth, Row + variant / AutotileLayout.BlockWidth);
+
+        public FreePiece Clone() => new FreePiece(Name, Source, Column, Row) { Format = Format, ImagePath = ImagePath };
     }
 
     /// <summary>
@@ -66,10 +75,11 @@ namespace CTEditor.Art.Domain
         }
 
         /// <summary>Adds a piece in the first free place (left to right, top to bottom). Null with problems if it cannot.</summary>
-        public FreePiece Add(string name, PixelRect source, SliceSettings s, int columns, int gridRows)
+        public FreePiece Add(string name, PixelRect source, SliceSettings s, int columns, int gridRows,
+            AutotileFormat format = AutotileFormat.None, string imagePath = "")
         {
             if (columns <= 0) return null;
-            var piece = new FreePiece(name, source);
+            var piece = new FreePiece(name, source) { Format = format, ImagePath = imagePath ?? "" };
             int w = piece.TilesWide(s), h = piece.TilesHigh(s);
             if (w > columns) return null;
             if (BaseRows < 0) BaseRows = gridRows;
@@ -96,7 +106,7 @@ namespace CTEditor.Art.Domain
         public bool Reshape(FreePiece piece, PixelRect source, SliceSettings s, int columns)
         {
             if (!_pieces.Contains(piece) || source.Width <= 0 || source.Height <= 0) return false;
-            if ((source.Width + s.TileWidth - 1) / s.TileWidth > columns) return false;
+            if (!piece.IsAutotile && (source.Width + s.TileWidth - 1) / s.TileWidth > columns) return false;
             piece.Source = source;
             int w = piece.TilesWide(s), h = piece.TilesHigh(s);
             if (piece.Column + w <= columns && Free(s, piece.Column, piece.Row, w, h, piece)) return true;
@@ -147,7 +157,7 @@ namespace CTEditor.Art.Domain
         /// The image the tileset really uses: the original grid and, under it, the block of each piece (the piece standing on
         /// the bottom-left of its block, the rest transparent).
         /// </summary>
-        public PixelImage Compose(PixelImage source, SliceSettings s)
+        public PixelImage Compose(PixelImage source, SliceSettings s, Func<string, PixelImage> loadImage = null)
         {
             if (source == null) throw new ArgumentNullException(nameof(source));
             int columns = s.ColumnsFor(source.Width), gridRows = s.RowsFor(source.Height);
@@ -164,6 +174,22 @@ namespace CTEditor.Art.Domain
 
             foreach (var p in _pieces)
             {
+                if (p.IsAutotile)
+                {
+                    var from = string.IsNullOrEmpty(p.ImagePath) ? source : SafeLoad(loadImage, p.ImagePath);
+                    if (from == null) continue;
+                    var pieces = AutotileLayout.Build(from, p.Source, p.Format, s.TileWidth, s.TileHeight);
+                    for (int v = 0; v < AutotileLayout.Variants; v++)
+                    {
+                        var (vc, vr) = p.VariantCell(v);
+                        var dest = s.CellRect(vc, start + vr);
+                        int px = (v % AutotileLayout.BlockWidth) * s.TileWidth, py = (v / AutotileLayout.BlockWidth) * s.TileHeight;
+                        for (int y = 0; y < s.TileHeight; y++)
+                        for (int x = 0; x < s.TileWidth; x++)
+                            if (image.Contains(dest.X + x, dest.Y + y)) image[dest.X + x, dest.Y + y] = pieces[px + x, py + y];
+                    }
+                    continue;
+                }
                 int w = p.TilesWide(s), h = p.TilesHigh(s);
                 int padY = h * s.TileHeight - p.Source.Height; // stands on the bottom of its block
                 for (int cy = 0; cy < h * s.TileHeight; cy++)
@@ -178,6 +204,13 @@ namespace CTEditor.Art.Domain
                 }
             }
             return image;
+        }
+
+        private static PixelImage SafeLoad(Func<string, PixelImage> load, string path)
+        {
+            if (load == null) return null;
+            try { return load(path); }
+            catch (Exception) { return null; } // a missing autotile image leaves its block empty (Problems says so)
         }
 
         /// <summary>

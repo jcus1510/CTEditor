@@ -31,7 +31,10 @@ namespace CTEditor.App
             Tileset = tileset;
             FullPath = fullPath;
             Image = Png.Read(fullPath);
-            if (tileset.Free != null && !tileset.Free.IsEmpty) Image = tileset.Free.Compose(Image, tileset.Slice); // hand-cut pieces under the grid
+            // Hand-cut pieces and autotiles under the grid (autotiles may come from their own image).
+            string root = ProjectRootOf(fullPath, tileset.ImagePath);
+            if (tileset.Free != null && !tileset.Free.IsEmpty)
+                Image = tileset.Free.Compose(Image, tileset.Slice, p => ImageFile.Read(Path.Combine(root, p)));
             // Strips whose height is a whole number of tile rows, so no tile is split between two textures.
             int pitch = tileset.TileHeight + tileset.Slice.SpacingY;
             int max = Math.Max(pitch, Math.Min(SystemInfo.maxTextureSize, 8192) / pitch * pitch);
@@ -43,6 +46,14 @@ namespace CTEditor.App
                 _owned.Add(tex);
                 _strips.Add((tex, y, h));
             }
+        }
+
+        /// <summary>The project folder: the image's full path without its relative path.</summary>
+        private static string ProjectRootOf(string fullPath, string relative)
+        {
+            var full = Path.GetFullPath(fullPath).Replace('\\', '/');
+            var rel = (relative ?? "").Replace('\\', '/');
+            return full.EndsWith(rel, StringComparison.OrdinalIgnoreCase) ? full.Substring(0, full.Length - rel.Length) : Path.GetDirectoryName(fullPath);
         }
 
         public static TilesetAtlas TryLoad(Tileset tileset, string projectRoot)

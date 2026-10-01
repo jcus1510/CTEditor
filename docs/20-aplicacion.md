@@ -308,3 +308,22 @@ Herramienta **Puerta** (O) en la barra del mapa:
 el interior con su alfombra. Jugar: entrar y salir. Mover la puerta de fuera y volver a jugar. Quitar la de dentro: la
 ventana Problemas lo dice; Ctrl+Z la devuelve.
 
+### Autotiles (fase 6, B4)
+
+Agua, caminos, acantilados... cuyos bordes se dibujan solos. Se añaden en **Corte libre**:
+
+- **Desde otra imagen** (botón del cubo): se elige el PNG/BMP y se reconoce por sus medidas: **RPG Maker XP** (3 × 4
+  tiles; los animados, de varios fotogramas a lo ancho, usan el primero), **VX / MV** (2 × 3) o **47 piezas** (8 × 6, en el
+  orden de CTEditor). Se **escala** al tile del proyecto (un autotile de XP de 32 px sirve en un proyecto de 16).
+- **Desde esta imagen**: se corta la pieza y en sus opciones se elige «Autotile XP / VX / 47 piezas» (la ventana dice si
+  por las medidas lo parece).
+- Sus **47 piezas** salen al final de la paleta en un bloque de 8 × 6. Se pinta con **cualquiera**: al pintar, rellenar,
+  pegar o **borrar**, la casilla y sus 8 vecinas toman la pieza que les toca. Una esquina solo cuenta si los dos lados
+  que la tocan también son del mismo autotile (por eso son 47); el borde del mapa cuenta como «igual» (el agua que llega
+  al borde no tiene orilla allí), como en RPG Maker. Todo se deshace de una vez.
+- Se guarda en el `.corte.json` (`autotile`: `xp`, `vx` o `47`; `imagen` si viene de otro archivo). El tileset necesita
+  al menos 8 columnas.
+
+**Probar en Unity**: Corte libre de un tileset → importar un autotile de agua de XP → guardar; pintar un lago con el
+lápiz y el rectángulo (los bordes salen solos), borrar en medio (aparece la orilla de dentro), Ctrl+Z.
+

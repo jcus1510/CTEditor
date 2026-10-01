@@ -493,8 +493,8 @@ namespace CTEditor.Editing
 
         private TileStamp CurrentStamp => Tool == MapTool.Eraser ? TileStamp.Eraser : Stamp;
 
-        private List<TileChange> PencilAt(int x, int y, TileStamp stamp) =>
-            AutoLayers ? MapTools.PencilAuto(Map, Tilesets, x, y, stamp, ActiveLayer) : MapTools.Pencil(Map, ActiveLayer, x, y, stamp);
+        private List<TileChange> PencilAt(int x, int y, TileStamp stamp) => AutotileResolver.Resolve(Map, Tilesets,
+            AutoLayers ? MapTools.PencilAuto(Map, Tilesets, x, y, stamp, ActiveLayer) : MapTools.Pencil(Map, ActiveLayer, x, y, stamp));
 
         /// <summary>'secondary' = clic derecho (en las zonas de encuentros, quitar casillas).</summary>
         public void PointerDown(int x, int y, bool secondary = false)
@@ -651,6 +651,7 @@ namespace CTEditor.Editing
         private void Commit(List<TileChange> changes, string label)
         {
             if (changes.Count == 0) return;
+            changes = AutotileResolver.Resolve(Map, Tilesets, changes); // autotiles keep their edges joined
             Run(new Tracked(new TilePaintCommand(Map, changes, label), Map.Id, null, this, changes));
         }
 

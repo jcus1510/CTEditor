@@ -302,7 +302,7 @@ namespace CTEditor.Project
             var slice = SliceFile.LoadFor(image);
             if (slice == null) return null;
             var raw = Png.Read(image);
-            var pixels = slice.Free.Compose(raw, slice.Settings);
+            var pixels = slice.Free.Compose(raw, slice.Settings, p => ImageFile.Read(Path.Combine(_root, p)));
             var ts = new Tileset(id, Path.GetFileNameWithoutExtension(rel), slice.Settings, pixels.Width, pixels.Height, slice.Attributes, rel)
                 { Free = slice.Free, GridRows = slice.Settings.RowsFor(raw.Height) };
             ts.ComputeCoverage(pixels);

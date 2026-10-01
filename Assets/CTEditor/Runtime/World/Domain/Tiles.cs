@@ -236,6 +236,20 @@ namespace CTEditor.World.Domain
         public FreePiece FreePieceOf(int tile) =>
             Free == null || Free.IsEmpty ? null : Free.PieceAt(tile, Slice, Columns, GridRows < 0 ? Rows : GridRows);
 
+        /// <summary>The autotile a tile belongs to (null if it is not one of the 47 pieces of an autotile).</summary>
+        public FreePiece AutotileOf(int tile)
+        {
+            var p = FreePieceOf(tile);
+            return p != null && p.IsAutotile ? p : null;
+        }
+
+        /// <summary>The tile number of one of the 47 pieces of an autotile of this tileset.</summary>
+        public int AutotileTile(FreePiece autotile, int variant)
+        {
+            var (c, r) = autotile.VariantCell(variant);
+            return (Free.StartRow(GridRows < 0 ? Rows : GridRows) + r) * Columns + c;
+        }
+
         /// <summary>Where a tile comes from in the ORIGINAL image (for Retoque): its cell, or the part of its piece.</summary>
         public PixelRect SourceRectOf(int tile)
         {

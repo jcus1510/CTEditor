@@ -134,4 +134,6 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   bloques bajo la rejilla sin cambiar los números de los tiles (`FreePieceSet`). `FreeSliceTests`.
 - **B3 puertas enlazadas**: herramienta Puerta; interior nuevo con su salida en un paso; enlace por id; ir a la otra con
   doble clic; salto al jugar; avisos en Problemas; deshacer en los dos mapas a la vez. `DoorTests`.
+- **B4 autotiles**: XP, VX/MV y 47 piezas detectados por las medidas y escalados; 47 piezas en la paleta; bordes que se
+  recalculan al pintar, rellenar, pegar y borrar (`AutotileResolver`). `AutotileTests`.
 - **Documentación** completa por capítulos (esta carpeta).
