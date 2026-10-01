@@ -128,6 +128,7 @@ Nunca se escribe un color a mano: se usa `Ui.C("token")`.
 
 | Fecha | Cambio |
 |---|---|
+| 2026-10-04 | Ventanas de datos tras la primera prueba: secciones plegables con ▾/▸ (recordadas), cajas de texto que crecen hacia abajo, desplegables con texto pequeño a la derecha (↑/↓ de naturalezas, tipo/categoría/potencia), chips de tipo siempre en su color (el elegido con borde blanco), deslizadores para EVs/IVs, tablas de movimientos, tarjetas de efectos por bloques sobre el fondo alterno con la frase de lo que hacen debajo. |
 | 2026-10-03 | Fase 6 (mundo): corte libre con lupa y cuadros de colores por pieza; herramienta Puerta (icono puerta) con etiqueta «→ destino», marca de salida y rojo si no lleva a nada; pinceles (dado) y piezas (casa) en la cabecera de Tiles, con chip «Pincel: …  ×» mientras se usa uno; ventanas de pinceles y piezas en tarjetas con vista previa de tiles. |
 | 2026-10-02 (4) | Sugerencias 1-6 y 8-10: parpadeo de la «i», asa de arrastre en filas, simulador y plantillas en ventanas aparte (sin cargar Encuentros), `Ui.SectionTitle` en todas las ventanas, densidad compacta, `Ui.Appear` (120 ms, desactivable), acento del tema. Pendiente: 7 (estados vacíos). Futuro: temas propios con fondos transparentes o imagen. |
 | 2026-10-02 (3) | Tabla de encuentros con columnas compartidas; selector de color con degradado; selector de especies con lista virtual, número, tipos de color y filtros; botón «i» de ayuda en la cabecera de cada ventana. |
