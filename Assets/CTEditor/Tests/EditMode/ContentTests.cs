@@ -192,6 +192,34 @@ namespace CTEditor.Tests.EditMode
         }
 
         [Test]
+        public void Changing_to_a_pack_shows_what_changes_and_going_back_leaves_it_the_same()
+        {
+            var pack = Path.Combine(_root, "pack");
+            Directory.CreateDirectory(pack);
+            File.WriteAllText(Path.Combine(pack, "especies.csv"), "id;nombre;tipos;ps;ataque;defensa;atq_esp;def_esp;velocidad\r\n" +
+                "pikachu;Pikachu;electric;35;55;40;50;50;100\r\nraichu;Raichu;electric;60;90;55;90;80;110\r\nzapdos;Zapdos;electric;90;90;85;125;90;100\r\n");
+            var s = new ContentSession(ContentDatabase.Load(_root));
+            string before = s.Db.Table(ContentSchemas.Species).ToCsv();
+            var diff = PackChange.Compare(s.Db, ContentDatabase.Load(pack), s.Index).Single();
+            CollectionAssert.AreEqual(new[] { "zapdos" }, diff.Added);
+            Assert.AreEqual("pikachu", diff.Changed.Single().id);
+            CollectionAssert.AreEqual(new[] { "velocidad" }, diff.Changed.Single().columns);
+            Assert.AreEqual(1, diff.Same, "raichu");
+            Assert.AreEqual(("pichu", 0), diff.Missing.Single());
+
+            s.ApplyPack(ContentDatabase.Load(pack), trashMissing: true);
+            var t = s.Db.Table(ContentSchemas.Species);
+            Assert.AreEqual("100", t.Find("pikachu")["velocidad"]);
+            Assert.AreEqual("1:thunder_shock|5:tackle", t.Find("pikachu")["aprende"], "columns the pack does not have are kept");
+            Assert.IsNotNull(t.Find("zapdos"));
+            Assert.IsNull(t.Find("pichu"));
+            Assert.IsTrue(s.Trash.Any(e => e.Id == "pichu"), "what the pack does not have goes to the trash");
+
+            s.Undo();
+            Assert.AreEqual(before, s.Db.Table(ContentSchemas.Species).ToCsv(), "one undo: exactly as before");
+        }
+
+        [Test]
         public void Ids_are_made_from_names()
         {
             Assert.AreEqual("bola_sombra", ContentIds.Normalize("Bola Sombra!"));

@@ -426,3 +426,14 @@ Lo propio de cada editor de Unity, ya en la aplicación:
 - **Naturalezas**: el **5 × 5** (sube × baja) con la elegida resaltada.
 - **Curvas de experiencia**: barras de XP cada 5 niveles y los totales de las 6 clásicas para comparar.
 
+### Cambiar de generación (C6)
+
+**Proyecto → Cambiar de generación / traer un pack…** (o Datos → Cambiar de generación…):
+
+1. Elegir el pack (Gen1…Gen7 o uno propio).
+2. **Vista previa** por categoría: cuántas fichas son nuevas, cuáles cambian (y en qué columnas), cuántas iguales y
+   cuáles no trae el pack (y si se usan). Se marcan las categorías que se quieren cambiar y qué hacer con lo que el pack
+   no trae: **dejarlo** o mandarlo a la **papelera**.
+3. **Cambiar**: primero una copia de seguridad (Historial de versiones), luego se aplica en un solo paso. Las columnas
+   que solo tiene el proyecto se conservan. **Ctrl+Z** en una ventana de datos lo deja exactamente como estaba.
+

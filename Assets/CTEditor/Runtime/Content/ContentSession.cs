@@ -280,6 +280,51 @@ namespace CTEditor.Content
             return left;
         }
 
+        // ── Changing generation (a pack) ────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// Moves the project to a pack, as ONE undo step: rows of the pack replace the ones with the same id (columns only
+        /// the project has are kept), new ones are added, and the ones the pack does not have stay or go to the trash.
+        /// Only the chosen categories (null = all the pack has).
+        /// </summary>
+        public int ApplyPack(ContentDatabase pack, bool trashMissing, IEnumerable<string> categories = null)
+        {
+            var keys = (categories ?? pack.Tables.Select(t => t.Schema.Key)).Where(k => pack.Tables.Any(t => t.Schema.Key == k)).ToList();
+            int changed = 0;
+            var trashed = new List<TrashEntry>();
+            Change("cambiar al pack", keys, () =>
+            {
+                foreach (var key in keys)
+                {
+                    var from = pack.Table(key);
+                    var mine = Db.Table(key);
+                    var columns = from.Columns.ToList();
+                    foreach (var c in mine.Columns) if (!columns.Contains(c)) columns.Add(c);
+                    var result = new List<ContentRecord>();
+                    foreach (var r in from.Records)
+                    {
+                        var id = from.IdOf(r);
+                        var old = mine.Find(id);
+                        var rec = old?.Clone() ?? new ContentRecord();
+                        foreach (var c in from.Columns) rec[c] = r[c];
+                        if (old == null || !old.SameAs(rec)) changed++;
+                        result.Add(rec);
+                    }
+                    foreach (var r in mine.Records.Where(r => !from.Contains(mine.IdOf(r))))
+                    {
+                        if (trashMissing) { trashed.Add(new TrashEntry(key, r.Clone(), DateTime.Now)); changed++; }
+                        else result.Add(r);
+                    }
+                    mine.Columns.Clear();
+                    mine.Columns.AddRange(columns);
+                    mine.Records.Clear();
+                    mine.Records.AddRange(result);
+                }
+            });
+            if (trashed.Count > 0) { Trash.AddRange(trashed); SaveTrash(); }
+            return changed;
+        }
+
         // ── Trash ──────────────────────────────────────────────────────────────────────────────
 
         private string TrashPath => Db.Folder == null ? null : Path.Combine(Db.Folder, "papelera.csv");

@@ -143,4 +143,5 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   comprobaciones con fila y columna, índice de referencias y operaciones seguras con papelera y deshacer. `ContentTests`.
 - **Bloque C, ventanas (C3-C5)**: menú Datos, Base de datos con tarjetas, una ventana por categoría con la distribución de
   Unity, borrar con sustituir/quitar/dejar, cambiar id, papelera, problemas de datos en la ventana Problemas.
+- **C6 cambio de generación** con vista previa por categoría, copia antes y un solo paso deshacible.
 - **Documentación** completa por capítulos (esta carpeta).

@@ -91,7 +91,7 @@ namespace CTEditor.App
                 new MenuItem("Historial de versiones…", () => _shell.RunAction("historial"), Keys("historial")),
                 new MenuItem("Abrir la carpeta del proyecto", () => Application.OpenURL("file://" + _shell.ProjectRoot)),
                 new MenuItem("Ajustes del juego…", _shell.GameSettingsDialog),
-                new MenuItem("Copiar datos de un pack…", _shell.PackDialog),
+                new MenuItem("Cambiar de generación / traer un pack…", () => GenerationDialog.Show(_shell)),
                 new MenuItem("Mapa de la región…", () => RegionMapDialog.Show(_shell)),
                 MenuItem.Separator,
             };
@@ -130,6 +130,7 @@ namespace CTEditor.App
             }
             list.Add(MenuItem.Separator);
             list.Add(new MenuItem("Papelera", () => Open(TrashPanel.Id)));
+            list.Add(new MenuItem("Cambiar de generación…", () => GenerationDialog.Show(_shell)));
             return list;
         }
 
