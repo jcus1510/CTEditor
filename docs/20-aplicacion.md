@@ -327,3 +327,20 @@ Agua, caminos, acantilados... cuyos bordes se dibujan solos. Se añaden en **Cor
 **Probar en Unity**: Corte libre de un tileset → importar un autotile de agua de XP → guardar; pintar un lago con el
 lápiz y el rectángulo (los bordes salen solos), borrar en medio (aparece la orilla de dentro), Ctrl+Z.
 
+### Pinceles aleatorios (fase 6, B5)
+
+Botón del **dado** en la cabecera de Tiles → ventana **Pinceles aleatorios**:
+
+- **Nuevo pincel con los tiles elegidos**: los tiles del bloque elegido en Tiles (los repetidos pesan más). Se puede dar
+  nombre, **añadir** más tiles (+) o quitarlos, y cambiar el **peso** de cada uno (rueda o flechas): sale ese número de
+  veces más que uno de peso 1; debajo se ve su porcentaje.
+- **Usar**: el lápiz, el rectángulo y el relleno pintan cada casilla con un tile al azar del pincel (hierba con flores
+  aquí y allá, rocas variadas). En la cabecera de Tiles sale «Pincel: …  ×» (clic para volver al sello). Elegir un tile
+  en Tiles también vuelve al sello normal. Se deshace de una vez y funciona con capas automáticas y autotiles.
+- Se guardan en `datos/pinceles.json`, con los tiles por **id de tileset**: sirven en cualquier mapa que use ese tileset
+  (si no, la ventana lo avisa).
+- **Terreno**: los bordes que se dibujan solos son los autotiles (B4); un pincel puede mezclar tiles normales y de autotile.
+
+**Probar en Unity**: elegir en Tiles hierba y dos de flores, dado → «Nuevo pincel…», subir el peso de la hierba a 6,
+«Usar» y pintar con el rectángulo: hierba con flores sueltas; Ctrl+Z lo quita entero.
+

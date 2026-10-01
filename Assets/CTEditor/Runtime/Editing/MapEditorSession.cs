@@ -411,9 +411,91 @@ namespace CTEditor.Editing
 
         public void SetStamp(TileStamp stamp)
         {
+            if (ActiveBrush != null) { ActiveBrush = null; BrushesChanged?.Invoke(); } // a chosen tile: back to the stamp
             Stamp = stamp ?? TileStamp.Single(0);
             if (Tool != MapTool.Pencil && Tool != MapTool.Rectangle && Tool != MapTool.Fill) Tool = MapTool.Pencil;
             SelectionChanged?.Invoke();
+        }
+
+        // ── Random brushes (B5) ────────────────────────────────────────────────────────────────────
+
+        /// <summary>Where the brushes are saved (null = only this session).</summary>
+        public IBrushRepository BrushRepository { get; set; }
+        public List<RandomBrush> Brushes { get; } = new List<RandomBrush>();
+        /// <summary>The brush the pencil, rectangle and fill paint with (null = the stamp).</summary>
+        public RandomBrush ActiveBrush { get; private set; }
+        public event Action BrushesChanged;
+        /// <summary>A number from 0 to n − 1 (tests give a fixed one).</summary>
+        public Func<int, int> Random { get; set; } = new Random().Next;
+
+        private static readonly TileStamp BrushStamp = TileStamp.Single(RandomBrush.Placeholder);
+
+        public void LoadBrushes()
+        {
+            Brushes.Clear();
+            if (BrushRepository != null)
+                try { Brushes.AddRange(BrushRepository.Load()); }
+                catch (Exception e) { Message?.Invoke("No se pudieron leer los pinceles: " + e.Message, "error"); }
+            ActiveBrush = null;
+            BrushesChanged?.Invoke();
+        }
+
+        public void SaveBrushes()
+        {
+            try { BrushRepository?.Save(Brushes); }
+            catch (Exception e) { Message?.Invoke("No se pudieron guardar los pinceles: " + e.Message, "error"); }
+            BrushesChanged?.Invoke();
+        }
+
+        public void UseBrush(RandomBrush brush)
+        {
+            if (brush != null && Map != null && !brush.UsableIn(Map))
+            {
+                Message?.Invoke($"El pincel «{brush.Name}» usa tiles de tilesets que este mapa no tiene.", "aviso");
+                return;
+            }
+            ActiveBrush = brush;
+            if (brush != null && Tool != MapTool.Pencil && Tool != MapTool.Rectangle && Tool != MapTool.Fill) SetTool(MapTool.Pencil);
+            BrushesChanged?.Invoke();
+            SelectionChanged?.Invoke();
+        }
+
+        /// <summary>A new brush with the tiles of the current stamp (one each; then the weights are changed).</summary>
+        public RandomBrush NewBrushFromStamp(string name)
+        {
+            if (Map == null) return null;
+            var used = new HashSet<string>(Brushes.Select(b => b.Id));
+            var baseId = new MapTree().NewId(string.IsNullOrWhiteSpace(name) ? "pincel" : name);
+            var id = baseId;
+            for (int i = 2; used.Contains(id); i++) id = baseId + "_" + i;
+            var brush = new RandomBrush(id, string.IsNullOrWhiteSpace(name) ? "Pincel" : name.Trim());
+            for (int y = 0; y < Stamp.Height; y++)
+            for (int x = 0; x < Stamp.Width; x++)
+            {
+                int c = Stamp[x, y];
+                if (c < 0 || MapTile.Slot(c) >= Map.TilesetIds.Count) continue;
+                brush.Add(Map.TilesetIds[MapTile.Slot(c)], MapTile.Index(c));
+            }
+            if (brush.Tiles.Count == 0) { Message?.Invoke("Elige antes en Tiles los tiles del pincel (un bloque o varios).", "aviso"); return null; }
+            Brushes.Add(brush);
+            SaveBrushes();
+            return brush;
+        }
+
+        public void DeleteBrush(RandomBrush brush)
+        {
+            if (!Brushes.Remove(brush)) return;
+            if (ActiveBrush == brush) ActiveBrush = null;
+            SaveBrushes();
+        }
+
+        /// <summary>The tools paint a placeholder, then the brush picks a tile for each cell; autotiles join after.</summary>
+        private List<TileChange> BrushPaint(Func<int, List<TileChange>> paint)
+        {
+            var first = ActiveBrush.Tiles.Where(t => t.Weight > 0).Select(t => RandomBrush.CellIn(Map, t)).FirstOrDefault(c => c >= 0);
+            int layer = AutoLayers ? MapTools.AutoLayerOf(Map, Tilesets, first, ActiveLayer) : ActiveLayer;
+            if (layer < 0 || layer >= Map.Layers.Count || Map.Layers[layer].Locked) return new List<TileChange>();
+            return AutotileResolver.Resolve(Map, Tilesets, ActiveBrush.Randomize(Map, paint(layer), Random));
         }
 
         // ── Quick editing (B2): turn/flip the stamp, stored stamps, straight lines ─────────────────
@@ -493,7 +575,8 @@ namespace CTEditor.Editing
 
         private TileStamp CurrentStamp => Tool == MapTool.Eraser ? TileStamp.Eraser : Stamp;
 
-        private List<TileChange> PencilAt(int x, int y, TileStamp stamp) => AutotileResolver.Resolve(Map, Tilesets,
+        private List<TileChange> PencilAt(int x, int y, TileStamp stamp) =>
+            ActiveBrush != null && Tool == MapTool.Pencil ? BrushPaint(l => MapTools.Pencil(Map, l, x, y, BrushStamp)) : AutotileResolver.Resolve(Map, Tilesets,
             AutoLayers ? MapTools.PencilAuto(Map, Tilesets, x, y, stamp, ActiveLayer) : MapTools.Pencil(Map, ActiveLayer, x, y, stamp));
 
         /// <summary>'secondary' = clic derecho (en las zonas de encuentros, quitar casillas).</summary>
@@ -520,6 +603,9 @@ namespace CTEditor.Editing
                     DragRect = (x, y, x, y);
                     if (Tool == MapTool.Select) Selection = null;
                     SelectionChanged?.Invoke();
+                    break;
+                case MapTool.Fill when ActiveBrush != null:
+                    Commit(BrushPaint(l => MapTools.Fill(Map, l, x, y, BrushStamp)), "rellenar con pincel");
                     break;
                 case MapTool.Fill:
                     Commit(AutoLayers ? MapTools.FillAuto(Map, Tilesets, x, y, Stamp, ActiveLayer) : MapTools.Fill(Map, ActiveLayer, x, y, Stamp), "rellenar");
@@ -593,7 +679,9 @@ namespace CTEditor.Editing
                 var (x0, y0) = _dragStart.Value;
                 _dragStart = null;
                 DragRect = null;
-                if (Tool == MapTool.Rectangle)
+                if (Tool == MapTool.Rectangle && ActiveBrush != null)
+                    Commit(BrushPaint(l => MapTools.Rectangle(Map, l, x0, y0, x, y, BrushStamp)), "rectángulo con pincel");
+                else if (Tool == MapTool.Rectangle)
                     Commit(AutoLayers ? MapTools.RectangleAuto(Map, Tilesets, x0, y0, x, y, Stamp, ActiveLayer)
                         : MapTools.Rectangle(Map, ActiveLayer, x0, y0, x, y, Stamp), "rectángulo");
                 else if (Tool == MapTool.Picker) SetStamp(MapTools.Pick(Map, AutoLayers ? -1 : ActiveLayer, x0, y0, x, y));

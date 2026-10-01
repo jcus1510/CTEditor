@@ -377,6 +377,40 @@ namespace CTEditor.Project
 
     /// <summary>Las especies del proyecto, leídas de «datos/especies.csv» (columnas id y nombre; las de los packs sirven).</summary>
     /// <summary>Perfiles de prueba en «datos/perfiles_prueba.json» (se escriben con seguridad, vía .tmp).</summary>
+    /// <summary>«datos/pinceles.json»: the random brushes of the project (tiles by tileset id, with their weights).</summary>
+    public sealed class JsonBrushRepository : IBrushRepository
+    {
+        private readonly string _path;
+
+        public JsonBrushRepository(string projectRoot) { _path = Path.Combine(projectRoot, ProjectLayout.DataFolder, "pinceles.json"); }
+
+        public IReadOnlyList<RandomBrush> Load()
+        {
+            var list = new List<RandomBrush>();
+            if (!File.Exists(_path)) return list;
+            var o = Json.ParseObject(File.ReadAllText(_path));
+            foreach (var e in o.GetArray("pinceles") ?? new List<object>())
+            {
+                if (!(e is JsonObject bo) || !(bo.GetString("id") is string id) || string.IsNullOrWhiteSpace(id)) continue;
+                var b = new RandomBrush(id, bo.GetString("nombre", id));
+                foreach (var t in bo.GetArray("tiles") ?? new List<object>())
+                    if (t is JsonObject to && to.Has("tile"))
+                        b.Tiles.Add(new BrushTile(to.GetString("tileset", ""), to.GetInt("tile"), to.GetInt("peso", 1)));
+                list.Add(b);
+            }
+            return list;
+        }
+
+        public void Save(IReadOnlyList<RandomBrush> brushes)
+        {
+            var arr = brushes.Select(b => (object)new JsonObject().Set("id", b.Id).Set("nombre", b.Name)
+                .Set("tiles", b.Tiles.Select(t => (object)new JsonObject().Set("tileset", t.TilesetId).Set("tile", t.Index).Set("peso", t.Weight)).ToList()))
+                .ToList();
+            Directory.CreateDirectory(Path.GetDirectoryName(_path));
+            File.WriteAllText(_path, Json.Write(new JsonObject().Set("pinceles", arr)));
+        }
+    }
+
     public sealed class JsonTestProfileRepository : ITestProfileRepository
     {
         private static readonly string[] TimeKeys = { "manana", "dia", "tarde", "noche" };

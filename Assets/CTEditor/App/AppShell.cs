@@ -350,6 +350,8 @@ namespace CTEditor.App
             Maps.Message += OnSessionMessage;
             Maps.DirtyChanged += ScheduleAutosave;
             Maps.PlayerStartChanged += OnPlayerStartChanged;
+            Maps.BrushRepository = new JsonBrushRepository(ProjectRoot);
+            Maps.LoadBrushes();
             try { Maps.LoadTree(); }
             catch (Exception e) { Error("No se pudo leer el árbol de mapas: " + e.Message); }
             var first = !string.IsNullOrEmpty(Project.StartMap) && Maps.Tree.Contains(Project.StartMap)

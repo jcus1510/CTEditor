@@ -37,7 +37,7 @@ Estados: ✅ hecho · 🔶 en curso · ⬜ pendiente.
 | B2. **Edición rápida**: Mayús + clic = línea; X / Y voltear y R girar el sello; Ctrl+Alt+1-9 guardar sello y Alt+1-9 recuperarlo | ✅ (`MapTile` con giro, `TileStamp` volteado/girado/`Line`, `PaintLine`) | Pruebas del dominio (`TileStamp` volteado y girado) + uso en Unity. |
 | B3. **Puertas que se enlazan solas**: una puerta en un exterior y su salida en el interior, creadas juntas; moverlas mantiene el enlace | ✅ (`Doors`, `MapObjectsCommand`, herramienta Puerta, salto al jugar) | Entrar y salir jugando; borrar una avisa de la otra (ventana Problemas). |
 | B4. **Autotiles**: formato RPG Maker XP (escalado al tile del proyecto), 47 piezas, o detectado por las medidas | ✅ (`AutotileLayout`, `AutotileResolver`; en Corte libre) | Pintar agua y caminos: los bordes salen solos; pruebas de las 47 combinaciones. |
-| B5. **Pinceles de terreno y aleatorio** (con pesos) | ⬜ | Pintar hierba con variaciones al azar. |
+| B5. **Pinceles de terreno y aleatorio** (con pesos) | ✅ (`RandomBrush`, `BrushesDialog`; el terreno son los autotiles) | Pintar hierba con variaciones al azar. |
 | B6. **Piezas reutilizables** (casa, árbol grande): guardar una selección como pieza y colocarla | ⬜ | Colocar la misma casa en dos pueblos; cambiar la pieza no rompe los mapas. |
 | B7. Documentación | ⬜ | — |
 

@@ -136,4 +136,5 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   doble clic; salto al jugar; avisos en Problemas; deshacer en los dos mapas a la vez. `DoorTests`.
 - **B4 autotiles**: XP, VX/MV y 47 piezas detectados por las medidas y escalados; 47 piezas en la paleta; bordes que se
   recalculan al pintar, rellenar, pegar y borrar (`AutotileResolver`). `AutotileTests`.
+- **B5 pinceles aleatorios** con pesos para lápiz, rectángulo y relleno, guardados en `datos/pinceles.json`. `BrushTests`.
 - **Documentación** completa por capítulos (esta carpeta).

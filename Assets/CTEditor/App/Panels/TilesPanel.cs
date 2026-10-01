@@ -107,6 +107,7 @@ namespace CTEditor.App
             S.StructureChanged += OnStructure;
             S.TilesetChanged += OnTilesetChanged;
             S.SelectionChanged += DrawSelection;
+            S.BrushesChanged += BuildHeader;
             _shell.ActionRequested += OnAction;
             Reload();
         }
@@ -119,6 +120,7 @@ namespace CTEditor.App
                 S.StructureChanged -= OnStructure;
                 S.TilesetChanged -= OnTilesetChanged;
                 S.SelectionChanged -= DrawSelection;
+                S.BrushesChanged -= BuildHeader;
             }
             _shell.ActionRequested -= OnAction;
             _atlas?.Dispose();
@@ -196,7 +198,15 @@ namespace CTEditor.App
                 Ui.IconButton("mas", () => SetZoom(Step(+1)), "Acercar la paleta"),
                 Ui.IconButton("retocar", RetouchSelected, "Retocar: abrir el tile elegido en el editor de píxeles"),
                 Ui.IconButton("seleccion", () => { if (Tileset != null) FreeSliceDialog.Show(_shell, Path.Combine(_shell.ProjectRoot, Tileset.ImagePath)); },
-                    "Corte libre: cortar a mano piezas de cualquier tamaño de este tileset (salen al final de la paleta)"));
+                    "Corte libre: cortar a mano piezas de cualquier tamaño de este tileset (salen al final de la paleta)"),
+                Ui.IconButton("dado", () => BrushesDialog.Show(_shell),
+                    "Pinceles aleatorios: pintar con varios tiles al azar, con pesos (hierba con flores, rocas variadas...)", S.ActiveBrush != null));
+            if (S.ActiveBrush != null)
+            {
+                var brush = Ui.Chip("Pincel: " + S.ActiveBrush.Name + "  ×", true, () => S.UseBrush(null), "Pintando con un pincel aleatorio. Clic: volver al sello");
+                brush.style.maxWidth = 180;
+                _header.Add(brush.Margin(4, 0, 0, 0));
+            }
             foreach (var (mode, label, help) in Modes)
             {
                 var m = mode;
