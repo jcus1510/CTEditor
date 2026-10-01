@@ -1,6 +1,7 @@
 ﻿<Solution>
   <Project Path="CTEditor.GameDefinition.Editor.csproj" />
   <Project Path="CTEditor.Battle.Domain.csproj" />
+  <Project Path="CTEditor.Content.csproj" />
   <Project Path="CTEditor.GameDefinition.Domain.csproj" />
   <Project Path="CTEditor.App.csproj" />
   <Project Path="CTEditor.Tests.EditMode.csproj" />
@@ -8,14 +9,14 @@
   <Project Path="CTEditor.Party.Domain.csproj" />
   <Project Path="CTEditor.Bootstrap.csproj" />
   <Project Path="CTEditor.Adventure.Domain.csproj" />
+  <Project Path="CTEditor.World.Domain.csproj" />
   <Project Path="CTEditor.Workspace.csproj" />
   <Project Path="CTEditor.SharedKernel.csproj" />
   <Project Path="CTEditor.Project.csproj" />
-  <Project Path="CTEditor.World.Domain.csproj" />
   <Project Path="CTEditor.GameContracts.csproj" />
   <Project Path="CTEditor.Eventing.Domain.csproj" />
-  <Project Path="CTEditor.Editing.csproj" />
   <Project Path="CTEditor.Art.Domain.csproj" />
+  <Project Path="CTEditor.Editing.csproj" />
   <Project Path="CTEditor.Bootstrap.Editor.csproj" />
   <Project Path="CTEditor.App.Editor.csproj" />
 </Solution>
