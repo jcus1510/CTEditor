@@ -119,6 +119,20 @@ namespace CTEditor.Tests.EditMode
         }
 
         [Test]
+        public void Usual_sizes_are_offered_even_when_they_do_not_divide_the_image()
+        {
+            var u = TileSizeSuggester.Usual(300, 450, projectTileSize: 32);
+            CollectionAssert.AreEqual(new[] { 16, 32, 48 }, u.Select(x => x.Width).ToArray());
+            StringAssert.Contains("sobran 12 px a la derecha y 2 px abajo", u[0].Reason);
+            StringAssert.Contains("del proyecto", u[1].Reason);
+
+            var exact = TileSizeSuggester.Usual(64, 64, projectTileSize: 24);
+            Assert.IsTrue(exact.Any(x => x.Width == 24), "the project size is added");
+            StringAssert.Contains("encaja exacto: 4×4", exact[0].Reason);
+            Assert.IsFalse(exact.Any(x => x.Width == 48 && x.Reason.Contains("exacto")));
+        }
+
+        [Test]
         public void Character_sheets_are_detected_with_their_directions_and_walk_cycle()
         {
             // RPG Maker XP: 4×4 frames of 32×48.

@@ -19,6 +19,7 @@ namespace CTEditor.App
         public static void PickFolder(AppShell shell, string title, Action<string> onPicked, string start = null) =>
             Show(shell, title, null, onPicked, start);
 
+        /// <param name="extension">One or several, separated by commas (".png,.bmp").</param>
         public static void PickFile(AppShell shell, string title, string extension, Action<string> onPicked, string start = null) =>
             Show(shell, title, extension, onPicked, start);
 
@@ -92,7 +93,7 @@ namespace CTEditor.App
                     int files = 0;
                     if (pickFile)
                     {
-                        foreach (var file in Directory.GetFiles(current).Where(f => f.EndsWith(extension, StringComparison.OrdinalIgnoreCase))
+                        foreach (var file in Directory.GetFiles(current).Where(f => extension.Split(',').Any(x => f.EndsWith(x.Trim(), StringComparison.OrdinalIgnoreCase)))
                                      .OrderBy(p => p, StringComparer.OrdinalIgnoreCase))
                         {
                             files++;

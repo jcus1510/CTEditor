@@ -29,12 +29,18 @@ namespace CTEditor.App
             _shell = shell;
             _parent = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             style.flexGrow = 1;
-            style.alignItems = Align.Center;
-            style.justifyContent = Justify.Center;
+            // A fixed design centred in the window (like a launcher): it does not stretch with the window; if the window
+            // is smaller, it scrolls.
+            var scroll = Ui.Scroll(ScrollViewMode.VerticalAndHorizontal).Grow();
+            scroll.contentContainer.style.flexGrow = 1;
+            scroll.contentContainer.style.alignItems = Align.Center;
+            scroll.contentContainer.style.justifyContent = Justify.Center;
+            scroll.contentContainer.style.minHeight = Length.Percent(100);
+            Add(scroll);
 
-            var page = Ui.Column(18);
-            page.style.width = Length.Percent(80);
-            page.style.maxWidth = 1100;
+            var page = Ui.Column(18).Pad(24);
+            page.style.width = 1040;
+            page.style.flexShrink = 0;
 
             var head = Ui.Column(4);
             head.With(Ui.Title("CTEditor"), Ui.Hint("Crea tu juego de monstruos por turnos sin programar."));
@@ -42,7 +48,10 @@ namespace CTEditor.App
 
             var cards = Ui.Row(18);
             cards.style.alignItems = Align.Stretch;
-            cards.With(NewProjectCard().Grow(1.3f), OpenCard().Grow(1f));
+            var newCard = NewProjectCard();
+            newCard.style.width = 600;
+            newCard.style.flexShrink = 0;
+            cards.With(newCard, OpenCard().Grow(1f));
             page.With(cards);
 
             var foot = Ui.Row(12);
@@ -51,7 +60,7 @@ namespace CTEditor.App
                 Ui.Button("Personalizar el entorno…", () => SettingsDialog.Show(_shell), Ui.ButtonKind.Flat),
                 Ui.Button("Salir", () => _shell.Quit?.Invoke(), Ui.ButtonKind.Flat));
             page.Add(foot);
-            Add(page);
+            scroll.Add(page);
         }
 
         private VisualElement NewProjectCard()
@@ -182,12 +191,12 @@ namespace CTEditor.App
                 foreach (var c in texts.Children()) c.pickingMode = PickingMode.Ignore;
                 row.Add(texts);
                 var target = path;
-                var remove = Ui.Button("×", () =>
+                var remove = Ui.IconButton("cerrar", () =>
                 {
                     _shell.Workspace.RecentProjects.Remove(target);
                     _shell.SaveWorkspaceSoon();
                     _shell.Rebuild();
-                }, Ui.ButtonKind.Flat, "Quitar de la lista");
+                }, "Quitar de la lista");
                 row.Add(remove);
                 if (exists)
                 {

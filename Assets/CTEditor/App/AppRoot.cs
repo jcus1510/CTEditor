@@ -21,6 +21,9 @@ namespace CTEditor.App
 
         private PanelSettings _panel;
         private AppShell _shell;
+        private UIDocument _document;
+        /// <summary>Our own root inside the document: it survives the document recreating its tree.</summary>
+        private VisualElement _host;
 
         private void Awake()
         {
@@ -45,14 +48,16 @@ namespace CTEditor.App
             var uiObject = new GameObject("Interfaz");
             uiObject.transform.SetParent(transform, false);
             uiObject.SetActive(false);
-            var doc = uiObject.AddComponent<UIDocument>();
-            doc.panelSettings = _panel;
+            _document = uiObject.AddComponent<UIDocument>();
+            _document.panelSettings = _panel;
             uiObject.SetActive(true);
 
-            var root = doc.rootVisualElement;
-            root.style.flexGrow = 1;
+            _host = new VisualElement { name = "CTEditor" };
+            _host.style.position = Position.Absolute;
+            _host.style.left = 0; _host.style.top = 0; _host.style.right = 0; _host.style.bottom = 0;
+            AttachHost();
             var workspacePath = Path.Combine(Application.persistentDataPath, WorkspaceSettings.FileName);
-            _shell = new AppShell(root, workspacePath)
+            _shell = new AppShell(_host, workspacePath)
             {
                 ScaleChanged = ApplyScale,
                 ToggleFullscreen = ToggleFullscreen,
@@ -60,15 +65,30 @@ namespace CTEditor.App
                 Quit = QuitApp,
             };
             ApplyScale(_shell.Workspace.UiScale);
+            _shell.Rebuild(); // icons are drawn for the real scale, known only now
             ApplyClearColor();
             // The main camera only clears the screen: maps are drawn by their own cameras into textures.
             if (Camera.main != null) Camera.main.cullingMask = 0;
+        }
+
+        /// <summary>
+        /// The UIDocument rebuilds its tree when it is inspected or validated in the Unity editor (clicking «Interfaz» in
+        /// the Hierarchy): the interface then vanished. We keep everything in our own element and put it back.
+        /// </summary>
+        private void AttachHost()
+        {
+            var root = _document != null ? _document.rootVisualElement : null;
+            if (root == null || _host.parent == root) return;
+            _host.RemoveFromHierarchy();
+            root.style.flexGrow = 1;
+            root.Add(_host);
         }
 
         private void ApplyScale(float userScale)
         {
             float dpi = Screen.dpi > 0 ? Screen.dpi / 96f : 1f;
             _panel.scale = Mathf.Clamp(userScale * dpi, 0.5f, 4f);
+            Ui.PixelsPerPoint = _panel.scale;
             if (_shell != null) _shell.PixelsPerPoint = _panel.scale;
             ApplyClearColor();
         }
@@ -101,6 +121,7 @@ namespace CTEditor.App
 
         private void Update()
         {
+            if (_host != null) AttachHost();
             _shell?.Tick(Time.unscaledDeltaTime);
 #if CTEDITOR_INPUT_SYSTEM
             // Function keys work even when no field has the keyboard focus (UI Toolkit only sends keys to a focused element).

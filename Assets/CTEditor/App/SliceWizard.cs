@@ -205,7 +205,22 @@ namespace CTEditor.App
                 suggestions.Add(chip);
             }
             if (suggestions.childCount == 0) suggestions.Add(Ui.Hint("Ningún tamaño habitual encaja exacto."));
-            _controls.Add(Section("Sugerencias", suggestions));
+            _controls.Add(Section("Sugerencias (encajan exacto)", suggestions));
+
+            // The usual sizes, always: ripped sheets rarely divide exactly (then adjust the offset and spacing below).
+            var usual = Ui.Row(6).Wrap();
+            foreach (var s in TileSizeSuggester.Usual(_image.Width, _image.Height, _shell.Project?.TileSize ?? 0))
+            {
+                var sug = s;
+                usual.Add(Ui.Chip($"{s.Width} px", _tw == s.Width && _th == s.Height, () =>
+                {
+                    (_tw, _th) = (sug.Width, sug.Height);
+                    Recompute();
+                }, s.Reason).Margin(0, 0, 6, 6));
+            }
+            _controls.Add(Section("Tamaños habituales", usual));
+            if (_shell.Project != null && _tw != _shell.Project.TileSize)
+                _controls.Add(Ui.Hint($"Los tiles de {_tw} px se ven a {_shell.Project.TileSize} px en el juego (se dibujan al tamaño de tile del proyecto).").Margin(4, 0, 4, 6));
 
             var offsets = Ui.Column(6);
             offsets.With(

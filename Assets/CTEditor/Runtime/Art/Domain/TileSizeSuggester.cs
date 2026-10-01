@@ -47,6 +47,32 @@ namespace CTEditor.Art.Domain
             return list;
         }
 
+        /// <summary>Tamaños que el asistente ofrece siempre, encajen o no: 16 (GBA/DS), 32 (XP/Essentials), 48 (MV/MZ).</summary>
+        public static readonly int[] UsualSizes = { 16, 32, 48 };
+
+        /// <summary>
+        /// Los tamaños habituales (y el del proyecto) para elegir con un clic aunque no encajen exacto, con lo que sobra.
+        /// Útil con imágenes ripeadas (300 × 450...) donde ningún tamaño divide la imagen: se ajusta luego el
+        /// desplazamiento y la separación.
+        /// </summary>
+        public static IReadOnlyList<SizeSuggestion> Usual(int imageWidth, int imageHeight, int projectTileSize = 0)
+        {
+            var sizes = new List<int>(UsualSizes);
+            if (projectTileSize > 0 && !sizes.Contains(projectTileSize)) sizes.Add(projectTileSize);
+            var list = new List<SizeSuggestion>();
+            foreach (int s in sizes)
+            {
+                if (s > imageWidth || s > imageHeight) continue;
+                int restX = imageWidth % s, restY = imageHeight % s;
+                string why = s == 16 ? "16 px: GBA / DS" : s == 32 ? "32 px: RPG Maker XP / Essentials" : s == 48 ? "48 px: RPG Maker MV / MZ" : $"{s} px";
+                if (s == projectTileSize) why += " (el del proyecto)";
+                why += restX == 0 && restY == 0 ? $" · encaja exacto: {imageWidth / s}×{imageHeight / s} tiles"
+                    : $" · sobran {restX} px a la derecha y {restY} px abajo";
+                list.Add(new SizeSuggestion(s, s, why));
+            }
+            return list;
+        }
+
         private static bool Divides(int size, int w, int h) => size > 0 && w % size == 0 && h % size == 0;
     }
 }

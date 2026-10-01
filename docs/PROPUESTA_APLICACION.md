@@ -188,7 +188,7 @@ ya conoce y se mejora donde algo cuesta.
 |---|---|---|
 | 0-4 ✅ | Proyecto, corte, aplicación, mapas, jugar, retoque | — |
 | **5 · Comodidad base** | Buscador de órdenes (Ctrl+P), panel **Problemas** siempre al día (clic = ir al sitio), **historial de versiones** local («volver a como estaba ayer»), **jugar en un panel** con cambios en vivo, **perfiles de prueba** (equipo, medallas, objetos) | Nadie lo tiene junto; es la red de seguridad de quien no programa |
-| **6 · El mundo** | **Mundo continuo** (exteriores en un lienzo, sin cargas) + interiores; **puertas que se enlazan solas**; zonas de encuentro pintadas; **capas automáticas** (según la prioridad y el tipo de tile) con capas manuales opcionales; **pinceles de terreno** (orillas solas), **pincel aleatorio** con pesos; **piezas reutilizables** (casa, árbol grande) | Construir un mapa es colocar cosas, no pelear con capas y bordes |
+| **6 · El mundo** | **Mundo continuo** (exteriores en un lienzo, sin cargas) + interiores; **puertas que se enlazan solas**; zonas de encuentro pintadas; **capas automáticas** (según la prioridad y el tipo de tile) con capas manuales opcionales; **pinceles de terreno** (orillas solas), **autotiles según el tamaño del tile** (RPG Maker XP de 96 × 128 escalado al tile del proyecto, formato de 47 piezas, o **detección automática** del formato por las medidas de la imagen), **pincel aleatorio** con pesos; **piezas reutilizables** (casa, árbol grande); **corte libre**: además de la rejilla, marcar a mano rectángulos de cualquier tamaño en la imagen (tiles grandes, objetos sueltos de un ripeo, zonas con desplazamiento distinto) con precisión de píxel y lupa | Construir un mapa es colocar cosas, no pelear con capas y bordes |
 | **7 · Juego jugable** | Combates dentro de la aplicación (motor existente), menús (equipo, mochila, Pokédex, guardar), Centro, tienda, pantalla de título, partida guardada | Una partida de principio a fin sin salir del editor |
 | **8 · Personajes y eventos** | NPC con rutas dibujadas, entrenadores con visión; eventos con **un solo modelo** y cuatro vistas: **recetas arrastrables** (puerta, cartel, objeto oculto, entrenador, enfermera, tienda, líder), **bloques «cuándo / si / qué»** (los de objetos y habilidades), **grafo de nodos**, **guion de diálogos** (`Profesor: ¡Hola!`) que se convierte en nodos y al revés; interruptores con nombre creados solos; **mapa de la historia** | El mismo sistema en todo el editor; escribir historia como un guion |
 | **9 · Cinemáticas y depurador** | Línea de tiempo (cámara, movimientos, esperas), pausar en un nodo mientras se juega, paso a paso, ver y cambiar interruptores | Depurar sin mensajes de prueba |
@@ -199,6 +199,9 @@ ya conoce y se mejora donde algo cuesta.
 
 **Cada fase, por capas (DDD):** dominio puro con tests → caso de uso en `Editing` → repositorio en `Project` → panel
 registrado en la aplicación ([03](03-arquitectura.md)).
+
+**Pulido visual (continuo, entre fases):** se lleva en [`DISENO.md`](DISENO.md). Próximos: hojas `.uss` editables con
+UI Builder, plantillas `.uxml`, fuente propia, barra de herramientas vertical, casillas y deslizadores propios.
 
 ## 9. Hecho hasta ahora
 

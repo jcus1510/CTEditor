@@ -82,4 +82,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   lado, mapa de la región), encuentros como en los juegos (panel Encuentros), varios tilesets por mapa, capas
   automáticas, selección/copiar/pegar, vista previa del sello, ids fijos de tilesets (con conversión de mapas
   antiguos), importar y cortar en un paso, datos de un pack. `WorldTests`.
+- **Pulido 1 (primera prueba en Unity)**: rejilla alineada con los tiles, la interfaz ya no desaparece al seleccionarla
+  en la Hierarchy, sin solapamientos de texto, controles a la misma altura, iconos en las herramientas, ayudas
+  emergentes, inicio de tamaño fijo, importar BMP/DIB, tamaños habituales en el corte. Nace [`DISENO.md`](DISENO.md).
+  `ImageFormatTests`.
 - **Documentación** completa por capítulos (esta carpeta).

@@ -27,6 +27,18 @@ namespace CTEditor.App
             (PixelTool.Picker, "Cuentagotas", "cuentagotas"), (PixelTool.Replace, "Reemplazar color", null),
         };
 
+        private static string IconOf(PixelTool tool) => tool switch
+        {
+            PixelTool.Pencil => "lapiz",
+            PixelTool.Eraser => "goma",
+            PixelTool.Fill => "relleno",
+            PixelTool.Line => "linea",
+            PixelTool.Rectangle => "rectangulo",
+            PixelTool.FilledRectangle => "rect_relleno",
+            PixelTool.Picker => "cuentagotas",
+            _ => "reemplazar",
+        };
+
         private readonly AppShell _shell;
         private PixelEditorSession S => _shell.Pixels;
         private readonly VisualElement _bar1, _bar2, _side, _canvas, _grid, _marks, _empty;
@@ -213,13 +225,13 @@ namespace CTEditor.App
             {
                 var t = tool;
                 var keys = action == null ? "" : _shell.Workspace.Shortcuts.KeysFor(action);
-                _bar2.Add(Ui.Chip(label, S.Tool == t, () => { _shell.ActiveEditor = "retoque"; S.SetTool(t); },
-                    keys.Length > 0 ? $"{label} ({keys})" : label).Margin(0, 0, 4, 4));
+                _bar2.Add(Ui.IconButton(IconOf(t), () => { _shell.ActiveEditor = "retoque"; S.SetTool(t); },
+                    keys.Length > 0 ? $"{label} ({keys})" : label, S.Tool == t).Margin(0, 2, 2, 2));
             }
             _bar2.Add(Ui.NumberBox("Grosor", S.BrushSize, 1, 16, v => S.SetBrushSize(v)).Margin(8, 0, 8, 4));
-            _bar2.Add(Ui.Button("-", () => SetZoom(_zoomIndex - 1), Ui.ButtonKind.Flat, "Alejar (rueda)"));
-            _bar2.Add(Ui.Text(Zoom + "×"));
-            _bar2.Add(Ui.Button("+", () => SetZoom(_zoomIndex + 1), Ui.ButtonKind.Flat, "Acercar (rueda)"));
+            _bar2.Add(Ui.IconButton("menos", () => SetZoom(_zoomIndex - 1), "Alejar (rueda del ratón)"));
+            _bar2.Add(Ui.Text(Zoom + "×").NoShrink());
+            _bar2.Add(Ui.IconButton("mas", () => SetZoom(_zoomIndex + 1), "Acercar (rueda del ratón)"));
             _bar2.Add(Ui.Check("Rejilla de píxeles", _pixelGrid, v => { _pixelGrid = v; DrawGrid(); }).Margin(8, 0, 0, 0));
             if (S.TileWidth > 0) _bar2.Add(Ui.Check("Rejilla de tiles", _tileGrid, v => { _tileGrid = v; DrawGrid(); }).Margin(8, 0, 0, 0));
         }

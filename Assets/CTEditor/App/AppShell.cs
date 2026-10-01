@@ -82,7 +82,11 @@ namespace CTEditor.App
         public List<LogEntry> Log { get; } = new List<LogEntry>();
 
         private readonly string _workspacePath;
-        private VisualElement _screen, _dialogLayer, _popupLayer, _dragLayer, _toastLayer;
+        private VisualElement _screen, _dialogLayer, _popupLayer, _dragLayer, _toastLayer, _tipLayer;
+        private VisualElement _tipOwner;
+        private IVisualElementScheduledItem _tipTimer;
+        private Vector2 _tipPosition;
+        private IVisualElementScheduledItem _rescale;
         private DockView _dock;
         private IVisualElementScheduledItem _saveSoon;
         private FileSystemWatcher _watcher;
@@ -102,9 +106,14 @@ namespace CTEditor.App
 
             root.focusable = true;
             root.RegisterCallback<KeyDownEvent>(OnKeyDown, TrickleDown.TrickleDown);
+            root.RegisterCallback<PointerMoveEvent>(OnTipMove, TrickleDown.TrickleDown);
+            root.RegisterCallback<PointerDownEvent>(_ => HideTip(), TrickleDown.TrickleDown);
+            root.RegisterCallback<PointerLeaveEvent>(_ => HideTip());
             root.RegisterCallback<WheelEvent>(e =>
             {
+                // The start screen has a fixed design: the interface scale is changed inside a project (or in Entorno).
                 if (!e.ctrlKey && !e.commandKey) return;
+                if (!HasProject) { e.StopPropagation(); return; }
                 SetScale(Workspace.UiScale + (e.delta.y < 0 ? 0.1f : -0.1f));
                 e.StopPropagation();
             }, TrickleDown.TrickleDown);
@@ -144,6 +153,10 @@ namespace CTEditor.App
             Root.Add(_popupLayer);
             Root.Add(_dragLayer);
             Root.Add(_toastLayer);
+            _tipLayer = new VisualElement().Fill();
+            _tipLayer.pickingMode = PickingMode.Ignore;
+            Root.Add(_tipLayer);
+            _tipOwner = null;
 
             if (HasProject) BuildWorkbench();
             else _screen.Add(new StartScreen(this));
@@ -165,6 +178,7 @@ namespace CTEditor.App
             var bar = Ui.Row(14).Bg("panel").Pad(10, 0);
             bar.style.height = Workspace.FontSize + 10;
             bar.style.flexShrink = 0;
+            bar.style.overflow = Overflow.Hidden;
             bar.style.borderTopWidth = 1;
             bar.style.borderTopColor = Ui.C("borde");
             bar.With(
@@ -176,6 +190,50 @@ namespace CTEditor.App
                 Ui.Text($"Distribución: {Workspace.Layout.Name}", 0.92f, dim: true),
                 Ui.Text($"Interfaz {Mathf.RoundToInt(Workspace.UiScale * 100)} %", 0.92f, dim: true));
             return bar;
+        }
+
+        // ── Tooltips ─────────────────────────────────────────────────────────────────────────────
+        // UI Toolkit only shows «tooltip» in the Unity editor; the application draws its own after a short pause.
+
+        private void OnTipMove(PointerMoveEvent e)
+        {
+            _tipPosition = e.position;
+            var owner = e.target as VisualElement;
+            while (owner != null && string.IsNullOrEmpty(owner.tooltip)) owner = owner.parent;
+            if (owner == _tipOwner) return;
+            HideTip();
+            _tipOwner = owner;
+            if (owner != null) _tipTimer = Root.schedule.Execute(ShowTip).StartingIn(450);
+        }
+
+        private void ShowTip()
+        {
+            if (_tipLayer == null || _tipOwner?.panel == null || string.IsNullOrEmpty(_tipOwner.tooltip)) return;
+            _tipLayer.Clear();
+            var tip = Ui.Text(_tipOwner.tooltip, 0.92f, wrap: true);
+            tip.style.maxWidth = 360;
+            tip.style.position = Position.Absolute;
+            tip.Bg("panel_alt").Border(1, "borde", Ui.Radius).Pad(8, 5);
+            var p = Root.WorldToLocal(_tipPosition) + new Vector2(14, 20);
+            tip.style.left = p.x;
+            tip.style.top = p.y;
+            tip.pickingMode = PickingMode.Ignore;
+            // Keep it inside the window once its size is known.
+            tip.RegisterCallback<GeometryChangedEvent>(_ =>
+            {
+                float maxX = Root.layout.width - tip.layout.width - 4, maxY = Root.layout.height - tip.layout.height - 4;
+                if (p.x > maxX) tip.style.left = Mathf.Max(4, maxX);
+                if (p.y > maxY) tip.style.top = Mathf.Max(4, p.y - tip.layout.height - 28);
+            });
+            _tipLayer.Add(tip);
+        }
+
+        private void HideTip()
+        {
+            _tipTimer?.Pause();
+            _tipTimer = null;
+            _tipOwner = null;
+            _tipLayer?.Clear();
         }
 
         // ── Project ──────────────────────────────────────────────────────────────────────────────
@@ -527,6 +585,9 @@ namespace CTEditor.App
             Workspace.UiScale = scale;
             ScaleChanged?.Invoke(Workspace.UiScale);
             SaveWorkspaceSoon();
+            // Icons are rasterized for the scale: redraw the interface once the user stops zooming.
+            _rescale?.Pause();
+            _rescale = Root.schedule.Execute(() => { if (!IsPlaying) Rebuild(); }).StartingIn(700);
         }
 
         public void SetFontSize(int size)
@@ -604,7 +665,7 @@ namespace CTEditor.App
             header.style.borderTopLeftRadius = 8;
             header.style.borderTopRightRadius = 8;
             header.style.flexShrink = 0;
-            header.With(Ui.Heading(title), Ui.Spacer(), Ui.Button("×", () => CloseDialog(d), Ui.ButtonKind.Flat, "Cerrar (Esc)"));
+            header.With(Ui.Heading(title), Ui.Spacer(), Ui.IconButton("cerrar", () => CloseDialog(d), "Cerrar (Esc)"));
             var body = Ui.Column(8).Pad(16).Grow();
             body.style.flexBasis = StyleKeyword.Auto;
             if (heightPct > 0) body.style.flexBasis = 0;
