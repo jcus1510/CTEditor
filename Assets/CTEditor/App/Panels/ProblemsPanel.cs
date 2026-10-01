@@ -37,6 +37,7 @@ namespace CTEditor.App
                 S.WorldChanged += Soon;
                 S.PlayerStartChanged += Soon;
                 _shell.AssetsChanged += Soon;
+                _shell.ContentChanged += OnContent;
                 Refresh();
             });
             RegisterCallback<DetachFromPanelEvent>(_ =>
@@ -49,6 +50,7 @@ namespace CTEditor.App
                 S.WorldChanged -= Soon;
                 S.PlayerStartChanged -= Soon;
                 _shell.AssetsChanged -= Soon;
+                _shell.ContentChanged -= OnContent;
             });
         }
 
@@ -86,7 +88,15 @@ namespace CTEditor.App
                 var text = Ui.Text(p.Text, 0.92f, wrap: true).Grow();
                 text.pickingMode = PickingMode.Ignore;
                 row.With(icon, text);
-                if (p.MapId != null)
+                if (p.Link != null && p.Link.StartsWith("contenido:"))
+                {
+                    var parts = p.Link.Split(':');
+                    row.tooltip = "Clic: abrir la ficha";
+                    row.RegisterCallback<PointerEnterEvent>(_ => row.style.backgroundColor = Ui.C("panel_alt"));
+                    row.RegisterCallback<PointerLeaveEvent>(_ => row.style.backgroundColor = new Color(0, 0, 0, 0));
+                    row.RegisterCallback<PointerUpEvent>(_ => _shell.OpenContentItem(parts[1], parts.Length > 2 ? parts[2] : null));
+                }
+                else if (p.MapId != null)
                 {
                     row.tooltip = "Clic: abrir el mapa";
                     row.RegisterCallback<PointerEnterEvent>(_ => row.style.backgroundColor = Ui.C("panel_alt"));
@@ -109,5 +119,6 @@ namespace CTEditor.App
             b.With(dot, Ui.Text($"{n} {what}", 0.88f, bold: n > 0, dim: n == 0));
             return b;
         }
+        private void OnContent(string _) => Soon();
     }
 }

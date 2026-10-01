@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using CTEditor.Art.Domain;
+using CTEditor.Content;
 using CTEditor.Editing;
 using CTEditor.Project;
 using CTEditor.Workspace;
@@ -335,6 +336,7 @@ namespace CTEditor.App
             {
                 ProjectFile.Save(ProjectRoot, Project);
                 Maps?.Save();
+                Content?.Save();
                 if (Pixels != null && Pixels.IsDirty) Pixels.Save();
                 SaveWorkspaceNow();
                 if (!quiet) Success("Guardado.");
@@ -364,6 +366,7 @@ namespace CTEditor.App
             Pixels = new PixelEditorSession(new PngImageRepository());
             Pixels.Message += OnSessionMessage;
             LoadProfiles();
+            OpenContent();
         }
 
         // ── Test profiles (A2) ───────────────────────────────────────────────────────────────────
@@ -399,8 +402,84 @@ namespace CTEditor.App
             Info("Perfil de prueba: " + ActiveProfile.Name);
         }
 
+        // ── Game content (block C): species, moves, items... from «datos/*.csv» ───────────────────────
+
+        /// <summary>The project's game content, edited safely (who uses it, trash, undo).</summary>
+        public ContentSession Content { get; private set; }
+        public event Action<string> ContentChanged;
+        private IVisualElementScheduledItem _contentSave;
+        private static AppShell _problemsSource;
+
+        static AppShell()
+        {
+            // The content checks join the Problems window (each one goes to its sheet, row and column).
+            ProblemFinder.Register(_ => _problemsSource?.Content == null ? Enumerable.Empty<Problem>() :
+                ContentChecks.Run(_problemsSource.Content.Db).Select(i => new Problem(
+                    i.Level == ContentIssueLevel.Error ? ProblemLevel.Error : i.Level == ContentIssueLevel.Warning ? ProblemLevel.Warning : ProblemLevel.Tip,
+                    i.Text) { Link = i.Category == null ? null : $"contenido:{i.Category}:{i.Id}" }));
+        }
+
+        private void OpenContent()
+        {
+            try
+            {
+                Content = new ContentSession(ContentDatabase.Load(Path.Combine(ProjectRoot, ProjectLayout.DataFolder)));
+            }
+            catch (Exception e)
+            {
+                Error("No se pudieron leer los datos del juego: " + e.Message);
+                Content = new ContentSession(new ContentDatabase(Path.Combine(ProjectRoot, ProjectLayout.DataFolder)));
+            }
+            _problemsSource = this;
+            Content.ExternalUses = () => Maps == null ? Enumerable.Empty<ContentRef>() :
+                Maps.SpeciesInEncounters().Select(u => new ContentRef(ContentSchemas.Species, u.species, "@mapas", u.map.Id, "encuentros", true,
+                    $"Mapa {u.map.Name} · zona {u.area.Name} ({u.method})")).ToList();
+            Content.ExternalRewrite = (cat, oldId, newId) =>
+            {
+                if (cat == ContentSchemas.Species) Maps?.ReplaceSpeciesInEncounters(oldId, newId);
+            };
+            Content.Message += OnSessionMessage;
+            Content.Changed += OnContentChanged;
+            if (Maps != null) Maps.EncountersChanged += Content.InvalidateIndex;
+        }
+
+        private void OnContentChanged(string category)
+        {
+            _backups?.NoteChange();
+            ContentChanged?.Invoke(category);
+            // Saved a moment after the last change, like the maps.
+            _contentSave?.Pause();
+            _contentSave = Root.schedule.Execute(() =>
+            {
+                try { Content?.Save(); }
+                catch (Exception e) { Error("No se pudieron guardar los datos: " + e.Message); }
+            });
+            _contentSave.ExecuteLater(1500);
+        }
+
+        /// <summary>Opens the window of a category with that piece chosen (from Problems, «¿quién lo usa?»...).</summary>
+        public void OpenContentItem(string category, string id)
+        {
+            var panel = ContentPanel.PanelId(category);
+            if (PanelCatalog.Find(panel) == null) return;
+            ContentPanel.Pending[category] = id;
+            Workspace.Layout.Open(panel);
+            SetLayout(Workspace.Layout);
+            ActiveEditor = "contenido";
+            ContentFocusRequested?.Invoke(category, id);
+        }
+
+        public event Action<string, string> ContentFocusRequested;
+
         private void CloseSessions()
         {
+            if (Content != null)
+            {
+                Content.Message -= OnSessionMessage;
+                Content.Changed -= OnContentChanged;
+                if (Maps != null) Maps.EncountersChanged -= Content.InvalidateIndex;
+                Content = null;
+            }
             if (Maps != null)
             {
                 Maps.Message -= OnSessionMessage;
@@ -1044,11 +1123,13 @@ namespace CTEditor.App
                     else Info("El depurador se abre durante el juego (F9 mientras juegas).");
                     break;
                 case "deshacer":
-                    if (ActiveEditor == "retoque" && Pixels?.Image != null) Pixels.Undo();
+                    if (ActiveEditor == "contenido" && Content != null) { if (!Content.Undo()) Info("No hay nada que deshacer en los datos."); }
+                    else if (ActiveEditor == "retoque" && Pixels?.Image != null) Pixels.Undo();
                     else Maps?.Undo();
                     break;
                 case "rehacer":
-                    if (ActiveEditor == "retoque" && Pixels?.Image != null) Pixels.Redo();
+                    if (ActiveEditor == "contenido" && Content != null) Content.Redo();
+                    else if (ActiveEditor == "retoque" && Pixels?.Image != null) Pixels.Redo();
                     else Maps?.Redo();
                     break;
                 case "lapiz": Tool(MapTool.Pencil, PixelTool.Pencil); break;

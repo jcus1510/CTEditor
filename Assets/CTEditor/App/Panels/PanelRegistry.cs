@@ -28,7 +28,8 @@ namespace CTEditor.App
             Register(PanelCatalog.Encounters, s => new EncountersPanel(s));
             Register(PanelCatalog.Problems, s => new ProblemsPanel(s));
             Register(PanelCatalog.Events, _ => Placeholder("Eventos", "Eventos en lista o en grafo de nodos, con recetas y el mapa de la historia.", "Fase 7"));
-            Register(PanelCatalog.Database, _ => Placeholder("Base de datos", "Especies, movimientos, objetos, habilidades, entrenadores… De momento siguen en los editores de Unity.", "Fase 10"));
+            Register(PanelCatalog.Database, s => new DatabasePanel(s));
+            ContentPanel.RegisterAll();
             ShortcutMap.RegisterAction(new ShortcutAction("linea", "Línea (retoque)", "L", "Herramientas"));
             ShortcutMap.RegisterAction(new ShortcutAction("copiar", "Copiar la selección", "Ctrl+C", "Selección"));
             ShortcutMap.RegisterAction(new ShortcutAction("cortar", "Cortar la selección", "Ctrl+X", "Selección"));

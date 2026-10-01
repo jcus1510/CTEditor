@@ -16,6 +16,8 @@ namespace CTEditor.Editing
         public int X { get; } = -1;
         public int Y { get; } = -1;
         public bool HasCell => X >= 0 && Y >= 0;
+        /// <summary>Where to go for problems that are not in a map («contenido:especies:pikachu»).</summary>
+        public string Link { get; set; }
 
         public Problem(ProblemLevel level, string text, string mapId = null, int x = -1, int y = -1)
         {

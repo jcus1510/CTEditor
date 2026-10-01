@@ -37,6 +37,7 @@ namespace CTEditor.App
 
             AddMenu("Proyecto", ProjectItems);
             AddMenu("Ver", ViewItems);
+            AddMenu("Datos", DataItems);
             AddMenu("Entorno", EnvironmentItems);
             AddMenu("Jugar", PlayItems);
             AddMenu("Ayuda", HelpItems);
@@ -106,6 +107,32 @@ namespace CTEditor.App
             return list;
         }
 
+        /// <summary>Datos: the content windows, grouped like the Unity menus, the database and the trash.</summary>
+        private IList<MenuItem> DataItems()
+        {
+            var list = new List<MenuItem>();
+            if (!_shell.HasProject) { list.Add(new MenuItem("Abre un proyecto", null, enabled: false)); return list; }
+            void Open(string panel) { _shell.Workspace.Layout.Open(panel); _shell.SetLayout(_shell.Workspace.Layout); }
+            list.Add(new MenuItem("Base de datos (todo)", () => Open(CTEditor.Workspace.PanelCatalog.Database)));
+            list.Add(MenuItem.Separator);
+            (string, string[])[] groups =
+            {
+                ("Criaturas", new[] { "especies", "habilidades", "naturalezas", "grupos_huevo", "curvas" }),
+                ("Combate", new[] { "movimientos", "tipos", "tabla_tipos", "estados", "climas", "efectos_lado", "trampas", "reglas" }),
+                ("Objetos", new[] { "objetos" }),
+                ("Personajes", new[] { "entrenadores", "equipos", "sets" }),
+            };
+            foreach (var (title, keys) in groups)
+            {
+                var items = keys.Select(k => CTEditor.Content.ContentSchemas.Find(k)).Where(x => x != null)
+                    .Select(x => new MenuItem(x.Title, () => _shell.OpenContentItem(x.Key, null))).ToList();
+                list.Add(MenuItem.Submenu(title, items));
+            }
+            list.Add(MenuItem.Separator);
+            list.Add(new MenuItem("Papelera", () => Open(TrashPanel.Id)));
+            return list;
+        }
+
         private IList<MenuItem> ViewItems()
         {
             var ws = _shell.Workspace;
@@ -114,6 +141,7 @@ namespace CTEditor.App
             foreach (var p in PanelCatalog.All)
             {
                 var id = p.Id;
+                if (id.StartsWith(ContentPanel.Prefix) || id == TrashPanel.Id) continue; // in the «Datos» menu
                 bool open = ws.Layout.IsOpen(id);
                 windows.Add(new MenuItem(p.Label, () =>
                 {

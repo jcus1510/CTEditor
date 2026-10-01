@@ -417,6 +417,41 @@ namespace CTEditor.Editing
             SelectionChanged?.Invoke();
         }
 
+        // ── Species used by the encounters (for the content editors: who uses it, replace, take out) ─────────
+
+        /// <summary>Every encounter slot of every map: (map, zone, method, species).</summary>
+        public IEnumerable<(MapDefinition map, EncounterArea area, string method, string species)> SpeciesInEncounters() =>
+            from m in AllMaps()
+            from a in m.Encounters
+            from t in a.Tables
+            from slot in t.Slots
+            where !string.IsNullOrEmpty(slot.SpeciesId)
+            select (m, a, t.MethodId, slot.SpeciesId);
+
+        /// <summary>A species renamed (newId) or deleted (null: its slots go) in the encounters of all the maps.</summary>
+        public int ReplaceSpeciesInEncounters(string oldId, string newId)
+        {
+            int n = 0;
+            foreach (var m in AllMaps().ToList())
+            {
+                bool touched = false;
+                foreach (var t in m.Encounters.SelectMany(a => a.Tables))
+                {
+                    for (int i = t.Slots.Count - 1; i >= 0; i--)
+                    {
+                        if (!string.Equals(t.Slots[i].SpeciesId, oldId, StringComparison.OrdinalIgnoreCase)) continue;
+                        if (newId == null) t.Slots.RemoveAt(i);
+                        else t.Slots[i].SpeciesId = newId;
+                        touched = true;
+                        n++;
+                    }
+                }
+                if (touched) MarkDirty(m.Id);
+            }
+            if (n > 0) EncountersChanged?.Invoke();
+            return n;
+        }
+
         // ── Reusable pieces (B6) ───────────────────────────────────────────────────────────────────
 
         public IMapPieceRepository PieceRepository { get; set; }

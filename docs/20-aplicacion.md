@@ -389,3 +389,30 @@ Nuevo ensamblado puro `CTEditor.Content` (sin Unity), con pruebas:
   usos (sustituir por otro, quitarlos o dejarlos para que Problemas los señale), **renombrar** un id en todas partes
   (incluida la columna de la tabla de tipos), **papelera** (`datos/papelera.csv`) para recuperar, y todo con Ctrl+Z.
 
+### Ventanas de datos (bloque C, C3-C5)
+
+Menú **Datos** (agrupado como en Unity: Criaturas, Combate, Objetos, Personajes) y **Base de datos** (tarjetas con
+cuántas fichas hay y cuántos problemas). Cada categoría tiene su ventana con la distribución de los editores de Unity:
+
+- **Barra de la ventana**: nuevo (+), duplicar, cambiar el id, ¿quién lo usa?, borrar, deshacer y rehacer. «Cómo usar»
+  está en la «i».
+- **Izquierda**: buscador (nombre, id o número), filtro por tipo con su color (especies y movimientos), orden (n.º,
+  nombre, total), lista virtual con la marca de color de cada fila (su tipo o su color) y un aviso rojo si la ficha
+  tiene errores.
+- **Derecha**: nombre, id e insignias (tipos con su color, categoría, legendario); los problemas de la ficha arriba;
+  vista previa (**Especies**: barras de estadísticas con colores y total, editables con la rueda; **Tipos**: muy eficaz,
+  débil, resiste e inmune sacados de la tabla); el formulario por secciones (referencias como fichas con nombre, clic =
+  abrir, rojo si no existe; listas con + y ×; aprendizaje por nivel como tabla con el tipo de cada movimiento; colores con
+  el selector; si/no; opciones); las columnas propias en «Otros»; y **Lo usan** (clic = ir, también a los mapas).
+- **Borrar** con usos abre un diálogo con la lista: **Sustituir por otra…**, **Quitar los usos** o **Dejarlos**
+  (Problemas los lista). Sin usos, se borra al momento (a la papelera).
+- **Cambiar el id** lo cambia en todos sus usos (y en los encuentros de los mapas).
+- **Papelera**: lo borrado, con «Recuperar».
+- Se guarda solo un momento después del último cambio (y con Ctrl+S). Ctrl+Z en una ventana de datos deshace en los
+  datos.
+
+**Probar en Unity**: Datos → Criaturas → Especies; buscar «pika», subir su velocidad con la rueda, Ctrl+Z; borrar
+Pikachu (si una ruta o un entrenador lo usa, el diálogo lo dice) → «Sustituir por otra…» → Raichu: el entrenador y la
+ruta tienen ahora Raichu; Ctrl+Z lo devuelve todo. Cambiar el id de un movimiento: los aprendizajes cambian. Problemas:
+clic en un error de datos abre su ficha.
+
