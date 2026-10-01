@@ -99,6 +99,9 @@ namespace CTEditor.Editing
                 }
             }
 
+            foreach (var (door, text, error) in Doors.Check(m, s.Find))
+                yield return new Problem(error ? ProblemLevel.Error : ProblemLevel.Warning, text, m.Id, door.X, door.Y);
+
             if (m.Kind == MapKind.Exterior && !m.InWorld)
                 yield return new Problem(ProblemLevel.Tip, $"«{m.Name}» es exterior pero no está en el mundo: colócalo en Propiedades o en la ventana Mundo.", m.Id);
 

@@ -454,6 +454,14 @@ namespace CTEditor.App
             yield return Box(18f, 8f, 3.5f, 8f);
         }
 
+        /// <summary>A door: frame, knob and the floor line.</summary>
+        private static IEnumerable<Shape> Door()
+        {
+            foreach (var s in Frame(6.5f, 4f, 11f, 16.5f, 2f)) yield return s;
+            yield return Circle(14.6f, 12.6f, 1.4f);
+            yield return Line(3.5f, 20.6f, 20.5f, 20.6f, 2f);
+        }
+
         private static readonly Dictionary<string, Func<IEnumerable<Shape>>> Library = new Dictionary<string, Func<IEnumerable<Shape>>>
         {
             ["lapiz"] = Pencil,
@@ -506,6 +514,7 @@ namespace CTEditor.App
             ["pegar"] = Paste,
             ["zona"] = Zone,
             ["inicio"] = Start,
+            ["puerta"] = Door,
             ["jugar"] = () => new[] { Poly(7f, 4.5f, 19.5f, 12f, 7f, 19.5f) },
             ["ajustar"] = Fit,
             ["rejilla"] = GridIcon,

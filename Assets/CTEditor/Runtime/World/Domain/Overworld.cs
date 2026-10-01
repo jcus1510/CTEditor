@@ -149,11 +149,12 @@ namespace CTEditor.World.Domain
         }
 
         /// <summary>Cambia de mapa (teletransporte) o recarga el mismo tras editarlo.</summary>
-        public void SetMap(MapDefinition map, MapTilesets tileset, int x, int y)
+        public void SetMap(MapDefinition map, MapTilesets tileset, int x, int y, FacingDirection? facing = null)
         {
             Map = map;
             Tileset = tileset;
             Player.Teleport(Math.Max(0, Math.Min(map.Width - 1, x)), Math.Max(0, Math.Min(map.Height - 1, y)));
+            if (facing.HasValue) Player.Facing = facing.Value;
         }
 
         public void Update(float dt, FacingDirection? input, bool run)

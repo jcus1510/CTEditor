@@ -1064,6 +1064,7 @@ namespace CTEditor.App
                 case "seleccion": MapOnly(MapTool.Select); break;
                 case "inicio": MapOnly(MapTool.PlayerStart); break;
                 case "zona": MapOnly(MapTool.EncounterPaint); break;
+                case "puerta": MapOnly(MapTool.Door); break;
                 case "seleccionar_todo": if (Maps?.Map != null) { ActiveEditor = "mapa"; Maps.SelectAll(); } break;
                 case "deseleccionar": Maps?.ClearSelection(); break;
                 case "nuevo_mapa": if (HasProject) MapTreePanel.NewMapDialog(this, ""); break;
@@ -1169,6 +1170,7 @@ namespace CTEditor.App
                 if (_dialogs.Count > 0) { CloseDialog(_dialogs[_dialogs.Count - 1]); e.StopPropagation(); return; }
                 // Esc also ends painting a zone, then clears the selection.
                 if (Maps?.Tool == MapTool.EncounterPaint) { Maps.StopAreaPainting(); e.StopPropagation(); return; }
+                if (Maps?.PendingDoor != null) { Maps.CancelPendingDoor(); e.StopPropagation(); return; }
                 if (Maps?.Selection != null) { Maps.ClearSelection(); e.StopPropagation(); }
                 return;
             }

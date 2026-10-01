@@ -132,4 +132,6 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   cada casilla; sellos guardados en Ctrl+Alt+1-9 / Alt+1-9. Pruebas en `MapEditingTests`.
 - **B1 corte libre**: piezas a mano con lupa y precisión de píxel, detección de objetos sueltos; se colocan como
   bloques bajo la rejilla sin cambiar los números de los tiles (`FreePieceSet`). `FreeSliceTests`.
+- **B3 puertas enlazadas**: herramienta Puerta; interior nuevo con su salida en un paso; enlace por id; ir a la otra con
+  doble clic; salto al jugar; avisos en Problemas; deshacer en los dos mapas a la vez. `DoorTests`.
 - **Documentación** completa por capítulos (esta carpeta).

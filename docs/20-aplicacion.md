@@ -101,6 +101,7 @@ Detalle y reglas visuales en [`DISENO.md`](DISENO.md) (documento vivo del diseñ
 | Selección | Ctrl+A todo · Ctrl+D quitar · Ctrl+C / Ctrl+X / Ctrl+V · Supr borrar |
 | Vista | Ctrl+G rejilla · N vecinos · Z acercar · Mayús+Z alejar · F encuadrar · Espacio + arrastrar mover · Ctrl / Alt + rueda escala |
 | Capas | Av Pág / Re Pág siguiente / anterior · Ctrl+Mayús+N nueva · Ctrl+H ver · Ctrl+Mayús+K bloquear · Ctrl+L capas automáticas |
+| Puertas | O herramienta Puerta · Esc cancela la puerta a medias |
 | Sello | X / Y voltear · R girar a la derecha · Mayús+R a la izquierda · Ctrl+Alt+1-9 guardar el sello · Alt+1-9 recuperarlo |
 | Tiles | 1 pintar · 2 paso · 3 prioridad · 4 terreno · 5 arbusto · 6 mostrador · 7 pieza |
 | Ventanas | Ctrl+1 Mapa · Ctrl+2 Tiles · Ctrl+3 Capas · Ctrl+4 Mundo · Ctrl+5 Encuentros · Ctrl+6 Recursos · Ctrl+7 Retoque · Ctrl+8 Propiedades · Ctrl+9 Mapas |
@@ -285,4 +286,25 @@ un tileset ya cortado) o con el botón de selección de la cabecera de Tiles.
 **Probar en Unity**: cortar un tileset ripeado, «Corte libre…», «Detectar objetos», ajustar uno con la lupa, guardar:
 las piezas salen al final de la paleta de Tiles y se pintan como un bloque; cambiar sus propiedades (paso, prioridad)
 y volver a abrir el proyecto: siguen ahí.
+
+### Puertas que se enlazan solas (fase 6, B3)
+
+Herramienta **Puerta** (O) en la barra del mapa:
+
+- **Clic en una casilla** → menú: **Entrada a un interior nuevo…** (nombre y tamaño: casa pequeña, casa, tienda,
+  gimnasio, cueva) crea juntos el interior, la puerta de fuera y la alfombra de salida (abajo en el centro), enlazadas;
+  o **Enlazar con otra casilla**: luego clic donde sale (en este mapa o en otro que abras en Mapas). Esc cancela.
+- **Arrastrar** una puerta la mueve (el enlace sigue: es por id, no por posición). **Doble clic** lleva a la otra puerta.
+- **Clic derecho** en una puerta: ir a la otra, hacia dónde sale el jugador al llegar (abajo fuera, arriba dentro, por
+  defecto), cambiar el nombre, quitar esta (la otra queda sin salida y la ventana Problemas lo dice) o quitar las dos.
+- En el mapa cada puerta muestra adónde lleva («→ Casa»), una marca en el lado por el que se sale, y en rojo si no lleva a
+  ningún sitio. Todo se deshace con Ctrl+Z (las dos puertas de una vez).
+- **Jugando**, al pisar una puerta se aparece un paso fuera de la otra, mirando hacia ese lado. La casilla de la puerta
+  tiene que ser pisable (paso del tile).
+- **Problemas** avisa: puerta sin salida, la otra se borró o lleva a un mapa que ya no existe, la otra no vuelve aquí, o al
+  llegar se saldría del mapa.
+
+**Probar en Unity**: en un pueblo, Puerta → clic en la puerta de una casa → «Entrada a un interior nuevo…» → Casa; se abre
+el interior con su alfombra. Jugar: entrar y salir. Mover la puerta de fuera y volver a jugar. Quitar la de dentro: la
+ventana Problemas lo dice; Ctrl+Z la devuelve.
 

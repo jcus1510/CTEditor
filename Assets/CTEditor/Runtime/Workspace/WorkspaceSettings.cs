@@ -56,6 +56,7 @@ namespace CTEditor.Workspace
             new ShortcutAction("seleccion", "Selección", "M", "Herramientas"),
             new ShortcutAction("inicio", "Colocar el inicio del jugador", "P", "Herramientas"),
             new ShortcutAction("zona", "Pintar la zona de encuentros", "H", "Herramientas"),
+            new ShortcutAction("puerta", "Puertas enlazadas", "O", "Herramientas"),
 
             new ShortcutAction("voltear_h", "Voltear el sello en horizontal", "X", "Sello"),
             new ShortcutAction("voltear_v", "Voltear el sello en vertical", "Y", "Sello"),

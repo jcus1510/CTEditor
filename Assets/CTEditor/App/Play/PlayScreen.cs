@@ -277,6 +277,17 @@ namespace CTEditor.App
         /// <summary>A step finished: check the encounter methods for that terrain, like the original games.</summary>
         private void OnStep(int x, int y, int terrain)
         {
+            // A door: out of the other one, one step away from it, looking that way.
+            if (Doors.At(_sim.Map, x, y) is MapObject door)
+            {
+                var dest = Doors.Destination(door, _shell.Maps.Find);
+                if (dest == null) { ShowBanner("Esta puerta no lleva a ningún sitio", 1500); return; }
+                var (map, dx, dy, facing) = dest.Value;
+                _sim.SetMap(map, _shell.Maps.TilesetsOf(map), dx, dy, facing);
+                BuildSections();
+                ShowBanner(map.Name, 1600);
+                return;
+            }
             if (!_encountersOn || _sim.Map.Encounters.Count == 0) return;
             // The hour and the switches come from the test profile.
             var now = _profile.TimeNow(DateTime.Now);

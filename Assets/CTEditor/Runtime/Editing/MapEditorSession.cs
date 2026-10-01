@@ -22,7 +22,9 @@ namespace CTEditor.Editing
         /// <summary>Pegar lo copiado donde se haga clic.</summary>
         Paste = 7,
         /// <summary>Pintar casillas de la zona de encuentros activa (clic derecho = quitar).</summary>
-        EncounterPaint = 8
+        EncounterPaint = 8,
+        /// <summary>Puertas: clic = marcar una puerta y luego su salida (en otro mapa o en este); arrastrar una = moverla.</summary>
+        Door = 9
     }
 
     /// <summary>
@@ -100,6 +102,8 @@ namespace CTEditor.Editing
         public event Action WorldChanged;
         public event Action DirtyChanged;
         public event Action PlayerStartChanged;
+        /// <summary>Changed the objects of a map (doors...), the chosen object or the half-made door.</summary>
+        public event Action ObjectsChanged;
         /// <summary>Mensaje para el usuario (texto, nivel: «texto», «aviso», «error», «exito»).</summary>
         public event Action<string, string> Message;
 
@@ -252,6 +256,9 @@ namespace CTEditor.Editing
 
         public bool OpenMap(string id)
         {
+            SelectedObject = null;
+            _objectDrag = null;
+            ObjectDragTo = null;
             MapDefinition map;
             try { map = Get(id); }
             catch (Exception e)
@@ -396,6 +403,7 @@ namespace CTEditor.Editing
             if (tool == MapTool.Paste && Clipboard == null) { Message?.Invoke("No hay nada copiado.", "aviso"); return; }
             if (tool == MapTool.EncounterPaint && ActiveArea == null) { Message?.Invoke("Crea o elige una zona de encuentros primero.", "aviso"); return; }
             Tool = tool;
+            if (tool != MapTool.Door) { PendingDoor = null; SelectedObject = null; }
             if (tool != MapTool.Select) Selection = null;
             CancelDrag();
             SelectionChanged?.Invoke();
@@ -519,6 +527,9 @@ namespace CTEditor.Editing
                 case MapTool.PlayerStart:
                     if (Map.Contains(x, y)) SetPlayerStart(Map.Id, x, y);
                     break;
+                case MapTool.Door:
+                    DoorPointerDown(x, y);
+                    break;
                 case MapTool.Paste:
                     if (Clipboard == null) return;
                     int before = Map.TilesetIds.Count;
@@ -541,6 +552,11 @@ namespace CTEditor.Editing
             if (Map == null) return;
             if (_stroke != null) StrokeAt(x, y);
             else if (_areaAdded != null) AreaAt(x, y);
+            else if (_objectDrag != null)
+            {
+                ObjectDragTo = Map.Contains(x, y) ? (x, y) : ObjectDragTo;
+                ObjectsChanged?.Invoke();
+            }
             else if (_dragStart.HasValue)
             {
                 DragRect = (_dragStart.Value.x, _dragStart.Value.y, x, y);
@@ -556,6 +572,15 @@ namespace CTEditor.Editing
                 var stroke = _stroke;
                 _stroke = null;
                 if (!stroke.IsEmpty) Record(stroke.ToCommand(Tool == MapTool.Eraser ? "borrar" : "pintar"));
+            }
+            else if (_objectDrag != null)
+            {
+                var moved = _objectDrag;
+                _objectDrag = null;
+                var to = ObjectDragTo;
+                ObjectDragTo = null;
+                if (to.HasValue && (to.Value.x != moved.X || to.Value.y != moved.Y)) MoveObject(moved, to.Value.x, to.Value.y);
+                else ObjectsChanged?.Invoke();
             }
             else if (_areaAdded != null)
             {
@@ -681,6 +706,167 @@ namespace CTEditor.Editing
 
         /// <summary>Pasa a la herramienta Pegar (el clic coloca lo copiado).</summary>
         public void BeginPaste() => SetTool(MapTool.Paste);
+
+        // ── Doors (B3): created in pairs, linked by id ──────────────────────────────────────────────
+
+        /// <summary>The first end of a door being made (the next click, in this map or another, makes its exit).</summary>
+        public (string map, int x, int y)? PendingDoor { get; private set; }
+        /// <summary>The chosen object (a door) in the open map, for its properties.</summary>
+        public MapObject SelectedObject { get; private set; }
+        /// <summary>While dragging an object: the cell under the pointer.</summary>
+        public (int x, int y)? ObjectDragTo { get; private set; }
+        private MapObject _objectDrag;
+
+        private void DoorPointerDown(int x, int y)
+        {
+            var door = Doors.At(Map, x, y);
+            if (door != null)
+            {
+                SelectedObject = door;
+                _objectDrag = door;
+                ObjectDragTo = (x, y);
+                ObjectsChanged?.Invoke();
+                return;
+            }
+            if (!Map.Contains(x, y)) return;
+            if (PendingDoor.HasValue)
+            {
+                var (pm, px, py) = PendingDoor.Value;
+                var first = Find(pm);
+                PendingDoor = null;
+                if (first == null || CreateDoorPair(first, px, py, Map, x, y) == null)
+                    Message?.Invoke("No se pudo crear la puerta (¿ya hay una en esa casilla?).", "aviso");
+                return;
+            }
+            PendingDoor = (Map.Id, x, y);
+            SelectedObject = null;
+            Message?.Invoke("Puerta marcada. Ahora haz clic donde sale: en otro mapa (ábrelo en Mapas) o en este. Esc cancela.", "texto");
+            ObjectsChanged?.Invoke();
+        }
+
+        public void CancelPendingDoor()
+        {
+            if (!PendingDoor.HasValue) return;
+            PendingDoor = null;
+            ObjectsChanged?.Invoke();
+        }
+
+        public void SelectObject(MapObject o)
+        {
+            SelectedObject = o;
+            ObjectsChanged?.Invoke();
+        }
+
+        /// <summary>Both doors at once, linked, as one undo step.</summary>
+        public (MapObject a, MapObject b)? CreateDoorPair(MapDefinition mapA, int ax, int ay, MapDefinition mapB, int bx, int by)
+        {
+            (MapObject a, MapObject b)? pair = null;
+            var cmd = MapObjectsCommand.Run("puerta", new[] { mapA, mapB }, () => pair = Doors.CreatePair(mapA, ax, ay, mapB, bx, by));
+            if (pair == null) return null;
+            RecordObjects(cmd);
+            SelectedObject = Map == mapB ? pair.Value.b : Map == mapA ? pair.Value.a : null;
+            ObjectsChanged?.Invoke();
+            Message?.Invoke($"Puertas enlazadas: «{mapA.Name}» ({ax}, {ay}) ↔ «{mapB.Name}» ({bx}, {by}).", "exito");
+            return pair;
+        }
+
+        /// <summary>
+        /// A door here and a NEW interior behind it (a house, a shop), created together: the interior opens with its exit
+        /// mat at the bottom middle, linked to this door.
+        /// </summary>
+        public MapDefinition CreateDoorWithInterior(int x, int y, string name, int width, int height, string tilesetId = null,
+            SectionCategory category = SectionCategory.Building)
+        {
+            if (Map == null || !Map.Contains(x, y) || Doors.At(Map, x, y) != null) return null;
+            var outside = Map;
+            var entry = CreateMap(name, Tree.Find(outside.Id)?.ParentId ?? "", width, height, tilesetId, MapKind.Interior, category);
+            var inside = Find(entry.Id);
+            if (inside == null) return null;
+            CreateDoorPair(outside, x, y, inside, width / 2, height - 1);
+            return inside;
+        }
+
+        public void MoveObject(MapObject o, int x, int y)
+        {
+            var map = AllLoaded().FirstOrDefault(m => m.Objects.Contains(o));
+            if (map == null || !map.Contains(x, y)) return;
+            if (Doors.IsDoor(o) && Doors.At(map, x, y) is MapObject other && other != o)
+            {
+                Message?.Invoke("Ya hay una puerta en esa casilla.", "aviso");
+                ObjectsChanged?.Invoke();
+                return;
+            }
+            string id = o.Id;
+            RecordObjects(MapObjectsCommand.Run("mover puerta", new[] { map }, () => { o.X = x; o.Y = y; }));
+            SelectedObject = map.Objects.FirstOrDefault(m => m.Id == id);
+            ObjectsChanged?.Invoke();
+        }
+
+        /// <summary>Removes a door; its other end stays but no longer leads anywhere (Problems says so), or goes too.</summary>
+        public void RemoveDoor(MapObject door, bool alsoTheOther = false)
+        {
+            var map = AllLoaded().FirstOrDefault(m => m.Objects.Contains(door));
+            if (map == null) return;
+            var partner = Doors.Partner(door, Find);
+            var maps = new List<MapDefinition> { map };
+            if (partner.HasValue) maps.Add(partner.Value.map);
+            RecordObjects(MapObjectsCommand.Run(alsoTheOther ? "quitar puertas" : "quitar puerta", maps, () =>
+            {
+                map.Objects.Remove(door);
+                if (!partner.HasValue) return;
+                if (alsoTheOther) partner.Value.map.Objects.Remove(partner.Value.door);
+                else Doors.Unlink(partner.Value.door);
+            }));
+            if (SelectedObject == door) SelectedObject = null;
+            ObjectsChanged?.Invoke();
+        }
+
+        /// <summary>Changes a door (name, exit direction...) as one undo step.</summary>
+        public void ChangeObject(MapObject o, string label, Action<MapObject> change)
+        {
+            var map = AllLoaded().FirstOrDefault(m => m.Objects.Contains(o));
+            if (map == null) return;
+            string id = o.Id;
+            RecordObjects(MapObjectsCommand.Run(label, new[] { map }, () => change(o)));
+            SelectedObject = map.Objects.FirstOrDefault(m => m.Id == id);
+            ObjectsChanged?.Invoke();
+        }
+
+        /// <summary>Links a door that lost its other end to another door (both point to each other).</summary>
+        public void RelinkDoor(MapObject door, MapDefinition otherMap, MapObject other)
+        {
+            var map = AllLoaded().FirstOrDefault(m => m.Objects.Contains(door));
+            if (map == null || otherMap == null || other == null || door == other) return;
+            RecordObjects(MapObjectsCommand.Run("enlazar puertas", new[] { map, otherMap }, () => Doors.Link(map, door, otherMap, other)));
+            ObjectsChanged?.Invoke();
+        }
+
+        private IEnumerable<MapDefinition> AllLoaded() => _loaded.Values.Where(m => m != null);
+
+        private void RecordObjects(MapObjectsCommand cmd)
+        {
+            foreach (var m in cmd.Maps) MarkDirty(m.Id);
+            History.Record(new TrackedObjects(cmd, this));
+        }
+
+        private sealed class TrackedObjects : IEditCommand
+        {
+            private readonly MapObjectsCommand _inner;
+            private readonly MapEditorSession _s;
+            public TrackedObjects(MapObjectsCommand inner, MapEditorSession s) { _inner = inner; _s = s; }
+            public string Label => _inner.Label;
+            public void Do() { _inner.Do(); After(); }
+            public void Undo() { _inner.Undo(); After(); }
+
+            private void After()
+            {
+                foreach (var m in _inner.Maps) _s.MarkDirty(m.Id);
+                // The objects were replaced by copies: keep the chosen one by id.
+                var sel = _s.SelectedObject;
+                _s.SelectedObject = sel == null || _s.Map == null ? null : _s.Map.Objects.FirstOrDefault(o => o.Id == sel.Id && o.Kind == sel.Kind);
+                _s.ObjectsChanged?.Invoke();
+            }
+        }
 
         // ── Player start ─────────────────────────────────────────────────────────────────────────
 

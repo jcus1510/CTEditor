@@ -34,6 +34,7 @@ namespace CTEditor.App
             (MapTool.Paste, "Pegar", "pegar", "Haz clic donde quieras pegar lo copiado"),
             (MapTool.EncounterPaint, "Zona", "zona", "Pinta la zona de encuentros activa (clic derecho quita)"),
             (MapTool.PlayerStart, "Inicio", "inicio", "Coloca el inicio del jugador"),
+            (MapTool.Door, "Puerta", "puerta", "Puertas enlazadas: clic en una casilla = entrada a un interior nuevo o enlazar con otra; arrastrar una puerta la mueve; doble clic = ir a la otra; clic derecho = opciones"),
         };
 
         private readonly AppShell _shell;
@@ -139,6 +140,7 @@ namespace CTEditor.App
             S.EncountersChanged += RedrawOverlay;
             S.WorldChanged += OnWorldChanged;
             S.PlayerStartChanged += RedrawOverlay;
+            S.ObjectsChanged += RedrawOverlay;
             S.DirtyChanged += UpdateStatus;
             _shell.PlayingChanged += OnPlaying;
             _shell.ActionRequested += OnAction;
@@ -161,6 +163,7 @@ namespace CTEditor.App
                 S.EncountersChanged -= RedrawOverlay;
                 S.WorldChanged -= OnWorldChanged;
                 S.PlayerStartChanged -= RedrawOverlay;
+                S.ObjectsChanged -= RedrawOverlay;
                 S.DirtyChanged -= UpdateStatus;
             }
             _shell.PlayingChanged -= OnPlaying;
@@ -439,6 +442,7 @@ namespace CTEditor.App
             MapTool.Select => "seleccion",
             MapTool.Paste => "pegar",
             MapTool.EncounterPaint => "zona",
+            MapTool.Door => "puerta",
             _ => "inicio",
         };
 
@@ -537,6 +541,11 @@ namespace CTEditor.App
                 RetouchTileAt(cell);
                 return;
             }
+            if (S.Tool == MapTool.Door && (e.button == 0 || e.button == 1) && DoorClick(e, cell))
+            {
+                _viewport.ReleasePointer(e.pointerId);
+                return;
+            }
             bool secondary = false;
             if (e.button == 1)
             {
@@ -615,6 +624,114 @@ namespace CTEditor.App
             e.StopPropagation();
         }
 
+        // ── Doors ────────────────────────────────────────────────────────────────────────────────
+
+        /// <summary>The door tool: menus and double click. True if it handled the click (no drag follows).</summary>
+        private bool DoorClick(PointerDownEvent e, (int x, int y) cell)
+        {
+            var door = Doors.At(S.Map, cell.x, cell.y);
+            if (e.button == 1)
+            {
+                if (door != null) DoorMenu(door, e.position);
+                else if (S.PendingDoor.HasValue) S.CancelPendingDoor();
+                return true;
+            }
+            if (door != null && e.clickCount >= 2) { GoToOtherDoor(door); return true; }
+            if (door == null && !S.PendingDoor.HasValue && S.Map.Contains(cell.x, cell.y))
+            {
+                var at = cell;
+                _shell.ShowMenu(e.position, new List<MenuItem>
+                {
+                    new MenuItem("Entrada a un interior nuevo…", () => NewInteriorDialog(at)),
+                    new MenuItem("Enlazar con otra casilla (luego clic en la salida)", () => S.PointerDown(at.x, at.y)),
+                });
+                return true;
+            }
+            return false;
+        }
+
+        private void DoorMenu(MapObject door, Vector2 at)
+        {
+            S.SelectObject(door);
+            var exit = Doors.ExitOf(door);
+            var exits = new[] { Art.Domain.FacingDirection.Down, Art.Domain.FacingDirection.Up, Art.Domain.FacingDirection.Left, Art.Domain.FacingDirection.Right }
+                .Select(d => new MenuItem("Hacia " + Doors.ExitName(d), () => S.ChangeObject(door, "salida de la puerta", o => Doors.SetExit(o, d)),
+                    isChecked: d == exit)).ToList();
+            bool linked = Doors.Partner(door, S.Find) != null;
+            _shell.ShowMenu(at, new List<MenuItem>
+            {
+                new MenuItem("Ir a la otra puerta", () => GoToOtherDoor(door), enabled: linked),
+                MenuItem.Submenu("Al llegar, sale…", exits),
+                new MenuItem("Cambiar el nombre…", () => RenameDoor(door)),
+                MenuItem.Separator,
+                new MenuItem("Quitar esta puerta (la otra queda sin salida)", () => S.RemoveDoor(door)),
+                new MenuItem("Quitar las dos puertas", () => S.RemoveDoor(door, alsoTheOther: true), enabled: linked),
+            });
+        }
+
+        private void GoToOtherDoor(MapObject door)
+        {
+            var p = Doors.Partner(door, S.Find);
+            if (p == null) { _shell.Warn("Esta puerta no lleva a ningún sitio: crea su salida o quítala."); return; }
+            var (map, other) = p.Value;
+            var id = other.Id;
+            if (S.Map?.Id != map.Id) S.OpenMap(map.Id);
+            S.SetTool(MapTool.Door);
+            S.SelectObject(S.Map?.Objects.FirstOrDefault(o => o.Id == id));
+        }
+
+        private void RenameDoor(MapObject door)
+        {
+            var d = _shell.ShowDialog("Nombre de la puerta");
+            string name = door.Name;
+            d.Body.Add(Ui.TextBox("Nombre", name, v => name = v));
+            d.Buttons.With(Ui.Spacer(), Ui.Button("Cancelar", () => _shell.CloseDialog(d)),
+                Ui.Button("Cambiar", () =>
+                {
+                    if (!string.IsNullOrWhiteSpace(name)) S.ChangeObject(door, "nombre de la puerta", o => o.Name = name.Trim());
+                    _shell.CloseDialog(d);
+                }, Ui.ButtonKind.Primary));
+        }
+
+        private static readonly (string label, int w, int h)[] InteriorSizes =
+        {
+            ("Casa pequeña", 13, 9), ("Casa", 17, 13), ("Tienda o centro", 20, 15), ("Gimnasio", 20, 25), ("Cueva", 40, 30),
+        };
+
+        /// <summary>A door here and a new interior behind it, made together (the interior opens with its exit mat).</summary>
+        private void NewInteriorDialog((int x, int y) at)
+        {
+            var outside = S.Map;
+            var d = _shell.ShowDialog("Entrada a un interior nuevo");
+            string name = "Casa de " + outside.Name;
+            int size = 1;
+            d.Body.Add(Ui.Hint($"Se crean juntas la puerta de «{outside.Name}» ({at.x}, {at.y}) y la salida dentro del interior nuevo, enlazadas. Moverlas no rompe el enlace."));
+            d.Body.Add(Ui.TextBox("Nombre", name, v => name = v));
+            var chips = Ui.Row(6).Wrap();
+            void Chips()
+            {
+                chips.Clear();
+                for (int i = 0; i < InteriorSizes.Length; i++)
+                {
+                    int k = i;
+                    var (label, w, h) = InteriorSizes[i];
+                    chips.Add(Ui.Chip($"{label} · {w}×{h}", size == k, () => { size = k; Chips(); }));
+                }
+            }
+            Chips();
+            d.Body.With(Ui.SectionTitle("Tamaño"), chips);
+            d.Buttons.With(Ui.Spacer(), Ui.Button("Cancelar", () => _shell.CloseDialog(d)),
+                Ui.Button("Crear", () =>
+                {
+                    var (_, w, h) = InteriorSizes[size];
+                    _shell.CloseDialog(d);
+                    var inside = S.CreateDoorWithInterior(at.x, at.y, string.IsNullOrWhiteSpace(name) ? "Interior" : name.Trim(), w, h);
+                    if (inside == null) { _shell.Warn("No se pudo crear la puerta en esa casilla."); return; }
+                    S.SetTool(MapTool.Door);
+                    _shell.Success($"«{inside.Name}» creado con su salida enlazada. Doble clic en una puerta te lleva a la otra.");
+                }, Ui.ButtonKind.Primary));
+        }
+
         private void RetouchTileAt((int x, int y) cell)
         {
             if (!S.Map.Contains(cell.x, cell.y)) return;
@@ -688,14 +805,35 @@ namespace CTEditor.App
                 foreach (var (x, y) in EncounterChecks.CellsOffTerrain(m, S.Tilesets, S.ActiveArea, S.Methods))
                     Box(P(x + 0.2f, y + 0.2f), P(x + 0.8f, y + 0.8f), Ui.C("error"), 2, 0.25f);
 
-            // Objects (the player start for now).
+            // Objects: the player start and the doors (with where they lead; red if they lead nowhere).
             foreach (var o in m.Objects)
             {
                 var a = P(o.X, o.Y);
                 bool start = o.Kind == MapObject.PlayerStartKind;
+                if (Doors.IsDoor(o))
+                {
+                    var dest = Doors.Partner(o, S.Find);
+                    bool chosen = S.SelectedObject == o;
+                    var dc = Ui.C(dest == null ? "error" : chosen ? "aviso" : "acento");
+                    var at = S.ObjectDragTo.HasValue && chosen ? S.ObjectDragTo.Value : (o.X, o.Y);
+                    Box(P(at.Item1, at.Item2), P(at.Item1 + o.Width, at.Item2 + o.Height), dc, chosen ? 3 : 2, 0.2f);
+                    // The way out: a short mark on the side the player comes out.
+                    var (ox, oy) = Passability.Step(at.Item1, at.Item2, Doors.ExitOf(o));
+                    Box(P(ox + 0.35f, oy + 0.35f), P(ox + 0.65f, oy + 0.65f), dc, 1, 0.35f);
+                    if (S.Tool == MapTool.Door || chosen)
+                        Tag(dest == null ? "Puerta sin salida" : "→ " + dest.Value.map.Name, P(at.Item1, at.Item2) + new Vector2(0, -Ui.FontSize - 4), dc, filled: true);
+                    continue;
+                }
                 var c = Ui.C(start ? "exito" : "acento");
                 Box(a, P(o.X + o.Width, o.Y + o.Height), c, 2, 0.15f);
                 Tag(start ? "Inicio" : o.Name, a + new Vector2(0, -Ui.FontSize - 4), c, filled: true);
+            }
+            // The first end of a door being made.
+            if (S.PendingDoor.HasValue && S.PendingDoor.Value.map == m.Id)
+            {
+                var (px, py) = (S.PendingDoor.Value.x, S.PendingDoor.Value.y);
+                Box(P(px, py), P(px + 1, py + 1), Ui.C("aviso"), 3, 0.3f);
+                Tag("Puerta: ¿dónde sale?", P(px, py) + new Vector2(0, -Ui.FontSize - 4), Ui.C("aviso"), filled: true);
             }
 
             // Selection.
