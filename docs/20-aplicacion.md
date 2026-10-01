@@ -461,6 +461,13 @@ Lo propio de cada editor de Unity, ya en la aplicación:
 - **Nuevo** con **plantillas** de los packs (con filtros) o vacío; en Curvas, «Crear las 6 clásicas».
 - **Rapidez**: las comprobaciones se calculan una vez por cambio y volver a una pestaña no la rehace si nada cambió.
 
-Pendiente: el **editor de efectos por bloques** (objetos, habilidades, movimientos) como en Unity, y el resto de
-validadores de Unity.
+**Efectos por bloques** (Objetos y Habilidades), como en Unity: los efectos agrupados por «cuándo» en secciones
+plegables; cada tarjeta es «cuándo → qué» con desplegables, los parámetros que pide esa acción (tipo, estado,
+estadística, clima, movimiento, número con su unidad, a quién), sus **condiciones** como una frase editable («Si el
+rival tiene como mucho 50 % de vida», con NO), probabilidad, veces por combate, «se gasta» (solo objetos), subir,
+bajar y quitar; debajo, la frase de lo que hará el motor (en naranja si el motor aún no lo aplica). «+ Añadir
+efecto…» pregunta primero CUÁNDO y luego QUÉ (con los comportamientos especiales de habilidades). Todos los efectos de
+los packs Gen1…Gen7 se leen (prueba `PackEffectsTests`). El traductor vive ahora en `CTEditor.GameDefinition.Text`,
+compartido por Unity y la aplicación.
 
+Pendiente: efectos de **movimientos** por bloques y el resto de validadores de Unity.

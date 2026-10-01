@@ -109,6 +109,8 @@ namespace CTEditor.App
         /// <summary>A labelled row with the editor of that column.</summary>
         private VisualElement Field(ContentRecord r, ColumnSpec col)
         {
+            // The effect blocks take the whole width (their section already says what they are).
+            if (col.Name == "efectos" && (_category == ContentSchemas.Items || _category == ContentSchemas.Abilities)) return Editor(r, col);
             var row = Ui.Row(8);
             row.style.alignItems = Align.FlexStart;
             var label = Ui.Text(col.Label + (col.Required ? " *" : ""), 0.9f).NoShrink();
@@ -141,6 +143,8 @@ namespace CTEditor.App
                     items.AddRange(AbilityCategories.All.Select(c => new MenuItem(c, () => Save(c), isChecked: value.Trim() == c)));
                     return ContentWidgets.Dropdown(_shell, value.Trim().Length > 0 ? value : $"Automática: {guess}", () => items);
                 }
+                case "objetos.efectos": return EffectBlocksEditor.Build(_shell, value, false, Save, Key("bloques"));
+                case "habilidades.efectos": return EffectBlocksEditor.Build(_shell, value, true, Save, Key("bloques"));
                 case "entrenadores.equipo":
                 case "equipos.equipo":
                     return TeamEditor(value, Save);
