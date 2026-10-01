@@ -14,7 +14,7 @@ namespace CTEditor.App.Editor
     {
         public const string ScenePath = "Assets/CTEditor/App/Scenes/Aplicacion.unity";
 
-        [MenuItem("CTEditor/Aplicación/Abrir la aplicación (Play)", false, 1)]
+        [UnityEditor.MenuItem("CTEditor/Aplicación/Abrir la aplicación (Play)", false, 1)]
         public static void OpenAndPlay()
         {
             if (!File.Exists(ScenePath)) Build();
@@ -23,7 +23,7 @@ namespace CTEditor.App.Editor
             EditorApplication.isPlaying = true;
         }
 
-        [MenuItem("CTEditor/Aplicación/Crear (o rehacer) la escena de la aplicación", false, 2)]
+        [UnityEditor.MenuItem("CTEditor/Aplicación/Crear (o rehacer) la escena de la aplicación", false, 2)]
         public static void Build()
         {
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
@@ -46,7 +46,7 @@ namespace CTEditor.App.Editor
             Debug.Log($"[CTEditor] Escena de la aplicación creada en {ScenePath} (primera en Build Settings). Pulsa Play para abrirla.");
         }
 
-        [MenuItem("CTEditor/Aplicación/Abrir la carpeta del entorno de trabajo", false, 20)]
+        [UnityEditor.MenuItem("CTEditor/Aplicación/Abrir la carpeta del entorno de trabajo", false, 20)]
         public static void OpenWorkspaceFolder() => EditorUtility.RevealInFinder(Application.persistentDataPath);
     }
 }
