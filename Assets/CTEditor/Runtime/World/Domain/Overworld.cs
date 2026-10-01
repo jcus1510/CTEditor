@@ -26,20 +26,20 @@ namespace CTEditor.World.Domain
             _ => FacingDirection.Left,
         };
 
-        public static bool CanMove(MapDefinition map, Tileset tileset, int x, int y, FacingDirection d)
+        public static bool CanMove(MapDefinition map, MapTilesets tileset, int x, int y, FacingDirection d)
         {
             var (nx, ny) = Step(x, y, d);
             if (!map.Contains(nx, ny)) return false;
             return Passable(map, tileset, x, y, PassageBlocks.Of(d)) && Passable(map, tileset, nx, ny, PassageBlocks.Of(Opposite(d)));
         }
 
-        public static bool Passable(MapDefinition map, Tileset tileset, int x, int y, PassageBlock side)
+        public static bool Passable(MapDefinition map, MapTilesets tileset, int x, int y, PassageBlock side)
         {
             if (!map.Contains(x, y)) return false;
             for (int i = map.Layers.Count - 1; i >= 0; i--)
             {
                 int t = map.Layers[i].Get(x, y);
-                if (t < 0 || tileset == null) continue;
+                if (t < 0 || tileset == null || tileset.For(t) == null) continue;
                 var p = tileset.Properties(t);
                 if ((p.Blocked & side) != 0) return false;
                 if (p.Priority == 0) return true;
@@ -48,7 +48,7 @@ namespace CTEditor.World.Domain
         }
 
         /// <summary>Etiqueta de terreno de la casilla: la del tile más alto que tenga una (0 = ninguna).</summary>
-        public static int TerrainAt(MapDefinition map, Tileset tileset, int x, int y)
+        public static int TerrainAt(MapDefinition map, MapTilesets tileset, int x, int y)
         {
             if (tileset == null || !map.Contains(x, y)) return 0;
             for (int i = map.Layers.Count - 1; i >= 0; i--)
@@ -62,7 +62,7 @@ namespace CTEditor.World.Domain
         }
 
         /// <summary>¿Hay un tile «arbusto» (el personaje se ve medio hundido)?</summary>
-        public static bool BushAt(MapDefinition map, Tileset tileset, int x, int y)
+        public static bool BushAt(MapDefinition map, MapTilesets tileset, int x, int y)
         {
             if (tileset == null || !map.Contains(x, y)) return false;
             for (int i = map.Layers.Count - 1; i >= 0; i--)
@@ -122,8 +122,12 @@ namespace CTEditor.World.Domain
     public sealed class OverworldSim
     {
         public MapDefinition Map { get; private set; }
-        public Tileset Tileset { get; private set; }
+        public MapTilesets Tileset { get; private set; }
         public Walker Player { get; }
+        /// <summary>El mundo continuo (null = solo este mapa): al salir por un borde se entra andando en el tramo vecino.</summary>
+        public WorldLayout World { get; set; }
+        /// <summary>Da los tilesets de otro tramo (para cruzar al vecino).</summary>
+        public Func<MapDefinition, MapTilesets> TilesetsOf { get; set; }
         /// <summary>Casillas por segundo.</summary>
         public float WalkSpeed { get; set; } = 4f;
         public float RunSpeed { get; set; } = 8f;
@@ -134,8 +138,10 @@ namespace CTEditor.World.Domain
         public event Action<int, int, int> StepFinished;
         /// <summary>Intentó andar hacia algo que no se puede pasar.</summary>
         public event Action<FacingDirection> Bumped;
+        /// <summary>Entró andando en otro tramo del mundo (el anterior, el nuevo).</summary>
+        public event Action<MapDefinition, MapDefinition> SectionChanged;
 
-        public OverworldSim(MapDefinition map, Tileset tileset, int x, int y, FacingDirection facing = FacingDirection.Down)
+        public OverworldSim(MapDefinition map, MapTilesets tileset, int x, int y, FacingDirection facing = FacingDirection.Down)
         {
             Map = map ?? throw new ArgumentNullException(nameof(map));
             Tileset = tileset;
@@ -143,7 +149,7 @@ namespace CTEditor.World.Domain
         }
 
         /// <summary>Cambia de mapa (teletransporte) o recarga el mismo tras editarlo.</summary>
-        public void SetMap(MapDefinition map, Tileset tileset, int x, int y)
+        public void SetMap(MapDefinition map, MapTilesets tileset, int x, int y)
         {
             Map = map;
             Tileset = tileset;
@@ -170,8 +176,29 @@ namespace CTEditor.World.Domain
             }
             if (input == null) return;
             p.Facing = input.Value;
-            if (NoClip ? Map.Contains(Passability.Step(p.X, p.Y, input.Value).x, Passability.Step(p.X, p.Y, input.Value).y)
-                       : Passability.CanMove(Map, Tileset, p.X, p.Y, input.Value))
+            var d = input.Value;
+            var (sx, sy) = Passability.Step(p.X, p.Y, d);
+            if (!Map.Contains(sx, sy) && World != null && World.TryCross(Map, p.X, p.Y, d, out var next, out int tx, out int ty))
+            {
+                // Seamless: step into the neighbour section if both sides let us through.
+                var nextTiles = TilesetsOf?.Invoke(next) ?? MapTilesets.None;
+                bool ok = NoClip || Passability.Passable(Map, Tileset, p.X, p.Y, PassageBlocks.Of(d))
+                          && Passability.Passable(next, nextTiles, tx, ty, PassageBlocks.Of(Passability.Opposite(d)));
+                if (!ok) { Bumped?.Invoke(d); return; }
+                var previous = Map;
+                var (dx, dy) = (sx - p.X, sy - p.Y);
+                Map = next;
+                Tileset = nextTiles;
+                p.FromX = tx - dx;
+                p.FromY = ty - dy;
+                p.X = tx;
+                p.Y = ty;
+                p.Moving = true;
+                p.Progress = Math.Min(0.99f, leftover * speed);
+                SectionChanged?.Invoke(previous, next);
+                return;
+            }
+            if (NoClip ? Map.Contains(sx, sy) : Passability.CanMove(Map, Tileset, p.X, p.Y, d))
             {
                 var (nx, ny) = Passability.Step(p.X, p.Y, input.Value);
                 p.FromX = p.X;

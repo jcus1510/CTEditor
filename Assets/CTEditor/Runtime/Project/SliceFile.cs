@@ -14,8 +14,12 @@ namespace CTEditor.Project
     {
         private static readonly string[] KindKeys = { "tileset", "personaje", "sprites" };
 
+        private static readonly string[] PieceKeys = { "auto", "suelo", "detalle", "encima" };
+
         public SliceDefinition Slice { get; }
         public TileAttributes Attributes { get; }
+        /// <summary>Id fijo de la imagen (lo usan los mapas). Vacío = aún no tiene (se le da uno al guardar).</summary>
+        public string Id { get; set; } = "";
 
         public SliceFile(SliceSettings settings, SheetKind kind = SheetKind.Tileset, TileAttributes attributes = null)
         {
@@ -35,6 +39,7 @@ namespace CTEditor.Project
         {
             var s = Settings;
             var json = new JsonObject()
+                .Set("id", Id ?? "")
                 .Set("tipo", KindKeys[(int)Kind])
                 .Set("ancho", s.TileWidth).Set("alto", s.TileHeight)
                 .Set("desplazamiento_x", s.OffsetX).Set("desplazamiento_y", s.OffsetY)
@@ -56,6 +61,7 @@ namespace CTEditor.Project
                 if (p.TerrainTag != 0) o["terreno"] = p.TerrainTag;
                 if (p.Bush) o["arbusto"] = true;
                 if (p.Counter) o["mostrador"] = true;
+                if (p.Piece != TilePiece.Auto) o["pieza"] = PieceKeys[(int)p.Piece];
                 tiles.Add(o);
             }
             return tiles;
@@ -67,7 +73,8 @@ namespace CTEditor.Project
             var settings = new SliceSettings(w, o.GetInt("alto", w), o.GetInt("desplazamiento_x"), o.GetInt("desplazamiento_y"),
                 o.GetInt("separacion_x"), o.GetInt("separacion_y"));
             int kind = Array.IndexOf(KindKeys, o.GetString("tipo", "tileset"));
-            var file = new SliceFile(settings, kind < 0 ? SheetKind.Tileset : (SheetKind)kind) { CharacterLayout = o.GetString("plantilla", "") };
+            var file = new SliceFile(settings, kind < 0 ? SheetKind.Tileset : (SheetKind)kind)
+                { CharacterLayout = o.GetString("plantilla", ""), Id = o.GetString("id", "") };
             foreach (var t in o.GetArray("tiles") ?? new List<object>())
             {
                 if (!(t is JsonObject to) || !to.Has("tile")) continue;
@@ -78,6 +85,7 @@ namespace CTEditor.Project
                     TerrainTag = Math.Max(0, to.GetInt("terreno")),
                     Bush = to.GetBool("arbusto"),
                     Counter = to.GetBool("mostrador"),
+                    Piece = (TilePiece)Math.Max(0, Array.IndexOf(PieceKeys, to.GetString("pieza", "auto"))),
                 });
             }
             return file;
@@ -89,6 +97,14 @@ namespace CTEditor.Project
             return File.Exists(path) ? FromJson(Json.ParseObject(File.ReadAllText(path))) : null;
         }
 
-        public void SaveFor(string imagePath) => File.WriteAllText(ProjectLayout.SlicePathFor(imagePath), Json.Write(ToJson()));
+        /// <summary>Guarda junto a la imagen. Si no tiene id, se le da uno a partir del nombre del archivo.</summary>
+        public void SaveFor(string imagePath)
+        {
+            if (string.IsNullOrWhiteSpace(Id)) Id = IdFromName(Path.GetFileNameWithoutExtension(imagePath));
+            File.WriteAllText(ProjectLayout.SlicePathFor(imagePath), Json.Write(ToJson()));
+        }
+
+        /// <summary>«Pueblo Raíz (2).png» → «pueblo_raiz_2».</summary>
+        public static string IdFromName(string name) => new MapTree().NewId(name);
     }
 }
