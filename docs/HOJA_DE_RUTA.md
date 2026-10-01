@@ -50,15 +50,49 @@ controles...). Pasan a la aplicación **con más rigor**: nada se rompe al borra
 
 | Tarea | Estado | Comprobación |
 |---|---|---|
-| C0. **Inventario**: cada ventana de Unity → su ventana en la aplicación, qué datos toca y qué valida | ⬜ | Tabla en este documento revisada contigo. |
-| C1. **Una sola fuente de datos**: el contenido vive en archivos abiertos del proyecto (`datos/*.csv` / JSON), leídos por repositorios con **esquema** (columnas, tipos, obligatorios) y errores con fila y columna | ⬜ | Abrir datos con errores a propósito: se dicen todos, ninguno rompe la aplicación. |
+| C0. **Inventario**: cada ventana de Unity → su ventana en la aplicación, qué datos toca y qué valida | ✅ (tabla de abajo) | Tabla en este documento revisada contigo. |
+| C1. **Una sola fuente de datos**: el contenido vive en archivos abiertos del proyecto (`datos/*.csv` / JSON), leídos por repositorios con **esquema** (columnas, tipos, obligatorios) y errores con fila y columna | ✅ (`CTEditor.Content`: `ContentSchemas`, `ContentDatabase`, `ContentChecks`) | Abrir datos con errores a propósito: se dicen todos, ninguno rompe la aplicación. |
 | C2. **Índice de referencias** (quién usa qué: una especie en encuentros, entrenadores, evoluciones, sets...) | ⬜ | Pruebas: el índice encuentra todas las referencias de cada tipo de contenido. |
-| C3. **Operaciones seguras**: borrar avisa de quién lo usa (cancelar, sustituir por otro o quitar las referencias); renombrar un id lo cambia en todas partes; **papelera** para recuperar lo borrado; todo con Ctrl+Z | ⬜ | Borrar Pikachu usado en una ruta y un entrenador: avisa, y al sustituirlo por Raichu todo sigue funcionando. |
+| C3. **Operaciones seguras**: borrar avisa de quién lo usa (cancelar, sustituir por otro o quitar las referencias); renombrar un id lo cambia en todas partes; **papelera** para recuperar lo borrado; todo con Ctrl+Z | ✅ dominio (`ContentSession`, `ContentTests`); falta la ventana | Borrar Pikachu usado en una ruta y un entrenador: avisa, y al sustituirlo por Raichu todo sigue funcionando. |
 | C4. **Validación** completa (la de `ContentValidator`) como comprobaciones de la ventana Problemas | ⬜ | Los mismos avisos que en Unity, con clic = ir al sitio. |
 | C5. Ventanas en este orden: **Especies** (formas, evoluciones, aprendizaje, árbol de familia) → **Movimientos** → **Habilidades** (bloques) → **Objetos** (bloques) → **Tipos y tabla de tipos** → Naturalezas, grupos huevo, curvas → Estados, climas, campos, peligros → **Entrenadores**, equipos, plantillas y sets (con Showdown) → **Reglas y mecánicas** → Menús y controles | ⬜ | Cada una: crear, cambiar, duplicar, borrar con referencias, deshacer; lo mismo que en Unity o más. |
 | C6. **Cambio de generación** con **vista previa** de lo que cambia (diferencias), copia de seguridad automática antes y vuelta atrás | ⬜ | Pasar un proyecto de Gen 3 a Gen 7 y volver: queda igual. |
 | C7. Herramientas: calculadora de daño, simulador de combate, torneo de IA | ⬜ | Mismos resultados que en Unity con la misma semilla. |
 | C8. Las ventanas de Unity se quedan solo para desarrollo (no para el autor) | ⬜ | Todo el contenido se edita sin abrir Unity. |
+
+
+### C0 · Inventario (36 ventanas de Unity → aplicación)
+
+Diseño: se respeta la distribución de cada ventana de Unity (lista a la izquierda con buscador, filtros y marcas de
+color; ficha a la derecha por secciones; vista previa debajo). El encabezado de color pasa a ser el tema de la
+aplicación; la «Guía rápida / Cómo usar» va al botón «i»; las acciones (nuevo, duplicar, borrar, ¿quién lo usa?,
+renombrar, plantillas) se agrupan en la barra de la ventana. Datos: `datos/*.csv` (el formato de los packs y de Excel).
+
+| Ventana de Unity | En la aplicación | Datos | Valida / extra |
+|---|---|---|---|
+| Especies (+ calculadora de stats) | **Especies** | especies.csv | tipos, habilidades, curva, aprende/MT/tutor/huevo, evoluciones; barras de stats y total |
+| Árbol de familia (formas y variantes) | pestaña de Especies | especies.csv (evoluciona, forma_de, formas) | evoluciones a especies que existen |
+| Movimientos | **Movimientos** | movimientos.csv | tipo, categoría, potencia/precisión/PP, efectos |
+| Habilidades (bloques) | **Habilidades** | habilidades.csv | efectos |
+| Objetos (bloques) | **Objetos** | objetos.csv | efectos, precio |
+| Tipos + tabla de tipos | **Tipos** (con la matriz) | tipos.csv, tabla_tipos.csv | columnas = tipos que existen; números |
+| Naturalezas (tabla 5×5) | **Naturalezas** | naturalezas.csv | sube / baja |
+| Grupos huevo | **Grupos huevo** | grupos_huevo.csv | especies de cada grupo |
+| Curvas de experiencia (gráfico) | **Curvas** | curvas.csv (+ las 6 clásicas) | — |
+| Estados, Climas, Efectos de lado, Trampas | **Combate → …** | estados/climas/efectos_lado/trampas.csv | tipos inmunes, se convierte en |
+| Entrenadores, Equipos prearmados | **Entrenadores**, **Equipos** | entrenadores.csv, equipos.csv | equipo (especie, movimientos, objeto), mochila |
+| Plantillas de entrenadores, Sets, Elegir set, Showdown | dentro de Entrenadores | sets.csv | especie, objeto, habilidad, naturaleza, movimientos |
+| Niveles de IA | **Niveles de IA** | (por definir en C5) | — |
+| Reglas del juego, Mecánicas especiales | **Reglas** | reglas.csv | — |
+| Menús, Mapa de menús, Controles y texto | **Interfaz** (último de C5) | (por definir) | — |
+| Zonas salvajes | ya en la aplicación: **Encuentros** de cada mapa | mapas | especies que existen |
+| Validar contenido | ventana **Problemas** (C4) | todo | `ContentChecks` |
+| Excel / compartir (CSV) | innecesaria: los datos ya son CSV; exportar/importar → bloque D | — | — |
+| Papelera | **Papelera** (C3) | `datos/papelera.csv` | recuperar |
+| Cambiar de generación | **Cambiar de generación** (C6) | packs | vista previa y copia |
+| Calculadora de daño, Simulador, Torneo de IA | **Pruebas** (C7) | — | mismo motor |
+| Centro de contenido | pantalla de inicio / packs | — | — |
+| Escenas de prueba (BattleLab, menús de escena) | se quedan en Unity (desarrollo, C8) | — | — |
 
 ## D · Packs públicos
 

@@ -6,6 +6,7 @@
         "CTEditor.Project",
         "CTEditor.Workspace",
         "CTEditor.SharedKernel",
+        "CTEditor.Content",
         "CTEditor.World.Domain",
         "CTEditor.Editing",
         "Unity.InputSystem"

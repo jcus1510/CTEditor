@@ -5,6 +5,7 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "CTEditor.SharedKernel",
+        "CTEditor.Content",
         "CTEditor.GameContracts",
         "CTEditor.GameDefinition.Domain",
         "CTEditor.GameDefinition",

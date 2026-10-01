@@ -370,3 +370,22 @@ en dos sitios; quitar la pieza: las casas siguen ahí; Ctrl+Z quita la última.
 | Pinceles aleatorios | Tiles → dado | Ctrl+Mayús+R |
 | Piezas reutilizables | Tiles → casa | Ctrl+Mayús+B, Ctrl+Mayús+C |
 
+### Bloque C: el contenido del juego en la aplicación (base, C1-C3)
+
+Nuevo ensamblado puro `CTEditor.Content` (sin Unity), con pruebas:
+
+- **Esquemas** (`ContentSchemas`): cada categoría (especies, movimientos, habilidades, objetos, tipos y su tabla,
+  naturalezas, grupos huevo, curvas, estados, climas, efectos de lado, trampas, entrenadores, equipos, sets, reglas)
+  con su archivo de `datos/`, sus columnas (texto, número, si/no, opción, referencia, listas, aprendizaje por nivel,
+  evoluciones, equipos, efectos escritos), cuáles hacen falta y a qué apuntan. Las columnas que no conoce se conservan.
+- **Base de datos** (`ContentDatabase`): lee los CSV de `datos/` (comillas, «;», BOM) y guarda solo lo que cambió, a
+  través de un archivo temporal; un archivo que no se puede leer se avisa y no se toca.
+- **Comprobaciones** (`ContentChecks`): ids vacíos, repetidos o con espacios; celdas que hacen falta; números; si/no;
+  opciones; referencias a cosas que no existen. Cada aviso dice **archivo, fila y columna**. Con el pack Gen7 real
+  solo salen 7 avisos de ids con «__».
+- **Quién usa qué** (`ReferenceIndex`): todas las referencias entre hojas (una especie en un equipo o una evolución,
+  un movimiento en un aprendizaje, un tipo en la tabla...) más las de fuera (encuentros de los mapas).
+- **Operaciones seguras** (`ContentSession`): crear (id a partir del nombre), duplicar, cambiar, **borrar** con sus
+  usos (sustituir por otro, quitarlos o dejarlos para que Problemas los señale), **renombrar** un id en todas partes
+  (incluida la columna de la tabla de tipos), **papelera** (`datos/papelera.csv`) para recuperar, y todo con Ctrl+Z.
+

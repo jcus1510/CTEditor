@@ -1,0 +1,16 @@
+{
+    "name": "CTEditor.Content",
+    "rootNamespace": "CTEditor.Content",
+    "references": [
+        "CTEditor.SharedKernel"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

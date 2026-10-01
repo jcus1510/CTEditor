@@ -139,4 +139,6 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
 - **B5 pinceles aleatorios** con pesos para lápiz, rectángulo y relleno, guardados en `datos/pinceles.json`. `BrushTests`.
 - **B6 piezas reutilizables**: guardar una selección con sus capas y colocarla en otros mapas como copia
   (`datos/piezas.json`); pegar conserva el giro de los tiles. `PieceTests`. **Fase 6 completa.**
+- **Bloque C, base (C0-C3)**: inventario de las 36 ventanas; ensamblado `CTEditor.Content` con esquemas, CSV,
+  comprobaciones con fila y columna, índice de referencias y operaciones seguras con papelera y deshacer. `ContentTests`.
 - **Documentación** completa por capítulos (esta carpeta).
