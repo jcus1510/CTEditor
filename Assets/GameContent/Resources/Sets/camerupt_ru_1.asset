@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Tank
   speciesId: camerupt
   setFormat: ru
-  setScore: 35
+  setScore: 30
   itemOptions: cameruptite
   abilityOptions: solid_rock
-  natureOptions: modest
-  evs: 248 PS / 176 AtqE / 84 Vel
+  natureOptions: calm
+  evs: 252 PS / 172 DefE / 84 Vel
   ivs: 
-  moveSlots: fire_blast / earth_power / stealth_rock / toxic, hidden_power
+  moveSlots: fire_blast / earth_power / rest / sleep_talk

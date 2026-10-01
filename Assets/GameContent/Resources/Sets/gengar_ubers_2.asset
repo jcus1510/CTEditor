@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: gengar_ubers_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: gengar_ubers_2
-  displayName: Offensive Trapper
+  displayName: Hex
   speciesId: gengar
   setFormat: ubers
-  setScore: 27
+  setScore: 30
   itemOptions: gengarite
   abilityOptions: 
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: destiny_bond / sludge_wave / shadow_ball, focus_blast / taunt, protect
+  moveSlots: hex / will_o_wisp / sludge_bomb, sludge_wave / substitute, taunt

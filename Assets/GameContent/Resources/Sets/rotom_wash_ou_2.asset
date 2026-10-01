@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rotom_wash_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rotom_wash_ou_2
-  displayName: Fast Utility
+  displayName: Offensive
   speciesId: rotom_wash
   setFormat: ou
-  setScore: 74
-  itemOptions: leftovers
+  setScore: 33
+  itemOptions: electrium_z
   abilityOptions: 
-  natureOptions: bold
-  evs: 248 PS / 28 Def / 232 Vel
+  natureOptions: timid
+  evs: 108 PS / 184 AtqE / 216 Vel
   ivs: 
-  moveSlots: volt_switch / hydro_pump / will_o_wisp / pain_split, thunder_wave
+  moveSlots: hydro_pump / volt_switch / thunder / pain_split

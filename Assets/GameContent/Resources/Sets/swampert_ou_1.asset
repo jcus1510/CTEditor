@@ -16,10 +16,11 @@ MonoBehaviour:
   displayName: Rain Sweeper
   speciesId: swampert
   setFormat: ou
-  setScore: 31
+  setScore: 35
   itemOptions: swampertite
   abilityOptions: damp
-  natureOptions: adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: jolly
+  evs: 4 PS / 244 Atq / 8 DefE / 252 Vel
   ivs: 
-  moveSlots: waterfall / earthquake / ice_punch / power_up_punch, superpower
+  moveSlots: waterfall / earthquake / ice_punch, toxic / stealth_rock, substitute,
+    superpower

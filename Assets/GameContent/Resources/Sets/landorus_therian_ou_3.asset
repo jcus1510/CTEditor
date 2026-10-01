@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: landorus_therian_ou_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: landorus_therian_ou_3
-  displayName: Double Dance
+  displayName: Swords Dance
   speciesId: landorus_therian
   setFormat: ou
-  setScore: 26
-  itemOptions: earth_plate, lum_berry
+  setScore: 32
+  itemOptions: flyinium_z, rockium_z
   abilityOptions: 
-  natureOptions: adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: earthquake / stone_edge / swords_dance / rock_polish
+  moveSlots: stealth_rock, substitute / swords_dance / earthquake / fly, stone_edge

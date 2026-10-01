@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: magmortar_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: magmortar_nu_1
-  displayName: Assault Vest Tank
+  displayName: Z-Move
   speciesId: magmortar
   setFormat: nu
-  setScore: 70
-  itemOptions: assault_vest
+  setScore: 55
+  itemOptions: fightinium_z, electrium_z
   abilityOptions: vital_spirit
   natureOptions: modest
-  evs: 64 PS / 252 AtqE / 192 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: fire_blast / thunderbolt / hidden_power, focus_blast / flame_charge,
-    earthquake
+  moveSlots: fire_blast / focus_blast / thunderbolt / taunt

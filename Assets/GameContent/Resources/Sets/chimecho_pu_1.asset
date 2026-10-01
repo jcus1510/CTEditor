@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: chimecho_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: chimecho_pu_1
-  displayName: Defensive Healing Wish
+  displayName: Supporter
   speciesId: chimecho
   setFormat: pu
-  setScore: 45
-  itemOptions: leftovers
+  setScore: 57
+  itemOptions: leftovers, colbur_berry
   abilityOptions: 
   natureOptions: calm
-  evs: 252 PS / 4 AtqE / 252 DefE
+  evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: healing_wish / recover / psychic / heal_bell, thunder_wave, taunt
+  moveSlots: healing_wish, defog / recover / psychic / thunder_wave, taunt

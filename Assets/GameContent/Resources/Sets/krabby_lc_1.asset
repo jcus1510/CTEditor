@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: krabby_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: krabby_lc_1
-  displayName: Boosting Sweeper
+  displayName: Choice Scarf
   speciesId: krabby
   setFormat: lc
-  setScore: 38
-  itemOptions: eviolite, berry_juice
-  abilityOptions: 
+  setScore: 66
+  itemOptions: choice_scarf
+  abilityOptions: sheer_force
   natureOptions: adamant
-  evs: 116 PS / 236 Atq / 36 Def / 76 DefE / 36 Vel
+  evs: 36 PS / 236 Atq / 36 Def / 196 Vel
   ivs: 
-  moveSlots: agility / swords_dance / crabhammer / knock_off, return
+  moveSlots: liquidation / superpower / knock_off / body_slam

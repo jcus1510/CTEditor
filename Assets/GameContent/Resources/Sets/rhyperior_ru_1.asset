@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rhyperior_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rhyperior_ru_1
-  displayName: Tank
+  displayName: Stealth Rock
   speciesId: rhyperior
   setFormat: ru
-  setScore: 60
+  setScore: 78
   itemOptions: leftovers
   abilityOptions: solid_rock
   natureOptions: adamant
   evs: 248 PS / 16 Atq / 244 DefE
   ivs: 
-  moveSlots: stealth_rock / earthquake / rock_blast / ice_punch, toxic
+  moveSlots: stealth_rock / earthquake / rock_blast, megahorn / toxic, swords_dance

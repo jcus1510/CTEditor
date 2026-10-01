@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rotom_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rotom_nu_1
-  displayName: Choice Scarf
+  displayName: Defensive Defog
   speciesId: rotom
   setFormat: nu
-  setScore: 45
-  itemOptions: choice_scarf
+  setScore: 46
+  itemOptions: colbur_berry, iapapa_berry
   abilityOptions: 
   natureOptions: timid
-  evs: 4 PS / 252 AtqE / 252 Vel
+  evs: 248 PS / 8 AtqE / 252 Vel
   ivs: 
-  moveSlots: volt_switch / thunderbolt / shadow_ball / trick
+  moveSlots: defog / volt_switch / will_o_wisp / hex

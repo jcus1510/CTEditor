@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: garchomp_ou_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: garchomp_ou_3
-  displayName: Mega Swords Dance
+  displayName: Tank
   speciesId: garchomp
   setFormat: ou
-  setScore: 40
-  itemOptions: garchompite
+  setScore: 42
+  itemOptions: rocky_helmet
   abilityOptions: rough_skin
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: jolly
+  evs: 252 PS / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: swords_dance / earthquake / dragon_claw / stone_edge, substitute, aqua_tail
+  moveSlots: stealth_rock / earthquake / toxic / fire_blast, roar, dragon_tail

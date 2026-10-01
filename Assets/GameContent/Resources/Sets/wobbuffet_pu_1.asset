@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Bulky Death Fodder
   speciesId: wobbuffet
   setFormat: pu
-  setScore: 96
-  itemOptions: leftovers
+  setScore: 82
+  itemOptions: leftovers, aguav_berry
   abilityOptions: telepathy
-  natureOptions: bold
-  evs: 4 PS / 252 Def / 252 DefE
+  natureOptions: calm
+  evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: encore / destiny_bond / counter / mirror_coat
+  moveSlots: encore / counter / mirror_coat / destiny_bond

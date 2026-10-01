@@ -16,10 +16,11 @@ MonoBehaviour:
   displayName: Life Orb
   speciesId: gastly
   setFormat: lc
-  setScore: 40
+  setScore: 49
   itemOptions: life_orb
   abilityOptions: 
   natureOptions: timid
-  evs: 40 Def / 200 AtqE / 200 Vel
-  ivs: 1 Atq / 30 Def / 30 AtqE / 30 DefE / 30 Vel
-  moveSlots: sludge_bomb / psychic, shadow_ball, thunderbolt / hidden_power / substitute
+  evs: 200 AtqE / 80 DefE / 200 Vel
+  ivs: 
+  moveSlots: shadow_ball / sludge_bomb / hidden_power, dazzling_gleam, psychic /
+    substitute, destiny_bond

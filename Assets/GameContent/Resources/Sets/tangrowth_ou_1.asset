@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: tangrowth_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tangrowth_ou_1
-  displayName: Defensive
+  displayName: Physically Defensive
   speciesId: tangrowth
   setFormat: ou
-  setScore: 65
-  itemOptions: rocky_helmet, leftovers
+  setScore: 60
+  itemOptions: rocky_helmet
   abilityOptions: regenerator
   natureOptions: relaxed
-  evs: 244 PS / 216 Def / 48 DefE
+  evs: 248 PS / 172 Def / 88 DefE
   ivs: 
-  moveSlots: sleep_powder / giga_drain / knock_off / hidden_power, leech_seed
+  moveSlots: giga_drain / knock_off / hidden_power / sludge_bomb, sleep_powder

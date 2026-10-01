@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: suicune_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: suicune_uu_1
-  displayName: RoarCune
+  displayName: Calm Mind + Protect
   speciesId: suicune
   setFormat: uu
-  setScore: 66
+  setScore: 55
   itemOptions: leftovers
   abilityOptions: 
-  natureOptions: bold
-  evs: 252 PS / 252 Def / 4 DefE
+  natureOptions: timid
+  evs: 252 PS / 40 DefE / 216 Vel
   ivs: 
-  moveSlots: roar / scald / rest / sleep_talk, calm_mind
+  moveSlots: calm_mind / protect / scald / substitute

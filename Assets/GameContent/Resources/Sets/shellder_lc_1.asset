@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: shellder_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: shellder_lc_1
-  displayName: Shell Smash
+  displayName: SMASHING
   speciesId: shellder
   setFormat: lc
   setScore: 87
   itemOptions: eviolite
   abilityOptions: skill_link
-  natureOptions: adamant
+  natureOptions: impish, jolly
   evs: 36 PS / 236 Atq / 36 Def / 196 Vel
   ivs: 
-  moveSlots: shell_smash / icicle_spear / rock_blast / protect, ice_shard, razor_shell
+  moveSlots: shell_smash / icicle_spear / rock_blast / liquidation

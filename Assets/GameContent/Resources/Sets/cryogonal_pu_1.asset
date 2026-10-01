@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: cryogonal_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: cryogonal_pu_1
-  displayName: Offensive Rapid Spinner
+  displayName: Offensive
   speciesId: cryogonal
   setFormat: pu
-  setScore: 54
-  itemOptions: leftovers
+  setScore: 41
+  itemOptions: icium_z, metronome, icicle_plate
   abilityOptions: 
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: freeze_dry / rapid_spin / recover / hidden_power
+  moveSlots: rapid_spin, defog / recover / freeze_dry / hidden_power

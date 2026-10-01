@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Nasty Plot
   speciesId: infernape
   setFormat: uu
-  setScore: 23
-  itemOptions: life_orb
+  setScore: 14
+  itemOptions: fightinium_z, life_orb
   abilityOptions: 
-  natureOptions: naive
-  evs: 136 Atq / 120 AtqE / 252 Vel
+  natureOptions: timid
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: nasty_plot / fire_blast / close_combat, vacuum_wave / grass_knot
+  moveSlots: nasty_plot / fire_blast / focus_blast / vacuum_wave

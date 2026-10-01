@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: bidoof_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: bidoof_lc_1
-  displayName: Curse
+  displayName: Swords Dance
   speciesId: bidoof
   setFormat: lc
-  setScore: 46
-  itemOptions: berry_juice, eviolite
+  setScore: 63
+  itemOptions: eviolite, berry_juice
   abilityOptions: 
-  natureOptions: careful
-  evs: 124 PS / 76 Atq / 36 Def / 196 DefE / 28 Vel
+  natureOptions: adamant
+  evs: 236 Atq / 116 Def / 116 DefE / 28 Vel
   ivs: 
-  moveSlots: curse / return / quick_attack / aqua_tail, thief
+  moveSlots: swords_dance / return / quick_attack / crunch, aqua_tail

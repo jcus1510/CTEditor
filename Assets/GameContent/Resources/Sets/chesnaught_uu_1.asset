@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: chesnaught_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: chesnaught_uu_1
-  displayName: Physically Defensive
+  displayName: Spikes
   speciesId: chesnaught
   setFormat: uu
-  setScore: 74
+  setScore: 65
   itemOptions: leftovers, rocky_helmet
   abilityOptions: bulletproof
   natureOptions: impish
-  evs: 252 PS / 252 Def / 4 DefE
+  evs: 244 PS / 252 Def / 12 Vel
   ivs: 
-  moveSlots: spikes / leech_seed, synthesis / spiky_shield, roar / drain_punch, wood_hammer
+  moveSlots: spikes / wood_hammer, roar / drain_punch / synthesis

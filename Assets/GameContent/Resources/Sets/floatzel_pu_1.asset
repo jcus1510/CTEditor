@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: floatzel_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: floatzel_pu_1
-  displayName: Special Attacker
+  displayName: Specially Offensive
   speciesId: floatzel
   setFormat: pu
-  setScore: 37
-  itemOptions: life_orb, choice_specs
-  abilityOptions: water_veil
+  setScore: 16
+  itemOptions: life_orb
+  abilityOptions: 
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: hydro_pump / ice_beam / hidden_power / surf, switcheroo
+  moveSlots: hydro_pump / ice_beam / focus_blast / taunt, hidden_power

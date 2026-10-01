@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: deoxys_speed_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: deoxys_speed_ubers_1
-  displayName: Entry Hazard Lead
+  displayName: Lead
   speciesId: deoxys_speed
   setFormat: ubers
-  setScore: 67
-  itemOptions: rocky_helmet, focus_sash
+  setScore: 63
+  itemOptions: focus_sash, rocky_helmet
   abilityOptions: 
   natureOptions: timid
-  evs: 248 PS / 244 Def / 16 Vel
+  evs: 252 PS / 4 Def / 252 Vel
   ivs: 
-  moveSlots: taunt / stealth_rock / skill_swap / magic_coat, spikes
+  moveSlots: stealth_rock / taunt / skill_swap, magic_coat / spikes, magic_coat

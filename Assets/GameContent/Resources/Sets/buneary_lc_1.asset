@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: buneary_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: buneary_lc_1
-  displayName: Choice Band
+  displayName: Offensive Utility
   speciesId: buneary
   setFormat: lc
-  setScore: 37
-  itemOptions: choice_band
+  setScore: 43
+  itemOptions: eviolite, choice_band
   abilityOptions: limber
   natureOptions: jolly
   evs: 228 Atq / 4 Def / 236 Vel
   ivs: 
-  moveSlots: return / drain_punch, jump_kick, fire_punch / healing_wish, thunder_wave
-    / switcheroo
+  moveSlots: healing_wish / return / drain_punch, jump_kick, fire_punch / thunder_wave,
+    switcheroo, quick_attack

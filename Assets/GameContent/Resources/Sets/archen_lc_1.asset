@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: archen_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: archen_lc_1
-  displayName: Wallbreaker
+  displayName: The Hero
   speciesId: archen
   setFormat: lc
-  setScore: 50
+  setScore: 49
   itemOptions: berry_juice
   abilityOptions: 
   natureOptions: jolly
   evs: 76 PS / 180 Atq / 196 Vel
   ivs: 
-  moveSlots: head_smash / acrobatics / earthquake, u_turn / substitute, defog, stealth_rock
+  moveSlots: acrobatics / rock_slide, head_smash / heat_wave, earthquake / hidden_power,
+    defog

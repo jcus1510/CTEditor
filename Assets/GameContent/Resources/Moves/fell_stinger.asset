@@ -17,7 +17,7 @@ MonoBehaviour:
   englishName: Fell Stinger
   type: {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
   category: 0
-  power: 30
+  power: 50
   neverMisses: 0
   accuracy: 100
   maxPp: 25

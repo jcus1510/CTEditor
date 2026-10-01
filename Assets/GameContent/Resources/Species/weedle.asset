@@ -50,7 +50,7 @@ MonoBehaviour:
   - move: {fileID: 11400000, guid: 184df6f1a473561489ce56235cfb309f, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
-    level: 15
+    level: 9
   evolutions:
   - target: {fileID: 11400000, guid: 2d7a3a21e7185cd42bdd7974749472aa, type: 2}
     requiredLevel: 7

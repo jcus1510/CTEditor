@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Offensive Defog
   speciesId: swanna
   setFormat: pu
-  setScore: 81
-  itemOptions: life_orb
+  setScore: 71
+  itemOptions: flyinium_z, life_orb
   abilityOptions: hydration
   natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
   moveSlots: hurricane / scald / defog / roost

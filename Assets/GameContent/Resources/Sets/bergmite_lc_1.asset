@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: bergmite_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: bergmite_lc_1
-  displayName: Rapid Spin Support
+  displayName: Bulky Spinner
   speciesId: bergmite
   setFormat: lc
-  setScore: 65
+  setScore: 58
   itemOptions: eviolite
   abilityOptions: sturdy
   natureOptions: impish
-  evs: 44 Atq / 236 Def / 156 DefE / 52 Vel
+  evs: 44 Atq / 156 Def / 236 DefE / 52 Vel
   ivs: 
-  moveSlots: avalanche / rapid_spin / recover / rock_tomb, toxic
+  moveSlots: rapid_spin / recover / avalanche / toxic

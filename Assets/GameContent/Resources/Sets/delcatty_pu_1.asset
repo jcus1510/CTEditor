@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: delcatty_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: delcatty_pu_1
-  displayName: Delcatty Got Your Tongue?
+  displayName: Normalize
   speciesId: delcatty
   setFormat: pu
-  setScore: 15
-  itemOptions: leftovers
-  abilityOptions: wonder_skin
-  natureOptions: timid
-  evs: 252 PS / 4 AtqE / 252 Vel
+  setScore: 60
+  itemOptions: silk_scarf
+  abilityOptions: normalize
+  natureOptions: jolly
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: substitute / calm_mind / hyper_voice / shadow_ball
+  moveSlots: fake_out / sucker_punch / return, double_edge / thunder_wave

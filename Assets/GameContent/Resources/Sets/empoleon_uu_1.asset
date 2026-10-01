@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: empoleon_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: empoleon_uu_1
-  displayName: Specially Defensive Support
+  displayName: Utility
   speciesId: empoleon
   setFormat: uu
-  setScore: 61
+  setScore: 62
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: calm
-  evs: 252 PS / 4 AtqE / 252 DefE
+  evs: 252 PS / 76 Def / 180 DefE
   ivs: 
-  moveSlots: scald / roar / stealth_rock, ice_beam / defog, ice_beam
+  moveSlots: scald / stealth_rock, defog / toxic / protect, knock_off, roar

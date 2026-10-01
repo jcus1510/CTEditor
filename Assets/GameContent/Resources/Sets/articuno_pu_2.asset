@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: articuno_pu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: articuno_pu_2
-  displayName: Agility
+  displayName: SubRoost
   speciesId: articuno
   setFormat: pu
-  setScore: 28
-  itemOptions: life_orb
+  setScore: 55
+  itemOptions: leftovers
   abilityOptions: 
-  natureOptions: modest
-  evs: 28 PS / 252 AtqE / 228 Vel
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: agility / ice_beam, freeze_dry / hurricane / hidden_power
+  moveSlots: substitute / roost / freeze_dry / hurricane

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Shell Smash
   speciesId: gorebyss
   setFormat: pu
-  setScore: 52
-  itemOptions: white_herb, life_orb
+  setScore: 28
+  itemOptions: waterium_z, white_herb
   abilityOptions: 
-  natureOptions: modest
+  natureOptions: modest, timid
   evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: shell_smash / hydro_pump / ice_beam / psychic
+  moveSlots: shell_smash / hydro_pump / ice_beam / hidden_power, substitute

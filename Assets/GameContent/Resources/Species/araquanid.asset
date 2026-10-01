@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: araquanid
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: araquanid
+  displayName: Araquanid
+  englishName: Araquanid
+  types:
+  - {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
+  - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
+  abilityId: water_bubble
+  secondAbilityId: 
+  hiddenAbilityId: water_absorb
+  growthCurveId: medium_fast
+  baseExpYield: 159
+  evYield:
+  - statId: sp_defense
+    amount: 2
+  baseFriendship: 70
+  catchRate: 100
+  dexNumber: 752
+  category: Pompa
+  heightM: 1.8
+  weightKg: 82
+  dexColor: verde
+  dexDescription: Pasa la mayor parte del tiempo en el agua. Si atrapa alguna presa
+    sin tener hambre, la almacena en la burbuja de su cabeza.
+  femalePercent: 50
+  legendary: 0
+  hp: 68
+  attack: 70
+  defense: 92
+  spAttack: 50
+  spDefense: 132
+  speed: 42
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: b42a72046ceb81b4395594b2b3f6c8d3, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: b9c4a4072b4846d4682b7aa97e95c2c5, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 51a64706d42eeeb49beadcc7e048592b, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 189f3f5a94184f1438173f59896a3aba, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: f0c6915b05197a74e8e3860e9378ddee, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: b9c4a4072b4846d4682b7aa97e95c2c5, type: 2}
+    level: 5
+  - move: {fileID: 11400000, guid: 189f3f5a94184f1438173f59896a3aba, type: 2}
+    level: 8
+  - move: {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: 6a1f2a343ec493f488b11de043229785, type: 2}
+    level: 16
+  - move: {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+    level: 21
+  - move: {fileID: 11400000, guid: 7627b7998c029d64084ddec3bcda1deb, type: 2}
+    level: 26
+  - move: {fileID: 11400000, guid: 16036d968a572294fb509d1407a3a222, type: 2}
+    level: 33
+  - move: {fileID: 11400000, guid: b2c063ae9f8542b4a946e7619d7bc4b6, type: 2}
+    level: 38
+  - move: {fileID: 11400000, guid: 5fd46c59244f9aa469bc6cc22ac001a7, type: 2}
+    level: 45
+  - move: {fileID: 11400000, guid: aa227febb56c30e44903499d5c32999f, type: 2}
+    level: 50
+  - move: {fileID: 11400000, guid: 35d4435395e67784c85ffb4ad31ab72d, type: 2}
+    level: 57
+  - move: {fileID: 11400000, guid: 4e29bb33b6aeb2147b97cdc67267359a, type: 2}
+    level: 62
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 9c6182dd7b87d714d8cbbe83e31cca40, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+  - {fileID: 11400000, guid: b9c4a4072b4846d4682b7aa97e95c2c5, type: 2}
+  - {fileID: 11400000, guid: 16036d968a572294fb509d1407a3a222, type: 2}
+  - {fileID: 11400000, guid: e241c34283f45a343b6140504cd58b9e, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+  - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 630606dd415e65a4ca5db9fbffaaa633, type: 2}
+  - {fileID: 11400000, guid: cad6229bd6396e54ab2ae591cec87009, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
+  - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+  - {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
+  - {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
+  - {fileID: 11400000, guid: eada9c6cab5760744879cb449e7344da, type: 2}
+  - {fileID: 11400000, guid: 35d4435395e67784c85ffb4ad31ab72d, type: 2}
+  - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
+  - {fileID: 11400000, guid: 5966c92ab9775514e994659fd1089636, type: 2}
+  - {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
+  - {fileID: 11400000, guid: 92d0ed9ee37aa2b48b4de3cf7ce8db55, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: d157f82d264192840973c80fbe0c8b69, type: 2}
+  - {fileID: 11400000, guid: 1db6d26df99d9ca4180072eb358a7436, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

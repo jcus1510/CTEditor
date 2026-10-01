@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: petilil_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: petilil_lc_1
-  displayName: Sun Support
+  displayName: Sun Sweeper
   speciesId: petilil
   setFormat: lc
-  setScore: 34
-  itemOptions: eviolite
+  setScore: 0
+  itemOptions: eviolite, life_orb
   abilityOptions: 
   natureOptions: timid
-  evs: 120 Def / 120 AtqE / 36 DefE / 200 Vel
+  evs: 36 Def / 200 AtqE / 36 DefE / 200 Vel
   ivs: 
-  moveSlots: giga_drain, solar_beam / sleep_powder / healing_wish / hidden_power,
-    stun_spore
+  moveSlots: sunny_day / solar_beam, giga_drain / hidden_power / sleep_powder

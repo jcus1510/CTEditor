@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: lucario_uu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: lucario_uu_2
-  displayName: Nasty Plot
+  displayName: Swords Dance
   speciesId: lucario
   setFormat: uu
-  setScore: 34
+  setScore: 60
   itemOptions: life_orb
-  abilityOptions: 
-  natureOptions: timid, modest
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  abilityOptions: justified
+  natureOptions: jolly, adamant
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: nasty_plot / focus_blast, aura_sphere / flash_cannon / vacuum_wave,
-    dark_pulse
+  moveSlots: swords_dance / close_combat / extreme_speed / meteor_mash, bullet_punch

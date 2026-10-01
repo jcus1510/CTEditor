@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: slaking_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: slaking_pu_1
-  displayName: Wallbreaker
+  displayName: All-out Attacker
   speciesId: slaking
   setFormat: pu
-  setScore: 21
-  itemOptions: life_orb, silk_scarf
+  setScore: 29
+  itemOptions: life_orb
   abilityOptions: 
-  natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  natureOptions: naive
+  evs: 252 Atq / 4 AtqE / 252 Vel
   ivs: 
-  moveSlots: return / earthquake / night_slash / encore
+  moveSlots: return, retaliate / pursuit, sucker_punch / earthquake / fire_blast

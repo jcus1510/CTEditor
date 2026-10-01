@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: houndour
   setFormat: lc
-  setScore: 51
+  setScore: 53
   itemOptions: choice_scarf
-  abilityOptions: flash_fire, early_bird
-  natureOptions: hasty, timid
-  evs: 36 Atq / 196 AtqE / 36 DefE / 236 Vel
+  abilityOptions: flash_fire
+  natureOptions: naive
+  evs: 36 Def / 196 AtqE / 36 DefE / 236 Vel
   ivs: 
-  moveSlots: fire_blast / dark_pulse / destiny_bond / pursuit, flamethrower
+  moveSlots: fire_blast / dark_pulse / pursuit / destiny_bond, snarl

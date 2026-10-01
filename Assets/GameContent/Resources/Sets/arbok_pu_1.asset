@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Offensive Coil
   speciesId: arbok
   setFormat: pu
-  setScore: 72
-  itemOptions: black_sludge, shuca_berry
+  setScore: 23
+  itemOptions: waterium_z, groundium_z
   abilityOptions: 
   natureOptions: adamant
   evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: coil / gunk_shot / earthquake / sucker_punch
+  moveSlots: coil / gunk_shot / aqua_tail, earthquake / sucker_punch

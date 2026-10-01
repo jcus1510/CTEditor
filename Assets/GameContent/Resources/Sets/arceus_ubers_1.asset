@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Extreme Killer
   speciesId: arceus
   setFormat: ubers
-  setScore: 67
-  itemOptions: life_orb
+  setScore: 64
+  itemOptions: chople_berry, leftovers
   abilityOptions: 
-  natureOptions: jolly
-  evs: 4 PS / 252 Atq / 252 Vel
+  natureOptions: adamant
+  evs: 240 PS / 252 Atq / 16 Vel
   ivs: 
-  moveSlots: swords_dance / extreme_speed / shadow_claw, stone_edge / earthquake
+  moveSlots: swords_dance / extreme_speed / shadow_claw / recover, substitute

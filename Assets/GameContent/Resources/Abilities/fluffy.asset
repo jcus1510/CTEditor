@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.AbilityData
   id: fluffy
   displayName: Peluche
-  englishName: 
+  englishName: Fluffy
   effects:
   - trigger: 1
     conditions:
@@ -28,6 +28,22 @@ MonoBehaviour:
     target: 0
     reference: 
     amount: 0.5
+    threshold: 0
+    consumes: 0
+    chance: 100
+    maxPerBattle: 0
+  - trigger: 1
+    conditions:
+    - kind: 10
+      subject: 0
+      comparison: 2
+      number: 0
+      text: fire
+      negate: 0
+    action: 36
+    target: 0
+    reference: 
+    amount: 2
     threshold: 0
     consumes: 0
     chance: 100

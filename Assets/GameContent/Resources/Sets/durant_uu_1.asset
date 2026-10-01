@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: durant_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: durant_uu_1
-  displayName: All-Out Attacker
+  displayName: Hone Claws
   speciesId: durant
   setFormat: uu
-  setScore: 64
-  itemOptions: life_orb, choice_band
+  setScore: 49
+  itemOptions: steelium_z
   abilityOptions: hustle
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 4 PS / 252 Atq / 252 Vel
   ivs: 
-  moveSlots: iron_head / x_scissor / rock_slide, thunder_fang / superpower
+  moveSlots: hone_claws / iron_head / superpower / crunch, rock_slide

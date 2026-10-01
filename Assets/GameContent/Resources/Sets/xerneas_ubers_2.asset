@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: xerneas_ubers_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: xerneas_ubers_2
-  displayName: Choice Scarf
+  displayName: Geomancy
   speciesId: xerneas
   setFormat: ubers
-  setScore: 38
-  itemOptions: choice_scarf
+  setScore: 54
+  itemOptions: power_herb
   abilityOptions: 
   natureOptions: modest
-  evs: 32 Def / 252 AtqE / 224 Vel
+  evs: 168 Def / 252 AtqE / 88 Vel
   ivs: 
-  moveSlots: moonblast / focus_blast / sleep_talk, aromatherapy / thunder, grass_knot
+  moveSlots: geomancy / moonblast / thunder / focus_blast, hidden_power

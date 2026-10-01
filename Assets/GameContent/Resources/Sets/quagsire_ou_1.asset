@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Unaware Wall
   speciesId: quagsire
   setFormat: ou
-  setScore: 91
+  setScore: 86
   itemOptions: leftovers
   abilityOptions: unaware
   natureOptions: relaxed
   evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: scald / recover / earthquake, haze / toxic, encore
+  moveSlots: scald / earthquake / recover / toxic, curse

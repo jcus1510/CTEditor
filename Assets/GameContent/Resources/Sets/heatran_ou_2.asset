@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: heatran_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: heatran_ou_2
-  displayName: Fast Utility
+  displayName: Z-Move
   speciesId: heatran
   setFormat: ou
-  setScore: 50
-  itemOptions: leftovers, air_balloon
+  setScore: 41
+  itemOptions: firium_z, grassium_z, steelium_z
   abilityOptions: 
-  natureOptions: timid, calm
-  evs: 248 PS / 8 DefE / 252 Vel
+  natureOptions: modest, timid
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: magma_storm, lava_plume / taunt, stealth_rock / will_o_wisp, toxic /
-    earth_power
+  moveSlots: magma_storm / earth_power / toxic, solar_beam, flash_cannon / stealth_rock,
+    taunt, toxic

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: grimer_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: grimer_lc_1
-  displayName: Bulky Attacker
+  displayName: Tank
   speciesId: grimer
   setFormat: lc
-  setScore: 50
+  setScore: 67
   itemOptions: berry_juice
   abilityOptions: sticky_hold
-  natureOptions: adamant
-  evs: 36 PS / 196 Atq / 196 Def / 36 DefE
+  natureOptions: brave
+  evs: 36 PS / 196 Atq / 196 Def / 36 AtqE / 36 DefE
   ivs: 
-  moveSlots: gunk_shot / fire_punch / shadow_sneak / thief, pain_split
+  moveSlots: gunk_shot / fire_punch / giga_drain / thief, memento

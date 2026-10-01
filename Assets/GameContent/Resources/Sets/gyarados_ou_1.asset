@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: gyarados_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: gyarados_ou_1
-  displayName: Offensive Dragon Dance
+  displayName: Mega Dragon Dance
   speciesId: gyarados
   setFormat: ou
-  setScore: 39
+  setScore: 37
   itemOptions: gyaradosite
   abilityOptions: 
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: dragon_dance / crunch / waterfall, earthquake / earthquake, substitute,
-    taunt
+  moveSlots: dragon_dance / substitute, taunt / crunch / earthquake, waterfall

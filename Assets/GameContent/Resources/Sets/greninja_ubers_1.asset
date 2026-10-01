@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: greninja_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: greninja_ubers_1
-  displayName: Suicide Lead
+  displayName: Lead
   speciesId: greninja
   setFormat: ubers
-  setScore: 68
+  setScore: 59
   itemOptions: focus_sash
-  abilityOptions: protean
-  natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  abilityOptions: 
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: toxic_spikes / spikes / taunt / shadow_sneak
+  moveSlots: spikes / taunt / dark_pulse / substitute, ice_beam

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: nidoqueen_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: nidoqueen_uu_1
-  displayName: Offensive Entry Hazard Setter
+  displayName: Offensive Hazard Setter
   speciesId: nidoqueen
   setFormat: uu
-  setScore: 75
+  setScore: 66
   itemOptions: life_orb
   abilityOptions: sheer_force
   natureOptions: modest
-  evs: 180 PS / 252 AtqE / 76 Vel
+  evs: 128 PS / 252 AtqE / 128 Vel
   ivs: 
-  moveSlots: earth_power / ice_beam / stealth_rock / sludge_wave, toxic_spikes, thunderbolt
+  moveSlots: toxic_spikes, stealth_rock / sludge_wave / earth_power / ice_beam

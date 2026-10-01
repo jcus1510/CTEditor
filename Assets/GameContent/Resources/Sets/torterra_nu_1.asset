@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: torterra_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: torterra_nu_1
-  displayName: Rock Polish
+  displayName: Offensive
   speciesId: torterra
   setFormat: nu
-  setScore: 28
-  itemOptions: soft_sand, lum_berry
+  setScore: 34
+  itemOptions: rockium_z, grassium_z
   abilityOptions: 
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: rock_polish / wood_hammer / earthquake / stone_edge
+  moveSlots: wood_hammer / earthquake / stone_edge / rock_polish

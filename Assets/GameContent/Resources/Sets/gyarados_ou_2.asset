@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: gyarados_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: gyarados_ou_2
-  displayName: Bulky Dragon Dance
+  displayName: Flyinium Z
   speciesId: gyarados
   setFormat: ou
-  setScore: 66
-  itemOptions: leftovers
-  abilityOptions: 
+  setScore: 85
+  itemOptions: flyinium_z
+  abilityOptions: moxie
   natureOptions: jolly
-  evs: 88 PS / 220 Atq / 4 Def / 196 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: dragon_dance / bounce / waterfall / substitute
+  moveSlots: dragon_dance / waterfall / bounce / taunt, earthquake

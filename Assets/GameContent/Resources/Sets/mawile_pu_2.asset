@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: mawile_pu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: mawile_pu_2
-  displayName: All-out Attacker
+  displayName: Physical Wall
   speciesId: mawile
   setFormat: pu
-  setScore: 51
-  itemOptions: life_orb
-  abilityOptions: sheer_force
-  natureOptions: naughty
-  evs: 252 Atq / 4 Def / 252 Vel
+  setScore: 20
+  itemOptions: leftovers, rocky_helmet
+  abilityOptions: intimidate
+  natureOptions: impish
+  evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: play_rough / iron_head / sucker_punch / fire_blast
+  moveSlots: stealth_rock / play_rough / super_fang / toxic, knock_off

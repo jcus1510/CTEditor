@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: wooper_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: wooper_lc_1
-  displayName: Water Absorb
+  displayName: Defensive
   speciesId: wooper
   setFormat: lc
-  setScore: 73
+  setScore: 64
   itemOptions: eviolite
   abilityOptions: water_absorb
   natureOptions: sassy
   evs: 76 PS / 236 Def / 156 DefE
   ivs: 
-  moveSlots: scald / earthquake / recover / yawn, toxic, encore, haze
+  moveSlots: scald / recover / earthquake / yawn, encore

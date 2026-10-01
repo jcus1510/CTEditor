@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Life Orb
   speciesId: froakie
   setFormat: lc
-  setScore: 53
+  setScore: 62
   itemOptions: life_orb
   abilityOptions: protean
   natureOptions: naive
-  evs: 72 Atq / 36 Def / 184 AtqE / 188 Vel
-  ivs: 30 AtqE
+  evs: 72 Atq / 36 Def / 184 AtqE / 192 Vel
+  ivs: 30 Atq / 30 AtqE / 30 Vel
   moveSlots: hydro_pump / ice_beam / u_turn / hidden_power

@@ -47,12 +47,16 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 56f745a156ad9544fb1ee032a1dbca56, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: f84b9f7b86c46eb4eb06ae17aa899c3d, type: 2}
+    level: 25
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: 8a0796bf978e7ca48bca8da0a308bca4, type: 2}
   - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
   - {fileID: 11400000, guid: 4684f72d3faef8940bcbd8c6d3e78a7d, type: 2}
+  - {fileID: 11400000, guid: eb28e4d400e575447b40bd2ded73d008, type: 2}
   - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
@@ -63,13 +67,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24621966b700ed443bc298f05e2d88f8, type: 2}
   - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
   - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
-  - {fileID: 11400000, guid: 4d65741fa51432b4daae4ac90df90f00, type: 2}
   - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
   - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
   - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
-  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
@@ -77,6 +79,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
   tutorMoves:
   - {fileID: 11400000, guid: f291a6ab8ca34194cbcc76a39c489ee4, type: 2}
+  - {fileID: 11400000, guid: 48d24011cb0cf0444a20bc6228099f8f, type: 2}
   - {fileID: 11400000, guid: 2e8430aef83b94342bfc40deeb8d4462, type: 2}
   - {fileID: 11400000, guid: 62fe66217191b7c41a159d6a1b586a35, type: 2}
   - {fileID: 11400000, guid: 0dff38465403d64468cee754c6fab39c, type: 2}
@@ -90,6 +93,7 @@ MonoBehaviour:
   eggMoves:
   - {fileID: 11400000, guid: 1a5ed636848adc34388ed06c75125f4a, type: 2}
   - {fileID: 11400000, guid: 66fb6ff0495eebc4795494f32bfb5802, type: 2}
+  - {fileID: 11400000, guid: 2d976539caa5f634fb6ae04f1eef9ab1, type: 2}
   - {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
   - {fileID: 11400000, guid: 072891eab0ca8804abe49a40dcaff9f0, type: 2}
   - {fileID: 11400000, guid: 2ece1a59d6e44104080c17d2aeaf4b81, type: 2}

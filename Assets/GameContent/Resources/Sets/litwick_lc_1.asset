@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: litwick_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: litwick_lc_1
-  displayName: Trick Room Sweeper
+  displayName: Trick Room
   speciesId: litwick
   setFormat: lc
-  setScore: 59
-  itemOptions: life_orb
-  abilityOptions: flash_fire, infiltrator
+  setScore: 50
+  itemOptions: eviolite
+  abilityOptions: flame_body
   natureOptions: quiet
-  evs: 116 PS / 76 Def / 236 AtqE / 76 DefE
+  evs: 116 PS / 236 Def / 156 DefE
   ivs: 
-  moveSlots: fire_blast / shadow_ball / trick_room / energy_ball, hidden_power, memento
+  moveSlots: memento / trick_room / fire_blast, pain_split / will_o_wisp

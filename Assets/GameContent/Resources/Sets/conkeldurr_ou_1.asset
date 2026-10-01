@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: conkeldurr_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: conkeldurr_ou_1
-  displayName: Wallbreaker
+  displayName: Offensive
   speciesId: conkeldurr
   setFormat: ou
-  setScore: 51
+  setScore: 67
   itemOptions: flame_orb
   abilityOptions: 
   natureOptions: adamant
-  evs: 120 PS / 252 Atq / 136 Vel
+  evs: 104 PS / 252 Atq / 152 Vel
   ivs: 
-  moveSlots: drain_punch / facade, ice_punch / knock_off / mach_punch
+  moveSlots: drain_punch / mach_punch / knock_off / facade

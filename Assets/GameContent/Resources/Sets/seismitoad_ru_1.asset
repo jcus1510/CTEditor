@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: seismitoad_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: seismitoad_ru_1
-  displayName: Defensive
+  displayName: Stealth Rock
   speciesId: seismitoad
   setFormat: ru
-  setScore: 73
+  setScore: 95
   itemOptions: leftovers
   abilityOptions: water_absorb
-  natureOptions: relaxed, bold
+  natureOptions: relaxed
   evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: stealth_rock / scald / earthquake, toxic / knock_off, toxic
+  moveSlots: stealth_rock / scald / earthquake / toxic, refresh

@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: natu_lc_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: natu_lc_2
-  displayName: Life Orb
+  displayName: Defensive
   speciesId: natu
   setFormat: lc
-  setScore: 53
-  itemOptions: life_orb
+  setScore: 59
+  itemOptions: eviolite
   abilityOptions: magic_bounce
-  natureOptions: naive
-  evs: 116 Atq / 196 AtqE / 196 Vel
-  ivs: 19 PS
-  moveSlots: psychic / heat_wave, dazzling_gleam / sucker_punch, giga_drain, roost
-    / u_turn
+  natureOptions: bold
+  evs: 196 PS / 156 Def / 36 AtqE / 76 DefE / 36 Vel
+  ivs: 
+  moveSlots: psychic / roost / heat_wave / u_turn, thunder_wave

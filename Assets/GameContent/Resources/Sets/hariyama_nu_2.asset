@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: hariyama_nu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: hariyama_nu_2
-  displayName: Choice Band
+  displayName: Defensive
   speciesId: hariyama
   setFormat: nu
-  setScore: 54
-  itemOptions: choice_band
-  abilityOptions: guts, thick_fat
-  natureOptions: adamant
-  evs: 252 Atq / 108 Def / 112 DefE / 36 Vel
+  setScore: 34
+  itemOptions: leftovers
+  abilityOptions: 
+  natureOptions: impish
+  evs: 12 PS / 252 Def / 244 DefE
   ivs: 
-  moveSlots: close_combat / knock_off / stone_edge / bullet_punch, earthquake
+  moveSlots: close_combat, revenge / knock_off, toxic / rest / sleep_talk

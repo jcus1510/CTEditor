@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: tauros_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tauros_nu_1
-  displayName: All-Out Attacker
+  displayName: Tauros
   speciesId: tauros
   setFormat: nu
-  setScore: 58
+  setScore: 62
   itemOptions: life_orb
   abilityOptions: sheer_force
   natureOptions: naive
   evs: 252 Atq / 4 AtqE / 252 Vel
   ivs: 
-  moveSlots: rock_climb / earthquake / fire_blast / iron_tail, zen_headbutt
+  moveSlots: body_slam / fire_blast / work_up, zen_headbutt / earthquake

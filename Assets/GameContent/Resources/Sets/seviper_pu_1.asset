@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Mixed Attacker
   speciesId: seviper
   setFormat: pu
-  setScore: 48
+  setScore: 49
   itemOptions: life_orb
   abilityOptions: 
-  natureOptions: rash
-  evs: 40 Atq / 252 AtqE / 216 Vel
+  natureOptions: naughty
+  evs: 8 PS / 56 Atq / 224 AtqE / 220 Vel
   ivs: 
-  moveSlots: sludge_wave / giga_drain / flamethrower, earthquake / sucker_punch
+  moveSlots: sludge_wave / giga_drain / earthquake, flamethrower / sucker_punch

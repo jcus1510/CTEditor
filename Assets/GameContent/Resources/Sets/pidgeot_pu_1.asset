@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: pidgeot_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: pidgeot_pu_1
-  displayName: Offensive Defog
+  displayName: Defog
   speciesId: pidgeot
   setFormat: pu
-  setScore: 44
-  itemOptions: leftovers
-  abilityOptions: 
+  setScore: 64
+  itemOptions: sky_plate
+  abilityOptions: big_pecks
   natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: brave_bird / return / defog / roost, u_turn
+  moveSlots: defog / roost / brave_bird / u_turn

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: altaria_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: altaria_pu_1
-  displayName: Physically Defensive
+  displayName: Defensive Defog
   speciesId: altaria
   setFormat: pu
-  setScore: 44
+  setScore: 48
   itemOptions: leftovers
   abilityOptions: 
-  natureOptions: bold
-  evs: 248 PS / 164 Def / 96 Vel
+  natureOptions: calm
+  evs: 252 PS / 160 DefE / 96 Vel
   ivs: 
-  moveSlots: flamethrower / toxic / heal_bell, haze / roost
+  moveSlots: defog / toxic / dragon_pulse / roost

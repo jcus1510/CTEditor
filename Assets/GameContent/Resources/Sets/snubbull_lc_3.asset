@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: snubbull_lc_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: snubbull_lc_3
-  displayName: Offensive Eviolite
+  displayName: Eviolite
   speciesId: snubbull
   setFormat: lc
-  setScore: 33
+  setScore: 59
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: adamant
-  evs: 36 PS / 196 Atq / 36 Def / 36 DefE / 196 Vel
+  natureOptions: jolly
+  evs: 36 PS / 116 Atq / 36 Def / 116 DefE / 196 Vel
   ivs: 
-  moveSlots: play_rough / close_combat / fire_punch / thunder_wave, substitute
+  moveSlots: play_rough / earthquake, fire_punch / thief, fire_punch / thunder_wave,
+    bulk_up, thief

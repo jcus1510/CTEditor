@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Offensive Stealth Rock
   speciesId: swampert
   setFormat: uu
-  setScore: 33
-  itemOptions: swampertite
-  abilityOptions: damp
+  setScore: 32
+  itemOptions: life_orb
+  abilityOptions: 
   natureOptions: adamant
-  evs: 212 PS / 252 Atq / 44 Vel
+  evs: 92 PS / 252 Atq / 164 Vel
   ivs: 
-  moveSlots: stealth_rock / waterfall / earthquake / ice_punch
+  moveSlots: stealth_rock / earthquake / waterfall / ice_punch

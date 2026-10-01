@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: kyogre_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: kyogre_ubers_1
-  displayName: Defensive
+  displayName: Calm Mind + Water Spout
   speciesId: kyogre
   setFormat: ubers
-  setScore: 16
+  setScore: 43
   itemOptions: blue_orb
   abilityOptions: 
-  natureOptions: bold
-  evs: 248 PS / 248 Def / 12 Vel
+  natureOptions: modest
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: rest / sleep_talk / scald / ice_beam, roar
+  moveSlots: water_spout / calm_mind / origin_pulse / ice_beam

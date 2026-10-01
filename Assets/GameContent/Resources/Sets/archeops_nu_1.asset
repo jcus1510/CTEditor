@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: archeops_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: archeops_nu_1
-  displayName: Offensive
+  displayName: Suicide Lead
   speciesId: archeops
   setFormat: nu
-  setScore: 13
-  itemOptions: 
+  setScore: 31
+  itemOptions: focus_sash
   abilityOptions: 
-  natureOptions: hasty
-  evs: 252 Atq / 4 AtqE / 252 Vel
+  natureOptions: naive
+  evs: 252 Atq / 252 Vel
   ivs: 
-  moveSlots: acrobatics / stone_edge / earth_power / roost
+  moveSlots: head_smash / stealth_rock / endeavor / taunt

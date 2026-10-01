@@ -16,11 +16,11 @@ MonoBehaviour:
   displayName: Choice Specs
   speciesId: xerneas
   setFormat: ubers
-  setScore: 31
+  setScore: 34
   itemOptions: choice_specs
   abilityOptions: 
-  natureOptions: modest, timid
+  natureOptions: timid, modest
   evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: moonblast / hidden_power, focus_blast / grass_knot, thunder / psyshock,
-    aromatherapy
+  moveSlots: moonblast / grass_knot, thunder / hidden_power, focus_blast / aromatherapy,
+    defog

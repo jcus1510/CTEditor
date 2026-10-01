@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: smoochum_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: smoochum_lc_1
-  displayName: Setup
+  displayName: Icium Z Wallbreaker
   speciesId: smoochum
   setFormat: lc
-  setScore: 62
-  itemOptions: life_orb
-  abilityOptions: 
+  setScore: 71
+  itemOptions: icium_z
+  abilityOptions: forewarn
   natureOptions: timid
   evs: 240 AtqE / 240 Vel
   ivs: 
-  moveSlots: ice_beam / psychic / hidden_power, shadow_ball / substitute, nasty_plot
+  moveSlots: blizzard / psychic / hidden_power / substitute, ice_beam

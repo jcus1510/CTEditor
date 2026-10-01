@@ -22,4 +22,4 @@ MonoBehaviour:
   natureOptions: jolly
   evs: 116 PS / 196 Atq / 196 Vel
   ivs: 
-  moveSlots: stealth_rock / ice_shard / earthquake / endeavor
+  moveSlots: stealth_rock / earthquake / ice_shard / endeavor

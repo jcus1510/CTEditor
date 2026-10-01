@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: uxie_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: uxie_ru_1
-  displayName: Defensive Pivot
+  displayName: Utility
   speciesId: uxie
   setFormat: ru
-  setScore: 58
-  itemOptions: leftovers, colbur_berry
+  setScore: 31
+  itemOptions: wiki_berry, colbur_berry
   abilityOptions: 
-  natureOptions: bold
-  evs: 252 PS / 20 Def / 236 Vel
+  natureOptions: timid
+  evs: 252 PS / 40 Def / 216 Vel
   ivs: 
-  moveSlots: stealth_rock / u_turn / yawn, thunder_wave / psyshock
+  moveSlots: stealth_rock / psyshock / yawn / u_turn, memento

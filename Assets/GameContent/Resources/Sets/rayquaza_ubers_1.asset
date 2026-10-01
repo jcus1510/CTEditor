@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rayquaza_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rayquaza_ubers_1
-  displayName: MixQuaza (Mixed Attacker)
+  displayName: Dragon Dance
   speciesId: rayquaza
   setFormat: ubers
-  setScore: 48
-  itemOptions: life_orb
+  setScore: 53
+  itemOptions: flyinium_z, life_orb, focus_sash
   abilityOptions: 
-  natureOptions: naive
-  evs: 252 Atq / 40 AtqE / 216 Vel
+  natureOptions: adamant, jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: dragon_ascent / draco_meteor / v_create, earthquake / extreme_speed
+  moveSlots: dragon_dance / dragon_ascent / earthquake / extreme_speed

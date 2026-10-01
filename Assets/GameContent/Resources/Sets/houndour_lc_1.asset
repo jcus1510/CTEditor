@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: houndour_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: houndour_lc_1
-  displayName: Mixed Attacker
+  displayName: Life Orb
   speciesId: houndour
   setFormat: lc
-  setScore: 69
+  setScore: 61
   itemOptions: life_orb
-  abilityOptions: early_bird, flash_fire
-  natureOptions: hasty
-  evs: 36 Atq / 196 AtqE / 36 DefE / 236 Vel
-  ivs: 
-  moveSlots: fire_blast / dark_pulse / sucker_punch / destiny_bond, pursuit
+  abilityOptions: flash_fire
+  natureOptions: naive
+  evs: 36 Atq / 36 Def / 196 AtqE / 236 Vel
+  ivs: 9 PS
+  moveSlots: fire_blast / dark_pulse / sucker_punch / flame_charge, pursuit

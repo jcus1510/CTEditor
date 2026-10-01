@@ -69,6 +69,8 @@ MonoBehaviour:
     level: 37
   - move: {fileID: 11400000, guid: d47cc258ebd8daf478118213e60c0582, type: 2}
     level: 41
+  - move: {fileID: 11400000, guid: 42c8cb10322756d43aadabf9640ec2e2, type: 2}
+    level: 45
   evolutions:
   - target: {fileID: 11400000, guid: 212de2518b91ab647bf70217b389c8c2, type: 2}
     requiredLevel: 22
@@ -92,7 +94,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
-  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: edda7cbc2f438144bbfa2e483946d695, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
@@ -101,7 +102,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b08a11a32d7c09f4db0c89ad242fbbad, type: 2}
   - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
   - {fileID: 11400000, guid: 2142ec87c94158f47928ed9a938e18b0, type: 2}
+  - {fileID: 11400000, guid: 2bf945e9e0da7b4469bebca1e26e325f, type: 2}
   tutorMoves:
+  - {fileID: 11400000, guid: 48d24011cb0cf0444a20bc6228099f8f, type: 2}
   - {fileID: 11400000, guid: 13ca1e152dccf554aa16ad9bfcd9ae56, type: 2}
   - {fileID: 11400000, guid: 4ac768068ede7b54a9d4d7c62ff43dc9, type: 2}
   - {fileID: 11400000, guid: b864c07923f73a54caa267bc31a7c34d, type: 2}
@@ -111,6 +114,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 779448fb772226c4eb2097995252e9a0, type: 2}
   - {fileID: 11400000, guid: d47cc258ebd8daf478118213e60c0582, type: 2}
   - {fileID: 11400000, guid: 48d24011cb0cf0444a20bc6228099f8f, type: 2}
+  - {fileID: 11400000, guid: 6ad04777d81cb434c83a369dfdb4aebb, type: 2}
   - {fileID: 11400000, guid: a1b2f5b10f7c17a4e905736abdf02e9d, type: 2}
   - {fileID: 11400000, guid: 23c41488587880a41af470a39ef66e7a, type: 2}
   - {fileID: 11400000, guid: 26291bcf3da149b4abcf8cdf3d253969, type: 2}

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: flareon_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: flareon_pu_1
-  displayName: Choice Band
+  displayName: Wallbreaker
   speciesId: flareon
   setFormat: pu
-  setScore: 37
+  setScore: 27
   itemOptions: choice_band
   abilityOptions: 
   natureOptions: adamant
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: flare_blitz / superpower / quick_attack / double_edge
+  moveSlots: flare_blitz / superpower / return, double_edge / quick_attack

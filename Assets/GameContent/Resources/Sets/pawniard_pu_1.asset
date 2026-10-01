@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: pawniard_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: pawniard_pu_1
-  displayName: Physical Attacker
+  displayName: Swords Dance
   speciesId: pawniard
   setFormat: pu
-  setScore: 74
+  setScore: 67
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: adamant
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: knock_off / sucker_punch / iron_head / swords_dance
+  moveSlots: swords_dance / knock_off / sucker_punch / iron_head

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Shell Smash
   speciesId: huntail
   setFormat: pu
-  setScore: 74
-  itemOptions: white_herb, wacan_berry
-  abilityOptions: water_veil, swift_swim
-  natureOptions: naughty, adamant
+  setScore: 87
+  itemOptions: white_herb
+  abilityOptions: water_veil
+  natureOptions: naughty
   evs: 252 Atq / 4 AtqE / 252 Vel
   ivs: 
-  moveSlots: shell_smash / waterfall / sucker_punch / ice_beam, double_edge
+  moveSlots: shell_smash / waterfall / sucker_punch / ice_beam

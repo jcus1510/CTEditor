@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: xatu_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: xatu_nu_1
-  displayName: Pivot
+  displayName: Defensive Pivot
   speciesId: xatu
   setFormat: nu
-  setScore: 55
-  itemOptions: rocky_helmet, colbur_berry
+  setScore: 68
+  itemOptions: rocky_helmet
   abilityOptions: magic_bounce
-  natureOptions: timid
-  evs: 252 PS / 240 Def / 16 Vel
+  natureOptions: impish
+  evs: 252 PS / 196 Def / 60 Vel
   ivs: 
-  moveSlots: psychic, psyshock / roost / grass_knot, heat_wave / u_turn, thunder_wave
+  moveSlots: night_shade / roost / u_turn / toxic, protect

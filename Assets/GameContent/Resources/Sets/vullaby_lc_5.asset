@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: vullaby
   setFormat: lc
-  setScore: 55
+  setScore: 47
   itemOptions: choice_scarf
   abilityOptions: overcoat
-  natureOptions: adamant
+  natureOptions: adamant, jolly
   evs: 236 Atq / 76 Def / 196 Vel
-  ivs: 
-  moveSlots: brave_bird / knock_off / u_turn / defog, heat_wave
+  ivs: 30 PS / 30 AtqE
+  moveSlots: brave_bird / knock_off / u_turn / defog, hidden_power

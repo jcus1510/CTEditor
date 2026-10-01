@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: avalugg_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: avalugg_pu_1
-  displayName: Rapid Spin
+  displayName: Defensive Spinner
   speciesId: avalugg
   setFormat: pu
-  setScore: 70
-  itemOptions: leftovers
+  setScore: 66
+  itemOptions: leftovers, rocky_helmet
   abilityOptions: sturdy
   natureOptions: careful
-  evs: 248 PS / 8 Def / 252 DefE
+  evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: rapid_spin / recover / avalanche / earthquake, roar
+  moveSlots: rapid_spin / recover / avalanche / earthquake, toxic

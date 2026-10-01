@@ -17,9 +17,9 @@ MonoBehaviour:
   speciesId: panpour
   setFormat: lc
   setScore: 0
-  itemOptions: berry_juice, eviolite
+  itemOptions: eviolite
   abilityOptions: torrent
-  natureOptions: modest, timid
+  natureOptions: timid
   evs: 36 PS / 52 Def / 176 AtqE / 244 Vel
-  ivs: 30 Atq / 30 AtqE
-  moveSlots: nasty_plot / hydro_pump / ice_beam / hidden_power, knock_off
+  ivs: 
+  moveSlots: nasty_plot / hydro_pump / ice_beam / hidden_power

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rhydon_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rhydon_nu_1
-  displayName: Dancing Dino
+  displayName: Stealth Rock
   speciesId: rhydon
   setFormat: nu
-  setScore: 62
+  setScore: 68
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  natureOptions: adamant
+  evs: 4 PS / 252 Atq / 252 Vel
   ivs: 
-  moveSlots: rock_polish / earthquake / stone_edge / swords_dance, megahorn
+  moveSlots: stealth_rock / earthquake / stone_edge, rock_blast / swords_dance

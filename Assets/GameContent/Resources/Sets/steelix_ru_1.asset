@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: steelix_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: steelix_ru_1
-  displayName: Defensive Tank
+  displayName: Tank
   speciesId: steelix
   setFormat: ru
-  setScore: 75
+  setScore: 82
   itemOptions: leftovers
   abilityOptions: sturdy
-  natureOptions: careful, sassy
-  evs: 252 PS / 4 Def / 252 DefE
+  natureOptions: impish
+  evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: stealth_rock / earthquake / toxic / heavy_slam, gyro_ball
+  moveSlots: stealth_rock / heavy_slam / earthquake / toxic

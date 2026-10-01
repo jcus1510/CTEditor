@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Belly Drum
   speciesId: magby
   setFormat: lc
-  setScore: 71
+  setScore: 88
   itemOptions: berry_juice
-  abilityOptions: vital_spirit, flame_body
+  abilityOptions: vital_spirit
   natureOptions: jolly
   evs: 236 Atq / 252 Vel
   ivs: 29 PS
-  moveSlots: belly_drum / fire_punch / mach_punch / return
+  moveSlots: belly_drum / fire_punch / mach_punch / return, thunder_punch

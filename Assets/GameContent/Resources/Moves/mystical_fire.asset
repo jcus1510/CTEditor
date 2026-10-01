@@ -17,7 +17,7 @@ MonoBehaviour:
   englishName: Mystical Fire
   type: {fileID: 11400000, guid: ee71163cdafa45541b041fbd052f055b, type: 2}
   category: 1
-  power: 65
+  power: 75
   neverMisses: 0
   accuracy: 100
   maxPp: 10

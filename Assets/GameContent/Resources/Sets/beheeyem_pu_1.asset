@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: beheeyem_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: beheeyem_pu_1
-  displayName: Defensive Nasty Plot
+  displayName: Offensive Trick Room
   speciesId: beheeyem
   setFormat: pu
-  setScore: 38
-  itemOptions: colbur_berry, leftovers
+  setScore: 51
+  itemOptions: psychium_z, colbur_berry
   abilityOptions: analytic
-  natureOptions: modest
-  evs: 248 PS / 236 Def / 24 AtqE
+  natureOptions: quiet
+  evs: 248 PS / 8 Def / 252 AtqE
   ivs: 
-  moveSlots: nasty_plot / psychic / signal_beam, thunderbolt / recover
+  moveSlots: trick_room / psychic, psyshock / nasty_plot / signal_beam, hidden_power

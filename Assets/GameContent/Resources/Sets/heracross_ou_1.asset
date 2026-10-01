@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: heracross_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: heracross_ou_1
-  displayName: Bulky Wallbreaker
+  displayName: Wallbreaker
   speciesId: heracross
   setFormat: ou
-  setScore: 17
+  setScore: 28
   itemOptions: heracronite
-  abilityOptions: moxie
+  abilityOptions: moxie, guts
   natureOptions: adamant
-  evs: 240 PS / 136 Atq / 132 Vel
+  evs: 64 PS / 252 Atq / 192 Vel
   ivs: 
-  moveSlots: close_combat / pin_missile / rock_blast / substitute, swords_dance
+  moveSlots: swords_dance / close_combat / rock_blast / pin_missile, substitute

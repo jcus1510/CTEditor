@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: SubSeed
   speciesId: tropius
   setFormat: pu
-  setScore: 56
+  setScore: 68
   itemOptions: sitrus_berry
   abilityOptions: harvest
   natureOptions: bold

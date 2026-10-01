@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1088bc638ed8694f833000b84b747fa, type: 3}
+  m_Name: water_bubble
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.AbilityData
+  id: water_bubble
+  displayName: Pompa
+  englishName: Water Bubble
+  effects:
+  - trigger: 4
+    conditions:
+    - kind: 10
+      subject: 0
+      comparison: 2
+      number: 0
+      text: fire
+      negate: 0
+    action: 16
+    target: 0
+    reference: 
+    amount: 0.5
+    threshold: 0
+    consumes: 0
+    chance: 100
+    maxPerBattle: 0
+  - trigger: 1
+    conditions:
+    - kind: 10
+      subject: 0
+      comparison: 2
+      number: 0
+      text: water
+      negate: 0
+    action: 14
+    target: 0
+    reference: 
+    amount: 2
+    threshold: 0
+    consumes: 0
+    chance: 100
+    maxPerBattle: 0
+  - trigger: 1
+    conditions: []
+    action: 35
+    target: 0
+    reference: burn
+    amount: 0
+    threshold: 0
+    consumes: 0
+    chance: 100
+    maxPerBattle: 0

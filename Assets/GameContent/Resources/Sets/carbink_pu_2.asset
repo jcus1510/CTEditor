@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: carbink_pu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: carbink_pu_2
-  displayName: Sun Support
+  displayName: Stealth Rock
   speciesId: carbink
   setFormat: pu
-  setScore: 36
-  itemOptions: heat_rock
-  abilityOptions: sturdy
-  natureOptions: jolly
-  evs: 252 PS / 4 Def / 252 Vel
+  setScore: 47
+  itemOptions: leftovers
+  abilityOptions: 
+  natureOptions: calm, careful
+  evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: sunny_day / stealth_rock / explosion / magic_coat
+  moveSlots: stealth_rock / moonblast, rock_slide / toxic / rest, protect

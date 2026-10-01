@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: venonat_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: venonat_lc_1
-  displayName: Toxic Spikes Setter
+  displayName: Sleep Powder Support
   speciesId: venonat
   setFormat: lc
-  setScore: 56
-  itemOptions: eviolite, berry_juice
-  abilityOptions: compound_eyes, tinted_lens
-  natureOptions: timid
-  evs: 36 PS / 116 Def / 36 AtqE / 76 DefE / 236 Vel
+  setScore: 45
+  itemOptions: eviolite
+  abilityOptions: 
+  natureOptions: bold
+  evs: 36 PS / 36 Def / 116 AtqE / 76 DefE / 236 Vel
   ivs: 
-  moveSlots: toxic_spikes / sleep_powder / signal_beam, giga_drain / morning_sun,
-    thief, giga_drain
+  moveSlots: sleep_powder / morning_sun / sludge_bomb / psychic

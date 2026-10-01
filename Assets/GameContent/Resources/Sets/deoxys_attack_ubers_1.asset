@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: deoxys_attack_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: deoxys_attack_ubers_1
-  displayName: All-Out Attacker
+  displayName: All-out Attacker
   speciesId: deoxys_attack
   setFormat: ubers
-  setScore: 64
-  itemOptions: life_orb, focus_sash
+  setScore: 36
+  itemOptions: life_orb
   abilityOptions: 
-  natureOptions: rash, naive
+  natureOptions: naive, rash
   evs: 4 Atq / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: psycho_boost / superpower, low_kick / ice_beam, knock_off / extreme_speed,
-    knock_off
+  moveSlots: psycho_boost / ice_beam / superpower / pursuit, dark_pulse

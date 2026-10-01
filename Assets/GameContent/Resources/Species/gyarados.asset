@@ -45,38 +45,42 @@ MonoBehaviour:
   speed: 81
   customStats: []
   learnset:
+  - move: {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: 3ecd363c4c5be3140a81b39e13fb6c9e, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
-    level: 20
-  - move: {fileID: 11400000, guid: 6003803a959d2bc4b9157ff08a110dc1, type: 2}
-    level: 23
   - move: {fileID: 11400000, guid: 91d7d14655e701d40b528f342c361bfc, type: 2}
-    level: 26
+    level: 21
   - move: {fileID: 11400000, guid: ca9fc4c5693cb354082fe227793967b3, type: 2}
-    level: 29
+    level: 24
   - move: {fileID: 11400000, guid: c1df94702d81ed2418d2beeba0ecb2f1, type: 2}
-    level: 32
+    level: 27
   - move: {fileID: 11400000, guid: 2958df99c8d8ca34ea9fdb47154368c8, type: 2}
-    level: 35
-  - move: {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
-    level: 38
+    level: 30
+  - move: {fileID: 11400000, guid: a5b45aaafa9ab3a46bb9c9a44e5e9a04, type: 2}
+    level: 33
+  - move: {fileID: 11400000, guid: 6003803a959d2bc4b9157ff08a110dc1, type: 2}
+    level: 36
   - move: {fileID: 11400000, guid: b2c063ae9f8542b4a946e7619d7bc4b6, type: 2}
-    level: 41
+    level: 39
   - move: {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
-    level: 44
+    level: 42
   - move: {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
-    level: 47
+    level: 45
+  - move: {fileID: 11400000, guid: 6ad04777d81cb434c83a369dfdb4aebb, type: 2}
+    level: 48
+  - move: {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+    level: 51
   - move: {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
-    level: 50
+    level: 54
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
   - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
+  - {fileID: 11400000, guid: eb28e4d400e575447b40bd2ded73d008, type: 2}
   - {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
   - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
-  - {fileID: 11400000, guid: b038add5f5a6f804fac709b7d5928f8f, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: 304e733cbfef103478c9a958679a1156, type: 2}
   - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
@@ -89,21 +93,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
   - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
   - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
-  - {fileID: 11400000, guid: 49bccf2aae17cb248a874f769eedde36, type: 2}
   - {fileID: 11400000, guid: 42591adc2ac509240ae0669db50cb613, type: 2}
   - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
   - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
   - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: 034c48472772d604caaa172d102c6f0c, type: 2}
-  - {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
   - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
-  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
-  - {fileID: 11400000, guid: 32cacc67278f51544841007e0dee54cf, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
   - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}

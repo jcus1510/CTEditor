@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Special Attacker
   speciesId: skrelp
   setFormat: lc
-  setScore: 70
+  setScore: 77
   itemOptions: eviolite
   abilityOptions: adaptability
-  natureOptions: modest
-  evs: 36 PS / 116 Def / 200 AtqE / 116 DefE / 40 Vel
+  natureOptions: calm
+  evs: 116 PS / 116 Def / 200 AtqE / 36 DefE / 40 Vel
   ivs: 
-  moveSlots: sludge_wave, sludge_bomb / hydro_pump / hidden_power / scald, toxic_spikes
+  moveSlots: sludge_wave / hydro_pump / hidden_power / toxic_spikes, scald

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: nidoking_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: nidoking_ou_1
-  displayName: Wallbreaker
+  displayName: Life Orb Attacker
   speciesId: nidoking
   setFormat: ou
-  setScore: 89
+  setScore: 83
   itemOptions: life_orb
   abilityOptions: sheer_force
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: earth_power / sludge_wave / ice_beam / flamethrower
+  moveSlots: earth_power / sludge_wave / ice_beam / substitute, flamethrower

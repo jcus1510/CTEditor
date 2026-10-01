@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Defog
   speciesId: lumineon
   setFormat: pu
-  setScore: 95
+  setScore: 84
   itemOptions: leftovers
   abilityOptions: storm_drain
   natureOptions: bold

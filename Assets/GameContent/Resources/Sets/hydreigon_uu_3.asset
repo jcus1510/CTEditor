@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: hydreigon_uu_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: hydreigon_uu_3
-  displayName: Stallbreaker
+  displayName: Taunt
   speciesId: hydreigon
   setFormat: uu
-  setScore: 41
-  itemOptions: life_orb, leftovers
+  setScore: 34
+  itemOptions: life_orb, dragonium_z
   abilityOptions: 
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: taunt / roost / dark_pulse / dragon_pulse, fire_blast, draco_meteor
+  moveSlots: taunt / dark_pulse / roost / draco_meteor

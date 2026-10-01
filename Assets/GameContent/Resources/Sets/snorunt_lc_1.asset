@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: snorunt_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: snorunt_lc_1
-  displayName: Spikes
+  displayName: Scarf Spikes
   speciesId: snorunt
   setFormat: lc
-  setScore: 58
-  itemOptions: focus_sash
+  setScore: 0
+  itemOptions: choice_scarf
   abilityOptions: 
-  natureOptions: naive
-  evs: 36 Atq / 36 Def / 200 AtqE / 40 DefE / 196 Vel
-  ivs: 
-  moveSlots: spikes / ice_beam / hidden_power / ice_shard
+  natureOptions: modest
+  evs: 40 PS / 36 Def / 200 AtqE / 200 Vel
+  ivs: 30 PS / 30 AtqE / 30 DefE / 30 Vel
+  moveSlots: spikes / frost_breath / shadow_ball / hidden_power

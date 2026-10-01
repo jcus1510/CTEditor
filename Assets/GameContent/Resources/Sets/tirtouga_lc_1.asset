@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: tirtouga_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tirtouga_lc_1
-  displayName: Stealth Rock + Shell Smash
+  displayName: Defensive
   speciesId: tirtouga
   setFormat: lc
-  setScore: 39
+  setScore: 37
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: adamant
-  evs: 4 PS / 212 Atq / 12 Def / 76 DefE / 180 Vel
+  natureOptions: careful
+  evs: 164 PS / 52 Atq / 92 Def / 156 DefE / 20 Vel
   ivs: 
-  moveSlots: stealth_rock / shell_smash / waterfall / zen_headbutt, stone_edge, knock_off
+  moveSlots: stealth_rock / stone_edge / knock_off / aqua_jet, liquidation

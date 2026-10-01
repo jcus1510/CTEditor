@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Dragon Dance
   speciesId: feraligatr
   setFormat: uu
-  setScore: 77
+  setScore: 84
   itemOptions: life_orb
   abilityOptions: sheer_force
-  natureOptions: adamant
-  evs: 252 Atq / 4 DefE / 252 Vel
+  natureOptions: jolly, adamant
+  evs: 4 PS / 252 Atq / 252 Vel
   ivs: 
-  moveSlots: dragon_dance / waterfall / crunch / ice_punch, substitute
+  moveSlots: dragon_dance / liquidation / ice_punch / crunch

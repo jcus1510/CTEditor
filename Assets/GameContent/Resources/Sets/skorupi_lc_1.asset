@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: skorupi_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: skorupi_lc_1
-  displayName: Support
+  displayName: Team Support
   speciesId: skorupi
   setFormat: lc
-  setScore: 44
+  setScore: 47
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: jolly
   evs: 196 PS / 36 Atq / 36 Def / 236 Vel
   ivs: 
-  moveSlots: toxic_spikes / taunt / poison_jab / knock_off
+  moveSlots: toxic_spikes / taunt / knock_off / poison_jab

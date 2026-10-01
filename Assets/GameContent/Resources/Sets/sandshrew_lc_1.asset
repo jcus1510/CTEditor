@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sandshrew_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sandshrew_lc_1
-  displayName: Rapid Spin
+  displayName: Bulky Support
   speciesId: sandshrew
   setFormat: lc
-  setScore: 87
+  setScore: 85
   itemOptions: eviolite
   abilityOptions: sand_rush
-  natureOptions: impish
-  evs: 116 PS / 156 Atq / 156 Def / 36 DefE / 36 Vel
+  natureOptions: adamant
+  evs: 36 PS / 156 Atq / 76 Def / 36 DefE / 196 Vel
   ivs: 
-  moveSlots: rapid_spin / earthquake / knock_off / stealth_rock, rock_slide
+  moveSlots: rapid_spin / stealth_rock / earthquake / knock_off

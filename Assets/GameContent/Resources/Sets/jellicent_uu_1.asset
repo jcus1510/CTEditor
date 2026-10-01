@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Physically Defensive
   speciesId: jellicent
   setFormat: uu
-  setScore: 70
-  itemOptions: leftovers
+  setScore: 65
+  itemOptions: leftovers, colbur_berry
   abilityOptions: 
   natureOptions: bold
-  evs: 252 PS / 252 Def / 4 Vel
+  evs: 252 PS / 212 Def / 44 Vel
   ivs: 
-  moveSlots: recover / scald / will_o_wisp, toxic / taunt
+  moveSlots: hex, scald / taunt / will_o_wisp / recover

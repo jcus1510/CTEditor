@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: gothitelle_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: gothitelle_ubers_1
-  displayName: Literally Satan... Again (Calm Mind)
+  displayName: PP Stall
   speciesId: gothitelle
   setFormat: ubers
-  setScore: 52
+  setScore: 90
   itemOptions: leftovers
   abilityOptions: shadow_tag
-  natureOptions: sassy, calm
-  evs: 252 PS / 4 AtqE / 252 DefE
-  ivs: 3 Vel
-  moveSlots: calm_mind / psyshock / rest / thunder_wave, tickle
+  natureOptions: calm
+  evs: 244 PS / 108 Def / 156 DefE
+  ivs: 
+  moveSlots: confide / charm / taunt / rest

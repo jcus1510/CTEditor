@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: blitzle_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: blitzle_lc_1
-  displayName: Life Orb
+  displayName: All-out Attacker
   speciesId: blitzle
   setFormat: lc
-  setScore: 66
+  setScore: 46
   itemOptions: life_orb
   abilityOptions: sap_sipper
   natureOptions: naive
-  evs: 196 Atq / 20 Def / 36 AtqE / 20 DefE / 228 Vel
-  ivs: 
-  moveSlots: wild_charge / volt_switch / flame_charge / double_edge, quick_attack
+  evs: 200 Atq / 20 Def / 40 AtqE / 20 DefE / 228 Vel
+  ivs: 9 PS
+  moveSlots: wild_charge / volt_switch, double_edge / flame_charge / hidden_power

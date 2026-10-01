@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: bellossom_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: bellossom_pu_1
-  displayName: Sun "Sweeper"
+  displayName: Bulky Quiver Dance
   speciesId: bellossom
   setFormat: pu
-  setScore: 17
-  itemOptions: life_orb
+  setScore: 65
+  itemOptions: grassium_z, leftovers
   abilityOptions: 
-  natureOptions: modest
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  natureOptions: timid
+  evs: 248 PS / 8 Def / 252 Vel
   ivs: 
-  moveSlots: solar_beam / hidden_power / moonblast / sleep_powder
+  moveSlots: strength_sap / quiver_dance / giga_drain / moonblast, safeguard

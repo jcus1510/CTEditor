@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: corsola_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: corsola_pu_1
-  displayName: Specially Defensive
+  displayName: Stealth Rock
   speciesId: corsola
   setFormat: pu
-  setScore: 51
+  setScore: 75
   itemOptions: leftovers
   abilityOptions: regenerator
-  natureOptions: calm
-  evs: 252 PS / 4 AtqE / 252 DefE
+  natureOptions: bold
+  evs: 252 PS / 252 Def / 4 DefE
   ivs: 
   moveSlots: stealth_rock / recover / scald / toxic

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: mandibuzz_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: mandibuzz_uu_1
-  displayName: Specially Defensive
+  displayName: Utility Birb
   speciesId: mandibuzz
   setFormat: uu
-  setScore: 72
+  setScore: 60
   itemOptions: leftovers
   abilityOptions: overcoat
   natureOptions: careful
-  evs: 248 PS / 8 Def / 252 DefE
+  evs: 248 PS / 124 DefE / 136 Vel
   ivs: 
-  moveSlots: foul_play / roost / defog / u_turn, knock_off
+  moveSlots: foul_play / taunt / toxic / roost

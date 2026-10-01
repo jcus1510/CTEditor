@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: starly
   setFormat: lc
-  setScore: 82
+  setScore: 77
   itemOptions: choice_scarf
   abilityOptions: reckless
-  natureOptions: naive, jolly
+  natureOptions: naive
   evs: 36 PS / 236 Atq / 36 AtqE / 196 Vel
   ivs: 
-  moveSlots: brave_bird / double_edge / u_turn / hidden_power, steel_wing
+  moveSlots: brave_bird / double_edge / u_turn / heat_wave, hidden_power

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: kyurem_uu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: kyurem_uu_2
-  displayName: Choice Scarf
+  displayName: Choice Specs
   speciesId: kyurem
   setFormat: uu
-  setScore: 49
-  itemOptions: choice_scarf
+  setScore: 36
+  itemOptions: choice_specs
   abilityOptions: 
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: draco_meteor / ice_beam / earth_power / dragon_pulse
+  moveSlots: draco_meteor / ice_beam / hidden_power / earth_power

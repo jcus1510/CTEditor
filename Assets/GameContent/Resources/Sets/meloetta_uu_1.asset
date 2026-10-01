@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: meloetta_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: meloetta_uu_1
-  displayName: Substitute + Calm Mind
+  displayName: Z-Celebrate
   speciesId: meloetta
   setFormat: uu
-  setScore: 19
-  itemOptions: leftovers
+  setScore: 48
+  itemOptions: normalium_z
   abilityOptions: 
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: substitute / calm_mind / psyshock / hyper_voice, focus_blast
+  moveSlots: celebrate / psychic / focus_blast / hyper_voice, shadow_ball

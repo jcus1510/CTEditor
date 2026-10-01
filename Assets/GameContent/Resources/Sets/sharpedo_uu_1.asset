@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sharpedo_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sharpedo_uu_1
-  displayName: Mega Chomp
+  displayName: Cleaner
   speciesId: sharpedo
   setFormat: uu
-  setScore: 51
+  setScore: 43
   itemOptions: sharpedonite
   abilityOptions: speed_boost
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: adamant, jolly
+  evs: 4 PS / 252 Atq / 252 Vel
   ivs: 
-  moveSlots: protect / crunch / waterfall, hydro_pump / ice_fang
+  moveSlots: crunch / ice_fang / earthquake, psychic_fangs / protect

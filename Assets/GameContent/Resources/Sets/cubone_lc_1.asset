@@ -22,4 +22,4 @@ MonoBehaviour:
   natureOptions: jolly
   evs: 196 Atq / 76 Def / 236 Vel
   ivs: 
-  moveSlots: bonemerang / knock_off / rock_slide, thunder_punch / fire_punch
+  moveSlots: bonemerang / knock_off / rock_slide / fire_punch

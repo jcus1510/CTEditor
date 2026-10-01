@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: clefable_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: clefable_ou_1
-  displayName: Calm Mind
+  displayName: Utility
   speciesId: clefable
   setFormat: ou
-  setScore: 75
-  itemOptions: leftovers
+  setScore: 58
+  itemOptions: leftovers, rocky_helmet, life_orb
   abilityOptions: magic_guard
   natureOptions: bold
   evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: calm_mind / moonblast / flamethrower, ice_beam, thunder_wave / soft_boiled
+  moveSlots: stealth_rock, knock_off, wish / moonblast / soft_boiled / thunder_wave,
+    knock_off, flamethrower, heal_bell, seismic_toss, ice_beam

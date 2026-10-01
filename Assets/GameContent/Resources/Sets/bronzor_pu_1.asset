@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Defensive
   speciesId: bronzor
   setFormat: pu
-  setScore: 82
+  setScore: 81
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: bold
-  evs: 252 PS / 144 Def / 112 DefE
+  natureOptions: calm
+  evs: 252 PS / 168 Def / 88 DefE
   ivs: 
-  moveSlots: psywave / toxic / stealth_rock / rest
+  moveSlots: stealth_rock / psywave / toxic / rest

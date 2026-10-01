@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: diglett_lc_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: diglett_lc_3
-  displayName: Life Orb
+  displayName: Focus Sash
   speciesId: diglett
   setFormat: lc
-  setScore: 74
-  itemOptions: life_orb
+  setScore: 63
+  itemOptions: focus_sash
   abilityOptions: arena_trap
   natureOptions: jolly
   evs: 36 PS / 236 Atq / 236 Vel
   ivs: 
-  moveSlots: earthquake / rock_slide / sucker_punch / substitute
+  moveSlots: earthquake / sucker_punch, memento / rock_slide / memento, reversal,
+    stealth_rock

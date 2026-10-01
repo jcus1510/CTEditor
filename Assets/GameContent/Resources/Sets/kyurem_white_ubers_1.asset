@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: kyurem_white_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: kyurem_white_ubers_1
-  displayName: Choice Specs
+  displayName: Wallbreaker
   speciesId: kyurem_white
   setFormat: ubers
-  setScore: 66
-  itemOptions: choice_specs
+  setScore: 64
+  itemOptions: life_orb, choice_specs
   abilityOptions: 
   natureOptions: timid, modest
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: ice_beam / draco_meteor / fusion_flare / focus_blast, earth_power, sleep_talk
+  moveSlots: ice_beam / draco_meteor / fusion_flare / roost, earth_power

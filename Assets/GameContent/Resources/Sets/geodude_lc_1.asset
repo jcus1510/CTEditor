@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: geodude_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: geodude_lc_1
-  displayName: Stealth Rock Lead
+  displayName: Stealth Rock
   speciesId: geodude
   setFormat: lc
-  setScore: 61
+  setScore: 80
   itemOptions: berry_juice
   abilityOptions: sturdy
   natureOptions: adamant
-  evs: 36 PS / 196 Atq / 196 Def / 36 DefE / 36 Vel
+  evs: 36 PS / 196 Atq / 116 Def / 36 DefE / 116 Vel
   ivs: 
-  moveSlots: stealth_rock / sucker_punch, counter / earthquake / rock_blast
+  moveSlots: stealth_rock / rock_blast / earthquake / sucker_punch, explosion, counter

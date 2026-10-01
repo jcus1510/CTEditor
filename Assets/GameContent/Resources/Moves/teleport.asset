@@ -21,7 +21,7 @@ MonoBehaviour:
   neverMisses: 1
   accuracy: 100
   maxPp: 20
-  priority: 0
+  priority: -6
   target: 1
   secondaryEffects:
   - chancePercent: 100

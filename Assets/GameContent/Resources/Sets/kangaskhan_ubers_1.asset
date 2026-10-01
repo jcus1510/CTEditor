@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: kangaskhan_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: kangaskhan_ubers_1
-  displayName: Physical Attacker
+  displayName: Utility Attacker
   speciesId: kangaskhan
   setFormat: ubers
-  setScore: 56
+  setScore: 64
   itemOptions: kangaskhanite
   abilityOptions: scrappy
-  natureOptions: adamant, jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: jolly
+  evs: 52 PS / 180 Atq / 36 Def / 8 DefE / 232 Vel
   ivs: 
-  moveSlots: fake_out / return, body_slam / crunch / power_up_punch, seismic_toss
+  moveSlots: fake_out / seismic_toss / shadow_claw, crunch / body_slam, rock_tomb

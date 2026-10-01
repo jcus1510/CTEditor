@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Magician
   speciesId: fennekin
   setFormat: lc
-  setScore: 52
+  setScore: 73
   itemOptions: power_herb
   abilityOptions: magician
   natureOptions: timid
-  evs: 116 Def / 184 AtqE / 196 Vel
+  evs: 36 PS / 36 Def / 180 AtqE / 36 DefE / 196 Vel
   ivs: 
-  moveSlots: fire_blast / solar_beam / psychic / hidden_power, will_o_wisp
+  moveSlots: fire_blast / solar_beam / psychic / will_o_wisp

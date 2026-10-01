@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Band
   speciesId: diggersby
   setFormat: ou
-  setScore: 69
+  setScore: 55
   itemOptions: choice_band
   abilityOptions: huge_power
   natureOptions: adamant
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: earthquake / return / fire_punch, u_turn / quick_attack
+  moveSlots: earthquake / return / quick_attack / spikes, fire_punch

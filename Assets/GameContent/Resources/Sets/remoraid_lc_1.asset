@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: remoraid_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: remoraid_lc_1
-  displayName: Mixed Choice Scarf
+  displayName: Choice Scarf
   speciesId: remoraid
   setFormat: lc
-  setScore: 38
+  setScore: 57
   itemOptions: choice_scarf
   abilityOptions: 
   natureOptions: naive
   evs: 236 AtqE / 236 Vel
   ivs: 
-  moveSlots: water_spout / hydro_pump / fire_blast / bullet_seed, ice_beam
+  moveSlots: water_spout / hydro_pump / fire_blast / bullet_seed

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: slowking_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: slowking_ru_1
-  displayName: Calm Mind
+  displayName: Assault Vest
   speciesId: slowking
   setFormat: ru
-  setScore: 62
-  itemOptions: leftovers, colbur_berry
+  setScore: 50
+  itemOptions: assault_vest
   abilityOptions: regenerator
-  natureOptions: bold
-  evs: 248 PS / 252 Def / 8 Vel
+  natureOptions: modest
+  evs: 252 PS / 176 AtqE / 80 DefE
   ivs: 
-  moveSlots: scald / slack_off / calm_mind / psyshock, thunder_wave
+  moveSlots: scald / future_sight / fire_blast / dragon_tail

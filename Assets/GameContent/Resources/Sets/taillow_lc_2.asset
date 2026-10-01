@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: taillow_lc_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: taillow_lc_2
-  displayName: Guts Sweeper
+  displayName: Guts Physical Sweeper
   speciesId: taillow
   setFormat: lc
-  setScore: 36
-  itemOptions: toxic_orb
+  setScore: 40
+  itemOptions: flame_orb
   abilityOptions: 
   natureOptions: jolly
   evs: 36 PS / 236 Atq / 236 Vel
   ivs: 
-  moveSlots: facade / brave_bird / quick_attack, steel_wing / u_turn, protect, steel_wing
+  moveSlots: facade / brave_bird / quick_attack / u_turn, protect

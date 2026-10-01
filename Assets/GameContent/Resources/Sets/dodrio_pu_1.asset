@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: dodrio_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: dodrio_pu_1
-  displayName: Wallbreaker
+  displayName: Choice Scarf
   speciesId: dodrio
   setFormat: pu
-  setScore: 77
-  itemOptions: choice_band, life_orb
+  setScore: 64
+  itemOptions: choice_scarf
   abilityOptions: early_bird
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: brave_bird / return / knock_off / quick_attack, pursuit
+  moveSlots: brave_bird / jump_kick / return / knock_off, pursuit

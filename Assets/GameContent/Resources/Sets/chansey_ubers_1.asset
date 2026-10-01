@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Support
   speciesId: chansey
   setFormat: ubers
-  setScore: 62
+  setScore: 56
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: bold
-  evs: 252 Def / 252 DefE / 4 Vel
+  natureOptions: bold, calm
+  evs: 4 PS / 252 Def / 252 DefE
   ivs: 
-  moveSlots: thunder_wave / toxic, heal_bell / soft_boiled / seismic_toss
+  moveSlots: soft_boiled / heal_bell / toxic / wish, confide

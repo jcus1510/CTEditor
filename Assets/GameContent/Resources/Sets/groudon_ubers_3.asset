@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: groudon_ubers_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: groudon_ubers_3
-  displayName: Rock Polish
+  displayName: Mixed Rock Polish
   speciesId: groudon
   setFormat: ubers
-  setScore: 25
+  setScore: 8
   itemOptions: red_orb
   abilityOptions: 
-  natureOptions: adamant
-  evs: 168 PS / 252 Atq / 32 DefE / 56 Vel
+  natureOptions: mild
+  evs: 252 AtqE / 100 DefE / 156 Vel
   ivs: 
-  moveSlots: rock_polish / precipice_blades / swords_dance, dragon_claw / stone_edge,
-    rock_slide
+  moveSlots: rock_polish / precipice_blades / fire_blast / hidden_power, dragon_pulse

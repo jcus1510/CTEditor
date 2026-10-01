@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: jirachi_ou_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: jirachi_ou_3
-  displayName: SubToxic
+  displayName: Stealth Rock
   speciesId: jirachi
   setFormat: ou
-  setScore: 23
+  setScore: 48
   itemOptions: leftovers
   abilityOptions: 
-  natureOptions: jolly
-  evs: 252 PS / 160 Atq / 96 Vel
+  natureOptions: careful
+  evs: 248 PS / 188 DefE / 72 Vel
   ivs: 
-  moveSlots: iron_head / toxic / substitute / fire_punch
+  moveSlots: stealth_rock / iron_head / u_turn / healing_wish

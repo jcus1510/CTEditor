@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: vanillite_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: vanillite_lc_1
-  displayName: Autotomize
+  displayName: Weak Armor Sweeper
   speciesId: vanillite
   setFormat: lc
-  setScore: 34
-  itemOptions: eviolite
-  abilityOptions: 
-  natureOptions: mild, modest
+  setScore: 16
+  itemOptions: icium_z, life_orb
+  abilityOptions: weak_armor
+  natureOptions: modest
   evs: 240 AtqE / 244 Vel
-  ivs: 
-  moveSlots: autotomize / ice_beam / hidden_power / ice_shard, taunt
+  ivs: 19 PS / 1 Atq / 30 Def / 30 AtqE / 30 DefE / 30 Vel
+  moveSlots: ice_beam / hidden_power / explosion / substitute

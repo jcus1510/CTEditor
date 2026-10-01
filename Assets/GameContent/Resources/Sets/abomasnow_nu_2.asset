@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Swords Dance
   speciesId: abomasnow
   setFormat: nu
-  setScore: 51
-  itemOptions: life_orb
-  abilityOptions: snow_warning, soundproof
-  natureOptions: hasty, jolly
-  evs: 252 Atq / 4 AtqE / 252 Vel
+  setScore: 32
+  itemOptions: abomasite
+  abilityOptions: soundproof
+  natureOptions: jolly, adamant
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: swords_dance / ice_shard / seed_bomb / blizzard, earthquake
+  moveSlots: swords_dance / wood_hammer / ice_shard / earthquake

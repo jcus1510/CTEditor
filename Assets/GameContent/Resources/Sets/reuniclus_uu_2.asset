@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: reuniclus_uu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: reuniclus_uu_2
-  displayName: Trick Room
+  displayName: Offensive Trick Room
   speciesId: reuniclus
   setFormat: uu
-  setScore: 50
+  setScore: 49
   itemOptions: life_orb
   abilityOptions: magic_guard
   natureOptions: quiet
   evs: 252 PS / 4 Def / 252 AtqE
   ivs: 
-  moveSlots: trick_room / psyshock, psychic / focus_blast, signal_beam / shadow_ball
+  moveSlots: psychic, psyshock / shadow_ball / focus_blast / trick_room

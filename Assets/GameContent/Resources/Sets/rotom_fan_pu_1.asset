@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rotom_fan_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rotom_fan_pu_1
-  displayName: Offensive Utility
+  displayName: Defensive Pivot
   speciesId: rotom_fan
   setFormat: pu
   setScore: 51
-  itemOptions: leftovers
+  itemOptions: iapapa_berry, leftovers
   abilityOptions: 
-  natureOptions: timid
-  evs: 32 PS / 252 AtqE / 224 Vel
+  natureOptions: bold
+  evs: 252 PS / 208 Def / 48 Vel
   ivs: 
-  moveSlots: thunderbolt, volt_switch / air_slash / hidden_power / will_o_wisp
+  moveSlots: volt_switch / air_slash / will_o_wisp / defog, pain_split

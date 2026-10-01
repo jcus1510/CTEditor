@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: noibat_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: noibat_lc_1
-  displayName: Tailwind + 3 Attacks
+  displayName: Life Orb
   speciesId: noibat
   setFormat: lc
-  setScore: 52
+  setScore: 56
   itemOptions: life_orb
   abilityOptions: infiltrator
   natureOptions: timid

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Nasty Plot
   speciesId: simisear
   setFormat: pu
-  setScore: 61
-  itemOptions: life_orb
+  setScore: 62
+  itemOptions: firium_z, grassium_z
   abilityOptions: blaze
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: nasty_plot / fire_blast / grass_knot / focus_blast
+  moveSlots: nasty_plot / fire_blast / grass_knot / focus_blast, hidden_power

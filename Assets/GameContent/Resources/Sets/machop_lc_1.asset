@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: machop
   setFormat: lc
-  setScore: 80
+  setScore: 65
   itemOptions: choice_scarf
   abilityOptions: no_guard
   natureOptions: jolly
   evs: 36 PS / 196 Atq / 36 Def / 236 Vel
   ivs: 
-  moveSlots: dynamic_punch / knock_off / rock_slide / poison_jab
+  moveSlots: dynamic_punch / knock_off / poison_jab / rock_slide

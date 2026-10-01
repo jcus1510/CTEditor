@@ -20,6 +20,6 @@ MonoBehaviour:
   itemOptions: life_orb
   abilityOptions: speed_boost
   natureOptions: modest
-  evs: 236 AtqE / 36 DefE / 236 Vel
+  evs: 36 Def / 236 AtqE / 236 Vel
   ivs: 9 PS
-  moveSlots: hydro_pump / ice_beam / dark_pulse / protect
+  moveSlots: hydro_pump / dark_pulse / ice_beam / protect

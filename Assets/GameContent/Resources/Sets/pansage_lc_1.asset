@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: pansage_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: pansage_lc_1
-  displayName: Life Orb
+  displayName: All-Out Offensive
   speciesId: pansage
   setFormat: lc
-  setScore: 42
+  setScore: 0
   itemOptions: life_orb
   abilityOptions: overgrow
   natureOptions: jolly
   evs: 252 Atq / 244 Vel
   ivs: 
-  moveSlots: bullet_seed / knock_off / low_sweep / rock_tomb, gunk_shot
+  moveSlots: bullet_seed / knock_off / low_sweep / gunk_shot

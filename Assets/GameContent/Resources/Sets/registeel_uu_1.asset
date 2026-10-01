@@ -16,11 +16,10 @@ MonoBehaviour:
   displayName: Specially Defensive
   speciesId: registeel
   setFormat: uu
-  setScore: 60
+  setScore: 69
   itemOptions: leftovers
   abilityOptions: 
-  natureOptions: careful
+  natureOptions: calm
   evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: stealth_rock / thunder_wave, toxic / iron_head, seismic_toss / protect,
-    seismic_toss, earthquake
+  moveSlots: stealth_rock / toxic / seismic_toss / protect, counter

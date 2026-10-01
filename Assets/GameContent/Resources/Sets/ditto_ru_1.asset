@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ditto_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: ditto_ru_1
-  displayName: Imposter
+  displayName: Revenge Killer
   speciesId: ditto
   setFormat: ru
-  setScore: 85
+  setScore: 100
   itemOptions: choice_scarf
   abilityOptions: imposter
   natureOptions: relaxed
-  evs: 248 PS / 8 Atq / 252 Def
-  ivs: 
+  evs: 252 PS / 4 Atq / 252 Def
+  ivs: 30 AtqE / 30 DefE
   moveSlots: transform

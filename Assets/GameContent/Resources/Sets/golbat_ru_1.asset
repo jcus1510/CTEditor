@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: golbat_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: golbat_ru_1
-  displayName: Physically Defensive
+  displayName: Defensive
   speciesId: golbat
   setFormat: ru
-  setScore: 85
+  setScore: 97
   itemOptions: eviolite
   abilityOptions: infiltrator
-  natureOptions: impish
-  evs: 252 PS / 252 Def / 4 DefE
+  natureOptions: jolly
+  evs: 248 PS / 244 Def / 16 Vel
   ivs: 
-  moveSlots: defog / roost / brave_bird / toxic, super_fang, taunt
+  moveSlots: brave_bird / roost / defog, taunt / toxic, super_fang, taunt

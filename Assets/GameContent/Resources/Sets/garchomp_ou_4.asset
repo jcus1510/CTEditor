@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: garchomp_ou_4
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: garchomp_ou_4
-  displayName: Substitute + Swords Dance
+  displayName: Swords Dance Mega
   speciesId: garchomp
   setFormat: ou
-  setScore: 42
-  itemOptions: salac_berry, leftovers
+  setScore: 50
+  itemOptions: garchompite
   abilityOptions: rough_skin
   natureOptions: jolly
-  evs: 12 PS / 244 Atq / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: swords_dance / earthquake / dragon_claw / substitute
+  moveSlots: swords_dance / substitute, fire_fang, aqua_tail / earthquake / stone_edge

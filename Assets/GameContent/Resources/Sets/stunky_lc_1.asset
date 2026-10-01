@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: stunky_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: stunky_lc_1
-  displayName: Bulky Pursuit
+  displayName: Life Orb
   speciesId: stunky
   setFormat: lc
-  setScore: 81
-  itemOptions: eviolite
+  setScore: 39
+  itemOptions: life_orb
   abilityOptions: aftermath
-  natureOptions: brave
-  evs: 12 PS / 92 Atq / 60 Def / 108 AtqE / 188 DefE / 4 Vel
-  ivs: 
-  moveSlots: pursuit / sucker_punch, defog / fire_blast, sludge_bomb / defog, sludge_bomb
+  natureOptions: hasty
+  evs: 12 PS / 252 Atq / 244 Vel
+  ivs: 30 Def / 30 AtqE
+  moveSlots: sucker_punch / play_rough / fire_blast / hidden_power, sludge_bomb

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: stunky_lc_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: stunky_lc_2
-  displayName: Fast Utility
+  displayName: Offensive Utility
   speciesId: stunky
   setFormat: lc
-  setScore: 78
+  setScore: 71
   itemOptions: eviolite
   abilityOptions: aftermath
-  natureOptions: jolly
-  evs: 172 PS / 12 Atq / 60 Def / 244 Vel
+  natureOptions: careful
+  evs: 252 Atq / 60 Def / 188 DefE / 4 Vel
   ivs: 
-  moveSlots: pursuit / sucker_punch, play_rough / defog, memento / taunt, crunch
+  moveSlots: pursuit / sucker_punch / defog / sludge_bomb, fire_blast, memento

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: axew_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: axew_lc_1
-  displayName: Dragon Dance
+  displayName: Dragon Dance Sweeper
   speciesId: axew
   setFormat: lc
-  setScore: 63
+  setScore: 61
   itemOptions: eviolite
   abilityOptions: mold_breaker
-  natureOptions: adamant, jolly
+  natureOptions: jolly, adamant
   evs: 68 PS / 220 Atq / 220 Vel
   ivs: 
-  moveSlots: dragon_dance / outrage, dragon_claw / iron_tail, poison_jab / superpower
+  moveSlots: dragon_dance / outrage, dual_chop / superpower / iron_tail, poison_jab

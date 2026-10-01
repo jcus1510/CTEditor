@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: samurott_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: samurott_nu_1
-  displayName: Swords Dance
+  displayName: Special Wallbreaker
   speciesId: samurott
   setFormat: nu
-  setScore: 53
-  itemOptions: lum_berry, wave_incense
+  setScore: 28
+  itemOptions: life_orb
   abilityOptions: 
-  natureOptions: adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: swords_dance / aqua_jet / waterfall / megahorn
+  moveSlots: hydro_pump / grass_knot / ice_beam / taunt, aqua_jet, knock_off

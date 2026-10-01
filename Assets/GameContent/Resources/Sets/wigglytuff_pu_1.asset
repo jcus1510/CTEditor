@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: wigglytuff_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: wigglytuff_pu_1
-  displayName: Offensive Stealth Rock
+  displayName: Stealth Rock
   speciesId: wigglytuff
   setFormat: pu
-  setScore: 46
+  setScore: 48
   itemOptions: life_orb
   abilityOptions: competitive
-  natureOptions: timid, modest
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  natureOptions: timid
+  evs: 4 PS / 252 AtqE / 252 Vel
   ivs: 
   moveSlots: stealth_rock / hyper_voice / dazzling_gleam / fire_blast, focus_blast

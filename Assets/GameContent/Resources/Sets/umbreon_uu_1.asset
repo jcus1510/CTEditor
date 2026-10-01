@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: umbreon_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: umbreon_uu_1
-  displayName: Cleric / Wish Pass
+  displayName: Specially Defensive
   speciesId: umbreon
   setFormat: uu
-  setScore: 65
+  setScore: 78
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: calm
-  evs: 252 PS / 4 Def / 252 DefE
+  evs: 252 PS / 252 DefE / 4 Vel
   ivs: 
-  moveSlots: wish / protect, moonlight / heal_bell / foul_play
+  moveSlots: foul_play / heal_bell, toxic / wish / protect, moonlight

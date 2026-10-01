@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: alakazam_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: alakazam_ou_1
-  displayName: Utility Attacker
+  displayName: Offensive
   speciesId: alakazam
   setFormat: ou
-  setScore: 57
+  setScore: 50
   itemOptions: alakazite
   abilityOptions: magic_guard
   natureOptions: timid
   evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: psychic / focus_blast / shadow_ball / encore, taunt
+  moveSlots: psychic / focus_blast / shadow_ball, calm_mind / recover, calm_mind,
+    energy_ball, taunt, knock_off

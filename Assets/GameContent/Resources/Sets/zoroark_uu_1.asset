@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: zoroark_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: zoroark_uu_1
-  displayName: Choice Specs
+  displayName: Nasty Plot
   speciesId: zoroark
   setFormat: uu
-  setScore: 31
-  itemOptions: choice_specs
+  setScore: 42
+  itemOptions: fightinium_z
   abilityOptions: 
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: dark_pulse, night_daze / focus_blast / trick / sludge_bomb, flamethrower,
-    grass_knot
+  moveSlots: nasty_plot / dark_pulse / focus_blast / sludge_bomb

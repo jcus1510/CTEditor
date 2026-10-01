@@ -16,11 +16,10 @@ MonoBehaviour:
   displayName: Dual Screens
   speciesId: mareep
   setFormat: lc
-  setScore: 38
-  itemOptions: eviolite, berry_juice
+  setScore: 0
+  itemOptions: eviolite
   abilityOptions: 
   natureOptions: bold
-  evs: 236 PS / 196 Def / 76 DefE
+  evs: 196 Def / 76 AtqE / 236 DefE
   ivs: 
-  moveSlots: light_screen / reflect / thunder_wave, heal_bell, toxic / thunderbolt,
-    discharge
+  moveSlots: reflect / light_screen / heal_bell, toxic / thunderbolt

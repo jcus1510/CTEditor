@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Rapid Spin
   speciesId: baltoy
   setFormat: lc
-  setScore: 57
-  itemOptions: eviolite, berry_juice
+  setScore: 49
+  itemOptions: berry_juice
   abilityOptions: 
-  natureOptions: relaxed
-  evs: 36 PS / 36 Atq / 236 Def / 196 DefE
+  natureOptions: bold
+  evs: 36 PS / 236 Def / 36 AtqE / 196 DefE
   ivs: 
-  moveSlots: rapid_spin / stealth_rock / earthquake / psychic, recycle
+  moveSlots: rapid_spin / stealth_rock / earth_power / psychic

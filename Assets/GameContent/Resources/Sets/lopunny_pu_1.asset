@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: lopunny_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: lopunny_pu_1
-  displayName: Offensive Utility
+  displayName: Switcheroo
   speciesId: lopunny
   setFormat: pu
-  setScore: 22
-  itemOptions: flame_orb
+  setScore: 41
+  itemOptions: choice_band, flame_orb, assault_vest
   abilityOptions: klutz
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: switcheroo / healing_wish / return / high_jump_kick
+  moveSlots: switcheroo / return / high_jump_kick / healing_wish

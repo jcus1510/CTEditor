@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: yveltal_ubers_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: yveltal_ubers_2
-  displayName: Strong Bird
+  displayName: Choice Scarf
   speciesId: yveltal
   setFormat: ubers
-  setScore: 39
-  itemOptions: life_orb, black_glasses
+  setScore: 35
+  itemOptions: choice_scarf
   abilityOptions: 
-  natureOptions: rash
-  evs: 132 PS / 28 Atq / 252 AtqE / 96 Vel
+  natureOptions: modest
+  evs: 32 Def / 224 AtqE / 252 Vel
   ivs: 
-  moveSlots: dark_pulse / oblivion_wing / sucker_punch / heat_wave, focus_blast
+  moveSlots: foul_play / dark_pulse / oblivion_wing / u_turn, defog

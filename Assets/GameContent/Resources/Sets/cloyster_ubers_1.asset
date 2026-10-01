@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: cloyster_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: cloyster_ubers_1
-  displayName: Hazard Control
+  displayName: Entry Hazard Lead
   speciesId: cloyster
   setFormat: ubers
-  setScore: 98
+  setScore: 84
   itemOptions: focus_sash
   abilityOptions: skill_link
-  natureOptions: jolly
+  natureOptions: jolly, adamant
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: rapid_spin / toxic_spikes, spikes / icicle_spear / shell_smash, explosion
+  moveSlots: spikes, toxic_spikes / shell_smash / icicle_spear / rapid_spin

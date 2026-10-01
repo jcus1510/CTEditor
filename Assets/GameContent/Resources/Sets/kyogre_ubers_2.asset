@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: kyogre_ubers_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: kyogre_ubers_2
-  displayName: Calm Mind + 3 Attacks
+  displayName: Physical Attacker
   speciesId: kyogre
   setFormat: ubers
-  setScore: 33
+  setScore: 29
   itemOptions: blue_orb
   abilityOptions: 
-  natureOptions: modest
-  evs: 172 PS / 252 AtqE / 84 Vel
+  natureOptions: adamant, jolly
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: calm_mind / origin_pulse / ice_beam / thunder
+  moveSlots: liquidation / earthquake / ice_beam / thunder

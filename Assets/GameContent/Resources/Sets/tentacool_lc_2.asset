@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Offensive
   speciesId: tentacool
   setFormat: lc
-  setScore: 31
+  setScore: 29
   itemOptions: life_orb
   abilityOptions: 
   natureOptions: timid
   evs: 76 Def / 196 AtqE / 36 DefE / 196 Vel
   ivs: 19 PS
-  moveSlots: hydro_pump / sludge_bomb / knock_off / acid_spray, rapid_spin, giga_drain
+  moveSlots: hydro_pump / sludge_bomb / knock_off / hidden_power, rapid_spin

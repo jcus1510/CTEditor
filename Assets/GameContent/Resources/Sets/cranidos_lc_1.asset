@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: cranidos_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: cranidos_lc_1
-  displayName: Sticky Web Wallbreaker
+  displayName: Choice Scarf
   speciesId: cranidos
   setFormat: lc
-  setScore: 33
-  itemOptions: life_orb
-  abilityOptions: sheer_force
-  natureOptions: adamant
+  setScore: 61
+  itemOptions: choice_scarf
+  abilityOptions: sheer_force, mold_breaker
+  natureOptions: jolly, adamant
   evs: 236 Atq / 36 Def / 212 Vel
   ivs: 
-  moveSlots: rock_slide / zen_headbutt / superpower / substitute
+  moveSlots: rock_slide, stone_edge / zen_headbutt / superpower / earthquake, thunder_punch,
+    pursuit

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: yveltal_ubers_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: yveltal_ubers_3
-  displayName: Tough Bird (Flying Tank)
+  displayName: Stallbreaker
   speciesId: yveltal
   setFormat: ubers
   setScore: 31
   itemOptions: leftovers, charti_berry
   abilityOptions: 
-  natureOptions: bold, impish
-  evs: 248 PS / 252 Def / 8 DefE
+  natureOptions: timid
+  evs: 248 PS / 76 DefE / 184 Vel
   ivs: 
-  moveSlots: foul_play / roost / toxic, sucker_punch / taunt
+  moveSlots: foul_play, dark_pulse / toxic / taunt / roost

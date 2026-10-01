@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: buizel_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: buizel_lc_1
-  displayName: Life Orb Attacker
+  displayName: Icium Z
   speciesId: buizel
   setFormat: lc
-  setScore: 59
-  itemOptions: life_orb
+  setScore: 45
+  itemOptions: icium_z, life_orb
   abilityOptions: water_veil
-  natureOptions: jolly
-  evs: 236 Atq / 36 DefE / 236 Vel
+  natureOptions: naive
+  evs: 200 AtqE / 36 DefE / 240 Vel
   ivs: 
-  moveSlots: aqua_tail, waterfall / ice_punch / brick_break, pursuit / aqua_jet
+  moveSlots: blizzard / scald / hidden_power / aqua_jet

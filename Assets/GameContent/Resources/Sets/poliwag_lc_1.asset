@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Belly Drum
   speciesId: poliwag
   setFormat: lc
-  setScore: 49
+  setScore: 78
   itemOptions: berry_juice
   abilityOptions: 
   natureOptions: jolly
   evs: 116 PS / 196 Atq / 196 Vel
   ivs: 
-  moveSlots: belly_drum / waterfall / hypnosis, encore / return, thief
+  moveSlots: belly_drum / waterfall / hypnosis, thief / return, thief

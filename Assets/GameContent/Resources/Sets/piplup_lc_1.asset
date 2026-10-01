@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: piplup_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: piplup_lc_1
-  displayName: Stealth Rock + Defog
+  displayName: Utility
   speciesId: piplup
   setFormat: lc
-  setScore: 64
+  setScore: 78
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: bold

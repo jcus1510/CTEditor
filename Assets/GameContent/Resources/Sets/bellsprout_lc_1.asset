@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: bellsprout_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: bellsprout_lc_1
-  displayName: Sun Sweeper
+  displayName: Praise The Sun (Sun Sweeper)
   speciesId: bellsprout
   setFormat: lc
-  setScore: 65
-  itemOptions: eviolite
+  setScore: 38
+  itemOptions: poisonium_z, eviolite, life_orb
   abilityOptions: 
-  natureOptions: modest
+  natureOptions: modest, timid
   evs: 76 Def / 196 AtqE / 36 DefE / 196 Vel
   ivs: 
-  moveSlots: solar_beam / sludge_bomb / weather_ball / sleep_powder
+  moveSlots: solar_beam / sludge_bomb / weather_ball / sleep_powder, growth

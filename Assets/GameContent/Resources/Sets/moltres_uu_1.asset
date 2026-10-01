@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: moltres_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: moltres_uu_1
-  displayName: Life Orb Attacker
+  displayName: Offensive
   speciesId: moltres
   setFormat: uu
-  setScore: 34
-  itemOptions: life_orb
-  abilityOptions: 
-  natureOptions: timid, modest
-  evs: 4 Def / 252 AtqE / 252 Vel
+  setScore: 61
+  itemOptions: flyinium_z
+  abilityOptions: flame_body
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: fire_blast / hurricane / hidden_power, will_o_wisp / roost
+  moveSlots: hurricane / fire_blast / roost / u_turn, defog, agility

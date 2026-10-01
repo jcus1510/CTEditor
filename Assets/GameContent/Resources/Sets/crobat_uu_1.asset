@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: crobat_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: crobat_uu_1
-  displayName: Support
+  displayName: Stallbreaker
   speciesId: crobat
   setFormat: uu
-  setScore: 68
-  itemOptions: black_sludge
+  setScore: 47
+  itemOptions: flyinium_z, sharp_beak
   abilityOptions: infiltrator
   natureOptions: jolly
-  evs: 248 PS / 48 Def / 212 Vel
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: brave_bird, acrobatics / u_turn, toxic, taunt / defog, taunt / roost
+  moveSlots: brave_bird / super_fang / taunt / roost

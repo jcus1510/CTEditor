@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: xerneas_ubers_5
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: xerneas_ubers_5
-  displayName: Defensive
+  displayName: Z-Geomancy
   speciesId: xerneas
   setFormat: ubers
-  setScore: 25
-  itemOptions: leftovers
+  setScore: 29
+  itemOptions: fairium_z
   abilityOptions: 
   natureOptions: bold
   evs: 248 PS / 252 Def / 8 DefE
   ivs: 
-  moveSlots: moonblast / sleep_talk / rest / aromatherapy, roar
+  moveSlots: geomancy / ingrain, sleep_talk / rest / moonblast

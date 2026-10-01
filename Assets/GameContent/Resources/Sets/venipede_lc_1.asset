@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: venipede_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: venipede_lc_1
-  displayName: Entry Hazard Setter
+  displayName: Entry Hazard Stacker
   speciesId: venipede
   setFormat: lc
-  setScore: 80
-  itemOptions: eviolite, focus_sash
+  setScore: 69
+  itemOptions: grassium_z, eviolite
   abilityOptions: speed_boost
-  natureOptions: jolly
-  evs: 236 Atq / 44 Def / 220 Vel
+  natureOptions: serious, impish
+  evs: 76 Atq / 204 Def / 36 AtqE / 44 DefE / 148 Vel
   ivs: 
-  moveSlots: spikes / toxic_spikes / protect / endeavor, pin_missile
+  moveSlots: spikes / solar_beam, toxic_spikes / protect / pin_missile

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: hoopa_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: hoopa_uu_1
-  displayName: Offensive Trick Room
+  displayName: Nasty Plot
   speciesId: hoopa
   setFormat: uu
-  setScore: 44
-  itemOptions: life_orb
+  setScore: 47
+  itemOptions: fightinium_z, ghostium_z
   abilityOptions: 
-  natureOptions: modest
-  evs: 4 PS / 252 AtqE / 252 Vel
+  natureOptions: modest, timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: trick_room / shadow_ball / psyshock, psychic / focus_blast
+  moveSlots: nasty_plot / shadow_ball / focus_blast / substitute

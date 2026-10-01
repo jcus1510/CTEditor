@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: malamar_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: malamar_nu_1
-  displayName: RestTalk
+  displayName: Rest Talk Sweeper
   speciesId: malamar
   setFormat: nu
-  setScore: 71
+  setScore: 55
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: careful
   evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: knock_off / superpower / rest / sleep_talk
+  moveSlots: superpower / knock_off / rest / sleep_talk

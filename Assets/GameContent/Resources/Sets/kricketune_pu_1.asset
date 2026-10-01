@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: kricketune_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: kricketune_pu_1
-  displayName: Sticky Web
+  displayName: Suicide Lead
   speciesId: kricketune
   setFormat: pu
-  setScore: 79
+  setScore: 32
   itemOptions: focus_sash
   abilityOptions: technician
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: sticky_web / taunt / endeavor / knock_off
+  moveSlots: sticky_web / endeavor / taunt / bug_bite

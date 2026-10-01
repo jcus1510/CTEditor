@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: castform_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: castform_pu_1
-  displayName: Chasing Rainbows
+  displayName: Z-Rain Dance
   speciesId: castform
   setFormat: pu
-  setScore: 24
-  itemOptions: damp_rock, heat_rock, icy_rock
+  setScore: 45
+  itemOptions: waterium_z
   abilityOptions: 
-  natureOptions: modest
+  natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: rain_dance / sunny_day / hail / weather_ball
+  moveSlots: rain_dance / hydro_pump / ice_beam / thunder

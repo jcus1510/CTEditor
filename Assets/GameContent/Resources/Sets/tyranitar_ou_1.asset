@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: tyranitar_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tyranitar_ou_1
-  displayName: Choice Band
+  displayName: Pursuit
   speciesId: tyranitar
   setFormat: ou
-  setScore: 56
-  itemOptions: choice_band
+  setScore: 46
+  itemOptions: tyranitarite
   abilityOptions: 
   natureOptions: adamant
-  evs: 88 PS / 252 Atq / 168 Vel
+  evs: 132 PS / 252 Atq / 124 Vel
   ivs: 
-  moveSlots: stone_edge / crunch / superpower / pursuit
+  moveSlots: stealth_rock, crunch, ice_punch / stone_edge / pursuit / fire_punch,
+    earthquake, crunch, ice_punch

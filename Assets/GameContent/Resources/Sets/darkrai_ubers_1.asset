@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Special Attacker
   speciesId: darkrai
   setFormat: ubers
-  setScore: 64
-  itemOptions: life_orb, focus_sash
+  setScore: 50
+  itemOptions: life_orb
   abilityOptions: 
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 4 PS / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: dark_void / dark_pulse / nasty_plot / thunder, sludge_bomb
+  moveSlots: hypnosis / nasty_plot / dark_pulse / thunder, sludge_bomb

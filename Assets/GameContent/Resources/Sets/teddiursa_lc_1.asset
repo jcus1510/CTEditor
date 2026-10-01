@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Quick Feet
   speciesId: teddiursa
   setFormat: lc
-  setScore: 79
+  setScore: 97
   itemOptions: toxic_orb
   abilityOptions: quick_feet
   natureOptions: jolly
   evs: 36 PS / 196 Atq / 36 Def / 36 DefE / 196 Vel
   ivs: 
-  moveSlots: facade / close_combat / crunch / protect, swords_dance
+  moveSlots: facade / crunch / close_combat / protect, swords_dance

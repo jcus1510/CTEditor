@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Perish Trapper
   speciesId: seel
   setFormat: lc
-  setScore: 16
-  itemOptions: eviolite, berry_juice
-  abilityOptions: hydration
+  setScore: 7
+  itemOptions: eviolite
+  abilityOptions: 
   natureOptions: bold
-  evs: 76 PS / 236 Def / 196 DefE
+  evs: 236 PS / 236 Def / 36 DefE
   ivs: 
-  moveSlots: whirlpool / perish_song / rain_dance / rest
+  moveSlots: whirlpool / perish_song / protect / rest

@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: excadrill_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: excadrill_ou_2
-  displayName: Sand Rush
+  displayName: Specially Defensive
   speciesId: excadrill
   setFormat: ou
-  setScore: 66
-  itemOptions: leftovers, air_balloon
-  abilityOptions: 
-  natureOptions: adamant, jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  setScore: 67
+  itemOptions: leftovers
+  abilityOptions: mold_breaker
+  natureOptions: jolly
+  evs: 252 PS / 180 DefE / 76 Vel
   ivs: 
-  moveSlots: swords_dance, rock_slide, substitute, stealth_rock / rapid_spin / earthquake
-    / iron_head
+  moveSlots: stealth_rock, iron_head / earthquake / toxic, iron_head / rapid_spin

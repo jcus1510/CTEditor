@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: yveltal_ubers_4
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: yveltal_ubers_4
-  displayName: Fashionable Bird (Choice Scarf)
+  displayName: Bulky Choice Scarf
   speciesId: yveltal
   setFormat: ubers
-  setScore: 33
+  setScore: 31
   itemOptions: choice_scarf
   abilityOptions: 
-  natureOptions: modest
-  evs: 32 PS / 4 Def / 248 AtqE / 224 Vel
+  natureOptions: jolly
+  evs: 72 PS / 252 Def / 184 Vel
   ivs: 
-  moveSlots: foul_play / dark_pulse / oblivion_wing / u_turn
+  moveSlots: foul_play / u_turn / toxic / defog, knock_off

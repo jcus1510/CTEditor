@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Swords Dance
   speciesId: crawdaunt
   setFormat: uu
-  setScore: 74
-  itemOptions: focus_sash, life_orb
+  setScore: 69
+  itemOptions: waterium_z, life_orb
   abilityOptions: adaptability
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 DefE / 252 Vel
+  natureOptions: jolly
+  evs: 4 PS / 252 Atq / 252 Vel
   ivs: 
   moveSlots: swords_dance / crabhammer / knock_off / aqua_jet

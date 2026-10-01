@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: chansey_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: chansey_ou_1
-  displayName: De Blob
+  displayName: Defensive
   speciesId: chansey
   setFormat: ou
-  setScore: 69
+  setScore: 73
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: bold
-  evs: 4 PS / 252 Def / 252 DefE
+  evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: toxic, thunder_wave / soft_boiled / seismic_toss / heal_bell, stealth_rock
+  moveSlots: stealth_rock, aromatherapy / seismic_toss / soft_boiled / toxic, thunder_wave

@@ -1,0 +1,668 @@
+﻿id;nombre;nombre_en;descripcion;categoria;precio;en_combate;fuera_combate;se_gasta;es_baya;efectos
+ability_capsule;Cáps. Habilidad;Ability Capsule;Cápsula que les permite cambiar de habilidad a los Pokémon que poseen dos.;Amistad / vitaminas;10000;no;si;si;no;
+ability_urge;Habilitador;Ability Urge;Al usarlo, activa la habilidad de un Pokémon de tu equipo.;Rival;0;no;no;no;no;
+abomasite;Abomasnowita;Abomasite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Abomasnow en combate.;Rival;0;no;no;no;no;
+absolite;Absolita;Absolite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Absol en combate.;Rival;0;no;no;no;no;
+absorb_bulb;Tubérculo;Absorb Bulb;Raíz de usar y tirar que sube el Ataque Especial cuando se recibe un ataque de tipo Agua.;Rival;4000;no;no;no;no;
+acro_bike;Bici Acrobática;Acro Bike;Bicicleta plegable capaz de correr sobre una sola rueda, realizar saltos y otras acrobacias.;Objeto clave;0;no;no;no;no;
+adamant_orb;Diamansfera;Adamant Orb;Una esfera brillante que potencia los movimientos de tipo Acero y Dragón. Debe llevarla Dialga.;Rival;0;no;no;no;no;
+adventure_rules;Guía de Aventura;Adventure Guide;Guía redactada por uno de tus amigos con los puntos esenciales que todo Entrenador debería tener en cuenta durante su viaje por Kalos.;Objeto clave;0;no;no;no;no;
+aerodactylite;Aerodactylita;Aerodactylite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Aerodactyl en combate.;Rival;0;no;no;no;no;
+aggronite;Aggronita;Aggronite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Aggron en combate.;Rival;0;no;no;no;no;
+aguav_berry;Baya Guaya;Aguav Berry;Los Pokémon pueden llevarla o usarla para restaurar algunos PS. Su sabor puede causar confusión.;Baya;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
+air_balloon;Globo Helio;Air Balloon;El Pokémon que lo lleve flotará en el aire. Si recibe un golpe, estallará.;Equipable;4000;no;no;no;no;"siempre: inmune ground | tras_golpe: gastar; se_gasta"
+air_mail;Carta Aérea;Air Mail;;Rival;50;no;no;no;no;
+alakazite;Alakazamita;Alakazite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Alakazam en combate.;Rival;0;no;no;no;no;
+altarianite;Altarianita;Altarianite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Altaria en combate.;Rival;0;no;no;no;no;
+amaze_mulch;Abono Insólito;Amaze Mulch;Un fertilizante usado para el cultivo de bayas. Parece que no se asienta bien en el suelo de Hoenn, por lo que no tiene efecto en esta región.;Rival;200;no;no;no;no;
+ampharosite;Ampharosita;Ampharosite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Ampharos en combate.;Rival;0;no;no;no;no;
+amulet_coin;Moneda Amuleto;Amulet Coin;Si el Pokémon que la lleva lucha en un combate, duplica las ganancias.;Rival;10000;no;no;no;no;
+antidote;Antídoto;Antidote;Medicina en espray que contrarresta los efectos del veneno en un Pokémon.;Cura de estado;200;si;si;si;no;al_usar: curar_estado poison,toxic
+apicot_berry;Baya Aricoc;Apicot Berry;Si la lleva un Pokémon, le sube la Defensa Especial en un momento de apuro.;Baya;80;no;no;no;si;"poca_vida@25: etapa sp_defense +1; se_gasta"
+apricorn_box;Caja Bonguri;Apricorn Box;Práctico recipiente que puede almacenar hasta 99 Bonguri de cada especie.;Objeto clave;0;no;no;no;no;
+aqua_suit;Traje Aqua;Aqua Suit;Este traje es el resultado de las arduas investigaciones científicas del Equipo Aqua. Es capaz de soportar cualquier impacto.;Objeto clave;0;no;no;no;no;
+armor_fossil;Fósil Coraza;Armor Fossil;Fósil de un Pokémon prehistórico terrestre. Parece ser parte de una protección ósea del cuello.;Rival;7000;no;no;no;no;
+aspear_berry;Baya Perasi;Aspear Berry;Los Pokémon pueden llevarla o usarla para descongelarse.;Baya;80;no;no;no;si;"al_sufrir_estado: curar_estado freeze; se_gasta"
+assault_vest;Chaleco Asalto;Assault Vest;Chaleco que potencia la Defensa Especial del Pokémon que lo lleva, pero le impide lanzar ataques de estado.;Equipable;1000;no;no;no;no;siempre: stat sp_defense x1,5 | siempre: sin_movs_estado
+audinite;Audinita;Audinite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Audino en combate.;Rival;0;no;no;no;no;
+auroraticket;Ori-Ticket;AuroraTicket;;Objeto clave;0;no;no;no;no;
+awakening;Despertar;Awakening;Medicina en espray que libera a un Pokémon de las garras del sueño.;Cura de estado;200;si;si;si;no;al_usar: curar_estado sleep
+azure_flute;Flauta Azur;Azure Flute;Emite sonidos que no parecen de este mundo. Es de fabricante desconocido.;Objeto clave;0;no;no;no;no;
+babiri_berry;Baya Baribá;Babiri Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Acero de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=steel & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+balm_mushroom;Seta Aroma;Balm Mushroom;Extraña seta que desprende un agradable aroma. Puede alcanzar un alto precio en las tiendas.;Rival;15000;no;no;no;no;
+banettite;Banettita;Banettite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Banette en combate.;Rival;0;no;no;no;no;
+basement_key;Llave Sótano;Basement Key;Llave que abre la puerta que hay en el Túnel Trigal.;Objeto clave;0;no;no;no;no;
+bead_mail;Carta Imagen;Bead Mail;;Rival;50;no;no;no;no;
+beedrillite;Beedrillita;Beedrillite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Beedrill en combate.;Rival;0;no;no;no;no;
+belue_berry;Baya Andano;Belue Berry;Se utiliza en la producción de Pokécubos que potencian la belleza. Es una baya muy rara en otras regiones.;Rival;20;no;no;no;si;
+berry_juice;Zumo de Baya;Berry Juice;Zumo de bayas 100% natural que restaura 20 PS de un Pokémon.;Rival;200;no;no;no;no;
+berry_pots;Plantabayas;Berry Pots;Dispositivo portátil de cultivo que permite plantar bayas en cualquier momento de forma sencilla.;Objeto clave;0;no;no;no;no;
+berry_pouch;Saco Bayas;Berry Pouch;;Objeto clave;0;no;no;no;no;
+bicycle;Bici;Bicycle;;Objeto clave;0;no;no;no;no;
+big_mushroom;Seta Grande;Big Mushroom;Una gran seta que es poco común y muy popular entre determinados grupos de gourmets.;Rival;5000;no;no;no;no;
+big_nugget;Maxipepita;Big Nugget;Pepita de oro puro que desprende un brillo espectacular. Puede venderse a un precio muy alto en las tiendas.;Rival;40000;no;no;no;no;
+big_pearl;Perla Grande;Big Pearl;Brillante perla plateada de gran tamaño que puede venderse a buen precio en las tiendas.;Rival;8000;no;no;no;no;
+big_root;Raíz Grande;Big Root;El Pokémon que la lleva recupera más PS al usar movimientos que drenan al objetivo.;Rival;4000;no;no;no;no;
+bike_voucher;Bono Bici;Bike Voucher;;Objeto clave;0;no;no;no;no;
+binding_band;Banda Atadura;Binding Band;Banda que potencia los movimientos que estrujan al rival.;Rival;4000;no;no;no;no;
+black_apricorn;Bonguri Negro;Black Apricorn;Bonguri de color negro y aroma indescriptible.;Objeto clave;200;no;no;no;no;
+black_belt;Cinturón Negro;Black Belt;Debe llevarlo un Pokémon. Aumenta la concentración y fortalece los movimientos de tipo Lucha.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=fighting]: potencia x1,2
+black_flute;Flauta Negra;Black Flute;Una flauta de cristal negro cuyas notas atraen a Pokémon salvajes más fuertes al lugar en el que se usa.;Rival;20;no;no;no;no;
+black_glasses;Gafas de Sol;Black Glasses;Debe llevarlas un Pokémon. Fortalecen los movimientos de tipo Siniestro.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=dark]: potencia x1,2
+black_sludge;Lodo Negro;Black Sludge;Restaura gradualmente los PS de los Pokémon de tipo Veneno y daña a todos los demás.;Equipable;4000;no;no;no;no;fin_de_turno [si propio.tipo=poison]: curar 6,25% | fin_de_turno [si !propio.tipo=poison]: perder 12,5%
+blastoisinite;Blastoisita;Blastoisinite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Blastoise en combate.;Rival;0;no;no;no;no;
+blazikenite;Blazikenita;Blazikenite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Blaziken en combate.;Rival;0;no;no;no;no;
+bloom_mail;Carta Flores;Bloom Mail;;Rival;50;no;no;no;no;
+blue_apricorn;Bonguri Azul;Blue Apricorn;Bonguri de color azul y aroma tierno.;Objeto clave;200;no;no;no;no;
+blue_card;Tarjeta Azul;Blue Card;Tarjeta para conseguir puntos con el programa de radio Las contraseñas de Buena.;Objeto clave;0;no;no;no;no;
+blue_flute;Flauta Azul;Blue Flute;Una flauta de cristal azul cuyas notas despiertan a un Pokémon del sueño.;Rival;20;no;no;no;no;
+blue_orb;Prisma Azul;Blue Orb;Piedra añil que, según dicen, guarda una estrecha relación con las leyendas de Hoenn.;Objeto clave;0;no;no;no;no;
+blue_scarf;Pañuelo Azul;Blue Scarf;Debe llevarlo un Pokémon. Aumenta la belleza en los concursos.;Rival;100;no;no;no;no;
+blue_shard;Parte Azul;Blue Shard;Un pequeño fragmento azul. Parece formar parte de algún tipo de herramienta antigua.;Rival;1000;no;no;no;no;
+bluk_berry;Baya Oram;Bluk Berry;Se utiliza en la producción de Pokécubos que potencian la belleza. Es de color azulado y sabor seco.;Rival;20;no;no;no;si;
+boost_mulch;Abono Fructífero;Boost Mulch;Un fertilizante usado para el cultivo de bayas. Parece que no se asienta bien en el suelo de Hoenn, por lo que no tiene efecto en esta región.;Rival;200;no;no;no;no;
+brick_mail;Carta Pared;Brick Mail;;Rival;50;no;no;no;no;
+bridge_mail_d;Carta Puente F;Bridge Mail D;Carta con la imagen de un puente levadizo de color rojo. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+bridge_mail_m;Carta Puente P;Bridge Mail M;Carta con la imagen de un puente con varios arcos. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+bridge_mail_s;Carta Puente S;Bridge Mail S;Carta con la imagen de un puente que se alza hacia el cielo. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+bridge_mail_t;Carta Puente A;Bridge Mail T;Carta con la imagen de un puente colgante de acero. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+bridge_mail_v;Carta Puente V;Bridge Mail V;Carta con la imagen de un puente de ladrillos. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+bright_powder;Polvo Brillo;Bright Powder;Lanza un destello que baja la Precisión del enemigo. Debe llevarlo un Pokémon.;Equipable;4000;no;no;no;no;siempre: evasion x0,9
+bubble_mail;Carta Pompas;Bubble Mail;;Rival;50;no;no;no;no;
+bug_gem;Gema Bicho;Bug Gem;Joya de un solo uso que potencia los movimientos de tipo Bicho. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+burn_drive;PiroROM;Burn Drive;Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Fuego.;Rival;0;no;no;no;no;
+burn_heal;Antiquemar;Burn Heal;Medicina en espray que cura las quemaduras a un Pokémon.;Cura de estado;200;si;si;si;no;al_usar: curar_estado burn
+calcium;Calcio;Calcium;Nutritiva bebida que potencia el Ataque Especial de base de un Pokémon.;Amistad / vitaminas;10000;no;si;si;no;
+cameruptite;Cameruptita;Cameruptite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Camerupt en combate.;Rival;0;no;no;no;no;
+carbos;Carburante;Carbos;Nutritiva bebida que potencia la Velocidad de base de un Pokémon.;Amistad / vitaminas;10000;no;si;si;no;
+card_key;Llave Magnética;Card Key;Llave con forma de tarjeta que abre las puertas de la Torre Radio.;Objeto clave;0;no;no;no;no;
+casteliacone;Porcehelado;Casteliacone;Especialidad de Ciudad Porcelana. Cura los problemas de estado de un Pokémon.;Rival;350;no;no;no;no;
+cell_battery;Pila;Cell Battery;Batería de usar y tirar que sube el Ataque de quien la lleva cuando recibe un golpe de tipo Eléctrico.;Rival;4000;no;no;no;no;
+charcoal;Carbón;Charcoal;Actúa como combustible y potencia los movimientos de tipo Fuego. Debe llevarlo un Pokémon.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=fire]: potencia x1,2
+charizardite_x;Charizardita X;Charizardite X;Una de las misteriosas Megapiedras. Permite megaevolucionar a Charizard en combate.;Rival;0;no;no;no;no;
+charizardite_y;Charizardita Y;Charizardite Y;Una de las misteriosas Megapiedras. Permite megaevolucionar a Charizard en combate.;Rival;0;no;no;no;no;
+charti_berry;Baya Alcho;Charti Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Roca de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=rock & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+cherish_ball;Gloria Ball;Cherish Ball;Es una Poké Ball bastante singular que se creó para conmemorar alguna ocasión especial.;Bola;0;si;no;si;no;al_usar: captura x1
+cheri_berry;Baya Zreza;Cheri Berry;Los Pokémon pueden llevarla o usarla para recuperarse de la parálisis.;Baya;80;no;no;no;si;"al_sufrir_estado: curar_estado paralysis; se_gasta"
+chesto_berry;Baya Atania;Chesto Berry;Los Pokémon pueden llevarla o usarla para despertar del sueño.;Baya;80;no;no;no;si;"al_sufrir_estado: curar_estado sleep; se_gasta"
+chilan_berry;Baya Chilan;Chilan Berry;Si la lleva un Pokémon, debilita un ataque de tipo Normal de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=normal]: daño_recibido x0,5; se_gasta"
+chill_drive;CrioROM;Chill Drive;Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Hielo.;Rival;0;no;no;no;no;
+choice_band;Cinta Elección;Choice Band;Aumenta la potencia de los ataques físicos del Pokémon que la lleva, pero solo le permite usar un movimiento.;Equipable;4000;no;no;no;no;siempre: stat attack x1,5 | siempre: eleccion
+choice_scarf;Pañuelo Elección;Choice Scarf;Debe llevarlo un Pokémon. Potencia la Velocidad, pero solo permite usar un movimiento.;Equipable;4000;no;no;no;no;siempre: stat speed x1,5 | siempre: eleccion
+choice_specs;Gafas Elección;Choice Specs;Aumentan la potencia de los ataques especiales del Pokémon que las lleva, pero solo le permiten usar un movimiento.;Equipable;4000;no;no;no;no;siempre: stat sp_attack x1,5 | siempre: eleccion
+chople_berry;Baya Pomaro;Chople Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Lucha de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=fighting & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+claw_fossil;Fósil Garra;Claw Fossil;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser parte de una garra.;Rival;7000;no;no;no;no;
+cleanse_tag;Amuleto;Cleanse Tag;Si lo lleva el primer Pokémon del equipo, se reduce la probabilidad de que se acerquen Pokémon salvajes.;Rival;5000;no;no;no;no;
+clear_bell;Cascabel Claro;Clear Bell;Campana de aspecto antiguo que emite un sonido que calma el espíritu.;Objeto clave;0;no;no;no;no;
+clever_wing;Pluma Mente;Clever Feather;Pluma que aumenta un poco la Defensa Especial de base de un Pokémon.;Amistad / vitaminas;300;no;si;si;no;
+coba_berry;Baya Kouba;Coba Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Volador de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=flying & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+coin_case;Monedero;Coin Case;Puedes obtenerlo en el Casino. Tiene capacidad para 50 000 Fichas.;Objeto clave;0;no;no;no;no;
+colbur_berry;Baya Dillo;Colbur Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Siniestro de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=dark & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+colress_machine;Acromáquina;Colress Machine;Dispositivo que permite aumentar forzadamente las características de los Pokémon. Es un prototipo imperfecto.;Objeto clave;0;no;no;no;no;
+comet_shard;Fragmento Cometa;Comet Shard;Fragmento de un cometa caído al suelo al atravesar la atmósfera. Se puede vender a buen precio en las tiendas.;Rival;25000;no;no;no;no;
+contest_costume__jacket;Traje de Gala;Contest Costume;Traje de lo más espectacular para lucir en el Gran Concurso.;Objeto clave;0;no;no;no;no;
+contest_pass;Pase Concurso;Contest Pass;Es necesario para participar en Concursos Pokémon. Tiene una cinta de ganador dibujada.;Objeto clave;0;no;no;no;no;
+cornn_berry;Baya Mais;Cornn Berry;Se utiliza en la producción de Pokécubos que potencian la belleza. Es una baya muy rara en otras regiones.;Rival;20;no;no;no;si;
+coupon_1;Cupón 1;Coupon 1;Uno de los tres cupones que sirve para obtener un Poké-reloj.;Objeto clave;0;no;no;no;no;
+coupon_2;Cupón 2;Coupon 2;Uno de los tres cupones que sirve para obtener un Poké-reloj.;Objeto clave;0;no;no;no;no;
+coupon_3;Cupón 3;Coupon 3;Uno de los tres cupones que sirve para obtener un Poké-reloj.;Objeto clave;0;no;no;no;no;
+cover_fossil;Fósil Tapa;Cover Fossil;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser un fragmento de caparazón.;Rival;7000;no;no;no;no;
+custap_berry;Baya Chiri;Custap Berry;El Pokémon que la lleva puede actuar en primer lugar una vez cuando se encuentra en un momento de apuro.;Rival;80;no;no;no;si;
+damp_mulch;Abono Lento;Damp Mulch;Un fertilizante usado para el cultivo de bayas. Parece que no se asienta bien en el suelo de Hoenn, por lo que no tiene efecto en esta región.;Rival;200;no;no;no;no;
+damp_rock;Roca Lluvia;Damp Rock;Prolonga la duración del movimiento Danza Lluvia que use el Pokémon que la lleva.;Equipable;4000;no;no;no;no;siempre: clima rain +3
+dark_gem;Gema Siniestra;Dark Gem;Joya de un solo uso que potencia los movimientos de tipo Siniestro. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+dark_stone;Orbe Oscuro;Dark Stone;Forma que adoptó Zekrom al perder su cuerpo. Espera la llegada de un nuevo héroe.;Objeto clave;0;no;no;no;no;
+data_card_01;Tarjeta Datos 01;Data Card 01;Contiene los datos del Pokéathlon con el número de victorias.;Objeto clave;0;no;no;no;no;
+data_card_02;Tarjeta Datos 02;Data Card 02;Contiene los datos del Pokéathlon con el número de veces que se ha quedado en último lugar.;Objeto clave;0;no;no;no;no;
+data_card_03;Tarjeta Datos 03;Data Card 03;Contiene los datos del Pokéathlon con el número de sprints de los Pokémon.;Objeto clave;0;no;no;no;no;
+data_card_04;Tarjeta Datos 04;Data Card 04;Contiene los datos del Pokéathlon con el número de saltos de los Pokémon.;Objeto clave;0;no;no;no;no;
+data_card_05;Tarjeta Datos 05;Data Card 05;Contiene los datos del Pokéathlon con el número de victorias en Saltaobstáculos.;Objeto clave;0;no;no;no;no;
+data_card_06;Tarjeta Datos 06;Data Card 06;Contiene los datos del Pokéathlon con el número de victorias en Carrera de Relevos.;Objeto clave;0;no;no;no;no;
+data_card_07;Tarjeta Datos 07;Data Card 07;Contiene los datos del Pokéathlon con el número de victorias en Atrapabanderas.;Objeto clave;0;no;no;no;no;
+data_card_08;Tarjeta Datos 08;Data Card 08;Contiene los datos del Pokéathlon con el número de victorias en Rompelosas.;Objeto clave;0;no;no;no;no;
+data_card_09;Tarjeta Datos 09;Data Card 09;Contiene los datos del Pokéathlon con el número de victorias en Atrapadiscos.;Objeto clave;0;no;no;no;no;
+data_card_10;Tarjeta Datos 10;Data Card 10;Contiene los datos del Pokéathlon con el número de victorias en Nieve Cruzada.;Objeto clave;0;no;no;no;no;
+data_card_11;Tarjeta Datos 11;Data Card 11;Contiene los datos del Pokéathlon con el número de puntos conseguidos.;Objeto clave;0;no;no;no;no;
+data_card_12;Tarjeta Datos 12;Data Card 12;Contiene los datos del Pokéathlon con el número de derrotas.;Objeto clave;0;no;no;no;no;
+data_card_13;Tarjeta Datos 13;Data Card 13;Contiene los datos del Pokéathlon con el número de puntos perdidos por tus Pokémon.;Objeto clave;0;no;no;no;no;
+data_card_14;Tarjeta Datos 14;Data Card 14;Contiene los datos del Pokéathlon con el número de placajes realizados.;Objeto clave;0;no;no;no;no;
+data_card_15;Tarjeta Datos 15;Data Card 15;Contiene los datos del Pokéathlon con el número de caídas que han sufrido tus Pokémon.;Objeto clave;0;no;no;no;no;
+data_card_16;Tarjeta Datos 16;Data Card 16;Contiene los datos del Pokéathlon con el número de victorias en Fuera del Ring.;Objeto clave;0;no;no;no;no;
+data_card_17;Tarjeta Datos 17;Data Card 17;Contiene los datos del Pokéathlon con el número de victorias en Botaluces.;Objeto clave;0;no;no;no;no;
+data_card_18;Tarjeta Datos 18;Data Card 18;Contiene los datos del Pokéathlon con el número de victorias en Pisacírculos.;Objeto clave;0;no;no;no;no;
+data_card_19;Tarjeta Datos 19;Data Card 19;Contiene los datos del Pokéathlon con el número de victorias en conexión.;Objeto clave;0;no;no;no;no;
+data_card_20;Tarjeta Datos 20;Data Card 20;Contiene los datos del Pokéathlon con el número de veces que se ha quedado en último lugar en conexión.;Objeto clave;0;no;no;no;no;
+data_card_21;Tarjeta Datos 21;Data Card 21;Contiene los datos del Pokéathlon con el número de victorias en una disciplina.;Objeto clave;0;no;no;no;no;
+data_card_22;Tarjeta Datos 22;Data Card 22;Contiene los datos del Pokéathlon con el número de veces que se ha terminado en última posición en una disciplina.;Objeto clave;0;no;no;no;no;
+data_card_23;Tarjeta Datos 23;Data Card 23;Contiene los datos del Pokéathlon con el número de veces que se ha cambiado de Pokémon.;Objeto clave;0;no;no;no;no;
+data_card_24;Tarjeta Datos 24;Data Card 24;Contiene los datos del Pokéathlon con el número de victorias en Metegoles.;Objeto clave;0;no;no;no;no;
+data_card_25;Tarjeta Datos 25;Data Card 25;Contiene los datos del Pokéathlon con el número de premios individuales.;Objeto clave;0;no;no;no;no;
+data_card_26;Tarjeta Datos 26;Data Card 26;Contiene los datos del Pokéathlon con el número de veces que se tocó con el lápiz a los Pokémon.;Objeto clave;0;no;no;no;no;
+data_card_27;Tarjeta Datos 27;Data Card 27;Contiene los datos del Pokéathlon con el tiempo que se ha pasado en esta competición.;Objeto clave;0;no;no;no;no;
+dawn_stone;Piedra Alba;Dawn Stone;Una piedra peculiar que hace evolucionar a algunos Pokémon. Brilla como un lucero.;Evolución;3000;no;si;si;no;
+deep_sea_scale;Escama Marina;Deep Sea Scale;Tiene un débil brillo rosado y debe llevarla Clamperl. Sube la Defensa Especial.;Equipable;2000;no;no;no;no;
+deep_sea_tooth;Diente Marino;Deep Sea Tooth;Tiene el brillo afilado de la plata y debe llevarlo Clamperl. Sube el Ataque Especial.;Equipable;2000;no;no;no;no;
+destiny_knot;Lazo Destino;Destiny Knot;Un hilo largo y delgado de color rojo que transmite el enamoramiento del Pokémon que lo lleva a su objetivo.;Rival;4000;no;no;no;no;
+devon_goods;Piezas Devon;Devon Goods;;Objeto clave;0;no;no;no;no;
+devon_parts;Piezas Devon;Devon Parts;Contiene piezas de algo fabricado por Devon S. A.;Objeto clave;0;no;no;no;no;
+devon_scope;Detector Devon;Devon Scope;Artilugio creado por Devon S. A. que reacciona a la presencia de Pokémon invisibles emitiendo sonidos.;Objeto clave;0;no;no;no;no;
+devon_scuba_gear;Bombona Devon;Devon Scuba Gear;Máscara que surte de oxígeno durante las inmersiones en el agua. Producto de Devon S. A.;Objeto clave;0;no;no;no;no;
+diancite;Diancita;Diancite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Diancie en combate.;Rival;0;no;no;no;no;
+dire_hit;Crítico X;Dire Hit;Aumenta el índice de golpe crítico en combate. Solo se puede usar una vez y, al cambiar de Pokémon, el efecto desaparece.;Rival;1000;no;no;no;no;
+dire_hit_2;Crítico X 2;Dire Hit 2;Aumenta la probabilidad de asestar un golpe crítico. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+dire_hit_3;Crítico X 3;Dire Hit 3;Aumenta mucho la probabilidad de asestar un golpe crítico. Al cambiar de Pokémon, su efecto desaparece.;Rival;0;no;no;no;no;
+discount_coupon;Vale Descuento;Discount Coupon;Con este vale te harán jugosos descuentos cuando vayas de compras a una Boutique.;Rival;20;no;no;no;no;
+dive_ball;Buceo Ball;Dive Ball;Es algo distinta a las demás. Funciona especialmente bien con los Pokémon que viven bajo el agua.;Bola;1000;si;no;si;no;al_usar: captura x1
+dna_splicers;Punta ADN;DNA Splicers;Punta que permite fusionar a Kyurem con cierto Pokémon con el que, originariamente, formaba un solo ser.;Objeto clave;0;no;si;no;no;
+dome_fossil;Fósil Domo;Dome Fossil;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser un fragmento de caparazón.;Rival;7000;no;no;no;no;
+douse_drive;HidroROM;Douse Drive;Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Agua.;Rival;0;no;no;no;no;
+dowsing_machine;Zahorí;Dowsing Machine;Aparato de precisión que reacciona ante objetos que no se ven. Para usarlo, es necesario colocárselo en la cabeza.;Objeto clave;0;no;no;no;no;
+draco_plate;Tabla Draco;Draco Plate;Tabla de piedra que potencia los movimientos de tipo Dragón. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+dragon_fang;Colmillo de Dragón;Dragon Fang;Colmillo de gran dureza que refuerza los movimientos de tipo Dragón. Debe llevarlo un Pokémon.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=dragon]: potencia x1,2
+dragon_gem;Gema Dragón;Dragon Gem;Joya de un solo uso que potencia los movimientos de tipo Dragón. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+dragon_scale;Escama Dragón;Dragon Scale;Una gruesa y resistente escama que pueden llevar los Pokémon de tipo Dragón cuando son capturados.;Equipable;2000;no;no;no;no;
+dragon_skull;Cráneo Dragón;Dragon Skull;Cráneo de un Pokémon. Se dice que este Pokémon cruzó mares embravecidos.;Objeto clave;0;no;no;no;no;
+dread_plate;Tabla Oscura;Dread Plate;Tabla de piedra que potencia los movimientos de tipo Siniestro. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+dream_ball;Ensueño Ball;Dream Ball;Bola especial que aparece de pronto en tu Bolsa en el Bosque Nexo y puede atrapar a cualquier Pokémon.;Bola;0;si;no;si;no;al_usar: captura x1
+dream_mail;Carta Sueño;Dream Mail;;Rival;50;no;no;no;no;
+dropped_item;Objeto Perdido;Dropped Item;Videomisor encontrado en el parque de atracciones de Ciudad Mayólica. Parece que pertenece a un chico.;Objeto clave;0;no;no;no;no;
+dubious_disc;Disco Extraño;Dubious Disc;Dispositivo transparente que contiene datos misteriosos. Es de fabricante desconocido.;Equipable;2000;no;no;no;no;
+durin_berry;Baya Rudion;Durin Berry;Se utiliza en la producción de Pokécubos que potencian el ingenio. Es una baya muy rara en otras regiones.;Rival;20;no;no;no;si;
+dusk_ball;Ocaso Ball;Dusk Ball;Es algo particular. Hace que sea más fácil capturar a los Pokémon salvajes por la noche o en lugares oscuros.;Bola;1000;si;no;si;no;al_usar: captura x1
+dusk_stone;Piedra Noche;Dusk Stone;Una piedra peculiar que hace evolucionar a algunos Pokémon. Es oscura como la noche.;Evolución;3000;no;si;si;no;
+earth_plate;Tabla Terrax;Earth Plate;Tabla de piedra que potencia los movimientos de tipo Tierra. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+eject_button;Botón Escape;Eject Button;Si el portador es alcanzado por un ataque, saldrá del combate y será sustituido por otro Pokémon del equipo.;Rival;4000;no;no;no;no;
+electirizer;Electrizador;Electirizer;Este dispositivo contiene una gran cantidad de energía eléctrica. Cierto Pokémon lo adora.;Equipable;2000;no;no;no;no;
+electric_gem;Gema Eléctrica;Electric Gem;Joya de un solo uso que potencia los movimientos de tipo Eléctrico. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+elevator_key;Llave Ascensor;Elevator Key;Tarjeta con el logotipo del Team Flare que activa el ascensor de los Laboratorios Lysson.;Objeto clave;0;no;no;no;no;
+elixir;Elixir;Elixir;Restaura 10 PP de todos los movimientos aprendidos por el Pokémon elegido.;Recuperar PP;3000;si;si;si;no;al_usar: pp_todos 10
+energy_powder;Polvo Energía;Energy Powder;Polvo medicinal muy amargo que restaura 60 PS de un Pokémon.;Rival;500;no;no;no;no;
+energy_root;Raíz Energía;Energy Root;Raíz muy amarga que restaura 120 PS de un Pokémon.;Rival;1200;no;no;no;no;
+enigma_berry;Baya Enigma;Enigma Berry;Restaura los PS de un Pokémon si la lleva cuando le alcanza un ataque supereficaz.;Rival;80;no;no;no;si;
+enigma_stone;Misticristal;Enigma Stone;Esfera cristalina encontrada bajo tierra. A pesar de estar cubierta de roca y tierra, su belleza es increíble.;Objeto clave;0;no;no;no;no;
+eon_flute;Flauta Eón;Eon Flute;Flauta capaz de invocar a Latios o Latias en cualquier lugar.;Objeto clave;0;no;no;no;no;
+eon_ticket;Ticket Eón;Eon Ticket;Billete de barco para viajar a Isla del Sur. Es posible que Norman, Líder del Gimnasio de Ciudad Petalia, sepa algo al respecto.;Objeto clave;0;no;no;no;no;
+escape_rope;Cuerda Huida;Escape Rope;Cuerda larga y resistente que sirve para huir de cuevas y sitios cerrados en general.;Rival;300;no;no;no;no;
+ether;Éter;Ether;Restaura 10 PP del movimiento elegido de un Pokémon.;Recuperar PP;1200;si;si;si;no;al_usar: pp 10
+everstone;Piedra Eterna;Everstone;El Pokémon que lleva esta piedra mágica no evoluciona.;Rival;3000;no;no;no;no;
+eviolite;Mineral Evol;Eviolite;Roca misteriosa. El Pokémon portador aumentará su Defensa y su Defensa Especial si aún puede evolucionar.;Equipable;4000;no;no;no;no;siempre [si propio.puede_evolucionar]: stat defense x1,5 | siempre [si propio.puede_evolucionar]: stat sp_defense x1,5
+expert_belt;Cinta Experto;Expert Belt;Potencia ligeramente los movimientos supereficaces. Debe llevarla un Pokémon.;Equipable;4000;no;no;no;no;siempre [si rival.eficacia>1]: daño x1,2
+explorer_kit;Kit Explorador;Explorer Kit;Una saca donde guardar los objetos útiles para la exploración. Permite acceder al Subsuelo.;Objeto clave;0;no;no;no;no;
+exp_share;Repartir Exp;Exp. Share;Al activar el dispositivo, todos los Pokémon de tu equipo ganan Puntos de Experiencia tras los combates, aunque no salgan a luchar.;Rival;0;no;no;no;no;
+fab_mail;Carta Fab.;Fab Mail;;Rival;50;no;no;no;no;
+fairy_gem;Gema Hada;Fairy Gem;Joya de un solo uso que potencia los movimientos de tipo Hada. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+fame_checker;Memorín;Fame Checker;;Objeto clave;0;no;no;no;no;
+fashion_case;Caja Corazón;Fashion Case;Una bonita cajita donde guardar todos los Complementos para vestir a tus Pokémon en el Teatro Musical.;Objeto clave;0;no;no;no;no;
+fast_ball;Rapid Ball;Fast Ball;Poké Ball algo distinta, especialmente indicada para capturar Pokémon evasivos.;Bola;0;si;no;si;no;al_usar: captura x1
+favored_mail;Carta Favoritos;Favored Mail;Carta para escribir sobre tus cosas favoritas. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+fighting_gem;Gema Lucha;Fighting Gem;Joya de un solo uso que potencia los movimientos de tipo Lucha. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+figy_berry;Baya Higog;Figy Berry;Los Pokémon pueden llevarla o usarla para restaurar algunos PS. Su sabor puede causar confusión.;Baya;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
+fire_gem;Gema Fuego;Fire Gem;Joya de un solo uso que potencia los movimientos de tipo Fuego. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+fire_stone;Piedra Fuego;Fire Stone;Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es amarilla con una marca naranja.;Evolución;3000;no;si;si;no;
+fist_plate;Tabla Fuerte;Fist Plate;Tabla de piedra que potencia los movimientos de tipo Lucha. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+flame_mail;Carta Fuego;Flame Mail;;Rival;50;no;no;no;no;
+flame_orb;Llamasfera;Flame Orb;Extraña esfera que causa quemaduras al Pokémon que la lleva en combate.;Equipable;4000;no;no;no;no;fin_de_turno: poner_estado burn
+flame_plate;Tabla Llama;Flame Plate;Tabla de piedra que potencia los movimientos de tipo Fuego. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+float_stone;Piedra Pómez;Float Stone;Piedra muy ligera que reduce el peso del Pokémon que la lleve.;Rival;4000;no;no;no;no;
+fluffy_tail;Cola Skitty;Fluffy Tail;Un objeto que atrae a los Pokémon. Es útil para huir de un combate contra un Pokémon salvaje.;Rival;100;no;no;no;no;
+flying_gem;Gema Voladora;Flying Gem;Joya de un solo uso que potencia los movimientos de tipo Volador. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+focus_band;Cinta Aguante;Focus Band;El Pokémon que la lleva puede resistir un golpe que potencialmente lo dejaría K. O. y se queda con 1 PS.;Rival;4000;no;no;no;no;
+focus_sash;Banda Aguante;Focus Sash;Si el Pokémon que la lleva tiene los PS al máximo, puede resistir un golpe que lo dejaría K. O. y se queda con 1 PS.;Equipable;4000;no;no;no;no;"antes_de_golpe [si propio.vida>=100]: aguantar; se_gasta"
+fresh_water;Agua Fresca;Fresh Water;Agua de alto contenido mineral que restaura 30 PS de un Pokémon.;Rival;200;no;no;no;no;
+friend_ball;Amigo Ball;Friend Ball;Poké Ball algo distinta que hace más amistosos a los Pokémon salvajes que se capturan con ella.;Bola;0;si;no;si;no;al_usar: captura x1
+full_heal;Cura Total;Full Heal;Medicina en espray que cura todos los problemas de estado de un Pokémon.;Cura de estado;400;si;si;si;no;al_usar: curar_estado
+full_incense;Incienso Lento;Full Incense;Incienso de exótico aroma que hace que el Pokémon que lo lleve esté aturdido y se mueva más despacio.;Rival;5000;no;no;no;no;
+full_restore;Restaurar Todo;Full Restore;Medicina que restaura todos los PS y cura todos los problemas de estado de un Pokémon.;Medicina;3000;si;si;si;no;al_usar: curar 100% | al_usar: curar_estado
+galactic_key;Llave Galaxia;Galactic Key;Desactiva los sistemas de seguridad de la Base Galaxia. Por lo visto, perder esta tarjeta se castiga severamente.;Objeto clave;0;no;no;no;no;
+galladite;Galladita;Galladite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Gallade en combate.;Rival;0;no;no;no;no;
+ganlon_berry;Baya Gonlan;Ganlon Berry;Si la lleva un Pokémon, le sube la Defensa en un momento de apuro.;Baya;80;no;no;no;si;"poca_vida@25: etapa defense +1; se_gasta"
+garchompite;Garchompita;Garchompite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Garchomp en combate.;Rival;0;no;no;no;no;
+gardevoirite;Gardevoirita;Gardevoirite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Gardevoir en combate.;Rival;0;no;no;no;no;
+gb_sounds;Lector GB;GB Sounds;Lector con el que se pueden escuchar aquellas canciones tan nostálgicas. Se cambia con un solo interruptor.;Objeto clave;0;no;no;no;no;
+gengarite;Gengarita;Gengarite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Gengar en combate.;Rival;0;no;no;no;no;
+genius_wing;Pluma Intelecto;Genius Feather;Pluma que aumenta un poco el Ataque Especial de base de un Pokémon.;Amistad / vitaminas;300;no;si;si;no;
+ghost_gem;Gema Fantasma;Ghost Gem;Joya de un solo uso que potencia los movimientos de tipo Fantasma. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+glalitite;Glalita;Glalitite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Glalie en combate.;Rival;0;no;no;no;no;
+glitter_mail;Carta Brillo;Glitter Mail;;Rival;50;no;no;no;no;
+gold_leaf;Hoja de Oro;Gold Leaf;Extraña hoja de color dorado. Se desconoce de qué árbol procede.;Rival;1000;no;no;no;no;
+gold_teeth;Dentadura de Oro;Gold Teeth;Unos dientes de oro que perdió el Guarda de la Zona Safari con los que tiene una sonrisa deslumbrante.;Objeto clave;0;no;no;no;no;
+good_rod;Caña Buena;Good Rod;Caña de pescar nuevecita y de gran calidad. Pesca Pokémon salvajes en todo tipo de aguas.;Objeto clave;0;no;no;no;no;
+gooey_mulch;Abono Brote;Gooey Mulch;Un fertilizante usado para el cultivo de bayas. Parece que no se asienta bien en el suelo de Hoenn, por lo que no tiene efecto en esta región.;Rival;200;no;no;no;no;
+go_goggles;Gafas Aislantes;Go-Goggles;Gafas idóneas para protegerte los ojos de las tormentas de arena del desierto.;Objeto clave;0;no;no;no;no;
+gracidea;Gracídea;Gracidea;Una flor que se suele regalar en ramos para expresar agradecimiento en ocasiones especiales, como cumpleaños.;Objeto clave;0;no;si;no;no;
+gram_1;Envío 1;Gram 1;Carta importante que entrega Wingull.;Objeto clave;0;no;no;no;no;
+gram_2;Envío 2;Gram 2;Carta importante que entrega Wingull.;Objeto clave;0;no;no;no;no;
+gram_3;Envío 3;Gram 3;Carta importante que entrega Wingull.;Objeto clave;0;no;no;no;no;
+grass_gem;Gema Planta;Grass Gem;Joya de un solo uso que potencia los movimientos de tipo Planta. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+grass_mail;Carta Hierba;Grass Mail;;Rival;50;no;no;no;no;
+great_ball;Super Ball;Great Ball;Poké Ball de alto rendimiento. Tiene un índice de éxito superior al de la Poké Ball.;Bola;600;si;no;si;no;al_usar: captura x1,5
+green_apricorn;Bonguri Verde;Green Apricorn;Bonguri de color verde y aroma peculiar que recuerda al café tostado.;Objeto clave;200;no;no;no;no;
+green_scarf;Pañuelo Verde;Green Scarf;Debe llevarlo un Pokémon. Aumenta el ingenio en los concursos.;Rival;100;no;no;no;no;
+green_shard;Parte Verde;Green Shard;Un pequeño fragmento verde. Parece formar parte de algún tipo de herramienta antigua.;Rival;1000;no;no;no;no;
+greet_mail;Carta Inicial;Greet Mail;Carta para presentarse a alguien. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+grepa_berry;Baya Uvav;Grepa Berry;Al usarla con un Pokémon, se gana su amistad, pero también reduce su Defensa Especial de base.;Rival;80;no;no;no;si;
+grip_claw;Garra Garfio;Grip Claw;Prolonga la duración de ataques multiturno como Atadura y Constricción si la lleva un Pokémon.;Rival;4000;no;no;no;no;
+griseous_orb;Griseosfera;Griseous Orb;Una esfera brillante que potencia los movimientos de tipo Dragón y Fantasma. Debe llevarla Giratina.;Rival;0;no;no;no;no;
+ground_gem;Gema Tierra;Ground Gem;Joya de un solo uso que potencia los movimientos de tipo Tierra. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+growth_mulch;Abono Rápido;Growth Mulch;Un fertilizante usado para el cultivo de bayas. Parece que no se asienta bien en el suelo de Hoenn, por lo que no tiene efecto en esta región.;Rival;200;no;no;no;no;
+grubby_hanky;Pañuelo Sucio;Grubby Hanky;Pañuelo perdido por un cliente habitual del Café Alma en Ciudad Esmalte. Desprende el olor de un Pokémon.;Objeto clave;0;no;no;no;no;
+guard_spec;Protección X;Guard Spec.;Evita que bajen las características del equipo Pokémon durante cinco turnos.;Rival;1500;no;no;no;no;
+gyaradosite;Gyaradosita;Gyaradosite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Gyarados en combate.;Rival;0;no;no;no;no;
+haban_berry;Baya Anjiro;Haban Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Dragón de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=dragon & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+harbor_mail;Carta Puerto;Harbor Mail;;Rival;50;no;no;no;no;
+hard_stone;Piedra Dura;Hard Stone;Debe llevarla un Pokémon. La robustez de la piedra fortalece los movimientos de tipo Roca.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=rock]: potencia x1,2
+health_wing;Pluma Vigor;Health Feather;Pluma que aumenta un poco los PS de base de un Pokémon.;Amistad / vitaminas;300;no;si;si;no;
+heal_ball;Sana Ball;Heal Ball;Poké Ball curativa que restaura los PS y cura todos los problemas de estado de un Pokémon después de capturarlo.;Bola;300;si;no;si;no;al_usar: captura x1
+heal_powder;Polvo Curación;Heal Powder;Polvos medicinales muy amargos que curan todos los problemas de estado de un Pokémon.;Rival;300;no;no;no;no;
+heart_mail;Car. Corazón;Heart Mail;;Rival;50;no;no;no;no;
+heart_scale;Escama Corazón;Heart Scale;Una bella y rara escama con forma de corazón que más de uno apreciará si se la entregas.;Rival;100;no;no;no;no;
+heat_rock;Roca Calor;Heat Rock;Prolonga la duración del movimiento Día Soleado que use el Pokémon que la lleva.;Equipable;4000;no;no;no;no;siempre: clima sun +3
+heavy_ball;Peso Ball;Heavy Ball;Poké Ball algo distinta que funciona especialmente bien a la hora de atrapar Pokémon de mucho peso.;Bola;0;si;no;si;no;al_usar: captura x1
+helix_fossil;Fósil Hélix;Helix Fossil;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser un fragmento de concha marina.;Rival;7000;no;no;no;no;
+heracronite;Heracrossita;Heracronite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Heracross en combate.;Rival;0;no;no;no;no;
+holo_caster;Holomisor;Holo Caster;Este aparato permite recibir vídeos holográficos y visualizarlos en cualquier momento.;Objeto clave;0;no;no;no;no;
+hondew_berry;Baya Meluce;Hondew Berry;Al usarla con un Pokémon, se gana su amistad, pero también reduce su Ataque Especial de base.;Rival;80;no;no;no;si;
+honey;Miel;Honey;Su delicioso aroma atrae a Pokémon salvajes si se usa en zonas de hierba alta, cuevas o árboles especiales.;Rival;900;no;no;no;no;
+honor_of_kalos;Emblema Kalos;Honor of Kalos;Símbolo otorgado en reconocimiento a quienes han realizado gestas excepcionales en la región de Kalos.;Objeto clave;0;no;no;no;no;
+houndoominite;Houndoomita;Houndoominite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Houndoom en combate.;Rival;0;no;no;no;no;
+hp_up;Más PS;HP Up;Nutritiva bebida que potencia los PS de base de un Pokémon.;Amistad / vitaminas;10000;no;si;si;no;
+hyper_potion;Hiperpoción;Hyper Potion;Medicina en espray que cura heridas y restaura 120 PS de un Pokémon.;Medicina;1500;si;si;si;no;al_usar: curar 120
+iapapa_berry;Baya Pabaya;Iapapa Berry;Los Pokémon pueden llevarla o usarla para restaurar algunos PS. Su sabor puede causar confusión.;Baya;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
+ice_gem;Gema Hielo;Ice Gem;Joya de un solo uso que potencia los movimientos de tipo Hielo. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+ice_heal;Antihielo;Ice Heal;Medicina en espray que descongela a un Pokémon.;Cura de estado;200;si;si;si;no;al_usar: curar_estado freeze
+icicle_plate;Tabla Helada;Icicle Plate;Tabla de piedra que potencia los movimientos de tipo Hielo. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+icy_rock;Roca Helada;Icy Rock;Prolonga la duración del movimiento Granizo que use el Pokémon que la lleva.;Equipable;4000;no;no;no;no;siempre: clima hail +3
+inquiry_mail;Carta Pregunta;Inquiry Mail;Carta para preguntar a un compañero. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+insect_plate;Tabla Bicho;Insect Plate;Tabla de piedra que potencia los movimientos de tipo Bicho. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+intriguing_stone;Piedra Insólita;Intriguing Stone;Una curiosa piedra que a algunos les puede parecer de gran valor.;Objeto clave;0;no;no;no;no;
+iron;Hierro;Iron;Nutritiva bebida que potencia la Defensa de base de un Pokémon.;Amistad / vitaminas;10000;no;si;si;no;
+iron_ball;Bola Férrea;Iron Ball;Reduce la Velocidad. Los Pokémon que levitan y los de tipo Volador se tornan sensibles a movimientos de tipo Tierra.;Rival;4000;no;no;no;no;
+iron_plate;Tabla Acero;Iron Plate;Tabla de piedra que potencia los movimientos de tipo Acero. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+item_drop;Tiraobjeto;Item Drop;Cuando se usa, un Pokémon de tu equipo pierde su objeto.;Rival;0;no;no;no;no;
+item_urge;Activaobjeto;Item Urge;Cuando se usa, un Pokémon de tu equipo utiliza su objeto inmediatamente.;Rival;0;no;no;no;no;
+jaboca_berry;Baya Jaboca;Jaboca Berry;Si la lleva un Pokémon cuando otro lanza un ataque físico, este último también recibe daño.;Rival;80;no;no;no;si;
+jade_orb;Esfera Verde;Jade Orb;Esfera glauca de la que se dice que guarda una estrecha relación con las leyendas de Hoenn.;Objeto clave;0;no;no;no;no;
+jaw_fossil;Fósil Mandíbula;Jaw Fossil;Fósil de un Pokémon prehistórico terrestre. Parece ser parte de una mandíbula.;Rival;7000;no;no;no;no;
+journal;Diario;Journal;Un cuaderno en el que se recogen, día a día, los progresos de tu aventura.;Objeto clave;0;no;no;no;no;
+kangaskhanite;Kangaskhanita;Kangaskhanite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Kangaskhan en combate.;Rival;0;no;no;no;no;
+kasib_berry;Baya Drasi;Kasib Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Fantasma de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=ghost & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+kebia_berry;Baya Kebia;Kebia Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Veneno de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=poison & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+kee_berry;Baya Biglia;Kee Berry;Si la lleva un Pokémon, aumenta su Defensa tras recibir un ataque físico.;Rival;80;no;no;no;si;
+kelpsy_berry;Baya Algama;Kelpsy Berry;Al usarla con un Pokémon, se gana su amistad, pero también reduce su Ataque de base.;Rival;80;no;no;no;si;
+key_stone;Piedra Activadora;Key Stone;Piedra de singulares poderes que permite megaevolucionar en combate a un Pokémon que lleve consigo una Megapiedra.;Objeto clave;0;no;no;no;no;
+key_to_room_1;Ll. Habitación 1;Key to Room 1;Llave de acceso a una de las habitaciones de Malvamar.;Objeto clave;0;no;no;no;no;
+key_to_room_2;Ll. Habitación 2;Key to Room 2;Llave de acceso a una de las habitaciones de Malvamar.;Objeto clave;0;no;no;no;no;
+key_to_room_4;Ll. Habitación 4;Key to Room 4;Llave de acceso a una de las habitaciones de Malvamar.;Objeto clave;0;no;no;no;no;
+key_to_room_6;Ll. Habitación 6;Key to Room 6;Llave de acceso a una de las habitaciones de Malvamar.;Objeto clave;0;no;no;no;no;
+kings_rock;Roca del Rey;King’s Rock;El Pokémon que la lleva puede hacer retroceder al Pokémon al que le inflige daño.;Equipable;5000;no;no;no;no;"al_hacer_daño: retroceso; prob=10"
+lagging_tail;Cola Plúmbea;Lagging Tail;Es muy pesada y hace que el Pokémon que la lleva se mueva más lento de lo normal.;Rival;4000;no;no;no;no;
+lansat_berry;Baya Zonlan;Lansat Berry;Si la lleva un Pokémon, aumenta la probabilidad de dar un golpe crítico en un momento de apuro.;Rival;80;no;no;no;si;
+latiasite;Latiasita;Latiasite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Latias en combate.;Rival;0;no;no;no;no;
+latiosite;Latiosita;Latiosite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Latios en combate.;Rival;0;no;no;no;no;
+lava_cookie;Galleta Lava;Lava Cookie;Dulce típico de Pueblo Lavacalda que cura todos los problemas de estado de un Pokémon.;Rival;350;no;no;no;no;
+lax_incense;Incienso Suave;Lax Incense;Debe llevarlo un Pokémon. Su peculiar aroma reduce la Precisión del objetivo.;Rival;5000;no;no;no;no;
+leaf_stone;Piedra Hoja;Leaf Stone;Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Tiene grabada una hoja.;Evolución;3000;no;si;si;no;
+leftovers;Restos;Leftovers;Este objeto restaura gradualmente durante el combate los PS del Pokémon que lo lleva.;Equipable;4000;no;no;no;no;fin_de_turno: curar 6,25%
+lemonade;Limonada;Lemonade;Bebida muy dulce que restaura 70 PS de un Pokémon.;Rival;400;no;no;no;no;
+lens_case;Portalentillas;Lens Case;Estuche de aspecto sofisticado para llevar tus lentes de contacto.;Objeto clave;0;no;no;no;no;
+leppa_berry;Baya Zanama;Leppa Berry;Los Pokémon pueden llevarla o usarla para restaurar 10 PP de un movimiento.;Rival;80;no;no;no;si;
+letter;Carta a Máximo;Letter;Carta que te ha confiado el presidente de Devon S. A.;Objeto clave;0;no;no;no;no;
+level_ball;Nivel Ball;Level Ball;Poké Ball algo distinta que funciona especialmente bien con Pokémon de nivel inferior a los que se posee.;Bola;0;si;no;si;no;al_usar: captura x1
+liberty_pass;Tarjeta Libertad;Liberty Pass;Ticket especial para ir en barco desde Ciudad Porcelana a Isla Libertad.;Objeto clave;0;no;no;no;no;
+liechi_berry;Baya Lichi;Liechi Berry;Si la lleva un Pokémon, le sube el Ataque en un momento de apuro.;Baya;80;no;no;no;si;"poca_vida@25: etapa attack +1; se_gasta"
+life_orb;Vidasfera;Life Orb;Potencia los movimientos, pero consume PS con cada ataque. Debe llevarla un Pokémon.;Equipable;4000;no;no;no;no;siempre: potencia x1,3 | al_hacer_daño: perder 10%
+lift_key;Llave Ascensor;Lift Key;Llave que permite acceder al ascensor de la Guarida del Team Rocket. Lleva grabado el símbolo del Team Rocket.;Objeto clave;0;no;no;no;no;
+light_ball;Bola Luminosa;Light Ball;Asombrosa esfera que debe llevar Pikachu y que aumenta su Ataque y su Ataque Especial.;Rival;1000;no;no;no;no;
+light_clay;Refleluz;Light Clay;Prolonga la duración de barreras como Reflejo y Pantalla de Luz. Debe llevarla un Pokémon.;Equipable;4000;no;no;no;no;siempre: pantallas +3
+light_stone;Orbe Claro;Light Stone;Forma que adoptó Reshiram al perder su cuerpo. Espera la llegada de un nuevo héroe.;Objeto clave;0;no;no;no;no;
+like_mail;Carta Gustos;Like Mail;Carta para recomendar algo. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+looker_ticket;Boleto Handsome;Looker Ticket;Boleto hecho a mano por Handsome, decorado con una generosa cantidad de purpurina.;Objeto clave;0;no;no;no;no;
+lopunnite;Lopunnita;Lopunnite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Lopunny en combate.;Rival;0;no;no;no;no;
+lost_item;Objeto Perdido;Lost Item;El muñeco Mime Jr. que perdió la Copiona.;Objeto clave;0;no;no;no;no;
+love_ball;Amor Ball;Love Ball;Poké Ball algo distinta que atrapa mejor Pokémon de la misma especie que los que se posee, pero de sexo diferente.;Bola;0;si;no;si;no;al_usar: captura x1
+lucarionite;Lucarita;Lucarionite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Lucario en combate.;Rival;0;no;no;no;no;
+lucky_egg;Huevo Suerte;Lucky Egg;Es un huevo lleno de felicidad que te hace ganar Puntos de Experiencia extra en combate. Debe llevarlo un Pokémon.;Rival;10000;no;no;no;no;
+lucky_punch;Puño Suerte;Lucky Punch;Un par de guantes que debe llevar Chansey. Potencian mucho su índice de golpe crítico.;Rival;1000;no;no;no;no;
+luck_incense;Incienso Duplo;Luck Incense;Si el Pokémon que lo lleva lucha en un combate, duplica las ganancias.;Rival;11000;no;no;no;no;
+luminous_moss;Musgo Brillante;Luminous Moss;Objeto de un solo uso. Aumenta la Defensa Especial del Pokémon que lo lleva si este recibe un ataque de tipo Agua.;Rival;4000;no;no;no;no;
+lumiose_galette;Crêpe Luminalia;Lumiose Galette;El dulce estrella de Ciudad Luminalia. Cura los problemas de estado de un Pokémon.;Rival;350;no;no;no;no;
+lum_berry;Baya Ziuela;Lum Berry;Los Pokémon pueden llevarla o usarla para recuperarse de problemas de estado.;Baya;80;no;no;no;si;"al_sufrir_estado: curar_estado; se_gasta"
+lunar_wing;Pluma Lunar;Lunar Wing;Pluma que brilla como la luna. Se dice que tiene el poder de disipar pesadillas.;Objeto clave;0;no;no;no;no;
+lure_ball;Cebo Ball;Lure Ball;Poké Ball algo distinta, especialmente indicada para capturar los Pokémon que se han pescado con una caña.;Bola;0;si;no;si;no;al_usar: captura x1
+lustrous_orb;Lustresfera;Lustrous Orb;Una bonita esfera que potencia los movimientos de tipo Dragón y Agua. Debe llevarla Palkia.;Rival;0;no;no;no;no;
+luxury_ball;Lujo Ball;Luxury Ball;Acogedora Poké Ball que hace más amistosos a los Pokémon salvajes capturados.;Bola;3000;si;no;si;no;al_usar: captura x1
+machine_part;Maquinaria;Machine Part;Valiosa pieza robada de una máquina de la Central Energía.;Objeto clave;0;no;no;no;no;
+macho_brace;Brazal Firme;Macho Brace;Sólido y pesado brazal. Incrementa más las características al subir de nivel, pero baja la Velocidad de quien lo lleva.;Rival;3000;no;no;no;no;
+mach_bike;Bici de Carreras;Mach Bike;Bicicleta plegable que va a más del doble de velocidad que otras.;Objeto clave;0;no;no;no;no;
+magmarizer;Magmatizador;Magmarizer;Esta caja contiene una enorme cantidad de energía magmática. Cierto Pokémon la adora.;Equipable;2000;no;no;no;no;
+magma_emblem;Signo Magma;Magma Emblem;;Objeto clave;0;no;no;no;no;
+magma_stone;Piedra Magma;Magma Stone;Formada a partir de magma enfriado y endurecido. Aún hay magma líquido en su interior.;Objeto clave;0;no;no;no;no;
+magma_suit;Traje Magma;Magma Suit;Este traje es el resultado de las arduas investigaciones científicas del Equipo Magma. Es capaz de soportar cualquier impacto.;Objeto clave;0;no;no;no;no;
+magnet;Imán;Magnet;Debe llevarlo un Pokémon. Su potente magnetismo fortalece los movimientos de tipo Eléctrico.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=electric]: potencia x1,2
+magost_berry;Baya Aostan;Magost Berry;Se utiliza en la producción de Pokécubos que potencian la dulzura. Es una baya muy rara en otras regiones.;Rival;20;no;no;no;si;
+mago_berry;Baya Ango;Mago Berry;Los Pokémon pueden llevarla o usarla para restaurar algunos PS. Su sabor puede causar confusión.;Baya;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
+manectite;Manectricita;Manectite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Manectric en combate.;Rival;0;no;no;no;no;
+maranga_berry;Baya Maranga;Maranga Berry;Si la lleva un Pokémon, aumenta su Defensa Especial tras recibir un ataque especial.;Rival;80;no;no;no;si;
+master_ball;Master Ball;Master Ball;La Poké Ball definitiva. Atrapa cualquier Pokémon salvaje y no falla nunca.;Bola;0;si;no;si;no;al_usar: captura x255
+mawilite;Mawilita;Mawilite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Mawile en combate.;Rival;0;no;no;no;no;
+max_elixir;Elixir Máximo;Max Elixir;Restaura completamente los PP de todos los movimientos aprendidos por el Pokémon elegido.;Recuperar PP;4500;si;si;si;no;al_usar: pp_todos 999
+max_ether;Éter Máximo;Max Ether;Restaura completamente los PP del movimiento elegido de un Pokémon.;Recuperar PP;2000;si;si;si;no;al_usar: pp 999
+max_potion;Poción Máxima;Max Potion;Medicina en espray que cura heridas y restaura todos los PS de un Pokémon.;Medicina;2500;si;si;si;no;al_usar: curar 100%
+max_repel;Repelente Máximo;Max Repel;Evita encuentros con Pokémon salvajes débiles durante más tiempo que un Superrepelente.;Rival;900;no;no;no;no;
+max_revive;Revivir Máximo;Max Revive;Medicina que revive a un Pokémon debilitado y le devuelve todos sus PS.;Revivir;4000;si;si;si;no;al_usar: revivir 100%
+meadow_plate;Tabla Pradal;Meadow Plate;Tabla de piedra que potencia los movimientos de tipo Planta. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+mech_mail;Carta Imán;Mech Mail;;Rival;50;no;no;no;no;
+medal_box;Caja Insignias;Medal Box;Un dispositivo con forma de caja que almacena las insignias y la información relacionada.;Objeto clave;0;no;no;no;no;
+medichamite;Medichamita;Medichamite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Medicham en combate.;Rival;0;no;no;no;no;
+mega_bracelet;Megapulsera;Mega Bracelet;Aro con un poder misterioso que permite megaevolucionar a Pokémon que lleven la Megapiedra adecuada.;Objeto clave;0;no;no;no;no;
+mega_ring;Mega-Aro;Mega Ring;Accesorio con un poder misterioso que permite megaevolucionar a Pokémon que lleven la Megapiedra adecuada.;Objeto clave;0;no;no;no;no;
+member_card;Carné Socio;Member Card;Necesario para entrar en la posada de Ciudad Canal. Es extraño, pero la última fecha registrada es de hace 50 años.;Objeto clave;0;no;no;no;no;
+mental_herb;Hierba Mental;Mental Herb;El Pokémon que la lleva se libera del efecto de movimientos que restringen sus acciones. Solo puede usarse una vez.;Rival;4000;no;no;no;no;
+metagrossite;Metagrossita;Metagrossite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Metagross en combate.;Rival;0;no;no;no;no;
+metal_coat;Revest. Metálico;Metal Coat;Película metálica que fortalece los ataques de tipo Acero. Debe llevarlo un Pokémon.;Equipable;2000;no;no;no;no;siempre [si mov.tipo=steel]: potencia x1,2
+metal_powder;Polvo Metálico;Metal Powder;Debe llevarlo Ditto. Es un polvo muy fino, pero a la vez poderoso, que aumenta su Defensa.;Rival;1000;no;no;no;no;
+meteorite;Meteorito;Meteorite;Meteorito obtenido en el Monte Cenizo que antes se encontraba en la Cascada Meteoro.;Objeto clave;0;no;no;no;no;
+meteorite_shard;Frag. Meteorito;Meteorite Shard;Trozo de meteorito encontrado en el suelo de la Cueva Granito. Es ligeramente cálido al tacto.;Objeto clave;0;no;no;no;no;
+metronome;Metrónomo;Metronome;Potencia un movimiento que se use de forma consecutiva. Pero el efecto se pierde si se emplea otro movimiento.;Rival;4000;no;no;no;no;
+mewtwonite_x;Mewtwoita X;Mewtwonite X;Una de las misteriosas Megapiedras. Permite megaevolucionar a Mewtwo en combate.;Rival;0;no;no;no;no;
+mewtwonite_y;Mewtwoita Y;Mewtwonite Y;Una de las misteriosas Megapiedras. Permite megaevolucionar a Mewtwo en combate.;Rival;0;no;no;no;no;
+micle_berry;Baya Lagro;Micle Berry;Cuando la lleva un Pokémon, le sube la Precisión de un movimiento en un momento de apuro.;Rival;80;no;no;no;si;
+mind_plate;Tabla Mental;Mind Plate;Tabla de piedra que potencia los movimientos de tipo Psíquico. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+miracle_seed;Semilla Milagro;Miracle Seed;Debe llevarla un Pokémon. La vitalidad de la semilla fortalece los movimientos de tipo Planta.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=grass]: potencia x1,2
+moomoo_milk;Leche Mu-mu;Moomoo Milk;Leche de alto valor nutritivo que restaura 100 PS de un Pokémon.;Rival;600;no;no;no;no;
+moon_ball;Luna Ball;Moon Ball;Poké Ball algo distinta que atrapa con más facilidad los Pokémon que evolucionan con la Piedra Lunar.;Bola;0;si;no;si;no;al_usar: captura x1
+moon_stone;Piedra Lunar;Moon Stone;Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es oscura como la noche.;Evolución;3000;no;si;si;no;
+mosaic_mail;Car. Mosaico;Mosaic Mail;;Rival;50;no;no;no;no;
+muscle_band;Cinta Fuerte;Muscle Band;Cinta del pelo que aumenta ligeramente la potencia de los ataques físicos. Debe llevarla un Pokémon.;Equipable;4000;no;no;no;no;siempre [si mov.categoria=fisico]: potencia x1,1
+muscle_wing;Pluma Músculo;Muscle Feather;Pluma que aumenta un poco el Ataque de base de un Pokémon.;Amistad / vitaminas;300;no;si;si;no;
+mystery_egg;Huevo Misterioso;Mystery Egg;Misterioso Huevo con dibujos que obtienes del Sr. Pokémon. Nadie sabe qué contiene.;Objeto clave;0;no;no;no;no;
+mysticticket;Misti-Ticket;MysticTicket;;Objeto clave;0;no;no;no;no;
+mystic_water;Agua Mística;Mystic Water;Gema con forma de gota de agua que fortalece los movimientos de tipo Agua. Debe llevarla un Pokémon.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=water]: potencia x1,2
+nanab_berry;Baya Latano;Nanab Berry;Se utiliza en la producción de Pokécubos que potencian la dulzura. Es de color rosa y sabor dulce.;Rival;200;no;no;no;si;
+nest_ball;Nido Ball;Nest Ball;Es algo distinta a las demás. Funciona especialmente bien con los Pokémon salvajes de nivel bajo.;Bola;1000;si;no;si;no;al_usar: captura x1
+net_ball;Malla Ball;Net Ball;Es algo distinta a las demás. Funciona especialmente bien con los Pokémon de tipo Agua y Bicho.;Bola;1000;si;no;si;no;al_usar: captura x1
+never_melt_ice;Hielo Perpetuo;Never-Melt Ice;Fragmento de hielo que repele el calor y fortalece los movimientos de tipo Hielo. Debe llevarlo un Pokémon.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=ice]: potencia x1,2
+nomel_berry;Baya Monli;Nomel Berry;Se utiliza en la producción de Pokécubos que potencian la dureza. Es una baya muy rara en otras regiones.;Rival;20;no;no;no;si;
+normal_gem;Gema Normal;Normal Gem;Joya de un solo uso que potencia los movimientos de tipo Normal. Debe llevarla un Pokémon.;Rival;4000;no;no;no;no;
+nugget;Pepita;Nugget;Pepita de oro puro que desprende un brillo espectacular. Puede venderse a un precio muy alto en las tiendas.;Rival;10000;no;no;no;no;
+oaks_letter;Carta Prof. Oak;Oak’s Letter;Carta del Profesor Oak en la que se te pide que vayas a la Ruta 224.;Objeto clave;0;no;no;no;no;
+occa_berry;Baya Caoca;Occa Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Fuego de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=fire & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+odd_incense;Incienso Raro;Odd Incense;Incienso de exótico aroma que fortalece los movimientos de tipo Psíquico. Debe llevarlo un Pokémon.;Rival;2000;no;no;no;no;
+odd_keystone;Piedra Espíritu;Odd Keystone;Vital para impedir que una torre de piedra se derrumbe. A veces se oyen voces en su interior.;Rival;2100;no;no;no;no;
+old_amber;Ámbar Viejo;Old Amber;Fragmento de ámbar que contiene información genética de un Pokémon prehistórico. Es de color amarillo.;Rival;10000;no;no;no;no;
+old_charm;Talismán;Old Charm;Está hecho con huesos de Pokémon y trae buena suerte. Hay que llevárselo a la anciana de Pueblo Caelestis.;Objeto clave;0;no;no;no;no;
+old_gateau;Barrita Plus;Old Gateau;Especialidad de la Vieja Mansión. Cura todos los problemas de estado de un Pokémon.;Rival;350;no;no;no;no;
+old_rod;Caña Vieja;Old Rod;Caña de pescar bastante usada y desgastada. Pesca Pokémon salvajes en todo tipo de aguas.;Objeto clave;0;no;no;no;no;
+old_sea_map;Mapa Viejo;Old Sea Map;;Objeto clave;0;no;no;no;no;
+orange_mail;Car. Naranja;Orange Mail;;Rival;50;no;no;no;no;
+oran_berry;Baya Aranja;Oran Berry;Los Pokémon pueden llevarla o usarla para restaurar 10 PS.;Baya;80;no;no;no;si;"poca_vida@50: curar 10; se_gasta"
+oval_charm;Amuleto Oval;Oval Charm;Misterioso amuleto ovalado que aumenta la posibilidad de encontrar Huevos en Cuidados Pokémon.;Objeto clave;0;no;no;no;no;
+oval_stone;Piedra Oval;Oval Stone;Una piedra peculiar que hace evolucionar a algunos Pokémon. Tiene forma de huevo.;Equipable;2000;no;no;no;no;
+pair_of_tickets;Entrada para dos;Pair of Tickets;Pase de dos personas para asistir al espectáculo de astronomía que se celebra en el Centro Espacial de Algaria.;Objeto clave;0;no;no;no;no;
+pal_pad;Bloc amigos;Pal Pad;Un cuaderno muy práctico en el que puedes registrar amigos, claves de amigo, etc.;Objeto clave;0;no;no;no;no;
+pamtre_berry;Baya Plama;Pamtre Berry;Se utiliza en la producción de Pokécubos que potencian la belleza. Es una baya muy rara en otras regiones.;Rival;20;no;no;no;si;
+paralyze_heal;Antiparalizador;Paralyze Heal;Medicina en espray que cura a un Pokémon paralizado.;Cura de estado;200;si;si;si;no;al_usar: curar_estado paralysis
+parcel;Paquete;Parcel;Paquete encomendado a tu cuidado que tienes que entregar a tu amigo de la infancia que dejó Pueblo Hojaverde.;Objeto clave;0;no;no;no;no;
+park_ball;Parque Ball;Park Ball;Poké Ball que se utiliza dentro del Parque Compi.;Bola;0;si;no;si;no;al_usar: captura x1
+pass;Magnetopase;Pass;Billete necesario para poder montar todas las veces que se desee en el Magnetotrén.;Objeto clave;0;no;no;no;no;
+passho_berry;Baya Pasio;Passho Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Agua de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=water & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+pass_orb;Regalosfera;Pass Orb;Esfera misteriosa que contiene el poder de la región de Teselia y se utiliza para generar Poderes Regalo.;Rival;200;no;no;no;no;
+payapa_berry;Baya Payapa;Payapa Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Psíquico de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=psychic & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+pearl;Perla;Pearl;Brillante perla pequeña y plateada que no alcanza un buen precio en las tiendas.;Rival;2000;no;no;no;no;
+pearl_string;Sarta Perlas;Pearl String;Brillantes perlas plateadas de gran tamaño que pueden venderse a buen precio en las tiendas.;Rival;20000;no;no;no;no;
+pecha_berry;Baya Meloc;Pecha Berry;Los Pokémon pueden llevarla o usarla para curarse del envenenamiento.;Baya;80;no;no;no;si;"al_sufrir_estado: curar_estado poison,toxic; se_gasta"
+permit;Pase;Permit;Permiso necesario para acceder a la Reserva Natural, lugar que solo unos pocos conocen.;Objeto clave;0;no;no;no;no;
+persim_berry;Baya Caquic;Persim Berry;Los Pokémon pueden llevarla o usarla para librarse de la confusión.;Baya;80;no;no;no;si;"al_sufrir_estado: curar_estado confusion; se_gasta"
+petaya_berry;Baya Yapati;Petaya Berry;Si la lleva un Pokémon, le sube el Ataque Especial en un momento de apuro.;Baya;80;no;no;no;si;"poca_vida@25: etapa sp_attack +1; se_gasta"
+pidgeotite;Pidgeotita;Pidgeotite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Pidgeot en combate.;Rival;0;no;no;no;no;
+pinap_berry;Baya Pinia;Pinap Berry;Se utiliza en la producción de Pokécubos que potencian la dureza. Es de color amarillo y sabor ácido.;Rival;200;no;no;no;si;
+pink_apricorn;Bonguri Rosa;Pink Apricorn;Bonguri de color rosa y aroma dulce.;Objeto clave;200;no;no;no;no;
+pink_scarf;Pañuelo Rosa;Pink Scarf;Debe llevarlo un Pokémon. Aumenta la dulzura en los concursos.;Rival;100;no;no;no;no;
+pinsirite;Pinsirita;Pinsirite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Pinsir en combate.;Rival;0;no;no;no;no;
+pixie_plate;Tabla Duende;Pixie Plate;Tabla de piedra que potencia los movimientos de tipo Hada. Debe llevarla un Pokémon.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=fairy]: potencia x1,2
+plasma_card;Tarjeta Plasma;Plasma Card;Tarjeta necesaria para introducir la contraseña en la Fragata Plasma.;Objeto clave;0;no;no;no;no;
+plume_fossil;Fósil Pluma;Plume Fossil;Fósil de un Pokémon prehistórico que surcaba los cielos. Parece ser parte de una de sus alas.;Rival;7000;no;no;no;no;
+poffin_case;Pokochera;Poffin Case;Caja en la que se transportan los Pokochos elaborados con bayas.;Objeto clave;0;no;no;no;no;
+point_card;Tarjeta Puntos;Point Card;Una tarjeta en la que se registran los Puntos de Batalla que has ganado.;Objeto clave;0;no;no;no;no;
+poison_barb;Flecha Venenosa;Poison Barb;Flecha venenosa que refuerza los movimientos de tipo Veneno. Debe llevarla un Pokémon.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=poison]: potencia x1,2
+poison_gem;Gema Veneno;Poison Gem;Joya de un solo uso que potencia los movimientos de tipo Veneno. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+pokeblock_case;Tubo Pokécubos;Pokéblock Case;;Objeto clave;0;no;no;no;no;
+pokeblock_kit;Kit de Pokécubos;Pokéblock Kit;Kit consistente en una Licuabayas para preparar Pokécubos a partir de bayas y un Tubo Pokécubos para guardarlos.;Objeto clave;0;no;no;no;no;
+poke_ball;Poké Ball;Poké Ball;Dispositivo con diseño capsular que atrapa Pokémon salvajes. Se lanza como una bola contra el blanco.;Bola;200;si;no;si;no;al_usar: captura x1
+poke_doll;Poké Muñeco;Poké Doll;Un muñeco que atrae a los Pokémon. Es útil para huir de un combate contra un Pokémon salvaje.;Rival;300;no;no;no;no;
+poke_flute;Poké Flauta;Poké Flute;Una flauta con un timbre tan dulce y hermoso que despierta hasta al Pokémon más profundamente dormido.;Objeto clave;0;no;no;no;no;
+poke_radar;Pokéradar;Poké Radar;Busca Pokémon que se esconden en la hierba. La batería se recarga mientras caminas.;Objeto clave;0;no;no;no;no;
+poke_toy;Pokéseñuelo;Poké Toy;Un objeto que atrae a los Pokémon. Es útil para huir de un combate contra un Pokémon salvaje.;Rival;100;no;no;no;no;
+pomeg_berry;Baya Grana;Pomeg Berry;Al usarla con un Pokémon, se gana su amistad, pero también reduce sus PS de base.;Amistad / vitaminas;80;no;si;si;si;al_usar: amistad 10
+potion;Poción;Potion;Medicina en espray que cura heridas y restaura 20 PS a un Pokémon.;Medicina;200;si;si;si;no;al_usar: curar 20
+powder_jar;Bote Polvos;Powder Jar;;Objeto clave;0;no;no;no;no;
+power_anklet;Franja Recia;Power Anklet;Potencia la Velocidad de base, pero reduce la Velocidad en combate. Debe llevarla un Pokémon.;Rival;3000;no;no;no;no;
+power_band;Banda Recia;Power Band;Potencia la Defensa Especial de base, pero reduce la Velocidad en combate. Debe llevarla un Pokémon.;Rival;3000;no;no;no;no;
+power_belt;Cinto Recio;Power Belt;Potencia la Defensa de base, pero reduce la Velocidad en combate. Debe llevarlo un Pokémon.;Rival;3000;no;no;no;no;
+power_bracer;Brazal Recio;Power Bracer;Potencia el Ataque de base, pero reduce la Velocidad en combate. Debe llevarlo un Pokémon.;Rival;3000;no;no;no;no;
+power_herb;Hierba Única;Power Herb;Permite el uso inmediato de cualquier movimiento en el primer turno. Es de un solo uso y debe llevarla un Pokémon.;Rival;4000;no;no;no;no;
+power_lens;Lente Recia;Power Lens;Potencia el Ataque Especial de base, pero reduce la Velocidad en combate. Debe llevarla un Pokémon.;Rival;3000;no;no;no;no;
+power_plant_pass;Pase Central;Power Plant Pass;Documento de identificación necesario para acceder a la central eléctrica de la Ruta 13.;Objeto clave;0;no;no;no;no;
+power_weight;Pesa Recia;Power Weight;Mejora los PS de base, pero reduce la Velocidad en combate. Debe llevarla un Pokémon.;Rival;3000;no;no;no;no;
+pp_max;PP Máximos;PP Max;Aumenta hasta el límite los PP máximos del movimiento elegido de un Pokémon.;Amistad / vitaminas;10000;no;si;si;no;
+pp_up;Más PP;PP Up;Aumenta ligeramente los PP máximos del movimiento elegido de un Pokémon.;Amistad / vitaminas;10000;no;si;si;no;
+premier_ball;Honor Ball;Premier Ball;Es una Poké Ball algo singular que se creó para conmemorar algún acontecimiento.;Bola;20;si;no;si;no;al_usar: captura x1
+pretty_wing;Pluma Bella;Pretty Feather;Pluma normal y corriente. Muy bonita, pero no sirve para nada.;Rival;1000;no;no;no;no;
+prism_scale;Escama Bella;Prism Scale;Curiosa escama que hace evolucionar a determinadas especies de Pokémon. Brilla con los colores del arcoíris.;Equipable;2000;no;no;no;no;
+prison_bottle;Vasija Castigo;Prison Bottle;Vasija en la que se halla confinado el poder de cierto Pokémon desde hace muchísimo tiempo.;Objeto clave;0;no;si;no;no;
+profs_letter;Carta Profesor;Prof’s Letter;Una carta sutilmente perfumada que el Profesor Ciprés le ha escrito a tu madre.;Objeto clave;0;no;no;no;no;
+prop_case;Neceser;Prop Case;Una bonita cajita donde guardar todos los Complementos para vestir a tus Pokémon en el Teatro Musical.;Objeto clave;0;no;no;no;no;
+protector;Protector;Protector;Dispositivo de protección muy pesado. Cierto Pokémon lo adora.;Equipable;2000;no;no;no;no;
+protein;Proteína;Protein;Nutritiva bebida que potencia el Ataque de base de un Pokémon.;Amistad / vitaminas;10000;no;si;si;no;
+psychic_gem;Gema Psíquica;Psychic Gem;Joya de un solo uso que potencia los movimientos de tipo Psíquico. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+pure_incense;Incienso Puro;Pure Incense;Si lo lleva el primer Pokémon del equipo, se reduce la probabilidad de que se acerquen Pokémon salvajes.;Rival;6000;no;no;no;no;
+qualot_berry;Baya Ispero;Qualot Berry;Al usarla con un Pokémon, se gana su amistad, pero también reduce su Defensa de base.;Rival;80;no;no;no;si;
+quick_ball;Veloz Ball;Quick Ball;Una Poké Ball algo distinta que potencia el índice de captura si se usa al inicio de un encuentro con Pokémon salvajes.;Bola;1000;si;no;si;no;al_usar: captura x1
+quick_claw;Garra Rápida;Quick Claw;Garra ligera y afilada que permite que el Pokémon que la lleve ataque a veces el primero.;Equipable;4000;no;no;no;no;"siempre: primero; prob=20"
+quick_powder;Polvo Veloz;Quick Powder;Debe llevarlo Ditto. Es un polvo muy fino, pero a la vez poderoso, que aumenta su Velocidad.;Rival;1000;no;no;no;no;
+rabuta_berry;Baya Rautan;Rabuta Berry;Se utiliza en la producción de Pokécubos que potencian el ingenio. Es una baya muy rara en otras regiones.;Rival;20;no;no;no;si;
+rage_candy_bar;Caramelo Furia;Rage Candy Bar;Caramelo típico de Pueblo Caoba. Cura todos los problemas de estado de un Pokémon.;Objeto clave;350;no;no;no;no;
+rainbow_pass;Iris-Ticket;Rainbow Pass;;Objeto clave;0;no;no;no;no;
+rainbow_wing;Ala Arcoíris;Rainbow Wing;Misteriosa ala de un brillante color arcoíris.;Objeto clave;0;no;no;no;no;
+rare_bone;Hueso Raro;Rare Bone;Un hueso de gran valor para la arqueología Pokémon. Puede alcanzar un alto precio en las tiendas.;Rival;5000;no;no;no;no;
+rare_candy;Caramelo Raro;Rare Candy;Caramelo energético que sube a un Pokémon de nivel.;Amistad / vitaminas;10000;no;si;si;no;
+rawst_berry;Baya Safre;Rawst Berry;Los Pokémon pueden llevarla o usarla para curarse las quemaduras.;Baya;80;no;no;no;si;"al_sufrir_estado: curar_estado burn; se_gasta"
+razor_claw;Garra Afilada;Razor Claw;Aumenta la probabilidad de que el Pokémon que la lleve consiga un golpe crítico.;Equipable;5000;no;no;no;no;siempre: critico +1
+razor_fang;Colmillo Agudo;Razor Fang;Si lo lleva un Pokémon cuando inflige daño al objetivo, puede hacerle retroceder.;Equipable;5000;no;no;no;no;"al_hacer_daño: retroceso; prob=10"
+razz_berry;Baya Frambu;Razz Berry;Se utiliza en la producción de Pokécubos que potencian el carisma. Es de color rojizo y sabor picante.;Rival;200;no;no;no;si;
+reaper_cloth;Tela Terrible;Reaper Cloth;Tela imbuida de una energía espiritual muy potente. Cierto Pokémon la adora.;Equipable;2000;no;no;no;no;
+red_apricorn;Bonguri Rojo;Red Apricorn;Bonguri de color rojo y aroma muy penetrante.;Objeto clave;200;no;no;no;no;
+red_card;Tarjeta Roja;Red Card;Misteriosa tarjeta que permite al Pokémon que la lleva expulsar al oponente cuando este le cause daño.;Rival;4000;no;no;no;no;
+red_flute;Flauta Roja;Red Flute;Una flauta de cristal rojo cuyas notas vuelven en sí a un Pokémon enamorado.;Rival;20;no;no;no;no;
+red_orb;Prisma Rojo;Red Orb;Piedra carmesí de la que se dice que guarda una estrecha relación con las leyendas de Hoenn.;Objeto clave;0;no;no;no;no;
+red_scale;Escama Roja;Red Scale;Escama del Gyarados aparecido en el Lago de la Furia. Es de un rojo tan intenso como las llamas.;Objeto clave;0;no;no;no;no;
+red_scarf;Pañuelo Rojo;Red Scarf;Debe llevarlo un Pokémon. Aumenta el carisma en los concursos.;Rival;100;no;no;no;no;
+red_shard;Parte Roja;Red Shard;Un pequeño fragmento rojo. Parece formar parte de algún tipo de herramienta antigua.;Rival;1000;no;no;no;no;
+relic_band;Brazal;Relic Band;Brazalete de más de 3000 años de antigüedad.;Rival;0;no;no;no;no;
+relic_copper;Real Cobre;Relic Copper;Moneda de cobre de más de 3000 años de antigüedad.;Rival;0;no;no;no;no;
+relic_crown;Corona Antigua;Relic Crown;Corona de más de 3000 años de antigüedad.;Rival;0;no;no;no;no;
+relic_gold;Real Oro;Relic Gold;Moneda de oro de más de 3000 años de antigüedad.;Rival;60000;no;no;no;no;
+relic_silver;Real Plata;Relic Silver;Moneda de plata de más de 3000 años de antigüedad.;Rival;0;no;no;no;no;
+relic_statue;Efigie Antigua;Relic Statue;Efigie de piedra de más de 3000 años de antigüedad.;Rival;0;no;no;no;no;
+relic_vase;Ánfora;Relic Vase;Jarrón de más de 3000 años de antigüedad.;Rival;0;no;no;no;no;
+repeat_ball;Acopio Ball;Repeat Ball;Es algo distinta a las demás. Funciona especialmente bien con las especies de Pokémon que ya has capturado.;Bola;1000;si;no;si;no;al_usar: captura x1
+repel;Repelente;Repel;Evita encuentros con Pokémon salvajes débiles durante un corto período de tiempo.;Rival;400;no;no;no;no;
+reply_mail;Carta Respuesta;Reply Mail;Carta para responder a un mensaje. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+reset_urge;Quitaestado;Reset Urge;Cuando se usa, se anulan los cambios en las características de un Pokémon de tu equipo.;Rival;0;no;no;no;no;
+resist_wing;Pluma Aguante;Resist Feather;Pluma que aumenta un poco la Defensa de base de un Pokémon.;Amistad / vitaminas;300;no;si;si;no;
+retro_mail;Carta Retro.;Retro Mail;;Rival;0;no;no;no;no;
+reveal_glass;Espejo Veraz;Reveal Glass;Espejo misterioso que refleja la verdad y devuelve los Pokémon a su forma original.;Objeto clave;0;no;si;no;no;
+revival_herb;Hierba Revivir;Revival Herb;Hierba muy amarga que reanima a un Pokémon debilitado y restaura todos sus PS.;Rival;2800;no;no;no;no;
+revive;Revivir;Revive;Medicina que revive a un Pokémon debilitado y le devuelve la mitad de sus PS.;Revivir;2000;si;si;si;no;al_usar: revivir 50%
+rich_mulch;Abono Fértil;Rich Mulch;Un fertilizante usado para el cultivo de bayas. Parece que no se asienta bien en el suelo de Hoenn, por lo que no tiene efecto en esta región.;Rival;200;no;no;no;no;
+rindo_berry;Baya Tamar;Rindo Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Planta de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=grass & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+ring_target;Blanco;Ring Target;El Pokémon que lo lleva es vulnerable frente a movimientos que normalmente no afectan a su tipo.;Rival;4000;no;no;no;no;
+rm_1_key;Ll. Cabina 1;Rm. 1 Key;;Objeto clave;0;no;no;no;no;
+rm_2_key;Ll. Cabina 2;Rm. 2 Key;;Objeto clave;0;no;no;no;no;
+rm_4_key;Ll. Cabina 4;Rm. 4 Key;;Objeto clave;0;no;no;no;no;
+rm_6_key;Ll. Cabina 6;Rm. 6 Key;;Objeto clave;0;no;no;no;no;
+rocky_helmet;Casco Dentado;Rocky Helmet;Si el portador es alcanzado por un movimiento de contacto, el agresor también recibe daño.;Equipable;4000;no;no;no;no;"contacto: perder 16,67%; al_rival"
+rock_gem;Gema Roca;Rock Gem;Joya de un solo uso que potencia los movimientos de tipo Roca. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+rock_incense;Incienso Roca;Rock Incense;Incienso de exótico aroma que fortalece los movimientos de tipo Roca. Debe llevarlo un Pokémon.;Rival;2000;no;no;no;no;
+roller_skates;Patines;Roller Skates;Ruedas que se acoplan a la suela del calzado y te permiten ir más rápido y realizar piruetas espectaculares.;Objeto clave;0;no;no;no;no;
+root_fossil;Fósil Raíz;Root Fossil;Fósil de un Pokémon prehistórico que vivía en el fondo del mar. Parece ser parte de una raíz.;Rival;7000;no;no;no;no;
+roseli_berry;Baya Hibis;Roseli Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Hada de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=fairy & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+rose_incense;Incienso Floral;Rose Incense;Incienso de exótico aroma que fortalece los movimientos de tipo Planta. Debe llevarlo un Pokémon.;Rival;2000;no;no;no;no;
+rowap_berry;Baya Magua;Rowap Berry;Si la lleva un Pokémon cuando otro lanza un ataque especial, este último también recibe daño.;Rival;80;no;no;no;si;
+rsvp_mail;Carta Invitar;RSVP Mail;Carta para invitar a un compañero. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+ruby;Rubí;Ruby;;Objeto clave;0;no;no;no;no;
+sablenite;Sableynita;Sablenite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Sableye en combate.;Rival;0;no;no;no;no;
+sachet;Saquito Fragante;Sachet;Un saquito lleno de sustancias aromáticas cuyo perfume resulta abrumador, pero que a ciertos Pokémon les encanta.;Equipable;2000;no;no;no;no;
+sacred_ash;Ceniza Sagrada;Sacred Ash;Reanima completamente a todos los Pokémon debilitados y restaura todos sus PS.;Rival;50000;no;no;no;no;
+safari_ball;Safari Ball;Safari Ball;Poké Ball con un diseño de camuflaje que se utiliza únicamente en la Zona Safari.;Bola;0;si;no;si;no;al_usar: captura x1
+safety_goggles;Gafa Protectora;Safety Goggles;Gafa que protege de los efectos adversos del clima y del polvo lanzado por los rivales.;Rival;4000;no;no;no;no;
+sail_fossil;Fósil Aleta;Sail Fossil;Fósil de un Pokémon prehistórico terrestre. Parece la impresión de una aleta.;Rival;7000;no;no;no;no;
+salac_berry;Baya Aslac;Salac Berry;Si la lleva un Pokémon, le sube la Velocidad en un momento de apuro.;Baya;80;no;no;no;si;"poca_vida@25: etapa speed +1; se_gasta"
+salamencite;Salamencita;Salamencite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Salamence en combate.;Rival;0;no;no;no;no;
+sapphire;Zafiro;Sapphire;;Objeto clave;0;no;no;no;no;
+scanner;Escáner;Scanner;Objeto hallado en el interior de Malvamar.;Objeto clave;0;no;no;no;no;
+sceptilite;Sceptilita;Sceptilite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Sceptile en combate.;Rival;0;no;no;no;no;
+scizorite;Scizorita;Scizorite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Scizor en combate.;Rival;0;no;no;no;no;
+scope_lens;Periscopio;Scope Lens;Su lente aumenta la probabilidad que tiene el Pokémon que lo lleva de conseguir un golpe crítico.;Equipable;4000;no;no;no;no;siempre: critico +1
+seal_case;Caja Sellos;Seal Case;Caja en la que se pueden guardar los sellos que se aplican a las cápsulas de las Poké Balls.;Objeto clave;0;no;no;no;no;
+sea_incense;Incienso Marino;Sea Incense;Tiene un curioso aroma que potencia los movimientos de tipo Agua. Debe llevarlo un Pokémon.;Rival;2000;no;no;no;no;
+secret_key;Llave Secreta;Secret Key;Una llave de alta tecnología que debe usarse en un lugar concreto. Emite una señal eléctrica que abre una puerta.;Objeto clave;0;no;no;no;no;
+secret_potion;Poción Secreta;Secret Potion;Fantástico medicamento vendido en la farmacia de Ciudad Orquídea. Cura completamente a un Pokémon.;Objeto clave;0;no;no;no;no;
+shadow_mail;Carta Sombra;Shadow Mail;;Rival;50;no;no;no;no;
+shalour_sable;Galleta Yantra;Shalour Sable;Especialidad de Ciudad Yantra. Cura los problemas de estado de un Pokémon.;Rival;350;no;no;no;no;
+sharpedonite;Sharpedonita;Sharpedonite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Sharpedo en combate.;Rival;0;no;no;no;no;
+sharp_beak;Pico Afilado;Sharp Beak;Pico largo y afilado que aumenta la potencia de los movimientos de tipo Volador. Debe llevarlo un Pokémon.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=flying]: potencia x1,2
+shed_shell;Muda Concha;Shed Shell;En combate, esta concha desechada sirve para que un Pokémon se cambie por otro que no esté combatiendo.;Rival;4000;no;no;no;no;
+shell_bell;Cascabel Concha;Shell Bell;Debe llevarla un Pokémon. Cada vez que este inflige daño, recupera algunos PS.;Equipable;4000;no;no;no;no;al_hacer_daño: curar_del_daño 12,5%
+shiny_charm;Amuleto Iris;Shiny Charm;Misterioso amuleto brillante que aumenta la probabilidad de encontrar Pokémon variocolor.;Objeto clave;0;no;no;no;no;
+shiny_stone;Piedra Día;Shiny Stone;Una piedra peculiar que hace evolucionar a algunos Pokémon. Tiene un brillo espectacular.;Evolución;3000;no;si;si;no;
+shoal_salt;Sal Cardumen;Shoal Salt;Una sal muy fina que se encuentra en la Cueva Cardumen.;Rival;20;no;no;no;no;
+shoal_shell;Concha Cardumen;Shoal Shell;Concha que se encuentra en la Cueva Cardumen.;Rival;20;no;no;no;no;
+shock_drive;FulgoROM;Shock Drive;Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Eléctrico.;Rival;0;no;no;no;no;
+shuca_berry;Baya Acardo;Shuca Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Tierra de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=ground & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+silk_scarf;Pañuelo de Seda;Silk Scarf;La delicadeza del pañuelo fortalece los movimientos de tipo Normal. Debe llevarlo un Pokémon.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=normal]: potencia x1,2
+silph_scope;Visor Silph;Silph Scope;Dispositivo que permite ver cosas que, de otra forma, resultarían invisibles para el ojo humano. Fabricado por Silph S. A.;Objeto clave;0;no;no;no;no;
+silver_leaf;Hoja de Plata;Silver Leaf;Extraña hoja de color plateado. Se desconoce de qué árbol procede.;Rival;1000;no;no;no;no;
+silver_powder;Polvo Plata;Silver Powder;Polvo de brillo argénteo que fortalece los ataques de tipo Bicho. Debe llevarlo un Pokémon.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=bug]: potencia x1,2
+silver_wing;Ala Plateada;Silver Wing;Misteriosa ala de un brillante color plateado.;Objeto clave;0;no;no;no;no;
+sitrus_berry;Baya Zidra;Sitrus Berry;Los Pokémon pueden llevarla o usarla para restaurar algunos PS.;Baya;80;no;no;no;si;"poca_vida@50: curar 25%; se_gasta"
+skull_fossil;Fósil Cráneo;Skull Fossil;Fósil de un Pokémon prehistórico terrestre. Parece ser parte de una cabeza.;Rival;7000;no;no;no;no;
+sky_plate;Tabla Cielo;Sky Plate;Tabla de piedra que potencia los movimientos de tipo Volador. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+slowbronite;Slowbronita;Slowbronite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Slowbro en combate.;Rival;0;no;no;no;no;
+smoke_ball;Bola de Humo;Smoke Ball;Debe llevarla un Pokémon. Permite huir siempre de combates contra Pokémon salvajes.;Rival;4000;no;no;no;no;
+smooth_rock;Roca Suave;Smooth Rock;Prolonga la duración del movimiento Tormenta de Arena que use el Pokémon que la lleva.;Equipable;4000;no;no;no;no;siempre: clima sandstorm +3
+snowball;Bola de Nieve;Snowball;Objeto de un solo uso. Aumenta el Ataque del Pokémon que lo lleva si este recibe un ataque de tipo Hielo.;Rival;4000;no;no;no;no;
+snow_mail;Carta Nieve;Snow Mail;;Rival;50;no;no;no;no;
+soda_pop;Refresco;Soda Pop;Chispeante bebida gaseosa que restaura 50 PS de un Pokémon.;Rival;300;no;no;no;no;
+soft_sand;Arena Fina;Soft Sand;Debe llevarla un Pokémon. La suavidad de la arena fortalece los movimientos de tipo Tierra.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=ground]: potencia x1,2
+soothe_bell;Cascabel Alivio;Soothe Bell;Una campana con un tañido calmante que reconforta al Pokémon que la lleva y lo vuelve más amistoso.;Rival;4000;no;no;no;no;
+soot_sack;Saco Hollín;Soot Sack;Bolsa en la que recoger la ceniza de volcán sedimentada en el suelo.;Objeto clave;0;no;no;no;no;
+soul_dew;Rocío Bondad;Soul Dew;Un orbe fantástico que debe llevar Latios o Latias. Potencia los movimientos de tipo Psíquico y Dragón.;Rival;0;no;no;no;no;
+space_mail;Car. Sideral;Space Mail;;Rival;50;no;no;no;no;
+spell_tag;Hechizo;Spell Tag;Misterioso y siniestro objeto que potencia los movimientos de tipo Fantasma. Debe llevarlo un Pokémon.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=ghost]: potencia x1,2
+spelon_berry;Baya Wikano;Spelon Berry;Se utiliza en la producción de Pokécubos que potencian la dulzura. Es una baya muy rara en otras regiones.;Rival;20;no;no;no;si;
+splash_plate;Tabla Linfa;Splash Plate;Tabla de piedra que potencia los movimientos de tipo Agua. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+spooky_plate;Tabla Terror;Spooky Plate;Tabla de piedra que potencia los movimientos de tipo Fantasma. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+sport_ball;Competi Ball;Sport Ball;Poké Ball que se utiliza en el Concurso de Captura de Bichos.;Bola;300;si;no;si;no;al_usar: captura x1
+sprayduck;Psydugadera;Sprayduck;Una regadera con forma de Psyduck. Ayuda a que las bayas plantadas en suelo fértil crezcan mejor.;Objeto clave;0;no;no;no;no;
+sprinklotad;Lotadgadera;Sprinklotad;Una regadera con forma de Lotad. Ayuda a que las bayas plantadas en suelo blandito crezcan mejor.;Objeto clave;0;no;no;no;no;
+squirt_bottle;Regadera;Squirt Bottle;Objeto que contiene agua y se usa para regar las bayas del Plantabayas.;Objeto clave;0;no;no;no;no;
+ss_ticket;Ticket Barco;S.S. Ticket;Es el billete válido para embarcar en el Ferry S.S. Aqua. Tiene dibujado un barco.;Objeto clave;0;no;no;no;no;
+stable_mulch;Abono Fijador;Stable Mulch;Un fertilizante usado para el cultivo de bayas. Parece que no se asienta bien en el suelo de Hoenn, por lo que no tiene efecto en esta región.;Rival;200;no;no;no;no;
+stardust;Polvo Estelar;Stardust;Bonita arena roja de tacto sedoso que no alcanza un buen precio en las tiendas.;Rival;3000;no;no;no;no;
+starf_berry;Baya Arabol;Starf Berry;Si la lleva un Pokémon, aumenta mucho una característica en un momento de apuro.;Rival;80;no;no;no;si;
+star_piece;Trozo Estrella;Star Piece;Fragmento de una bonita gema roja que puede venderse muy caro en las tiendas.;Rival;12000;no;no;no;no;
+steelixite;Steelixita;Steelixite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Steelix en combate.;Rival;0;no;no;no;no;
+steel_gem;Gema Acero;Steel Gem;Joya de un solo uso que potencia los movimientos de tipo Acero. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+steel_mail;Carta Acero;Steel Mail;;Rival;50;no;no;no;no;
+stick;Puerro;Leek;Es un puerro muy largo que debe llevar Farfetch’d. Aumenta mucho la probabilidad de que logre un golpe crítico.;Rival;1000;no;no;no;no;
+sticky_barb;Toxiestrella;Sticky Barb;Daña en cada turno al Pokémon que la lleva. Puede adherirse al Pokémon que alcance con su ataque al portador.;Rival;4000;no;no;no;no;
+stone_plate;Tabla Pétrea;Stone Plate;Tabla de piedra que potencia los movimientos de tipo Roca. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+storage_key;Llave Almacén;Storage Key;Llave del siniestro almacén del Equipo Galaxia que está ubicado en las afueras de Ciudad Rocavelo.;Objeto clave;0;no;no;no;no;
+strange_souvenir;Estatuilla Rara;Strange Souvenir;Ornamento que representa a un Pokémon misterioso venerado desde la antigüedad en Alola como espíritu protector.;Rival;3000;no;no;no;no;
+suite_key;Llave Suite;Suite Key;Llave de una suite del hotel de lujo junto al lago. Por algún motivo, se pierde a menudo.;Objeto clave;0;no;no;no;no;
+sun_stone;Piedra Solar;Sun Stone;Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es roja como el núcleo del sol.;Evolución;3000;no;si;si;no;
+super_potion;Superpoción;Super Potion;Medicina en espray que cura heridas y restaura 60 PS de un Pokémon.;Medicina;700;si;si;si;no;al_usar: curar 60
+super_repel;Superrepelente;Super Repel;Evita encuentros con Pokémon salvajes débiles durante más tiempo que un Repelente normal.;Rival;700;no;no;no;no;
+super_rod;Supercaña;Super Rod;Increíble caña de pescar de alta tecnología. Pesca Pokémon salvajes en todo tipo de aguas.;Objeto clave;0;no;no;no;no;
+surprise_mulch;Abono Sorpresa;Surprise Mulch;Un fertilizante usado para el cultivo de bayas. Parece que no se asienta bien en el suelo de Hoenn, por lo que no tiene efecto en esta región.;Rival;200;no;no;no;no;
+swampertite;Swampertita;Swampertite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Swampert en combate.;Rival;0;no;no;no;no;
+sweet_heart;Corazón Dulce;Sweet Heart;Chocolatina de sabor dulce. Restaura 20 PS de un Pokémon.;Rival;3000;no;no;no;no;
+swift_wing;Pluma Ímpetu;Swift Feather;Pluma que aumenta un poco la Velocidad de base de un Pokémon.;Amistad / vitaminas;300;no;si;si;no;
+tamato_berry;Baya Tamate;Tamato Berry;Al usarla con un Pokémon, se gana su amistad, pero también reduce su Velocidad de base.;Rival;80;no;no;no;si;
+tanga_berry;Baya Yecana;Tanga Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Bicho de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=bug & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+tea;Té;Tea;Un aromático té de sabor ligeramente amargo que resulta ideal para aplacar la sed.;Objeto clave;0;no;no;no;no;
+teachy_tv;Poké Tele;Teachy TV;;Objeto clave;0;no;no;no;no;
+thanks_mail;Carta Gracias;Thanks Mail;Carta de agradecimiento. Haz que la entregue un Pokémon.;Rival;50;no;no;no;no;
+thick_club;Hueso Grueso;Thick Club;Un extraño tipo de hueso que potencia los ataques físicos de Cubone y Marowak cuando lo llevan.;Rival;1000;no;no;no;no;
+thunder_stone;Piedra Trueno;Thunder Stone;Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Tiene grabado un rayo.;Evolución;3000;no;si;si;no;
+tidal_bell;Cascabel Oleaje;Tidal Bell;Campana de aspecto antiguo que emite un sonido que calma el espíritu.;Objeto clave;0;no;no;no;no;
+timer_ball;Turno Ball;Timer Ball;Una Poké Ball algo distinta que va mejorando su rendimiento con cada turno de combate.;Bola;1000;si;no;si;no;al_usar: captura x1
+tiny_mushroom;Miniseta;Tiny Mushroom;Una pequeña seta que es poco común y bastante popular entre determinados grupos de gourmets.;Rival;500;no;no;no;no;
+tmv_pass;Abono del TMV;TMV Pass;Pase que permite realizar viajes ilimitados en el TMV que une las ciudades de Luminalia y Batik.;Objeto clave;0;no;no;no;no;
+tm_case;Estuche de MT;TM Case;;Objeto clave;0;no;no;no;no;
+town_map;Mapa;Town Map;Un mapa muy útil que puede consultarse en cualquier momento y que, además, te indica dónde te encuentras.;Objeto clave;0;no;no;no;no;
+toxic_orb;Toxisfera;Toxic Orb;Extraña esfera que envenena gravemente al Pokémon que la lleva en combate.;Equipable;4000;no;no;no;no;fin_de_turno: poner_estado toxic
+toxic_plate;Tabla Tóxica;Toxic Plate;Tabla de piedra que potencia los movimientos de tipo Veneno. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+tri_pass;Tri-Ticket;Tri-Pass;;Objeto clave;0;no;no;no;no;
+tropic_mail;Car. Tropic.;Tropic Mail;;Rival;50;no;no;no;no;
+tunnel_mail;Carta Mina;Tunnel Mail;;Rival;50;no;no;no;no;
+twisted_spoon;Cuchara Torcida;Twisted Spoon;Cuchara imbuida de energía telequinética que potencia los movimientos de tipo Psíquico. Debe llevarla un Pokémon.;Equipable;1000;no;no;no;no;siempre [si mov.tipo=psychic]: potencia x1,2
+tyranitarite;Tyranitarita;Tyranitarite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Tyranitar en combate.;Rival;0;no;no;no;no;
+ultra_ball;Ultra Ball;Ultra Ball;Poké Ball de rendimiento superior. Tiene un índice de éxito mayor al de la Super Ball.;Bola;800;si;no;si;no;al_usar: captura x2
+unown_report;Bloc Unown;Unown Report;Bloc que almacena la información de los Unown capturados hasta el momento.;Objeto clave;0;no;no;no;no;
+up_grade;Mejora;Upgrade;Peculiar dispositivo fabricado en Silph S. A. que contiene todo tipo de datos.;Equipable;2000;no;no;no;no;
+venusaurite;Venusaurita;Venusaurite;Una de las misteriosas Megapiedras. Permite megaevolucionar a Venusaur en combate.;Rival;0;no;no;no;no;
+vs_recorder;Cámara Lucha;Vs. Recorder;Un fantástico dispositivo que graba combates entre amigos o celebrados en algún recinto especial.;Objeto clave;0;no;no;no;no;
+vs_seeker;Buscapelea;Vs. Seeker;Dispositivo que busca Entrenadores listos para el combate. La batería se carga mientras caminas.;Objeto clave;0;no;no;no;no;
+wacan_berry;Baya Gualot;Wacan Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Eléctrico de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=electric & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+wailmer_pail;Wailmegadera;Wailmer Pail;Regadera con forma de Wailmer. Muy útil para que crezcan las bayas plantadas.;Objeto clave;0;no;no;no;no;
+water_gem;Gema Agua;Water Gem;Joya de un solo uso que potencia los movimientos de tipo Agua. Debe llevarla un Pokémon.;Rival;200;no;no;no;no;
+water_stone;Piedra Agua;Water Stone;Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es de color azul.;Evolución;3000;no;si;si;no;
+watmel_berry;Baya Sambia;Watmel Berry;Se utiliza en la producción de Pokécubos que potencian el ingenio. Es una baya muy rara en otras regiones.;Rival;20;no;no;no;si;
+wave_incense;Incienso Acua;Wave Incense;Tiene un curioso aroma que potencia los movimientos de tipo Agua. Debe llevarlo un Pokémon.;Rival;2000;no;no;no;no;
+wave_mail;Carta Ola;Wave Mail;;Rival;50;no;no;no;no;
+weakness_policy;Seguro Debilidad;Weakness Policy;Aumenta mucho el Ataque y el Ataque Especial cuando el Pokémon que lo lleva recibe un ataque frente al cual es débil.;Equipable;1000;no;no;no;no;"tras_golpe [si propio.eficacia>1]: etapa attack +2; se_gasta | tras_golpe [si propio.eficacia>1]: etapa sp_attack +2; se_gasta"
+wepear_berry;Baya Peragu;Wepear Berry;Se utiliza en la producción de Pokécubos que potencian el ingenio. Es de color verde y sabor amargo.;Rival;20;no;no;no;si;
+whipped_dream;Dulce de Nata;Whipped Dream;Un dulce a base de suave y esponjosa nata montada. A algunos Pokémon les encanta.;Equipable;2000;no;no;no;no;
+white_apricorn;Bonguri Blanco;White Apricorn;Bonguri de color blanco que no desprende aroma alguno.;Objeto clave;200;no;no;no;no;
+white_flute;Flauta Blanca;White Flute;Una flauta de cristal blanco cuyas notas atraen a Pokémon salvajes más débiles al lugar en el que se usa.;Rival;20;no;no;no;no;
+white_herb;Hierba Blanca;White Herb;Restaura cualquier característica reducida en combate. Solo se puede usar una vez. Debe llevarla un Pokémon.;Rival;4000;no;no;no;no;
+wide_lens;Lupa;Wide Lens;Debe llevarla un Pokémon. Aumenta ligeramente la precisión de los movimientos.;Equipable;4000;no;no;no;no;siempre: precision x1,1
+wiki_berry;Baya Wiki;Wiki Berry;Los Pokémon pueden llevarla o usarla para restaurar algunos PS. Su sabor puede causar confusión.;Baya;80;no;no;no;si;"poca_vida@50: curar 12,5%; se_gasta"
+wise_glasses;Gafas Especiales;Wise Glasses;Potencian ligeramente los ataques especiales. Debe llevarlas un Pokémon.;Equipable;4000;no;no;no;no;siempre [si mov.categoria=especial]: potencia x1,1
+wood_mail;Carta Madera;Wood Mail;;Rival;50;no;no;no;no;
+works_key;Llave Central;Works Key;Abre la puerta de la Central del Valle Eólico. La llevaba un Recluta del Equipo Galaxia.;Objeto clave;0;no;no;no;no;
+xtransceiver;Videomisor;Xtransceiver;Comunicador de alta tecnología con cámara que permite hablar a cuatro personas a la vez.;Objeto clave;0;no;no;no;no;
+x_accuracy;Precisión X;X Accuracy;Aumenta mucho la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.;Objeto de combate;1000;si;no;si;no;al_usar: etapa accuracy +2
+x_accuracy_2;Precisión X 2;X Accuracy 2;Aumenta ligeramente la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_accuracy_3;Precisión X 3;X Accuracy 3;Aumenta bastante la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_accuracy_6;Precisión X 6;X Accuracy 6;Aumenta mucho la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_attack;Ataque X;X Attack;Aumenta mucho el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.;Objeto de combate;1000;si;no;si;no;al_usar: etapa attack +2
+x_attack_2;Ataque X 2;X Attack 2;Aumenta ligeramente el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_attack_3;Ataque X 3;X Attack 3;Aumenta bastante el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_attack_6;Ataque X 6;X Attack 6;Aumenta mucho el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_defense;Defensa X;X Defense;Aumenta mucho la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.;Objeto de combate;2000;si;no;si;no;al_usar: etapa defense +2
+x_defense_2;Defensa X 2;X Defense 2;Aumenta ligeramente la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_defense_3;Defensa X 3;X Defense 3;Aumenta bastante la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_defense_6;Defensa X 6;X Defense 6;Aumenta mucho la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_speed;Velocidad X;X Speed;Aumenta mucho la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.;Objeto de combate;1000;si;no;si;no;al_usar: etapa speed +2
+x_speed_2;Velocidad X 2;X Speed 2;Aumenta ligeramente la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_speed_3;Velocidad X 3;X Speed 3;Aumenta bastante la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_speed_6;Velocidad X 6;X Speed 6;Aumenta mucho la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_sp_atk;At. Especial X;X Sp. Atk;Aumenta mucho el Ataque Especial en combate. Al cambiar de Pokémon, el efecto desaparece.;Objeto de combate;1000;si;no;si;no;al_usar: etapa sp_attack +2
+x_sp_atk_2;At. Esp. X 2;X Sp. Atk 2;Aumenta ligeramente el Ataque Especial en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_sp_atk_3;At. Esp. X 3;X Sp. Atk 3;Aumenta bastante el Ataque Especial en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_sp_atk_6;At. Esp. X 6;X Sp. Atk 6;Aumenta mucho el Ataque Especial en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_sp_def;Def. Especial X;X Sp. Def;Aumenta mucho la Defensa Especial en combate. Al cambiar de Pokémon, el efecto desaparece.;Objeto de combate;2000;si;no;si;no;al_usar: etapa sp_defense +2
+x_sp_def_2;Def. Esp. X 2;X Sp. Def 2;Aumenta ligeramente la Defensa Especial en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_sp_def_3;Def. Esp. X 3;X Sp. Def 3;Aumenta bastante la Defensa Especial en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+x_sp_def_6;Def. Esp. X 6;X Sp. Def 6;Aumenta mucho la Defensa Especial en combate. Al cambiar de Pokémon, el efecto desaparece.;Rival;0;no;no;no;no;
+yache_berry;Baya Rimoya;Yache Berry;Si la lleva un Pokémon, debilita un ataque supereficaz de tipo Hielo de un enemigo.;Baya;80;no;no;no;si;"antes_de_golpe [si mov.tipo=ice & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+yellow_apricorn;Bonguri Amarillo;Yellow Apricorn;Bonguri de color amarillo y aroma refrescante.;Objeto clave;200;no;no;no;no;
+yellow_flute;Flauta Amarilla;Yellow Flute;Una flauta de cristal amarillo cuyas notas sacan a un Pokémon de la confusión.;Rival;20;no;no;no;no;
+yellow_scarf;Pañuelo Amarillo;Yellow Scarf;Debe llevarlo un Pokémon. Aumenta la dureza en los concursos.;Rival;100;no;no;no;no;
+yellow_shard;Parte Amarilla;Yellow Shard;Un pequeño fragmento amarillo. Parece formar parte de algún tipo de herramienta antigua.;Rival;1000;no;no;no;no;
+zap_plate;Tabla Trueno;Zap Plate;Tabla de piedra que potencia los movimientos de tipo Eléctrico. Debe llevarla un Pokémon.;Rival;1000;no;no;no;no;
+zinc;Zinc;Zinc;Nutritiva bebida que aumenta la Defensa Especial de base de un Pokémon.;Amistad / vitaminas;10000;no;si;si;no;
+zoom_lens;Telescopio;Zoom Lens;Debe llevarlo un Pokémon. Si se mueve después del enemigo, aumenta la Precisión del Pokémon.;Rival;4000;no;no;no;no;

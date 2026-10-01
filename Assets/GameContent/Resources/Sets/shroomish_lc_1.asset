@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Tank
   speciesId: shroomish
   setFormat: lc
-  setScore: 32
+  setScore: 31
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: adamant, brave
-  evs: 36 PS / 196 Atq / 116 Def / 36 AtqE / 116 DefE
+  natureOptions: impish
+  evs: 36 PS / 36 Atq / 196 Def / 116 DefE / 76 Vel
   ivs: 
-  moveSlots: spore / synthesis / bullet_seed, giga_drain / drain_punch
+  moveSlots: spore / bullet_seed / drain_punch / synthesis

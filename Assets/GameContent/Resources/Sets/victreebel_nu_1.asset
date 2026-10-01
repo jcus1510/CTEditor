@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: victreebel_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: victreebel_nu_1
-  displayName: Chlorophyll Sweeper
+  displayName: Defensive
   speciesId: victreebel
   setFormat: nu
-  setScore: 59
-  itemOptions: life_orb
+  setScore: 26
+  itemOptions: rocky_helmet
   abilityOptions: 
-  natureOptions: modest
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  natureOptions: timid
+  evs: 252 PS / 172 Def / 84 Vel
   ivs: 
-  moveSlots: solar_beam / sludge_bomb / weather_ball / sleep_powder
+  moveSlots: leaf_storm / sludge_bomb / strength_sap / sleep_powder

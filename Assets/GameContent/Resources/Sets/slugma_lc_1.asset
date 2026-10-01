@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: slugma_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: slugma_lc_1
-  displayName: Status Spreader
+  displayName: Utility
   speciesId: slugma
   setFormat: lc
-  setScore: 78
+  setScore: 55
   itemOptions: eviolite
   abilityOptions: flame_body
   natureOptions: bold
-  evs: 196 PS / 196 Def / 116 DefE
+  evs: 36 PS / 196 Def / 116 AtqE / 116 DefE / 36 Vel
   ivs: 
-  moveSlots: recover / fire_blast, lava_plume / earth_power, acid_armor, memento
-    / will_o_wisp, toxic, memento
+  moveSlots: lava_plume / clear_smog, earth_power / memento / will_o_wisp

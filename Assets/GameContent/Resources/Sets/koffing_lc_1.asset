@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Defensive
   speciesId: koffing
   setFormat: lc
-  setScore: 55
+  setScore: 57
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: bold
   evs: 36 PS / 236 Def / 236 DefE
   ivs: 
-  moveSlots: will_o_wisp / pain_split / sludge_bomb, clear_smog / fire_blast, destiny_bond
+  moveSlots: will_o_wisp / pain_split / sludge_bomb / fire_blast, clear_smog, toxic_spikes

@@ -20,6 +20,6 @@ MonoBehaviour:
   itemOptions: choice_scarf
   abilityOptions: imposter
   natureOptions: relaxed
-  evs: 252 PS / 252 Def / 4 DefE
+  evs: 252 PS / 4 Atq / 252 Def
   ivs: 
   moveSlots: transform

@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: cherrim_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: cherrim_pu_1
-  displayName: Offensive Healing Wish
+  displayName: Z-Sunny Day
   speciesId: cherrim
   setFormat: pu
-  setScore: 15
-  itemOptions: life_orb
+  setScore: 46
+  itemOptions: firium_z
   abilityOptions: 
-  natureOptions: modest
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: healing_wish / energy_ball / hidden_power / dazzling_gleam, nature_power,
-    synthesis
+  moveSlots: sunny_day / swords_dance / petal_blizzard / return, healing_wish

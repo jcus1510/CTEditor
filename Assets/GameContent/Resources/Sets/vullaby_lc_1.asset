@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: vullaby_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: vullaby_lc_1
-  displayName: Offensive Berry Juice
+  displayName: Offensive Pivot
   speciesId: vullaby
   setFormat: lc
-  setScore: 41
+  setScore: 62
   itemOptions: berry_juice
   abilityOptions: weak_armor
-  natureOptions: adamant
-  evs: 236 Atq / 76 Def / 76 DefE / 116 Vel
+  natureOptions: adamant, jolly
+  evs: 236 Atq / 76 Def / 196 Vel
   ivs: 
-  moveSlots: brave_bird / knock_off / u_turn / defog, heat_wave, hidden_power
+  moveSlots: brave_bird / knock_off / u_turn / defog, hidden_power

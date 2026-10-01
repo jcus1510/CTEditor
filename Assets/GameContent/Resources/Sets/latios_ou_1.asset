@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: latios_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: latios_ou_1
-  displayName: Life Orb Attacker
+  displayName: Mega Mixed Attacker
   speciesId: latios
   setFormat: ou
-  setScore: 53
-  itemOptions: life_orb
+  setScore: 17
+  itemOptions: latiosite
   abilityOptions: 
-  natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
-  ivs: 29 PS
-  moveSlots: draco_meteor / psyshock / surf, hidden_power / defog, thunder_wave
+  natureOptions: naive
+  evs: 4 Atq / 252 AtqE / 252 Vel
+  ivs: 
+  moveSlots: psychic / earthquake / ice_beam, draco_meteor, thunderbolt / roost

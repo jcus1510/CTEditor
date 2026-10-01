@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: zapdos_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: zapdos_ou_1
-  displayName: Physically Defensive
+  displayName: Defensive
   speciesId: zapdos
   setFormat: ou
   setScore: 74
-  itemOptions: leftovers, rocky_helmet
-  abilityOptions: static, pressure
+  itemOptions: rocky_helmet, leftovers
+  abilityOptions: static
   natureOptions: bold
-  evs: 248 PS / 228 Def / 32 Vel
+  evs: 248 PS / 240 Def / 20 Vel
   ivs: 
-  moveSlots: volt_switch, discharge / heat_wave / roost / hidden_power, defog
+  moveSlots: volt_switch, discharge / heat_wave / hidden_power, defog / roost

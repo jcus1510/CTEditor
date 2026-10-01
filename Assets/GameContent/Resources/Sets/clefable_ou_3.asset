@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Life Orb
   speciesId: clefable
   setFormat: ou
-  setScore: 53
+  setScore: 49
   itemOptions: life_orb
   abilityOptions: magic_guard
   natureOptions: modest
-  evs: 252 PS / 172 Def / 72 AtqE / 12 Vel
+  evs: 76 PS / 252 AtqE / 180 Vel
   ivs: 
-  moveSlots: moonblast / ice_beam / soft_boiled / calm_mind, flamethrower
+  moveSlots: moonblast / thunderbolt, thunder / fire_blast / soft_boiled

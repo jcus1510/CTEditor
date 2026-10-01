@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: tyranitar_ou_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tyranitar_ou_3
-  displayName: Bulky Support
+  displayName: Choice Scarf
   speciesId: tyranitar
   setFormat: ou
-  setScore: 41
-  itemOptions: tyranitarite
+  setScore: 52
+  itemOptions: choice_scarf
   abilityOptions: 
-  natureOptions: adamant
-  evs: 248 PS / 104 Atq / 120 DefE / 36 Vel
+  natureOptions: jolly
+  evs: 8 PS / 208 Atq / 40 Def / 252 Vel
   ivs: 
-  moveSlots: stealth_rock / crunch / superpower, stone_edge / pursuit, taunt
+  moveSlots: rock_slide, stone_edge, ice_punch / pursuit / foul_play, crunch / earthquake

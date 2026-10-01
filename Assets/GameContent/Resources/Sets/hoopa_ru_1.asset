@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: hoopa_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: hoopa_ru_1
-  displayName: All-Out Attacker
+  displayName: Wallbreaker
   speciesId: hoopa
   setFormat: ru
-  setScore: 42
-  itemOptions: life_orb
+  setScore: 33
+  itemOptions: ghostium_z, electrium_z
   abilityOptions: 
-  natureOptions: modest, timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  natureOptions: timid
+  evs: 248 AtqE / 8 DefE / 252 Vel
   ivs: 
-  moveSlots: shadow_ball / hyperspace_hole, psyshock / focus_blast / knock_off
+  moveSlots: shadow_ball / focus_blast, thunderbolt / thunderbolt, substitute / nasty_plot

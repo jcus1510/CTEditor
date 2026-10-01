@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: aggron_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: aggron_ou_1
-  displayName: Tank
+  displayName: Mega Tank
   speciesId: aggron
   setFormat: ou
-  setScore: 5
+  setScore: 69
   itemOptions: aggronite
   abilityOptions: 
-  natureOptions: impish
-  evs: 252 PS / 16 Def / 240 DefE
+  natureOptions: careful
+  evs: 248 PS / 56 Atq / 200 DefE / 4 Vel
   ivs: 
-  moveSlots: stealth_rock / heavy_slam / avalanche, thunder_wave / fire_punch, earthquake,
-    rock_slide
+  moveSlots: stealth_rock / heavy_slam / earthquake / ice_punch, fire_punch, protect

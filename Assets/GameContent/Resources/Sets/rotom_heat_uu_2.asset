@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rotom_heat_uu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rotom_heat_uu_2
-  displayName: Choice Specs
+  displayName: Offensive Pivot
   speciesId: rotom_heat
   setFormat: uu
-  setScore: 43
-  itemOptions: choice_specs
+  setScore: 41
+  itemOptions: firium_z
   abilityOptions: 
   natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: volt_switch / overheat / thunderbolt, hidden_power / trick
+  moveSlots: overheat / volt_switch / toxic / pain_split

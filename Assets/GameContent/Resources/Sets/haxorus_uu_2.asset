@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: haxorus_uu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: haxorus_uu_2
-  displayName: Choice Band
+  displayName: Dragon Dance
   speciesId: haxorus
   setFormat: uu
-  setScore: 50
-  itemOptions: choice_band
+  setScore: 75
+  itemOptions: dragonium_z, lum_berry
   abilityOptions: mold_breaker
   natureOptions: jolly
   evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: outrage / earthquake / iron_tail / dragon_claw, superpower
+  moveSlots: dragon_dance / outrage / earthquake / poison_jab

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: wormadam_trash_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: wormadam_trash_pu_1
-  displayName: Utility
+  displayName: Defensive Utility
   speciesId: wormadam_trash
   setFormat: pu
-  setScore: 79
+  setScore: 54
   itemOptions: leftovers
   abilityOptions: overcoat
-  natureOptions: impish
-  evs: 252 PS / 252 Def / 4 DefE
+  natureOptions: careful
+  evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: stealth_rock / toxic / protect / iron_head
+  moveSlots: stealth_rock / toxic / protect / iron_head, gyro_ball

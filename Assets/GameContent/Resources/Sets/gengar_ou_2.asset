@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: gengar_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: gengar_ou_2
-  displayName: Life Orb Attacker
+  displayName: Choice Specs
   speciesId: gengar
   setFormat: ou
-  setScore: 39
-  itemOptions: life_orb
+  setScore: 56
+  itemOptions: choice_specs
   abilityOptions: 
   natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
-  ivs: 29 PS
-  moveSlots: shadow_ball / sludge_wave / focus_blast / taunt, substitute, icy_wind
+  evs: 4 PS / 252 AtqE / 252 Vel
+  ivs: 
+  moveSlots: shadow_ball / sludge_wave / focus_blast / trick, thunderbolt

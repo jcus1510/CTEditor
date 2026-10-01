@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: chinchou_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: chinchou_lc_1
-  displayName: Defensive
+  displayName: Bulky Pivot
   speciesId: chinchou
   setFormat: lc
-  setScore: 46
-  itemOptions: berry_juice, eviolite
+  setScore: 43
+  itemOptions: berry_juice
   abilityOptions: 
   natureOptions: bold
-  evs: 212 Def / 72 AtqE / 148 DefE / 60 Vel
-  ivs: 30 AtqE
-  moveSlots: scald / volt_switch / ice_beam / hidden_power, sucker_punch, thunder_wave
+  evs: 76 PS / 212 Def / 152 AtqE / 60 Vel
+  ivs: 
+  moveSlots: scald / volt_switch / ice_beam, hidden_power / thunder_wave, hidden_power

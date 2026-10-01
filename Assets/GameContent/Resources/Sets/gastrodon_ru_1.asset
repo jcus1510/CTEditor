@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Defensive
   speciesId: gastrodon
   setFormat: ru
-  setScore: 79
+  setScore: 81
   itemOptions: leftovers
   abilityOptions: storm_drain
-  natureOptions: bold
-  evs: 252 PS / 244 Def / 12 Vel
+  natureOptions: careful
+  evs: 56 PS / 16 Atq / 252 Def / 184 DefE
   ivs: 
-  moveSlots: scald / recover / toxic, clear_smog, ice_beam / earth_power
+  moveSlots: recover / earthquake / ice_beam / toxic, scald

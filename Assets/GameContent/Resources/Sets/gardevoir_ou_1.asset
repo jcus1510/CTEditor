@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: gardevoir_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: gardevoir_ou_1
-  displayName: Bulky Attacker
+  displayName: Offensive Support
   speciesId: gardevoir
   setFormat: ou
-  setScore: 34
+  setScore: 58
   itemOptions: gardevoirite
   abilityOptions: trace
-  natureOptions: modest
-  evs: 120 PS / 52 Def / 216 AtqE / 120 Vel
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: hyper_voice / psyshock / focus_blast / taunt, will_o_wisp
+  moveSlots: will_o_wisp, healing_wish / psyshock / hyper_voice / focus_blast

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: bunnelby
   setFormat: lc
-  setScore: 66
+  setScore: 52
   itemOptions: choice_scarf
   abilityOptions: huge_power
-  natureOptions: jolly, adamant
+  natureOptions: adamant, jolly
   evs: 228 Atq / 52 Def / 220 Vel
   ivs: 
   moveSlots: return / u_turn / earthquake / stone_edge

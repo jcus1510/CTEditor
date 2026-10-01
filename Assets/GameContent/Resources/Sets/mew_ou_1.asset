@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Lead
   speciesId: mew
   setFormat: ou
-  setScore: 38
-  itemOptions: mental_herb, colbur_berry
+  setScore: 49
+  itemOptions: mental_herb
   abilityOptions: 
-  natureOptions: jolly
-  evs: 252 PS / 4 Atq / 252 Vel
+  natureOptions: timid
+  evs: 252 PS / 40 Def / 216 Vel
   ivs: 
-  moveSlots: stealth_rock / taunt / thunder_wave, will_o_wisp / explosion
+  moveSlots: stealth_rock / taunt / ice_beam / thunder_wave

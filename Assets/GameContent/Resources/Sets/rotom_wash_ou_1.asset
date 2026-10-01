@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rotom_wash_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rotom_wash_ou_1
-  displayName: Physically Defensive Pivot
+  displayName: Defensive
   speciesId: rotom_wash
   setFormat: ou
-  setScore: 74
-  itemOptions: leftovers
+  setScore: 63
+  itemOptions: wiki_berry, waterium_z, leftovers
   abilityOptions: 
   natureOptions: bold
-  evs: 252 PS / 248 Def / 8 Vel
+  evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: hydro_pump / volt_switch / pain_split, thunder_wave / will_o_wisp, thunder_wave
+  moveSlots: volt_switch / hydro_pump / will_o_wisp, defog / defog, pain_split, will_o_wisp

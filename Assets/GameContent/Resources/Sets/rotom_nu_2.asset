@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rotom_nu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rotom_nu_2
-  displayName: Spell Tag Hex
+  displayName: Offensive Defog
   speciesId: rotom
   setFormat: nu
-  setScore: 40
-  itemOptions: spell_tag
+  setScore: 39
+  itemOptions: electrium_z, ghostium_z
   abilityOptions: 
   natureOptions: timid
-  evs: 4 PS / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: hex / will_o_wisp / volt_switch / discharge, shadow_ball
+  moveSlots: defog / thunder, thunderbolt / shadow_ball / volt_switch

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: beautifly_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: beautifly_pu_1
-  displayName: The Ugly Bar-Butter-fly
+  displayName: Quiver Dance
   speciesId: beautifly
   setFormat: pu
-  setScore: 3
-  itemOptions: bright_powder
-  abilityOptions: rivalry
-  natureOptions: jolly
-  evs: 248 PS / 8 DefE / 252 Vel
+  setScore: 33
+  itemOptions: buginium_z, life_orb
+  abilityOptions: 
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: flash / morning_sun / defog
+  moveSlots: quiver_dance / bug_buzz / hidden_power / roost

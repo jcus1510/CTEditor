@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: flabebe_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: flabebe_lc_1
-  displayName: Calm Mind Attacker
+  displayName: Calm Mind
   speciesId: flabebe
   setFormat: lc
-  setScore: 46
+  setScore: 67
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: bold, modest
+  natureOptions: bold
   evs: 164 PS / 204 Def / 108 AtqE / 20 Vel
   ivs: 
-  moveSlots: calm_mind / synthesis / moonblast / psychic, hidden_power
+  moveSlots: calm_mind / psychic / moonblast / synthesis

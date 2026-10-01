@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: regirock_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: regirock_nu_1
-  displayName: Mixed Defensive Tank
+  displayName: Mixed Defensive
   speciesId: regirock
   setFormat: nu
-  setScore: 61
+  setScore: 53
   itemOptions: leftovers
-  abilityOptions: clear_body, sturdy
+  abilityOptions: sturdy
   natureOptions: impish
-  evs: 252 PS / 184 Atq / 16 Def / 56 DefE
+  evs: 248 PS / 96 Atq / 16 Def / 148 DefE
   ivs: 
-  moveSlots: stealth_rock / stone_edge, rock_slide / thunder_wave / earthquake
+  moveSlots: stealth_rock / stone_edge, rock_slide / earthquake, hammer_arm / toxic

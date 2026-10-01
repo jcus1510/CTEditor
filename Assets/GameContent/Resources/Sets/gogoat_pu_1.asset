@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Bulk Up
   speciesId: gogoat
   setFormat: pu
-  setScore: 64
+  setScore: 62
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: careful
-  evs: 232 PS / 48 Atq / 228 DefE
+  evs: 252 PS / 4 Atq / 252 DefE
   ivs: 
-  moveSlots: bulk_up / horn_leech / earthquake / milk_drink
+  moveSlots: bulk_up / horn_leech / earthquake, rock_slide / milk_drink

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: serperior_ou_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: serperior_ou_3
-  displayName: Dual Screens
+  displayName: Choice Scarf
   speciesId: serperior
   setFormat: ou
-  setScore: 39
-  itemOptions: light_clay
+  setScore: 58
+  itemOptions: choice_scarf
   abilityOptions: contrary
   natureOptions: timid
-  evs: 252 PS / 4 Def / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: light_screen / reflect / leaf_storm / taunt
+  moveSlots: leaf_storm / glare / defog / knock_off

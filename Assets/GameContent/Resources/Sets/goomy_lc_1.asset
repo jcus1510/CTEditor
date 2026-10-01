@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: goomy_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: goomy_lc_1
-  displayName: Gooey Pivot
+  displayName: Sap Sipper
   speciesId: goomy
   setFormat: lc
-  setScore: 58
+  setScore: 32
   itemOptions: eviolite
-  abilityOptions: gooey
+  abilityOptions: 
   natureOptions: bold
-  evs: 76 PS / 236 Def / 156 DefE / 36 Vel
+  evs: 76 PS / 236 Def / 156 DefE / 40 Vel
   ivs: 
-  moveSlots: draco_meteor, dragon_pulse / sludge_wave, hidden_power / rest / sleep_talk
+  moveSlots: dragon_pulse / sludge_wave, hidden_power / rest / sleep_talk

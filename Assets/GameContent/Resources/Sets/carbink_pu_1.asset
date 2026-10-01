@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: carbink_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: carbink_pu_1
-  displayName: ROCK WITH EYES
+  displayName: Trick Room Lead
   speciesId: carbink
   setFormat: pu
-  setScore: 25
-  itemOptions: leftovers
-  abilityOptions: 
-  natureOptions: bold
-  evs: 252 PS / 252 Def / 4 AtqE
+  setScore: 43
+  itemOptions: mental_herb
+  abilityOptions: sturdy
+  natureOptions: relaxed
+  evs: 252 PS / 4 Atq / 252 Def
   ivs: 
-  moveSlots: calm_mind / moonblast / rest / sleep_talk
+  moveSlots: trick_room / stealth_rock / explosion / magic_coat

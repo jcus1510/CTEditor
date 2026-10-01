@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Defensive
   speciesId: swampert
   setFormat: uu
-  setScore: 91
+  setScore: 53
   itemOptions: leftovers
-  abilityOptions: torrent, damp
+  abilityOptions: 
   natureOptions: relaxed
-  evs: 240 PS / 16 Atq / 252 Def
+  evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: stealth_rock / earthquake / scald / roar, toxic, protect
+  moveSlots: stealth_rock / earthquake / scald / toxic, roar

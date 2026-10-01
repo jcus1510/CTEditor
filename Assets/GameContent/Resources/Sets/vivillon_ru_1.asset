@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Quiver Dance
   speciesId: vivillon
   setFormat: ru
-  setScore: 83
-  itemOptions: focus_sash
+  setScore: 59
+  itemOptions: flyinium_z, leftovers
   abilityOptions: compound_eyes
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: quiver_dance / hurricane / energy_ball / sleep_powder
+  moveSlots: quiver_dance / sleep_powder / hurricane / substitute

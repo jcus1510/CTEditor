@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rayquaza_ubers_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rayquaza_ubers_3
-  displayName: Dragon Dance
+  displayName: Choice Scarf
   speciesId: rayquaza
   setFormat: ubers
-  setScore: 42
-  itemOptions: life_orb, charti_berry
+  setScore: 26
+  itemOptions: choice_scarf
   abilityOptions: 
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
-  ivs: 29 PS
-  moveSlots: dragon_dance / dragon_ascent / extreme_speed / earthquake, waterfall
+  natureOptions: naughty, lonely
+  evs: 252 Atq / 4 AtqE / 252 Vel
+  ivs: 
+  moveSlots: dragon_ascent / v_create / draco_meteor / toxic, defog

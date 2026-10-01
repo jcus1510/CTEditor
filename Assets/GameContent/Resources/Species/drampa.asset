@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: drampa
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: drampa
+  displayName: Drampa
+  englishName: Drampa
+  types:
+  - {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
+  - {fileID: 11400000, guid: e3d9e34536e21ee44b6e4b17fc29a0be, type: 2}
+  abilityId: berserk
+  secondAbilityId: sap_sipper
+  hiddenAbilityId: cloud_nine
+  growthCurveId: medium_fast
+  baseExpYield: 170
+  evYield:
+  - statId: sp_attack
+    amount: 2
+  baseFriendship: 70
+  catchRate: 70
+  dexNumber: 780
+  category: Sosiego
+  heightM: 3
+  weightKg: 185
+  dexColor: blanco
+  dexDescription: "Si un ni\xF1o con el que ha trabado amistad sufre las burlas de
+    otro ni\xF1o, busca la casa del abus\xF3n y le prende fuego."
+  femalePercent: 50
+  legendary: 0
+  hp: 78
+  attack: 60
+  defense: 85
+  spAttack: 135
+  spDefense: 91
+  speed: 36
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 62f256f28e937834fb5f0f116b06455b, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 0c1fef756e0db804c9f02115d87a6f76, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: ca9fc4c5693cb354082fe227793967b3, type: 2}
+    level: 5
+  - move: {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+    level: 9
+  - move: {fileID: 11400000, guid: 7109fca7337deef409398e6496f772a8, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
+    level: 17
+  - move: {fileID: 11400000, guid: 6003803a959d2bc4b9157ff08a110dc1, type: 2}
+    level: 21
+  - move: {fileID: 11400000, guid: 48b74de16b8701f4995a5e4c8990d9cd, type: 2}
+    level: 25
+  - move: {fileID: 11400000, guid: bb2a46c3e900da44e86313655582e86b, type: 2}
+    level: 29
+  - move: {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+    level: 33
+  - move: {fileID: 11400000, guid: 20d6980ec688d274a8705e767b746b3c, type: 2}
+    level: 37
+  - move: {fileID: 11400000, guid: dd4884f42955eb740b13d5099da28245, type: 2}
+    level: 41
+  - move: {fileID: 11400000, guid: 501bdce004914c2448de442cf34434e5, type: 2}
+    level: 45
+  - move: {fileID: 11400000, guid: e75cd35db3e94e94b8575043174947e5, type: 2}
+    level: 49
+  - move: {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
+    level: 53
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
+  - {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
+  - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 6e47f34420dc9c74eb3d04177fb23c56, type: 2}
+  - {fileID: 11400000, guid: 304e733cbfef103478c9a958679a1156, type: 2}
+  - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+  - {fileID: 11400000, guid: 62f256f28e937834fb5f0f116b06455b, type: 2}
+  - {fileID: 11400000, guid: ff87c561ab2d5d5488da04047c6f5db4, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 67e39177df7f57a4cb582344e81b4f4b, type: 2}
+  - {fileID: 11400000, guid: a69a5906d0943504fb50821889185528, type: 2}
+  - {fileID: 11400000, guid: 0161b2b549675fc4782bfb60b341f598, type: 2}
+  - {fileID: 11400000, guid: 501bdce004914c2448de442cf34434e5, type: 2}
+  - {fileID: 11400000, guid: c3b6da97600a239478d3b1629781f284, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 4403818195e13404cbdf474c68c5ecac, type: 2}
+  - {fileID: 11400000, guid: 61fa77a4f48df8343acd2c2437d3608c, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+  - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+  - {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
+  - {fileID: 11400000, guid: fd059fe98a9650e41806d434b05e2af8, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 2a18e3c45efa21d4994f8c7d3d9050b8, type: 2}
+  - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: 034c48472772d604caaa172d102c6f0c, type: 2}
+  - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+  - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+  - {fileID: 11400000, guid: 31e908a8bab2b1a48b4863c7c49a01ae, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: db8e8ac98a8e9fb43ab03fe32938b7ff, type: 2}
+  - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
+  - {fileID: 11400000, guid: edda7cbc2f438144bbfa2e483946d695, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
+  - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
+  - {fileID: 11400000, guid: 62c6a97d50c2ff54dacf531594dd4df0, type: 2}
+  - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+  - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 2bf945e9e0da7b4469bebca1e26e325f, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 1df701a85ab4650459d0b301b7a54236, type: 2}
+  - {fileID: 11400000, guid: 48d24011cb0cf0444a20bc6228099f8f, type: 2}
+  - {fileID: 11400000, guid: 63c7218d2af498c4f9d214b944b0dc43, type: 2}
+  - {fileID: 11400000, guid: dd4884f42955eb740b13d5099da28245, type: 2}
+  - {fileID: 11400000, guid: 13ca1e152dccf554aa16ad9bfcd9ae56, type: 2}
+  - {fileID: 11400000, guid: 4ac768068ede7b54a9d4d7c62ff43dc9, type: 2}
+  - {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
+  - {fileID: 11400000, guid: e75cd35db3e94e94b8575043174947e5, type: 2}
+  - {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
+  - {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
+  - {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 05fb494dd749dd6468f999bf493bc580, type: 2}
+  - {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
+  - {fileID: 11400000, guid: e2eafcf36d9b5f3448a0147c4d23cbc2, type: 2}
+  - {fileID: 11400000, guid: a18d51fa09a21df4ca4319a635faf1fe, type: 2}
+  - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
+  eggMoves:
+  - {fileID: 11400000, guid: 459d32a437c4bde42b2fae4f2d678a42, type: 2}
+  - {fileID: 11400000, guid: 6ad04777d81cb434c83a369dfdb4aebb, type: 2}
+  - {fileID: 11400000, guid: 47014b3c95299d845803425b77307df1, type: 2}
+  - {fileID: 11400000, guid: fa03bdd225dc1ab408335b9f558a87d3, type: 2}
+  - {fileID: 11400000, guid: 0a69e4c57371a0342b73018393540f94, type: 2}
+  eggGroups:
+  - {fileID: 11400000, guid: 5e98faa9fa4c1c24dab0304f7ec184a6, type: 2}
+  - {fileID: 11400000, guid: 35d19e54946afba4590f44d30dd27355, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

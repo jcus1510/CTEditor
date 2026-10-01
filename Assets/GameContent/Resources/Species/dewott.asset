@@ -61,25 +61,25 @@ MonoBehaviour:
   - move: {fileID: 11400000, guid: 35ec7c22733f4ef42ac930adbd0e6a85, type: 2}
     level: 13
   - move: {fileID: 11400000, guid: cd236a9f7c6f45a4fa1f6daab744b50f, type: 2}
-    level: 17
+    level: 18
   - move: {fileID: 11400000, guid: 0927fa82b29ce494f9e7659bf9e2c328, type: 2}
-    level: 20
+    level: 21
   - move: {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
-    level: 25
+    level: 26
   - move: {fileID: 11400000, guid: feab26950a1f67b44ace975036f11911, type: 2}
-    level: 28
+    level: 29
   - move: {fileID: 11400000, guid: e096ddf076ed7e241ba30d62ab46123c, type: 2}
-    level: 33
+    level: 34
   - move: {fileID: 11400000, guid: d08e6cd61a2206c47b36ca5a67274a88, type: 2}
-    level: 36
+    level: 37
   - move: {fileID: 11400000, guid: 2958df99c8d8ca34ea9fdb47154368c8, type: 2}
-    level: 41
+    level: 42
   - move: {fileID: 11400000, guid: d783373f10e72584b8c07508ed727511, type: 2}
-    level: 44
+    level: 45
   - move: {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
-    level: 49
+    level: 50
   - move: {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
-    level: 52
+    level: 53
   evolutions:
   - target: {fileID: 11400000, guid: 28fd20bcaee4d044e88bdad47e3e1c75, type: 2}
     requiredLevel: 36
@@ -92,9 +92,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
   - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
   - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
-  - {fileID: 11400000, guid: bcc1d78857f00f041a19fbc5a4d58a00, type: 2}
-  - {fileID: 11400000, guid: 288b2a76bf19e5646b2fc8d79382d1dc, type: 2}
-  - {fileID: 11400000, guid: b038add5f5a6f804fac709b7d5928f8f, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
   - {fileID: 11400000, guid: 394d58ae125778d47ab4bfa87263bff9, type: 2}
@@ -107,12 +104,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
   - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
   - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
-  - {fileID: 11400000, guid: d783373f10e72584b8c07508ed727511, type: 2}
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
-  - {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
-  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
@@ -121,6 +115,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a8a239b6bce5e5f47a72807fd74d8e14, type: 2}
   - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
   - {fileID: 11400000, guid: 630606dd415e65a4ca5db9fbffaaa633, type: 2}
+  - {fileID: 11400000, guid: 2bf945e9e0da7b4469bebca1e26e325f, type: 2}
   - {fileID: 11400000, guid: cad6229bd6396e54ab2ae591cec87009, type: 2}
   tutorMoves:
   - {fileID: 11400000, guid: 2958df99c8d8ca34ea9fdb47154368c8, type: 2}

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: froslass_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: froslass_uu_1
-  displayName: Spikes Lead
+  displayName: Suicide Lead
   speciesId: froslass
   setFormat: uu
-  setScore: 81
+  setScore: 93
   itemOptions: focus_sash
   abilityOptions: cursed_body
   natureOptions: timid
-  evs: 252 PS / 4 DefE / 252 Vel
+  evs: 4 PS / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: taunt / destiny_bond / spikes / icy_wind, thunder_wave
+  moveSlots: spikes / taunt / icy_wind / destiny_bond

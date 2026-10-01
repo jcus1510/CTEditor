@@ -47,8 +47,6 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 0a7589ec211131d45b8c65c725894de0, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 0a7589ec211131d45b8c65c725894de0, type: 2}
-    level: 7
   evolutions:
   - target: {fileID: 11400000, guid: 6d080628734b6de45b781f94449b5124, type: 2}
     requiredLevel: 10

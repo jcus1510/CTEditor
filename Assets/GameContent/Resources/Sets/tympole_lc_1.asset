@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: tympole_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tympole_lc_1
-  displayName: Rain Sweeper
+  displayName: Rain Dance Sweeper
   speciesId: tympole
   setFormat: lc
   setScore: 0
   itemOptions: life_orb
   abilityOptions: 
   natureOptions: modest
-  evs: 36 PS / 116 Def / 196 AtqE / 36 DefE / 84 Vel
+  evs: 116 Def / 196 AtqE / 36 DefE / 84 Vel
   ivs: 
-  moveSlots: hydro_pump / sludge_bomb / earth_power / rain_dance
+  moveSlots: rain_dance / hydro_pump / earth_power / sludge_bomb

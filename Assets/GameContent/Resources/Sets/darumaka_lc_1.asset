@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: darumaka_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: darumaka_lc_1
-  displayName: Choice
+  displayName: Choice Scarf
   speciesId: darumaka
   setFormat: lc
-  setScore: 65
-  itemOptions: choice_scarf, choice_band
+  setScore: 68
+  itemOptions: choice_scarf
   abilityOptions: 
   natureOptions: jolly
   evs: 116 PS / 196 Atq / 196 Vel
   ivs: 
-  moveSlots: flare_blitz / u_turn / rock_slide / superpower
+  moveSlots: flare_blitz / u_turn / superpower / rock_slide, zen_headbutt

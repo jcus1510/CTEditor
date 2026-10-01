@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: tornadus_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tornadus_uu_1
-  displayName: Special Attacker
+  displayName: Life Orb
   speciesId: tornadus
   setFormat: uu
-  setScore: 23
+  setScore: 63
   itemOptions: life_orb
-  abilityOptions: 
-  natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  abilityOptions: defiant, prankster
+  natureOptions: hasty
+  evs: 4 Atq / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: hurricane / focus_blast, heat_wave / grass_knot, heat_wave / tailwind,
-    taunt
+  moveSlots: hurricane / heat_wave / superpower / grass_knot, defog, tailwind

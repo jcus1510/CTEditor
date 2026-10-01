@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: spinda_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: spinda_pu_1
-  displayName: Drowning in Sorrow... and Berry Juice
+  displayName: Trick Room
   speciesId: spinda
   setFormat: pu
-  setScore: 14
-  itemOptions: berry_juice
-  abilityOptions: tangled_feet
-  natureOptions: sassy
-  evs: 100 PS / 88 Atq / 72 Def / 168 AtqE / 12 DefE / 68 Vel
+  setScore: 56
+  itemOptions: life_orb
+  abilityOptions: contrary
+  natureOptions: brave
+  evs: 252 PS / 252 Atq / 4 Def
   ivs: 
-  moveSlots: recycle / teeter_dance / dizzy_punch, sucker_punch / sing
+  moveSlots: trick_room / superpower / return / sucker_punch

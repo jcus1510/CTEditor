@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: beedrill_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: beedrill_uu_1
-  displayName: Don't Stand So Close to Me
+  displayName: Offensive Pivot
   speciesId: beedrill
   setFormat: uu
-  setScore: 72
+  setScore: 74
   itemOptions: beedrillite
   abilityOptions: 
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: u_turn / protect / poison_jab / knock_off, drill_run
+  moveSlots: u_turn / poison_jab / drill_run / knock_off, toxic_spikes, pursuit

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: purugly_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: purugly_pu_1
-  displayName: Physical Attacker
+  displayName: All-out Attacker
   speciesId: purugly
   setFormat: pu
-  setScore: 53
+  setScore: 67
   itemOptions: life_orb, silk_scarf
   abilityOptions: defiant
   natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: fake_out / return / sucker_punch / knock_off, u_turn
+  moveSlots: fake_out / return / knock_off, sucker_punch / u_turn

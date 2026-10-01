@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: hydreigon_uu_4
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: hydreigon_uu_4
-  displayName: Choice Specs
+  displayName: Life Orb Attacker
   speciesId: hydreigon
   setFormat: uu
-  setScore: 37
-  itemOptions: choice_specs
+  setScore: 40
+  itemOptions: life_orb
   abilityOptions: 
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: draco_meteor / dark_pulse / flash_cannon / focus_blast
+  moveSlots: draco_meteor / dark_pulse / flash_cannon / roost, fire_blast

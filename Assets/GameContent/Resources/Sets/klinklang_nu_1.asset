@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Shift Gear
   speciesId: klinklang
   setFormat: nu
-  setScore: 75
-  itemOptions: leftovers
+  setScore: 70
+  itemOptions: steelium_z, electrium_z
   abilityOptions: clear_body
   natureOptions: adamant
-  evs: 80 PS / 252 Atq / 176 Vel
+  evs: 68 PS / 252 Atq / 188 Vel
   ivs: 
-  moveSlots: shift_gear / gear_grind / return / substitute, magnet_rise
+  moveSlots: shift_gear / gear_grind / wild_charge, return / magnet_rise, substitute

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: SturdyJuice
   speciesId: onix
   setFormat: lc
-  setScore: 84
+  setScore: 60
   itemOptions: berry_juice
   abilityOptions: sturdy
   natureOptions: jolly
   evs: 76 PS / 236 Atq / 196 Vel
   ivs: 
-  moveSlots: stealth_rock / earthquake / rock_blast / endure, taunt, explosion
+  moveSlots: stealth_rock / rock_blast / earthquake / endure, taunt

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: steelix_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: steelix_uu_1
-  displayName: Tank
+  displayName: Offensive Stealth Rock
   speciesId: steelix
   setFormat: uu
   setScore: 51
   itemOptions: steelixite
   abilityOptions: sturdy
-  natureOptions: impish
-  evs: 252 PS / 56 Def / 200 DefE
+  natureOptions: brave
+  evs: 252 PS / 208 Atq / 48 DefE
   ivs: 
-  moveSlots: stealth_rock / roar, toxic / heavy_slam / earthquake
+  moveSlots: stealth_rock / gyro_ball / earthquake / curse

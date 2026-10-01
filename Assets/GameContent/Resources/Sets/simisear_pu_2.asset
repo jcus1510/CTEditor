@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: simisear_pu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: simisear_pu_2
-  displayName: All-Out Attacker
+  displayName: Choice Specs
   speciesId: simisear
   setFormat: pu
-  setScore: 60
-  itemOptions: life_orb
+  setScore: 54
+  itemOptions: choice_specs
   abilityOptions: blaze
-  natureOptions: hasty
-  evs: 4 Atq / 252 AtqE / 252 Vel
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: fire_blast / grass_knot / focus_blast / knock_off, rock_slide
+  moveSlots: fire_blast / focus_blast / grass_knot / overheat, flamethrower, hidden_power

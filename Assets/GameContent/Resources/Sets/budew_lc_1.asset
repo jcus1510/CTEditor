@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: budew_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: budew_lc_1
-  displayName: Spikes
+  displayName: Entry Hazard Setter
   speciesId: budew
   setFormat: lc
-  setScore: 66
+  setScore: 79
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: bold
-  evs: 116 PS / 236 Def / 36 AtqE / 36 DefE / 76 Vel
+  evs: 36 PS / 236 Def / 40 AtqE / 196 DefE
   ivs: 
-  moveSlots: spikes / sleep_powder, giga_drain / sludge_bomb, giga_drain / synthesis
+  moveSlots: spikes / sleep_powder, sludge_bomb / synthesis, giga_drain / giga_drain,
+    sludge_bomb, hidden_power

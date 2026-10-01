@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: leafeon_pu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: leafeon_pu_2
-  displayName: Choice Scarf
+  displayName: Swords Dance
   speciesId: leafeon
   setFormat: pu
-  setScore: 45
-  itemOptions: choice_scarf
-  abilityOptions: chlorophyll, leaf_guard
+  setScore: 71
+  itemOptions: grassium_z, normalium_z
+  abilityOptions: chlorophyll
   natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: leaf_blade / knock_off / double_edge, return / x_scissor, bullet_seed
+  moveSlots: swords_dance / leaf_blade / knock_off, double_edge / synthesis, double_edge

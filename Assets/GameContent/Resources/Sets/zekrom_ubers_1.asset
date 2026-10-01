@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Hone Claws
   speciesId: zekrom
   setFormat: ubers
-  setScore: 31
-  itemOptions: shuca_berry
+  setScore: 32
+  itemOptions: dragonium_z
   abilityOptions: 
   natureOptions: adamant
-  evs: 136 PS / 252 Atq / 120 Vel
+  evs: 104 PS / 252 Atq / 152 Vel
   ivs: 
-  moveSlots: hone_claws / bolt_strike / dragon_claw / outrage, substitute
+  moveSlots: hone_claws / bolt_strike / outrage / substitute

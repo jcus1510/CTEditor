@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: dustox_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: dustox_pu_1
-  displayName: Quiver Dance
+  displayName: Quiver Dance + Iron Defense
   speciesId: dustox
   setFormat: pu
-  setScore: 55
+  setScore: 56
   itemOptions: black_sludge
   abilityOptions: 
-  natureOptions: calm
-  evs: 248 PS / 192 DefE / 68 Vel
+  natureOptions: bold
+  evs: 248 PS / 120 Def / 140 Vel
   ivs: 
   moveSlots: quiver_dance / iron_defense / bug_buzz / roost

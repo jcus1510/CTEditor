@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: exeggcute_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: exeggcute_lc_1
-  displayName: Harvest Abuser
+  displayName: Harvest
   speciesId: exeggcute
   setFormat: lc
-  setScore: 39
+  setScore: 36
   itemOptions: oran_berry
   abilityOptions: harvest
-  natureOptions: modest
-  evs: 196 Def / 196 AtqE / 80 DefE / 36 Vel
+  natureOptions: timid
+  evs: 36 PS / 200 Def / 40 AtqE / 80 DefE / 120 Vel
   ivs: 
-  moveSlots: substitute / sleep_powder, leech_seed / giga_drain / psychic, hidden_power,
-    protect
+  moveSlots: substitute / sleep_powder, leech_seed / giga_drain / psychic, hidden_power

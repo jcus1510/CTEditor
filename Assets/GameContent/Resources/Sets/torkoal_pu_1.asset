@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: torkoal_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: torkoal_pu_1
-  displayName: Offensive Rapid Spin
+  displayName: Rapid Spin
   speciesId: torkoal
   setFormat: pu
-  setScore: 33
-  itemOptions: life_orb, white_herb
+  setScore: 57
+  itemOptions: leftovers
   abilityOptions: shell_armor
-  natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  natureOptions: bold
+  evs: 248 PS / 232 Def / 28 DefE
   ivs: 
-  moveSlots: shell_smash / fire_blast / earth_power / rapid_spin
+  moveSlots: stealth_rock / rapid_spin / lava_plume / yawn, toxic

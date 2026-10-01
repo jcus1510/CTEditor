@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: shaymin_sky_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: shaymin_sky_ubers_1
-  displayName: Life Orb
+  displayName: Special Attacker
   speciesId: shaymin_sky
   setFormat: ubers
-  setScore: 39
-  itemOptions: life_orb
+  setScore: 45
+  itemOptions: life_orb, metronome
   abilityOptions: 
   natureOptions: timid
   evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: air_slash / seed_flare / hidden_power / healing_wish
+  moveSlots: seed_flare / air_slash / earth_power, hidden_power / healing_wish

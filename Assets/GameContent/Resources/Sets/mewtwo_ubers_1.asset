@@ -16,11 +16,10 @@ MonoBehaviour:
   displayName: Special Attacker
   speciesId: mewtwo
   setFormat: ubers
-  setScore: 53
-  itemOptions: mewtwonite_y, life_orb
-  abilityOptions: 
+  setScore: 27
+  itemOptions: mewtwonite_y
+  abilityOptions: unnerve
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 40 Def / 216 AtqE / 252 Vel
   ivs: 
-  moveSlots: psystrike / fire_blast / ice_beam, shadow_ball, electro_ball / calm_mind,
-    taunt, focus_blast
+  moveSlots: psystrike / ice_beam / fire_blast / calm_mind, focus_blast, taunt

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: manaphy_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: manaphy_ou_2
-  displayName: Tail Glow + Rain Dance
+  displayName: Three Attacks
   speciesId: manaphy
   setFormat: ou
-  setScore: 54
-  itemOptions: leftovers
+  setScore: 61
+  itemOptions: waterium_z
   abilityOptions: 
-  natureOptions: modest
-  evs: 240 PS / 160 AtqE / 108 Vel
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: tail_glow / rain_dance / surf / ice_beam, psychic
+  moveSlots: tail_glow / surf / ice_beam / psychic

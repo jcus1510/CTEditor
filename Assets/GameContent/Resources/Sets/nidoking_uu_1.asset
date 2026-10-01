@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Wallbreaker
   speciesId: nidoking
   setFormat: uu
-  setScore: 80
+  setScore: 73
   itemOptions: life_orb
   abilityOptions: sheer_force
-  natureOptions: naive, timid, modest
+  natureOptions: timid
   evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: sludge_wave / earth_power / ice_beam / superpower, stealth_rock
+  moveSlots: sludge_wave / earth_power / ice_beam / substitute, taunt

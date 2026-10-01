@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: diancie_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: diancie_uu_1
-  displayName: Offensive Trick Room
+  displayName: Support
   speciesId: diancie
   setFormat: uu
-  setScore: 37
-  itemOptions: life_orb
+  setScore: 59
+  itemOptions: leftovers
   abilityOptions: 
-  natureOptions: quiet, brave
-  evs: 252 Atq / 4 Def / 252 AtqE
+  natureOptions: calm, sassy
+  evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: trick_room / explosion, stealth_rock / moonblast / diamond_storm
+  moveSlots: stealth_rock, diamond_storm / heal_bell, diamond_storm / toxic / moonblast

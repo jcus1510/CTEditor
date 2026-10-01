@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Sticky Web
   speciesId: leavanny
   setFormat: pu
-  setScore: 55
+  setScore: 69
   itemOptions: focus_sash
-  abilityOptions: chlorophyll
-  natureOptions: naive
-  evs: 4 Atq / 252 AtqE / 252 Vel
+  abilityOptions: 
+  natureOptions: jolly
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: sticky_web / leaf_storm / knock_off / electroweb, magic_coat
+  moveSlots: sticky_web / leaf_blade / x_scissor / knock_off, magic_coat

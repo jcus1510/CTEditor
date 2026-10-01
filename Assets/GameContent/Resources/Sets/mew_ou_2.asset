@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: mew_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: mew_ou_2
-  displayName: Stallbreaker
+  displayName: Defensive
   speciesId: mew
   setFormat: ou
-  setScore: 29
+  setScore: 18
   itemOptions: leftovers
   abilityOptions: 
-  natureOptions: careful, calm
-  evs: 252 PS / 224 DefE / 32 Vel
+  natureOptions: jolly
+  evs: 240 PS / 52 Def / 216 Vel
   ivs: 
-  moveSlots: taunt / soft_boiled / will_o_wisp / knock_off, psychic
+  moveSlots: earthquake / will_o_wisp / soft_boiled / stealth_rock, defog

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: jumpluff_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: jumpluff_pu_1
-  displayName: Offensive Utility
+  displayName: Swords Dance
   speciesId: jumpluff
   setFormat: pu
-  setScore: 52
+  setScore: 36
   itemOptions: 
   abilityOptions: infiltrator
   natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: acrobatics / sleep_powder / seed_bomb, u_turn, toxic / u_turn, memento
+  moveSlots: swords_dance / strength_sap / sleep_powder / acrobatics

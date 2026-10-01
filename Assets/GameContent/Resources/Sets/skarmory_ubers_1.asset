@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Physically Defensive
   speciesId: skarmory
   setFormat: ubers
-  setScore: 77
-  itemOptions: leftovers, shed_shell
+  setScore: 80
+  itemOptions: shed_shell, rocky_helmet, leftovers
   abilityOptions: sturdy
   natureOptions: bold
   evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: roost / spikes / toxic / whirlwind
+  moveSlots: roost / whirlwind / spikes, defog / toxic

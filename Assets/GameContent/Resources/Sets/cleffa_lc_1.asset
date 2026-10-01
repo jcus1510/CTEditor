@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Counter
   speciesId: cleffa
   setFormat: lc
-  setScore: 38
+  setScore: 37
   itemOptions: focus_sash
   abilityOptions: magic_guard
   natureOptions: hasty

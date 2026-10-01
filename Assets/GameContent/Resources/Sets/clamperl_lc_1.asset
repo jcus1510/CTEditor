@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Shell Smash
   speciesId: clamperl
   setFormat: lc
-  setScore: 62
+  setScore: 80
   itemOptions: deep_sea_tooth
-  abilityOptions: 
+  abilityOptions: rattled
   natureOptions: timid
-  evs: 248 AtqE / 76 DefE / 184 Vel
+  evs: 76 PS / 248 AtqE / 184 Vel
   ivs: 
-  moveSlots: shell_smash / surf / ice_beam / substitute, hidden_power
+  moveSlots: shell_smash / surf / ice_beam / hidden_power, substitute

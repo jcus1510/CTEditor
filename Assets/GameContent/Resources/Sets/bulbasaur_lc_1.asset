@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: bulbasaur_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: bulbasaur_lc_1
-  displayName: Life Orb Sun Sweeper
+  displayName: Z-Celebrate Sweeper
   speciesId: bulbasaur
   setFormat: lc
-  setScore: 61
-  itemOptions: life_orb
+  setScore: 59
+  itemOptions: normalium_z
   abilityOptions: chlorophyll
   natureOptions: modest
-  evs: 240 AtqE / 240 Vel
+  evs: 44 Def / 160 AtqE / 240 Vel
   ivs: 
-  moveSlots: sludge_bomb / solar_beam, giga_drain / sleep_powder / hidden_power
+  moveSlots: celebrate / sludge_bomb / giga_drain / hidden_power, sleep_powder

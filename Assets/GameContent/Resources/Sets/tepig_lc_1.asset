@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Life Orb
   speciesId: tepig
   setFormat: lc
-  setScore: 43
+  setScore: 52
   itemOptions: life_orb
-  abilityOptions: 
+  abilityOptions: thick_fat
   natureOptions: jolly
   evs: 252 Atq / 236 Vel
   ivs: 
-  moveSlots: flare_blitz / head_smash / sucker_punch / wild_charge, superpower
+  moveSlots: flare_blitz / head_smash, wild_charge / sucker_punch / superpower, flame_charge

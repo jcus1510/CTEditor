@@ -16,10 +16,11 @@ MonoBehaviour:
   displayName: Defensive
   speciesId: seismitoad
   setFormat: ou
-  setScore: 64
+  setScore: 84
   itemOptions: leftovers
   abilityOptions: water_absorb
-  natureOptions: bold
-  evs: 252 PS / 244 Def / 12 Vel
+  natureOptions: careful
+  evs: 244 PS / 36 Def / 216 DefE / 12 Vel
   ivs: 
-  moveSlots: stealth_rock / scald / earthquake / knock_off, toxic
+  moveSlots: stealth_rock / scald / earthquake, knock_off / refresh, toxic, rest,
+    knock_off

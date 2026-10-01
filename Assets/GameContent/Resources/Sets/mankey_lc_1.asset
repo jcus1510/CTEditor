@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: mankey
   setFormat: lc
-  setScore: 70
+  setScore: 64
   itemOptions: choice_scarf
   abilityOptions: defiant
   natureOptions: jolly, adamant
   evs: 36 PS / 196 Atq / 76 Def / 196 Vel
   ivs: 
-  moveSlots: close_combat / u_turn / earthquake / gunk_shot, ice_punch
+  moveSlots: close_combat / gunk_shot / u_turn / earthquake

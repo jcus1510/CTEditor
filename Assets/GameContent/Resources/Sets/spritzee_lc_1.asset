@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Defensive
   speciesId: spritzee
   setFormat: lc
-  setScore: 89
+  setScore: 84
   itemOptions: eviolite
   abilityOptions: aroma_veil
   natureOptions: bold
   evs: 212 PS / 196 Def / 12 AtqE / 76 DefE / 12 Vel
   ivs: 
-  moveSlots: wish / protect / calm_mind, aromatherapy / moonblast
+  moveSlots: wish / protect / moonblast / covet, psychic, calm_mind

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: tornadus_uu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tornadus_uu_2
-  displayName: Bulk Up
+  displayName: Offensive Support
   speciesId: tornadus
   setFormat: uu
-  setScore: 23
-  itemOptions: chesto_berry
+  setScore: 41
+  itemOptions: flyinium_z
   abilityOptions: 
-  natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  natureOptions: hasty, timid
+  evs: 4 Atq / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: bulk_up / acrobatics / rest / knock_off, sleep_talk
+  moveSlots: hurricane / u_turn / superpower, heat_wave / defog, tailwind

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sigilyph_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sigilyph_ru_1
-  displayName: Life Orb Attacker
+  displayName: Offensive Defog
   speciesId: sigilyph
   setFormat: ru
-  setScore: 46
+  setScore: 57
   itemOptions: life_orb
   abilityOptions: magic_guard
   natureOptions: timid
-  evs: 4 PS / 252 AtqE / 252 Vel
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: psyshock, psychic / heat_wave / roost / energy_ball, dazzling_gleam
+  moveSlots: psychic / heat_wave / roost, air_slash / defog

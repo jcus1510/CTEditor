@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: jirachi_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: jirachi_ou_1
-  displayName: Stealth Rock
+  displayName: Choice Scarf
   speciesId: jirachi
   setFormat: ou
-  setScore: 40
-  itemOptions: leftovers
+  setScore: 41
+  itemOptions: choice_scarf
   abilityOptions: 
-  natureOptions: careful
-  evs: 252 PS / 224 DefE / 32 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: iron_head / stealth_rock / u_turn / healing_wish
+  moveSlots: iron_head / u_turn / healing_wish / fire_punch

@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: sceptile_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sceptile_uu_1
-  displayName: All-Out Offensive
+  displayName: All-out Attacker
   speciesId: sceptile
   setFormat: uu
-  setScore: 12
+  setScore: 8
   itemOptions: sceptilite
   abilityOptions: 
-  natureOptions: timid, naive
+  natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: giga_drain, energy_ball / leaf_storm / dragon_pulse / focus_blast, hidden_power
+  moveSlots: leaf_storm / dragon_pulse / earthquake, giga_drain, focus_blast / hidden_power,
+    focus_blast

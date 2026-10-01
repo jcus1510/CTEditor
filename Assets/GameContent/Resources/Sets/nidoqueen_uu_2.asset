@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: nidoqueen_uu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: nidoqueen_uu_2
-  displayName: Defensive Entry Hazard Setter
+  displayName: Defensive
   speciesId: nidoqueen
   setFormat: uu
-  setScore: 62
+  setScore: 71
   itemOptions: black_sludge
   abilityOptions: sheer_force
   natureOptions: bold
-  evs: 248 PS / 240 Def / 20 AtqE
+  evs: 252 PS / 108 Def / 72 DefE / 76 Vel
   ivs: 
-  moveSlots: stealth_rock, toxic_spikes / roar / ice_beam, flamethrower / earth_power,
-    flamethrower
+  moveSlots: toxic_spikes, stealth_rock / sludge_wave / earth_power / ice_beam

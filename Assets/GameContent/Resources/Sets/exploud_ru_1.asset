@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Specs
   speciesId: exploud
   setFormat: ru
-  setScore: 79
+  setScore: 81
   itemOptions: choice_specs
   abilityOptions: scrappy
-  natureOptions: modest
+  natureOptions: timid
   evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: boomburst / fire_blast / focus_blast / surf
+  moveSlots: boomburst / focus_blast / fire_blast / surf

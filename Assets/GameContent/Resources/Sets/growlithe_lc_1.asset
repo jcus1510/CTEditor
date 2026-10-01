@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: growlithe_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: growlithe_lc_1
-  displayName: Physically Defensive
+  displayName: Bulky Pivot
   speciesId: growlithe
   setFormat: lc
-  setScore: 59
+  setScore: 38
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: impish
-  evs: 236 PS / 156 Def / 116 DefE
+  evs: 76 PS / 36 Atq / 156 Def / 196 DefE / 36 Vel
   ivs: 
-  moveSlots: will_o_wisp / flare_blitz / morning_sun / wild_charge
+  moveSlots: will_o_wisp / morning_sun / flare_blitz / wild_charge, hidden_power

@@ -20,6 +20,6 @@ MonoBehaviour:
   itemOptions: leftovers
   abilityOptions: regenerator
   natureOptions: careful
-  evs: 252 PS / 4 Def / 252 DefE
+  evs: 248 PS / 8 Def / 252 DefE
   ivs: 
-  moveSlots: wish / protect / knock_off, double_edge / encore, thunder_wave, heal_bell
+  moveSlots: wish / protect / knock_off / heal_bell, toxic, encore

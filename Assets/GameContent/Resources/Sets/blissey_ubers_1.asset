@@ -16,11 +16,10 @@ MonoBehaviour:
   displayName: Support
   speciesId: blissey
   setFormat: ubers
-  setScore: 53
-  itemOptions: shed_shell, leftovers
+  setScore: 60
+  itemOptions: shed_shell
   abilityOptions: 
   natureOptions: calm
-  evs: 252 Def / 252 DefE / 4 Vel
+  evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: toxic / seismic_toss, ice_beam, snatch / wish, soft_boiled / protect,
-    heal_bell
+  moveSlots: soft_boiled / heal_bell / confide / toxic, stealth_rock, wish

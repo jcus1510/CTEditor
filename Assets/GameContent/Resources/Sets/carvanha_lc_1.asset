@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Physical Life Orb
   speciesId: carvanha
   setFormat: lc
-  setScore: 81
+  setScore: 85
   itemOptions: life_orb
   abilityOptions: speed_boost
   natureOptions: adamant
   evs: 196 Atq / 36 Def / 36 DefE / 236 Vel
   ivs: 9 PS
-  moveSlots: waterfall / crunch / zen_headbutt, aqua_jet / protect
+  moveSlots: waterfall / crunch / psychic_fangs / protect, aqua_jet

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: servine_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: servine_pu_1
-  displayName: Substitute + Synthesis
+  displayName: Fast Utility
   speciesId: servine
   setFormat: pu
-  setScore: 60
+  setScore: 57
   itemOptions: eviolite
   abilityOptions: contrary
   natureOptions: timid
-  evs: 252 PS / 4 DefE / 252 Vel
+  evs: 252 PS / 4 AtqE / 252 Vel
   ivs: 
-  moveSlots: leaf_storm / hidden_power / substitute / synthesis
+  moveSlots: leaf_storm / defog / synthesis / hidden_power

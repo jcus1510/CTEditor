@@ -16,10 +16,11 @@ MonoBehaviour:
   displayName: Defensive
   speciesId: slowbro
   setFormat: ou
-  setScore: 68
-  itemOptions: leftovers, rocky_helmet, colbur_berry
+  setScore: 70
+  itemOptions: leftovers, psychium_z, icium_z
   abilityOptions: regenerator
   natureOptions: bold
-  evs: 252 PS / 176 Def / 80 DefE
+  evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: scald / slack_off / ice_beam, psychic / thunder_wave, toxic
+  moveSlots: scald / slack_off / ice_beam, counter / future_sight, thunder_wave,
+    toxic, protect, flamethrower

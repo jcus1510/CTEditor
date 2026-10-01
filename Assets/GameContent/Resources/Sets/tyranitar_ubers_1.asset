@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: tyranitar_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tyranitar_ubers_1
-  displayName: Support
+  displayName: Choice Band
   speciesId: tyranitar
   setFormat: ubers
-  setScore: 58
-  itemOptions: shuca_berry, leftovers
+  setScore: 26
+  itemOptions: choice_band
   abilityOptions: 
-  natureOptions: careful
-  evs: 248 PS / 8 Def / 252 DefE
+  natureOptions: adamant
+  evs: 228 Atq / 28 Def / 252 Vel
   ivs: 
-  moveSlots: stealth_rock / pursuit, low_kick / rock_slide, stone_edge / thunder_wave,
-    roar
+  moveSlots: stone_edge / crunch / pursuit / superpower, ice_punch

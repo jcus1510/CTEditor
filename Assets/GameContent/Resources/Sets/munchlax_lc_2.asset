@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: RestTalk
   speciesId: munchlax
   setFormat: lc
-  setScore: 60
+  setScore: 42
   itemOptions: eviolite
   abilityOptions: thick_fat
   natureOptions: impish
   evs: 236 Atq / 36 Def / 236 DefE
   ivs: 
-  moveSlots: body_slam, return / fire_punch, curse, whirlwind / rest / sleep_talk
+  moveSlots: return, body_slam / curse, earthquake, whirlwind / rest / sleep_talk

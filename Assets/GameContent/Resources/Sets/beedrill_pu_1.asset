@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Suicide Lead
   speciesId: beedrill
   setFormat: pu
-  setScore: 12
+  setScore: 20
   itemOptions: focus_sash
   abilityOptions: 
   natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: toxic_spikes / endeavor / x_scissor / tailwind
+  moveSlots: toxic_spikes / endeavor / tailwind / x_scissor

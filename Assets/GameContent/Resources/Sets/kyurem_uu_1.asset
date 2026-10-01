@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: kyurem_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: kyurem_uu_1
-  displayName: Choice Specs
+  displayName: SubRoost
   speciesId: kyurem
   setFormat: uu
-  setScore: 52
-  itemOptions: choice_specs
+  setScore: 67
+  itemOptions: leftovers
   abilityOptions: 
-  natureOptions: timid, modest
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  natureOptions: timid
+  evs: 56 PS / 200 AtqE / 252 Vel
   ivs: 
-  moveSlots: draco_meteor / ice_beam / earth_power / focus_blast, dragon_pulse, flash_cannon
+  moveSlots: ice_beam / substitute / earth_power / roost

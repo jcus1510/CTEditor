@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: weezing_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: weezing_nu_1
-  displayName: Physically Defensive
+  displayName: Defensive
   speciesId: weezing
   setFormat: nu
-  setScore: 57
-  itemOptions: black_sludge
+  setScore: 62
+  itemOptions: rocky_helmet, black_sludge
   abilityOptions: 
   natureOptions: bold
-  evs: 252 PS / 148 Def / 108 Vel
+  evs: 252 PS / 152 Def / 88 DefE / 16 Vel
   ivs: 
-  moveSlots: will_o_wisp / sludge_bomb / taunt / toxic_spikes, pain_split
+  moveSlots: sludge_bomb / will_o_wisp / pain_split / toxic_spikes, taunt

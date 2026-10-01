@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: excadrill_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: excadrill_ou_1
-  displayName: Fast Utility
+  displayName: Sand Rush
   speciesId: excadrill
   setFormat: ou
-  setScore: 77
-  itemOptions: leftovers
-  abilityOptions: mold_breaker
-  natureOptions: jolly
-  evs: 32 PS / 56 Def / 168 DefE / 252 Vel
+  setScore: 54
+  itemOptions: steelium_z, leftovers, rockium_z
+  abilityOptions: 
+  natureOptions: adamant, jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: toxic, swords_dance, stealth_rock / rapid_spin / earthquake / iron_head
+  moveSlots: swords_dance / iron_head / earthquake / rapid_spin, rock_slide

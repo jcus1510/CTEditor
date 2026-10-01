@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: mamoswine_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: mamoswine_uu_1
-  displayName: Life Orb Attacker
+  displayName: Life Orb
   speciesId: mamoswine
   setFormat: uu
-  setScore: 62
+  setScore: 64
   itemOptions: life_orb
   abilityOptions: thick_fat
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: adamant, jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: ice_shard / earthquake / icicle_crash / knock_off, superpower, stealth_rock
+  moveSlots: ice_shard / earthquake / icicle_crash / knock_off

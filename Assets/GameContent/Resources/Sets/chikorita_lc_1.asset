@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: chikorita_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: chikorita_lc_1
-  displayName: Aromatherapy
+  displayName: Defensive
   speciesId: chikorita
   setFormat: lc
-  setScore: 60
+  setScore: 28
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: bold
-  evs: 156 PS / 160 Def / 48 AtqE / 80 DefE
+  evs: 156 PS / 156 Def / 48 AtqE / 76 DefE
   ivs: 
-  moveSlots: aromatherapy / synthesis / giga_drain / hidden_power
+  moveSlots: giga_drain / hidden_power / synthesis / aromatherapy

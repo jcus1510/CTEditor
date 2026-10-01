@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sigilyph_ru_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sigilyph_ru_2
-  displayName: Flame Orb
+  displayName: Calm Mind
   speciesId: sigilyph
   setFormat: ru
-  setScore: 51
-  itemOptions: flame_orb
+  setScore: 54
+  itemOptions: life_orb
   abilityOptions: magic_guard
   natureOptions: timid
-  evs: 252 PS / 4 AtqE / 252 Vel
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: calm_mind / psycho_shift / roost / air_slash
+  moveSlots: psychic / heat_wave / roost / calm_mind

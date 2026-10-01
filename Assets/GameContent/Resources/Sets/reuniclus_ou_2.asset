@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: reuniclus_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: reuniclus_ou_2
-  displayName: Utility
+  displayName: Double Dance
   speciesId: reuniclus
   setFormat: ou
-  setScore: 50
-  itemOptions: rocky_helmet
+  setScore: 64
+  itemOptions: leftovers, rocky_helmet
   abilityOptions: magic_guard
   natureOptions: bold
-  evs: 252 PS / 252 Def / 4 DefE
+  evs: 252 PS / 212 Def / 44 Vel
   ivs: 
-  moveSlots: knock_off / recover / psychic / thunder_wave
+  moveSlots: calm_mind / acid_armor / psyshock / recover

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: volcarona_ou_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: volcarona_ou_3
-  displayName: Sub Swarm
+  displayName: Bulky Quiver Dance
   speciesId: volcarona
   setFormat: ou
-  setScore: 39
-  itemOptions: leftovers
-  abilityOptions: swarm
-  natureOptions: timid
-  evs: 88 PS / 236 AtqE / 184 Vel
+  setScore: 48
+  itemOptions: leftovers, buginium_z, firium_z, psychium_z
+  abilityOptions: 
+  natureOptions: bold
+  evs: 248 PS / 196 Def / 64 Vel
   ivs: 
-  moveSlots: substitute / quiver_dance / flamethrower / bug_buzz
+  moveSlots: quiver_dance / bug_buzz, hidden_power, psychic / flamethrower / roost

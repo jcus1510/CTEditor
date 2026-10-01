@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: ferrothorn_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: ferrothorn_ou_1
-  displayName: Utility
+  displayName: Entry Hazard Setter
   speciesId: ferrothorn
   setFormat: ou
-  setScore: 66
-  itemOptions: leftovers, chople_berry
+  setScore: 56
+  itemOptions: leftovers, figy_berry
   abilityOptions: 
-  natureOptions: relaxed
-  evs: 252 PS / 88 Def / 168 DefE
+  natureOptions: sassy, relaxed
+  evs: 252 PS / 16 Def / 240 DefE
   ivs: 
-  moveSlots: spikes, stealth_rock / leech_seed / gyro_ball, power_whip / power_whip,
-    protect, thunder_wave
+  moveSlots: power_whip / spikes, stealth_rock / gyro_ball, stealth_rock, protect,
+    thunder_wave, knock_off / leech_seed, thunder_wave, toxic

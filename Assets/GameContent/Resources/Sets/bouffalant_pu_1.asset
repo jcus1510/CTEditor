@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: bouffalant_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: bouffalant_pu_1
-  displayName: Substitute
+  displayName: Substitute + Swords Dance
   speciesId: bouffalant
   setFormat: pu
-  setScore: 61
+  setScore: 44
   itemOptions: leftovers
   abilityOptions: sap_sipper
-  natureOptions: adamant
-  evs: 248 PS / 136 Atq / 124 Vel
+  natureOptions: careful
+  evs: 252 PS / 156 DefE / 100 Vel
   ivs: 
   moveSlots: substitute / swords_dance / return / earthquake

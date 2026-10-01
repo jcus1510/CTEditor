@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Specially Defensive
   speciesId: diancie
   setFormat: ru
-  setScore: 69
+  setScore: 60
   itemOptions: leftovers
   abilityOptions: 
-  natureOptions: sassy
-  evs: 252 PS / 36 AtqE / 220 DefE
+  natureOptions: calm
+  evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: stealth_rock / moonblast / diamond_storm / heal_bell, toxic
+  moveSlots: stealth_rock / moonblast / earth_power / toxic, heal_bell

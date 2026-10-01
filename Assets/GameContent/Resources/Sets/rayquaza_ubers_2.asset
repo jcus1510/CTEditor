@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rayquaza_ubers_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rayquaza_ubers_2
-  displayName: Choice Band
+  displayName: Mixed Wallbreaker
   speciesId: rayquaza
   setFormat: ubers
-  setScore: 55
-  itemOptions: choice_band
+  setScore: 42
+  itemOptions: life_orb
   abilityOptions: 
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: naive
+  evs: 252 Atq / 4 AtqE / 252 Vel
   ivs: 
-  moveSlots: dragon_ascent / earthquake / v_create / extreme_speed
+  moveSlots: draco_meteor / dragon_ascent / v_create, earthquake / extreme_speed

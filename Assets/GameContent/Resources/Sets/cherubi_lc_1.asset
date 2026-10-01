@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: cherubi_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: cherubi_lc_1
-  displayName: Chlorophyll Sweeper
+  displayName: Sun "Sweeper"
   speciesId: cherubi
   setFormat: lc
-  setScore: 66
-  itemOptions: life_orb
+  setScore: 0
+  itemOptions: eviolite
   abilityOptions: 
   natureOptions: modest
   evs: 76 Def / 180 AtqE / 236 Vel
-  ivs: 9 PS
-  moveSlots: solar_beam / weather_ball / dazzling_gleam / healing_wish
+  ivs: 
+  moveSlots: solar_beam / weather_ball / sunny_day / healing_wish

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Life Orb
   speciesId: abra
   setFormat: lc
-  setScore: 45
+  setScore: 59
   itemOptions: life_orb
   abilityOptions: magic_guard
   natureOptions: timid
   evs: 240 AtqE / 200 Vel
-  ivs: 1 Atq / 30 Def / 30 AtqE / 30 DefE / 30 Vel
-  moveSlots: psychic / dazzling_gleam / hidden_power / substitute
+  ivs: 
+  moveSlots: psychic / dazzling_gleam / hidden_power, energy_ball / substitute

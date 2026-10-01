@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: horsea_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: horsea_lc_1
-  displayName: Swift Swim
+  displayName: Rain Sweeper
   speciesId: horsea
   setFormat: lc
-  setScore: 27
+  setScore: 37
   itemOptions: life_orb
   abilityOptions: 
-  natureOptions: modest
-  evs: 36 Def / 200 AtqE / 196 Vel
+  natureOptions: modest, timid
+  evs: 116 PS / 196 AtqE / 196 Vel
   ivs: 
-  moveSlots: hydro_pump / ice_beam / substitute, rain_dance / hidden_power
+  moveSlots: hydro_pump / ice_beam / rain_dance / hidden_power

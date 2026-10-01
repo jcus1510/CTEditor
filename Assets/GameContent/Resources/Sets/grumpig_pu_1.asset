@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: grumpig_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: grumpig_pu_1
-  displayName: Substitute + Calm Mind
+  displayName: 3 Attacks
   speciesId: grumpig
   setFormat: pu
-  setScore: 48
-  itemOptions: leftovers
+  setScore: 34
+  itemOptions: colbur_berry, fightinium_z
   abilityOptions: 
   natureOptions: timid
   evs: 80 PS / 252 AtqE / 176 Vel
   ivs: 
-  moveSlots: substitute / calm_mind / psyshock, psychic / focus_blast
+  moveSlots: psychic / focus_blast / shadow_ball / calm_mind, taunt, thunder_wave

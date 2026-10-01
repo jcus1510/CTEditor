@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: snorlax_uu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: snorlax_uu_2
-  displayName: Choice Band
+  displayName: RestTalk
   speciesId: snorlax
   setFormat: uu
-  setScore: 17
-  itemOptions: choice_band
+  setScore: 51
+  itemOptions: leftovers
   abilityOptions: thick_fat
-  natureOptions: adamant
-  evs: 4 PS / 252 Atq / 252 DefE
+  natureOptions: careful
+  evs: 252 PS / 152 Def / 104 DefE
   ivs: 
-  moveSlots: return / facade / earthquake / fire_punch, pursuit
+  moveSlots: curse / return, body_slam / rest / sleep_talk, fire_punch, earthquake

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Assault Vest
   speciesId: tangrowth
   setFormat: ou
-  setScore: 57
+  setScore: 92
   itemOptions: assault_vest
   abilityOptions: regenerator
   natureOptions: sassy
-  evs: 252 PS / 4 Def / 252 DefE
+  evs: 252 PS / 12 Def / 244 DefE
   ivs: 
-  moveSlots: leaf_storm, giga_drain / knock_off / earthquake / hidden_power
+  moveSlots: giga_drain / knock_off / hidden_power, sludge_bomb / earthquake, sludge_bomb

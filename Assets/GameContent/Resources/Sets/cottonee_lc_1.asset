@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: cottonee_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: cottonee_lc_1
-  displayName: Utility
+  displayName: Offensive Prankster
   speciesId: cottonee
   setFormat: lc
-  setScore: 59
-  itemOptions: eviolite
+  setScore: 51
+  itemOptions: darkinium_z, eviolite
   abilityOptions: 
   natureOptions: timid
-  evs: 36 PS / 120 Def / 64 AtqE / 40 DefE / 232 Vel
+  evs: 36 PS / 40 Def / 144 AtqE / 40 DefE / 232 Vel
   ivs: 
-  moveSlots: encore / knock_off / dazzling_gleam, giga_drain / hidden_power, memento
+  moveSlots: giga_drain, hidden_power / dazzling_gleam, hidden_power / encore, knock_off
+    / memento, knock_off, tailwind

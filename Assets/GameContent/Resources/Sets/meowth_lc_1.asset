@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Mixed Attacker
   speciesId: meowth
   setFormat: lc
-  setScore: 74
+  setScore: 67
   itemOptions: life_orb
   abilityOptions: technician
   natureOptions: hasty

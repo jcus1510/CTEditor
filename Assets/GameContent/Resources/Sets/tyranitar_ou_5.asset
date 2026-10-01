@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: tyranitar_ou_5
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tyranitar_ou_5
-  displayName: Choice Scarf
+  displayName: Choice Band
   speciesId: tyranitar
   setFormat: ou
-  setScore: 48
-  itemOptions: choice_scarf
+  setScore: 57
+  itemOptions: choice_band
   abilityOptions: 
-  natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: adamant
+  evs: 40 PS / 252 Atq / 48 DefE / 168 Vel
   ivs: 
-  moveSlots: stone_edge / pursuit / superpower / crunch
+  moveSlots: stone_edge / crunch / pursuit / earthquake, superpower, ice_punch, fire_punch

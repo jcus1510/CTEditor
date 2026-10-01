@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Nasty Plot
   speciesId: celebi
   setFormat: uu
-  setScore: 51
-  itemOptions: leftovers, life_orb
+  setScore: 39
+  itemOptions: psychium_z, grassium_z
   abilityOptions: 
   natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: nasty_plot / giga_drain / psychic / dazzling_gleam, recover
+  moveSlots: nasty_plot / psychic / giga_drain, leaf_storm / dazzling_gleam, recover

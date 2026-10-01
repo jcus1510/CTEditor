@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: drapion_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: drapion_ru_1
-  displayName: Swords Dance
+  displayName: Choice Band
   speciesId: drapion
   setFormat: ru
-  setScore: 48
-  itemOptions: lum_berry, shuca_berry
-  abilityOptions: battle_armor, sniper
+  setScore: 51
+  itemOptions: choice_band
+  abilityOptions: sniper
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: swords_dance / knock_off / poison_jab / aqua_tail, earthquake
+  moveSlots: knock_off / poison_jab / pursuit / earthquake, aqua_tail

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: CroCune
   speciesId: suicune
   setFormat: uu
-  setScore: 71
+  setScore: 78
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: bold
-  evs: 252 PS / 252 Def / 4 DefE
+  evs: 252 PS / 160 Def / 96 Vel
   ivs: 
-  moveSlots: calm_mind / scald / rest / sleep_talk
+  moveSlots: calm_mind / rest / sleep_talk / scald

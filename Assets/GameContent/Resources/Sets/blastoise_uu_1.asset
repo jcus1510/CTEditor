@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: blastoise_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: blastoise_uu_1
-  displayName: Offensive Spinner
+  displayName: Offensive Wallbreaker
   speciesId: blastoise
   setFormat: uu
-  setScore: 36
+  setScore: 26
   itemOptions: blastoisinite
   abilityOptions: rain_dish
   natureOptions: modest
-  evs: 184 PS / 252 AtqE / 72 Vel
+  evs: 104 PS / 252 AtqE / 152 Vel
   ivs: 
-  moveSlots: rapid_spin / scald, hydro_pump / dark_pulse / ice_beam, dragon_pulse,
-    aura_sphere
+  moveSlots: water_pulse, hydro_pump / dark_pulse / aura_sphere, ice_beam / ice_beam,
+    rapid_spin

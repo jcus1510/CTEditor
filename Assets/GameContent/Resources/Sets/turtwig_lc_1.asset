@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: turtwig_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: turtwig_lc_1
-  displayName: Stealth Rock
+  displayName: Defensive Stealth Rock
   speciesId: turtwig
   setFormat: lc
-  setScore: 39
+  setScore: 43
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: careful
-  evs: 244 Def / 236 DefE / 28 Vel
+  evs: 76 PS / 52 Atq / 244 Def / 76 DefE / 28 Vel
   ivs: 
-  moveSlots: stealth_rock / synthesis / bullet_seed / superpower, crunch
+  moveSlots: stealth_rock / synthesis / bullet_seed / superpower

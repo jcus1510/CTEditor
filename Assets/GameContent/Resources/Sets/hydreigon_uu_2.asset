@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: hydreigon_uu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: hydreigon_uu_2
-  displayName: Choice Scarf
+  displayName: Defog
   speciesId: hydreigon
   setFormat: uu
-  setScore: 47
-  itemOptions: choice_scarf
+  setScore: 37
+  itemOptions: dragonium_z, dread_plate
   abilityOptions: 
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: draco_meteor / dark_pulse / fire_blast, dragon_pulse / u_turn
+  moveSlots: defog / dark_pulse / roost / draco_meteor

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Band
   speciesId: entei
   setFormat: uu
-  setScore: 65
+  setScore: 70
   itemOptions: choice_band
   abilityOptions: 
   natureOptions: adamant
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: sacred_fire / flare_blitz / extreme_speed / stone_edge
+  moveSlots: sacred_fire / extreme_speed / stone_edge / flare_blitz

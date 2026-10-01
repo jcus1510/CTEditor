@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Dual Screens
   speciesId: meowstic
   setFormat: pu
-  setScore: 43
+  setScore: 46
   itemOptions: light_clay
   abilityOptions: prankster
   natureOptions: bold
   evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: reflect / light_screen / yawn, thunder_wave / thunder_wave, psychic
+  moveSlots: reflect / light_screen / yawn, thunder_wave / psychic

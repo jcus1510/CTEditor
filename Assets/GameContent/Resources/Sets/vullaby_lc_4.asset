@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: vullaby_lc_4
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: vullaby_lc_4
-  displayName: Offensive Eviolite
+  displayName: Nasty Plot
   speciesId: vullaby
   setFormat: lc
-  setScore: 66
-  itemOptions: eviolite
+  setScore: 37
+  itemOptions: berry_juice, eviolite
   abilityOptions: weak_armor
-  natureOptions: adamant
-  evs: 236 Atq / 76 Def / 196 Vel
+  natureOptions: modest
+  evs: 116 PS / 240 AtqE / 116 Vel
   ivs: 
-  moveSlots: brave_bird / knock_off / u_turn, heat_wave / roost
+  moveSlots: nasty_plot / air_slash / heat_wave / hidden_power, dark_pulse, protect

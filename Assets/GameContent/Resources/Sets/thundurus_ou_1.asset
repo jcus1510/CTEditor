@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: thundurus_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: thundurus_ou_1
-  displayName: Offensive Pivot
+  displayName: Nasty Plot
   speciesId: thundurus
   setFormat: ou
-  setScore: 59
-  itemOptions: leftovers, rocky_helmet
+  setScore: 57
+  itemOptions: fightinium_z
   abilityOptions: 
   natureOptions: timid
   evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: thunder_wave / hidden_power / focus_blast / volt_switch, thunderbolt
+  moveSlots: nasty_plot / thunderbolt / hidden_power / focus_blast

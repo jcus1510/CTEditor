@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: jirachi_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: jirachi_ou_2
-  displayName: Choice Scarf
+  displayName: Wish
   speciesId: jirachi
   setFormat: ou
-  setScore: 47
-  itemOptions: choice_scarf
+  setScore: 53
+  itemOptions: leftovers
   abilityOptions: 
-  natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: careful
+  evs: 248 PS / 188 DefE / 72 Vel
   ivs: 
-  moveSlots: iron_head / u_turn / fire_punch, heart_stamp / healing_wish
+  moveSlots: wish / protect / iron_head / u_turn, body_slam

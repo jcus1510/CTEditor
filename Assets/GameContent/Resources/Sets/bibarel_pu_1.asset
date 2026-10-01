@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: bibarel_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: bibarel_pu_1
-  displayName: Curse
+  displayName: Swords Dance
   speciesId: bibarel
   setFormat: pu
-  setScore: 40
-  itemOptions: chesto_berry
+  setScore: 58
+  itemOptions: life_orb
   abilityOptions: 
-  natureOptions: careful
-  evs: 252 PS / 4 Atq / 252 DefE
+  natureOptions: adamant
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: curse / waterfall / quick_attack / rest
+  moveSlots: swords_dance / return / waterfall / aqua_jet

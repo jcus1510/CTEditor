@@ -16,11 +16,10 @@ MonoBehaviour:
   displayName: Swords Dance
   speciesId: toxicroak
   setFormat: uu
-  setScore: 66
-  itemOptions: life_orb
+  setScore: 58
+  itemOptions: life_orb, poisonium_z, darkinium_z
   abilityOptions: dry_skin
-  natureOptions: jolly, adamant
+  natureOptions: jolly
   evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: swords_dance / gunk_shot / drain_punch, low_kick / sucker_punch, ice_punch,
-    knock_off
+  moveSlots: swords_dance / drain_punch / gunk_shot / sucker_punch, ice_punch

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: blastoise_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: blastoise_ru_1
-  displayName: Bulky Spinner
+  displayName: Offensive Spinner
   speciesId: blastoise
   setFormat: ru
-  setScore: 63
-  itemOptions: leftovers
-  abilityOptions: 
-  natureOptions: bold
-  evs: 252 PS / 252 Def / 4 DefE
+  setScore: 72
+  itemOptions: blastoisinite
+  abilityOptions: rain_dish
+  natureOptions: timid
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: scald / rapid_spin / toxic / refresh, protect, foresight
+  moveSlots: rapid_spin / dark_pulse / aura_sphere / ice_beam

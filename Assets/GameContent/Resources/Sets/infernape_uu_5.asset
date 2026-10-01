@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: infernape_uu_5
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: infernape_uu_5
-  displayName: Choice Scarf
+  displayName: Swords Dance
   speciesId: infernape
   setFormat: uu
-  setScore: 35
-  itemOptions: choice_scarf
-  abilityOptions: 
+  setScore: 31
+  itemOptions: fightinium_z, electrium_z
+  abilityOptions: iron_fist
   natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: flare_blitz / close_combat / u_turn / stone_edge, earthquake
+  moveSlots: swords_dance / close_combat / flare_blitz / mach_punch, thunder_punch

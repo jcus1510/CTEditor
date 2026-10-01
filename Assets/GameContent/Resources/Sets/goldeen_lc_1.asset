@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: goldeen_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: goldeen_lc_1
-  displayName: Physical Attacker
+  displayName: Supersonic Skystrike
   speciesId: goldeen
   setFormat: lc
-  setScore: 74
-  itemOptions: life_orb, eviolite
+  setScore: 61
+  itemOptions: flyinium_z
   abilityOptions: lightning_rod
   natureOptions: jolly
   evs: 220 Atq / 36 DefE / 252 Vel
-  ivs: 9 PS
-  moveSlots: waterfall / drill_run / knock_off / poison_jab, megahorn
+  ivs: 
+  moveSlots: bounce / waterfall / drill_run / knock_off

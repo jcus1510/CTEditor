@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: serperior_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: serperior_ou_2
-  displayName: Stallbreaker
+  displayName: Substitute
   speciesId: serperior
   setFormat: ou
-  setScore: 60
-  itemOptions: rocky_helmet, lum_berry
+  setScore: 69
+  itemOptions: leftovers
   abilityOptions: contrary
   natureOptions: timid
-  evs: 208 PS / 48 AtqE / 252 Vel
+  evs: 56 PS / 200 AtqE / 252 Vel
   ivs: 
-  moveSlots: leaf_storm / hidden_power / taunt, knock_off / glare
+  moveSlots: leaf_storm / hidden_power, glare / substitute / leech_seed, glare

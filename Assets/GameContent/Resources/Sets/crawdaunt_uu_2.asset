@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Band
   speciesId: crawdaunt
   setFormat: uu
-  setScore: 59
+  setScore: 68
   itemOptions: choice_band
   abilityOptions: adaptability
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 DefE / 252 Vel
+  natureOptions: adamant
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: knock_off / crabhammer / aqua_jet / aerial_ace, crunch
+  moveSlots: knock_off / crabhammer / aqua_jet / superpower, crunch

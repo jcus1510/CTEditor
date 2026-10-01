@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rampardos_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rampardos_pu_1
-  displayName: Wallbreaker
+  displayName: Choice Scarf
   speciesId: rampardos
   setFormat: pu
-  setScore: 51
-  itemOptions: life_orb
+  setScore: 56
+  itemOptions: choice_scarf
   abilityOptions: sheer_force
-  natureOptions: naive, naughty
-  evs: 252 Atq / 4 AtqE / 252 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: rock_slide / superpower / zen_headbutt / ice_beam, fire_blast
+  moveSlots: head_smash / rock_slide / superpower, pursuit / zen_headbutt

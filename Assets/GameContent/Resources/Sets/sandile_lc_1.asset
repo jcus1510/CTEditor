@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sandile_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sandile_lc_1
-  displayName: Bulky Stealth Rock
+  displayName: Choice Scarf
   speciesId: sandile
   setFormat: lc
-  setScore: 38
-  itemOptions: eviolite
-  abilityOptions: 
-  natureOptions: jolly
-  evs: 100 Atq / 156 Def / 236 Vel
+  setScore: 86
+  itemOptions: choice_scarf
+  abilityOptions: moxie
+  natureOptions: adamant, jolly
+  evs: 180 Atq / 76 Def / 236 Vel
   ivs: 
-  moveSlots: stealth_rock / taunt, pursuit / earthquake / stone_edge, pursuit, crunch
+  moveSlots: earthquake / crunch / fire_fang, stone_edge / pursuit, stone_edge

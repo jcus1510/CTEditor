@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ursaring_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: ursaring_pu_1
-  displayName: Quick Feet
+  displayName: Trick Room Wallbreaker
   speciesId: ursaring
   setFormat: pu
-  setScore: 74
-  itemOptions: toxic_orb
-  abilityOptions: quick_feet
-  natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  setScore: 56
+  itemOptions: flame_orb
+  abilityOptions: 
+  natureOptions: brave
+  evs: 252 PS / 252 Atq / 4 DefE
   ivs: 
-  moveSlots: facade / close_combat / crunch / swords_dance, protect
+  moveSlots: swords_dance / facade / crunch / close_combat

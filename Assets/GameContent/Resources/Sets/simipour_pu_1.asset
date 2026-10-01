@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: simipour_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: simipour_pu_1
-  displayName: Mixed Attacker
+  displayName: Nasty Plot
   speciesId: simipour
   setFormat: pu
-  setScore: 51
-  itemOptions: life_orb
+  setScore: 55
+  itemOptions: waterium_z
   abilityOptions: torrent
-  natureOptions: naive
-  evs: 4 Atq / 252 AtqE / 252 Vel
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: hydro_pump / ice_beam / hidden_power / superpower, knock_off
+  moveSlots: nasty_plot / hydro_pump / ice_beam / grass_knot

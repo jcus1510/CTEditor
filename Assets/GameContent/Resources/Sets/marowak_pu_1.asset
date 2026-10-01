@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: marowak_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: marowak_pu_1
-  displayName: Offensive
+  displayName: Trick Room Attacker
   speciesId: marowak
   setFormat: pu
-  setScore: 73
+  setScore: 72
   itemOptions: thick_club
-  abilityOptions: rock_head, battle_armor
-  natureOptions: adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  abilityOptions: battle_armor, rock_head
+  natureOptions: brave
+  evs: 248 PS / 252 Atq / 8 Def
   ivs: 
-  moveSlots: bonemerang / knock_off / double_edge, stone_edge / substitute, stealth_rock
+  moveSlots: earthquake, bonemerang / stone_edge / knock_off / swords_dance, double_edge

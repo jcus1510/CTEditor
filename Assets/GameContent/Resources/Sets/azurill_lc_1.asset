@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Trick Room Sweeper
   speciesId: azurill
   setFormat: lc
-  setScore: 56
+  setScore: 60
   itemOptions: life_orb
   abilityOptions: huge_power
   natureOptions: brave
-  evs: 116 PS / 196 Atq / 116 Def / 36 DefE
+  evs: 196 PS / 196 Atq / 116 Def
   ivs: 
-  moveSlots: return / knock_off / waterfall / iron_tail, double_edge
+  moveSlots: double_edge / knock_off / waterfall, iron_tail / return

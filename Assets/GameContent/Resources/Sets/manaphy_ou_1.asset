@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: manaphy_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: manaphy_ou_1
-  displayName: Tail Glow + 3 Attacks
+  displayName: 2 Attacks + Rest
   speciesId: manaphy
   setFormat: ou
-  setScore: 58
-  itemOptions: leftovers
+  setScore: 63
+  itemOptions: waterium_z
   abilityOptions: 
-  natureOptions: modest, timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  natureOptions: modest
+  evs: 248 PS / 240 AtqE / 20 Vel
   ivs: 
-  moveSlots: tail_glow / surf / ice_beam / energy_ball
+  moveSlots: tail_glow / rest / surf / ice_beam, psychic

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: garbodor_nu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: garbodor_nu_2
-  displayName: Offensive
+  displayName: Defensive Spikes Setter
   speciesId: garbodor
   setFormat: nu
-  setScore: 78
-  itemOptions: rocky_helmet, life_orb
+  setScore: 72
+  itemOptions: black_sludge, rocky_helmet
   abilityOptions: aftermath
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: careful
+  evs: 252 PS / 228 DefE / 28 Vel
   ivs: 
-  moveSlots: spikes / gunk_shot / drain_punch, focus_blast / seed_bomb, explosion
+  moveSlots: gunk_shot / spikes / toxic_spikes, seed_bomb / pain_split

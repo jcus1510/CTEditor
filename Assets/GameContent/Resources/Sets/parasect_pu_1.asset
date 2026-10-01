@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: parasect_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: parasect_pu_1
-  displayName: Spore
+  displayName: Specially Defensive
   speciesId: parasect
   setFormat: pu
-  setScore: 56
+  setScore: 71
   itemOptions: leftovers
   abilityOptions: dry_skin
-  natureOptions: impish
-  evs: 248 PS / 8 Atq / 252 Def
+  natureOptions: careful
+  evs: 248 PS / 8 Def / 252 DefE
   ivs: 
-  moveSlots: spore / synthesis / seed_bomb / knock_off
+  moveSlots: spore / leech_life / knock_off / synthesis

@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: karrablast
   setFormat: lc
-  setScore: 82
+  setScore: 67
   itemOptions: choice_scarf
   abilityOptions: no_guard
   natureOptions: jolly, adamant

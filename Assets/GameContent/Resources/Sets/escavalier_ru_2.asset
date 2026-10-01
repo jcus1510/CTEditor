@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Band
   speciesId: escavalier
   setFormat: ru
-  setScore: 63
+  setScore: 68
   itemOptions: choice_band
   abilityOptions: overcoat
   natureOptions: adamant
   evs: 172 PS / 252 Atq / 84 Vel
   ivs: 
-  moveSlots: megahorn / iron_head / pursuit / drill_run, knock_off
+  moveSlots: megahorn / iron_head / pursuit / knock_off, drill_run

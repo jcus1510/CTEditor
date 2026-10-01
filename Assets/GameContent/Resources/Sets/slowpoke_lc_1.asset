@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Tank
   speciesId: slowpoke
   setFormat: lc
-  setScore: 91
+  setScore: 89
   itemOptions: eviolite
   abilityOptions: regenerator
-  natureOptions: bold
-  evs: 116 PS / 156 Def / 116 AtqE / 116 DefE
+  natureOptions: calm
+  evs: 116 PS / 76 Def / 116 AtqE / 196 DefE
   ivs: 
-  moveSlots: scald / slack_off / thunder_wave / psychic, fire_blast
+  moveSlots: slack_off / scald / psychic / thunder_wave, fire_blast, calm_mind

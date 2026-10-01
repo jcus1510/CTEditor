@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: keldeo_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: keldeo_ou_1
-  displayName: Choice Specs
+  displayName: Calm Mind
   speciesId: keldeo
   setFormat: ou
-  setScore: 52
-  itemOptions: choice_specs
+  setScore: 55
+  itemOptions: leftovers, waterium_z
   abilityOptions: 
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: scald / secret_sword / hydro_pump / icy_wind, focus_blast
+  moveSlots: calm_mind / scald, hydro_pump / secret_sword / substitute, taunt

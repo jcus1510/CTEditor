@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: magearna_ou_5
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: magearna_ou_5
+  displayName: Shift Gear
+  speciesId: magearna
+  setFormat: ou
+  setScore: 36
+  itemOptions: fightinium_z, fairium_z, leftovers, wiki_berry, electrium_z
+  abilityOptions: 
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
+  ivs: 
+  moveSlots: shift_gear / focus_blast, fleur_cannon, calm_mind / fleur_cannon, ice_beam
+    / thunderbolt, calm_mind

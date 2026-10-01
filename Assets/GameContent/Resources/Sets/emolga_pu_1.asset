@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: emolga_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: emolga_pu_1
-  displayName: Support
+  displayName: Utility Pivot
   speciesId: emolga
   setFormat: pu
-  setScore: 34
-  itemOptions: leftovers
+  setScore: 36
+  itemOptions: rocky_helmet
   abilityOptions: motor_drive
-  natureOptions: jolly, timid
-  evs: 248 PS / 8 Def / 252 Vel
+  natureOptions: timid
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: taunt / u_turn / roost / encore, thunderbolt
+  moveSlots: thunderbolt / u_turn / encore, taunt / roost, knock_off

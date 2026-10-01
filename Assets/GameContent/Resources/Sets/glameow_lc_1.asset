@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: glameow_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: glameow_lc_1
-  displayName: Life Orb Attacker
+  displayName: Life Orb
   speciesId: glameow
   setFormat: lc
-  setScore: 64
+  setScore: 59
   itemOptions: life_orb
   abilityOptions: 
   natureOptions: jolly
   evs: 236 Atq / 20 Def / 236 Vel
   ivs: 1 PS
-  moveSlots: return / sucker_punch / fake_out, knock_off / play_rough, u_turn
+  moveSlots: return / sucker_punch / play_rough / fake_out, knock_off

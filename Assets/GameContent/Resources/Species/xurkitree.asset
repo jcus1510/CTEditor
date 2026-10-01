@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: xurkitree
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: xurkitree
+  displayName: Xurkitree
+  englishName: Xurkitree
+  types:
+  - {fileID: 11400000, guid: 11907be1d5340704a86d6e3df74657fb, type: 2}
+  abilityId: beast_boost
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: slow
+  baseExpYield: 257
+  evYield:
+  - statId: sp_attack
+    amount: 3
+  baseFriendship: 70
+  catchRate: 45
+  dexNumber: 796
+  category: Luminaria
+  heightM: 3.8
+  weightKg: 100
+  dexColor: negro
+  dexDescription: "Para los seres de este mundo resulta extra\xF1o y peligroso, pero
+    en el mundo del que procede es una criatura muy com\xFAn."
+  femalePercent: -1
+  legendary: 0
+  hp: 83
+  attack: 89
+  defense: 71
+  spAttack: 173
+  spDefense: 71
+  speed: 83
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 08cdfb1825d63824390d3e2d0828f348, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 01b037f4fcc5f4c46a053726e778dff2, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: e7c2e78100301ce4bb276169d76076a2, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 575dbe5143ef5064c81858aee2405e53, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: b8e0ae1c2ab2a7d46b91339f304564be, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+    level: 7
+  - move: {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: b552275b75c88fe44ab70599b7325ec0, type: 2}
+    level: 19
+  - move: {fileID: 11400000, guid: 1f2b81afe4909d54f8cc0e7cf445b40b, type: 2}
+    level: 23
+  - move: {fileID: 11400000, guid: e928ae4928364dd46901b243e639727b, type: 2}
+    level: 29
+  - move: {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
+    level: 31
+  - move: {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    level: 37
+  - move: {fileID: 11400000, guid: 57b6a36f57133a848a8e6f2372fe652c, type: 2}
+    level: 43
+  - move: {fileID: 11400000, guid: 8569ef588b635d041ad1ec6188a2d6e4, type: 2}
+    level: 47
+  - move: {fileID: 11400000, guid: f2b0d1ebe24850e4e9955fa4727387b3, type: 2}
+    level: 53
+  - move: {fileID: 11400000, guid: 48286ae37c66de646b9c191e8b054d47, type: 2}
+    level: 59
+  - move: {fileID: 11400000, guid: d4412f9084feffc41ae50f85ef84bc9f, type: 2}
+    level: 67
+  - move: {fileID: 11400000, guid: 26d7833d84ead1340b06881753e72e48, type: 2}
+    level: 73
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: eb28e4d400e575447b40bd2ded73d008, type: 2}
+  - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+  - {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: acb45f8f9b7456142aba86ae9ef2b098, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: ff87c561ab2d5d5488da04047c6f5db4, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 0161b2b549675fc4782bfb60b341f598, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 4403818195e13404cbdf474c68c5ecac, type: 2}
+  - {fileID: 11400000, guid: 61fa77a4f48df8343acd2c2437d3608c, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+  - {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
+  - {fileID: 11400000, guid: fd059fe98a9650e41806d434b05e2af8, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+  - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 62c6a97d50c2ff54dacf531594dd4df0, type: 2}
+  - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+  - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 8f4fb832c81f5bc4f83d784621bf3494, type: 2}
+  - {fileID: 11400000, guid: 99f98c99a2073e041baacca1a1600e20, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 5c964643bcc6e544eb8b98ecb96c2d5a, type: 2}
+  - {fileID: 11400000, guid: 26ff654c6a5a69c45b83f57140540eca, type: 2}
+  - {fileID: 11400000, guid: 5f7740b1638070043981274acbd709bd, type: 2}
+  - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
+  - {fileID: 11400000, guid: 6589ee989c30c544cb926ea68983bc7d, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
+  - {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 1f2b81afe4909d54f8cc0e7cf445b40b, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

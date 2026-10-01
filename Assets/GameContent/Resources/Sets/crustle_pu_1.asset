@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: crustle_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: crustle_pu_1
-  displayName: Crustap
+  displayName: Entry Hazard Lead
   speciesId: crustle
   setFormat: pu
-  setScore: 40
-  itemOptions: custap_berry
-  abilityOptions: 
+  setScore: 42
+  itemOptions: focus_sash, mental_herb
+  abilityOptions: weak_armor, sturdy
   natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: stealth_rock / spikes / stone_edge / knock_off
+  moveSlots: stealth_rock / spikes / knock_off / rock_blast, stone_edge

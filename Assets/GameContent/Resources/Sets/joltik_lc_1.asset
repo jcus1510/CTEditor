@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: joltik_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: joltik_lc_1
-  displayName: Choice Scarf
+  displayName: All Out Attacker
   speciesId: joltik
   setFormat: lc
-  setScore: 68
-  itemOptions: choice_scarf
+  setScore: 50
+  itemOptions: life_orb
   abilityOptions: swarm
-  natureOptions: modest
-  evs: 36 PS / 220 AtqE / 236 Vel
+  natureOptions: timid
+  evs: 36 Def / 220 AtqE / 236 Vel
   ivs: 
-  moveSlots: thunderbolt / bug_buzz / volt_switch / giga_drain
+  moveSlots: volt_switch / thunderbolt / giga_drain / bug_buzz

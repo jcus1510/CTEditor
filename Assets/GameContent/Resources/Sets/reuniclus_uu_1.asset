@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: reuniclus_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: reuniclus_uu_1
-  displayName: Calm Mind
+  displayName: Defensive Calm Mind
   speciesId: reuniclus
   setFormat: uu
-  setScore: 72
-  itemOptions: leftovers, life_orb
+  setScore: 71
+  itemOptions: fightinium_z, leftovers
   abilityOptions: magic_guard
   natureOptions: bold
-  evs: 252 PS / 252 Def / 4 AtqE
+  evs: 252 PS / 212 Def / 44 Vel
   ivs: 
-  moveSlots: calm_mind / psyshock, psychic / focus_blast, signal_beam, shadow_ball
-    / recover
+  moveSlots: calm_mind / psyshock / focus_blast / recover

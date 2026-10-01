@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: jolteon_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: jolteon_ru_1
-  displayName: Offensive Wish
+  displayName: Special Attacker
   speciesId: jolteon
   setFormat: ru
-  setScore: 15
-  itemOptions: leftovers
-  abilityOptions: 
+  setScore: 44
+  itemOptions: life_orb
+  abilityOptions: quick_feet
   natureOptions: timid
-  evs: 80 PS / 176 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: substitute / hidden_power / thunderbolt / wish
+  moveSlots: yawn / volt_switch / thunderbolt / hidden_power

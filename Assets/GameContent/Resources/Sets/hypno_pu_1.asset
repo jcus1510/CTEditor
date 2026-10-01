@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: hypno_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: hypno_pu_1
-  displayName: Wish Passer
+  displayName: Z-Hypnosis Belly Drum
   speciesId: hypno
   setFormat: pu
-  setScore: 37
-  itemOptions: leftovers, colbur_berry
+  setScore: 4
+  itemOptions: psychium_z
   abilityOptions: 
-  natureOptions: calm
-  evs: 248 PS / 8 Def / 252 DefE
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: wish / protect / psychic, seismic_toss / taunt, toxic, foul_play
+  moveSlots: hypnosis / belly_drum / zen_headbutt / drain_punch

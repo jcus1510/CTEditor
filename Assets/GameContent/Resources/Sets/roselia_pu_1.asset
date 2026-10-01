@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: roselia_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: roselia_pu_1
-  displayName: Defensive
+  displayName: Specially Defensive
   speciesId: roselia
   setFormat: pu
-  setScore: 69
+  setScore: 71
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: calm
-  evs: 252 PS / 32 Def / 224 DefE
+  evs: 248 PS / 236 DefE / 24 Vel
   ivs: 
   moveSlots: spikes / synthesis / sludge_bomb / giga_drain

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: paras_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: paras_lc_1
-  displayName: Utility
+  displayName: Spore Utility
   speciesId: paras
   setFormat: lc
-  setScore: 43
+  setScore: 78
   itemOptions: eviolite
   abilityOptions: dry_skin
-  natureOptions: impish
-  evs: 76 PS / 36 Atq / 236 Def / 156 DefE
+  natureOptions: adamant
+  evs: 116 Atq / 156 Def / 156 DefE / 76 Vel
   ivs: 
-  moveSlots: spore / knock_off / bullet_seed, aromatherapy / synthesis
+  moveSlots: spore / knock_off / seed_bomb / leech_life

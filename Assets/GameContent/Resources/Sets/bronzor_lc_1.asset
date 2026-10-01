@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: bronzor_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: bronzor_lc_1
-  displayName: Berry Juice + Recycle
+  displayName: Stealth Rock Setter
   speciesId: bronzor
   setFormat: lc
-  setScore: 48
+  setScore: 38
   itemOptions: berry_juice
   abilityOptions: 
-  natureOptions: careful
-  evs: 60 PS / 4 Atq / 228 Def / 4 AtqE / 148 DefE / 12 Vel
+  natureOptions: relaxed
+  evs: 64 PS / 4 Atq / 228 Def / 4 AtqE / 148 DefE / 12 Vel
   ivs: 
-  moveSlots: stealth_rock / recycle / earthquake / psychic, toxic
+  moveSlots: stealth_rock / recycle / psychic / heavy_slam, earthquake

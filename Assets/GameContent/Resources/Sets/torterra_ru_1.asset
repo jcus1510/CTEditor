@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: torterra_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: torterra_ru_1
-  displayName: Bulky Swords Dance
+  displayName: Defensive
   speciesId: torterra
   setFormat: ru
-  setScore: 51
+  setScore: 78
   itemOptions: leftovers
   abilityOptions: 
-  natureOptions: careful
-  evs: 252 PS / 180 DefE / 76 Vel
+  natureOptions: impish
+  evs: 248 PS / 252 Def / 8 DefE
   ivs: 
-  moveSlots: wood_hammer / earthquake / swords_dance / synthesis
+  moveSlots: stealth_rock / wood_hammer / earthquake / synthesis

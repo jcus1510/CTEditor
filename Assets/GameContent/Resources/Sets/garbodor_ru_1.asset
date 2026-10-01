@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: garbodor_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: garbodor_ru_1
-  displayName: Defensive Hazard Stack
+  displayName: Physically Defensive Spikes
   speciesId: garbodor
   setFormat: ru
-  setScore: 72
+  setScore: 48
   itemOptions: rocky_helmet
   abilityOptions: aftermath
   natureOptions: impish
-  evs: 252 PS / 164 Def / 92 DefE
+  evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: spikes / toxic_spikes, toxic / gunk_shot / toxic, pain_split
+  moveSlots: gunk_shot / toxic / spikes / pain_split

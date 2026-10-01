@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: infernape_uu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: infernape_uu_2
-  displayName: All-Out Attacker
+  displayName: Choice Scarf
   speciesId: infernape
   setFormat: uu
-  setScore: 43
-  itemOptions: life_orb
-  abilityOptions: blaze, iron_fist
-  natureOptions: naive, hasty
-  evs: 168 Atq / 88 AtqE / 252 Vel
+  setScore: 33
+  itemOptions: choice_scarf
+  abilityOptions: 
+  natureOptions: jolly
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: fire_blast, flare_blitz / close_combat / grass_knot / earthquake, stone_edge,
-    mach_punch
+  moveSlots: flare_blitz / u_turn / close_combat / gunk_shot, stone_edge

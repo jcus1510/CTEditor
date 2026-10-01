@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: klefki_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: klefki_ubers_1
-  displayName: Support
+  displayName: Spikes Support
   speciesId: klefki
   setFormat: ubers
-  setScore: 77
+  setScore: 63
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: careful
-  evs: 252 PS / 4 Atq / 252 DefE
+  evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: spikes / thunder_wave / toxic / play_rough
+  moveSlots: spikes / play_rough / thunder_wave / toxic

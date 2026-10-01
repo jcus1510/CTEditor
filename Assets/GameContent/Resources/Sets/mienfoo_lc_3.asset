@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: mienfoo_lc_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: mienfoo_lc_3
-  displayName: Choice Scarf
+  displayName: Flyinium Z
   speciesId: mienfoo
   setFormat: lc
   setScore: 50
-  itemOptions: choice_scarf
-  abilityOptions: reckless
-  natureOptions: jolly, adamant
-  evs: 236 Atq / 36 Def / 236 Vel
+  itemOptions: flyinium_z
+  abilityOptions: regenerator, reckless
+  natureOptions: jolly
+  evs: 156 Atq / 116 Def / 236 Vel
   ivs: 
-  moveSlots: high_jump_kick / knock_off / u_turn / drain_punch, stone_edge
+  moveSlots: bounce / high_jump_kick / fake_out / knock_off, u_turn

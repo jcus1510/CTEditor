@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: purrloin_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: purrloin_lc_1
-  displayName: Disruptive Pivot
+  displayName: Utility
   speciesId: purrloin
   setFormat: lc
-  setScore: 66
+  setScore: 71
   itemOptions: eviolite, berry_juice
   abilityOptions: prankster
   natureOptions: careful

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: skuntank_pu_4
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: skuntank_pu_4
+  displayName: Special Attacker
+  speciesId: skuntank
+  setFormat: pu
+  setScore: 36
+  itemOptions: darkinium_z, black_sludge
+  abilityOptions: aftermath
+  natureOptions: timid, modest
+  evs: 4 PS / 252 AtqE / 252 Vel
+  ivs: 
+  moveSlots: defog / dark_pulse / acid_spray, sludge_bomb / taunt, fire_blast

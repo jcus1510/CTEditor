@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: heracross_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: heracross_uu_1
-  displayName: Choice Band
+  displayName: Swords Dance
   speciesId: heracross
   setFormat: uu
-  setScore: 52
-  itemOptions: choice_band
+  setScore: 57
+  itemOptions: flame_orb
   abilityOptions: guts
-  natureOptions: adamant, jolly
+  natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: close_combat / megahorn / knock_off / stone_edge, earthquake
+  moveSlots: swords_dance / close_combat / knock_off / facade

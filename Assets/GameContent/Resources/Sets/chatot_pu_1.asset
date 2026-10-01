@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: chatot_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: chatot_pu_1
-  displayName: Choice Scarf
+  displayName: Choice Attacker
   speciesId: chatot
   setFormat: pu
-  setScore: 54
-  itemOptions: choice_scarf
+  setScore: 38
+  itemOptions: choice_scarf, choice_specs
   abilityOptions: tangled_feet
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel

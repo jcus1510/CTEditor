@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Wallbreaker
   speciesId: glalie
   setFormat: ru
-  setScore: 21
+  setScore: 69
   itemOptions: glalitite
   abilityOptions: 
-  natureOptions: naive
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: jolly
+  evs: 4 PS / 252 Atq / 252 Vel
   ivs: 
-  moveSlots: double_edge, return / freeze_dry / ice_shard / spikes, earthquake, explosion
+  moveSlots: double_edge / ice_shard / earthquake / spikes, explosion

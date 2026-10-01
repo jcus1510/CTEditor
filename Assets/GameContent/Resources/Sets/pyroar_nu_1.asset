@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: pyroar_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: pyroar_nu_1
-  displayName: Special Attacker
+  displayName: Z-Move
   speciesId: pyroar
   setFormat: nu
-  setScore: 68
-  itemOptions: life_orb, choice_specs
+  setScore: 32
+  itemOptions: grassium_z, normalium_z
   abilityOptions: unnerve
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: fire_blast / hyper_voice / hidden_power / will_o_wisp, taunt, flamethrower
+  moveSlots: fire_blast / hyper_voice / solar_beam, hidden_power / taunt

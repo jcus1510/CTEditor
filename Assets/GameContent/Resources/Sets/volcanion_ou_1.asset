@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: volcanion_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: volcanion_ou_1
-  displayName: Choice Scarf
+  displayName: Assault Vest
   speciesId: volcanion
   setFormat: ou
-  setScore: 50
-  itemOptions: choice_scarf
+  setScore: 36
+  itemOptions: assault_vest
   abilityOptions: 
-  natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  natureOptions: relaxed
+  evs: 248 PS / 8 Atq / 96 Def / 28 AtqE / 128 Vel
   ivs: 
-  moveSlots: steam_eruption / flamethrower / earth_power / sludge_bomb
+  moveSlots: steam_eruption / flamethrower / sludge_bomb, superpower, earth_power
+    / explosion

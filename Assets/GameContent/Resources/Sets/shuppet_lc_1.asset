@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: shuppet_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: shuppet_lc_1
-  displayName: Offensive Trick Room
+  displayName: Trick Room Utility
   speciesId: shuppet
   setFormat: lc
-  setScore: 56
+  setScore: 0
   itemOptions: focus_sash
-  abilityOptions: frisk, cursed_body
+  abilityOptions: frisk
   natureOptions: brave
-  evs: 4 PS / 236 Atq / 168 Def / 92 DefE
+  evs: 4 PS / 236 Atq / 156 Def / 92 DefE
   ivs: 
   moveSlots: trick_room / knock_off / shadow_sneak / destiny_bond

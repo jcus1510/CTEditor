@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: bastiodon_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: bastiodon_pu_1
-  displayName: Utility
+  displayName: Special Wall
   speciesId: bastiodon
   setFormat: pu
-  setScore: 52
+  setScore: 58
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: careful
   evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: stealth_rock / toxic / roar / magic_coat
+  moveSlots: stealth_rock / rock_slide, metal_burst / metal_burst, magic_coat, roar
+    / toxic

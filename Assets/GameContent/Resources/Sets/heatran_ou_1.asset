@@ -16,10 +16,11 @@ MonoBehaviour:
   displayName: Specially Defensive
   speciesId: heatran
   setFormat: ou
-  setScore: 51
+  setScore: 60
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: calm
-  evs: 248 PS / 8 Def / 252 DefE
+  evs: 252 PS / 180 DefE / 76 Vel
   ivs: 
-  moveSlots: lava_plume / stealth_rock, toxic / roar, toxic / taunt, protect, earth_power
+  moveSlots: magma_storm, lava_plume / earth_power, protect / toxic / stealth_rock,
+    taunt, protect

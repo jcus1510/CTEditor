@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: infernape_uu_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: infernape_uu_3
-  displayName: Choice Band
+  displayName: Mixed Attacker
   speciesId: infernape
   setFormat: uu
-  setScore: 44
-  itemOptions: choice_band
-  abilityOptions: iron_fist, blaze
-  natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  setScore: 25
+  itemOptions: life_orb
+  abilityOptions: 
+  natureOptions: naive
+  evs: 168 Atq / 88 AtqE / 252 Vel
   ivs: 
-  moveSlots: close_combat / flare_blitz / mach_punch, earthquake / u_turn
+  moveSlots: overheat, fire_blast / close_combat / slack_off, gunk_shot / grass_knot,
+    gunk_shot

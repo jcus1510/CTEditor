@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Dragon Dance
   speciesId: larvitar
   setFormat: lc
-  setScore: 60
-  itemOptions: eviolite, flame_orb
+  setScore: 49
+  itemOptions: eviolite
   abilityOptions: 
   natureOptions: jolly
   evs: 244 Atq / 36 Def / 36 DefE / 188 Vel
   ivs: 
-  moveSlots: dragon_dance / rock_slide, stone_edge / earthquake / superpower
+  moveSlots: dragon_dance / earthquake / rock_slide, stone_edge / superpower

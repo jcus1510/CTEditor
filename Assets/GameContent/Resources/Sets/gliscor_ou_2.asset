@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: gliscor_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: gliscor_ou_2
-  displayName: Stallbreaker
+  displayName: Utility
   speciesId: gliscor
   setFormat: ou
-  setScore: 73
+  setScore: 79
   itemOptions: toxic_orb
   abilityOptions: poison_heal
   natureOptions: jolly
-  evs: 248 PS / 148 DefE / 112 Vel
+  evs: 248 PS / 64 Def / 60 DefE / 136 Vel
   ivs: 
-  moveSlots: earthquake / taunt / knock_off / roost
+  moveSlots: defog, stealth_rock / earthquake / roost / toxic, u_turn, knock_off

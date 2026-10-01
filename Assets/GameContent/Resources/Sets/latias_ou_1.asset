@@ -16,11 +16,11 @@ MonoBehaviour:
   displayName: Utility
   speciesId: latias
   setFormat: ou
-  setScore: 51
-  itemOptions: colbur_berry, choice_scarf, rocky_helmet
+  setScore: 37
+  itemOptions: latiasite
   abilityOptions: 
   natureOptions: timid
-  evs: 252 PS / 4 Def / 252 Vel
+  evs: 248 PS / 8 Def / 252 Vel
   ivs: 
-  moveSlots: healing_wish / defog / psychic, ice_beam, draco_meteor, surf / thunder_wave,
-    trick
+  moveSlots: ice_beam / hidden_power, psychic, thunder_wave, defog / thunder_wave,
+    defog / roost

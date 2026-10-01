@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: krookodile_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: krookodile_uu_1
-  displayName: Choice Band
+  displayName: Choice Scarf
   speciesId: krookodile
   setFormat: uu
-  setScore: 46
-  itemOptions: choice_band
+  setScore: 48
+  itemOptions: choice_scarf
   abilityOptions: 
   natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: earthquake / knock_off / stone_edge, superpower / pursuit, superpower
+  moveSlots: knock_off / earthquake / pursuit / stone_edge, crunch

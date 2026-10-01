@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Dragon Dance
   speciesId: whiscash
   setFormat: pu
-  setScore: 47
-  itemOptions: life_orb
-  abilityOptions: hydration
-  natureOptions: jolly, naive
-  evs: 252 Atq / 4 AtqE / 252 Vel
+  setScore: 65
+  itemOptions: flyinium_z
+  abilityOptions: anticipation
+  natureOptions: jolly
+  evs: 4 PS / 252 Atq / 252 Vel
   ivs: 
-  moveSlots: dragon_dance / earthquake / waterfall / stone_edge, ice_beam
+  moveSlots: dragon_dance / waterfall / earthquake / bounce

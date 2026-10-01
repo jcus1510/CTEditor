@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Swords Dance
   speciesId: cacnea
   setFormat: lc
-  setScore: 77
+  setScore: 60
   itemOptions: eviolite
   abilityOptions: water_absorb
-  natureOptions: impish
-  evs: 36 PS / 156 Atq / 196 Def / 116 DefE
+  natureOptions: jolly
+  evs: 236 Atq / 116 Def / 156 Vel
   ivs: 
-  moveSlots: swords_dance / seed_bomb / drain_punch / sucker_punch
+  moveSlots: swords_dance / sucker_punch / seed_bomb / drain_punch, thunder_punch

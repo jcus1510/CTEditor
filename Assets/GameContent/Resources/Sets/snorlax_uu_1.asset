@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: snorlax_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: snorlax_uu_1
-  displayName: CurseLax
+  displayName: Papa Lax (Curse + Recycle)
   speciesId: snorlax
   setFormat: uu
-  setScore: 69
-  itemOptions: leftovers
-  abilityOptions: thick_fat
+  setScore: 43
+  itemOptions: iapapa_berry
+  abilityOptions: gluttony
   natureOptions: careful
-  evs: 188 PS / 144 Def / 176 DefE
+  evs: 252 PS / 152 Def / 104 DefE
   ivs: 
-  moveSlots: curse / return, body_slam / rest / sleep_talk, earthquake
+  moveSlots: curse / facade / recycle / fire_punch, earthquake

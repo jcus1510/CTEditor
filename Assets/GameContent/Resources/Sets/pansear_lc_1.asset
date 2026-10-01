@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: pansear_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: pansear_lc_1
-  displayName: Berry Juice Stall
+  displayName: Substitute + Will-O-Wisp
   speciesId: pansear
   setFormat: lc
-  setScore: 27
+  setScore: 0
   itemOptions: berry_juice
   abilityOptions: blaze
   natureOptions: jolly
-  evs: 212 Def / 212 DefE / 84 Vel
+  evs: 36 PS / 12 Atq / 212 Def / 212 DefE / 4 Vel
   ivs: 
-  moveSlots: recycle / will_o_wisp / flame_charge / substitute
+  moveSlots: recycle / will_o_wisp / substitute / flame_charge

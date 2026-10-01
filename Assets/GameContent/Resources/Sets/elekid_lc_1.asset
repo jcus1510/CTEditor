@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Special Attacker
   speciesId: elekid
   setFormat: lc
-  setScore: 42
+  setScore: 74
   itemOptions: life_orb
-  abilityOptions: 
+  abilityOptions: vital_spirit
   natureOptions: timid, hasty
   evs: 240 AtqE / 236 Vel
-  ivs: 
-  moveSlots: thunderbolt / volt_switch / psychic, substitute, cross_chop / hidden_power
+  ivs: 9 PS
+  moveSlots: volt_switch / thunderbolt / psychic / hidden_power, cross_chop

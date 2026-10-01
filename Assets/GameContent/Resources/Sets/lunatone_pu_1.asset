@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: lunatone_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: lunatone_pu_1
-  displayName: Rock Polish
+  displayName: Offensive
   speciesId: lunatone
   setFormat: pu
-  setScore: 49
+  setScore: 33
   itemOptions: life_orb
   abilityOptions: 
-  natureOptions: modest
-  evs: 4 Def / 252 AtqE / 252 Vel
+  natureOptions: modest, timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: rock_polish / psychic / ancient_power / earth_power, shadow_ball
+  moveSlots: psychic, psyshock / power_gem / earth_power / rock_polish

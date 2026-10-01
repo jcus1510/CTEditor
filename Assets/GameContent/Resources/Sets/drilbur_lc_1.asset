@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: drilbur_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: drilbur_lc_1
-  displayName: Spinner
+  displayName: Choice Scarf
   speciesId: drilbur
   setFormat: lc
-  setScore: 71
-  itemOptions: berry_juice
+  setScore: 76
+  itemOptions: choice_scarf
   abilityOptions: mold_breaker
-  natureOptions: jolly
-  evs: 36 PS / 76 Atq / 36 Def / 76 DefE / 212 Vel
+  natureOptions: jolly, adamant
+  evs: 236 Atq / 36 Def / 212 Vel
   ivs: 
-  moveSlots: stealth_rock / earthquake / rock_slide, rock_tomb / rapid_spin
+  moveSlots: earthquake / rock_slide / rapid_spin / poison_jab, shadow_claw

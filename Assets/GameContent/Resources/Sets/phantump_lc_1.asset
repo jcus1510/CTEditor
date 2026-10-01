@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: phantump_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: phantump_lc_1
-  displayName: SubSeeder
+  displayName: Z-Forest's Curse
   speciesId: phantump
   setFormat: lc
-  setScore: 70
-  itemOptions: oran_berry
-  abilityOptions: harvest
-  natureOptions: careful
-  evs: 172 PS / 132 Def / 196 DefE
+  setScore: 94
+  itemOptions: grassium_z
+  abilityOptions: frisk
+  natureOptions: jolly
+  evs: 12 PS / 196 Atq / 52 Def / 36 DefE / 212 Vel
   ivs: 
-  moveSlots: substitute / leech_seed / will_o_wisp / horn_leech, shadow_claw
+  moveSlots: forests_curse / shadow_claw / horn_leech / rock_slide, poison_jab

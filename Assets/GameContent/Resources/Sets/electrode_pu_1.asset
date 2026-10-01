@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: electrode_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: electrode_pu_1
-  displayName: Special Attacker
+  displayName: Dual Screens
   speciesId: electrode
   setFormat: pu
-  setScore: 46
-  itemOptions: life_orb, choice_specs
-  abilityOptions: 
-  natureOptions: modest
-  evs: 4 PS / 252 AtqE / 252 Vel
+  setScore: 44
+  itemOptions: light_clay
+  abilityOptions: aftermath
+  natureOptions: jolly, timid
+  evs: 252 PS / 4 Def / 252 Vel
   ivs: 
-  moveSlots: thunderbolt / volt_switch / hidden_power / signal_beam, taunt
+  moveSlots: reflect / light_screen / taunt / explosion, volt_switch

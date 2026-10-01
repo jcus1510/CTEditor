@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: groudon_ubers_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: groudon_ubers_2
-  displayName: Offensive Stealth Rock
+  displayName: Defensive Support
   speciesId: groudon
   setFormat: ubers
-  setScore: 24
+  setScore: 12
   itemOptions: red_orb
   abilityOptions: 
-  natureOptions: adamant
-  evs: 152 PS / 236 Atq / 44 DefE / 76 Vel
+  natureOptions: relaxed
+  evs: 252 PS / 56 Def / 200 DefE
   ivs: 
-  moveSlots: stealth_rock / precipice_blades / dragon_tail, fire_punch / stone_edge,
-    rock_tomb
+  moveSlots: stealth_rock / precipice_blades / overheat / toxic

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sudowoodo_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sudowoodo_pu_1
-  displayName: Suicide Lead
+  displayName: Choice Band
   speciesId: sudowoodo
   setFormat: pu
-  setScore: 51
-  itemOptions: custap_berry
-  abilityOptions: 
-  natureOptions: jolly
+  setScore: 48
+  itemOptions: choice_band
+  abilityOptions: rock_head
+  natureOptions: adamant
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: stealth_rock / stone_edge / wood_hammer / sucker_punch, toxic
+  moveSlots: head_smash / earthquake / sucker_punch / wood_hammer

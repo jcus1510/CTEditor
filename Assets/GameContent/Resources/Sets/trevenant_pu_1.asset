@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: trevenant_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: trevenant_pu_1
-  displayName: Wallbreaker
+  displayName: Choice Band
   speciesId: trevenant
   setFormat: pu
-  setScore: 35
+  setScore: 7
   itemOptions: choice_band
   abilityOptions: 
-  natureOptions: adamant
-  evs: 48 PS / 252 Atq / 208 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: wood_hammer / shadow_claw / rock_slide / earthquake, trick
+  moveSlots: wood_hammer / earthquake / rock_slide / shadow_claw, trick

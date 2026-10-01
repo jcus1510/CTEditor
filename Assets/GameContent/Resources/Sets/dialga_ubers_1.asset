@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Offensive Utility
   speciesId: dialga
   setFormat: ubers
-  setScore: 63
-  itemOptions: shuca_berry
+  setScore: 45
+  itemOptions: life_orb, shuca_berry
   abilityOptions: 
   natureOptions: modest
-  evs: 244 PS / 252 AtqE / 12 Vel
+  evs: 104 PS / 252 AtqE / 152 Vel
   ivs: 
-  moveSlots: stealth_rock / draco_meteor / flash_cannon / thunder, fire_blast
+  moveSlots: stealth_rock / draco_meteor / fire_blast / thunder, toxic

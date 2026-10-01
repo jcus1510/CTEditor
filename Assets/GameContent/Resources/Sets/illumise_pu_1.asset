@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: illumise_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: illumise_pu_1
-  displayName: Choice Specs
+  displayName: Weather Setter
   speciesId: illumise
   setFormat: pu
-  setScore: 32
-  itemOptions: choice_specs
-  abilityOptions: tinted_lens
-  natureOptions: modest
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  setScore: 55
+  itemOptions: heat_rock, damp_rock
+  abilityOptions: prankster
+  natureOptions: relaxed
+  evs: 252 PS / 4 Atq / 252 Def
   ivs: 
-  moveSlots: bug_buzz / thunderbolt / giga_drain / u_turn, tailwind
+  moveSlots: sunny_day, rain_dance / u_turn / thunder_wave / encore

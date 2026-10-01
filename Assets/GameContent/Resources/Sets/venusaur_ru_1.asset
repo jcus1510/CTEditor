@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: venusaur_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: venusaur_ru_1
-  displayName: Wallbreaker
+  displayName: Sun Sweeper
   speciesId: venusaur
   setFormat: ru
-  setScore: 52
-  itemOptions: life_orb
-  abilityOptions: overgrow, chlorophyll
-  natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  setScore: 59
+  itemOptions: life_orb, grassium_z
+  abilityOptions: chlorophyll
+  natureOptions: modest
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: leaf_storm / sludge_bomb / synthesis / sleep_powder, knock_off
+  moveSlots: growth / sludge_bomb / giga_drain / hidden_power

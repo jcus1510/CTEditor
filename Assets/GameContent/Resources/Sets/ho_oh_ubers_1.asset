@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ho_oh_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: ho_oh_ubers_1
-  displayName: Choice Band
+  displayName: Defensive
   speciesId: ho_oh
   setFormat: ubers
-  setScore: 72
-  itemOptions: choice_band
+  setScore: 67
+  itemOptions: leftovers
   abilityOptions: regenerator
-  natureOptions: adamant
-  evs: 248 PS / 196 Atq / 52 DefE / 12 Vel
+  natureOptions: impish, bold
+  evs: 252 PS / 204 Def / 52 DefE
   ivs: 
-  moveSlots: brave_bird / sacred_fire / earthquake / sleep_talk
+  moveSlots: sacred_fire, flamethrower / recover / toxic / defog

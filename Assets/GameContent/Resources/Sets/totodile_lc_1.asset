@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Dragon Dance
   speciesId: totodile
   setFormat: lc
-  setScore: 67
+  setScore: 73
   itemOptions: eviolite, life_orb
   abilityOptions: sheer_force
   natureOptions: adamant

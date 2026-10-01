@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: cyndaquil
   setFormat: lc
-  setScore: 70
+  setScore: 76
   itemOptions: choice_scarf
-  abilityOptions: blaze, flash_fire
-  natureOptions: timid, modest
+  abilityOptions: flash_fire
+  natureOptions: timid
   evs: 44 PS / 12 Def / 200 AtqE / 236 Vel
   ivs: 
-  moveSlots: eruption / extrasensory / hidden_power / fire_blast
+  moveSlots: eruption / hidden_power / fire_blast / extrasensory

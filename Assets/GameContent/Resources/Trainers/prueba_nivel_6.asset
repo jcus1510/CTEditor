@@ -73,7 +73,7 @@ MonoBehaviour:
     speciesId: gengar
     moveIds: []
     natureId: 
-  - species: {fileID: 11400000, guid: 9b71779bedb6cc946a8897e446aac8f2, type: 2}
+  - species: {fileID: 11400000, guid: 1b515c27482a2684f9b4b3b72425cf53, type: 2}
     level: 50
     moves: []
     heldItem: 
@@ -84,10 +84,10 @@ MonoBehaviour:
     abilityId: 
     evs: 
     ivs: 
-    speciesId: scizor
+    speciesId: toxapex
     moveIds: []
     natureId: 
-  - species: {fileID: 11400000, guid: 9533862dd63a809478c128cbba83eedf, type: 2}
+  - species: {fileID: 11400000, guid: 96b2e6c4991fed045a7dd8c33e975c55, type: 2}
     level: 50
     moves: []
     heldItem: 
@@ -98,7 +98,7 @@ MonoBehaviour:
     abilityId: 
     evs: 
     ivs: 
-    speciesId: togekiss
+    speciesId: kommo_o
     moveIds: []
     natureId: 
   aiLevel: 6

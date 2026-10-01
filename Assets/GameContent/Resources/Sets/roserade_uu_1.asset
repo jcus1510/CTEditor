@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: roserade_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: roserade_uu_1
-  displayName: Offensive Hazards
+  displayName: 3 Attacks
   speciesId: roserade
   setFormat: uu
-  setScore: 54
-  itemOptions: black_sludge, life_orb
-  abilityOptions: natural_cure, technician
+  setScore: 48
+  itemOptions: poisonium_z
+  abilityOptions: technician
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
-  ivs: 29 PS
-  moveSlots: spikes, toxic_spikes / sludge_bomb / leaf_storm, giga_drain / sleep_powder,
-    hidden_power
+  ivs: 
+  moveSlots: sleep_powder / leaf_storm / sludge_bomb / hidden_power

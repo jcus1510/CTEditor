@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Curse
   speciesId: aggron
   setFormat: uu
-  setScore: 10
+  setScore: 3
   itemOptions: aggronite
   abilityOptions: 
   natureOptions: careful
   evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: curse / heavy_slam, iron_head / rest / sleep_talk
+  moveSlots: heavy_slam / curse / rest / sleep_talk

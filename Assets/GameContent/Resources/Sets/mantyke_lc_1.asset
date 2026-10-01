@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: mantyke_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: mantyke_lc_1
-  displayName: Rain Dance
+  displayName: Eye of the Storm (Rain Dance)
   speciesId: mantyke
   setFormat: lc
-  setScore: 42
+  setScore: 62
   itemOptions: life_orb, eviolite
   abilityOptions: 
   natureOptions: modest
-  evs: 76 PS / 36 Def / 200 AtqE / 196 Vel
-  ivs: 
+  evs: 36 Def / 200 AtqE / 36 DefE / 196 Vel
+  ivs: 9 PS
   moveSlots: rain_dance / hydro_pump / air_slash / hidden_power

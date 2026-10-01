@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: flygon_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: flygon_ru_1
-  displayName: Choice Band
+  displayName: Choice Scarf
   speciesId: flygon
   setFormat: ru
-  setScore: 40
-  itemOptions: choice_band
+  setScore: 51
+  itemOptions: choice_scarf
   abilityOptions: 
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: earthquake / outrage / u_turn / dragon_claw
+  moveSlots: u_turn / earthquake / outrage / aerial_ace, dragon_claw, defog

@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: relicanth_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: relicanth_pu_1
-  displayName: Physically Defensive
+  displayName: Choice Band
   speciesId: relicanth
   setFormat: pu
-  setScore: 62
-  itemOptions: leftovers
-  abilityOptions: rock_head, sturdy
-  natureOptions: impish
-  evs: 248 PS / 252 Def / 8 DefE
+  setScore: 31
+  itemOptions: choice_band
+  abilityOptions: rock_head
+  natureOptions: adamant
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: stealth_rock / head_smash, rock_slide / toxic, yawn / protect, waterfall,
-    scald
+  moveSlots: head_smash / waterfall / earthquake / zen_headbutt

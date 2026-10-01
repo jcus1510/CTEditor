@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: vullaby_lc_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: vullaby_lc_2
-  displayName: Bulky Berry Juice
+  displayName: Mixed Attacker
   speciesId: vullaby
   setFormat: lc
-  setScore: 41
+  setScore: 52
   itemOptions: berry_juice
   abilityOptions: weak_armor
-  natureOptions: careful
-  evs: 116 PS / 80 Def / 160 DefE / 120 Vel
-  ivs: 
-  moveSlots: brave_bird / knock_off / defog / u_turn, hidden_power
+  natureOptions: docile
+  evs: 156 Atq / 76 Def / 80 AtqE / 196 Vel
+  ivs: 30 PS / 30 AtqE
+  moveSlots: brave_bird / knock_off / heat_wave / hidden_power

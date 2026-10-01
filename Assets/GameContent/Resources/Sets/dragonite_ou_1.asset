@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: dragonite_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: dragonite_ou_1
-  displayName: Dragon Dance + Three Attacks
+  displayName: Dragon Dance
   speciesId: dragonite
   setFormat: ou
-  setScore: 74
-  itemOptions: lum_berry, leftovers
+  setScore: 68
+  itemOptions: flyinium_z, dragonium_z
   abilityOptions: multiscale
   natureOptions: adamant, jolly
   evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: dragon_dance / outrage, dragon_claw / extreme_speed / earthquake, fire_punch
+  moveSlots: dragon_dance / fly, outrage / earthquake / extreme_speed, substitute,
+    superpower

@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: rival_hau_liga
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: rival_hau_liga
+  displayName: Tilo
+  trainerClass: Rival
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 662b60dd1124c7b4ebc1c93751ae7c75, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: tauros
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: ea3b1703a6c44984290e40ffb5b46965, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: noivern
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 0262e52b28fb2604d8d16fe6553dce26, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: crabominable
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: d0c0bc3869558404d97bb1c905ec9f0f, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: vaporeon
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 534aadd5e3b54ec4092b55774c1071d0, type: 2}
+    level: 58
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: decidueye
+    moveIds: []
+    natureId: 
+  aiLevel: 6
+  aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 120
+  introLine: "\xA1Esta vez voy con todo, amigo!"
+  defeatLine: "\xA1Qu\xE9 pasada! Eres el mejor."
+  victoryLine: "\xA1Te gan\xE9! \xA1Malasadas para celebrarlo!"

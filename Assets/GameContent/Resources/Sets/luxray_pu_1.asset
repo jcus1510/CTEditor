@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: luxray_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: luxray_pu_1
-  displayName: Choice Band
+  displayName: All-Out Attacker
   speciesId: luxray
   setFormat: pu
-  setScore: 47
-  itemOptions: choice_band
-  abilityOptions: intimidate
-  natureOptions: adamant, jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  setScore: 36
+  itemOptions: flame_orb
+  abilityOptions: guts
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: wild_charge / ice_fang / superpower / volt_switch
+  moveSlots: wild_charge / facade / superpower / volt_switch

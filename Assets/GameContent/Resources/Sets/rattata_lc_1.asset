@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rattata_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rattata_lc_1
-  displayName: Hustle
+  displayName: Hustle Wallbreaker
   speciesId: rattata
   setFormat: lc
-  setScore: 35
+  setScore: 11
   itemOptions: life_orb
   abilityOptions: hustle
   natureOptions: jolly
-  evs: 228 Atq / 76 Def / 180 Vel
+  evs: 232 Atq / 76 Def / 180 Vel
   ivs: 
-  moveSlots: double_edge, return / sucker_punch, crunch / flame_wheel / u_turn, quick_attack
+  moveSlots: double_edge, return / flame_wheel / sucker_punch / zen_headbutt, hidden_power

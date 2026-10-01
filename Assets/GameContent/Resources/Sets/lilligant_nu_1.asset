@@ -16,10 +16,11 @@ MonoBehaviour:
   displayName: Quiver Dance
   speciesId: lilligant
   setFormat: nu
-  setScore: 60
-  itemOptions: life_orb
+  setScore: 43
+  itemOptions: normalium_z
   abilityOptions: 
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: quiver_dance / giga_drain / hidden_power / sleep_powder
+  moveSlots: quiver_dance / sleep_powder, hidden_power / giga_drain, energy_ball
+    / hyper_beam

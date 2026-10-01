@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: drifblim_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: drifblim_pu_1
-  displayName: AcroBlim
+  displayName: Substitute + Calm Mind
   speciesId: drifblim
   setFormat: pu
-  setScore: 35
-  itemOptions: liechi_berry
+  setScore: 37
+  itemOptions: sitrus_berry
   abilityOptions: unburden
-  natureOptions: adamant
-  evs: 12 PS / 252 Atq / 32 Def / 36 DefE / 176 Vel
-  ivs: 
-  moveSlots: acrobatics / substitute / knock_off / will_o_wisp, sucker_punch, destiny_bond
+  natureOptions: modest, timid
+  evs: 4 Def / 252 AtqE / 252 Vel
+  ivs: 30 PS
+  moveSlots: substitute / calm_mind / shadow_ball / hidden_power

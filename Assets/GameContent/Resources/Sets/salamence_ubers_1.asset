@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Dragon Dance
   speciesId: salamence
   setFormat: ubers
-  setScore: 17
+  setScore: 12
   itemOptions: salamencite
   abilityOptions: 
   natureOptions: adamant
-  evs: 248 PS / 124 Atq / 136 Vel
+  evs: 44 PS / 252 Atq / 212 Vel
   ivs: 
-  moveSlots: double_edge, return / roost / facade, earthquake, refresh / dragon_dance
+  moveSlots: dragon_dance / double_edge / roost / facade

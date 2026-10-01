@@ -17,9 +17,9 @@ MonoBehaviour:
   speciesId: bisharp
   setFormat: ou
   setScore: 65
-  itemOptions: black_glasses, lum_berry, life_orb
+  itemOptions: darkinium_z, black_glasses
   abilityOptions: 
   natureOptions: adamant, jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: knock_off / swords_dance / iron_head / sucker_punch
+  moveSlots: knock_off / iron_head / sucker_punch / swords_dance

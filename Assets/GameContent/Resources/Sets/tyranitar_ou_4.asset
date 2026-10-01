@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: tyranitar_ou_4
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tyranitar_ou_4
-  displayName: Support
+  displayName: Assault Vest
   speciesId: tyranitar
   setFormat: ou
   setScore: 42
-  itemOptions: chople_berry, smooth_rock
+  itemOptions: assault_vest
   abilityOptions: 
-  natureOptions: relaxed, impish
-  evs: 248 PS / 92 Atq / 48 Def / 120 DefE
+  natureOptions: careful
+  evs: 224 PS / 32 Atq / 252 DefE
   ivs: 
-  moveSlots: stealth_rock / stone_edge, rock_tomb / pursuit / ice_beam, superpower,
-    fire_blast
+  moveSlots: rock_slide / crunch / pursuit / earthquake

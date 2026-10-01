@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: reshiram_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: reshiram_ubers_1
-  displayName: Roost + 3 attacks
+  displayName: Life Orb
   speciesId: reshiram
   setFormat: ubers
-  setScore: 20
-  itemOptions: life_orb, flame_plate
+  setScore: 46
+  itemOptions: life_orb
   abilityOptions: 
-  natureOptions: timid
-  evs: 4 Atq / 252 AtqE / 252 Vel
+  natureOptions: modest
+  evs: 104 PS / 252 AtqE / 152 Vel
   ivs: 
-  moveSlots: blue_flare / draco_meteor / roost / stone_edge, tailwind
+  moveSlots: blue_flare / draco_meteor / roost / toxic, stone_edge

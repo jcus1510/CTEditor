@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Bulk Up
   speciesId: skiddo
   setFormat: lc
-  setScore: 69
+  setScore: 48
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: adamant
-  evs: 76 Atq / 52 Def / 140 DefE / 180 Vel
+  natureOptions: careful
+  evs: 236 Atq / 52 Def / 220 DefE
   ivs: 
-  moveSlots: bulk_up / horn_leech / rock_slide, return / brick_break, bulldoze, milk_drink
+  moveSlots: bulk_up / horn_leech / rock_slide / zen_headbutt, brick_break

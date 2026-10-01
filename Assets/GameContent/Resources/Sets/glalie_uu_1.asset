@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: glalie_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: glalie_uu_1
-  displayName: Wrecking Ball
+  displayName: Offensive Spiker
   speciesId: glalie
   setFormat: uu
-  setScore: 49
+  setScore: 69
   itemOptions: glalitite
-  abilityOptions: ice_body
+  abilityOptions: 
   natureOptions: naive, jolly
   evs: 252 Atq / 4 AtqE / 252 Vel
   ivs: 
-  moveSlots: double_edge, return / explosion / super_fang, earthquake / freeze_dry,
-    ice_shard
+  moveSlots: spikes / return, double_edge / freeze_dry, ice_shard / earthquake, hidden_power,
+    explosion

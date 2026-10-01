@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: mesprit_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: mesprit_nu_1
-  displayName: Choice Specs
+  displayName: Offensive Support
   speciesId: mesprit
   setFormat: nu
-  setScore: 33
-  itemOptions: choice_specs
+  setScore: 29
+  itemOptions: electrium_z
   abilityOptions: 
-  natureOptions: modest
+  natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: psychic / ice_beam / signal_beam / healing_wish
+  moveSlots: stealth_rock / psychic / thunder, thunderbolt / energy_ball, ice_beam

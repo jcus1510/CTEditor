@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Weak Armor
   speciesId: onix
   setFormat: lc
-  setScore: 51
+  setScore: 70
   itemOptions: eviolite
   abilityOptions: weak_armor
   natureOptions: jolly
   evs: 76 PS / 236 Atq / 196 Vel
   ivs: 
-  moveSlots: stealth_rock / earthquake / rock_blast / protect, taunt, explosion
+  moveSlots: stealth_rock / rock_blast / earthquake / explosion, protect

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Defensive
   speciesId: foongus
   setFormat: lc
-  setScore: 84
+  setScore: 91
   itemOptions: eviolite
   abilityOptions: regenerator
   natureOptions: bold
   evs: 124 PS / 160 Def / 160 DefE
   ivs: 
-  moveSlots: spore / giga_drain / sludge_bomb / synthesis, hidden_power
+  moveSlots: spore / sludge_bomb / giga_drain / synthesis, hidden_power

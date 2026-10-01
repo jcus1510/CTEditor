@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: oddish_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: oddish_lc_1
-  displayName: Chlorophyll Sweeper
+  displayName: Defensive Pivot
   speciesId: oddish
   setFormat: lc
-  setScore: 52
-  itemOptions: life_orb
+  setScore: 56
+  itemOptions: eviolite
   abilityOptions: 
-  natureOptions: timid, modest
-  evs: 240 AtqE / 200 Vel
+  natureOptions: bold
+  evs: 156 PS / 236 Def / 76 DefE / 36 Vel
   ivs: 
-  moveSlots: solar_beam, giga_drain / sludge_bomb / hidden_power / sleep_powder
+  moveSlots: sleep_powder / strength_sap, synthesis / sludge_bomb / giga_drain

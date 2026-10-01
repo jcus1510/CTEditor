@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: pawniard_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: pawniard_lc_1
-  displayName: Standard
+  displayName: Bulky Attacker
   speciesId: pawniard
   setFormat: lc
-  setScore: 62
+  setScore: 66
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: jolly
+  natureOptions: jolly, adamant
   evs: 156 Atq / 36 Def / 116 DefE / 196 Vel
   ivs: 
-  moveSlots: knock_off / iron_head / sucker_punch / stealth_rock
+  moveSlots: knock_off / sucker_punch / iron_head / stealth_rock, swords_dance, brick_break

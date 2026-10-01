@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: gengar_ubers_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: gengar_ubers_3
-  displayName: Perish Trapper (Rick Gastly)
+  displayName: Utility Trapper
   speciesId: gengar
   setFormat: ubers
-  setScore: 13
+  setScore: 25
   itemOptions: gengarite
   abilityOptions: 
   natureOptions: timid
-  evs: 248 PS / 84 DefE / 176 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: perish_song / protect / taunt, disable / substitute, disable
+  moveSlots: taunt / destiny_bond, substitute / sludge_wave / shadow_ball

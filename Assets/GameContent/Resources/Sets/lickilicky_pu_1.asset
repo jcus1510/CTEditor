@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: lickilicky_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: lickilicky_pu_1
-  displayName: Swords Dance
+  displayName: Wish
   speciesId: lickilicky
   setFormat: pu
-  setScore: 43
-  itemOptions: lum_berry, leftovers
+  setScore: 82
+  itemOptions: leftovers
   abilityOptions: oblivious
-  natureOptions: adamant
-  evs: 168 PS / 252 Atq / 4 Def / 84 Vel
+  natureOptions: calm
+  evs: 248 PS / 8 Def / 252 DefE
   ivs: 
-  moveSlots: swords_dance / return / knock_off / earthquake
+  moveSlots: wish / protect / toxic, heal_bell, dragon_tail / seismic_toss, knock_off

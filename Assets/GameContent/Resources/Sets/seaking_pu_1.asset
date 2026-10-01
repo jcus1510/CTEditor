@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: seaking_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: seaking_pu_1
-  displayName: Utility
+  displayName: Offensive Utility
   speciesId: seaking
   setFormat: pu
-  setScore: 81
-  itemOptions: leftovers
+  setScore: 59
+  itemOptions: life_orb
   abilityOptions: lightning_rod
   natureOptions: adamant
-  evs: 112 PS / 200 Atq / 124 DefE / 72 Vel
+  evs: 64 PS / 252 Atq / 192 Vel
   ivs: 
-  moveSlots: waterfall / megahorn / knock_off / facade
+  moveSlots: waterfall / knock_off / drill_run / megahorn

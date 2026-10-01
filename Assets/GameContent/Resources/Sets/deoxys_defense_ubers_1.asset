@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Spikes
   speciesId: deoxys_defense
   setFormat: ubers
-  setScore: 55
+  setScore: 40
   itemOptions: leftovers
   abilityOptions: 
-  natureOptions: bold, impish
-  evs: 248 PS / 252 Def / 8 DefE
+  natureOptions: bold
+  evs: 252 PS / 104 Def / 152 Vel
   ivs: 
-  moveSlots: spikes / recover / skill_swap / toxic, ice_beam
+  moveSlots: spikes / taunt / recover / toxic

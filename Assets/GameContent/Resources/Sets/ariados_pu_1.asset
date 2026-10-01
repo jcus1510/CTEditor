@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Lead
   speciesId: ariados
   setFormat: pu
-  setScore: 69
+  setScore: 51
   itemOptions: focus_sash
-  abilityOptions: insomnia
+  abilityOptions: 
   natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: sticky_web / toxic_spikes / megahorn / sucker_punch
+  moveSlots: sticky_web / toxic_spikes / megahorn / toxic_thread, sucker_punch

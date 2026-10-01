@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: golduck_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: golduck_pu_1
-  displayName: Rain Dance
+  displayName: Rain Sweeper
   speciesId: golduck
   setFormat: pu
-  setScore: 60
+  setScore: 35
   itemOptions: life_orb
   abilityOptions: swift_swim
   natureOptions: modest
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: rain_dance / hydro_pump / ice_beam / psyshock
+  moveSlots: rain_dance / hydro_pump, surf / ice_beam / hidden_power

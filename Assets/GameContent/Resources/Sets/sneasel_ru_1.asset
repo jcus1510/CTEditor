@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sneasel_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sneasel_ru_1
-  displayName: All-Out Attacker
+  displayName: All-out Attacker
   speciesId: sneasel
   setFormat: ru
-  setScore: 73
-  itemOptions: life_orb
-  abilityOptions: pickpocket
+  setScore: 62
+  itemOptions: life_orb, choice_band
+  abilityOptions: 
   natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: knock_off / icicle_crash / pursuit / low_kick, ice_shard
+  moveSlots: knock_off / icicle_crash / ice_shard / pursuit

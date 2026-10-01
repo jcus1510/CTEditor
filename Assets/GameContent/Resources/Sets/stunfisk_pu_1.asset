@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: stunfisk_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: stunfisk_pu_1
-  displayName: Support
+  displayName: Defensive Stealth Rock
   speciesId: stunfisk
   setFormat: pu
-  setScore: 71
-  itemOptions: leftovers, passho_berry
+  setScore: 63
+  itemOptions: leftovers
   abilityOptions: 
   natureOptions: bold
   evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: stealth_rock / discharge / earth_power / toxic
+  moveSlots: stealth_rock / discharge / earth_power / toxic, protect

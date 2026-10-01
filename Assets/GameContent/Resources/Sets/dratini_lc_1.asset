@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: dratini_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: dratini_lc_1
-  displayName: Mixed Attacker
+  displayName: Life Orb Mixed Attacker
   speciesId: dratini
   setFormat: lc
-  setScore: 34
+  setScore: 32
   itemOptions: life_orb
   abilityOptions: 
   natureOptions: rash
   evs: 164 Atq / 196 AtqE / 116 Vel
-  ivs: 
-  moveSlots: draco_meteor / extreme_speed / fire_blast / iron_tail
+  ivs: 17 PS
+  moveSlots: draco_meteor / extreme_speed / iron_tail / fire_blast

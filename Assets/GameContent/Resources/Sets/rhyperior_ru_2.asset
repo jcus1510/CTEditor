@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Band
   speciesId: rhyperior
   setFormat: ru
-  setScore: 53
+  setScore: 45
   itemOptions: choice_band
   abilityOptions: solid_rock
   natureOptions: adamant
-  evs: 252 Atq / 4 DefE / 252 Vel
+  evs: 52 PS / 252 Atq / 204 Vel
   ivs: 
-  moveSlots: stone_edge / earthquake / megahorn / ice_punch, rock_blast
+  moveSlots: earthquake / stone_edge / megahorn / ice_punch

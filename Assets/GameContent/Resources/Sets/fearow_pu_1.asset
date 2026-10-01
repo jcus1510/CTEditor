@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: fearow_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: fearow_pu_1
-  displayName: Physical Attacker
+  displayName: Critical Hit
   speciesId: fearow
   setFormat: pu
-  setScore: 41
-  itemOptions: choice_band
-  abilityOptions: 
+  setScore: 60
+  itemOptions: scope_lens
+  abilityOptions: sniper
   natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: drill_peck / double_edge / drill_run / u_turn
+  moveSlots: frustration / drill_peck / drill_run / u_turn

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Defog
   speciesId: finneon
   setFormat: lc
-  setScore: 58
-  itemOptions: berry_juice
+  setScore: 94
+  itemOptions: berry_juice, eviolite
   abilityOptions: storm_drain
-  natureOptions: timid
-  evs: 44 PS / 152 Def / 48 AtqE / 232 Vel
+  natureOptions: bold
+  evs: 44 PS / 232 Def / 48 AtqE / 112 DefE / 72 Vel
   ivs: 
   moveSlots: defog / scald / u_turn / hidden_power

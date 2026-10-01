@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: diglett_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: diglett_lc_1
-  displayName: Eviolite
+  displayName: Offensive Trapper
   speciesId: diglett
   setFormat: lc
-  setScore: 60
-  itemOptions: eviolite
+  setScore: 63
+  itemOptions: groundium_z, life_orb
   abilityOptions: arena_trap
   natureOptions: jolly
-  evs: 36 PS / 156 Atq / 76 Def / 236 Vel
+  evs: 36 PS / 236 Atq / 236 Vel
   ivs: 
-  moveSlots: earthquake / final_gambit, pursuit, memento / rock_slide, pursuit, sucker_punch
-    / beat_up, sucker_punch, stealth_rock
+  moveSlots: earthquake / rock_slide / sucker_punch / substitute, memento

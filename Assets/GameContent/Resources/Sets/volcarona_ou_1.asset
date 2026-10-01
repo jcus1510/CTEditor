@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: volcarona_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: volcarona_ou_1
-  displayName: Life Orb
+  displayName: Offensive Quiver Dance
   speciesId: volcarona
   setFormat: ou
-  setScore: 42
-  itemOptions: life_orb
+  setScore: 51
+  itemOptions: buginium_z, aguav_berry, lum_berry, leftovers, psychium_z, firium_z,
+    life_orb
   abilityOptions: 
-  natureOptions: modest, timid
+  natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: quiver_dance / flamethrower, fire_blast / bug_buzz, hidden_power / giga_drain
+  moveSlots: quiver_dance / flamethrower, fire_blast / bug_buzz, giga_drain, psychic
+    / hidden_power, psychic

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Swords Dance
   speciesId: virizion
   setFormat: ru
-  setScore: 56
-  itemOptions: lum_berry, life_orb
+  setScore: 54
+  itemOptions: fightinium_z, life_orb
   abilityOptions: 
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: swords_dance / close_combat / leaf_blade / stone_edge, zen_headbutt
+  moveSlots: swords_dance / close_combat / leaf_blade / synthesis, stone_edge

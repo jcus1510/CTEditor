@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: campeon_kukui
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: campeon_kukui
+  displayName: Profesor Kukui
+  trainerClass: "Campe\xF3n"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 7b3693f157c3133448db5f88f39a3f4f, type: 2}
+    level: 57
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: lycanroc
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: d5e1669a9ea75c643a010f562b465bea, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: braviary
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: c80611bb25d145e4ba5ebcf0dd65e392, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: magnezone
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: e82dc14f3f7028040bd4c208195566b2, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: snorlax
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 4f01cea713e73a84e9e8cad8f0f0d7f4, type: 2}
+    level: 58
+    moves: []
+    heldItem: firium_z
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: incineroar
+    moveIds: []
+    natureId: 
+  aiLevel: 6
+  aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 3
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 150
+  introLine: "\xA1Soy el Profesor Kukui y hoy defiendo la Liga de Alola!"
+  defeatLine: "\xA1Eres el primer Campe\xF3n de Alola!"
+  victoryLine: "\xA1Buen combate, primo!"

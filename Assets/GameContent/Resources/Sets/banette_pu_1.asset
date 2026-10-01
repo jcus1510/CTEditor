@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: banette_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: banette_pu_1
-  displayName: Offensive Utility
+  displayName: Offensive
   speciesId: banette
   setFormat: pu
-  setScore: 27
+  setScore: 38
   itemOptions: life_orb
   abilityOptions: 
-  natureOptions: naughty
-  evs: 248 Atq / 40 AtqE / 220 Vel
+  natureOptions: adamant
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: shadow_claw / sucker_punch / dazzling_gleam, thunderbolt / knock_off,
-    hidden_power, will_o_wisp
+  moveSlots: shadow_claw / knock_off, gunk_shot / will_o_wisp / sucker_punch, shadow_sneak

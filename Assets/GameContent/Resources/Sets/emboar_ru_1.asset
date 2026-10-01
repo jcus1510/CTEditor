@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: emboar_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: emboar_ru_1
-  displayName: All-Out Attacker
+  displayName: Wallbreaker
   speciesId: emboar
   setFormat: ru
-  setScore: 70
-  itemOptions: choice_band, expert_belt
+  setScore: 82
+  itemOptions: choice_band
   abilityOptions: reckless
-  natureOptions: adamant
+  natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: flare_blitz / superpower / wild_charge / sucker_punch
+  moveSlots: flare_blitz / superpower / wild_charge / earthquake, sucker_punch

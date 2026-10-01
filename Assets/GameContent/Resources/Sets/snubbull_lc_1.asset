@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Berry Juice
   speciesId: snubbull
   setFormat: lc
-  setScore: 66
+  setScore: 69
   itemOptions: berry_juice
   abilityOptions: 
-  natureOptions: adamant
-  evs: 36 PS / 116 Atq / 196 Def / 116 DefE / 36 Vel
+  natureOptions: impish, careful
+  evs: 36 PS / 116 Atq / 116 Def / 196 DefE / 36 Vel
   ivs: 
-  moveSlots: play_rough / thunder_wave / fire_punch, earthquake / thief
+  moveSlots: play_rough / fire_punch, earthquake / thief / earthquake, bulk_up, thunder_wave

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Trick Room
   speciesId: cofagrigus
   setFormat: uu
-  setScore: 34
-  itemOptions: leftovers
+  setScore: 13
+  itemOptions: ghostium_z
   abilityOptions: 
   natureOptions: quiet
   evs: 252 PS / 252 AtqE / 4 DefE
   ivs: 
-  moveSlots: trick_room / shadow_ball / nasty_plot / hidden_power, will_o_wisp
+  moveSlots: shadow_ball / hidden_power / trick_room / nasty_plot

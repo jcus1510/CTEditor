@@ -17,7 +17,7 @@ MonoBehaviour:
   englishName: Flying Press
   type: {fileID: 11400000, guid: 0941b1891025dc049a69b41fb000c657, type: 2}
   category: 0
-  power: 80
+  power: 100
   neverMisses: 0
   accuracy: 95
   maxPp: 10

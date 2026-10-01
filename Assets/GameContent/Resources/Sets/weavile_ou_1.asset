@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Band
   speciesId: weavile
   setFormat: ou
-  setScore: 73
+  setScore: 71
   itemOptions: choice_band
   abilityOptions: 
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: knock_off / icicle_crash / pursuit / ice_shard
+  moveSlots: icicle_crash / knock_off / ice_shard, beat_up / pursuit, beat_up

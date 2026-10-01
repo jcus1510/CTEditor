@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: chinchou_lc_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: chinchou_lc_2
-  displayName: Fast Berry Juice
+  displayName: Choice Scarf Pivot
   speciesId: chinchou
   setFormat: lc
-  setScore: 44
-  itemOptions: berry_juice
+  setScore: 59
+  itemOptions: choice_scarf
   abilityOptions: 
   natureOptions: timid
-  evs: 132 Def / 152 AtqE / 224 Vel
-  ivs: 30 AtqE
-  moveSlots: scald / volt_switch / ice_beam / hidden_power, sucker_punch
+  evs: 52 Def / 232 AtqE / 224 Vel
+  ivs: 
+  moveSlots: hydro_pump / volt_switch / ice_beam, hidden_power, scald / scald, hidden_power,
+    thunderbolt

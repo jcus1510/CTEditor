@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Swords Dance
   speciesId: treecko
   setFormat: lc
-  setScore: 79
+  setScore: 84
   itemOptions: berry_juice
   abilityOptions: unburden
-  natureOptions: jolly, adamant
-  evs: 116 PS / 236 Atq / 156 Def
+  natureOptions: adamant
+  evs: 116 PS / 156 Atq / 156 Def / 36 Vel
   ivs: 
-  moveSlots: swords_dance / bullet_seed, seed_bomb / acrobatics / drain_punch
+  moveSlots: swords_dance / bullet_seed / drain_punch / acrobatics, rock_slide

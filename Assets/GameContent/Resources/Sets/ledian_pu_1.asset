@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ledian_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: ledian_pu_1
-  displayName: Dual Screens
+  displayName: Falcon PUNCH (All-out Attacker)
   speciesId: ledian
   setFormat: pu
-  setScore: 17
-  itemOptions: light_clay
-  abilityOptions: early_bird
+  setScore: 16
+  itemOptions: life_orb
+  abilityOptions: iron_fist
   natureOptions: jolly
-  evs: 248 PS / 8 Atq / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: reflect / light_screen / encore / u_turn
+  moveSlots: power_up_punch / drain_punch / ice_punch / thunder_punch

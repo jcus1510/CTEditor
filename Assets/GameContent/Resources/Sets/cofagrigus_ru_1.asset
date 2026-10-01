@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Defensive
   speciesId: cofagrigus
   setFormat: ru
-  setScore: 56
-  itemOptions: leftovers
+  setScore: 44
+  itemOptions: colbur_berry
   abilityOptions: 
   natureOptions: bold
-  evs: 252 PS / 252 Def / 4 DefE
+  evs: 252 PS / 252 Def / 4 AtqE
   ivs: 
-  moveSlots: will_o_wisp / hex, shadow_ball / pain_split / toxic_spikes, haze, knock_off
+  moveSlots: will_o_wisp / shadow_ball / pain_split / haze, toxic_spikes

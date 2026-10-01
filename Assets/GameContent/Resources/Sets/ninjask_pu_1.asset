@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: ninjask_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: ninjask_pu_1
-  displayName: Offensive
+  displayName: Swords Dance
   speciesId: ninjask
   setFormat: pu
-  setScore: 73
-  itemOptions: choice_band, insect_plate
-  abilityOptions: infiltrator, speed_boost
+  setScore: 51
+  itemOptions: groundium_z
+  abilityOptions: 
   natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: u_turn / aerial_ace / x_scissor / night_slash, swords_dance
+  moveSlots: swords_dance / leech_life / dig / aerial_ace

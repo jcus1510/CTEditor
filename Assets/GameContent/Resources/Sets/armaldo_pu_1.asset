@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: armaldo_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: armaldo_pu_1
-  displayName: Rapid Spin
+  displayName: Offensive Spinner
   speciesId: armaldo
   setFormat: pu
-  setScore: 51
+  setScore: 36
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: adamant

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: dodrio_pu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: dodrio_pu_2
-  displayName: Choice Scarf
+  displayName: Swords Dance
   speciesId: dodrio
   setFormat: pu
-  setScore: 61
-  itemOptions: choice_scarf
+  setScore: 59
+  itemOptions: flyinium_z, fightinium_z
   abilityOptions: early_bird
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: brave_bird / return / knock_off / pursuit
+  moveSlots: swords_dance / brave_bird / jump_kick / return, quick_attack

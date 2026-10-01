@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: maractus_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: maractus_pu_1
-  displayName: Spikes Lead
+  displayName: Lead
   speciesId: maractus
   setFormat: pu
-  setScore: 15
+  setScore: 6
   itemOptions: focus_sash
   abilityOptions: 
-  natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: naive
+  evs: 4 Atq / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: spikes / bullet_seed / endeavor / sucker_punch
+  moveSlots: spikes / endeavor / energy_ball / sucker_punch

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: vespiquen_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: vespiquen_pu_1
-  displayName: Offensive Utility
+  displayName: Pressure Stall
   speciesId: vespiquen
   setFormat: pu
-  setScore: 7
-  itemOptions: life_orb, insect_plate
+  setScore: 20
+  itemOptions: leftovers
   abilityOptions: 
-  natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  natureOptions: bold
+  evs: 248 PS / 172 Def / 88 Vel
   ivs: 
-  moveSlots: tailwind / bug_buzz / air_slash / destiny_bond
+  moveSlots: substitute / toxic / roost / air_slash, bug_buzz

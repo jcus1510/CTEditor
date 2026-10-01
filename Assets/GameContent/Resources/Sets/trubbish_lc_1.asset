@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Spikes
   speciesId: trubbish
   setFormat: lc
-  setScore: 91
+  setScore: 84
   itemOptions: berry_juice
   abilityOptions: sticky_hold
   natureOptions: jolly

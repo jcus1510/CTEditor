@@ -16,11 +16,10 @@ MonoBehaviour:
   displayName: Support
   speciesId: klefki
   setFormat: uu
-  setScore: 44
+  setScore: 46
   itemOptions: leftovers
   abilityOptions: 
-  natureOptions: calm
-  evs: 252 PS / 4 Def / 252 DefE
+  natureOptions: careful
+  evs: 248 PS / 252 DefE / 8 Vel
   ivs: 
-  moveSlots: spikes / thunder_wave / dazzling_gleam, flash_cannon, toxic / toxic,
-    magnet_rise, heal_block
+  moveSlots: spikes / thunder_wave / toxic, magnet_rise / play_rough

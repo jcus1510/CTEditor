@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: mr_mime_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: mr_mime_pu_1
-  displayName: Choice Scarf
+  displayName: Nasty Plot
   speciesId: mr_mime
   setFormat: pu
-  setScore: 67
-  itemOptions: choice_scarf
-  abilityOptions: soundproof, filter
+  setScore: 29
+  itemOptions: fightinium_z, life_orb
+  abilityOptions: 
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: psychic, psyshock / dazzling_gleam / focus_blast / healing_wish
+  moveSlots: nasty_plot / dazzling_gleam / focus_blast / psyshock

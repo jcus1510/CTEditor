@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: mienfoo_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: mienfoo_lc_1
-  displayName: Fast Pivot
+  displayName: Bulky Attacker
   speciesId: mienfoo
   setFormat: lc
-  setScore: 69
+  setScore: 78
   itemOptions: eviolite
   abilityOptions: regenerator
   natureOptions: jolly
   evs: 196 Def / 36 DefE / 236 Vel
   ivs: 
-  moveSlots: high_jump_kick / knock_off / u_turn / fake_out, taunt
+  moveSlots: high_jump_kick / u_turn / knock_off / fake_out

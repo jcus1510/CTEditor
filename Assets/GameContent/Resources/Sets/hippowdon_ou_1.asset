@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Physically Defensive
   speciesId: hippowdon
   setFormat: ou
-  setScore: 67
-  itemOptions: rocky_helmet, leftovers
+  setScore: 59
+  itemOptions: leftovers
   abilityOptions: 
   natureOptions: impish
-  evs: 252 PS / 144 Def / 112 DefE
+  evs: 252 PS / 112 Def / 144 DefE
   ivs: 
-  moveSlots: earthquake / stealth_rock / slack_off / rock_slide, toxic, whirlwind
+  moveSlots: stealth_rock / earthquake / slack_off / whirlwind

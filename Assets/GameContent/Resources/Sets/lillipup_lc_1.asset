@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: lillipup_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: lillipup_lc_1
-  displayName: Thunder Wave Support
+  displayName: Bulky Attacker
   speciesId: lillipup
   setFormat: lc
-  setScore: 50
-  itemOptions: berry_juice
+  setScore: 0
+  itemOptions: eviolite
   abilityOptions: 
-  natureOptions: adamant
-  evs: 156 PS / 196 Atq / 156 DefE
+  natureOptions: adamant, jolly
+  evs: 196 Atq / 76 Def / 236 Vel
   ivs: 
-  moveSlots: thunder_wave / return / play_rough / fire_fang, crunch, wild_charge
+  moveSlots: return / play_rough / fire_fang / thunder_wave

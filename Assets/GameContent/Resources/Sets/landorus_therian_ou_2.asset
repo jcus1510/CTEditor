@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: landorus_therian_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: landorus_therian_ou_2
-  displayName: Choice Scarf
+  displayName: Defensive
   speciesId: landorus_therian
   setFormat: ou
   setScore: 52
-  itemOptions: choice_scarf
+  itemOptions: rocky_helmet, iapapa_berry, flyinium_z
   abilityOptions: 
-  natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: impish
+  evs: 252 PS / 112 Def / 144 Vel
   ivs: 
-  moveSlots: earthquake / u_turn / stone_edge / knock_off, explosion, superpower
+  moveSlots: stealth_rock, defog / earthquake / hidden_power, toxic, fly, knock_off,
+    defog, rock_tomb / u_turn

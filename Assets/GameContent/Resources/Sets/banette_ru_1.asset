@@ -16,11 +16,10 @@ MonoBehaviour:
   displayName: Offensive
   speciesId: banette
   setFormat: ru
-  setScore: 63
+  setScore: 53
   itemOptions: banettite
-  abilityOptions: insomnia, frisk
+  abilityOptions: frisk
   natureOptions: adamant
-  evs: 228 PS / 252 Atq / 28 Vel
+  evs: 40 PS / 252 Atq / 216 Vel
   ivs: 
-  moveSlots: knock_off / will_o_wisp / shadow_claw / shadow_sneak, sucker_punch,
-    destiny_bond
+  moveSlots: destiny_bond / shadow_claw / gunk_shot / taunt, knock_off

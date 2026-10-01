@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Specially Defensive
   speciesId: walrein
   setFormat: pu
-  setScore: 41
+  setScore: 53
   itemOptions: leftovers
-  abilityOptions: 
+  abilityOptions: oblivious
   natureOptions: calm
   evs: 248 PS / 8 Def / 252 DefE
   ivs: 
-  moveSlots: roar / toxic / surf / protect, super_fang, encore
+  moveSlots: roar / toxic / surf, ice_beam / protect, super_fang, encore

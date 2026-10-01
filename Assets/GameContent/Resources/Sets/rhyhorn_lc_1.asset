@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rhyhorn_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rhyhorn_lc_1
-  displayName: Tank
+  displayName: Rhyhorn
   speciesId: rhyhorn
   setFormat: lc
-  setScore: 62
+  setScore: 63
   itemOptions: eviolite
-  abilityOptions: 
-  natureOptions: adamant
-  evs: 76 PS / 236 Atq / 76 Def / 36 DefE / 76 Vel
+  abilityOptions: rock_head
+  natureOptions: careful
+  evs: 36 PS / 156 Atq / 156 Def / 116 DefE
   ivs: 
-  moveSlots: stealth_rock / earthquake / rock_blast / megahorn, aqua_tail
+  moveSlots: stealth_rock / rock_blast / earthquake / megahorn, fire_fang, poison_jab

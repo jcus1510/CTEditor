@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Hone Claws
   speciesId: nidoran_m
   setFormat: lc
-  setScore: 94
+  setScore: 100
   itemOptions: eviolite
   abilityOptions: hustle
-  natureOptions: adamant, jolly
-  evs: 220 Atq / 36 Def / 36 DefE / 196 Vel
+  natureOptions: adamant
+  evs: 220 Atq / 36 Def / 196 Vel
   ivs: 
   moveSlots: poison_jab / drill_run / sucker_punch / hone_claws

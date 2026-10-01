@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: noctowl_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: noctowl_pu_1
-  displayName: Defensive Defog
+  displayName: Double Dance
   speciesId: noctowl
   setFormat: pu
-  setScore: 55
-  itemOptions: leftovers
-  abilityOptions: 
-  natureOptions: calm
-  evs: 248 PS / 8 Def / 252 DefE
+  setScore: 35
+  itemOptions: flyinium_z
+  abilityOptions: tinted_lens
+  natureOptions: modest
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: roost / defog / toxic / night_shade
+  moveSlots: agility / work_up / hurricane / roost

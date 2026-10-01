@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: pumpkaboo_super_lc_2
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: pumpkaboo_super_lc_2
+  displayName: Mixed Spinblocker
+  speciesId: pumpkaboo_super
+  setFormat: lc
+  setScore: 85
+  itemOptions: eviolite
+  abilityOptions: frisk
+  natureOptions: sassy, careful
+  evs: 204 PS / 36 Def / 4 AtqE / 236 DefE / 28 Vel
+  ivs: 
+  moveSlots: giga_drain, bullet_seed / synthesis / will_o_wisp / shadow_sneak, fire_blast

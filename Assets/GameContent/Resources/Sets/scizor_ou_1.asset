@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: scizor_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: scizor_ou_1
-  displayName: Utility
+  displayName: Swords Dance
   speciesId: scizor
   setFormat: ou
-  setScore: 40
+  setScore: 34
   itemOptions: scizorite
   abilityOptions: light_metal
   natureOptions: impish
-  evs: 248 PS / 136 Def / 124 DefE
+  evs: 248 PS / 16 Def / 244 DefE
   ivs: 
-  moveSlots: u_turn, superpower / roost / bullet_punch / defog, pursuit
+  moveSlots: swords_dance / roost / bullet_punch / u_turn, knock_off

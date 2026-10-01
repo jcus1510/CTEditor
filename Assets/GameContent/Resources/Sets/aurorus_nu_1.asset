@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: aurorus_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: aurorus_nu_1
-  displayName: Choice Specs
+  displayName: Offensive Stealth Rock
   speciesId: aurorus
   setFormat: nu
-  setScore: 56
-  itemOptions: choice_specs
-  abilityOptions: refrigerate, snow_warning
+  setScore: 55
+  itemOptions: icicle_plate
+  abilityOptions: snow_warning
   natureOptions: modest
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: hyper_voice, blizzard / freeze_dry / earth_power / frost_breath
+  moveSlots: blizzard / freeze_dry / stealth_rock / earth_power, protect

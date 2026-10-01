@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: volbeat_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: volbeat_pu_1
-  displayName: Weather Supporter
+  displayName: Weather Setter
   speciesId: volbeat
   setFormat: pu
-  setScore: 66
+  setScore: 67
   itemOptions: heat_rock, damp_rock
   abilityOptions: prankster
   natureOptions: relaxed
   evs: 252 PS / 4 Atq / 252 Def
   ivs: 
-  moveSlots: sunny_day, rain_dance / u_turn / encore / thunder_wave
+  moveSlots: sunny_day, rain_dance / u_turn / thunder_wave / encore

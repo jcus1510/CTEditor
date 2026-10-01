@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: SubSeed
   speciesId: gourgeist_small
   setFormat: pu
-  setScore: 68
+  setScore: 28
   itemOptions: leftovers
   abilityOptions: frisk
-  natureOptions: jolly, timid
-  evs: 152 PS / 104 Def / 252 Vel
+  natureOptions: jolly
+  evs: 152 PS / 132 Def / 224 Vel
   ivs: 
-  moveSlots: substitute / leech_seed / will_o_wisp / rock_slide, disable
+  moveSlots: substitute / leech_seed / will_o_wisp / phantom_force

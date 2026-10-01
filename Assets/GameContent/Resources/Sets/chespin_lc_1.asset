@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: chespin_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: chespin_lc_1
-  displayName: Spikes
+  displayName: Offensive Utility
   speciesId: chespin
   setFormat: lc
-  setScore: 70
+  setScore: 81
   itemOptions: eviolite
   abilityOptions: bulletproof
-  natureOptions: careful
-  evs: 108 Atq / 76 Def / 236 DefE / 52 Vel
+  natureOptions: impish
+  evs: 68 PS / 28 Atq / 156 Def / 236 DefE
   ivs: 
-  moveSlots: spikes / seed_bomb / zen_headbutt, rock_slide / synthesis
+  moveSlots: seed_bomb / zen_headbutt / synthesis / spikes, drain_punch, rock_slide

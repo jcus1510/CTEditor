@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Specs
   speciesId: mothim
   setFormat: pu
-  setScore: 46
+  setScore: 47
   itemOptions: choice_specs
   abilityOptions: tinted_lens
   natureOptions: rash
   evs: 4 Atq / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: bug_buzz / air_slash / hidden_power / u_turn
+  moveSlots: bug_buzz / air_slash / u_turn / energy_ball

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: genesect_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: genesect_ubers_1
-  displayName: Choice Scarf
+  displayName: Choice Band
   speciesId: genesect
   setFormat: ubers
-  setScore: 56
-  itemOptions: choice_scarf
+  setScore: 35
+  itemOptions: choice_band
   abilityOptions: 
-  natureOptions: naive, hasty
-  evs: 248 Atq / 8 AtqE / 252 Vel
+  natureOptions: hasty
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: u_turn / iron_head / ice_beam, extreme_speed / explosion
+  moveSlots: u_turn / iron_head / extreme_speed / explosion

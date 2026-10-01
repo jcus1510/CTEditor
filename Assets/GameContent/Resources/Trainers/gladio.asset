@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: gladio
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: gladio
+  displayName: Gladio
+  trainerClass: Rival
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: bb2fd4af0928cbb488f950bea5a6a676, type: 2}
+    level: 53
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: crobat
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: ec1a172ab8771cc47ac5520570de699c, type: 2}
+    level: 53
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: lucario
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 2d48c443db6539d43a0b6f71ffae5b4c, type: 2}
+    level: 53
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: tyranitar
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 9f36d93cfa37b744895fdaf9468271f8, type: 2}
+    level: 55
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: silvally
+    moveIds: []
+    natureId: 
+  aiLevel: 5
+  aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: No me interesa ganar... solo hacerme fuerte.
+  defeatLine: "T\xFA... eres fuerte de verdad."
+  victoryLine: Sigue entrenando.

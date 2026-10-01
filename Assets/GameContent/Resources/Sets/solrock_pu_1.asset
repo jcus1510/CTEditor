@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: solrock_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: solrock_pu_1
-  displayName: Wall
+  displayName: Stealth Rock
   speciesId: solrock
   setFormat: pu
-  setScore: 50
-  itemOptions: leftovers
+  setScore: 4
+  itemOptions: colbur_berry, leftovers, rocky_helmet
   abilityOptions: 
   natureOptions: impish
   evs: 252 PS / 4 Atq / 252 Def
   ivs: 
-  moveSlots: stealth_rock / morning_sun / will_o_wisp / rock_slide
+  moveSlots: stealth_rock / rock_slide / will_o_wisp / morning_sun

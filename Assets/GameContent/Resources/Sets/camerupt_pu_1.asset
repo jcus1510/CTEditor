@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: camerupt_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: camerupt_pu_1
-  displayName: Choice Specs
+  displayName: Wallbreaker
   speciesId: camerupt
   setFormat: pu
-  setScore: 41
+  setScore: 51
   itemOptions: choice_specs
   abilityOptions: solid_rock
   natureOptions: modest
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: eruption / fire_blast / earth_power / hidden_power
+  moveSlots: eruption / overheat / flamethrower / earth_power

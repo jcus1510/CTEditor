@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: snivy_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: snivy_lc_1
-  displayName: SubGlare
+  displayName: Eviolite Wallbreaker
   speciesId: snivy
   setFormat: lc
-  setScore: 42
-  itemOptions: berry_juice
+  setScore: 65
+  itemOptions: eviolite
   abilityOptions: contrary
   natureOptions: timid
-  evs: 236 AtqE / 252 Vel
-  ivs: 30 Def
-  moveSlots: leaf_storm / substitute / glare / hidden_power
+  evs: 240 AtqE / 252 Vel
+  ivs: 
+  moveSlots: leaf_storm / defog, glare, knock_off / synthesis / hidden_power

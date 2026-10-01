@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: carnivine_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: carnivine_pu_1
-  displayName: Offensive
+  displayName: Swords Dance
   speciesId: carnivine
   setFormat: pu
-  setScore: 38
-  itemOptions: watmel_berry
+  setScore: 25
+  itemOptions: life_orb, grassium_z
   abilityOptions: 
   natureOptions: adamant
   evs: 188 PS / 252 Atq / 68 Vel
   ivs: 
-  moveSlots: sleep_powder / power_whip / knock_off / natural_gift
+  moveSlots: swords_dance / power_whip / knock_off / sleep_powder

@@ -16,7 +16,7 @@ MonoBehaviour:
   displayName: Wish Support
   speciesId: lickitung
   setFormat: lc
-  setScore: 72
+  setScore: 73
   itemOptions: eviolite
   abilityOptions: oblivious
   natureOptions: impish

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: inkay
   setFormat: lc
-  setScore: 57
+  setScore: 61
   itemOptions: choice_scarf
   abilityOptions: 
   natureOptions: jolly, adamant
   evs: 12 PS / 244 Atq / 12 Def / 236 Vel
   ivs: 
-  moveSlots: knock_off / superpower / psycho_cut / switcheroo
+  moveSlots: superpower / knock_off / psycho_cut / switcheroo

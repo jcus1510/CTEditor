@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Swords Dance
   speciesId: doublade
   setFormat: uu
-  setScore: 76
+  setScore: 72
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: adamant, brave
+  natureOptions: brave, adamant
   evs: 240 PS / 252 Atq / 16 DefE
   ivs: 
-  moveSlots: swords_dance / shadow_sneak / iron_head, gyro_ball / sacred_sword
+  moveSlots: swords_dance / gyro_ball, iron_head / shadow_claw, sacred_sword / shadow_sneak

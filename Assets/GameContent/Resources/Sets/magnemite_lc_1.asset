@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: magnemite_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: magnemite_lc_1
-  displayName: Sturdy + Berry Juice
+  displayName: Choice Scarf
   speciesId: magnemite
   setFormat: lc
-  setScore: 69
-  itemOptions: berry_juice
-  abilityOptions: sturdy
+  setScore: 59
+  itemOptions: choice_scarf
+  abilityOptions: analytic, magnet_pull
   natureOptions: modest, timid
-  evs: 36 Def / 236 AtqE / 236 Vel
+  evs: 240 AtqE / 240 Vel
   ivs: 
-  moveSlots: volt_switch / flash_cannon / recycle / endure, hidden_power, thunderbolt
+  moveSlots: volt_switch / flash_cannon / thunderbolt / hidden_power

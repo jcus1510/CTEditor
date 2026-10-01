@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: breloom_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: breloom_ou_1
-  displayName: Technician Attacker
+  displayName: Focus Sash
   speciesId: breloom
   setFormat: ou
-  setScore: 65
-  itemOptions: life_orb
+  setScore: 82
+  itemOptions: focus_sash
   abilityOptions: technician
   natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: spore / bullet_seed / mach_punch / swords_dance, focus_punch, rock_tomb
+  moveSlots: spore / mach_punch / bullet_seed / swords_dance, rock_tomb

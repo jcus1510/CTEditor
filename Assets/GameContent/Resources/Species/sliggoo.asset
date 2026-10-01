@@ -44,6 +44,8 @@ MonoBehaviour:
   speed: 60
   customStats: []
   learnset:
+  - move: {fileID: 11400000, guid: 36bfb8286b5281b42b15716b99496dde, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: b42a72046ceb81b4395594b2b3f6c8d3, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
@@ -101,7 +103,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
-  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
   - {fileID: 11400000, guid: 8e348842184c97649931a9f92cdd533a, type: 2}

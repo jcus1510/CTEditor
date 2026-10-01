@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: oranguru_pu_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: oranguru_pu_1
+  displayName: Trick Room
+  speciesId: oranguru
+  setFormat: pu
+  setScore: 23
+  itemOptions: fightinium_z, electrium_z, colbur_berry
+  abilityOptions: 
+  natureOptions: quiet
+  evs: 248 PS / 252 AtqE / 8 DefE
+  ivs: 
+  moveSlots: trick_room / nasty_plot / psychic / focus_blast, thunderbolt

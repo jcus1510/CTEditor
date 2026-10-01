@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: tornadus_therian_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tornadus_therian_ou_1
-  displayName: Assault Vest Pivot
+  displayName: Bulky Pivot
   speciesId: tornadus_therian
   setFormat: ou
-  setScore: 64
-  itemOptions: assault_vest
+  setScore: 63
+  itemOptions: flyinium_z, rocky_helmet
   abilityOptions: 
-  natureOptions: timid, jolly
-  evs: 248 PS / 8 Def / 252 Vel
+  natureOptions: timid
+  evs: 240 PS / 64 Def / 204 Vel
   ivs: 
-  moveSlots: hurricane / heat_wave, hidden_power / knock_off / u_turn
+  moveSlots: hurricane / knock_off, taunt, heat_wave / u_turn, taunt, heat_wave /
+    defog

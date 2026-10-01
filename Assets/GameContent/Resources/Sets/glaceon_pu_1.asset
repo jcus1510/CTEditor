@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: glaceon_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: glaceon_pu_1
-  displayName: Choice Specs
+  displayName: Z-Celebrate
   speciesId: glaceon
   setFormat: pu
-  setScore: 45
-  itemOptions: choice_specs
-  abilityOptions: ice_body
-  natureOptions: modest, timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  setScore: 50
+  itemOptions: normalium_z
+  abilityOptions: 
+  natureOptions: timid, modest
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: ice_beam / hidden_power / shadow_ball / frost_breath
+  moveSlots: celebrate / ice_beam / hidden_power / shadow_ball

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sawsbuck_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sawsbuck_pu_1
-  displayName: Choice Scarf
+  displayName: Sun Sweeper
   speciesId: sawsbuck
   setFormat: pu
-  setScore: 50
-  itemOptions: choice_scarf
-  abilityOptions: sap_sipper, chlorophyll
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  setScore: 47
+  itemOptions: normalium_z
+  abilityOptions: 
+  natureOptions: adamant
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: double_edge / horn_leech / jump_kick / toxic
+  moveSlots: swords_dance / double_edge / horn_leech / jump_kick

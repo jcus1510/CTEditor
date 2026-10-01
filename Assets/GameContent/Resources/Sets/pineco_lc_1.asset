@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: pineco_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: pineco_lc_1
-  displayName: Entry Hazard Lead
+  displayName: Lead
   speciesId: pineco
   setFormat: lc
-  setScore: 69
+  setScore: 62
   itemOptions: berry_juice
   abilityOptions: 
-  natureOptions: adamant
+  natureOptions: jolly
   evs: 236 Atq / 36 Def / 236 Vel
   ivs: 
   moveSlots: stealth_rock / spikes / rapid_spin / explosion, payback

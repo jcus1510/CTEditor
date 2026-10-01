@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: victini_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: victini_ou_1
-  displayName: MixTini
+  displayName: Choice Scarf
   speciesId: victini
   setFormat: ou
-  setScore: 30
-  itemOptions: life_orb
+  setScore: 43
+  itemOptions: choice_scarf
   abilityOptions: 
-  natureOptions: naive, hasty
-  evs: 96 Atq / 160 AtqE / 252 Vel
+  natureOptions: jolly
+  evs: 252 PS / 4 Atq / 252 Vel
   ivs: 
-  moveSlots: v_create / bolt_strike / glaciate / energy_ball, grass_knot
+  moveSlots: v_create / u_turn / final_gambit / trick

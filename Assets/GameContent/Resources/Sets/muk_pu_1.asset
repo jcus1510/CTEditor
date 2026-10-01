@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: muk_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: muk_pu_1
-  displayName: CroMuk
+  displayName: Rest + Sleep Talk
   speciesId: muk
   setFormat: pu
-  setScore: 53
-  itemOptions: black_sludge
+  setScore: 28
+  itemOptions: leftovers
   abilityOptions: sticky_hold
   natureOptions: careful
-  evs: 248 PS / 8 Def / 240 DefE / 12 Vel
+  evs: 252 PS / 4 Atq / 252 DefE
   ivs: 
   moveSlots: curse / poison_jab / rest / sleep_talk

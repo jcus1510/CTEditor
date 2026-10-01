@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: mamoswine_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: mamoswine_ou_1
-  displayName: Wallbreaker
+  displayName: Physical Attacker
   speciesId: mamoswine
   setFormat: ou
   setScore: 58
-  itemOptions: life_orb
+  itemOptions: metronome
   abilityOptions: thick_fat
-  natureOptions: adamant, jolly
+  natureOptions: adamant
   evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: ice_shard / earthquake / icicle_crash / superpower, freeze_dry
+  moveSlots: earthquake / ice_shard / icicle_crash / stealth_rock, knock_off

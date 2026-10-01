@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sawk_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sawk_ru_1
-  displayName: Choice Band
+  displayName: Wallbreaker
   speciesId: sawk
   setFormat: ru
-  setScore: 61
-  itemOptions: choice_band
+  setScore: 49
+  itemOptions: fightinium_z
   abilityOptions: 
-  natureOptions: jolly, adamant
+  natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: close_combat / knock_off / poison_jab / zen_headbutt
+  moveSlots: close_combat / knock_off / taunt / poison_jab, earthquake

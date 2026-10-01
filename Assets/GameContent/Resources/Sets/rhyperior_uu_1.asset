@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: rhyperior_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rhyperior_uu_1
-  displayName: Defensive
+  displayName: Tank
   speciesId: rhyperior
   setFormat: uu
-  setScore: 58
+  setScore: 80
   itemOptions: leftovers
   abilityOptions: solid_rock
   natureOptions: adamant
-  evs: 248 PS / 16 Atq / 244 DefE
+  evs: 252 PS / 16 Atq / 240 DefE
   ivs: 
-  moveSlots: stealth_rock / rock_blast, stone_edge / earthquake / roar, toxic, protect
+  moveSlots: stealth_rock / earthquake / stone_edge, rock_blast / ice_punch, toxic,
+    swords_dance

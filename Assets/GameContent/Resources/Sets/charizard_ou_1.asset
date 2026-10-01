@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Dragon Dance
   speciesId: charizard
   setFormat: ou
-  setScore: 67
+  setScore: 14
   itemOptions: charizardite_x
   abilityOptions: 
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: dragon_dance / flare_blitz / dragon_claw / roost
+  moveSlots: dragon_dance / flare_blitz / earthquake / dragon_claw, roost

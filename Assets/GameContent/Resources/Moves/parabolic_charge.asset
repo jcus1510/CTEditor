@@ -17,7 +17,7 @@ MonoBehaviour:
   englishName: Parabolic Charge
   type: {fileID: 11400000, guid: 11907be1d5340704a86d6e3df74657fb, type: 2}
   category: 1
-  power: 50
+  power: 65
   neverMisses: 0
   accuracy: 100
   maxPp: 20

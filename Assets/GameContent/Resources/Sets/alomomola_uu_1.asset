@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: alomomola_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: alomomola_uu_1
-  displayName: Sunfish Wish
+  displayName: Defensive
   speciesId: alomomola
   setFormat: uu
-  setScore: 85
+  setScore: 92
   itemOptions: leftovers, rocky_helmet
   abilityOptions: regenerator
-  natureOptions: bold
+  natureOptions: bold, impish
   evs: 40 PS / 252 Def / 216 DefE
   ivs: 
-  moveSlots: scald / wish / protect / toxic, knock_off
+  moveSlots: wish / protect / toxic, knock_off / scald, knock_off

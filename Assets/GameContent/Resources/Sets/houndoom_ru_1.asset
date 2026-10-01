@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Nasty Plot
   speciesId: houndoom
   setFormat: ru
-  setScore: 62
-  itemOptions: life_orb
+  setScore: 48
+  itemOptions: darkinium_z
   abilityOptions: flash_fire
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: nasty_plot / fire_blast / dark_pulse / hidden_power
+  moveSlots: nasty_plot / dark_pulse / fire_blast / taunt

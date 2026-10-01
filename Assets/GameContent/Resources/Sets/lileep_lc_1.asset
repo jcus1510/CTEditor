@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Tank
   speciesId: lileep
   setFormat: lc
-  setScore: 81
+  setScore: 83
   itemOptions: eviolite
   abilityOptions: storm_drain
-  natureOptions: calm, bold
-  evs: 228 PS / 140 Def / 140 DefE
+  natureOptions: bold
+  evs: 68 PS / 220 Def / 108 AtqE / 60 DefE / 12 Vel
   ivs: 
-  moveSlots: stealth_rock / giga_drain / recover / ancient_power, toxic
+  moveSlots: recover / giga_drain / stealth_rock / ancient_power, earth_power, toxic

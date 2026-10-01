@@ -17,9 +17,9 @@ MonoBehaviour:
   speciesId: unfezant
   setFormat: pu
   setScore: 45
-  itemOptions: focus_sash, scope_lens
+  itemOptions: scope_lens
   abilityOptions: super_luck
-  natureOptions: adamant, jolly
+  natureOptions: adamant
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: tailwind / hypnosis, taunt / u_turn / return
+  moveSlots: tailwind / hypnosis / u_turn / return

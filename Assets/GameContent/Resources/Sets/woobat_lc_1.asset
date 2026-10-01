@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Simple Sweeper
   speciesId: woobat
   setFormat: lc
-  setScore: 59
-  itemOptions: eviolite
+  setScore: 74
+  itemOptions: eviolite, salac_berry
   abilityOptions: simple
   natureOptions: timid
   evs: 76 PS / 12 Def / 236 AtqE / 180 Vel
   ivs: 
-  moveSlots: calm_mind / stored_power / heat_wave / roost
+  moveSlots: calm_mind / stored_power / heat_wave, air_slash / roost, substitute

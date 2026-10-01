@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Physical Attacker
   speciesId: mewtwo
   setFormat: ubers
-  setScore: 7
+  setScore: 10
   itemOptions: mewtwonite_x
   abilityOptions: 
   natureOptions: jolly
-  evs: 112 Atq / 144 Def / 252 Vel
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: low_kick / taunt / earthquake / ice_punch, stone_edge
+  moveSlots: low_kick / taunt / ice_beam, zen_headbutt / stone_edge, zen_headbutt

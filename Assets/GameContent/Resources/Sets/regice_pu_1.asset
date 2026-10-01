@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Rock Polish
   speciesId: regice
   setFormat: pu
-  setScore: 40
-  itemOptions: life_orb
+  setScore: 34
+  itemOptions: fightinium_z
   abilityOptions: 
-  natureOptions: modest
-  evs: 4 Def / 252 AtqE / 252 Vel
+  natureOptions: modest, timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: rock_polish / ice_beam / thunderbolt / focus_blast
+  moveSlots: rock_polish / ice_beam / focus_blast / thunderbolt

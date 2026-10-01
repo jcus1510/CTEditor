@@ -37,10 +37,10 @@ MonoBehaviour:
     recorren todo su cuerpo.
   femalePercent: 50
   legendary: 0
-  hp: 50
+  hp: 60
   attack: 50
   defense: 120
-  spAttack: 80
+  spAttack: 90
   spDefense: 80
   speed: 30
   customStats: []
@@ -50,6 +50,8 @@ MonoBehaviour:
   - move: {fileID: 11400000, guid: 4aec5593c053635429649f39ee0b9ab5, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 463d0914b67fe0e49bb7496ee377b881, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 6e591eadf38b0be47a08e6db5e5ee087, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 67a15338148b37f4c82e6dc0c8da95df, type: 2}
     level: 1
@@ -75,8 +77,6 @@ MonoBehaviour:
     level: 34
   - move: {fileID: 11400000, guid: 5d68f7ae3f19057498187d163e8bf589, type: 2}
     level: 36
-  - move: {fileID: 11400000, guid: 6e591eadf38b0be47a08e6db5e5ee087, type: 2}
-    level: 38
   - move: {fileID: 11400000, guid: ee44701bbc792004f8c744056ac5452d, type: 2}
     level: 43
   - move: {fileID: 11400000, guid: 0eb8b27313372d04b914fe06dab256f8, type: 2}
@@ -102,7 +102,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c49703054ffc0dc40a9619b9efe13529, type: 2}
   - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
   - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
-  - {fileID: 11400000, guid: 49bccf2aae17cb248a874f769eedde36, type: 2}
   - {fileID: 11400000, guid: b9c4a4072b4846d4682b7aa97e95c2c5, type: 2}
   - {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
   - {fileID: 11400000, guid: fd059fe98a9650e41806d434b05e2af8, type: 2}
@@ -113,16 +112,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: 4cfd413f63f850d4184361b3dcded214, type: 2}
   - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
-  - {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
   - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
-  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: e9b30167cba759a4384b247fbb304135, type: 2}
   - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
   - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
-  - {fileID: 11400000, guid: 32cacc67278f51544841007e0dee54cf, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
   - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
@@ -136,6 +132,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d8e92f9a08c72494da330a1912c78045, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+  - {fileID: 11400000, guid: 05fb494dd749dd6468f999bf493bc580, type: 2}
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 9d53a19e52921834a83345100ec4a2a8, type: 2}

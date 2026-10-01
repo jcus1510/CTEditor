@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: litleo_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: litleo_lc_1
-  displayName: Special Attacker
+  displayName: Moxie Sweeper
   speciesId: litleo
   setFormat: lc
-  setScore: 38
-  itemOptions: life_orb
-  abilityOptions: unnerve
-  natureOptions: timid
-  evs: 20 PS / 52 Def / 176 AtqE / 4 DefE / 180 Vel
+  setScore: 35
+  itemOptions: firium_z
+  abilityOptions: moxie
+  natureOptions: jolly
+  evs: 20 PS / 196 Atq / 52 Def / 4 DefE / 180 Vel
   ivs: 
-  moveSlots: fire_blast, flamethrower / hyper_voice / hidden_power / will_o_wisp
+  moveSlots: flare_blitz / return / flame_charge / wild_charge, hidden_power

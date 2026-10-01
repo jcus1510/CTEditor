@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: groudon_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: groudon_ubers_1
-  displayName: Defensive Stealth Rock
+  displayName: Stealth Rock + Swords Dance
   speciesId: groudon
   setFormat: ubers
-  setScore: 26
+  setScore: 11
   itemOptions: red_orb
   abilityOptions: 
-  natureOptions: sassy, careful
-  evs: 248 PS / 8 Def / 252 DefE
+  natureOptions: adamant
+  evs: 136 PS / 168 Atq / 52 DefE / 152 Vel
   ivs: 
-  moveSlots: stealth_rock / precipice_blades / lava_plume, rock_slide / roar, thunder_wave,
-    dragon_tail
+  moveSlots: stealth_rock / swords_dance / precipice_blades / rock_tomb, stone_edge

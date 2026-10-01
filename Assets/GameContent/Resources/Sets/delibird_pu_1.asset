@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: delibird_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: delibird_pu_1
-  displayName: Spikes Lead
+  displayName: Lead
   speciesId: delibird
   setFormat: pu
-  setScore: 57
+  setScore: 9
   itemOptions: focus_sash
   abilityOptions: 
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: spikes / rapid_spin / icy_wind, freeze_dry / destiny_bond
+  moveSlots: spikes / rapid_spin / icy_wind / destiny_bond

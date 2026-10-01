@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: numel_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: numel_lc_1
-  displayName: Defensive
+  displayName: Sweeper
   speciesId: numel
   setFormat: lc
-  setScore: 56
-  itemOptions: eviolite
-  abilityOptions: oblivious, simple
-  natureOptions: calm
-  evs: 36 PS / 36 Def / 236 AtqE / 156 DefE
+  setScore: 79
+  itemOptions: eviolite, berry_juice, groundium_z
+  abilityOptions: simple
+  natureOptions: modest
+  evs: 36 PS / 236 AtqE / 236 Vel
   ivs: 
-  moveSlots: earth_power / lava_plume, fire_blast / stealth_rock / ancient_power,
-    will_o_wisp
+  moveSlots: flame_charge / fire_blast / earth_power / growth, stealth_rock

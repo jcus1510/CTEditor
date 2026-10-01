@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: plusle_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: plusle_pu_1
-  displayName: '"Offensive"'
+  displayName: Nasty Plot
   speciesId: plusle
   setFormat: pu
-  setScore: 33
-  itemOptions: life_orb, salac_berry
+  setScore: 0
+  itemOptions: life_orb
   abilityOptions: lightning_rod
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: substitute / nasty_plot / thunderbolt / hidden_power
+  moveSlots: nasty_plot / thunderbolt / hidden_power, grass_knot / substitute, encore

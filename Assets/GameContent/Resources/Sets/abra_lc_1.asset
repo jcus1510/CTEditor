@@ -16,10 +16,11 @@ MonoBehaviour:
   displayName: Focus Sash
   speciesId: abra
   setFormat: lc
-  setScore: 62
+  setScore: 71
   itemOptions: focus_sash
   abilityOptions: magic_guard
   natureOptions: timid
   evs: 240 AtqE / 200 Vel
-  ivs: 1 Atq / 30 Def / 30 AtqE / 30 DefE / 30 Vel
-  moveSlots: psychic / dazzling_gleam / hidden_power / protect
+  ivs: 
+  moveSlots: psychic / dazzling_gleam / hidden_power, counter / protect, energy_ball,
+    psychic_terrain

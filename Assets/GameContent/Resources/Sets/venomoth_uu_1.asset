@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: venomoth_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: venomoth_uu_1
-  displayName: Mono-Attacker
+  displayName: Quiver Dance
   speciesId: venomoth
   setFormat: uu
-  setScore: 69
-  itemOptions: black_sludge
+  setScore: 85
+  itemOptions: buginium_z
   abilityOptions: tinted_lens
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: quiver_dance / bug_buzz / sleep_powder, substitute / roost, substitute
+  moveSlots: quiver_dance / sleep_powder / bug_buzz / sludge_bomb

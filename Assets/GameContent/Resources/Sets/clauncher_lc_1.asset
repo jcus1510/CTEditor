@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: clauncher_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: clauncher_lc_1
-  displayName: Pivot
+  displayName: Choice Scarf
   speciesId: clauncher
   setFormat: lc
-  setScore: 52
-  itemOptions: eviolite
+  setScore: 49
+  itemOptions: choice_scarf
   abilityOptions: 
-  natureOptions: relaxed
-  evs: 92 Atq / 180 Def / 132 AtqE / 92 DefE
+  natureOptions: modest
+  evs: 20 Def / 212 AtqE / 12 DefE / 244 Vel
   ivs: 
-  moveSlots: scald, water_pulse / aqua_jet / ice_beam / u_turn
+  moveSlots: u_turn / water_pulse / ice_beam / hidden_power

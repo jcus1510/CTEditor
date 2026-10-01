@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: dewpider
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: dewpider
+  displayName: Dewpider
+  englishName: Dewpider
+  types:
+  - {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
+  - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
+  abilityId: water_bubble
+  secondAbilityId: 
+  hiddenAbilityId: water_absorb
+  growthCurveId: medium_fast
+  baseExpYield: 54
+  evYield:
+  - statId: sp_defense
+    amount: 1
+  baseFriendship: 70
+  catchRate: 200
+  dexNumber: 751
+  category: Pompa
+  heightM: 0.3
+  weightKg: 4
+  dexColor: verde
+  dexDescription: "Si se encuentran dos ejemplares de la especie, comparan el tama\xF1o
+    de sus burbujas. El perdedor ha de ceder el paso."
+  femalePercent: 50
+  legendary: 0
+  hp: 38
+  attack: 40
+  defense: 52
+  spAttack: 40
+  spDefense: 72
+  speed: 27
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: b42a72046ceb81b4395594b2b3f6c8d3, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 25938b490a569fb458f02c51ede4c0cf, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: b9c4a4072b4846d4682b7aa97e95c2c5, type: 2}
+    level: 5
+  - move: {fileID: 11400000, guid: 189f3f5a94184f1438173f59896a3aba, type: 2}
+    level: 8
+  - move: {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: 6a1f2a343ec493f488b11de043229785, type: 2}
+    level: 16
+  - move: {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+    level: 21
+  - move: {fileID: 11400000, guid: 7627b7998c029d64084ddec3bcda1deb, type: 2}
+    level: 24
+  - move: {fileID: 11400000, guid: 16036d968a572294fb509d1407a3a222, type: 2}
+    level: 29
+  - move: {fileID: 11400000, guid: b2c063ae9f8542b4a946e7619d7bc4b6, type: 2}
+    level: 32
+  - move: {fileID: 11400000, guid: 5fd46c59244f9aa469bc6cc22ac001a7, type: 2}
+    level: 37
+  - move: {fileID: 11400000, guid: aa227febb56c30e44903499d5c32999f, type: 2}
+    level: 40
+  - move: {fileID: 11400000, guid: 35d4435395e67784c85ffb4ad31ab72d, type: 2}
+    level: 45
+  - move: {fileID: 11400000, guid: 4e29bb33b6aeb2147b97cdc67267359a, type: 2}
+    level: 48
+  evolutions:
+  - target: {fileID: 11400000, guid: 06803c34d5ac7764fb8b2d3efb8c2547, type: 2}
+    requiredLevel: 22
+    method: 0
+    itemId: 
+    minFriendship: 0
+    conditions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 9c6182dd7b87d714d8cbbe83e31cca40, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+  - {fileID: 11400000, guid: b9c4a4072b4846d4682b7aa97e95c2c5, type: 2}
+  - {fileID: 11400000, guid: 16036d968a572294fb509d1407a3a222, type: 2}
+  - {fileID: 11400000, guid: e241c34283f45a343b6140504cd58b9e, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 630606dd415e65a4ca5db9fbffaaa633, type: 2}
+  - {fileID: 11400000, guid: cad6229bd6396e54ab2ae591cec87009, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
+  - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+  - {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
+  - {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
+  - {fileID: 11400000, guid: 35d4435395e67784c85ffb4ad31ab72d, type: 2}
+  - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
+  - {fileID: 11400000, guid: 5966c92ab9775514e994659fd1089636, type: 2}
+  - {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
+  - {fileID: 11400000, guid: 92d0ed9ee37aa2b48b4de3cf7ce8db55, type: 2}
+  eggMoves:
+  - {fileID: 11400000, guid: 1a5ed636848adc34388ed06c75125f4a, type: 2}
+  - {fileID: 11400000, guid: f6551d2f6f61c104ea9adfa19f819ad7, type: 2}
+  - {fileID: 11400000, guid: 9b45a57d37c96d144a9e05a00b5c1e15, type: 2}
+  - {fileID: 11400000, guid: e7740f2b3e69e1d4383c15bae52cdc46, type: 2}
+  - {fileID: 11400000, guid: f0f3bf87980a9504191e424a1f6d65b3, type: 2}
+  eggGroups:
+  - {fileID: 11400000, guid: d157f82d264192840973c80fbe0c8b69, type: 2}
+  - {fileID: 11400000, guid: 1db6d26df99d9ca4180072eb358a7436, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

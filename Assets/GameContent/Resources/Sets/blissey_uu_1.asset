@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: blissey_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: blissey_uu_1
-  displayName: De Blob (Cleric)
+  displayName: Defensive
   speciesId: blissey
   setFormat: uu
-  setScore: 60
+  setScore: 69
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: bold
   evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: wish, thunder_wave / protect, soft_boiled / seismic_toss / heal_bell,
-    toxic, stealth_rock
+  moveSlots: seismic_toss / toxic / soft_boiled / heal_bell, stealth_rock

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: dwebble_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: dwebble_lc_1
-  displayName: Entry Hazard Lead
+  displayName: Entry Hazard Setter
   speciesId: dwebble
   setFormat: lc
-  setScore: 64
-  itemOptions: berry_juice
-  abilityOptions: 
+  setScore: 57
+  itemOptions: eviolite, berry_juice
+  abilityOptions: weak_armor, sturdy
   natureOptions: jolly
-  evs: 236 Atq / 236 Vel
+  evs: 36 PS / 156 Atq / 76 Def / 236 Vel
   ivs: 
-  moveSlots: stealth_rock / spikes / knock_off / rock_blast, counter
+  moveSlots: stealth_rock / spikes / rock_blast / knock_off

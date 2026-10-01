@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: terrakion_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: terrakion_ou_1
-  displayName: Choice Band
+  displayName: Swords Dance
   speciesId: terrakion
   setFormat: ou
-  setScore: 49
-  itemOptions: choice_band
+  setScore: 64
+  itemOptions: rockium_z
   abilityOptions: 
   natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: close_combat / stone_edge / rock_slide, iron_head / quick_attack
+  moveSlots: swords_dance / stone_edge / close_combat / stealth_rock

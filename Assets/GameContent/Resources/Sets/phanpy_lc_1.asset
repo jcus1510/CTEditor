@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Utility
   speciesId: phanpy
   setFormat: lc
-  setScore: 68
+  setScore: 72
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: impish
-  evs: 116 PS / 116 Atq / 196 Def / 36 DefE / 36 Vel
+  natureOptions: careful
+  evs: 116 PS / 116 Atq / 116 Def / 116 DefE / 36 Vel
   ivs: 
-  moveSlots: stealth_rock / knock_off / earthquake / roar, ice_shard
+  moveSlots: stealth_rock / earthquake / knock_off / ice_shard

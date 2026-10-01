@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: munna_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: munna_lc_1
-  displayName: Trick Room
+  displayName: Calm Mind Sweeper
   speciesId: munna
   setFormat: lc
-  setScore: 38
+  setScore: 44
   itemOptions: eviolite
   abilityOptions: synchronize
-  natureOptions: sassy
-  evs: 68 PS / 236 Def / 60 AtqE / 76 DefE
+  natureOptions: bold
+  evs: 68 PS / 156 Def / 60 AtqE / 156 DefE / 4 Vel
   ivs: 
-  moveSlots: trick_room / psychic / dazzling_gleam / healing_wish
+  moveSlots: calm_mind / stored_power / dazzling_gleam / moonlight

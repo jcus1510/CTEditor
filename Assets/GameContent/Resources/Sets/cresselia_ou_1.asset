@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: cresselia_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: cresselia_ou_1
-  displayName: Defensive
+  displayName: Calm Mind
   speciesId: cresselia
   setFormat: ou
-  setScore: 71
-  itemOptions: rocky_helmet
+  setScore: 57
+  itemOptions: leftovers
   abilityOptions: 
   natureOptions: bold
-  evs: 252 PS / 16 Def / 88 DefE / 152 Vel
+  evs: 252 PS / 92 Def / 152 AtqE / 12 Vel
   ivs: 
-  moveSlots: lunar_dance / thunder_wave, toxic / ice_beam, psychic / moonlight
+  moveSlots: psyshock / ice_beam / calm_mind / moonlight

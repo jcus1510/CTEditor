@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: heatmor_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: heatmor_pu_1
-  displayName: Mixed Attacker
+  displayName: All-out Attacker
   speciesId: heatmor
   setFormat: pu
-  setScore: 56
+  setScore: 48
   itemOptions: life_orb
   abilityOptions: flash_fire
-  natureOptions: rash
-  evs: 40 Atq / 252 AtqE / 216 Vel
+  natureOptions: jolly, naive
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: fire_blast / giga_drain / superpower / sucker_punch
+  moveSlots: fire_lash / sucker_punch / knock_off, giga_drain / superpower

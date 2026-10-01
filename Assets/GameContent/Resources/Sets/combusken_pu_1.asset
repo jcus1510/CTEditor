@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: combusken_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: combusken_pu_1
-  displayName: Life Orb Attacker
+  displayName: Specially Offensive
   speciesId: combusken
   setFormat: pu
-  setScore: 59
-  itemOptions: life_orb
+  setScore: 54
+  itemOptions: firium_z, fightinium_z, leftovers
   abilityOptions: speed_boost
   natureOptions: timid
   evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: fire_blast / focus_blast / hidden_power / protect
+  moveSlots: fire_blast / focus_blast / hidden_power, substitute / protect

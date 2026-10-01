@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: gible_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: gible_lc_1
-  displayName: Bulky Offensive
+  displayName: Stealth Rock
   speciesId: gible
   setFormat: lc
-  setScore: 59
-  itemOptions: eviolite
+  setScore: 67
+  itemOptions: berry_juice
   abilityOptions: rough_skin
-  natureOptions: adamant
-  evs: 132 PS / 196 Atq / 156 Def / 20 Vel
+  natureOptions: bold
+  evs: 52 PS / 156 Def / 116 AtqE / 156 DefE / 20 Vel
   ivs: 
-  moveSlots: stealth_rock, rock_tomb / earthquake / dragon_claw / toxic, roar, rock_tomb,
-    iron_tail
+  moveSlots: stealth_rock / draco_meteor / earth_power / fire_blast

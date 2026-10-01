@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: cresselia_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: cresselia_ou_2
-  displayName: Choice Scarf
+  displayName: Support
   speciesId: cresselia
   setFormat: ou
-  setScore: 42
-  itemOptions: choice_scarf
+  setScore: 55
+  itemOptions: leftovers, rocky_helmet, eject_button
   abilityOptions: 
-  natureOptions: timid
-  evs: 248 PS / 8 AtqE / 252 Vel
+  natureOptions: calm
+  evs: 252 PS / 64 Def / 136 DefE / 56 Vel
   ivs: 
-  moveSlots: trick / lunar_dance / thunder_wave / ice_beam, psychic
+  moveSlots: lunar_dance, future_sight / thunder_wave, toxic / ice_beam / moonlight

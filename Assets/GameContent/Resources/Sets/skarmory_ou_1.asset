@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Physically Defensive
   speciesId: skarmory
   setFormat: ou
-  setScore: 76
-  itemOptions: rocky_helmet
+  setScore: 82
+  itemOptions: rocky_helmet, shed_shell
   abilityOptions: sturdy
-  natureOptions: impish
-  evs: 252 PS / 252 Def / 4 DefE
+  natureOptions: bold, impish
+  evs: 248 PS / 252 Def / 8 DefE
   ivs: 
-  moveSlots: spikes / roost / whirlwind, defog / brave_bird, counter
+  moveSlots: roost / spikes / whirlwind / counter, toxic, brave_bird, defog

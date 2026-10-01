@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: tornadus_therian_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tornadus_therian_ou_2
-  displayName: Taunt
+  displayName: Offensive Pivot
   speciesId: tornadus_therian
   setFormat: ou
-  setScore: 43
-  itemOptions: rocky_helmet
+  setScore: 58
+  itemOptions: flyinium_z, fightinium_z
   abilityOptions: 
   natureOptions: timid
-  evs: 248 PS / 8 Def / 252 Vel
+  evs: 128 PS / 8 Def / 156 AtqE / 216 Vel
   ivs: 
-  moveSlots: taunt / u_turn / knock_off / hurricane
+  moveSlots: hurricane / knock_off, focus_blast, heat_wave / u_turn, taunt / defog

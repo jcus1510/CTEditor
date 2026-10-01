@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Wallbreaker
   speciesId: corphish
   setFormat: lc
-  setScore: 82
+  setScore: 73
   itemOptions: eviolite
   abilityOptions: adaptability
   natureOptions: adamant
   evs: 196 Atq / 76 Def / 236 Vel
   ivs: 
-  moveSlots: crabhammer / knock_off / aqua_jet / swords_dance
+  moveSlots: crabhammer / aqua_jet / knock_off / swords_dance

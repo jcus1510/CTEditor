@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: azumarill_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: azumarill_ou_1
-  displayName: Choice Band
+  displayName: Belly Drum
   speciesId: azumarill
   setFormat: ou
-  setScore: 73
-  itemOptions: choice_band
+  setScore: 55
+  itemOptions: normalium_z
   abilityOptions: huge_power
   natureOptions: adamant
-  evs: 172 PS / 252 Atq / 84 Vel
+  evs: 4 PS / 252 Atq / 252 Vel
   ivs: 
-  moveSlots: play_rough / waterfall / aqua_jet / superpower, knock_off
+  moveSlots: belly_drum / aqua_jet / play_rough / knock_off

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: chimchar_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: chimchar_lc_1
-  displayName: Lead
+  displayName: Suicide Lead
   speciesId: chimchar
   setFormat: lc
-  setScore: 31
+  setScore: 27
   itemOptions: focus_sash
   abilityOptions: 
-  natureOptions: timid
-  evs: 4 PS / 84 Def / 212 AtqE / 4 DefE / 188 Vel
+  natureOptions: hasty
+  evs: 4 PS / 56 Atq / 4 Def / 216 AtqE / 4 DefE / 188 Vel
   ivs: 
-  moveSlots: stealth_rock / taunt, encore / fake_out / fire_blast, overheat
+  moveSlots: fake_out / overheat / hidden_power / stealth_rock

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: timburr_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: timburr_lc_1
-  displayName: Tank
+  displayName: Bulky Attacker
   speciesId: timburr
   setFormat: lc
-  setScore: 81
+  setScore: 86
   itemOptions: eviolite
-  abilityOptions: iron_fist
+  abilityOptions: iron_fist, guts
   natureOptions: adamant
-  evs: 76 PS / 196 Atq / 236 Def
+  evs: 196 Atq / 156 Def / 156 DefE
   ivs: 
-  moveSlots: drain_punch / mach_punch / knock_off / ice_punch, bulk_up
+  moveSlots: drain_punch / mach_punch / knock_off / fire_punch, ice_punch, poison_jab

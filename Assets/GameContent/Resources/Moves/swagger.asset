@@ -19,7 +19,7 @@ MonoBehaviour:
   category: 2
   power: 0
   neverMisses: 0
-  accuracy: 90
+  accuracy: 85
   maxPp: 15
   priority: 0
   target: 0

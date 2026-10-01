@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Assault Vest
   speciesId: hariyama
   setFormat: nu
-  setScore: 67
+  setScore: 40
   itemOptions: assault_vest
   abilityOptions: 
   natureOptions: adamant
   evs: 252 Atq / 4 Def / 252 DefE
   ivs: 
-  moveSlots: close_combat / knock_off / bullet_punch / fake_out, earthquake, stone_edge
+  moveSlots: close_combat / knock_off / heavy_slam / stone_edge, ice_punch

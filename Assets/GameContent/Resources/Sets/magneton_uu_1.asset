@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Specs
   speciesId: magneton
   setFormat: uu
-  setScore: 63
+  setScore: 60
   itemOptions: choice_specs
   abilityOptions: 
-  natureOptions: timid, modest
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  natureOptions: timid
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: thunderbolt / flash_cannon / volt_switch / hidden_power
+  moveSlots: thunderbolt / hidden_power / flash_cannon / volt_switch

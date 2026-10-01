@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: helioptile_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: helioptile_lc_1
-  displayName: Paralysis Pivot
+  displayName: Life Orb
   speciesId: helioptile
   setFormat: lc
-  setScore: 41
-  itemOptions: eviolite
+  setScore: 29
+  itemOptions: life_orb
   abilityOptions: 
   natureOptions: timid
-  evs: 4 PS / 172 Def / 32 AtqE / 96 DefE / 196 Vel
-  ivs: 
-  moveSlots: glare / u_turn / thunderbolt / surf, hidden_power
+  evs: 92 Def / 192 AtqE / 16 DefE / 196 Vel
+  ivs: 11 PS
+  moveSlots: thunderbolt / surf / glare, hidden_power / u_turn

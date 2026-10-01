@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: gengar_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: gengar_ou_1
-  displayName: Choice Specs
+  displayName: Offensive Utility
   speciesId: gengar
   setFormat: ou
-  setScore: 25
-  itemOptions: choice_specs
+  setScore: 43
+  itemOptions: life_orb, ghostium_z
   abilityOptions: 
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 4 PS / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: shadow_ball / sludge_bomb / focus_blast / trick
+  moveSlots: shadow_ball / sludge_wave / taunt / focus_blast

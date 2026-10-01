@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: octillery_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: octillery_pu_1
-  displayName: Bulky Special Attacker
+  displayName: Trick Room
   speciesId: octillery
   setFormat: pu
-  setScore: 59
-  itemOptions: choice_specs, life_orb
+  setScore: 48
+  itemOptions: life_orb
   abilityOptions: sniper
-  natureOptions: modest
-  evs: 212 PS / 252 AtqE / 44 Vel
+  natureOptions: quiet
+  evs: 252 PS / 252 AtqE / 4 DefE
   ivs: 
-  moveSlots: hydro_pump / fire_blast / energy_ball / ice_beam
+  moveSlots: hydro_pump, surf / fire_blast / ice_beam / energy_ball

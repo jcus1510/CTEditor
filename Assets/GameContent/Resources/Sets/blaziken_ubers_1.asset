@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: blaziken_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: blaziken_ubers_1
-  displayName: Physical Attacker
+  displayName: Swords Dance
   speciesId: blaziken
   setFormat: ubers
-  setScore: 43
-  itemOptions: life_orb
+  setScore: 34
+  itemOptions: blazikenite
   abilityOptions: speed_boost
-  natureOptions: naughty, adamant
+  natureOptions: adamant, jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: flare_blitz / protect, swords_dance / high_jump_kick, low_kick / hidden_power,
-    stone_edge
+  moveSlots: swords_dance / flare_blitz / low_kick / stone_edge, knock_off

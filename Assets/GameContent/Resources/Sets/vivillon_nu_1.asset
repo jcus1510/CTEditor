@@ -17,9 +17,9 @@ MonoBehaviour:
   speciesId: vivillon
   setFormat: nu
   setScore: 76
-  itemOptions: focus_sash
+  itemOptions: flyinium_z, leftovers
   abilityOptions: compound_eyes
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: quiver_dance / hurricane / sleep_powder / energy_ball
+  moveSlots: quiver_dance / hurricane / energy_ball, substitute / sleep_powder

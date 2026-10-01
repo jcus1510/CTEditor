@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: swalot_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: swalot_pu_1
-  displayName: Tank
+  displayName: Assault Vest
   speciesId: swalot
   setFormat: pu
-  setScore: 51
+  setScore: 13
   itemOptions: assault_vest
-  abilityOptions: sticky_hold
+  abilityOptions: 
   natureOptions: quiet
   evs: 248 PS / 200 AtqE / 60 DefE
   ivs: 

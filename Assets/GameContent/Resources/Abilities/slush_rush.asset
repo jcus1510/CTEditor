@@ -14,18 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.AbilityData
   id: slush_rush
   displayName: Quitanieves
-  englishName: 
+  englishName: Slush Rush
   effects:
-  - trigger: 1
-    conditions: []
-    action: 41
-    target: 0
-    reference: hail
-    amount: 0
-    threshold: 0
-    consumes: 0
-    chance: 100
-    maxPerBattle: 0
   - trigger: 1
     conditions:
     - kind: 4
@@ -38,6 +28,16 @@ MonoBehaviour:
     target: 0
     reference: speed
     amount: 2
+    threshold: 0
+    consumes: 0
+    chance: 100
+    maxPerBattle: 0
+  - trigger: 1
+    conditions: []
+    action: 41
+    target: 0
+    reference: hail
+    amount: 0
     threshold: 0
     consumes: 0
     chance: 100

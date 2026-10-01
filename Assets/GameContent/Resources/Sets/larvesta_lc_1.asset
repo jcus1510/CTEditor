@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: larvesta_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: larvesta_lc_1
-  displayName: Pivot
+  displayName: Bulky Pivot
   speciesId: larvesta
   setFormat: lc
-  setScore: 75
+  setScore: 67
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: impish
   evs: 76 PS / 236 Def / 156 DefE / 36 Vel
   ivs: 
-  moveSlots: will_o_wisp / flare_blitz / u_turn / morning_sun
+  moveSlots: flare_blitz / morning_sun / u_turn / will_o_wisp, wild_charge

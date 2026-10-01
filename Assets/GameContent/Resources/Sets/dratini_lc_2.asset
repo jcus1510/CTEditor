@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Dragon Dance
   speciesId: dratini
   setFormat: lc
-  setScore: 53
+  setScore: 47
   itemOptions: life_orb
   abilityOptions: 
   natureOptions: adamant, naughty
   evs: 244 Atq / 36 DefE / 196 Vel
-  ivs: 
+  ivs: 17 PS
   moveSlots: dragon_dance / outrage / extreme_speed / iron_tail, fire_blast

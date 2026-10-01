@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rapidash_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rapidash_pu_1
-  displayName: Physical Attacker
+  displayName: Offensive Utility
   speciesId: rapidash
   setFormat: pu
-  setScore: 70
-  itemOptions: charcoal, leftovers
+  setScore: 55
+  itemOptions: firium_z
   abilityOptions: flash_fire
   natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: flare_blitz / wild_charge / will_o_wisp, drill_run / morning_sun
+  moveSlots: flare_blitz / wild_charge / high_horsepower, will_o_wisp / morning_sun

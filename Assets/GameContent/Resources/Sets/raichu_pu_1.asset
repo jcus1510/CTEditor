@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Nasty Plot
   speciesId: raichu
   setFormat: pu
-  setScore: 51
-  itemOptions: life_orb
+  setScore: 53
+  itemOptions: life_orb, electrium_z
   abilityOptions: lightning_rod
   natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: nasty_plot / thunderbolt / focus_blast / hidden_power
+  moveSlots: nasty_plot / thunderbolt / grass_knot / focus_blast, hidden_power

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sableye_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sableye_ubers_1
-  displayName: Utility
+  displayName: Support
   speciesId: sableye
   setFormat: ubers
-  setScore: 82
+  setScore: 54
   itemOptions: sablenite
   abilityOptions: prankster
-  natureOptions: impish, bold
+  natureOptions: impish
   evs: 248 PS / 252 Def / 8 DefE
   ivs: 
-  moveSlots: foul_play / will_o_wisp / recover / fake_out, protect
+  moveSlots: fake_out / foul_play / toxic, will_o_wisp / recover

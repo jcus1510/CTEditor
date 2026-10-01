@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: doduo_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: doduo_lc_1
-  displayName: Wallbreaker
+  displayName: Physical Attacker
   speciesId: doduo
   setFormat: lc
-  setScore: 65
+  setScore: 78
   itemOptions: berry_juice
   abilityOptions: early_bird
   natureOptions: jolly
-  evs: 236 Atq / 240 Vel
+  evs: 236 Atq / 236 Vel
   ivs: 
-  moveSlots: brave_bird / knock_off / return / hidden_power, quick_attack
+  moveSlots: brave_bird / knock_off / jump_kick / quick_attack, return

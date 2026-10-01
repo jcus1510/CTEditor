@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: electrike_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: electrike_lc_1
-  displayName: Choice
+  displayName: Choice Scarf
   speciesId: electrike
   setFormat: lc
-  setScore: 73
-  itemOptions: choice_scarf, choice_specs
+  setScore: 84
+  itemOptions: choice_scarf
   abilityOptions: lightning_rod
-  natureOptions: modest, timid
+  natureOptions: timid
   evs: 240 AtqE / 236 Vel
-  ivs: 
-  moveSlots: volt_switch / flamethrower / hidden_power, thunderbolt / switcheroo
+  ivs: 30 AtqE
+  moveSlots: volt_switch / thunderbolt, hidden_power / flamethrower / switcheroo,
+    thunderbolt

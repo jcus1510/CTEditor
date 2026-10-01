@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: clefairy_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: clefairy_pu_1
-  displayName: Specially Defensive
+  displayName: Calm Mind
   speciesId: clefairy
   setFormat: pu
-  setScore: 83
+  setScore: 77
   itemOptions: eviolite
   abilityOptions: magic_guard
-  natureOptions: calm
+  natureOptions: sassy
   evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: soft_boiled / moonblast, seismic_toss / thunder_wave, stealth_rock /
-    knock_off, thunder_wave
+  moveSlots: calm_mind / moonblast / soft_boiled / stealth_rock, thunder_wave, knock_off

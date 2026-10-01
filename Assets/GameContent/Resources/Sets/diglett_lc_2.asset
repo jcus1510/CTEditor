@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: diglett_lc_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: diglett_lc_2
-  displayName: Air Balloon
+  displayName: Choice Scarf
   speciesId: diglett
   setFormat: lc
-  setScore: 56
-  itemOptions: air_balloon
+  setScore: 48
+  itemOptions: choice_scarf
   abilityOptions: arena_trap
   natureOptions: jolly
-  evs: 36 PS / 156 Atq / 76 Def / 236 Vel
+  evs: 36 PS / 236 Atq / 236 Vel
   ivs: 
-  moveSlots: earthquake / final_gambit / beat_up, rock_slide / sucker_punch, substitute
+  moveSlots: earthquake / rock_slide / final_gambit, memento / beat_up, pursuit

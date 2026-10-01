@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: lopunny_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: lopunny_ou_1
-  displayName: All-Out Attacker
+  displayName: All-out Attacker
   speciesId: lopunny
   setFormat: ou
-  setScore: 74
+  setScore: 68
   itemOptions: lopunnite
   abilityOptions: limber
   natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: high_jump_kick / return / fake_out / encore, ice_punch, quick_attack
+  moveSlots: fake_out / frustration / high_jump_kick / quick_attack, ice_punch, healing_wish

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Band
   speciesId: victini
   setFormat: ou
-  setScore: 68
+  setScore: 39
   itemOptions: choice_band
   abilityOptions: 
-  natureOptions: jolly, adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: v_create / bolt_strike / u_turn / trick
+  moveSlots: v_create / bolt_strike / u_turn / zen_headbutt, brick_break

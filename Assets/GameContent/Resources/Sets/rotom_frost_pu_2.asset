@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: rotom_frost_pu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: rotom_frost_pu_2
-  displayName: SubWisp
+  displayName: Choice Scarf
   speciesId: rotom_frost
   setFormat: pu
-  setScore: 38
-  itemOptions: leftovers
+  setScore: 49
+  itemOptions: choice_scarf
   abilityOptions: 
   natureOptions: timid
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: substitute / will_o_wisp / thunderbolt / blizzard
+  moveSlots: blizzard / volt_switch / thunderbolt / trick, defog

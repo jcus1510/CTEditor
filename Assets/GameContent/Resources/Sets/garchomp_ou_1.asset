@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: garchomp_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: garchomp_ou_1
-  displayName: Tank Chomp
+  displayName: Offensive Z-Move
   speciesId: garchomp
   setFormat: ou
-  setScore: 68
-  itemOptions: rocky_helmet
+  setScore: 70
+  itemOptions: dragonium_z, rockium_z
   abilityOptions: rough_skin
-  natureOptions: impish
-  evs: 240 PS / 176 Def / 92 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: stealth_rock / earthquake / dragon_tail / fire_blast, toxic
+  moveSlots: swords_dance / earthquake / outrage, stone_edge / stealth_rock, substitute,
+    fire_fang, aqua_tail, dragon_claw

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: porygon2_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: porygon2_uu_1
-  displayName: Defensive
+  displayName: Z-Conversion
   speciesId: porygon2
   setFormat: uu
-  setScore: 67
-  itemOptions: eviolite
-  abilityOptions: 
-  natureOptions: calm
-  evs: 252 PS / 120 Def / 136 DefE
+  setScore: 49
+  itemOptions: normalium_z
+  abilityOptions: download
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: recover / tri_attack / ice_beam / thunder_wave, toxic
+  moveSlots: thunderbolt / ice_beam / conversion / recover

@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Life Orb
   speciesId: bunnelby
   setFormat: lc
-  setScore: 63
+  setScore: 78
   itemOptions: life_orb
   abilityOptions: huge_power
   natureOptions: adamant, jolly
   evs: 228 Atq / 52 Def / 220 Vel
-  ivs: 23 PS
-  moveSlots: return / quick_attack / earthquake / stone_edge, thief
+  ivs: 4 PS
+  moveSlots: return / quick_attack / earthquake / iron_head

@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: ferrothorn_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: ferrothorn_ubers_1
-  displayName: Support
+  displayName: Defensive
   speciesId: ferrothorn
   setFormat: ubers
-  setScore: 72
+  setScore: 70
   itemOptions: leftovers
   abilityOptions: 
-  natureOptions: sassy
-  evs: 252 PS / 4 Atq / 252 DefE
+  natureOptions: sassy, careful
+  evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: spikes / gyro_ball, power_whip / leech_seed / protect, thunder_wave,
-    toxic
+  moveSlots: toxic, protect / spikes / leech_seed / gyro_ball, power_whip

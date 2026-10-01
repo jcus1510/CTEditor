@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Physical Wall
   speciesId: hippopotas
   setFormat: lc
-  setScore: 72
+  setScore: 68
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: careful
   evs: 132 PS / 20 Atq / 132 Def / 180 DefE / 20 Vel
   ivs: 
-  moveSlots: earthquake / slack_off / stealth_rock / whirlwind, rock_tomb
+  moveSlots: slack_off / stealth_rock / earthquake / whirlwind, rock_tomb

@@ -16,11 +16,10 @@ MonoBehaviour:
   displayName: Life Orb
   speciesId: deerling
   setFormat: lc
-  setScore: 70
+  setScore: 38
   itemOptions: life_orb
   abilityOptions: sap_sipper
   natureOptions: jolly
   evs: 36 PS / 196 Atq / 36 Def / 236 Vel
   ivs: 
-  moveSlots: return / seed_bomb / jump_kick, baton_pass / substitute, wild_charge,
-    baton_pass
+  moveSlots: return, double_edge / seed_bomb / jump_kick / substitute, wild_charge

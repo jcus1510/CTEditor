@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: shinx_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: shinx_lc_1
-  displayName: Intimidate Pivot
+  displayName: Pivot
   speciesId: shinx
   setFormat: lc
-  setScore: 68
+  setScore: 56
   itemOptions: berry_juice
   abilityOptions: intimidate
-  natureOptions: relaxed
-  evs: 156 PS / 76 Atq / 244 Def / 4 DefE
+  natureOptions: adamant
+  evs: 76 PS / 76 Atq / 244 Def / 36 AtqE / 4 DefE
   ivs: 
-  moveSlots: wild_charge / thief / volt_switch / toxic, thunder_wave
+  moveSlots: volt_switch / wild_charge / thief / fire_fang, ice_fang

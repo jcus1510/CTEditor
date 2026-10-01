@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: lugia_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: lugia_ubers_1
-  displayName: Physically Defensive
+  displayName: Wall
   speciesId: lugia
   setFormat: ubers
-  setScore: 86
+  setScore: 55
   itemOptions: leftovers
   abilityOptions: multiscale
   natureOptions: bold
-  evs: 252 PS / 120 Def / 136 Vel
+  evs: 252 PS / 160 Def / 96 Vel
   ivs: 
-  moveSlots: roost / whirlwind / toxic / ice_beam, reflect
+  moveSlots: roost / toxic / whirlwind, dragon_tail / psychic, ice_beam

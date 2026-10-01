@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: regigigas_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: regigigas_pu_1
-  displayName: Tank
+  displayName: Slow Utility
   speciesId: regigigas
   setFormat: pu
-  setScore: 54
+  setScore: 48
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: adamant
-  evs: 252 PS / 252 Atq / 4 Def
+  evs: 252 PS / 252 Atq / 4 DefE
   ivs: 
-  moveSlots: return / knock_off / thunder_wave / drain_punch, substitute
+  moveSlots: thunder_wave, toxic / knock_off / return / drain_punch, substitute

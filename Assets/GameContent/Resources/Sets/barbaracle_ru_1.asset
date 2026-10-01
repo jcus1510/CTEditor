@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Shell Smash
   speciesId: barbaracle
   setFormat: ru
-  setScore: 45
-  itemOptions: lum_berry, shuca_berry
+  setScore: 63
+  itemOptions: rockium_z
   abilityOptions: 
-  natureOptions: adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: shell_smash / razor_shell / stone_edge / poison_jab
+  moveSlots: shell_smash / liquidation / stone_edge / low_kick

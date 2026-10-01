@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: tyranitar_ubers_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tyranitar_ubers_2
-  displayName: Choice Band
+  displayName: Utility
   speciesId: tyranitar
   setFormat: ubers
-  setScore: 21
-  itemOptions: choice_band
+  setScore: 35
+  itemOptions: lum_berry
   abilityOptions: 
-  natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  natureOptions: adamant
+  evs: 248 PS / 76 Atq / 148 Def / 36 Vel
   ivs: 
-  moveSlots: stone_edge / crunch / pursuit / earthquake
+  moveSlots: pursuit / rock_tomb, rock_slide / foul_play / toxic, thunder_wave

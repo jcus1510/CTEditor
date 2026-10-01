@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: meganium_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: meganium_pu_1
-  displayName: Specially Defensive Support
+  displayName: Cleric
   speciesId: meganium
   setFormat: pu
-  setScore: 50
+  setScore: 75
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: calm
   evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: aromatherapy / synthesis / giga_drain / dragon_tail, toxic
+  moveSlots: aromatherapy / giga_drain / synthesis / dragon_tail

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: raticate_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: raticate_pu_1
-  displayName: Guts
+  displayName: All-out Attacker
   speciesId: raticate
   setFormat: pu
-  setScore: 51
-  itemOptions: toxic_orb
+  setScore: 61
+  itemOptions: flame_orb
   abilityOptions: guts
   natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: u_turn / facade / sucker_punch / protect, swords_dance
+  moveSlots: facade / stomping_tantrum / sucker_punch / u_turn

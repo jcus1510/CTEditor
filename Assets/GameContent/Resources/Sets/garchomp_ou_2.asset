@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: garchomp_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: garchomp_ou_2
-  displayName: Offensive Stealth Rock
+  displayName: Mixed Mega
   speciesId: garchomp
   setFormat: ou
-  setScore: 55
-  itemOptions: lum_berry, focus_sash
+  setScore: 38
+  itemOptions: garchompite
   abilityOptions: rough_skin
-  natureOptions: jolly, naive
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: hasty, mild
+  evs: 4 Atq / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: stealth_rock / earthquake / dragon_claw, outrage / swords_dance, fire_blast
+  moveSlots: draco_meteor / earthquake / fire_blast / stealth_rock, hidden_power

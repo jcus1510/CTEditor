@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Swords Dance
   speciesId: pinsir
   setFormat: ou
-  setScore: 72
+  setScore: 73
   itemOptions: pinsirite
   abilityOptions: 
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: swords_dance / return / close_combat / quick_attack
+  moveSlots: swords_dance / frustration / quick_attack / close_combat, earthquake

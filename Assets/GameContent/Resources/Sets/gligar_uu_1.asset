@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: gligar_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: gligar_uu_1
-  displayName: Pivot
+  displayName: Defensive Utility
   speciesId: gligar
   setFormat: uu
-  setScore: 75
+  setScore: 88
   itemOptions: eviolite
-  abilityOptions: hyper_cutter, immunity
+  abilityOptions: immunity
   natureOptions: impish
-  evs: 252 PS / 16 Def / 240 DefE
+  evs: 252 PS / 156 Def / 100 DefE
   ivs: 
-  moveSlots: earthquake / u_turn / roost / defog, stealth_rock
+  moveSlots: earthquake / roost / defog, stealth_rock / u_turn, toxic, knock_off

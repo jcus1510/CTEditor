@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: pumpkaboo_super_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: pumpkaboo_super_lc_1
-  displayName: Defensive
+  displayName: Special Spinblocker
   speciesId: pumpkaboo_super
   setFormat: lc
-  setScore: 66
+  setScore: 85
   itemOptions: eviolite
   abilityOptions: frisk
   natureOptions: calm
   evs: 204 PS / 36 Def / 4 AtqE / 236 DefE / 28 Vel
   ivs: 
-  moveSlots: will_o_wisp / giga_drain / fire_blast / synthesis
+  moveSlots: giga_drain / synthesis / will_o_wisp / fire_blast, shadow_ball

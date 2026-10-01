@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Band
   speciesId: muk
   setFormat: pu
-  setScore: 31
+  setScore: 24
   itemOptions: choice_band
-  abilityOptions: poison_touch, sticky_hold
+  abilityOptions: sticky_hold, poison_touch
   natureOptions: adamant
-  evs: 252 PS / 252 Atq / 4 DefE
+  evs: 204 PS / 252 Atq / 52 Vel
   ivs: 
-  moveSlots: gunk_shot / shadow_sneak / fire_punch / ice_punch
+  moveSlots: gunk_shot / shadow_sneak / thunder_punch, fire_punch / ice_punch, explosion

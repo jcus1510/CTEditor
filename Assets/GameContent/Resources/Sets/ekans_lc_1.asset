@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Coil Sweeper
   speciesId: ekans
   setFormat: lc
-  setScore: 78
-  itemOptions: berry_juice, eviolite
+  setScore: 64
+  itemOptions: berry_juice
   abilityOptions: intimidate, shed_skin
   natureOptions: careful
   evs: 156 PS / 84 Def / 244 DefE
   ivs: 
-  moveSlots: coil / gunk_shot / earthquake / sucker_punch, glare
+  moveSlots: coil / gunk_shot / earthquake / sucker_punch

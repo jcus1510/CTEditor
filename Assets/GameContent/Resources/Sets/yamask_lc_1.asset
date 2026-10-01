@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Support
   speciesId: yamask
   setFormat: lc
-  setScore: 63
+  setScore: 61
   itemOptions: eviolite
   abilityOptions: 
-  natureOptions: sassy
-  evs: 52 PS / 36 Atq / 236 Def / 156 DefE
+  natureOptions: relaxed
+  evs: 52 PS / 36 Atq / 156 Def / 236 DefE
   ivs: 
-  moveSlots: toxic_spikes / will_o_wisp, knock_off / hex / knock_off, memento
+  moveSlots: will_o_wisp / hex / knock_off / toxic_spikes

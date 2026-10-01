@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Specs
   speciesId: lapras
   setFormat: pu
-  setScore: 43
+  setScore: 17
   itemOptions: choice_specs
   abilityOptions: 
   natureOptions: modest
-  evs: 120 PS / 252 AtqE / 136 Vel
+  evs: 80 PS / 252 AtqE / 176 Vel
   ivs: 
-  moveSlots: freeze_dry / ice_beam / hydro_pump / surf
+  moveSlots: freeze_dry / hydro_pump / ice_beam / hidden_power

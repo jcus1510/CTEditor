@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Life Orb Attacker
   speciesId: spearow
   setFormat: lc
-  setScore: 53
+  setScore: 60
   itemOptions: life_orb
   abilityOptions: sniper
   natureOptions: jolly
   evs: 196 Atq / 36 Def / 28 DefE / 196 Vel
   ivs: 
-  moveSlots: double_edge / drill_peck / u_turn / drill_run
+  moveSlots: double_edge / drill_peck / drill_run / u_turn

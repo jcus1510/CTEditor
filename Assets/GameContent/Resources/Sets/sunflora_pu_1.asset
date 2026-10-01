@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sunflora_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sunflora_pu_1
-  displayName: Synthesis + 3 Attacks
+  displayName: Sun Wallbreaker
   speciesId: sunflora
   setFormat: pu
-  setScore: 48
+  setScore: 63
   itemOptions: life_orb
   abilityOptions: solar_power
   natureOptions: modest
   evs: 92 PS / 252 AtqE / 164 Vel
   ivs: 
-  moveSlots: leaf_storm, giga_drain / earth_power / hidden_power, sludge_bomb / synthesis
+  moveSlots: solar_beam / earth_power / sludge_bomb / giga_drain

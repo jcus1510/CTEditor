@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Dragon Dance
   speciesId: bagon
   setFormat: lc
-  setScore: 60
-  itemOptions: life_orb, eviolite
+  setScore: 55
+  itemOptions: life_orb, dragonium_z
   abilityOptions: sheer_force
   natureOptions: adamant
   evs: 236 Atq / 76 Def / 196 Vel
   ivs: 
-  moveSlots: dragon_dance / dragon_claw / rock_slide, zen_headbutt / fire_fang, crunch
+  moveSlots: dragon_dance / outrage / zen_headbutt, substitute / fire_fang, substitute

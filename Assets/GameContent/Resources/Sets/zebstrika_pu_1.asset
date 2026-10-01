@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: zebstrika_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: zebstrika_pu_1
-  displayName: All-Out Attacker
+  displayName: All-out Attacker
   speciesId: zebstrika
   setFormat: pu
-  setScore: 68
+  setScore: 66
   itemOptions: life_orb
-  abilityOptions: sap_sipper, lightning_rod
+  abilityOptions: sap_sipper
   natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: volt_switch / thunderbolt / overheat / hidden_power
+  moveSlots: thunderbolt / volt_switch / overheat / hidden_power

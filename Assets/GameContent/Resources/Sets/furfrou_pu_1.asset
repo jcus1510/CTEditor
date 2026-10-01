@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Offensive Pivot
   speciesId: furfrou
   setFormat: pu
-  setScore: 46
+  setScore: 31
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  evs: 32 PS / 252 Atq / 224 Vel
   ivs: 
-  moveSlots: u_turn / thunder_wave / return / sucker_punch
+  moveSlots: return / u_turn / toxic, thunder_wave / sucker_punch

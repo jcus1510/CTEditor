@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: smeargle_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: smeargle_pu_1
-  displayName: Suicide Lead
+  displayName: Sticky Web Lead
   speciesId: smeargle
   setFormat: pu
-  setScore: 56
+  setScore: 46
   itemOptions: focus_sash
   abilityOptions: 
-  natureOptions: timid
-  evs: 252 Def / 4 DefE / 252 Vel
+  natureOptions: jolly
+  evs: 248 PS / 8 DefE / 252 Vel
   ivs: 
-  moveSlots: dark_void, spore / stealth_rock / sticky_web, spikes / nuzzle, destiny_bond
+  moveSlots: sticky_web / stealth_rock / spore / nuzzle, taunt

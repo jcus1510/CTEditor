@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: groudon_ubers_5
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: groudon_ubers_5
-  displayName: Paradancer
+  displayName: Offensive Support
   speciesId: groudon
   setFormat: ubers
-  setScore: 17
+  setScore: 12
   itemOptions: red_orb
   abilityOptions: 
-  natureOptions: adamant
-  evs: 244 PS / 252 Atq / 12 Vel
+  natureOptions: mild
+  evs: 252 AtqE / 104 DefE / 152 Vel
   ivs: 
-  moveSlots: thunder_wave / swords_dance / rock_slide / precipice_blades
+  moveSlots: stealth_rock / precipice_blades / overheat / toxic, hidden_power, rock_tomb

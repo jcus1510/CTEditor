@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: wormadam_sandy_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: wormadam_sandy_pu_1
-  displayName: Margherita
+  displayName: Physically Defensive
   speciesId: wormadam_sandy
   setFormat: pu
-  setScore: 46
+  setScore: 62
   itemOptions: leftovers
-  abilityOptions: 
-  natureOptions: adamant
-  evs: 252 PS / 252 Atq / 4 Def
+  abilityOptions: overcoat
+  natureOptions: impish
+  evs: 252 PS / 4 Atq / 252 Def
   ivs: 
-  moveSlots: stealth_rock / earthquake / rock_blast / sucker_punch
+  moveSlots: earthquake / stealth_rock / toxic / protect

@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: metang_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: metang_pu_1
-  displayName: Offensive Stealth Rock
+  displayName: Stealth Rock
   speciesId: metang
   setFormat: pu
-  setScore: 69
+  setScore: 79
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: adamant
-  evs: 252 PS / 252 Atq / 4 Def
+  evs: 252 PS / 176 Atq / 80 Def
   ivs: 
-  moveSlots: stealth_rock / meteor_mash / earthquake, bullet_punch / bullet_punch,
-    pursuit
+  moveSlots: stealth_rock / meteor_mash / earthquake / toxic, bullet_punch

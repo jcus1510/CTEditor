@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: serperior_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: serperior_ou_1
-  displayName: Glare Attacker
+  displayName: Utility
   speciesId: serperior
   setFormat: ou
-  setScore: 59
-  itemOptions: leftovers, lum_berry, chesto_berry
+  setScore: 58
+  itemOptions: rocky_helmet
   abilityOptions: contrary
   natureOptions: timid
-  evs: 120 PS / 136 AtqE / 252 Vel
+  evs: 208 PS / 48 Def / 252 Vel
   ivs: 
-  moveSlots: leaf_storm / hidden_power / glare / synthesis, rest
+  moveSlots: leaf_storm / taunt / glare / defog

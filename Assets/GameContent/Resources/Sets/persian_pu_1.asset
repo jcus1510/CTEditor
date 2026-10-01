@@ -16,8 +16,8 @@ MonoBehaviour:
   displayName: Nasty Plot
   speciesId: persian
   setFormat: pu
-  setScore: 33
-  itemOptions: life_orb
+  setScore: 21
+  itemOptions: life_orb, normalium_z
   abilityOptions: technician
   natureOptions: timid
   evs: 4 Def / 252 AtqE / 252 Vel

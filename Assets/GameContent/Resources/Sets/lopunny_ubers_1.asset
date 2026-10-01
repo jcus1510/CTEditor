@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: lopunny_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: lopunny_ubers_1
-  displayName: Offensive
+  displayName: Healing Wish
   speciesId: lopunny
   setFormat: ubers
-  setScore: 56
+  setScore: 52
   itemOptions: lopunnite
   abilityOptions: limber
   natureOptions: jolly
   evs: 4 PS / 252 Atq / 252 Vel
   ivs: 
-  moveSlots: low_kick, high_jump_kick / return / fake_out / healing_wish
+  moveSlots: fake_out / return / high_jump_kick / healing_wish

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: charizard_nu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: charizard_nu_1
-  displayName: Life Orb
+  displayName: Z-Hold Hands
   speciesId: charizard
   setFormat: nu
-  setScore: 27
-  itemOptions: life_orb
+  setScore: 43
+  itemOptions: normalium_z
   abilityOptions: 
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 32 PS / 228 AtqE / 32 DefE / 216 Vel
   ivs: 
-  moveSlots: fire_blast / air_slash / hidden_power, focus_blast / roost, earthquake
+  moveSlots: hold_hands / fire_blast / air_slash, focus_blast / hidden_power, roost

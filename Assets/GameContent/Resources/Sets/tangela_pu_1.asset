@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: tangela_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tangela_pu_1
-  displayName: Offensive
+  displayName: Defensive Pivot
   speciesId: tangela
   setFormat: pu
-  setScore: 67
+  setScore: 81
   itemOptions: eviolite
   abilityOptions: regenerator
-  natureOptions: modest
-  evs: 252 PS / 252 AtqE / 4 Vel
+  natureOptions: bold
+  evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: leaf_storm / sleep_powder / giga_drain / hidden_power, ancient_power
+  moveSlots: giga_drain / hidden_power / knock_off / leech_seed, synthesis, sleep_powder

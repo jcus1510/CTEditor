@@ -47,6 +47,8 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 304e733cbfef103478c9a958679a1156, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: c5e1db74b3925d74da4b7f669af8a601, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: 086b0bf63b44f0f4c8ead69ce6291aa8, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
@@ -83,13 +85,10 @@ MonoBehaviour:
     level: 53
   - move: {fileID: 11400000, guid: 304e733cbfef103478c9a958679a1156, type: 2}
     level: 59
-  - move: {fileID: 11400000, guid: ca9fc4c5693cb354082fe227793967b3, type: 2}
-    level: 67
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
   - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
-  - {fileID: 11400000, guid: b038add5f5a6f804fac709b7d5928f8f, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: 304e733cbfef103478c9a958679a1156, type: 2}
   - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
@@ -105,7 +104,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
-  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
   - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}

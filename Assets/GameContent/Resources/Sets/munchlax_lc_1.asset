@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: munchlax_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: munchlax_lc_1
-  displayName: Physically Offensive Tank
+  displayName: Recycle + Berry Juice Tank
   speciesId: munchlax
   setFormat: lc
-  setScore: 52
+  setScore: 58
   itemOptions: berry_juice
   abilityOptions: thick_fat
-  natureOptions: adamant, impish
+  natureOptions: adamant
   evs: 236 Atq / 36 Def / 236 DefE
   ivs: 
-  moveSlots: body_slam, return / fire_punch / curse, earthquake, toxic / recycle
+  moveSlots: return, body_slam / earthquake, fire_punch / pursuit, fire_punch, whirlwind
+    / recycle

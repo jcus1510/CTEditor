@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: suicune_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: suicune_ou_1
-  displayName: Substitute + Protect
+  displayName: Substitute + Calm Mind
   speciesId: suicune
   setFormat: ou
-  setScore: 75
+  setScore: 81
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: timid
   evs: 252 PS / 40 DefE / 216 Vel
   ivs: 
-  moveSlots: calm_mind / substitute / protect / scald
+  moveSlots: scald / substitute / calm_mind / protect

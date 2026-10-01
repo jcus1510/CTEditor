@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
   - {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
   abilityId: keen_eye
-  secondAbilityId: 
+  secondAbilityId: drizzle
   hiddenAbilityId: rain_dish
   growthCurveId: medium_fast
   baseExpYield: 154
@@ -40,7 +40,7 @@ MonoBehaviour:
   hp: 60
   attack: 50
   defense: 100
-  spAttack: 85
+  spAttack: 95
   spDefense: 70
   speed: 65
   customStats: []
@@ -50,6 +50,8 @@ MonoBehaviour:
   - move: {fileID: 11400000, guid: 6ad04777d81cb434c83a369dfdb4aebb, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 51a64706d42eeeb49beadcc7e048592b, type: 2}
     level: 1
@@ -71,11 +73,9 @@ MonoBehaviour:
     level: 15
   - move: {fileID: 11400000, guid: 42591adc2ac509240ae0669db50cb613, type: 2}
     level: 19
-  - move: {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
-    level: 22
-  - move: {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
-    level: 25
   - move: {fileID: 11400000, guid: c5e92a848508aa34d9664bbcf6789999, type: 2}
+    level: 22
+  - move: {fileID: 11400000, guid: 0161b2b549675fc4782bfb60b341f598, type: 2}
     level: 28
   - move: {fileID: 11400000, guid: 9b45a57d37c96d144a9e05a00b5c1e15, type: 2}
     level: 33
@@ -83,7 +83,7 @@ MonoBehaviour:
     level: 33
   - move: {fileID: 11400000, guid: 121a776a25cb2ba4dbc6992ebf7fbb4d, type: 2}
     level: 33
-  - move: {fileID: 11400000, guid: 0161b2b549675fc4782bfb60b341f598, type: 2}
+  - move: {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
     level: 39
   - move: {fileID: 11400000, guid: e2eafcf36d9b5f3448a0147c4d23cbc2, type: 2}
     level: 44
@@ -116,7 +116,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
-  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: c5c881531d0a5d6408099dd08e1c70b3, type: 2}
   - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: edda7cbc2f438144bbfa2e483946d695, type: 2}
@@ -127,9 +126,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
   - {fileID: 11400000, guid: 2142ec87c94158f47928ed9a938e18b0, type: 2}
   tutorMoves:
+  - {fileID: 11400000, guid: 48d24011cb0cf0444a20bc6228099f8f, type: 2}
   - {fileID: 11400000, guid: 62fe66217191b7c41a159d6a1b586a35, type: 2}
   - {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
   - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+  - {fileID: 11400000, guid: 35d4435395e67784c85ffb4ad31ab72d, type: 2}
   - {fileID: 11400000, guid: f9b934ad3cc59fc468d8184a25248dee, type: 2}
   - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
   - {fileID: 11400000, guid: b864c07923f73a54caa267bc31a7c34d, type: 2}

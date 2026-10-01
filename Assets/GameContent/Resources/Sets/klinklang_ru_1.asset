@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: klinklang_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: klinklang_ru_1
-  displayName: Physical Sweeper
+  displayName: Shift Gear
   speciesId: klinklang
   setFormat: ru
-  setScore: 66
-  itemOptions: leftovers
+  setScore: 87
+  itemOptions: electrium_z
   abilityOptions: clear_body
   natureOptions: adamant
-  evs: 108 PS / 252 Atq / 148 Vel
+  evs: 4 PS / 252 Atq / 252 Vel
   ivs: 
-  moveSlots: shift_gear / gear_grind / substitute / wild_charge
+  moveSlots: shift_gear / gear_grind / wild_charge / magnet_rise

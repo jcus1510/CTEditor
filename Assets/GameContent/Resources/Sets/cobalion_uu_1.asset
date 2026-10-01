@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: cobalion_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: cobalion_uu_1
-  displayName: Offensive Pivot
+  displayName: Swords Dance
   speciesId: cobalion
   setFormat: uu
-  setScore: 55
-  itemOptions: leftovers, shuca_berry
+  setScore: 59
+  itemOptions: fightinium_z, rocky_helmet, shuca_berry
   abilityOptions: 
   natureOptions: jolly
-  evs: 4 PS / 252 Atq / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: stealth_rock / close_combat / volt_switch / iron_head, taunt
+  moveSlots: swords_dance / iron_head / close_combat / stealth_rock, rock_polish

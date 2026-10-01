@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: scolipede_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: scolipede_ou_1
-  displayName: Entry Hazard Lead
+  displayName: Swords Dance
   speciesId: scolipede
   setFormat: ou
-  setScore: 35
-  itemOptions: rocky_helmet
+  setScore: 68
+  itemOptions: waterium_z
   abilityOptions: speed_boost
   natureOptions: jolly
-  evs: 208 PS / 48 Atq / 252 Vel
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: spikes / toxic_spikes / endeavor / superpower, poison_jab
+  moveSlots: swords_dance / megahorn / aqua_tail / earthquake

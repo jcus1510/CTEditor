@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: politoed_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: politoed_pu_1
-  displayName: Tank
+  displayName: Specially Defensive
   speciesId: politoed
   setFormat: pu
-  setScore: 53
-  itemOptions: leftovers
+  setScore: 39
+  itemOptions: chesto_berry
   abilityOptions: 
-  natureOptions: modest
-  evs: 248 PS / 8 Def / 252 AtqE
+  natureOptions: calm
+  evs: 248 PS / 252 DefE / 8 Vel
   ivs: 
-  moveSlots: scald / ice_beam / hidden_power / encore
+  moveSlots: protect, encore / scald / toxic / rest

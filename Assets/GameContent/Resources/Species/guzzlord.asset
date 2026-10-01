@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: guzzlord
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: guzzlord
+  displayName: Guzzlord
+  englishName: Guzzlord
+  types:
+  - {fileID: 11400000, guid: bbd8692173525a3468bd903198cef800, type: 2}
+  - {fileID: 11400000, guid: e3d9e34536e21ee44b6e4b17fc29a0be, type: 2}
+  abilityId: beast_boost
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: slow
+  baseExpYield: 257
+  evYield:
+  - statId: hp
+    amount: 3
+  baseFriendship: 70
+  catchRate: 45
+  dexNumber: 799
+  category: Tragaldabas
+  heightM: 5.5
+  weightKg: 888
+  dexColor: negro
+  dexDescription: "Para los seres de este mundo resulta extra\xF1o y peligroso, pero
+    en el mundo del que procede es una criatura muy com\xFAn."
+  femalePercent: -1
+  legendary: 0
+  hp: 223
+  attack: 101
+  defense: 53
+  spAttack: 97
+  spDefense: 53
+  speed: 43
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 7f2b2645099f3c944b354e0d56910209, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 6003803a959d2bc4b9157ff08a110dc1, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: f0f3bf87980a9504191e424a1f6d65b3, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 121a776a25cb2ba4dbc6992ebf7fbb4d, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: f0c6915b05197a74e8e3860e9378ddee, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 12ccc34268807ab44a6b74882d69fed6, type: 2}
+    level: 7
+  - move: {fileID: 11400000, guid: eb28e4d400e575447b40bd2ded73d008, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: 146823033d728af42ab903dfce3d3e3e, type: 2}
+    level: 19
+  - move: {fileID: 11400000, guid: 304e733cbfef103478c9a958679a1156, type: 2}
+    level: 23
+  - move: {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
+    level: 29
+  - move: {fileID: 11400000, guid: 05fb494dd749dd6468f999bf493bc580, type: 2}
+    level: 31
+  - move: {fileID: 11400000, guid: b2c063ae9f8542b4a946e7619d7bc4b6, type: 2}
+    level: 37
+  - move: {fileID: 11400000, guid: 921db3d7f5c5f9f4fafc625796a89641, type: 2}
+    level: 43
+  - move: {fileID: 11400000, guid: 3ecd363c4c5be3140a81b39e13fb6c9e, type: 2}
+    level: 47
+  - move: {fileID: 11400000, guid: 6319c7943ef61e241b056c9a74158abb, type: 2}
+    level: 53
+  - move: {fileID: 11400000, guid: a651acac4e913d940b3655bbd0583ea4, type: 2}
+    level: 59
+  - move: {fileID: 11400000, guid: de1fd3d3e38c9f54095dba5582882732, type: 2}
+    level: 67
+  - move: {fileID: 11400000, guid: 459d32a437c4bde42b2fae4f2d678a42, type: 2}
+    level: 73
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 4684f72d3faef8940bcbd8c6d3e78a7d, type: 2}
+  - {fileID: 11400000, guid: eb28e4d400e575447b40bd2ded73d008, type: 2}
+  - {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
+  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 6e47f34420dc9c74eb3d04177fb23c56, type: 2}
+  - {fileID: 11400000, guid: 304e733cbfef103478c9a958679a1156, type: 2}
+  - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 67e39177df7f57a4cb582344e81b4f4b, type: 2}
+  - {fileID: 11400000, guid: a69a5906d0943504fb50821889185528, type: 2}
+  - {fileID: 11400000, guid: 0161b2b549675fc4782bfb60b341f598, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 4403818195e13404cbdf474c68c5ecac, type: 2}
+  - {fileID: 11400000, guid: c49703054ffc0dc40a9619b9efe13529, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+  - {fileID: 11400000, guid: 42591adc2ac509240ae0669db50cb613, type: 2}
+  - {fileID: 11400000, guid: e241c34283f45a343b6140504cd58b9e, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+  - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: 31e908a8bab2b1a48b4863c7c49a01ae, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
+  - {fileID: 11400000, guid: 8e348842184c97649931a9f92cdd533a, type: 2}
+  - {fileID: 11400000, guid: e9b30167cba759a4384b247fbb304135, type: 2}
+  - {fileID: 11400000, guid: db8e8ac98a8e9fb43ab03fe32938b7ff, type: 2}
+  - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: b08a11a32d7c09f4db0c89ad242fbbad, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 63c7218d2af498c4f9d214b944b0dc43, type: 2}
+  - {fileID: 11400000, guid: dd4884f42955eb740b13d5099da28245, type: 2}
+  - {fileID: 11400000, guid: 13d60738e9b44814b80557dd96b5063d, type: 2}
+  - {fileID: 11400000, guid: 1e9e4e2c46b380d4abe2f2c394c2f67d, type: 2}
+  - {fileID: 11400000, guid: 6319c7943ef61e241b056c9a74158abb, type: 2}
+  - {fileID: 11400000, guid: 4ac768068ede7b54a9d4d7c62ff43dc9, type: 2}
+  - {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
+  - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
+  - {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
+  - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+  - {fileID: 11400000, guid: 4c153afd182796a48a7ddadc0bf0a432, type: 2}
+  - {fileID: 11400000, guid: 6589ee989c30c544cb926ea68983bc7d, type: 2}
+  - {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 05fb494dd749dd6468f999bf493bc580, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

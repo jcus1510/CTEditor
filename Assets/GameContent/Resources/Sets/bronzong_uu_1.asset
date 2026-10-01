@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: bronzong_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: bronzong_uu_1
-  displayName: Tank
+  displayName: Specially Defensive
   speciesId: bronzong
   setFormat: uu
-  setScore: 63
+  setScore: 44
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: sassy
   evs: 252 PS / 4 Def / 252 DefE
   ivs: 
-  moveSlots: stealth_rock / gyro_ball / toxic / earthquake, protect
+  moveSlots: stealth_rock / toxic / gyro_ball / psywave, protect

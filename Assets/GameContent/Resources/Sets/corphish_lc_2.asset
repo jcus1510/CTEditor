@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Dragon Dance
   speciesId: corphish
   setFormat: lc
-  setScore: 81
-  itemOptions: eviolite, life_orb
+  setScore: 75
+  itemOptions: eviolite
   abilityOptions: adaptability
   natureOptions: jolly, adamant
   evs: 196 Atq / 76 Def / 236 Vel
   ivs: 
-  moveSlots: dragon_dance / crabhammer / knock_off / aqua_jet
+  moveSlots: crabhammer / aqua_jet / knock_off / dragon_dance

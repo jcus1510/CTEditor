@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: clefable_ou_4
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: clefable_ou_4
-  displayName: Specially Defensive
+  displayName: Unaware
   speciesId: clefable
   setFormat: ou
-  setScore: 75
+  setScore: 45
   itemOptions: leftovers
-  abilityOptions: magic_guard
-  natureOptions: calm
-  evs: 252 PS / 160 Def / 96 DefE
+  abilityOptions: unaware
+  natureOptions: bold
+  evs: 252 PS / 252 Def / 4 DefE
   ivs: 
-  moveSlots: moonblast / soft_boiled / thunder_wave, flamethrower / knock_off, calm_mind,
-    stealth_rock
+  moveSlots: moonblast / calm_mind / wish / protect

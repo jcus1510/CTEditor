@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: zorua_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: zorua_lc_1
-  displayName: Life Orb Attacker
+  displayName: Life Orb
   speciesId: zorua
   setFormat: lc
   setScore: 41
@@ -22,5 +22,5 @@ MonoBehaviour:
   natureOptions: timid, naive
   evs: 36 Def / 196 AtqE / 36 DefE / 236 Vel
   ivs: 
-  moveSlots: nasty_plot, knock_off / dark_pulse, night_daze / extrasensory / u_turn,
+  moveSlots: night_daze, dark_pulse / extrasensory / nasty_plot, knock_off / u_turn,
     hidden_power, knock_off

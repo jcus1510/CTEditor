@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: probopass_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: probopass_pu_1
-  displayName: Offensive Pivot
+  displayName: Offensive Stealth Rock
   speciesId: probopass
   setFormat: pu
-  setScore: 72
-  itemOptions: leftovers, air_balloon
+  setScore: 41
+  itemOptions: air_balloon, leftovers
   abilityOptions: magnet_pull
   natureOptions: modest
   evs: 172 PS / 252 AtqE / 84 Vel
   ivs: 
-  moveSlots: volt_switch / flash_cannon / earth_power / stealth_rock, thunder_wave
+  moveSlots: stealth_rock / flash_cannon / hidden_power / taunt, earth_power

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: vullaby_lc_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: vullaby_lc_3
-  displayName: Defensive
+  displayName: Flyinium Z
   speciesId: vullaby
   setFormat: lc
-  setScore: 83
-  itemOptions: eviolite
-  abilityOptions: overcoat
-  natureOptions: impish
-  evs: 116 PS / 236 Def / 156 DefE
-  ivs: 
-  moveSlots: brave_bird / knock_off / defog, u_turn / roost
+  setScore: 41
+  itemOptions: flyinium_z
+  abilityOptions: weak_armor
+  natureOptions: naughty
+  evs: 236 Atq / 76 Def / 80 AtqE / 116 Vel
+  ivs: 30 PS / 30 AtqE
+  moveSlots: brave_bird / knock_off / hidden_power / heat_wave, protect

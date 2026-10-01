@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: mawile_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: mawile_pu_1
-  displayName: Swords Dance
+  displayName: Wallbreaker
   speciesId: mawile
   setFormat: pu
-  setScore: 52
+  setScore: 51
   itemOptions: life_orb
   abilityOptions: sheer_force
-  natureOptions: adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  natureOptions: naughty
+  evs: 252 Atq / 4 AtqE / 252 Vel
   ivs: 
-  moveSlots: play_rough / iron_head / sucker_punch / swords_dance
+  moveSlots: play_rough / iron_head / sucker_punch / fire_blast

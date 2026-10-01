@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: deoxys_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: deoxys_ubers_1
-  displayName: ExtremeKiller Check?
+  displayName: Marshadow Lure
   speciesId: deoxys
   setFormat: ubers
-  setScore: 84
-  itemOptions: chilan_berry
+  setScore: 27
+  itemOptions: kasib_berry
   abilityOptions: 
-  natureOptions: timid, naive
-  evs: 252 PS / 200 Def / 56 Vel
+  natureOptions: jolly
+  evs: 228 Atq / 120 Def / 48 DefE / 112 Vel
   ivs: 
-  moveSlots: psycho_boost / spikes / taunt / counter, superpower
+  moveSlots: psycho_boost / taunt / pursuit / spikes, ice_beam

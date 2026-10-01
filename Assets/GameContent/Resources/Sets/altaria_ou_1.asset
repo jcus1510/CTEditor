@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: altaria_ou_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: altaria_ou_1
-  displayName: Offensive Dragon Dance
+  displayName: Utility
   speciesId: altaria
   setFormat: ou
-  setScore: 49
+  setScore: 63
   itemOptions: altarianite
   abilityOptions: 
-  natureOptions: adamant
-  evs: 88 PS / 180 Atq / 240 Vel
+  natureOptions: impish
+  evs: 240 PS / 136 Def / 76 DefE / 56 Vel
   ivs: 
-  moveSlots: dragon_dance / substitute / frustration / earthquake
+  moveSlots: body_slam / roost / roar, earthquake / heal_bell

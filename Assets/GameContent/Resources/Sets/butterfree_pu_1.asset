@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Quiver Dance
   speciesId: butterfree
   setFormat: pu
-  setScore: 56
-  itemOptions: life_orb
+  setScore: 68
+  itemOptions: focus_sash, life_orb
   abilityOptions: tinted_lens
   natureOptions: timid
-  evs: 4 Def / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: sleep_powder / quiver_dance / bug_buzz / energy_ball, psychic
+  moveSlots: quiver_dance / sleep_powder / bug_buzz / air_slash, energy_ball

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: excadrill_ou_3
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: excadrill_ou_3
-  displayName: Specially Defensive
+  displayName: Lead
   speciesId: excadrill
   setFormat: ou
-  setScore: 77
-  itemOptions: leftovers
+  setScore: 51
+  itemOptions: focus_sash
   abilityOptions: mold_breaker
-  natureOptions: careful
-  evs: 176 PS / 12 Atq / 28 Def / 252 DefE / 40 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: toxic, stealth_rock, substitute / rapid_spin / earthquake / iron_head
+  moveSlots: stealth_rock / earthquake / rock_tomb, toxic / rapid_spin

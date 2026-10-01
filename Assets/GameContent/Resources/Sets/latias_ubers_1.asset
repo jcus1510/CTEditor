@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Support
   speciesId: latias
   setFormat: ubers
-  setScore: 58
-  itemOptions: soul_dew
+  setScore: 34
+  itemOptions: latiasite
   abilityOptions: 
   natureOptions: timid
-  evs: 212 PS / 120 AtqE / 176 Vel
+  evs: 252 PS / 76 Def / 4 DefE / 176 Vel
   ivs: 
-  moveSlots: defog / roost / draco_meteor / grass_knot, psyshock
+  moveSlots: defog / toxic / healing_wish, recover / draco_meteor, grass_knot

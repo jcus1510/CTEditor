@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: raichu_alola
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: raichu_alola
+  displayName: Raichu (Forma de Alola)
+  englishName: Raichu-Alola
+  types:
+  - {fileID: 11400000, guid: 11907be1d5340704a86d6e3df74657fb, type: 2}
+  - {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
+  abilityId: surge_surfer
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: medium_fast
+  baseExpYield: 218
+  evYield:
+  - statId: speed
+    amount: 3
+  baseFriendship: 70
+  catchRate: 75
+  dexNumber: 26
+  category: "Rat\xF3n"
+  heightM: 0.7
+  weightKg: 21
+  dexColor: amarillo
+  dexDescription: "Cuando se carga de electricidad, sus m\xFAsculos se tensan y se
+    vuelve m\xE1s agresivo de lo normal."
+  femalePercent: 50
+  legendary: 0
+  hp: 60
+  attack: 85
+  defense: 50
+  spAttack: 95
+  spDefense: 85
+  speed: 110
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 17ba12a65acb0c14f96ff160367bd528, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 812c302455412644a8ec26ad1160755d, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 575dbe5143ef5064c81858aee2405e53, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    level: 1
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: 4684f72d3faef8940bcbd8c6d3e78a7d, type: 2}
+  - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+  - {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 62f256f28e937834fb5f0f116b06455b, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 0161b2b549675fc4782bfb60b341f598, type: 2}
+  - {fileID: 11400000, guid: c3b6da97600a239478d3b1629781f284, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 4403818195e13404cbdf474c68c5ecac, type: 2}
+  - {fileID: 11400000, guid: 61fa77a4f48df8343acd2c2437d3608c, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+  - {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+  - {fileID: 11400000, guid: be3592e8f82f0974aab83fb23edfd6fb, type: 2}
+  - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+  - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: b08a11a32d7c09f4db0c89ad242fbbad, type: 2}
+  - {fileID: 11400000, guid: 62c6a97d50c2ff54dacf531594dd4df0, type: 2}
+  - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+  - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 8f4fb832c81f5bc4f83d784621bf3494, type: 2}
+  - {fileID: 11400000, guid: 99f98c99a2073e041baacca1a1600e20, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 49408bd7bff365a43941ed9a21b0b47f, type: 2}
+  - {fileID: 11400000, guid: 58188db92c809e946a9e31c9e4bf61f6, type: 2}
+  - {fileID: 11400000, guid: 26ff654c6a5a69c45b83f57140540eca, type: 2}
+  - {fileID: 11400000, guid: 2e8430aef83b94342bfc40deeb8d4462, type: 2}
+  - {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
+  - {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
+  - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+  - {fileID: 11400000, guid: eada9c6cab5760744879cb449e7344da, type: 2}
+  - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
+  - {fileID: 11400000, guid: 5966c92ab9775514e994659fd1089636, type: 2}
+  - {fileID: 11400000, guid: 6589ee989c30c544cb926ea68983bc7d, type: 2}
+  - {fileID: 11400000, guid: beeb113202b73114c96ea7c86b66b26a, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
+  - {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 6ebee087cfb72f04096d41f5011a2dd8, type: 2}
+  - {fileID: 11400000, guid: 1f2b81afe4909d54f8cc0e7cf445b40b, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  - {fileID: 11400000, guid: 8f25efafd6dcfb64fb4e0ba722b3e00f, type: 2}
+  formOf: raichu
+  variantItem: 
+  forms: []
+  formChanges: []

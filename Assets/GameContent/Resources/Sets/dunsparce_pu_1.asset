@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: dunsparce_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: dunsparce_pu_1
-  displayName: Stealth Rock
+  displayName: ParaFlinch
   speciesId: dunsparce
   setFormat: pu
-  setScore: 51
+  setScore: 52
   itemOptions: leftovers
   abilityOptions: 
-  natureOptions: careful
-  evs: 252 PS / 4 Atq / 252 DefE
+  natureOptions: adamant
+  evs: 252 PS / 36 Atq / 220 Vel
   ivs: 
-  moveSlots: stealth_rock / body_slam, headbutt / magic_coat, glare / roost
+  moveSlots: glare / headbutt / roost / coil, rock_slide, substitute

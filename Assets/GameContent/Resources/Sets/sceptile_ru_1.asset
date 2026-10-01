@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: sceptile_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: sceptile_ru_1
-  displayName: Life Orb
+  displayName: Leech Seed + Protect
   speciesId: sceptile
   setFormat: ru
-  setScore: 21
-  itemOptions: life_orb
-  abilityOptions: 
+  setScore: 67
+  itemOptions: sceptilite
+  abilityOptions: overgrow
   natureOptions: timid
   evs: 4 Def / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: leaf_storm / focus_blast / hidden_power / giga_drain
+  moveSlots: leaf_storm / dragon_pulse / protect / leech_seed

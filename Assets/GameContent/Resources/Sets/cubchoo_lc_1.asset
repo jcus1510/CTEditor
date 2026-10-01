@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: cubchoo_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: cubchoo_lc_1
-  displayName: Offensive
+  displayName: Hail Sweeper
   speciesId: cubchoo
   setFormat: lc
-  setScore: 37
-  itemOptions: eviolite, life_orb
-  abilityOptions: rattled
-  natureOptions: adamant
-  evs: 196 Atq / 196 Def / 116 DefE
+  setScore: 66
+  itemOptions: eviolite, berry_juice
+  abilityOptions: slush_rush
+  natureOptions: naive, naughty
+  evs: 76 PS / 196 Atq / 36 AtqE / 196 Vel
   ivs: 
-  moveSlots: ice_punch / play_rough / superpower / rock_tomb, encore
+  moveSlots: ice_punch / superpower / play_rough / surf

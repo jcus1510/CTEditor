@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: amaura
   setFormat: lc
-  setScore: 66
+  setScore: 65
   itemOptions: choice_scarf
-  abilityOptions: refrigerate, snow_warning
-  natureOptions: modest
-  evs: 36 Def / 224 AtqE / 12 DefE / 232 Vel
-  ivs: 25 PS / 30 AtqE / 30 Vel
-  moveSlots: hyper_voice, blizzard / earth_power / thunderbolt / hidden_power, hyper_beam
+  abilityOptions: snow_warning, refrigerate
+  natureOptions: modest, timid
+  evs: 60 PS / 220 AtqE / 228 Vel
+  ivs: 
+  moveSlots: blizzard, hyper_voice / earth_power / thunderbolt / ancient_power, hyper_beam

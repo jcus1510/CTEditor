@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Life Orb
   speciesId: minccino
   setFormat: lc
-  setScore: 62
+  setScore: 68
   itemOptions: life_orb
   abilityOptions: skill_link
   natureOptions: jolly
   evs: 196 Atq / 36 Def / 36 DefE / 236 Vel
   ivs: 
-  moveSlots: tail_slap / knock_off / u_turn / wake_up_slap, seed_bomb
+  moveSlots: tail_slap / knock_off / seed_bomb, u_turn / u_turn, wake_up_slap

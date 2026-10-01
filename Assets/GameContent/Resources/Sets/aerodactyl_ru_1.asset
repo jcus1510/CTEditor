@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: aerodactyl_ru_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: aerodactyl_ru_1
-  displayName: Life Orb
+  displayName: Physical Attacker
   speciesId: aerodactyl
   setFormat: ru
-  setScore: 49
+  setScore: 56
   itemOptions: life_orb
   abilityOptions: unnerve
   natureOptions: jolly
-  evs: 252 Atq / 4 DefE / 252 Vel
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: stone_edge / earthquake / pursuit / aerial_ace, roost
+  moveSlots: stone_edge / earthquake / roost, taunt / pursuit

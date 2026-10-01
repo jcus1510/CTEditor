@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: scizor_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: scizor_ubers_1
-  displayName: Red Menace
+  displayName: Bulky Pivot
   speciesId: scizor
   setFormat: ubers
-  setScore: 29
+  setScore: 40
   itemOptions: scizorite
-  abilityOptions: technician
-  natureOptions: adamant
-  evs: 248 PS / 60 Atq / 200 DefE
+  abilityOptions: light_metal
+  natureOptions: sassy
+  evs: 248 PS / 8 Def / 252 DefE
   ivs: 
-  moveSlots: bullet_punch / roost / pursuit / toxic, u_turn
+  moveSlots: bullet_punch / roost / u_turn / toxic, swords_dance

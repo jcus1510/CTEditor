@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: torchic_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: torchic_lc_1
-  displayName: Life Orb
+  displayName: Offensive
   speciesId: torchic
   setFormat: lc
-  setScore: 40
-  itemOptions: life_orb
+  setScore: 73
+  itemOptions: life_orb, firium_z
   abilityOptions: speed_boost
-  natureOptions: modest, rash
+  natureOptions: modest
   evs: 36 Def / 200 AtqE / 36 DefE / 236 Vel
   ivs: 
-  moveSlots: protect / fire_blast / hidden_power / rock_slide
+  moveSlots: protect / fire_blast / hidden_power / substitute, overheat

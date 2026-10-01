@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: aron_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: aron_lc_1
-  displayName: Sturdy Lead
+  displayName: Rock Polish
   speciesId: aron
   setFormat: lc
-  setScore: 37
-  itemOptions: berry_juice
-  abilityOptions: 
-  natureOptions: brave
-  evs: 196 Atq / 196 Def / 116 DefE
+  setScore: 47
+  itemOptions: eviolite
+  abilityOptions: rock_head
+  natureOptions: jolly
+  evs: 196 Atq / 116 DefE / 196 Vel
   ivs: 
-  moveSlots: rock_slide / heavy_slam, iron_head / superpower / metal_burst, stealth_rock
+  moveSlots: rock_polish / head_smash / heavy_slam, iron_head / earthquake, superpower

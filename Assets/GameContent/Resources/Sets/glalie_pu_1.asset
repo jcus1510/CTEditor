@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: glalie_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: glalie_pu_1
-  displayName: Spikes Lead
+  displayName: Suicide Lead
   speciesId: glalie
   setFormat: pu
   setScore: 45
   itemOptions: focus_sash
   abilityOptions: 
-  natureOptions: naive
-  evs: 252 Atq / 4 AtqE / 252 Vel
+  natureOptions: naive, jolly
+  evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: spikes / taunt / explosion / freeze_dry
+  moveSlots: spikes / taunt / ice_beam, ice_shard / explosion, earthquake, ice_shard

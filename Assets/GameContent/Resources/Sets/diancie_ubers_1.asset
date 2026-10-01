@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: diancie_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: diancie_ubers_1
-  displayName: Offensive
+  displayName: Mega Diancie
   speciesId: diancie
   setFormat: ubers
-  setScore: 73
+  setScore: 45
   itemOptions: diancite
   abilityOptions: 
-  natureOptions: timid, naive
-  evs: 80 Atq / 252 AtqE / 176 Vel
+  natureOptions: naive
+  evs: 24 Atq / 232 AtqE / 252 Vel
   ivs: 
-  moveSlots: moonblast / diamond_storm / earth_power / protect, heal_bell, calm_mind
+  moveSlots: moonblast / diamond_storm / earth_power, toxic / stealth_rock, heal_bell

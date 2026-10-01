@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: groudon_ubers_6
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: groudon_ubers_6
-  displayName: Mixed Rock Polish
+  displayName: Double Dance
   speciesId: groudon
   setFormat: ubers
-  setScore: 10
+  setScore: 21
   itemOptions: red_orb
   abilityOptions: 
-  natureOptions: mild
-  evs: 56 Atq / 252 AtqE / 144 DefE / 56 Vel
+  natureOptions: adamant
+  evs: 252 Atq / 100 DefE / 156 Vel
   ivs: 
-  moveSlots: rock_polish / fire_blast / dragon_pulse / precipice_blades
+  moveSlots: rock_polish / swords_dance / precipice_blades / stone_edge, fire_punch

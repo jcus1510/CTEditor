@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: solosis_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: solosis_lc_1
-  displayName: Trick Room Sweeper
+  displayName: Offensive Trick Room
   speciesId: solosis
   setFormat: lc
-  setScore: 45
-  itemOptions: eviolite
-  abilityOptions: regenerator, magic_guard
+  setScore: 67
+  itemOptions: electrium_z, life_orb
+  abilityOptions: magic_guard
   natureOptions: quiet
-  evs: 76 PS / 120 Def / 240 AtqE / 40 DefE
+  evs: 240 PS / 240 AtqE
   ivs: 1 Atq / 30 Def / 30 AtqE / 30 DefE
-  moveSlots: trick_room / psychic / shadow_ball / hidden_power
+  moveSlots: trick_room / psychic / thunder / hidden_power

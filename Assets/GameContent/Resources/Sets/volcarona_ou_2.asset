@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: volcarona_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: volcarona_ou_2
-  displayName: Offensive Quiver Dance
+  displayName: Substitute + Swarm
   speciesId: volcarona
   setFormat: ou
-  setScore: 50
-  itemOptions: lum_berry
-  abilityOptions: 
+  setScore: 51
+  itemOptions: leftovers
+  abilityOptions: swarm
   natureOptions: timid
-  evs: 252 AtqE / 4 DefE / 252 Vel
+  evs: 128 PS / 196 AtqE / 184 Vel
   ivs: 
-  moveSlots: quiver_dance / flamethrower, fire_blast / bug_buzz / giga_drain, hidden_power
+  moveSlots: substitute / quiver_dance / bug_buzz / flamethrower

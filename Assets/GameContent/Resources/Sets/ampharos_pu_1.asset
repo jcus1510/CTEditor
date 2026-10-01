@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Cleric
   speciesId: ampharos
   setFormat: pu
-  setScore: 43
+  setScore: 28
   itemOptions: leftovers
   abilityOptions: 
   natureOptions: modest
-  evs: 248 PS / 252 AtqE / 8 DefE
+  evs: 184 PS / 252 AtqE / 72 Vel
   ivs: 
-  moveSlots: heal_bell / volt_switch / hidden_power, thunderbolt / focus_blast
+  moveSlots: thunderbolt, volt_switch / focus_blast / hidden_power / heal_bell

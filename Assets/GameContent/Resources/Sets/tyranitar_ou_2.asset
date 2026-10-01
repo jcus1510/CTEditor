@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Dragon Dance
   speciesId: tyranitar
   setFormat: ou
-  setScore: 30
+  setScore: 23
   itemOptions: tyranitarite
   abilityOptions: 
   natureOptions: jolly
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: dragon_dance / stone_edge / ice_punch, crunch / superpower, fire_punch
+  moveSlots: dragon_dance / stone_edge / fire_punch, earthquake / ice_punch

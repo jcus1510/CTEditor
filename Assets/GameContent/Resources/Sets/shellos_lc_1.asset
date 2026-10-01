@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Defensive
   speciesId: shellos
   setFormat: lc
-  setScore: 60
+  setScore: 52
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: bold
   evs: 228 PS / 132 Def / 100 DefE / 4 Vel
   ivs: 
-  moveSlots: scald / recover / earth_power, ice_beam / toxic, clear_smog, yawn
+  moveSlots: scald / recover / earth_power, ice_beam / clear_smog, toxic

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: taillow_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: taillow_lc_1
-  displayName: Life Orb
+  displayName: Mixed Life Orb
   speciesId: taillow
   setFormat: lc
-  setScore: 67
+  setScore: 55
   itemOptions: life_orb
-  abilityOptions: scrappy
+  abilityOptions: guts, scrappy
   natureOptions: naive
-  evs: 40 Def / 200 AtqE / 240 Vel
+  evs: 36 Def / 200 AtqE / 36 DefE / 236 Vel
   ivs: 19 PS
-  moveSlots: boomburst / heat_wave, hidden_power / u_turn / brave_bird
+  moveSlots: boomburst / heat_wave / hidden_power, u_turn / brave_bird

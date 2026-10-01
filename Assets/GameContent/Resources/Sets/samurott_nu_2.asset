@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: samurott_nu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: samurott_nu_2
-  displayName: Mixed Wallbreaker
+  displayName: Swords Dance Sweeper
   speciesId: samurott
   setFormat: nu
-  setScore: 42
-  itemOptions: life_orb
+  setScore: 46
+  itemOptions: buginium_z, waterium_z
   abilityOptions: 
-  natureOptions: rash, mild
-  evs: 4 Def / 252 AtqE / 252 Vel
+  natureOptions: jolly
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: hydro_pump / ice_beam / aqua_jet / grass_knot, megahorn, taunt
+  moveSlots: swords_dance / liquidation / aqua_jet / megahorn

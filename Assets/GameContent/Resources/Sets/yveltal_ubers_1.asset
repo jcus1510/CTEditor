@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: yveltal_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: yveltal_ubers_1
-  displayName: Choice Band
+  displayName: Life Orb
   speciesId: yveltal
   setFormat: ubers
-  setScore: 29
-  itemOptions: choice_band
+  setScore: 31
+  itemOptions: life_orb
   abilityOptions: 
-  natureOptions: adamant
-  evs: 252 Atq / 32 Def / 224 Vel
+  natureOptions: mild
+  evs: 4 Atq / 252 AtqE / 252 Vel
   ivs: 
-  moveSlots: knock_off / u_turn / foul_play / sucker_punch, steel_wing
+  moveSlots: dark_pulse / oblivion_wing / taunt / sucker_punch, toxic

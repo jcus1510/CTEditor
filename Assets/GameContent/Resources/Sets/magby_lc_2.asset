@@ -16,9 +16,9 @@ MonoBehaviour:
   displayName: Life Orb
   speciesId: magby
   setFormat: lc
-  setScore: 33
+  setScore: 40
   itemOptions: life_orb
-  abilityOptions: vital_spirit, flame_body
+  abilityOptions: vital_spirit
   natureOptions: jolly
   evs: 236 Atq / 252 Vel
   ivs: 

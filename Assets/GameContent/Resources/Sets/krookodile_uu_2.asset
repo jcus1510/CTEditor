@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: krookodile_uu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: krookodile_uu_2
-  displayName: Non-Choice Attacker
+  displayName: Stealth Rock
   speciesId: krookodile
   setFormat: uu
-  setScore: 40
-  itemOptions: dread_plate, life_orb, earth_plate
+  setScore: 54
+  itemOptions: iapapa_berry, groundium_z, focus_sash
   abilityOptions: 
   natureOptions: jolly
   evs: 252 Atq / 4 Def / 252 Vel
   ivs: 
-  moveSlots: knock_off / earthquake / taunt, stealth_rock / pursuit, stealth_rock,
-    superpower
+  moveSlots: stealth_rock / knock_off / earthquake / taunt, pursuit

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: seismitoad_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: seismitoad_uu_1
-  displayName: Support
+  displayName: Offensive Stealth Rock
   speciesId: seismitoad
   setFormat: uu
-  setScore: 85
-  itemOptions: leftovers
+  setScore: 60
+  itemOptions: leftovers, expert_belt
   abilityOptions: water_absorb
-  natureOptions: relaxed
-  evs: 200 PS / 252 Def / 56 DefE
+  natureOptions: modest
+  evs: 72 PS / 252 AtqE / 184 Vel
   ivs: 
-  moveSlots: stealth_rock / earthquake / scald / knock_off, toxic
+  moveSlots: stealth_rock / hydro_pump / earth_power / hidden_power

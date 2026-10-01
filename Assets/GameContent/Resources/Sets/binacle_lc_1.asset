@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Shell Smash
   speciesId: binacle
   setFormat: lc
-  setScore: 45
-  itemOptions: eviolite, berry_juice
+  setScore: 49
+  itemOptions: eviolite
   abilityOptions: 
   natureOptions: adamant
-  evs: 100 PS / 180 Atq / 196 Vel
+  evs: 20 PS / 180 Atq / 60 Def / 148 DefE / 36 Vel
   ivs: 
-  moveSlots: shell_smash / razor_shell / cross_chop / stone_edge, earthquake
+  moveSlots: shell_smash / liquidation / stone_edge / cross_chop

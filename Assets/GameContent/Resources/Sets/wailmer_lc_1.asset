@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: wailmer
   setFormat: lc
-  setScore: 42
+  setScore: 49
   itemOptions: choice_scarf
-  abilityOptions: 
+  abilityOptions: pressure
   natureOptions: timid
-  evs: 36 PS / 76 Def / 200 AtqE / 196 Vel
-  ivs: 30 Atq / 30 AtqE
-  moveSlots: water_spout / hydro_pump, scald, surf / ice_beam / hidden_power
+  evs: 36 PS / 200 AtqE / 200 Vel
+  ivs: 
+  moveSlots: water_spout / hydro_pump / ice_beam / hidden_power

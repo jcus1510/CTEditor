@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Specs
   speciesId: rotom
   setFormat: nu
-  setScore: 34
+  setScore: 39
   itemOptions: choice_specs
   abilityOptions: 
   natureOptions: timid
-  evs: 4 PS / 252 AtqE / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: volt_switch / shadow_ball / thunderbolt, thunder / trick
+  moveSlots: thunderbolt / shadow_ball / volt_switch / trick, defog

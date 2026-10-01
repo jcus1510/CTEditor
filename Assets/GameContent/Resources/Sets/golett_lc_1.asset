@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Tank
   speciesId: golett
   setFormat: lc
-  setScore: 67
+  setScore: 53
   itemOptions: eviolite
   abilityOptions: 
   natureOptions: adamant
   evs: 44 PS / 164 Atq / 196 Def / 76 Vel
   ivs: 
-  moveSlots: drain_punch / earthquake / stealth_rock / ice_punch
+  moveSlots: drain_punch / earthquake / stealth_rock / ice_punch, shadow_punch

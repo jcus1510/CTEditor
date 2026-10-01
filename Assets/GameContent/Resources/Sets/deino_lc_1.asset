@@ -16,10 +16,10 @@ MonoBehaviour:
   displayName: Choice Scarf
   speciesId: deino
   setFormat: lc
-  setScore: 47
+  setScore: 35
   itemOptions: choice_scarf
   abilityOptions: 
   natureOptions: jolly
-  evs: 20 PS / 236 Atq / 36 Def / 212 Vel
+  evs: 20 PS / 236 Atq / 36 DefE / 212 Vel
   ivs: 
   moveSlots: outrage / crunch / superpower / zen_headbutt

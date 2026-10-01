@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: magmortar_nu_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: magmortar_nu_2
-  displayName: Wallbreaker
+  displayName: Choice Specs
   speciesId: magmortar
   setFormat: nu
-  setScore: 52
-  itemOptions: life_orb, expert_belt
+  setScore: 54
+  itemOptions: choice_specs
   abilityOptions: vital_spirit
-  natureOptions: rash, mild
+  natureOptions: modest
   evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: fire_blast / thunderbolt / hidden_power, focus_blast / earthquake
+  moveSlots: fire_blast / focus_blast / thunderbolt / hidden_power

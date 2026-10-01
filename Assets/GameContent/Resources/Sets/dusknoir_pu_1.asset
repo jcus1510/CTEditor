@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: dusknoir_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: dusknoir_pu_1
-  displayName: Life Orb Attacker
+  displayName: Choice Band
   speciesId: dusknoir
   setFormat: pu
-  setScore: 34
-  itemOptions: life_orb
-  abilityOptions: 
+  setScore: 44
+  itemOptions: choice_band
+  abilityOptions: frisk
   natureOptions: adamant
   evs: 212 PS / 252 Atq / 44 Vel
   ivs: 
-  moveSlots: shadow_sneak / sucker_punch / earthquake / ice_punch, pursuit
+  moveSlots: earthquake / shadow_sneak / ice_punch / trick

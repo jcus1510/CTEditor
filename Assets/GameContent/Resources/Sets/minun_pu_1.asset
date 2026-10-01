@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: minun_pu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: minun_pu_1
-  displayName: Cheerleader
+  displayName: Nasty Plot
   speciesId: minun
   setFormat: pu
-  setScore: 44
-  itemOptions: leftovers
+  setScore: 33
+  itemOptions: life_orb
   abilityOptions: volt_absorb
   natureOptions: timid
-  evs: 248 PS / 8 Def / 252 Vel
+  evs: 252 AtqE / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: encore / substitute / toxic / protect, thunderbolt
+  moveSlots: nasty_plot / thunderbolt / hidden_power, grass_knot / substitute, encore

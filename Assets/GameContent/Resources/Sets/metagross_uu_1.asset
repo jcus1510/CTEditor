@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: metagross_uu_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: metagross_uu_1
-  displayName: Offensive Stealth Rock
+  displayName: Choice Band
   speciesId: metagross
   setFormat: uu
   setScore: 37
-  itemOptions: life_orb, shuca_berry
+  itemOptions: choice_band
   abilityOptions: 
   natureOptions: adamant
-  evs: 252 Atq / 4 Def / 252 Vel
+  evs: 40 PS / 252 Atq / 216 Vel
   ivs: 
-  moveSlots: stealth_rock / meteor_mash / earthquake / explosion, zen_headbutt
+  moveSlots: meteor_mash / earthquake / pursuit / explosion, bullet_punch, trick

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: excadrill_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: excadrill_ubers_1
-  displayName: Lead
+  displayName: Suicide Lead
   speciesId: excadrill
   setFormat: ubers
-  setScore: 84
+  setScore: 89
   itemOptions: focus_sash
   abilityOptions: mold_breaker
   natureOptions: jolly
-  evs: 4 PS / 252 Atq / 252 Vel
+  evs: 252 Atq / 4 DefE / 252 Vel
   ivs: 
-  moveSlots: stealth_rock / rapid_spin / toxic / earthquake
+  moveSlots: stealth_rock / rock_tomb / toxic, earthquake / rapid_spin

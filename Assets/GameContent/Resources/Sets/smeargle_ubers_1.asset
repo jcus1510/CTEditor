@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: smeargle_ubers_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: smeargle_ubers_1
-  displayName: Smash Pass
+  displayName: Suicide Lead
   speciesId: smeargle
   setFormat: ubers
-  setScore: 36
+  setScore: 49
   itemOptions: focus_sash
-  abilityOptions: technician
-  natureOptions: timid
-  evs: 4 PS / 252 AtqE / 252 Vel
+  abilityOptions: 
+  natureOptions: jolly
+  evs: 252 PS / 4 Def / 252 Vel
   ivs: 
-  moveSlots: shell_smash / baton_pass / spore / hidden_power
+  moveSlots: sticky_web / nuzzle / taunt / whirlwind, toxic_thread

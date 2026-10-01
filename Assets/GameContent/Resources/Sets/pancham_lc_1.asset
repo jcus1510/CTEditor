@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: pancham_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: pancham_lc_1
-  displayName: Pivot
+  displayName: Parting Shot Pivot
   speciesId: pancham
   setFormat: lc
-  setScore: 77
+  setScore: 84
   itemOptions: eviolite
-  abilityOptions: mold_breaker
+  abilityOptions: iron_fist, mold_breaker
   natureOptions: adamant
   evs: 180 Atq / 100 Def / 212 DefE / 12 Vel
   ivs: 

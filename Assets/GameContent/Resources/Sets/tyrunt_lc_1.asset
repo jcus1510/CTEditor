@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: tyrunt_lc_1
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: tyrunt_lc_1
-  displayName: Dragon Dance Sweeper
+  displayName: Dragon Dance
   speciesId: tyrunt
   setFormat: lc
-  setScore: 73
+  setScore: 79
   itemOptions: berry_juice
   abilityOptions: sturdy
   natureOptions: jolly
   evs: 204 Atq / 76 DefE / 212 Vel
   ivs: 23 PS
-  moveSlots: dragon_dance / stone_edge, rock_slide / outrage, earthquake / earthquake,
-    zen_headbutt
+  moveSlots: dragon_dance / stone_edge, rock_slide / outrage / earthquake, superpower

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: thundurus_therian_ou_2
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
   id: thundurus_therian_ou_2
-  displayName: Double Dance
+  displayName: Offensive Support
   speciesId: thundurus_therian
   setFormat: ou
-  setScore: 51
-  itemOptions: leftovers
+  setScore: 34
+  itemOptions: rocky_helmet, iapapa_berry
   abilityOptions: 
-  natureOptions: modest
-  evs: 104 PS / 252 AtqE / 152 Vel
+  natureOptions: timid
+  evs: 112 PS / 144 AtqE / 252 Vel
   ivs: 
-  moveSlots: agility / nasty_plot / thunderbolt / hidden_power
+  moveSlots: volt_switch, thunderbolt / hidden_power / taunt / defog, thunder_wave
