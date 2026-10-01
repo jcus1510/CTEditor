@@ -186,8 +186,8 @@ namespace CTEditor.App
             // Size.
             var size = Ui.Column(6);
             size.With(
-                Ui.NumberBox("Ancho", _tw, 1, _image.Width, v => { _tw = v; if (_linked) { _th = v; Recompute(); } else Changed(); }),
-                Ui.NumberBox("Alto", _th, 1, _image.Height, v => { _th = v; if (_linked) { _tw = v; Recompute(); } else Changed(); }),
+                Ui.NumberBox("Ancho", _tw, 1, _image.Width, v => { _tw = v; if (_linked) { _th = v; Recompute(); } else Changed(); }, labelWidth: 96),
+                Ui.NumberBox("Alto", _th, 1, _image.Height, v => { _th = v; if (_linked) { _tw = v; Recompute(); } else Changed(); }, labelWidth: 96),
                 Ui.Check("Cuadrado (ancho = alto)", _linked, v => { _linked = v; if (v) { _th = _tw; Recompute(); } }));
             _controls.Add(Section("Tamaño del tile", size));
 
@@ -224,10 +224,10 @@ namespace CTEditor.App
 
             var offsets = Ui.Column(6);
             offsets.With(
-                Ui.NumberBox("Desplaz. X", _ox, 0, _image.Width - 1, v => { _ox = v; Changed(); }, "Margen del borde izquierdo"),
-                Ui.NumberBox("Desplaz. Y", _oy, 0, _image.Height - 1, v => { _oy = v; Changed(); }, "Margen del borde de arriba"),
-                Ui.NumberBox("Separación X", _sx, 0, 256, v => { _sx = v; Changed(); }, "Píxeles entre tiles"),
-                Ui.NumberBox("Separación Y", _sy, 0, 256, v => { _sy = v; Changed(); }, "Píxeles entre tiles"));
+                Ui.NumberBox("Desplaz. X", _ox, 0, _image.Width - 1, v => { _ox = v; Changed(); }, "Margen del borde izquierdo", 96),
+                Ui.NumberBox("Desplaz. Y", _oy, 0, _image.Height - 1, v => { _oy = v; Changed(); }, "Margen del borde de arriba", 96),
+                Ui.NumberBox("Separación X", _sx, 0, 256, v => { _sx = v; Changed(); }, "Píxeles entre tiles", 96),
+                Ui.NumberBox("Separación Y", _sy, 0, 256, v => { _sy = v; Changed(); }, "Píxeles entre tiles", 96));
             _controls.Add(Section("Margen y separación", offsets));
 
             var view = Ui.Column(6);

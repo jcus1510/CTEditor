@@ -355,8 +355,19 @@ namespace CTEditor.Editing
             if (Map == null || slot < 0 || slot >= Map.TilesetIds.Count) return;
             bool used = Map.Layers.Any(l => l.ToArray().Any(c => MapTile.Slot(c) == slot));
             if (used) { Message?.Invoke("Ese tileset se usa en el mapa: borra antes sus tiles.", "aviso"); return; }
-            if (slot != Map.TilesetIds.Count - 1) { Message?.Invoke("Solo se puede quitar el último tileset añadido.", "aviso"); return; }
-            Structure("quitar tileset", m => m.TilesetIds.RemoveAt(slot));
+            if (Map.TilesetIds.Count == 1) { Message?.Invoke("Un mapa necesita al menos un tileset.", "aviso"); return; }
+            // Any tileset can go (if no tile uses it): the tiles of the later ones move down one number.
+            Structure("quitar tileset", m =>
+            {
+                m.TilesetIds.RemoveAt(slot);
+                foreach (var layer in m.Layers)
+                    for (int y = 0; y < m.Height; y++)
+                    for (int x = 0; x < m.Width; x++)
+                    {
+                        int c = layer.Get(x, y);
+                        if (c >= 0 && MapTile.Slot(c) > slot) layer.Set(x, y, MapTile.Encode(MapTile.Slot(c) - 1, MapTile.Index(c)));
+                    }
+            });
             PaletteSlot = Math.Min(PaletteSlot, Math.Max(0, Map.TilesetIds.Count - 1));
             TilesetChanged?.Invoke(null);
         }

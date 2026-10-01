@@ -94,4 +94,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   tiene precisión de ¼ de casilla) — ahora en el origen; tilesets de Propiedades compactos; escala por ventana
   (Alt + rueda, Alt + 0) recordada; atajos ampliados por categorías (inspirados en Tiled / Pokémon Studio, GB Studio,
   Photoshop y Unity), grabables pulsándolos y con buscador; Espacio + arrastrar.
+- **Pulido 4**: barra del mapa colocable (clic derecho: arriba / izquierda / derecha / abajo; por defecto a la
+  izquierda); elegir una capa = pintar en ella (apaga las capas automáticas y lo avisa); quitar cualquier tileset no
+  usado del mapa; etiquetas de terreno pequeñas; ayudas más claras de los modos de Tiles; etiquetas de las cajas de
+  número junto a su caja.
 - **Documentación** completa por capítulos (esta carpeta).

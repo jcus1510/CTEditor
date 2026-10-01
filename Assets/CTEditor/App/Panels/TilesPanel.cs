@@ -26,12 +26,12 @@ namespace CTEditor.App
         private static readonly (Mode mode, string label, string help)[] Modes =
         {
             (Mode.Paint, "Pintar", "Elige el tile (o arrastra para un bloque) con el que pinta el lápiz."),
-            (Mode.Passage, "Paso", "Rojo = no se pasa. Clic en el centro: bloquear todo. Clic junto a un borde: bloquear solo ese lado."),
-            (Mode.Priority, "Prioridad", "0 = suelo; 1-5 = se dibuja por encima del jugador. Clic sube, clic derecho baja."),
-            (Mode.Terrain, "Terreno", "Clic pone el terreno elegido (hierba, agua...), clic derecho lo quita."),
-            (Mode.Bush, "Arbusto", "El jugador se ve medio hundido (hierba alta). Clic activa o desactiva."),
-            (Mode.Counter, "Mostrador", "Se habla con quien está al otro lado. Clic activa o desactiva."),
-            (Mode.Piece, "Pieza", "A qué capa va con capas automáticas. Verde = suelo, amarillo = detalle, azul = encima (claro = deducido). Clic cambia, clic derecho = automático."),
+            (Mode.Passage, "Paso", "Por dónde se puede andar. Rojo = no se pasa. Clic en el centro: bloquear todo; clic junto a un borde: bloquear solo ese lado (vallas, bordillos)."),
+            (Mode.Priority, "Prioridad", "Si el tile se dibuja encima del jugador: 0 = debajo (suelo); 1-5 = encima (copas de árbol, tejados, marcos de puerta). Clic sube, clic derecho baja."),
+            (Mode.Terrain, "Terreno", "Qué es el suelo: hierba de encuentros, agua para surfear, saliente, hielo... Elige uno abajo; clic lo pone, clic derecho lo quita."),
+            (Mode.Bush, "Arbusto", "El jugador se ve medio hundido al pisarlo, como en la hierba alta o un charco: la parte de abajo del personaje se vuelve transparente. Clic activa o desactiva."),
+            (Mode.Counter, "Mostrador", "Se puede hablar a través de este tile con quien esté al otro lado, como la enfermera del Centro o el dependiente de la tienda. Clic activa o desactiva."),
+            (Mode.Piece, "Pieza", "A qué capa va el tile con capas automáticas: verde = suelo, amarillo = detalle, azul = encima (claro = deducido solo). Clic cambia, clic derecho = automático."),
         };
         private static readonly string[] PieceNames = { "automático", "suelo", "detalle", "encima" };
 
@@ -198,7 +198,12 @@ namespace CTEditor.App
             foreach (var (mode, label, help) in Modes)
             {
                 var m = mode;
-                _modes.Add(Ui.IconButton(IconOf(m), () => SetMode(m), label + ": " + help, _mode == m).Margin(0, 0, 2, 0));
+                var b = Ui.IconButton(IconOf(m), () => SetMode(m), label + ": " + help, _mode == m).Margin(0, 0, 2, 0);
+                // The help also appears in the line under the tiles while the mouse is over the button.
+                var text = label + ": " + help;
+                b.RegisterCallback<PointerEnterEvent>(_ => _info.text = text);
+                b.RegisterCallback<PointerLeaveEvent>(_ => _info.text = Modes.First(x => x.mode == _mode).help);
+                _modes.Add(b);
             }
             _modes.Add(Ui.Text(Modes.First(x => x.mode == _mode).label, 0.9f, bold: true).Margin(6, 0, 0, 0));
             if (_mode == Mode.Terrain)
@@ -206,10 +211,16 @@ namespace CTEditor.App
                 foreach (var t in S.Terrains.All.Where(t => t.Id != 0))
                 {
                     var id = t.Id;
-                    var chip = Ui.Chip(t.Label, _terrain == id, () => { _terrain = id; BuildHeader(); });
-                    chip.style.borderLeftWidth = 6;
+                    // Small chips: a colour dot and a short text (the full name in the tooltip).
+                    var chip = Ui.Chip(t.Label, _terrain == id, () => { _terrain = id; BuildHeader(); }, $"{t.Label} (n.º {t.Id})");
+                    chip.style.fontSize = Mathf.Round(Ui.FontSize * 0.82f);
+                    chip.style.height = Ui.ControlHeight - 9;
+                    chip.style.minHeight = Ui.ControlHeight - 9;
+                    chip.style.paddingLeft = 6; chip.style.paddingRight = 7;
+                    chip.style.maxWidth = 150;
+                    chip.style.borderLeftWidth = 4;
                     chip.style.borderLeftColor = TerrainColor(id);
-                    _terrainRow.Add(chip.Margin(0, 0, 4, 4));
+                    _terrainRow.Add(chip.Margin(0, 0, 3, 3));
                 }
             }
             _info.text = Modes.First(x => x.mode == _mode).help;

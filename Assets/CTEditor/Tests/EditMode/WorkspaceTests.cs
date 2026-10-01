@@ -224,9 +224,12 @@ namespace CTEditor.Tests.EditMode
             Assert.AreEqual(1f, w.PanelScale("paleta"));
             w.SetPanelScale("paleta", 1.4f);
             w.SetPanelScale("mapa", 9f);
+            w.SetPref("barra_mapa", "derecha");
             var back = WorkspaceSettings.FromJson(Json.ParseObject(Json.Write(w.ToJson())));
             Assert.AreEqual(1.4f, back.PanelScale("paleta"), 0.001f);
             Assert.AreEqual(WorkspaceSettings.MaxPanelScale, back.PanelScale("mapa"), 0.001f, "clamped");
+            Assert.AreEqual("derecha", back.Pref("barra_mapa", "izquierda"));
+            Assert.AreEqual("izquierda", back.Pref("otra", "izquierda"));
             back.SetPanelScale("paleta", 1f);
             Assert.AreEqual(1f, back.PanelScale("paleta"));
         }

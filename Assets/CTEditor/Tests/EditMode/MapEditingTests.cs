@@ -322,6 +322,32 @@ namespace CTEditor.Tests.EditMode
             StringAssert.Contains("bloqueada", warning);
         }
 
+        [Test]
+        public void Any_unused_tileset_can_be_removed_and_later_tiles_keep_theirs()
+        {
+            var session = new MapEditorSession(new MemoryMaps(), new NoTilesets());
+            session.CreateMap("M", width: 3, height: 3, tilesetId: "a");
+            var m = session.Map;
+            m.TilesetIds.Add("b");
+            m.TilesetIds.Add("c");
+            m.Layers[0].Set(1, 1, MapTile.Encode(2, 7)); // a tile of «c»
+            m.Layers[0].Set(0, 0, MapTile.Encode(0, 3)); // a tile of «a»
+
+            session.RemoveTilesetFromMap(1); // «b», in the middle and unused
+            CollectionAssert.AreEqual(new[] { "a", "c" }, session.Map.TilesetIds);
+            Assert.AreEqual(MapTile.Encode(1, 7), session.Map.Layers[0].Get(1, 1), "still a tile of «c»");
+            Assert.AreEqual(MapTile.Encode(0, 3), session.Map.Layers[0].Get(0, 0));
+
+            string warning = null;
+            session.Message += (text, _) => warning = text;
+            session.RemoveTilesetFromMap(1); // «c» is used
+            StringAssert.Contains("se usa", warning);
+
+            session.Undo();
+            CollectionAssert.AreEqual(new[] { "a", "b", "c" }, session.Map.TilesetIds);
+            Assert.AreEqual(MapTile.Encode(2, 7), session.Map.Layers[0].Get(1, 1));
+        }
+
         private sealed class MemoryMaps : IMapRepository
         {
             private readonly Dictionary<string, MapDefinition> _maps = new Dictionary<string, MapDefinition>();

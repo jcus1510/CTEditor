@@ -164,7 +164,7 @@ namespace CTEditor.App
                 }
                 body.Add(cats);
 
-                var size = Ui.Row(10);
+                var size = Ui.Row(22);
                 size.With(Ui.NumberBox("Ancho", w, 1, MapDefinition.MaxSize, v => w = v), Ui.NumberBox("Alto", h, 1, MapDefinition.MaxSize, v => h = v));
                 body.With(Ui.Text("Tamaño en tiles", bold: true), size,
                     Ui.Hint("20 × 15 es el tamaño de RPG Maker XP. Se puede cambiar luego en Propiedades."));
@@ -288,13 +288,21 @@ namespace CTEditor.App
                 Ui.Spacer(),
                 Ui.Text($"{m.Layers.Count} capas", 0.85f, dim: true).NoShrink().Margin(0, 0, 4, 0));
 
+            // With automatic layers each tile goes to the layer of its kind: say so, or choosing a row looks broken.
+            if (S.AutoLayers)
+            {
+                var note = Ui.Row(6).Pad(8, 5).Bg("panel_alt");
+                note.With(Ui.Hint("Capas automáticas: cada tile va solo a su capa (suelo, detalles, encima). Elige una capa para pintar solo en ella.").Grow(),
+                    Ui.Button("Manual", () => S.SetAutoLayers(false), Ui.ButtonKind.Flat, "Pintar en la capa elegida (Ctrl+L cambia)"));
+                _list.Add(note);
+            }
             string[] roles = { "", "suelo", "detalles", "encima" };
             for (int i = m.Layers.Count - 1; i >= 0; i--)
             {
                 int index = i;
                 var l = m.Layers[i];
                 var row = Ui.Row(2).Pad(4, 2);
-                if (i == active) row.style.backgroundColor = Ui.C("seleccion");
+                if (i == active && !S.AutoLayers) row.style.backgroundColor = Ui.C("seleccion");
                 row.style.borderTopWidth = 2; row.style.borderBottomWidth = 2;
                 row.style.borderTopColor = new Color(0, 0, 0, 0); row.style.borderBottomColor = new Color(0, 0, 0, 0);
 
@@ -330,7 +338,7 @@ namespace CTEditor.App
 
                 row.RegisterCallback<PointerUpEvent>(e =>
                 {
-                    if (e.button == 0 && _dragIndex < 0 && (e.target == row || e.target == names)) S.SetActiveLayer(index);
+                    if (e.button == 0 && _dragIndex < 0 && (e.target == row || e.target == names)) Choose(index);
                 });
                 row.RegisterCallback<ClickEvent>(e =>
                 {
@@ -354,6 +362,17 @@ namespace CTEditor.App
             }
             _list.Add(Ui.Hint("Arriba, la que se dibuja encima. Arrastra el asa para reordenar. Doble clic: cambiar el nombre. Clic derecho: para qué es (suelo, detalles, encima) — con capas automáticas cada tile va solo a la suya.")
                 .Margin(10, 8, 10, 8));
+        }
+
+        /// <summary>Choosing a layer means «paint here»: automatic layers are switched off (and it says so).</summary>
+        private void Choose(int index)
+        {
+            if (S.AutoLayers)
+            {
+                S.SetAutoLayers(false);
+                _shell.Info($"Ahora pintas en la capa «{S.Map.Layers[index].Name}». Capas automáticas desactivadas (Ctrl+L para volver).");
+            }
+            S.SetActiveLayer(index);
         }
 
         private void RegisterDrag(VisualElement grip, int index)

@@ -108,6 +108,16 @@ Inspirados en: herramientas de una letra de Photoshop / Aseprite y de [Tiled](ht
 (el editor de mapas que usa Pokémon Studio), Ctrl + número para cambiar de vista y números para los modos como en
 [GB Studio](https://www.gbstudio.dev/docs/getting-started/keyboard-shortcuts/), y F para encuadrar como en Unity.
 
+## Pulido 4
+
+| Arreglo / novedad | Qué cambia |
+|---|---|
+| **Barra del mapa colocable** | Clic derecho en la barra: arriba, **a la izquierda (por defecto, recomendado)**, a la derecha o abajo; se recuerda (`WorkspaceSettings.Pref`). En vertical, todo son iconos (capas automáticas incluidas) y se gana alto para el mapa. |
+| **Capas: se pinta donde eliges** | Con capas automáticas, cada tile iba a la capa de su tipo aunque eligieras otra. Ahora, elegir una capa en Capas apaga las automáticas y lo dice («Ahora pintas en la capa…», Ctrl+L para volver); con las automáticas puestas, Capas muestra un aviso y no resalta ninguna fila. |
+| **Quitar tilesets** | Se puede quitar cualquier tileset que no use ningún tile (antes solo el último); los tiles de los siguientes conservan el suyo. |
+| **Tiles** | Etiquetas de terreno más pequeñas (punto de color + texto corto). Cada modo explica qué es al pasar el ratón (en la ayuda y en la línea de abajo): p. ej. «Arbusto: el jugador se ve medio hundido, como en la hierba alta». |
+| **Cajas de número** | La etiqueta va pegada a su caja («Ancho [12]   Alto [14]»), con más espacio entre parejas; las apiladas (asistente de corte) siguen alineadas en columna. |
+
 ## Cómo se hace un mapa (flujo)
 
 1. **Recursos** → Importar (o copiar) el tileset en `graficos/tilesets` → **Cortar** (32 px).

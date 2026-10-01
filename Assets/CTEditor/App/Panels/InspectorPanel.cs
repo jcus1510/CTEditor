@@ -77,7 +77,7 @@ namespace CTEditor.App
             body.Add(Ui.Separator());
 
             var size = Section("Tamaño");
-            var wh = Ui.Row(10).Wrap();
+            var wh = Ui.Row(22).Wrap();
             wh.With(Ui.NumberBox("Ancho", m.Width, 1, MapDefinition.MaxSize, v => _newW = v), Ui.NumberBox("Alto", m.Height, 1, MapDefinition.MaxSize, v => _newH = v));
             var ax = Ui.Row(4).Wrap();
             ax.With(Ui.Text("Añadir o quitar por:", 0.9f, dim: true),
@@ -111,7 +111,7 @@ namespace CTEditor.App
                 if (m.InWorld)
                 {
                     int wx = m.WorldX, wy = m.WorldY;
-                    var pos = Ui.Row(8).Wrap();
+                    var pos = Ui.Row(22).Wrap();
                     pos.With(Ui.NumberBox("Mundo X", wx, -100000, 100000, v => wx = v), Ui.NumberBox("Y", wy, -100000, 100000, v => wy = v));
                     var acts = Ui.Row(6).Wrap();
                     acts.With(Ui.Button("Mover", () => S.MoveSection(m.Id, wx, wy), Ui.ButtonKind.Primary, "También se puede arrastrar en la ventana Mundo"),
@@ -145,8 +145,9 @@ namespace CTEditor.App
                 var name = Ui.Text(t?.Name ?? m.TilesetIds[i] + " (no está)", 0.92f).Colored(t == null ? "aviso" : "texto").Grow();
                 name.tooltip = (i == 0 ? "Principal: " : $"Tileset {i + 1}: ") + (t != null ? $"{t.Name} · {t.ImagePath}" : "no se encuentra: ¿se borró o no está cortado?");
                 row.With(badge, name);
-                if (i > 0 && i == m.TilesetIds.Count - 1)
-                    row.Add(Ui.IconButton("papelera", () => S.RemoveTilesetFromMap(slot), "Quitar este tileset del mapa (solo si ningún tile lo usa)"));
+                if (m.TilesetIds.Count > 1)
+                    row.Add(Ui.IconButton("papelera", () => S.RemoveTilesetFromMap(slot),
+                        "Quitar este tileset del mapa (solo si ningún tile lo usa)" + (i == 0 ? "; el siguiente pasa a ser el principal" : "")));
                 list.Add(row);
             }
             var available = S.AvailableTilesets();

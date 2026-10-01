@@ -237,6 +237,18 @@ namespace CTEditor.Workspace
         private float _uiScale = 1f;
         public float UiScale { get => _uiScale; set => _uiScale = Math.Max(MinScale, Math.Min(MaxScale, value)); }
 
+        private readonly Dictionary<string, string> _prefs = new Dictionary<string, string>();
+
+        /// <summary>Preferencias sueltas de la interfaz por clave («barra_mapa» = «izquierda»...). Un módulo nuevo guarda las suyas aquí.</summary>
+        public string Pref(string key, string fallback = "") => key != null && _prefs.TryGetValue(key, out var v) ? v : fallback;
+
+        public void SetPref(string key, string value)
+        {
+            if (string.IsNullOrEmpty(key)) return;
+            if (value == null) _prefs.Remove(key);
+            else _prefs[key] = value;
+        }
+
         public const float MinPanelScale = 0.6f, MaxPanelScale = 2.5f;
         private readonly Dictionary<string, float> _panelScales = new Dictionary<string, float>();
 
@@ -289,6 +301,7 @@ namespace CTEditor.Workspace
             .Set("distribuciones_guardadas", SavedLayouts.Select(l => (object)l.ToJson()).ToList())
             .Set("escala", Math.Round(UiScale, 2))
             .Set("tamaño_letra", FontSize)
+            .Set("preferencias", _prefs.Aggregate(new JsonObject(), (j, kv) => j.Set(kv.Key, kv.Value)))
             .Set("escala_ventanas", _panelScales.Aggregate(new JsonObject(), (j, kv) => j.Set(kv.Key, Math.Round(kv.Value, 2))))
             .Set("atajos", Shortcuts.ToJson())
             .Set("recientes", RecentProjects.Cast<object>().ToList());
@@ -303,6 +316,8 @@ namespace CTEditor.Workspace
                 if (s is JsonObject so) w.SavedLayouts.Add(DockLayout.FromJson(so));
             w.UiScale = o.GetFloat("escala", 1f);
             w.FontSize = o.GetInt("tamaño_letra", 13);
+            if (o.GetObject("preferencias") is JsonObject prefs)
+                foreach (var key in prefs.Keys) if (prefs[key] is string pv) w.SetPref(key, pv);
             if (o.GetObject("escala_ventanas") is JsonObject ps)
                 foreach (var key in ps.Keys) w.SetPanelScale(key, ps.GetFloat(key, 1f));
             w.Shortcuts = ShortcutMap.FromJson(o.GetObject("atajos"));

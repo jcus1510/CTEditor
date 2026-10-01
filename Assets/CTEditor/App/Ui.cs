@@ -349,15 +349,20 @@ namespace CTEditor.App
         }
 
         /// <summary>Whole-number box with − / + buttons. Calls onChange with the clamped value.</summary>
-        public static VisualElement NumberBox(string label, int value, int min, int max, Action<int> onChange, string tooltip = null)
+        /// <param name="labelWidth">
+        /// 0 = the label takes just its text and sits right next to its box (several boxes in one row: «Ancho [ ] Alto [ ]»);
+        /// a width = labels of stacked boxes line up in a column.
+        /// </param>
+        public static VisualElement NumberBox(string label, int value, int min, int max, Action<int> onChange, string tooltip = null,
+            float labelWidth = 0)
         {
             // [label] [−][ value ][+]: the three boxes joined in one stepper.
             var row = Row(0).NoShrink();
             if (!string.IsNullOrEmpty(label))
             {
                 var l = Text(label, dim: true).NoShrink();
-                l.style.minWidth = 56;
-                l.style.marginRight = 8;
+                if (labelWidth > 0) l.style.minWidth = labelWidth;
+                l.style.marginRight = 6;
                 row.Add(l);
             }
             var field = new TextField { value = value.ToString(), isDelayed = true, tooltip = tooltip ?? "" };
