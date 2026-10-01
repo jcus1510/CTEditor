@@ -240,13 +240,14 @@ namespace CTEditor.Tests.EditMode
 
                 var session = new MapEditorSession(new JsonMapRepository(root), new FolderTilesetRepository(root));
                 session.LoadTree();
-                CollectionAssert.AreEqual(new[] { "graficos/tilesets/casa.png" }, session.AvailableTilesets());
+                CollectionAssert.AreEqual(new[] { "casa" }, session.AvailableTilesets(), "a fixed id, not the path");
 
                 var entry = session.CreateMap("Casa del héroe");
                 Assert.AreEqual("casa_del_heroe", entry.Id);
-                Assert.AreEqual("graficos/tilesets/casa.png", session.Map.TilesetId, "the first tileset by default");
+                Assert.AreEqual("casa", session.Map.TilesetId, "the first tileset by default");
                 Assert.AreEqual(("casa_del_heroe", 10, 7), session.PlayerStart, "the first map gets the start in its middle");
 
+                session.SetAutoLayers(false); // this test paints by hand on the active layer
                 int redraws = 0;
                 session.TilesChanged += (x, y, w, h) => redraws++;
                 session.SetStamp(TileStamp.Single(1));
@@ -312,6 +313,7 @@ namespace CTEditor.Tests.EditMode
             Assert.AreEqual((1, 2), (session.Stamp.Width, session.Stamp.Height));
             Assert.AreEqual(4, session.Stamp[0, 1]);
 
+            session.SetAutoLayers(false);
             session.SetActiveLayer(0);
             session.SetLayerView(0, locked: true);
             string warning = null;
@@ -337,6 +339,7 @@ namespace CTEditor.Tests.EditMode
             public IReadOnlyList<string> List() => new string[0];
             public Tileset Load(string id) => null;
             public void SaveAttributes(Tileset tileset) { }
+            public void Refresh() { }
         }
     }
 }

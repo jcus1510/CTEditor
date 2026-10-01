@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using CTEditor.Art.Domain;
@@ -46,7 +47,7 @@ namespace CTEditor.App
         public static TilesetAtlas TryLoad(Tileset tileset, string projectRoot)
         {
             if (tileset == null) return null;
-            var path = Path.Combine(projectRoot, tileset.Id);
+            var path = Path.Combine(projectRoot, tileset.ImagePath);
             try { return File.Exists(path) ? new TilesetAtlas(tileset, path) : null; }
             catch (Exception e)
             {
@@ -89,6 +90,20 @@ namespace CTEditor.App
 
         public IEnumerable<(Texture2D texture, int y, int height)> Strips => _strips;
 
+        /// <summary>The texture and normalized UV rectangle of a tile (for UI previews). Null if out of range.</summary>
+        public (Texture2D texture, Rect uv)? UvFor(int index)
+        {
+            if (index < 0 || !Tileset.Contains(index)) return null;
+            var r = Tileset.RectOf(index);
+            foreach (var (texture, y, height) in _strips)
+            {
+                if (r.Y < y || r.Bottom > y + height) continue;
+                float w = texture.width, h = texture.height;
+                return (texture, new Rect(r.X / w, (height - (r.Y - y) - r.Height) / h, r.Width / w, r.Height / h));
+            }
+            return null;
+        }
+
         public void Dispose()
         {
             foreach (var o in _owned) if (o != null) UnityEngine.Object.Destroy(o);
@@ -96,5 +111,45 @@ namespace CTEditor.App
             _tiles.Clear();
             _strips.Clear();
         }
+    }
+}
+
+namespace CTEditor.App
+{
+    /// <summary>
+    /// Los tilesets ya subidos a la tarjeta gráfica, por id, compartidos por un panel (varios tramos y huecos usan los
+    /// mismos). Se vacía cuando cambia una imagen o un corte.
+    /// </summary>
+    public sealed class AtlasCache : IDisposable
+    {
+        private readonly Dictionary<string, TilesetAtlas> _atlases = new Dictionary<string, TilesetAtlas>();
+        private readonly Func<string, Tileset> _resolve;
+        private readonly string _root;
+
+        public AtlasCache(string projectRoot, Func<string, Tileset> resolve)
+        {
+            _root = projectRoot;
+            _resolve = resolve;
+        }
+
+        public TilesetAtlas Get(string tilesetId)
+        {
+            if (string.IsNullOrEmpty(tilesetId)) return null;
+            if (_atlases.TryGetValue(tilesetId, out var a)) return a;
+            a = TilesetAtlas.TryLoad(_resolve(tilesetId), _root);
+            _atlases[tilesetId] = a;
+            return a;
+        }
+
+        /// <summary>Atlases of a map by slot (null where a tileset is missing).</summary>
+        public TilesetAtlas[] For(World.Domain.MapDefinition map) => map == null ? new TilesetAtlas[0] : map.TilesetIds.Select(Get).ToArray();
+
+        public void Clear()
+        {
+            foreach (var a in _atlases.Values) a?.Dispose();
+            _atlases.Clear();
+        }
+
+        public void Dispose() => Clear();
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 using CTEditor.Editing;
@@ -9,32 +10,42 @@ using CTEditor.World.Domain;
 namespace CTEditor.App
 {
     /// <summary>
-    /// Panel MAPA: el mapa abierto dibujado con el mismo renderizador que el juego, con las herramientas del editor.
-    ///   - Clic izquierdo: la herramienta (lápiz, rectángulo, relleno, goma, cuentagotas, inicio del jugador).
-    ///   - Clic derecho (y arrastrar): coger tiles del mapa como sello, como en RPG Maker.
-    ///   - Botón central o Alt + arrastrar: mover la vista. Rueda: zoom hacia el ratón.
-    ///   - Ctrl + clic: retocar ese tile en el editor de píxeles.
+    /// Panel MAPA: el tramo abierto dibujado con el mismo renderizador que el juego (y sus tramos vecinos del mundo,
+    /// atenuados, para ver cómo encaja), con las herramientas del editor.
+    ///   - Clic izquierdo: la herramienta (lápiz, rectángulo, relleno, goma, cuentagotas, selección, pegar, zona de
+    ///     encuentros, inicio del jugador). Con capas automáticas cada tile va solo a su capa.
+    ///   - Clic derecho: coger tiles del mapa como sello (en la herramienta Zona, quitar casillas de la zona).
+    ///   - Botón central o Alt + arrastrar: mover la vista. Rueda: zoom hacia el ratón. Ctrl + clic: retocar ese tile.
+    ///   - Doble clic en un tramo vecino: abrirlo.
     /// Todo lo que cambia pasa por MapEditorSession (deshacer, autoguardado); este panel solo dibuja y reenvía el ratón.
     /// </summary>
     public sealed class MapPanel : VisualElement
     {
         private static readonly float[] ZoomLevels = { 0.25f, 0.5f, 1f, 1.5f, 2f, 3f, 4f, 6f, 8f };
-        private static readonly (MapTool tool, string label, string action)[] Tools =
+        private static readonly (MapTool tool, string label, string action, string help)[] Tools =
         {
-            (MapTool.Pencil, "Lápiz", "lapiz"), (MapTool.Rectangle, "Rectángulo", "rectangulo"), (MapTool.Fill, "Relleno", "relleno"),
-            (MapTool.Eraser, "Goma", "goma"), (MapTool.Picker, "Cuentagotas", "cuentagotas"), (MapTool.PlayerStart, "Inicio", null),
+            (MapTool.Pencil, "Lápiz", "lapiz", "Pinta el sello elegido en Tiles"),
+            (MapTool.Rectangle, "Rectángulo", "rectangulo", "Rellena un rectángulo con el sello"),
+            (MapTool.Fill, "Relleno", "relleno", "Rellena la zona del mismo tile"),
+            (MapTool.Eraser, "Goma", "goma", "Borra (con capas automáticas, lo de más arriba)"),
+            (MapTool.Picker, "Cuentagotas", "cuentagotas", "Coge tiles del mapa como sello (también con clic derecho)"),
+            (MapTool.Select, "Selección", null, "Selecciona una zona: Ctrl+C copiar, Ctrl+X cortar, Supr borrar"),
+            (MapTool.Paste, "Pegar", "pegar", "Haz clic donde quieras pegar lo copiado"),
+            (MapTool.EncounterPaint, "Zona", null, "Pinta la zona de encuentros activa (clic derecho quita)"),
+            (MapTool.PlayerStart, "Inicio", null, "Coloca el inicio del jugador"),
         };
 
         private readonly AppShell _shell;
         private MapEditorSession S => _shell.Maps;
         private MapRenderer _renderer;
-        private TilesetAtlas _atlas;
+        private AtlasCache _atlases;
         private readonly VisualElement _toolbar, _viewport, _overlay, _empty;
         private readonly Image _image;
         private readonly Label _status;
-        private bool _showGrid = true;
+        private bool _showGrid = true, _showNeighbors = true;
         private int _zoomIndex = 4;
         private bool _needsFit = true;
+        private List<MapDefinition> _neighbors = new List<MapDefinition>();
 
         // Pointer state.
         private bool _painting, _panning, _picking;
@@ -81,7 +92,15 @@ namespace CTEditor.App
             _viewport.RegisterCallback<PointerDownEvent>(OnPointerDown);
             _viewport.RegisterCallback<PointerMoveEvent>(OnPointerMove);
             _viewport.RegisterCallback<PointerUpEvent>(OnPointerUp);
-            _viewport.RegisterCallback<PointerLeaveEvent>(_ => { if (!_painting && !_panning) { _cursor = null; if (S != null) S.Cursor = null; RedrawOverlay(); UpdateStatus(); } });
+            _viewport.RegisterCallback<ClickEvent>(OnClick);
+            _viewport.RegisterCallback<PointerLeaveEvent>(_ =>
+            {
+                if (_painting || _panning) return;
+                _cursor = null;
+                if (S != null) S.Cursor = null;
+                RedrawOverlay();
+                UpdateStatus();
+            });
             _viewport.RegisterCallback<WheelEvent>(OnWheel);
 
             RegisterCallback<AttachToPanelEvent>(_ => Attach());
@@ -98,10 +117,15 @@ namespace CTEditor.App
             S.StructureChanged += OnStructureChanged;
             S.SelectionChanged += OnSelectionChanged;
             S.TilesetChanged += OnTilesetChanged;
+            S.EncountersChanged += RedrawOverlay;
+            S.WorldChanged += OnWorldChanged;
+            S.PlayerStartChanged += RedrawOverlay;
             S.DirtyChanged += UpdateStatus;
             _shell.PlayingChanged += OnPlaying;
             _shell.ActionRequested += OnAction;
-            _renderer = new MapRenderer("Editor de mapas", MapRenderer.EditorLayer, Ui.Mix(Ui.C("fondo"), Color.black, 0.3f));
+            _atlases = new AtlasCache(_shell.ProjectRoot, S.TilesetFor);
+            _renderer = new MapRenderer("Editor de mapas", MapRenderer.EditorLayer, Ui.Mix(Ui.C("fondo"), Color.black, 0.3f))
+                { TileSize = _shell.Project.TileSize };
             OnMapOpened();
         }
 
@@ -114,14 +138,17 @@ namespace CTEditor.App
                 S.StructureChanged -= OnStructureChanged;
                 S.SelectionChanged -= OnSelectionChanged;
                 S.TilesetChanged -= OnTilesetChanged;
+                S.EncountersChanged -= RedrawOverlay;
+                S.WorldChanged -= OnWorldChanged;
+                S.PlayerStartChanged -= RedrawOverlay;
                 S.DirtyChanged -= UpdateStatus;
             }
             _shell.PlayingChanged -= OnPlaying;
             _shell.ActionRequested -= OnAction;
             _renderer?.Dispose();
             _renderer = null;
-            _atlas?.Dispose();
-            _atlas = null;
+            _atlases?.Dispose();
+            _atlases = null;
         }
 
         private void OnPlaying(bool playing)
@@ -138,9 +165,7 @@ namespace CTEditor.App
 
         private void OnMapOpened()
         {
-            LoadAtlas();
-            _renderer?.SetMap(S?.Map, _atlas);
-            ApplyLayerView();
+            RebuildSections();
             _needsFit = true;
             FitMap();
             BuildToolbar();
@@ -148,11 +173,23 @@ namespace CTEditor.App
             UpdateStatus();
         }
 
-        private void LoadAtlas()
+        /// <summary>The open map at (0,0) and, around it, its neighbours in the world (faded).</summary>
+        private void RebuildSections()
         {
-            _atlas?.Dispose();
-            _atlas = S?.Map == null ? null : TilesetAtlas.TryLoad(S.Tileset, _shell.ProjectRoot);
+            if (_renderer == null) return;
+            var map = S?.Map;
+            if (map == null) { _renderer.SetSections(new SectionView[0]); _neighbors.Clear(); return; }
+            var views = new List<SectionView> { View(map, Vector2Int.zero, 1f) };
+            _neighbors = _showNeighbors && map.InWorld && map.Kind == MapKind.Exterior
+                ? S.World().Neighbors(map).Where(n => S.Tree.Find(n.Id)?.HiddenInWorld != true).ToList()
+                : new List<MapDefinition>();
+            foreach (var n in _neighbors) views.Add(View(n, new Vector2Int(n.WorldX - map.WorldX, n.WorldY - map.WorldY), 0.45f));
+            _renderer.SetSections(views);
+            ApplyLayerView();
         }
+
+        private SectionView View(MapDefinition m, Vector2Int offset, float alpha) =>
+            new SectionView { Map = m, Atlases = _atlases.For(m), Sets = S.TilesetsOf(m), Offset = offset, Alpha = alpha };
 
         private void OnTilesChanged(int x, int y, int w, int h)
         {
@@ -162,21 +199,24 @@ namespace CTEditor.App
 
         private void OnStructureChanged()
         {
-            if (S?.Map != null && (_atlas == null ? !string.IsNullOrEmpty(S.Map.TilesetId) : _atlas.Tileset.Id != S.Map.TilesetId)) LoadAtlas();
-            _renderer?.SetMap(S?.Map, _atlas);
-            ApplyLayerView();
+            RebuildSections();
             BuildToolbar();
             ShowEmptyState();
             RedrawOverlay();
             UpdateStatus();
         }
 
+        private void OnWorldChanged()
+        {
+            RebuildSections();
+            RedrawOverlay();
+        }
+
         private void OnTilesetChanged(string id)
         {
-            if (S?.Map == null || (id != null && id != S.Map.TilesetId)) return;
-            LoadAtlas();
-            _renderer?.SetMap(S.Map, _atlas);
-            ApplyLayerView();
+            _atlases?.Clear();
+            RebuildSections();
+            ShowEmptyState();
         }
 
         private void OnSelectionChanged()
@@ -189,8 +229,8 @@ namespace CTEditor.App
         private void ApplyLayerView()
         {
             if (_renderer == null || S == null) return;
-            _renderer.ActiveLayer = S.ActiveLayer;
-            _renderer.DimOthers = S.DimOtherLayers;
+            _renderer.ActiveLayer = S.AutoLayers ? -1 : S.ActiveLayer;
+            _renderer.DimOthers = S.DimOtherLayers && !S.AutoLayers;
             _renderer.RefreshAllLayerViews();
         }
 
@@ -198,22 +238,23 @@ namespace CTEditor.App
         {
             _empty.Clear();
             bool noMap = S?.Map == null;
-            _empty.Show(noMap || _atlas == null);
+            bool noTiles = !noMap && S.Tilesets.IsEmpty;
+            _empty.Show(noMap || noTiles);
             _image.Show(!noMap);
             if (noMap)
             {
                 _empty.pickingMode = PickingMode.Position;
                 _empty.With(Ui.Title("Sin mapa abierto").Colored("texto_suave"),
-                    Ui.Hint("Crea uno o ábrelo desde el panel Mapas."),
+                    Ui.Hint("Crea un tramo (pueblo, ruta, cueva...) o ábrelo desde Mapas o desde Mundo."),
                     Ui.Button("Nuevo mapa…", () => MapTreePanel.NewMapDialog(_shell, ""), Ui.ButtonKind.Primary));
             }
-            else if (_atlas == null)
+            else if (noTiles)
             {
                 _empty.pickingMode = PickingMode.Ignore;
                 var box = Ui.Column(6).Bg("panel").Border(1, "aviso", 6).Pad(12);
                 box.pickingMode = PickingMode.Position;
                 box.With(Ui.Heading("Este mapa no tiene un tileset cortado"),
-                    Ui.Hint("Corta una imagen de graficos/tilesets en el panel Recursos y elígela en Propiedades."));
+                    Ui.Hint("Importa y corta una imagen en Recursos (graficos/tilesets) y elígela en Tiles o en Propiedades."));
                 _empty.Add(box);
             }
         }
@@ -224,30 +265,38 @@ namespace CTEditor.App
         {
             _toolbar.Clear();
             if (S?.Map == null) { _toolbar.Add(Ui.Text("Mapa", bold: true)); return; }
-            foreach (var (tool, label, action) in Tools)
+            foreach (var (tool, label, action, help) in Tools)
             {
+                if (tool == MapTool.Paste && S.Clipboard == null) continue;
+                if (tool == MapTool.EncounterPaint && S.ActiveArea == null) continue;
                 var t = tool;
                 var keys = action == null ? "" : _shell.Workspace.Shortcuts.KeysFor(action);
                 var chip = Ui.Chip(label, S.Tool == t, () => { _shell.ActiveEditor = "mapa"; S.SetTool(t); },
-                    keys.Length > 0 ? $"{label} ({keys})" : t == MapTool.PlayerStart ? "Colocar el inicio del jugador" : label);
-                _toolbar.Add(chip.Margin(0, 0, 4, 0));
+                    help + (keys.Length > 0 ? $" ({keys})" : ""));
+                _toolbar.Add(chip.Margin(0, 0, 4, 2));
             }
             _toolbar.Add(Ui.Separator(vertical: true).Margin(4, 2, 8, 2));
 
-            var layer = S.ActiveLayer < S.Map.Layers.Count ? S.Map.Layers[S.ActiveLayer] : null;
-            _toolbar.Add(Ui.Button("<", () => S.SetActiveLayer(S.ActiveLayer - 1), Ui.ButtonKind.Flat, "Capa anterior"));
-            var ln = Ui.Text("Capa: " + (layer?.Name ?? "-") + (layer?.Locked == true ? " (bloqueada)" : ""), bold: true);
-            ln.style.minWidth = 110;
-            _toolbar.Add(ln);
-            _toolbar.Add(Ui.Button(">", () => S.SetActiveLayer(S.ActiveLayer + 1), Ui.ButtonKind.Flat, "Capa siguiente"));
+            _toolbar.Add(Ui.Check("Capas automáticas", S.AutoLayers, v => S.SetAutoLayers(v)).Margin(0, 0, 6, 0));
+            if (!S.AutoLayers)
+            {
+                var layer = S.ActiveLayer < S.Map.Layers.Count ? S.Map.Layers[S.ActiveLayer] : null;
+                _toolbar.Add(Ui.Button("<", () => S.SetActiveLayer(S.ActiveLayer - 1), Ui.ButtonKind.Flat, "Capa anterior"));
+                var ln = Ui.Text("Capa: " + (layer?.Name ?? "-") + (layer?.Locked == true ? " (bloqueada)" : ""), bold: true);
+                ln.style.minWidth = 100;
+                _toolbar.Add(ln);
+                _toolbar.Add(Ui.Button(">", () => S.SetActiveLayer(S.ActiveLayer + 1), Ui.ButtonKind.Flat, "Capa siguiente"));
+                _toolbar.Add(Ui.Check("Atenuar las otras", S.DimOtherLayers, v => S.SetDimOtherLayers(v)).Margin(6, 0, 0, 0));
+            }
             _toolbar.Add(Ui.Separator(vertical: true).Margin(4, 2, 8, 2));
 
             _toolbar.Add(Ui.Button("-", () => SetZoom(_zoomIndex - 1), Ui.ButtonKind.Flat, "Alejar (rueda)"));
             _toolbar.Add(Ui.Text(Mathf.RoundToInt(ZoomLevels[_zoomIndex] * 100) + " %"));
             _toolbar.Add(Ui.Button("+", () => SetZoom(_zoomIndex + 1), Ui.ButtonKind.Flat, "Acercar (rueda)"));
-            _toolbar.Add(Ui.Button("Ajustar", FitMap, Ui.ButtonKind.Flat, "Ver el mapa entero"));
+            _toolbar.Add(Ui.Button("Ajustar", FitMap, Ui.ButtonKind.Flat, "Ver el tramo entero"));
             _toolbar.Add(Ui.Check("Rejilla", _showGrid, v => { _showGrid = v; RedrawOverlay(); }).Margin(6, 0, 0, 0));
-            _toolbar.Add(Ui.Check("Atenuar las otras capas", S.DimOtherLayers, v => S.SetDimOtherLayers(v)).Margin(6, 0, 0, 0));
+            if (S.Map.InWorld)
+                _toolbar.Add(Ui.Check("Vecinos", _showNeighbors, v => { _showNeighbors = v; RebuildSections(); RedrawOverlay(); }).Margin(6, 0, 0, 0));
             _toolbar.Add(Ui.Spacer());
             _toolbar.Add(Ui.Button("Probar aquí", () => _shell.RunAction("probar_aqui"), Ui.ButtonKind.Normal,
                 "Jugar desde la casilla del ratón (" + _shell.Workspace.Shortcuts.KeysFor("probar_aqui") + ")"));
@@ -263,13 +312,16 @@ namespace CTEditor.App
             {
                 var (x, y) = _cursor.Value;
                 int t = m.TopTile(x, y, out int li);
-                var ts = S.Tileset;
-                int tag = Passability.TerrainAt(m, ts, x, y);
-                where = $"Casilla {x}, {y}" + (t >= 0 ? $" · tile {t} (capa {m.Layers[li].Name})" : " · vacía")
+                var sets = S.Tilesets;
+                int tag = Passability.TerrainAt(m, sets, x, y);
+                var areas = m.Encounters.Where(a => !a.WholeMap && a.Contains(x, y)).Select(a => a.Name).ToList();
+                where = $"Casilla {x}, {y}" + (t >= 0 ? $" · tile {MapTile.Index(t)} ({m.Layers[li].Name})" : " · vacía")
                         + (tag != 0 ? " · " + S.Terrains.LabelOf(tag) : "")
-                        + (ts != null && !Passability.Passable(m, ts, x, y, PassageBlock.All) ? " · no se puede pasar" : "") + " · ";
+                        + (!sets.IsEmpty && !Passability.Passable(m, sets, x, y, PassageBlock.All) ? " · no se puede pasar" : "")
+                        + (areas.Count > 0 ? " · zona: " + string.Join(", ", areas) : "") + " · ";
             }
-            _status.text = $"{where}{m.Name} · {m.Width} × {m.Height} · {m.Layers.Count} capas · {saved}";
+            string kind = m.Kind == MapKind.Interior ? "interior" : m.InWorld ? $"en el mundo ({m.WorldX}, {m.WorldY})" : "exterior sin colocar";
+            _status.text = $"{where}{m.Name} · {m.Width} × {m.Height} · {kind} · {saved}";
         }
 
         // ── View ─────────────────────────────────────────────────────────────────────────────────
@@ -286,41 +338,31 @@ namespace CTEditor.App
         private void SetZoom(int index, Vector2? anchorPixel = null)
         {
             index = Mathf.Clamp(index, 0, ZoomLevels.Length - 1);
-            if (_renderer == null || index == _zoomIndex && anchorPixel == null) { _zoomIndex = index; BuildToolbar(); return; }
-            // Keep the world point under the mouse in place.
-            Vector2 before = Vector2.zero;
-            if (anchorPixel.HasValue && _renderer.Target != null) before = PixelToWorld(anchorPixel.Value);
+            if (_renderer?.Target == null) { _zoomIndex = index; BuildToolbar(); return; }
+            Vector2 before = anchorPixel.HasValue ? _renderer.PixelToCell(anchorPixel.Value) : Vector2.zero;
             _zoomIndex = index;
             _renderer.Zoom = ZoomLevels[index] * _shell.PixelsPerPoint;
-            if (anchorPixel.HasValue && _renderer.Target != null)
+            if (anchorPixel.HasValue)
             {
-                var after = PixelToWorld(anchorPixel.Value);
-                _renderer.Center += before - after;
+                var after = _renderer.PixelToCell(anchorPixel.Value);
+                _renderer.Center += new Vector2(before.x - after.x, -(before.y - after.y));
             }
             _renderer.UpdateCamera();
             BuildToolbar();
             RedrawOverlay();
         }
 
-        private Vector2 PixelToWorld(Vector2 pixel)
-        {
-            float ppu = _renderer.PixelsPerUnit;
-            return new Vector2(_renderer.Center.x + (pixel.x - _renderer.Target.width / 2f) / ppu,
-                _renderer.Center.y + (_renderer.Target.height / 2f - pixel.y) / ppu);
-        }
-
         private void FitMap()
         {
             if (_renderer == null || S?.Map == null || _viewport.layout.width <= 0 || float.IsNaN(_viewport.layout.width)) return;
             _needsFit = false;
-            var ts = _atlas?.Tileset;
-            float tw = ts?.TileWidth ?? _shell.Project.TileSize, th = ts?.TileHeight ?? tw;
-            float fit = Mathf.Min(_viewport.layout.width / (S.Map.Width * tw), _viewport.layout.height / (S.Map.Height * th));
+            float tile = _shell.Project.TileSize;
+            float fit = Mathf.Min(_viewport.layout.width / (S.Map.Width * tile), _viewport.layout.height / (S.Map.Height * tile));
             int best = 0;
             for (int i = 0; i < ZoomLevels.Length; i++) if (ZoomLevels[i] <= fit) best = i;
             _zoomIndex = best;
             _renderer.Zoom = ZoomLevels[best] * _shell.PixelsPerPoint;
-            _renderer.Center = _renderer.MapCenter;
+            _renderer.Center = MapRenderer.CenterOf(0, 0, S.Map.Width, S.Map.Height);
             _renderer.UpdateCamera();
             BuildToolbar();
             RedrawOverlay();
@@ -354,15 +396,20 @@ namespace CTEditor.App
                 RetouchTileAt(cell);
                 return;
             }
+            bool secondary = false;
             if (e.button == 1)
             {
-                _picking = true;
-                _toolBeforePick = S.Tool;
-                S.SetTool(MapTool.Picker);
+                if (S.Tool == MapTool.EncounterPaint) secondary = true;
+                else
+                {
+                    _picking = true;
+                    _toolBeforePick = S.Tool;
+                    S.SetTool(MapTool.Picker);
+                }
             }
             else if (e.button != 0) return;
             _painting = true;
-            S.PointerDown(cell.x, cell.y);
+            S.PointerDown(cell.x, cell.y, secondary);
             RedrawOverlay();
         }
 
@@ -379,14 +426,12 @@ namespace CTEditor.App
                 return;
             }
             var cell = CellAt(e.localPosition);
-            if (_cursor != cell)
-            {
-                _cursor = cell;
-                S.Cursor = S.Map.Contains(cell.x, cell.y) ? cell : ((int, int)?)null;
-                if (_painting) S.PointerDrag(cell.x, cell.y);
-                RedrawOverlay();
-                UpdateStatus();
-            }
+            if (_cursor == cell) return;
+            _cursor = cell;
+            S.Cursor = S.Map.Contains(cell.x, cell.y) ? cell : ((int, int)?)null;
+            if (_painting) S.PointerDrag(cell.x, cell.y);
+            RedrawOverlay();
+            UpdateStatus();
         }
 
         private void OnPointerUp(PointerUpEvent e)
@@ -400,10 +445,20 @@ namespace CTEditor.App
             if (_picking)
             {
                 _picking = false;
-                if (_toolBeforePick != MapTool.Picker && _toolBeforePick != MapTool.Eraser && _toolBeforePick != MapTool.PlayerStart)
-                    S.SetTool(_toolBeforePick);
+                if (_toolBeforePick == MapTool.Rectangle || _toolBeforePick == MapTool.Fill) S.SetTool(_toolBeforePick);
             }
             RedrawOverlay();
+        }
+
+        /// <summary>Double click on a faded neighbour opens it.</summary>
+        private void OnClick(ClickEvent e)
+        {
+            if (e.clickCount != 2 || S?.Map == null || _renderer?.Target == null) return;
+            var (x, y) = CellAt(e.localPosition);
+            if (S.Map.Contains(x, y)) return;
+            var m = S.Map;
+            var n = _neighbors.FirstOrDefault(o => new WorldSection(o).Contains(m.WorldX + x, m.WorldY + y));
+            if (n != null) S.OpenMap(n.Id);
         }
 
         private void OnWheel(WheelEvent e)
@@ -415,27 +470,32 @@ namespace CTEditor.App
 
         private void RetouchTileAt((int x, int y) cell)
         {
-            if (_atlas == null || !S.Map.Contains(cell.x, cell.y)) return;
+            if (!S.Map.Contains(cell.x, cell.y)) return;
             int t = S.Map.TopTile(cell.x, cell.y, out _);
-            if (t < 0) { _shell.Info("No hay ningún tile en esa casilla."); return; }
-            var ts = _atlas.Tileset;
-            _shell.OpenRetouch(Path.Combine(_shell.ProjectRoot, ts.Id), ts.RectOf(t), ts.TileWidth, ts.TileHeight);
+            var ts = S.Tilesets.For(t);
+            if (ts == null) { _shell.Info("No hay ningún tile en esa casilla."); return; }
+            _shell.OpenRetouch(Path.Combine(_shell.ProjectRoot, ts.ImagePath), ts.RectOf(MapTile.Index(t)), ts.TileWidth, ts.TileHeight);
         }
 
         // ── Overlay ──────────────────────────────────────────────────────────────────────────────
+
+        private Vector2 P(float x, float y) => _renderer.CellToPixel(x, y) / _shell.PixelsPerPoint;
 
         private void RedrawOverlay()
         {
             _overlay.Clear();
             if (_renderer?.Target == null || S?.Map == null) return;
             var m = S.Map;
-            float ppp = _shell.PixelsPerPoint;
-            Vector2 P(float x, float y) => _renderer.CellToPixel(x, y) / ppp;
+
+            // Neighbour names.
+            foreach (var n in _neighbors)
+            {
+                var a = P(n.WorldX - m.WorldX, n.WorldY - m.WorldY);
+                Tag(n.Name + " (doble clic: abrir)", a + new Vector2(4, 4), Ui.C("texto_suave"));
+            }
 
             // Map border.
-            var tl = P(0, 0);
-            var br = P(m.Width, m.Height);
-            Box(tl, br, Ui.WithAlpha(Ui.C("texto_suave"), 0.8f), 1, false);
+            Box(P(0, 0), P(m.Width, m.Height), Ui.WithAlpha(Ui.C("texto"), 0.8f), 1, 0f);
 
             // Grid (only the visible part, only if cells are big enough).
             float cellPx = (P(1, 0) - P(0, 0)).x;
@@ -450,47 +510,91 @@ namespace CTEditor.App
                 for (int y = y0; y <= y1; y++) Line(P(x0, y), P(x1, y), grid);
             }
 
-            // Player start.
-            var (sm, sx, sy) = S.PlayerStart;
-            if (sm == m.Id)
+            // Encounter areas: the painted ones as coloured rectangles (the active one stronger).
+            bool encounterTool = S.Tool == MapTool.EncounterPaint;
+            foreach (var area in m.Encounters)
             {
-                var a = P(sx, sy);
-                var b = P(sx + 1, sy + 1);
-                Box(a, b, Ui.C("exito"), 2, true);
-                var tag = Ui.Text("Inicio", 0.8f, bold: true);
-                tag.style.color = Color.white;
-                tag.style.backgroundColor = Ui.WithAlpha(Ui.C("exito"), 0.9f);
-                tag.Pad(3, 0).Round(3);
-                tag.style.position = Position.Absolute;
-                tag.style.left = a.x;
-                tag.style.top = a.y - Ui.FontSize - 4;
-                tag.pickingMode = PickingMode.Ignore;
-                _overlay.Add(tag);
+                ColorUtility.TryParseHtmlString(area.Color, out var c);
+                bool active = area.Id == S.ActiveAreaId;
+                if (area.WholeMap)
+                {
+                    if (active && encounterTool) Tag("Zona de todo el tramo: " + area.Name, P(0, 0) + new Vector2(4, -Ui.FontSize - 6), c);
+                    continue;
+                }
+                float fill = active ? (encounterTool ? 0.45f : 0.3f) : encounterTool ? 0.12f : 0.18f;
+                foreach (var (x, y, w, h) in area.ToRectangles())
+                    Box(P(x, y), P(x + w, y + h), Ui.WithAlpha(c, active ? 0.9f : 0.4f), active ? 1 : 0, fill);
             }
 
-            // Drag rectangle (rectangle tool / picker).
+            // Objects (the player start for now).
+            foreach (var o in m.Objects)
+            {
+                var a = P(o.X, o.Y);
+                bool start = o.Kind == MapObject.PlayerStartKind;
+                var c = Ui.C(start ? "exito" : "acento");
+                Box(a, P(o.X + o.Width, o.Y + o.Height), c, 2, 0.15f);
+                Tag(start ? "Inicio" : o.Name, a + new Vector2(0, -Ui.FontSize - 4), c, filled: true);
+            }
+
+            // Selection.
+            if (S.Selection.HasValue)
+            {
+                var (sx0, sy0, sx1, sy1) = S.Selection.Value;
+                Box(P(sx0, sy0), P(sx1 + 1, sy1 + 1), Ui.C("aviso"), 2, 0.12f);
+            }
+
+            // Drag rectangle (rectangle / picker / selection) or the cursor with the stamp preview.
             if (S.DragRect.HasValue)
             {
                 var (dx0, dy0, dx1, dy1) = S.DragRect.Value;
                 Box(P(Mathf.Min(dx0, dx1), Mathf.Min(dy0, dy1)), P(Mathf.Max(dx0, dx1) + 1, Mathf.Max(dy0, dy1) + 1),
-                    Ui.C(S.Tool == MapTool.Picker ? "aviso" : "acento"), 2, true);
+                    Ui.C(S.Tool == MapTool.Rectangle ? "acento" : "aviso"), 2, 0.15f);
             }
-            else if (_cursor.HasValue && m.Contains(_cursor.Value.x, _cursor.Value.y))
+            else if (_cursor.HasValue && m.Contains(_cursor.Value.x, _cursor.Value.y) && !_panning)
             {
                 var (cx, cy) = _cursor.Value;
                 int w = 1, h = 1;
-                if (S.Tool == MapTool.Pencil) { w = S.Stamp.Width; h = S.Stamp.Height; }
-                Box(P(cx, cy), P(cx + w, cy + h), Ui.C(S.Tool == MapTool.Eraser ? "error" : "acento"), 2, true);
+                if (S.Tool == MapTool.Pencil)
+                {
+                    w = S.Stamp.Width;
+                    h = S.Stamp.Height;
+                    StampPreview(cx, cy);
+                }
+                else if (S.Tool == MapTool.Paste && S.Clipboard != null) { w = S.Clipboard.Width; h = S.Clipboard.Height; }
+                string token = S.Tool == MapTool.Eraser ? "error" : S.Tool == MapTool.EncounterPaint || S.Tool == MapTool.Paste ? "aviso" : "acento";
+                Box(P(cx, cy), P(cx + w, cy + h), Ui.C(token), 2, 0f);
             }
         }
 
-        private void Box(Vector2 a, Vector2 b, Color color, float width, bool fill)
+        /// <summary>The stamp drawn half-transparent under the mouse before painting.</summary>
+        private void StampPreview(int cx, int cy)
+        {
+            var st = S.Stamp;
+            if (st.Width * st.Height > 256) return;
+            for (int y = 0; y < st.Height; y++)
+            for (int x = 0; x < st.Width; x++)
+            {
+                int cell = st[x, y];
+                int slot = MapTile.Slot(cell);
+                if (slot < 0 || slot >= S.Map.TilesetIds.Count) continue;
+                var uv = _atlases.Get(S.Map.TilesetIds[slot])?.UvFor(MapTile.Index(cell));
+                if (!uv.HasValue) continue;
+                var a = P(cx + x, cy + y);
+                var b = P(cx + x + 1, cy + y + 1);
+                var img = new Image { image = uv.Value.texture, uv = uv.Value.uv, scaleMode = ScaleMode.StretchToFill, pickingMode = PickingMode.Ignore };
+                img.Absolute(a.x, a.y, b.x - a.x, b.y - a.y);
+                img.style.opacity = 0.65f;
+                _overlay.Add(img);
+            }
+        }
+
+        private void Box(Vector2 a, Vector2 b, Color color, float width, float fill)
         {
             var e = new VisualElement { pickingMode = PickingMode.Ignore };
             e.Absolute(a.x, a.y, Mathf.Max(1, b.x - a.x), Mathf.Max(1, b.y - a.y));
             e.style.borderLeftWidth = width; e.style.borderRightWidth = width; e.style.borderTopWidth = width; e.style.borderBottomWidth = width;
             e.style.borderLeftColor = color; e.style.borderRightColor = color; e.style.borderTopColor = color; e.style.borderBottomColor = color;
-            if (fill) e.style.backgroundColor = Ui.WithAlpha(color, 0.15f);
+            if (fill > 0) e.style.backgroundColor = Ui.WithAlpha(color, fill);
             _overlay.Add(e);
         }
 
@@ -501,6 +605,19 @@ namespace CTEditor.App
             else e.Absolute(Mathf.Min(a.x, b.x), a.y, Mathf.Abs(b.x - a.x), 1);
             e.style.backgroundColor = color;
             _overlay.Add(e);
+        }
+
+        private void Tag(string text, Vector2 at, Color color, bool filled = false)
+        {
+            var tag = Ui.Text(text, 0.8f, bold: true);
+            tag.style.color = filled ? Color.white : color;
+            tag.style.backgroundColor = filled ? Ui.WithAlpha(color, 0.9f) : new Color(0, 0, 0, 0.55f);
+            tag.Pad(3, 0).Round(3);
+            tag.style.position = Position.Absolute;
+            tag.style.left = at.x;
+            tag.style.top = at.y;
+            tag.pickingMode = PickingMode.Ignore;
+            _overlay.Add(tag);
         }
     }
 }

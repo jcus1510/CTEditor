@@ -24,9 +24,15 @@ namespace CTEditor.App
             Register(PanelCatalog.Inspector, s => new InspectorPanel(s));
             Register(PanelCatalog.PixelEditor, s => new RetouchPanel(s));
             Register(PanelCatalog.Game, s => GamePanel(s));
+            Register(PanelCatalog.World, s => new WorldPanel(s));
+            Register(PanelCatalog.Encounters, s => new EncountersPanel(s));
             Register(PanelCatalog.Events, _ => Placeholder("Eventos", "Eventos en lista o en grafo de nodos, con recetas y el mapa de la historia.", "Fase 7"));
             Register(PanelCatalog.Database, _ => Placeholder("Base de datos", "Especies, movimientos, objetos, habilidades, entrenadores… De momento siguen en los editores de Unity.", "Fase 10"));
             ShortcutMap.RegisterAction(new ShortcutAction("linea", "Herramienta: línea (retoque)", "L"));
+            ShortcutMap.RegisterAction(new ShortcutAction("copiar", "Copiar la selección", "Ctrl+C"));
+            ShortcutMap.RegisterAction(new ShortcutAction("cortar", "Cortar la selección", "Ctrl+X"));
+            ShortcutMap.RegisterAction(new ShortcutAction("pegar", "Pegar", "Ctrl+V"));
+            ShortcutMap.RegisterAction(new ShortcutAction("borrar_seleccion", "Borrar la selección", "Delete"));
         }
 
         public static void Register(string panelId, Func<AppShell, VisualElement> factory)

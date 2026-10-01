@@ -1,52 +1,69 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using CTEditor.World.Domain;
 
 namespace CTEditor.App
 {
+    /// <summary>Un tramo para dibujar: su mapa, sus tilesets (por hueco), dónde va (en casillas) y su opacidad.</summary>
+    public sealed class SectionView
+    {
+        public MapDefinition Map;
+        public TilesetAtlas[] Atlases;
+        public MapTilesets Sets;
+        /// <summary>Posición de su esquina, en casillas, respecto al origen del renderizador.</summary>
+        public Vector2Int Offset;
+        public float Alpha = 1f;
+    }
+
     /// <summary>
-    /// Dibuja un mapa con el Tilemap de Unity en una RenderTexture (la muestra un panel de la interfaz). Lo usan el editor
-    /// de mapas y el juego: lo que se ve al editar es lo que se juega.
+    /// Dibuja uno o varios tramos con el Tilemap de Unity en una RenderTexture (la muestra un panel). Lo usan el editor de
+    /// mapas (el tramo abierto y sus vecinos atenuados), la vista del mundo (todos los tramos) y el juego: lo que se ve al
+    /// editar es lo que se juega.
     ///   - Cada capa son dos tilemaps: los tiles de prioridad 0 debajo del jugador y los de prioridad 1-5 encima.
-    ///   - Casilla (x, y) del mapa (y hacia abajo) = celda (x, −y−1) de Unity (y hacia arriba).
-    ///   - Cada renderizador vive en su propia capa de Unity (layer) con su cámara, así el editor y el juego no se mezclan.
+    ///   - Casilla (x, y) (y hacia abajo) = celda (x, −y−1) de Unity (y hacia arriba). 1 unidad = 1 casilla.
+    ///   - Cada renderizador vive en su propia capa de Unity con su cámara, así el editor y el juego no se mezclan.
     /// </summary>
     public sealed class MapRenderer : IDisposable
     {
-        public const int EditorLayer = 31, PlayLayer = 30;
+        public const int EditorLayer = 31, PlayLayer = 30, WorldLayer = 29;
         public const int PlayerSortingOrder = 500;
 
+        private sealed class Section
+        {
+            public SectionView View;
+            public Grid Grid;
+            public readonly List<(Tilemap below, Tilemap above)> Layers = new List<(Tilemap, Tilemap)>();
+        }
+
         private readonly GameObject _root;
-        private readonly Grid _grid;
         private readonly Camera _camera;
         private readonly int _unityLayer;
-        private readonly List<(Tilemap below, Tilemap above)> _layers = new List<(Tilemap, Tilemap)>();
+        private readonly List<Section> _sections = new List<Section>();
         private RenderTexture _target;
 
-        public MapDefinition Map { get; private set; }
-        public TilesetAtlas Atlas { get; private set; }
+        /// <summary>El tramo principal (el primero): el que se edita.</summary>
+        public MapDefinition Map => _sections.Count > 0 ? _sections[0].View.Map : null;
         public RenderTexture Target => _target;
         public Camera Camera => _camera;
-        /// <summary>Píxeles de pantalla por píxel del tileset (1 = tamaño real).</summary>
+        /// <summary>Tamaño del tile en píxeles a zoom 1 (el del proyecto).</summary>
+        public int TileSize { get; set; } = 32;
+        /// <summary>Píxeles de pantalla por píxel de tile (1 = tamaño real).</summary>
         public float Zoom { get; set; } = 1f;
-        /// <summary>Centro de la cámara en unidades del mundo.</summary>
+        /// <summary>Centro de la cámara en casillas del mundo del renderizador (y hacia arriba, negativa hacia abajo).</summary>
         public Vector2 Center { get; set; }
-        /// <summary>Capa activa del editor y si las demás se ven atenuadas.</summary>
+        /// <summary>Capa activa del editor y si las demás se ven atenuadas (solo en el tramo principal).</summary>
         public int ActiveLayer { get; set; } = -1;
         public bool DimOthers { get; set; }
 
         public MapRenderer(string name, int unityLayer, Color background)
         {
             _unityLayer = unityLayer;
-            _root = new GameObject(name) { hideFlags = HideFlags.DontSave };
-            _root.layer = unityLayer;
+            _root = new GameObject(name) { hideFlags = HideFlags.DontSave, layer = unityLayer };
             // Far away from other renderers too (belt and braces with the culling mask).
-            _root.transform.position = new Vector3(unityLayer * 10000f, 0, 0);
-            _grid = new GameObject("Rejilla").AddComponent<Grid>();
-            _grid.gameObject.layer = unityLayer;
-            _grid.transform.SetParent(_root.transform, false);
+            _root.transform.position = new Vector3(unityLayer * 100000f, 0, 0);
 
             var camGo = new GameObject("Cámara") { layer = unityLayer };
             camGo.transform.SetParent(_root.transform, false);
@@ -61,37 +78,38 @@ namespace CTEditor.App
             _camera.enabled = true;
         }
 
-        /// <summary>Unity position of the renderer's origin (tiles are relative to it).</summary>
         public Vector3 Origin => _root.transform.position;
 
-        public void SetMap(MapDefinition map, TilesetAtlas atlas)
-        {
-            Map = map;
-            Atlas = atlas;
-            Rebuild();
-        }
+        public void SetMap(MapDefinition map, TilesetAtlas[] atlases, MapTilesets sets) =>
+            SetSections(map == null ? new SectionView[0] : new[] { new SectionView { Map = map, Atlases = atlases, Sets = sets } });
 
-        /// <summary>Recreates every tilemap from the map (after opening, undoing a structure change...).</summary>
-        public void Rebuild()
+        /// <summary>Recreates every tilemap (after opening, undoing a structure change, moving sections...).</summary>
+        public void SetSections(IEnumerable<SectionView> views)
         {
-            foreach (var (b, a) in _layers)
+            foreach (var s in _sections) UnityEngine.Object.Destroy(s.Grid.gameObject);
+            _sections.Clear();
+            int index = 0;
+            foreach (var v in views)
             {
-                UnityEngine.Object.Destroy(b.gameObject);
-                UnityEngine.Object.Destroy(a.gameObject);
+                if (v?.Map == null) continue;
+                var grid = new GameObject("Tramo " + v.Map.Id) { layer = _unityLayer }.AddComponent<Grid>();
+                grid.transform.SetParent(_root.transform, false);
+                grid.transform.localPosition = new Vector3(v.Offset.x, -v.Offset.y, 0);
+                grid.cellSize = Vector3.one;
+                var s = new Section { View = v, Grid = grid };
+                for (int i = 0; i < v.Map.Layers.Count; i++)
+                    s.Layers.Add((NewTilemap(grid, $"Capa {i}", index * 40 + i * 2 - 2000), NewTilemap(grid, $"Capa {i} (encima)", 1000 + index * 40 + i * 2)));
+                _sections.Add(s);
+                for (int i = 0; i < v.Map.Layers.Count; i++) RefreshLayerView(s, i);
+                Fill(s, 0, 0, v.Map.Width, v.Map.Height);
+                index++;
             }
-            _layers.Clear();
-            if (Map == null) return;
-            _grid.cellSize = new Vector3(1f, Atlas?.CellHeight ?? 1f, 0f);
-            for (int i = 0; i < Map.Layers.Count; i++)
-                _layers.Add((NewTilemap($"Capa {i}", i * 2), NewTilemap($"Capa {i} (encima)", 1000 + i * 2)));
-            for (int i = 0; i < Map.Layers.Count; i++) RefreshLayerView(i);
-            RefreshTiles(0, 0, Map.Width, Map.Height);
         }
 
-        private Tilemap NewTilemap(string name, int order)
+        private Tilemap NewTilemap(Grid grid, string name, int order)
         {
             var go = new GameObject(name) { layer = _unityLayer };
-            go.transform.SetParent(_grid.transform, false);
+            go.transform.SetParent(grid.transform, false);
             var tm = go.AddComponent<Tilemap>();
             var r = go.AddComponent<TilemapRenderer>();
             r.sortingOrder = order;
@@ -99,29 +117,48 @@ namespace CTEditor.App
             return tm;
         }
 
-        /// <summary>Visibility, opacity and dimming of one layer.</summary>
+        /// <summary>Visibility, opacity and dimming of one layer of the main section.</summary>
         public void RefreshLayerView(int i)
         {
-            if (Map == null || i < 0 || i >= _layers.Count) return;
-            var l = Map.Layers[i];
-            float alpha = l.Opacity * (DimOthers && ActiveLayer >= 0 && i != ActiveLayer ? 0.3f : 1f);
-            foreach (var tm in new[] { _layers[i].below, _layers[i].above })
+            if (_sections.Count > 0) RefreshLayerView(_sections[0], i);
+        }
+
+        public void RefreshAllLayerViews()
+        {
+            foreach (var s in _sections)
+                for (int i = 0; i < s.Layers.Count; i++) RefreshLayerView(s, i);
+        }
+
+        private void RefreshLayerView(Section s, int i)
+        {
+            if (i < 0 || i >= s.Layers.Count || i >= s.View.Map.Layers.Count) return;
+            var l = s.View.Map.Layers[i];
+            bool main = s == _sections[0];
+            float alpha = l.Opacity * s.View.Alpha * (main && DimOthers && ActiveLayer >= 0 && i != ActiveLayer ? 0.3f : 1f);
+            foreach (var tm in new[] { s.Layers[i].below, s.Layers[i].above })
             {
                 tm.color = new Color(1, 1, 1, alpha);
                 tm.GetComponent<TilemapRenderer>().enabled = l.Visible;
             }
         }
 
-        public void RefreshAllLayerViews()
-        {
-            for (int i = 0; i < _layers.Count; i++) RefreshLayerView(i);
-        }
-
-        /// <summary>Redraws a block of cells (after painting).</summary>
+        /// <summary>Redraws a block of cells of the main section (after painting).</summary>
         public void RefreshTiles(int x, int y, int w, int h)
         {
-            if (Map == null) return;
-            int x0 = Math.Max(0, x), y0 = Math.Max(0, y), x1 = Math.Min(Map.Width, x + w), y1 = Math.Min(Map.Height, y + h);
+            if (_sections.Count > 0) Fill(_sections[0], x, y, w, h);
+        }
+
+        /// <summary>Redraws a block of cells of any section by map id.</summary>
+        public void RefreshTiles(string mapId, int x, int y, int w, int h)
+        {
+            var s = _sections.FirstOrDefault(v => v.View.Map.Id == mapId);
+            if (s != null) Fill(s, x, y, w, h);
+        }
+
+        private static void Fill(Section s, int x, int y, int w, int h)
+        {
+            var map = s.View.Map;
+            int x0 = Math.Max(0, x), y0 = Math.Max(0, y), x1 = Math.Min(map.Width, x + w), y1 = Math.Min(map.Height, y + h);
             if (x1 <= x0 || y1 <= y0) return;
             int count = (x1 - x0) * (y1 - y0);
             var positions = new Vector3Int[count];
@@ -129,31 +166,30 @@ namespace CTEditor.App
             for (int yy = y0; yy < y1; yy++)
             for (int xx = x0; xx < x1; xx++)
                 positions[n++] = Cell(xx, yy);
-            for (int i = 0; i < _layers.Count && i < Map.Layers.Count; i++)
+            for (int i = 0; i < s.Layers.Count && i < map.Layers.Count; i++)
             {
-                var layer = Map.Layers[i];
+                var layer = map.Layers[i];
                 var below = new TileBase[count];
                 var above = new TileBase[count];
                 n = 0;
                 for (int yy = y0; yy < y1; yy++)
                 for (int xx = x0; xx < x1; xx++)
                 {
-                    int t = layer.Get(xx, yy);
-                    var tile = Atlas?.TileFor(t);
-                    bool high = tile != null && Atlas.Tileset.Properties(t).Priority > 0;
+                    int cell = layer.Get(xx, yy);
+                    int slot = MapTile.Slot(cell);
+                    var atlas = slot >= 0 && s.View.Atlases != null && slot < s.View.Atlases.Length ? s.View.Atlases[slot] : null;
+                    var tile = atlas?.TileFor(MapTile.Index(cell));
+                    bool high = tile != null && (s.View.Sets?.Properties(cell).Priority ?? 0) > 0;
                     below[n] = high ? null : tile;
                     above[n] = high ? tile : null;
                     n++;
                 }
-                _layers[i].below.SetTiles(positions, below);
-                _layers[i].above.SetTiles(positions, above);
+                s.Layers[i].below.SetTiles(positions, below);
+                s.Layers[i].above.SetTiles(positions, above);
             }
         }
 
         public static Vector3Int Cell(int x, int y) => new Vector3Int(x, -y - 1, 0);
-
-        /// <summary>World position (Unity units, relative to the origin) of the top-left corner of a cell.</summary>
-        public Vector2 CellTopLeft(float x, float y) => new Vector2(x, -y * (Atlas?.CellHeight ?? 1f));
 
         // ── Camera and texture ───────────────────────────────────────────────────────────────────
 
@@ -170,8 +206,8 @@ namespace CTEditor.App
             _camera.targetTexture = _target;
         }
 
-        /// <summary>Tile width in screen pixels at the current zoom.</summary>
-        public float PixelsPerUnit => (Atlas?.Tileset.TileWidth ?? 32) * Zoom;
+        /// <summary>One cell in screen pixels at the current zoom.</summary>
+        public float PixelsPerUnit => TileSize * Zoom;
 
         /// <summary>Applies zoom and centre to the camera (it renders into the texture every frame).</summary>
         public void UpdateCamera()
@@ -184,25 +220,24 @@ namespace CTEditor.App
             _camera.transform.position = Origin + new Vector3(c.x, c.y, -10f);
         }
 
-        /// <summary>Texture pixel (top-left origin) → map cell (fractional).</summary>
+        /// <summary>Texture pixel (top-left origin) → cell (fractional, y down).</summary>
         public Vector2 PixelToCell(Vector2 pixel)
         {
             float ppu = PixelsPerUnit;
             float wx = Center.x + (pixel.x - _target.width / 2f) / ppu;
             float wy = Center.y + (_target.height / 2f - pixel.y) / ppu;
-            return new Vector2(wx, -wy / (Atlas?.CellHeight ?? 1f));
+            return new Vector2(wx, -wy);
         }
 
-        /// <summary>Map cell (fractional, top-left corner) → texture pixel (top-left origin).</summary>
+        /// <summary>Cell (fractional, top-left corner, y down) → texture pixel (top-left origin).</summary>
         public Vector2 CellToPixel(float x, float y)
         {
             float ppu = PixelsPerUnit;
-            float wx = x, wy = -y * (Atlas?.CellHeight ?? 1f);
-            return new Vector2(_target.width / 2f + (wx - Center.x) * ppu, _target.height / 2f - (wy - Center.y) * ppu);
+            return new Vector2(_target.width / 2f + (x - Center.x) * ppu, _target.height / 2f - (-y - Center.y) * ppu);
         }
 
-        /// <summary>Centre of the map in world units.</summary>
-        public Vector2 MapCenter => Map == null ? Vector2.zero : new Vector2(Map.Width / 2f, -Map.Height * (Atlas?.CellHeight ?? 1f) / 2f);
+        /// <summary>Centre (world units) of a rectangle of cells.</summary>
+        public static Vector2 CenterOf(float x, float y, float w, float h) => new Vector2(x + w / 2f, -(y + h / 2f));
 
         public GameObject CreateChild(string name)
         {

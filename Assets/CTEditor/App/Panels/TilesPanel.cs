@@ -21,7 +21,7 @@ namespace CTEditor.App
     /// </summary>
     public sealed class TilesPanel : VisualElement
     {
-        private enum Mode { Paint, Passage, Priority, Terrain, Bush, Counter }
+        private enum Mode { Paint, Passage, Priority, Terrain, Bush, Counter, Piece }
 
         private static readonly (Mode mode, string label, string help)[] Modes =
         {
@@ -31,7 +31,9 @@ namespace CTEditor.App
             (Mode.Terrain, "Terreno", "Clic pone el terreno elegido (hierba, agua...), clic derecho lo quita."),
             (Mode.Bush, "Arbusto", "El jugador se ve medio hundido (hierba alta). Clic activa o desactiva."),
             (Mode.Counter, "Mostrador", "Se habla con quien está al otro lado. Clic activa o desactiva."),
+            (Mode.Piece, "Pieza", "A qué capa va con capas automáticas. Verde = suelo, amarillo = detalle, azul = encima (claro = deducido). Clic cambia, clic derecho = automático."),
         };
+        private static readonly string[] PieceNames = { "automático", "suelo", "detalle", "encima" };
 
         private readonly AppShell _shell;
         private MapEditorSession S => _shell.Maps;
@@ -125,12 +127,15 @@ namespace CTEditor.App
 
         private void OnStructure()
         {
-            if (S?.Map?.TilesetId != Tileset?.Id) Reload();
+            if (S?.Tileset?.Id != Tileset?.Id) Reload();
+            else BuildHeader();
         }
 
+        /// <summary>Another tileset tab, a new image (id null) → reload; only its properties changed → redraw the marks.</summary>
         private void OnTilesetChanged(string id)
         {
-            if (Tileset == null || id == null || id == Tileset.Id) Reload();
+            if (id == null || S?.Tileset?.Id != Tileset?.Id) Reload();
+            else { BuildHeader(); DrawMarks(); }
         }
 
         /// <summary>Loads the map's tileset (or keeps the canvas empty with an explanation).</summary>
@@ -138,6 +143,7 @@ namespace CTEditor.App
         {
             _atlas?.Dispose();
             _atlas = S?.Map == null ? null : TilesetAtlas.TryLoad(S.Tileset, _shell.ProjectRoot);
+            _stampRect = null;
             BuildHeader();
             BuildCanvas();
         }
@@ -147,16 +153,33 @@ namespace CTEditor.App
             _header.Clear();
             _modes.Clear();
             _terrainRow.Clear();
+            if (S?.Map == null) { _header.Add(Ui.Hint("Abre un mapa para ver sus tiles.")); return; }
+            // One tab per tileset of the map (a map can mix several) and «+» to add another one.
+            for (int i = 0; i < S.Map.TilesetIds.Count; i++)
+            {
+                int slot = i;
+                var ts = S.TilesetFor(S.Map.TilesetIds[i]);
+                var tab = Ui.Chip(ts?.Name ?? S.Map.TilesetIds[i] + " (falta)", slot == S.PaletteSlot,
+                    () => S.UsePaletteTileset(S.Map.TilesetIds[slot]), "Tileset " + (slot + 1) + " del mapa");
+                _header.Add(tab.Margin(0, 0, 4, 4));
+            }
+            var add = Ui.Button("+ Tileset", null, Ui.ButtonKind.Flat, "Usar otro tileset en este mapa");
+            add.clicked += () =>
+            {
+                var items = S.AvailableTilesets().Where(id => !S.Map.TilesetIds.Contains(id))
+                    .Select(id => new MenuItem(S.TilesetFor(id)?.Name ?? id, () => S.UsePaletteTileset(id))).ToList();
+                if (items.Count == 0) items.Add(new MenuItem("No hay más tilesets cortados (Recursos → Cortar)", null, enabled: false));
+                var r = add.worldBound;
+                _shell.ShowMenu(new Vector2(r.x, r.yMax + 2), items);
+            };
+            _header.Add(add);
             if (Tileset == null)
             {
-                _header.Add(Ui.Hint(S?.Map == null
-                    ? "Abre un mapa para ver sus tiles."
-                    : "El mapa no tiene un tileset cortado. Córtalo en Recursos y elígelo en Propiedades."));
+                _header.Add(Ui.Hint("Este mapa aún no tiene un tileset cortado: córtalo en Recursos y añádelo con «+ Tileset»."));
                 return;
             }
-            _header.With(Ui.Text(Tileset.Name, bold: true),
+            _header.With(Ui.Spacer(),
                 Ui.Text($"{Tileset.Columns} × {Tileset.Rows} · {Tileset.TileWidth} px", 0.9f, dim: true),
-                Ui.Spacer(),
                 Ui.Chip("1×", Mathf.Approximately(_zoom, 1f), () => SetZoom(1f)),
                 Ui.Chip("2×", Mathf.Approximately(_zoom, 2f), () => SetZoom(2f)),
                 Ui.Button("Retocar", RetouchSelected, Ui.ButtonKind.Normal, "Abrir el tile elegido en el editor de píxeles"));
@@ -273,6 +296,14 @@ namespace CTEditor.App
                     case Mode.Counter:
                         if (p.Counter) for (int y = 0; y < 3; y++) for (int x = 0; x < 3; x++) Set(c, r, x, y, new Color32(80, 140, 255, 150));
                         break;
+                    case Mode.Piece:
+                    {
+                        var piece = Tileset.PieceOf(r * cols + c);
+                        byte a = (byte)(p.Piece == TilePiece.Auto ? 70 : 170);
+                        var col = piece == TilePiece.Ground ? new Color32(80, 200, 110, a) : piece == TilePiece.Detail ? new Color32(240, 200, 70, a) : new Color32(80, 140, 255, a);
+                        for (int y = 0; y < 3; y++) for (int x = 0; x < 3; x++) Set(c, r, x, y, col);
+                        break;
+                    }
                 }
             }
             _markTexture = new Texture2D(cols * 3, rows * 3, TextureFormat.RGBA32, false)
@@ -307,11 +338,12 @@ namespace CTEditor.App
         {
             var st = S.Stamp;
             int first = st[0, 0];
-            if (first < 0 || !Tileset.Contains(first)) return (0, 0, 0, 0);
-            int c0 = first % Tileset.Columns, r0 = first / Tileset.Columns;
+            if (first < 0 || MapTile.Slot(first) != S.PaletteSlot || !Tileset.Contains(MapTile.Index(first))) return (0, 0, 0, 0);
+            int idx = MapTile.Index(first);
+            int c0 = idx % Tileset.Columns, r0 = idx / Tileset.Columns;
             for (int y = 0; y < st.Height; y++)
             for (int x = 0; x < st.Width; x++)
-                if (st[x, y] != (r0 + y) * Tileset.Columns + c0 + x) return (0, 0, 0, 0);
+                if (st[x, y] != MapTile.Encode(S.PaletteSlot, (r0 + y) * Tileset.Columns + c0 + x)) return (0, 0, 0, 0);
             return (c0, r0, st.Width, st.Height);
         }
 
@@ -393,6 +425,13 @@ namespace CTEditor.App
                     _dragLabel = "mostrador";
                     break;
                 }
+                case Mode.Piece:
+                {
+                    var v = right ? TilePiece.Auto : (TilePiece)(((int)Tileset.PieceOf(r * Tileset.Columns + c)) % 3 + 1);
+                    _dragChange = x => x.Piece = v;
+                    _dragLabel = "pieza: " + PieceNames[(int)v];
+                    break;
+                }
             }
             AddDragTile(c, r);
         }
@@ -456,7 +495,7 @@ namespace CTEditor.App
             if (_mode == Mode.Paint)
             {
                 var (c, r, w, h) = _stampRect.Value;
-                S.SetStamp(TileStamp.FromTileset(Tileset, c, r, w, h));
+                S.SetStamp(TileStamp.FromTileset(Tileset, c, r, w, h, S.PaletteSlot));
                 return;
             }
             ClearDragMarks();
@@ -473,7 +512,8 @@ namespace CTEditor.App
                 new[] { (PassageBlock.Up, "arriba"), (PassageBlock.Down, "abajo"), (PassageBlock.Left, "izquierda"), (PassageBlock.Right, "derecha") }
                     .Where(x => (p.Blocked & x.Item1) != 0).Select(x => x.Item2));
             _info.text = $"Tile n.º {tile} · {pass} · prioridad {p.Priority} · terreno: {S.Terrains.LabelOf(p.TerrainTag)}"
-                         + (p.Bush ? " · arbusto" : "") + (p.Counter ? " · mostrador" : "");
+                         + (p.Bush ? " · arbusto" : "") + (p.Counter ? " · mostrador" : "")
+                         + $" · pieza: {PieceNames[(int)Tileset.PieceOf(tile)]}" + (p.Piece == TilePiece.Auto ? " (deducida)" : "");
         }
 
         private void RetouchSelected()
@@ -481,7 +521,7 @@ namespace CTEditor.App
             if (Tileset == null) return;
             var (c, r, _, _) = _stampRect ?? FindStampInTileset();
             var rect = Tileset.Slice.CellRect(c, r);
-            _shell.OpenRetouch(Path.Combine(_shell.ProjectRoot, Tileset.Id), rect, Tileset.TileWidth, Tileset.TileHeight);
+            _shell.OpenRetouch(Path.Combine(_shell.ProjectRoot, Tileset.ImagePath), rect, Tileset.TileWidth, Tileset.TileHeight);
         }
     }
 }

@@ -216,4 +216,8 @@ registrado en la aplicación ([03](03-arquitectura.md)).
 - **Fase 3**: árbol de mapas, editor de mapas con herramientas y deshacer, propiedades de tile pintadas sobre el tileset,
   capas, propiedades del mapa, inicio del jugador, autoguardado y **▶ Jugar / Probar aquí** con el jugador andando.
 - **Fase 4**: editor de píxeles Retoque con modo tile y retoque desde el mapa, Tiles y Recursos.
+- **Fase 4.5 (consolidación)**: tramos en un mundo continuo (mover, ocultar, bloquear, solo), mapa de la región,
+  encuentros como en los juegos (métodos propios, zonas pintadas, probabilidad, %, horas, interruptores), varios
+  tilesets por mapa, capas automáticas, selección/copiar/pegar, vista previa del sello, ids fijos, importar y cortar
+  en un paso, datos de un pack. Decisión del autor: los tramos siguen siendo mapas separados dentro del mundo.
 - **Siguiente**: fase 5 (comodidad base), según el plan replanteado de la sección 8.

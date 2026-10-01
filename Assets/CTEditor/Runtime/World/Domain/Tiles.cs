@@ -31,6 +31,26 @@ namespace CTEditor.World.Domain
         };
     }
 
+    /// <summary>
+    /// Qué tipo de pieza es un tile, para las CAPAS AUTOMÁTICAS: el editor pone cada tile en la capa que le toca.
+    /// Auto = lo deduce: con prioridad → Encima; sin píxeles transparentes → Suelo; con transparencia → Detalle.
+    /// </summary>
+    public enum TilePiece
+    {
+        Auto = 0,
+        Ground = 1,
+        Detail = 2,
+        Above = 3
+    }
+
+    /// <summary>Cuánto tapa un tile (se calcula de la imagen): vacío, en parte (tiene transparencia) o entero.</summary>
+    public enum TileCoverage
+    {
+        Empty = 0,
+        Partial = 1,
+        Full = 2
+    }
+
     /// <summary>Lo que es un tile para el juego. Los valores por defecto = suelo normal por el que se pasa.</summary>
     public sealed class TileProperties
     {
@@ -43,8 +63,10 @@ namespace CTEditor.World.Domain
         public bool Bush { get; set; }
         /// <summary>Mostrador: se habla con quien está al otro lado.</summary>
         public bool Counter { get; set; }
+        /// <summary>Tipo de pieza para las capas automáticas (Auto = se deduce).</summary>
+        public TilePiece Piece { get; set; }
 
-        public bool IsDefault => Blocked == PassageBlock.None && Priority == 0 && TerrainTag == 0 && !Bush && !Counter;
+        public bool IsDefault => Blocked == PassageBlock.None && Priority == 0 && TerrainTag == 0 && !Bush && !Counter && Piece == TilePiece.Auto;
 
         public TileProperties Clone() => (TileProperties)MemberwiseClone();
 
@@ -139,25 +161,70 @@ namespace CTEditor.World.Domain
     /// <summary>
     /// Un tileset listo para pintar: la imagen cortada (tamaño del tile, columnas, filas) y las propiedades de cada tile.
     /// El número de un tile es su posición en la rejilla (fila a fila), como en el asistente de corte.
+    /// Tiene un ID FIJO (guardado en su «.corte.json»): renombrar o mover la imagen no rompe los mapas que lo usan.
     /// </summary>
     public sealed class Tileset
     {
-        /// <summary>Ruta de la imagen relativa al proyecto («graficos/tilesets/pueblo.png»): es también su id.</summary>
+        /// <summary>Id fijo del tileset («pueblo»). Los mapas guardan este id, no la ruta.</summary>
         public string Id { get; }
         public string Name { get; }
+        /// <summary>Ruta de la imagen relativa al proyecto («graficos/tilesets/pueblo.png»).</summary>
+        public string ImagePath { get; }
         public SliceSettings Slice { get; }
         public int Columns { get; }
         public int Rows { get; }
         public TileAttributes Attributes { get; }
+        /// <summary>Cuánto tapa cada tile (null = no se sabe: se trata como entero).</summary>
+        public TileCoverage[] Coverage { get; set; }
+        /// <summary>Color medio de cada tile (para el mapa de la región reducido; null = no calculado).</summary>
+        public Rgba32[] AverageColors { get; set; }
 
-        public Tileset(string id, string name, SliceSettings slice, int imageWidth, int imageHeight, TileAttributes attributes = null)
+        public Tileset(string id, string name, SliceSettings slice, int imageWidth, int imageHeight, TileAttributes attributes = null,
+            string imagePath = null)
         {
             Id = id ?? throw new ArgumentNullException(nameof(id));
             Name = name ?? id;
+            ImagePath = imagePath ?? id;
             Slice = slice ?? throw new ArgumentNullException(nameof(slice));
             Columns = slice.ColumnsFor(imageWidth);
             Rows = slice.RowsFor(imageHeight);
             Attributes = attributes ?? new TileAttributes();
+        }
+
+        /// <summary>El tipo de pieza del tile: el elegido o, en Auto, el que se deduce (ver TilePiece).</summary>
+        public TilePiece PieceOf(int tile)
+        {
+            var p = Properties(tile);
+            if (p.Piece != TilePiece.Auto) return p.Piece;
+            if (p.Priority > 0) return TilePiece.Above;
+            var cov = Coverage != null && tile >= 0 && tile < Coverage.Length ? Coverage[tile] : TileCoverage.Full;
+            return cov == TileCoverage.Full ? TilePiece.Ground : TilePiece.Detail;
+        }
+
+        /// <summary>Calcula Coverage a partir de la imagen (lo hace quien la carga).</summary>
+        public void ComputeCoverage(PixelImage image)
+        {
+            var cov = new TileCoverage[Count];
+            var avg = new Rgba32[Count];
+            for (int i = 0; i < Count; i++)
+            {
+                var r = RectOf(i);
+                if (!image.Contains(r)) { cov[i] = TileCoverage.Empty; continue; }
+                bool any = false, all = true;
+                long sr = 0, sg = 0, sb = 0, n = 0;
+                for (int y = r.Y; y < r.Bottom; y++)
+                for (int x = r.X; x < r.Right; x++)
+                {
+                    var p = image[x, y];
+                    if (p.A == 0) { all = false; continue; }
+                    any = true;
+                    sr += p.R; sg += p.G; sb += p.B; n++;
+                }
+                cov[i] = !any ? TileCoverage.Empty : all ? TileCoverage.Full : TileCoverage.Partial;
+                avg[i] = n == 0 ? Rgba32.Transparent : new Rgba32((byte)(sr / n), (byte)(sg / n), (byte)(sb / n));
+            }
+            Coverage = cov;
+            AverageColors = avg;
         }
 
         public int TileWidth => Slice.TileWidth;
@@ -166,5 +233,53 @@ namespace CTEditor.World.Domain
         public bool Contains(int tile) => tile >= 0 && tile < Count;
         public PixelRect RectOf(int tile) => Slice.CellRect(tile % Columns, tile / Columns);
         public TileProperties Properties(int tile) => Attributes.Peek(tile);
+    }
+}
+
+namespace CTEditor.World.Domain
+{
+    /// <summary>
+    /// Una casilla de un mapa guarda UN número con dos datos: qué tileset del mapa (hueco 0, 1, 2...) y qué tile de ese
+    /// tileset. Así un mapa puede usar varios tilesets (césped, ciudad, playa) a la vez. Los mapas de un solo tileset
+    /// quedan igual que antes (hueco 0 = el número del tile tal cual). -1 = vacía.
+    /// </summary>
+    public static class MapTile
+    {
+        public const int Empty = -1;
+        public const int SlotShift = 20;
+        public const int IndexMask = (1 << SlotShift) - 1;
+        public const int MaxSlots = 1 << (31 - SlotShift);
+
+        public static int Encode(int slot, int index) => index < 0 || slot < 0 ? Empty : (slot << SlotShift) | index;
+        public static int Slot(int cell) => cell < 0 ? -1 : cell >> SlotShift;
+        public static int Index(int cell) => cell < 0 ? -1 : cell & IndexMask;
+    }
+
+    /// <summary>Los tilesets de un mapa, por hueco. Traduce una casilla a su tileset y a las propiedades de su tile.</summary>
+    public sealed class MapTilesets
+    {
+        public static readonly MapTilesets None = new MapTilesets(new Tileset[0]);
+
+        public IReadOnlyList<Tileset> Slots { get; }
+
+        public MapTilesets(IReadOnlyList<Tileset> slots) { Slots = slots ?? new Tileset[0]; }
+
+        public static implicit operator MapTilesets(Tileset single) => single == null ? None : new MapTilesets(new[] { single });
+
+        public Tileset For(int cell)
+        {
+            int slot = MapTile.Slot(cell);
+            return slot >= 0 && slot < Slots.Count ? Slots[slot] : null;
+        }
+
+        public TileProperties Properties(int cell) => For(cell)?.Properties(MapTile.Index(cell)) ?? TileProperties.Default;
+
+        public TilePiece PieceOf(int cell)
+        {
+            var ts = For(cell);
+            return ts == null ? TilePiece.Ground : ts.PieceOf(MapTile.Index(cell));
+        }
+
+        public bool IsEmpty => Slots.All(s => s == null);
     }
 }

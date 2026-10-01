@@ -28,7 +28,10 @@ namespace CTEditor.App
         private readonly Label _debugText;
         private readonly HashSet<KeyCode> _held = new HashSet<KeyCode>();
         private readonly List<FacingDirection> _pressedOrder = new List<FacingDirection>();
-        private TilesetAtlas _atlas;
+        private AtlasCache _atlases;
+        private readonly Label _banner;
+        private readonly System.Random _rng = new System.Random();
+        private bool _encountersOn = true;
         private CharacterSprites _character;
         private SpriteRenderer _player;
         private bool _debugOn;
@@ -39,16 +42,18 @@ namespace CTEditor.App
         {
             _shell = shell;
             var map = shell.Maps.Find(mapId) ?? throw new InvalidOperationException($"No existe el mapa «{mapId}».");
-            var tileset = shell.Maps.TilesetFor(map.TilesetId);
-            if (tileset == null) shell.Warn("El mapa no tiene un tileset cortado: se juega sin gráficos ni bloqueos.");
+            var sets = shell.Maps.TilesetsOf(map);
+            if (sets.IsEmpty) shell.Warn("El mapa no tiene un tileset cortado: se juega sin gráficos ni bloqueos.");
             _screenW = shell.Project.ScreenWidth;
             _screenH = shell.Project.ScreenHeight;
 
-            _atlas = TilesetAtlas.TryLoad(tileset, shell.ProjectRoot);
-            _renderer = new MapRenderer("Juego", MapRenderer.PlayLayer, Color.black);
-            _renderer.SetMap(map, _atlas);
+            _atlases = new AtlasCache(shell.ProjectRoot, shell.Maps.TilesetFor);
+            _renderer = new MapRenderer("Juego", MapRenderer.PlayLayer, Color.black) { TileSize = shell.Project.TileSize };
             _renderer.Resize(_screenW, _screenH);
-            _sim = new OverworldSim(map, tileset, x, y);
+            _sim = new OverworldSim(map, sets, x, y) { World = shell.Maps.World(), TilesetsOf = shell.Maps.TilesetsOf };
+            _sim.SectionChanged += (_, next) => { BuildSections(); ShowBanner(next.Name, 2200); };
+            _sim.StepFinished += OnStep;
+            BuildSections();
 
             var go = _renderer.CreateChild("Jugador");
             _player = go.AddComponent<SpriteRenderer>();
@@ -87,9 +92,22 @@ namespace CTEditor.App
             _debugText.style.color = Color.white;
             _debug.With(Ui.Text("Depurador (F9)", bold: true).Colored("acento"), _debugText,
                 Ui.Check("Atravesar paredes", false, v => _sim.NoClip = v),
+                Ui.Check("Encuentros salvajes", true, v => _encountersOn = v),
                 Ui.Button("Volver al editor (Esc)", () => _shell.StopPlay()));
             _debug.Show(false);
             Add(_debug);
+
+            _banner = Ui.Text("", 1.3f, bold: true);
+            _banner.style.color = Color.white;
+            _banner.style.backgroundColor = new Color(0.05f, 0.08f, 0.15f, 0.85f);
+            _banner.Pad(18, 8).Round(6);
+            _banner.style.position = Position.Absolute;
+            _banner.style.top = 24;
+            _banner.style.alignSelf = Align.Center;
+            _banner.pickingMode = PickingMode.Ignore;
+            _banner.Show(false);
+            Add(_banner);
+            ShowBanner(map.Name, 2200);
 
             RegisterCallback<KeyDownEvent>(OnKeyDown);
             RegisterCallback<KeyUpEvent>(OnKeyUp);
@@ -114,17 +132,15 @@ namespace CTEditor.App
         private void LoadCharacter()
         {
             _character?.Dispose();
-            _character = CharacterSprites.ForPlayer(_shell.ProjectRoot, _shell.Project.PlayerCharacter, _atlas?.Tileset.TileWidth ?? _shell.Project.TileSize);
+            _character = CharacterSprites.ForPlayer(_shell.ProjectRoot, _shell.Project.PlayerCharacter, _shell.Project.TileSize);
         }
 
         private void ReloadGraphics()
         {
             _shell.Maps.ReloadTilesets();
-            var tileset = _shell.Maps.TilesetFor(_sim.Map.TilesetId);
-            _atlas?.Dispose();
-            _atlas = TilesetAtlas.TryLoad(tileset, _shell.ProjectRoot);
-            _renderer.SetMap(_sim.Map, _atlas);
-            _sim.SetMap(_sim.Map, tileset, _sim.Player.X, _sim.Player.Y);
+            _atlases.Clear();
+            _sim.SetMap(_sim.Map, _shell.Maps.TilesetsOf(_sim.Map), _sim.Player.X, _sim.Player.Y);
+            BuildSections();
             LoadCharacter();
             _shell.Info("Gráficos recargados.");
         }
@@ -174,7 +190,7 @@ namespace CTEditor.App
             _sim.Update(Mathf.Min(dt, 0.1f), dir, run);
 
             var p = _sim.Player;
-            float r = _atlas?.CellHeight ?? 1f;
+            const float r = 1f;
             if (_character != null)
             {
                 _player.sprite = _character.Frame(p.Facing, p.WalkFrame(_character.CycleLength));
@@ -186,8 +202,12 @@ namespace CTEditor.App
             float halfW = _screenW / (2f * ppu), halfH = _screenH / (2f * ppu);
             float mapW = _sim.Map.Width, mapH = _sim.Map.Height * r;
             float cx = p.DrawX + 0.5f, cy = -(p.DrawY + 0.5f) * r;
-            cx = mapW <= halfW * 2 ? mapW / 2f : Mathf.Clamp(cx, halfW, mapW - halfW);
-            cy = mapH <= halfH * 2 ? -mapH / 2f : Mathf.Clamp(cy, -mapH + halfH, -halfH);
+            // In the continuous world the camera follows freely (neighbours are drawn); a lone map is clamped to its edges.
+            if (!(_sim.Map.InWorld && _sim.Map.Kind == MapKind.Exterior))
+            {
+                cx = mapW <= halfW * 2 ? mapW / 2f : Mathf.Clamp(cx, halfW, mapW - halfW);
+                cy = mapH <= halfH * 2 ? -mapH / 2f : Mathf.Clamp(cy, -mapH + halfH, -halfH);
+            }
             _renderer.Center = new Vector2(cx, cy);
             _renderer.UpdateCamera();
 
@@ -203,12 +223,51 @@ namespace CTEditor.App
             }
         }
 
+        /// <summary>The open section in the middle and its world neighbours around it (the camera crosses borders smoothly).</summary>
+        private void BuildSections()
+        {
+            var m = _sim.Map;
+            var views = new List<SectionView> { new SectionView { Map = m, Atlases = _atlases.For(m), Sets = _shell.Maps.TilesetsOf(m) } };
+            if (m.InWorld && m.Kind == MapKind.Exterior && _sim.World != null)
+                foreach (var n in _sim.World.Neighbors(m))
+                    views.Add(new SectionView
+                    {
+                        Map = n, Atlases = _atlases.For(n), Sets = _shell.Maps.TilesetsOf(n),
+                        Offset = new Vector2Int(n.WorldX - m.WorldX, n.WorldY - m.WorldY),
+                    });
+            _renderer.SetSections(views);
+        }
+
+        /// <summary>A step finished: check the encounter methods for that terrain, like the original games.</summary>
+        private void OnStep(int x, int y, int terrain)
+        {
+            if (!_encountersOn || _sim.Map.Encounters.Count == 0) return;
+            var now = EncounterResolver.TimeAt(DateTime.Now.Hour);
+            foreach (var method in EncounterResolver.StepMethods(_shell.Maps.Methods, terrain, false))
+            {
+                var result = EncounterResolver.Roll(_sim.Map, x, y, method, now, _ => false, n => _rng.Next(Math.Max(1, n)));
+                if (result == null) continue;
+                var name = _shell.Maps.Species?.All().FirstOrDefault(s => s.id == result.SpeciesId).name ?? result.SpeciesId;
+                ShowBanner($"¡Un {name} salvaje (nv. {result.Level})!   [{method.Label} · {result.Area.Name}]", 1800);
+                _shell.Info($"Encuentro: {name} nv. {result.Level} ({method.Label}, {result.Area.Name}). Los combates llegan en la fase 7.");
+                return;
+            }
+        }
+
+        private void ShowBanner(string text, int ms)
+        {
+            if (_banner == null) return;
+            _banner.text = text;
+            _banner.Show(true);
+            _banner.schedule.Execute(() => { if (_banner.text == text) _banner.Show(false); }).ExecuteLater(ms);
+        }
+
         public void Dispose()
         {
             _shell.Ticked -= Update;
             _shell.AssetsChanged -= ReloadGraphics;
             _character?.Dispose();
-            _atlas?.Dispose();
+            _atlases.Dispose();
             _renderer.Dispose();
         }
     }

@@ -37,13 +37,30 @@ como ventanas del editor de Unity. Plan completo y decisiones: [PROPUESTA_APLICA
 | Juego | `Play/PlayScreen.cs` | **▶ Jugar (F5) / Probar aquí (Ctrl+F5)**: el jugador anda con las reglas de paso de RPG Maker XP, animado con su hoja de personaje; cámara que le sigue; resolución del proyecto ampliada en múltiplos exactos; recarga los gráficos si cambian; F9 depurador (casilla, terreno, lados libres, atravesar paredes); Esc vuelve al editor tal como estaba. |
 | Dibujo | `Rendering/MapRenderer.cs`, `Rendering/TilesetAtlas.cs` | Cada capa = dos tilemaps (debajo / encima del jugador según la prioridad del tile); cámara propia en su capa de Unity; tiras para tilesets muy altos. |
 
+## Fase 4.5 — consolidación (el mundo, los encuentros, comodidad)
+
+| Pieza | Dónde | Qué hace |
+|---|---|---|
+| **Tramos** | `World.Domain/Maps.cs`, `WorldLayout.cs` | Cada pueblo, ruta o cueva es su propio mapa (fácil de delimitar). Exterior = colocado en el **mundo continuo** (se pasa de uno a otro andando, sin cargas); interior = aparte (puertas). Categoría (pueblo, ruta, cueva...), clima, sale en el mapa de la región. |
+| **Mundo** | `Panels/WorldPanel.cs` | Todos los tramos en un lienzo, dibujados como en el juego. **Arrastrar = mover** (casilla a casilla; en rojo si se pisa con otro). Lista con **Ver / Bloq. / Solo** (como las capas) para centrarse en un tramo. «Nuevo tramo…» lo pega al elegido (arriba, abajo, izquierda, derecha). Doble clic = editarlo. |
+| **Mapa de la región** | `RegionMapBuilder`, «Mapa de la región…» | Imagen generada del mundo, esquemática (colores por tipo) o reducida (colores reales), con escala elegible. Se guarda en `graficos/interfaz/mapa_region.png` (retocable) + `datos/mapa_region.json` (dónde queda cada tramo). |
+| **Encuentros** | `World.Domain/Encounters.cs`, `Panels/EncountersPanel.cs` | Como en los juegos: zona de **todo el tramo** o **zonas pintadas** en el mapa (mandan sobre la general); una tabla por **método** (hierba, hierba alta, cueva, surf, buceo, caña vieja/buena/súper, golpe cabeza, golpe roca... y **métodos propios** con su id: «volando»...); **probabilidad por paso**; especies con niveles, **peso y % real**; **horas del día** e **interruptor**; botón «Pesos clásicos» (20/20/10/10/10/10/5/5/4/4/1/1, agua 60/30/5/4/1, cañas 70/30). Las especies salen de `datos/especies.csv`. En el juego salen al andar (aviso, los combates llegan en la fase 7). |
+| **Varios tilesets por mapa** | `MapTile`, panel Tiles | Pestañas con los tilesets del mapa y «+ Tileset». Cada casilla recuerda el suyo. |
+| **Capas automáticas** | `MapTools.*Auto`, panel Mapa | Cada tile va solo a su capa (suelo, detalles, encima) según su pieza: se deduce de la transparencia y la prioridad, o se corrige en Tiles → «Pieza». La goma borra lo de más arriba. Se pueden desactivar (capas a mano, como RPG Maker). Clic derecho en Capas: para qué es cada capa. |
+| **Selección** | herramienta Selección | Ctrl+C / Ctrl+X / Ctrl+V / Supr, con todas las capas; pegar no borra con casillas vacías. |
+| **Vista previa del sello** | panel Mapa | Los tiles se ven semitransparentes bajo el ratón antes de pintar. Los tramos vecinos se ven atenuados alrededor (doble clic = abrir). |
+| **Ids fijos** | `.corte.json` («id») | Renombrar o mover una imagen no rompe los mapas. Los mapas antiguos (con la ruta) se convierten solos. |
+| **Importar y cortar** | Recursos | Importar una imagen o una **carpeta entera**: las que encajan (8 columnas de 32 px, hojas 4 × 4 o 3 × 4) se cortan solas. El asistente de corte ya no pierde el foco al escribir. |
+| **Datos de un pack** | Inicio y Proyecto → «Copiar datos de un pack…» | Copia a `datos/` las hojas de Gen1…Gen7 (especies, movimientos, objetos...). |
+
 ## Cómo se hace un mapa (flujo)
 
 1. **Recursos** → Importar (o copiar) el tileset en `graficos/tilesets` → **Cortar** (32 px).
-2. **Mapas** → Nuevo mapa (elige el tileset).
+2. **Mapas** o **Mundo** → Nuevo mapa: pueblo, ruta... (exterior, pegado a otro tramo) o interior; elige el tileset.
 3. **Tiles** → elige un tile o un bloque → pinta en **Mapa** (B lápiz, U rectángulo, G relleno, E goma, I cuentagotas).
 4. **Tiles** → modo Paso / Prioridad / Terreno para decir por dónde se pasa, qué va encima del jugador y dónde hay hierba.
-5. **Propiedades** → Colocar el inicio → **Jugar (F5)**. Esc para volver. Todo se guarda solo.
+5. **Encuentros** → «Todo el tramo» → «+ Hierba» → «+ Especie» (o una zona pintada para un trozo concreto).
+6. **Propiedades** → Colocar el inicio → **Jugar (F5)**: se pasa de tramo en tramo andando. Esc para volver. Todo se guarda solo.
 
 ## Reglas
 

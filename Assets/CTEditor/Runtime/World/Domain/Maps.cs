@@ -4,12 +4,23 @@ using System.Linq;
 
 namespace CTEditor.World.Domain
 {
-    /// <summary>Una capa del mapa: una rejilla de números de tile (-1 = vacío).</summary>
+    /// <summary>Para qué es una capa: las capas automáticas mandan cada tile a la capa de su tipo de pieza.</summary>
+    public enum LayerRole
+    {
+        /// <summary>Capa normal: solo se pinta en ella a mano.</summary>
+        Custom = 0,
+        Ground = 1,
+        Detail = 2,
+        Above = 3
+    }
+
+    /// <summary>Una capa del mapa: una rejilla de casillas (ver MapTile; -1 = vacía).</summary>
     public sealed class MapLayer
     {
         public const int Empty = -1;
 
         public string Name { get; set; }
+        public LayerRole Role { get; set; }
         public bool Visible { get; set; } = true;
         /// <summary>Bloqueada: las herramientas no la cambian.</summary>
         public bool Locked { get; set; }
@@ -65,15 +76,69 @@ namespace CTEditor.World.Domain
 
         public MapLayer Clone()
         {
-            var c = new MapLayer(Name, Width, Height) { Visible = Visible, Locked = Locked, Opacity = Opacity };
+            var c = new MapLayer(Name, Width, Height) { Visible = Visible, Locked = Locked, Opacity = Opacity, Role = Role };
             c._tiles = (int[])_tiles.Clone();
             return c;
         }
     }
 
+    /// <summary>Exterior = un tramo del mundo continuo (pueblo, ruta...); interior = casa, cueva, edificio (se entra por puertas).</summary>
+    public enum MapKind
+    {
+        Exterior = 0,
+        Interior = 1
+    }
+
+    /// <summary>Tipo de tramo: para el mapa de la región, los colores del mundo y los puntos de vuelo.</summary>
+    public enum SectionCategory
+    {
+        Town = 0,
+        City = 1,
+        Route = 2,
+        Forest = 3,
+        Cave = 4,
+        Water = 5,
+        Mountain = 6,
+        Building = 7,
+        Special = 8
+    }
+
     /// <summary>
-    /// Un mapa: tamaño en tiles, el tileset con que se pinta, capas (de abajo arriba) y propiedades. Por defecto tres capas
-    /// como RPG Maker XP, pero puede tener las que se quiera.
+    /// Algo colocado en el mapa que no es un tile: el inicio del jugador, puertas, carteles, NPC... Cada tipo (Kind) es
+    /// un texto, así los módulos nuevos (eventos, NPC) añaden los suyos sin tocar el modelo. Propiedades = texto libre.
+    /// </summary>
+    public sealed class MapObject
+    {
+        public const string PlayerStartKind = "inicio";
+
+        public string Id { get; }
+        public string Kind { get; set; }
+        public string Name { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; } = 1;
+        public int Height { get; set; } = 1;
+        public Dictionary<string, string> Properties { get; } = new Dictionary<string, string>();
+
+        public MapObject(string id, string kind, int x, int y, string name = null)
+        {
+            Id = id; Kind = kind; X = x; Y = y; Name = name ?? kind;
+        }
+
+        public bool Covers(int x, int y) => x >= X && y >= Y && x < X + Width && y < Y + Height;
+
+        public MapObject Clone()
+        {
+            var o = new MapObject(Id, Kind, X, Y, Name) { Width = Width, Height = Height };
+            foreach (var kv in Properties) o.Properties[kv.Key] = kv.Value;
+            return o;
+        }
+    }
+
+    /// <summary>
+    /// Un mapa = un TRAMO (pueblo, ruta, cueva...) con su nombre, sus límites, su música y sus encuentros. Los exteriores
+    /// tienen además una posición en el mundo: juntos forman el mundo continuo y se recorren sin cargas; los interiores
+    /// van aparte. Se pinta con uno o varios tilesets; por defecto tres capas (suelo, detalles, encima) como RPG Maker XP.
     /// </summary>
     public sealed class MapDefinition
     {
@@ -82,13 +147,29 @@ namespace CTEditor.World.Domain
 
         public string Id { get; }
         public string Name { get; set; }
-        public string TilesetId { get; set; }
+        /// <summary>Tilesets del mapa por hueco (ver MapTile). El primero es el principal.</summary>
+        public List<string> TilesetIds { get; } = new List<string>();
         public int Width { get; private set; }
         public int Height { get; private set; }
         public List<MapLayer> Layers { get; } = new List<MapLayer>();
+        public List<MapObject> Objects { get; } = new List<MapObject>();
+        /// <summary>Zonas de encuentros salvajes del tramo (ver EncounterArea).</summary>
+        public List<EncounterArea> Encounters { get; } = new List<EncounterArea>();
 
-        /// <summary>Música del mapa (ruta relativa a «audio/musica», vacío = ninguna).</summary>
+        public MapKind Kind { get; set; } = MapKind.Exterior;
+        public SectionCategory Category { get; set; } = SectionCategory.Route;
+        /// <summary>Colocado en el mundo continuo (solo exteriores). Si no, es un tramo suelto hasta que se coloque.</summary>
+        public bool InWorld { get; set; }
+        /// <summary>Esquina de arriba a la izquierda en el mundo, en tiles.</summary>
+        public int WorldX { get; set; }
+        public int WorldY { get; set; }
+        /// <summary>Sale en el mapa de la región.</summary>
+        public bool ShowOnRegionMap { get; set; } = true;
+
+        /// <summary>Música del tramo (ruta relativa a «audio/musica», vacío = ninguna).</summary>
         public string Music { get; set; } = "";
+        /// <summary>Clima del tramo (id de clima; vacío = despejado).</summary>
+        public string Weather { get; set; } = "";
         /// <summary>Se puede usar la bici.</summary>
         public bool Bicycle { get; set; } = true;
         /// <summary>Es exterior (se puede volar, afecta la hora del día).</summary>
@@ -103,28 +184,60 @@ namespace CTEditor.World.Domain
             Name = name ?? id;
             Width = width;
             Height = height;
-            TilesetId = tilesetId ?? "";
+            if (!string.IsNullOrEmpty(tilesetId)) TilesetIds.Add(tilesetId);
             if (withDefaultLayers)
-                foreach (var n in new[] { "Suelo", "Detalles", "Encima" })
-                    Layers.Add(new MapLayer(n, width, height));
+                foreach (var (n, role) in new[] { ("Suelo", LayerRole.Ground), ("Detalles", LayerRole.Detail), ("Encima", LayerRole.Above) })
+                    Layers.Add(new MapLayer(n, width, height) { Role = role });
+        }
+
+        /// <summary>El tileset principal (hueco 0). Asignarlo cambia el hueco 0 (los tiles siguen apuntando a ese hueco).</summary>
+        public string TilesetId
+        {
+            get => TilesetIds.Count > 0 ? TilesetIds[0] : "";
+            set
+            {
+                if (TilesetIds.Count == 0) { if (!string.IsNullOrEmpty(value)) TilesetIds.Add(value); }
+                else TilesetIds[0] = value ?? "";
+            }
+        }
+
+        /// <summary>Hueco de un tileset en este mapa (lo añade si no está). -1 si no caben más.</summary>
+        public int SlotOf(string tilesetId, bool add = true)
+        {
+            int i = TilesetIds.IndexOf(tilesetId);
+            if (i >= 0 || !add) return i;
+            if (TilesetIds.Count >= MapTile.MaxSlots) return -1;
+            TilesetIds.Add(tilesetId);
+            return TilesetIds.Count - 1;
         }
 
         public bool Contains(int x, int y) => x >= 0 && y >= 0 && x < Width && y < Height;
 
-        public MapLayer AddLayer(string name, int index = -1)
+        /// <summary>Rectángulo del tramo en el mundo (x, y, ancho, alto) en tiles.</summary>
+        public (int x, int y, int w, int h) WorldRect => (WorldX, WorldY, Width, Height);
+
+        public MapLayer AddLayer(string name, int index = -1, LayerRole role = LayerRole.Custom)
         {
-            var l = new MapLayer(name, Width, Height);
+            var l = new MapLayer(name, Width, Height) { Role = role };
             if (index < 0 || index > Layers.Count) Layers.Add(l);
             else Layers.Insert(index, l);
             return l;
         }
 
-        /// <summary>Cambia el tamaño de todas las capas (ancla: dónde se añade o quita espacio).</summary>
+        /// <summary>La primera capa con ese papel (-1 si no hay).</summary>
+        public int LayerFor(LayerRole role) => Layers.FindIndex(l => l.Role == role);
+
+        /// <summary>Cambia el tamaño de todas las capas (ancla: dónde se añade o quita espacio). Objetos y zonas se mueven igual.</summary>
         public void Resize(int width, int height, int offsetX = 0, int offsetY = 0)
         {
             if (width <= 0 || height <= 0 || width > MaxSize || height > MaxSize)
                 throw new ArgumentOutOfRangeException(nameof(width), $"El mapa debe medir entre 1 y {MaxSize} tiles por lado.");
             foreach (var l in Layers) l.Resize(width, height, offsetX, offsetY);
+            foreach (var o in Objects) { o.X += offsetX; o.Y += offsetY; }
+            foreach (var a in Encounters) a.Shift(offsetX, offsetY, width, height);
+            // Growing to the left or top keeps the rest of the world in place.
+            WorldX -= offsetX;
+            WorldY -= offsetY;
             Width = width;
             Height = height;
         }
@@ -141,6 +254,17 @@ namespace CTEditor.World.Domain
             layerIndex = -1;
             return MapLayer.Empty;
         }
+
+        public MapObject FindObject(string kind) => Objects.FirstOrDefault(o => o.Kind == kind);
+
+        public string NewObjectId(string kind)
+        {
+            for (int i = 1; ; i++)
+            {
+                var id = kind + "_" + i;
+                if (Objects.All(o => o.Id != id)) return id;
+            }
+        }
     }
 
     /// <summary>Un mapa en el árbol de mapas (como el de RPG Maker: carpetas = mapas padre).</summary>
@@ -153,6 +277,9 @@ namespace CTEditor.World.Domain
         public int Order { get; set; }
         /// <summary>Desplegado en el árbol del editor.</summary>
         public bool Expanded { get; set; } = true;
+        /// <summary>Vista del mundo: oculto (para centrarse en otros tramos) y bloqueado (no se puede mover ni pintar).</summary>
+        public bool HiddenInWorld { get; set; }
+        public bool LockedInWorld { get; set; }
 
         public MapEntry(string id, string name, string parentId = "", int order = 0)
         {
@@ -254,11 +381,13 @@ namespace CTEditor.World.Domain
     /// <summary>Dónde están los tilesets (imágenes cortadas como «Tileset»).</summary>
     public interface ITilesetRepository
     {
-        /// <summary>Ids de los tilesets disponibles (rutas relativas de sus imágenes).</summary>
+        /// <summary>Ids fijos de los tilesets disponibles.</summary>
         IReadOnlyList<string> List();
-        /// <summary>El tileset (null si no existe o no está cortado).</summary>
+        /// <summary>El tileset por su id (acepta también la ruta de la imagen, de proyectos antiguos). Null si no existe.</summary>
         Tileset Load(string id);
         /// <summary>Guarda las propiedades de sus tiles.</summary>
         void SaveAttributes(Tileset tileset);
+        /// <summary>Vuelve a leer (se cortó, movió o renombró una imagen).</summary>
+        void Refresh();
     }
 }

@@ -27,6 +27,8 @@ namespace CTEditor.Workspace
         public const string PixelEditor = "retoque";
         public const string Game = "juego";
         public const string Database = "base_datos";
+        public const string World = "mundo";
+        public const string Encounters = "encuentros";
 
         private static readonly List<PanelInfo> Panels = new List<PanelInfo>
         {
@@ -41,6 +43,8 @@ namespace CTEditor.Workspace
             new PanelInfo(PixelEditor, "Retoque"),
             new PanelInfo(Game, "Juego"),
             new PanelInfo(Database, "Base de datos"),
+            new PanelInfo(World, "Mundo"),
+            new PanelInfo(Encounters, "Encuentros"),
         };
 
         public static IReadOnlyList<PanelInfo> All => Panels;
@@ -328,15 +332,15 @@ namespace CTEditor.Workspace
             S(SplitDirection.Vertical, 1f,
                 S(SplitDirection.Horizontal, 0.8f,
                     S(SplitDirection.Vertical, 0.22f, T(0.6f, PanelCatalog.Palette), T(0.4f, PanelCatalog.MapTree)),
-                    T(0.56f, PanelCatalog.Map, PanelCatalog.Game),
-                    S(SplitDirection.Vertical, 0.22f, T(0.6f, PanelCatalog.Inspector), T(0.4f, PanelCatalog.Layers))),
+                    T(0.56f, PanelCatalog.Map, PanelCatalog.World, PanelCatalog.Game),
+                    S(SplitDirection.Vertical, 0.22f, T(0.6f, PanelCatalog.Inspector, PanelCatalog.Encounters), T(0.4f, PanelCatalog.Layers))),
                 T(0.2f, PanelCatalog.Messages, PanelCatalog.Assets)));
 
         /// <summary>El mapa lo más grande posible, con una columna estrecha de herramientas.</summary>
         public static DockLayout BigMap() => new DockLayout("Mapa grande",
             S(SplitDirection.Horizontal, 1f,
                 T(0.18f, PanelCatalog.Palette, PanelCatalog.MapTree, PanelCatalog.Layers, PanelCatalog.Inspector),
-                T(0.82f, PanelCatalog.Map, PanelCatalog.Game)));
+                T(0.82f, PanelCatalog.Map, PanelCatalog.World, PanelCatalog.Game)));
 
         /// <summary>Para retocar gráficos: recursos, editor de píxeles y la paleta de tiles para ver el resultado.</summary>
         public static DockLayout Art() => new DockLayout("Arte",
@@ -352,6 +356,13 @@ namespace CTEditor.Workspace
                 T(0.55f, PanelCatalog.Events),
                 S(SplitDirection.Vertical, 0.25f, T(0.65f, PanelCatalog.Inspector), T(0.35f, PanelCatalog.Messages))));
 
-        public static IReadOnlyList<Func<DockLayout>> Presets { get; } = new Func<DockLayout>[] { Classic, BigMap, Art, Story };
+        /// <summary>Para organizar la región: el mundo grande, el tramo abierto y sus encuentros.</summary>
+        public static DockLayout WorldBuilding() => new DockLayout("Mundo y encuentros",
+            S(SplitDirection.Horizontal, 1f,
+                T(0.18f, PanelCatalog.MapTree, PanelCatalog.Palette),
+                S(SplitDirection.Vertical, 0.52f, T(0.55f, PanelCatalog.World), T(0.45f, PanelCatalog.Map)),
+                T(0.30f, PanelCatalog.Encounters, PanelCatalog.Inspector)));
+
+        public static IReadOnlyList<Func<DockLayout>> Presets { get; } = new Func<DockLayout>[] { Classic, BigMap, Art, Story, WorldBuilding };
     }
 }

@@ -33,6 +33,7 @@ namespace CTEditor.App
                 S.MapOpened += Refresh;
                 S.StructureChanged += Refresh;
                 S.PlayerStartChanged += Refresh;
+                S.WorldChanged += Refresh;
                 _shell.AssetsChanged += Refresh;
                 Refresh();
             });
@@ -42,6 +43,7 @@ namespace CTEditor.App
                 S.MapOpened -= Refresh;
                 S.StructureChanged -= Refresh;
                 S.PlayerStartChanged -= Refresh;
+                S.WorldChanged -= Refresh;
                 _shell.AssetsChanged -= Refresh;
             });
         }
@@ -91,19 +93,68 @@ namespace CTEditor.App
             body.Add(size);
             body.Add(Ui.Separator());
 
-            var ts = Section("Tileset");
+            // The section: kind, category and its place in the continuous world.
+            var sec = Section("Tramo");
+            var kinds = Ui.Row(4);
+            kinds.With(Ui.Chip("Exterior", m.Kind == MapKind.Exterior, () => S.SetMapProperties(kind: MapKind.Exterior)),
+                Ui.Chip("Interior", m.Kind == MapKind.Interior, () => S.SetMapProperties(kind: MapKind.Interior)));
+            var cats = Ui.Row(4);
+            cats.style.flexWrap = Wrap.Wrap;
+            for (int i = 0; i < WorldPanel.CategoryNames.Length; i++)
+            {
+                var c = (SectionCategory)i;
+                cats.Add(Ui.Chip(WorldPanel.CategoryNames[i], m.Category == c, () => S.SetMapProperties(category: c)).Margin(0, 0, 4, 4));
+            }
+            sec.With(kinds, cats, Ui.Check("Sale en el mapa de la región", m.ShowOnRegionMap, v => S.SetMapProperties(showOnRegionMap: v)));
+            if (m.Kind == MapKind.Exterior)
+            {
+                if (m.InWorld)
+                {
+                    int wx = m.WorldX, wy = m.WorldY;
+                    var pos = Ui.Row(8);
+                    pos.With(Ui.NumberBox("Mundo X", wx, -100000, 100000, v => wx = v), Ui.NumberBox("Y", wy, -100000, 100000, v => wy = v));
+                    var acts = Ui.Row(6);
+                    acts.With(Ui.Button("Mover", () => S.MoveSection(m.Id, wx, wy), Ui.ButtonKind.Primary, "También se puede arrastrar en el panel Mundo"),
+                        Ui.Button("Quitar del mundo", () => S.RemoveFromWorld(m.Id), Ui.ButtonKind.Flat));
+                    sec.With(pos, acts);
+                }
+                else sec.Add(Ui.Button("Colocar en el mundo", () =>
+                {
+                    var (x, y) = S.World().FreeSpot(m.Width, m.Height);
+                    S.MoveSection(m.Id, x, y);
+                }, Ui.ButtonKind.Primary, "Luego se puede arrastrar en el panel Mundo"));
+            }
+            body.Add(sec);
+            body.Add(Ui.Separator());
+
+            // Tilesets of the map: the first is the main one; Tiles can add more (each cell remembers its tileset).
+            var ts = Section("Tilesets del mapa");
             var list = Ui.Column(4);
+            for (int i = 0; i < m.TilesetIds.Count; i++)
+            {
+                int slot = i;
+                var t = S.TilesetFor(m.TilesetIds[i]);
+                var row = Ui.Row(6);
+                row.With(Ui.Text((i == 0 ? "Principal: " : $"{i + 1}. ") + (t?.Name ?? m.TilesetIds[i] + " (no está: ¿se borró o no está cortado?)"))
+                    .Colored(t == null ? "aviso" : "texto").Grow());
+                if (i > 0 && i == m.TilesetIds.Count - 1) row.Add(Ui.Button("Quitar", () => S.RemoveTilesetFromMap(slot), Ui.ButtonKind.Flat, "Solo si ningún tile lo usa"));
+                list.Add(row);
+            }
             var available = S.AvailableTilesets();
             if (available.Count == 0) list.Add(Ui.Hint("No hay tilesets cortados. Corta una imagen de graficos/tilesets en Recursos."));
-            foreach (var t in available)
+            else
             {
-                var id = t;
-                var chip = Ui.Chip(Path.GetFileNameWithoutExtension(t), m.TilesetId == t, () => S.SetMapTileset(id), t);
-                chip.style.alignSelf = Align.FlexStart;
-                list.Add(chip);
+                list.Add(Ui.Text("Cambiar el principal:", 0.9f, dim: true));
+                var chips = Ui.Row(4);
+                chips.style.flexWrap = Wrap.Wrap;
+                foreach (var t in available)
+                {
+                    var id = t;
+                    chips.Add(Ui.Chip(S.TilesetFor(t)?.Name ?? t, m.TilesetId == t, () => S.SetMapTileset(id), t).Margin(0, 0, 4, 4));
+                }
+                list.Add(chips);
+                list.Add(Ui.Hint("Para usar varios tilesets a la vez, añádelos en el panel Tiles con «+ Tileset»."));
             }
-            if (!string.IsNullOrEmpty(m.TilesetId) && !available.Contains(m.TilesetId))
-                list.Add(Ui.Text($"El tileset «{m.TilesetId}» no está (¿se borró o no está cortado?).", wrap: true).Colored("aviso"));
             ts.Add(list);
             body.Add(ts);
             body.Add(Ui.Separator());
@@ -111,6 +162,8 @@ namespace CTEditor.App
             var props = Section("Ambiente");
             props.With(Ui.TextBox("Música", m.Music, v => S.SetMapProperties(music: v ?? ""), delayed: true),
                 Ui.Hint("Nombre del archivo en audio/musica (el sonido llegará con el motor del juego)."),
+                Ui.TextBox("Clima", m.Weather, v => S.SetMapProperties(weather: (v ?? "").Trim()), delayed: true),
+                Ui.Hint("Id del clima (lluvia, nieve...) de la base de datos; vacío = despejado."),
                 Ui.Check("Se puede usar la bici", m.Bicycle, v => S.SetMapProperties(bicycle: v)),
                 Ui.Check("Exterior (se puede volar; afecta a la hora del día)", m.Outdoor, v => S.SetMapProperties(outdoor: v)));
             body.Add(props);

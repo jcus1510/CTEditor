@@ -27,13 +27,13 @@ namespace CTEditor.World.Domain
         /// <summary>Tile en (x, y) repitiendo el sello desde (originX, originY) (para rellenar áreas).</summary>
         public int Tiled(int x, int y, int originX, int originY) => this[Mod(x - originX, Width), Mod(y - originY, Height)];
 
-        /// <summary>A rectangular block of a tileset (what the palette selects).</summary>
-        public static TileStamp FromTileset(Tileset ts, int column, int row, int width, int height)
+        /// <summary>A rectangular block of a tileset (what the palette selects), for the tileset in hueco 'slot' of the map.</summary>
+        public static TileStamp FromTileset(Tileset ts, int column, int row, int width, int height, int slot = 0)
         {
             var tiles = new int[width * height];
             for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
-                tiles[y * width + x] = (row + y) * ts.Columns + column + x;
+                tiles[y * width + x] = MapTile.Encode(slot, (row + y) * ts.Columns + column + x);
             return new TileStamp(width, height, tiles);
         }
 
@@ -119,6 +119,85 @@ namespace CTEditor.World.Domain
             return new TileStamp(w, h, tiles);
         }
 
+        // ── Automatic layers ───────────────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// La capa a la que va un tile con las capas automáticas: la del papel de su pieza (suelo, detalle, encima). Si el
+        /// mapa no tiene esa capa o está bloqueada, la de reserva (la activa).
+        /// </summary>
+        public static int AutoLayerOf(MapDefinition map, MapTilesets tilesets, int cell, int fallback)
+        {
+            var role = tilesets.PieceOf(cell) switch
+            {
+                TilePiece.Ground => LayerRole.Ground,
+                TilePiece.Detail => LayerRole.Detail,
+                _ => LayerRole.Above,
+            };
+            int i = map.LayerFor(role);
+            return i >= 0 && !map.Layers[i].Locked ? i : fallback;
+        }
+
+        /// <summary>Lápiz con capas automáticas: cada tile del sello va a su capa; -1 borra lo más alto de la casilla.</summary>
+        public static List<TileChange> PencilAuto(MapDefinition map, MapTilesets tilesets, int x, int y, TileStamp stamp, int fallback)
+        {
+            var list = new List<TileChange>();
+            for (int sy = 0; sy < stamp.Height; sy++)
+            for (int sx = 0; sx < stamp.Width; sx++)
+                AddAuto(list, map, tilesets, x + sx, y + sy, stamp[sx, sy], fallback);
+            return list;
+        }
+
+        public static List<TileChange> RectangleAuto(MapDefinition map, MapTilesets tilesets, int x0, int y0, int x1, int y1, TileStamp stamp, int fallback)
+        {
+            var list = new List<TileChange>();
+            int minX = Math.Min(x0, x1), maxX = Math.Max(x0, x1), minY = Math.Min(y0, y1), maxY = Math.Max(y0, y1);
+            for (int y = minY; y <= maxY; y++)
+            for (int x = minX; x <= maxX; x++)
+                AddAuto(list, map, tilesets, x, y, stamp.Tiled(x, y, minX, minY), fallback);
+            return list;
+        }
+
+        /// <summary>Relleno con capas automáticas: rellena en la capa del primer tile del sello.</summary>
+        public static List<TileChange> FillAuto(MapDefinition map, MapTilesets tilesets, int x, int y, TileStamp stamp, int fallback)
+        {
+            int first = stamp[0, 0];
+            int layer = first < 0 ? TopLayerAt(map, x, y, fallback) : AutoLayerOf(map, tilesets, first, fallback);
+            return Fill(map, layer, x, y, stamp);
+        }
+
+        /// <summary>The highest unlocked layer with something at (x, y) (fallback if the cell is empty).</summary>
+        public static int TopLayerAt(MapDefinition map, int x, int y, int fallback)
+        {
+            for (int i = map.Layers.Count - 1; i >= 0; i--)
+                if (!map.Layers[i].Locked && map.Layers[i].Get(x, y) >= 0) return i;
+            return fallback;
+        }
+
+        private static void AddAuto(List<TileChange> list, MapDefinition map, MapTilesets tilesets, int x, int y, int cell, int fallback)
+        {
+            if (!map.Contains(x, y)) return;
+            int layer = cell < 0 ? TopLayerAt(map, x, y, -1) : AutoLayerOf(map, tilesets, cell, fallback);
+            if (layer < 0 || layer >= map.Layers.Count || map.Layers[layer].Locked) return;
+            Add(list, map.Layers[layer], layer, x, y, cell);
+        }
+
+        // ── Selection: copy, paste, delete ────────────────────────────────────────────────────────
+
+        /// <summary>Borra todas las capas (no bloqueadas) dentro del rectángulo.</summary>
+        public static List<TileChange> Clear(MapDefinition map, int x0, int y0, int x1, int y1)
+        {
+            var list = new List<TileChange>();
+            int minX = Math.Min(x0, x1), maxX = Math.Max(x0, x1), minY = Math.Min(y0, y1), maxY = Math.Max(y0, y1);
+            for (int i = 0; i < map.Layers.Count; i++)
+            {
+                if (map.Layers[i].Locked) continue;
+                for (int y = minY; y <= maxY; y++)
+                for (int x = minX; x <= maxX; x++)
+                    Add(list, map.Layers[i], i, x, y, MapLayer.Empty);
+            }
+            return list;
+        }
+
         private static void Add(List<TileChange> list, MapLayer l, int layer, int x, int y, int tile)
         {
             if (!l.Contains(x, y)) return;
@@ -189,29 +268,45 @@ namespace CTEditor.World.Domain
     public sealed class MapSnapshot
     {
         private readonly List<MapLayer> _layers;
-        private readonly int _width, _height;
-        private readonly string _name, _tileset, _music;
-        private readonly bool _bicycle, _outdoor;
+        private readonly List<string> _tilesets;
+        private readonly List<MapObject> _objects;
+        private readonly List<EncounterArea> _encounters;
+        private readonly int _width, _height, _worldX, _worldY;
+        private readonly string _name, _music, _weather;
+        private readonly bool _bicycle, _outdoor, _inWorld, _onRegionMap;
+        private readonly MapKind _kind;
+        private readonly SectionCategory _category;
 
         public MapSnapshot(MapDefinition map)
         {
             _layers = map.Layers.Select(l => l.Clone()).ToList();
-            (_width, _height, _name, _tileset, _music, _bicycle, _outdoor) = (map.Width, map.Height, map.Name, map.TilesetId, map.Music, map.Bicycle, map.Outdoor);
+            _tilesets = map.TilesetIds.ToList();
+            _objects = map.Objects.Select(o => o.Clone()).ToList();
+            _encounters = map.Encounters.Select(a => a.Clone()).ToList();
+            (_width, _height, _name, _music, _bicycle, _outdoor) = (map.Width, map.Height, map.Name, map.Music, map.Bicycle, map.Outdoor);
+            (_worldX, _worldY, _inWorld, _onRegionMap, _kind, _category, _weather) = (map.WorldX, map.WorldY, map.InWorld, map.ShowOnRegionMap, map.Kind, map.Category, map.Weather);
         }
 
         public void RestoreInto(MapDefinition map)
         {
             if (map.Width != _width || map.Height != _height)
             {
-                // Resize with no layers so the size changes, then put the saved layers back.
-                var keep = new List<MapLayer>(map.Layers);
+                // Resize an empty copy of the lists so only the size changes (the saved lists are put back below).
                 map.Layers.Clear();
+                map.Objects.Clear();
+                map.Encounters.Clear();
                 map.Resize(_width, _height);
-                map.Layers.AddRange(keep);
             }
             map.Layers.Clear();
             map.Layers.AddRange(_layers.Select(l => l.Clone()));
-            (map.Name, map.TilesetId, map.Music, map.Bicycle, map.Outdoor) = (_name, _tileset, _music, _bicycle, _outdoor);
+            map.TilesetIds.Clear();
+            map.TilesetIds.AddRange(_tilesets);
+            map.Objects.Clear();
+            map.Objects.AddRange(_objects.Select(o => o.Clone()));
+            map.Encounters.Clear();
+            map.Encounters.AddRange(_encounters.Select(a => a.Clone()));
+            (map.Name, map.Music, map.Bicycle, map.Outdoor) = (_name, _music, _bicycle, _outdoor);
+            (map.WorldX, map.WorldY, map.InWorld, map.ShowOnRegionMap, map.Kind, map.Category, map.Weather) = (_worldX, _worldY, _inWorld, _onRegionMap, _kind, _category, _weather);
         }
     }
 
@@ -259,6 +354,93 @@ namespace CTEditor.World.Domain
         public void Undo() { foreach (var c in _changes) _attributes.Set(c.tile, c.before); }
 
         private static bool Same(TileProperties a, TileProperties b) =>
-            a.Blocked == b.Blocked && a.Priority == b.Priority && a.TerrainTag == b.TerrainTag && a.Bush == b.Bush && a.Counter == b.Counter;
+            a.Blocked == b.Blocked && a.Priority == b.Priority && a.TerrainTag == b.TerrainTag && a.Bush == b.Bush && a.Counter == b.Counter && a.Piece == b.Piece;
+    }
+}
+
+namespace CTEditor.World.Domain
+{
+    /// <summary>
+    /// Un trozo de mapa copiado con TODAS sus capas (Ctrl+C). Al pegar se ponen solo las casillas que tenían algo, capa
+    /// por capa (las vacías no borran lo de debajo). Los tiles se traducen si el mapa de destino tiene sus tilesets en
+    /// otros huecos.
+    /// </summary>
+    public sealed class MapClipboard
+    {
+        public int Width { get; }
+        public int Height { get; }
+        /// <summary>Por capa (por índice): las casillas, fila a fila.</summary>
+        public IReadOnlyList<int[]> Layers { get; }
+        public IReadOnlyList<LayerRole> Roles { get; }
+        /// <summary>Tilesets del mapa de origen por hueco.</summary>
+        public IReadOnlyList<string> TilesetIds { get; }
+
+        private MapClipboard(int w, int h, List<int[]> layers, List<LayerRole> roles, List<string> tilesets)
+        {
+            Width = w; Height = h; Layers = layers; Roles = roles; TilesetIds = tilesets;
+        }
+
+        public static MapClipboard Copy(MapDefinition map, int x0, int y0, int x1, int y1)
+        {
+            int minX = Math.Max(0, Math.Min(x0, x1)), maxX = Math.Min(map.Width - 1, Math.Max(x0, x1));
+            int minY = Math.Max(0, Math.Min(y0, y1)), maxY = Math.Min(map.Height - 1, Math.Max(y0, y1));
+            int w = Math.Max(1, maxX - minX + 1), h = Math.Max(1, maxY - minY + 1);
+            var layers = new List<int[]>();
+            foreach (var l in map.Layers)
+            {
+                var a = new int[w * h];
+                for (int y = 0; y < h; y++) for (int x = 0; x < w; x++) a[y * w + x] = l.Get(minX + x, minY + y);
+                layers.Add(a);
+            }
+            return new MapClipboard(w, h, layers, map.Layers.Select(l => l.Role).ToList(), map.TilesetIds.ToList());
+        }
+
+        /// <summary>
+        /// Los cambios de pegar con la esquina en (x, y). Cada capa copiada va a la capa del mismo papel en el destino (o
+        /// a la misma posición si no hay papeles). Añade al mapa los tilesets que falten (antes de calcular los cambios).
+        /// </summary>
+        public List<TileChange> PasteChanges(MapDefinition map, int x, int y)
+        {
+            var slotMap = TilesetIds.Select(id => string.IsNullOrEmpty(id) ? 0 : map.SlotOf(id)).ToArray();
+            var list = new List<TileChange>();
+            for (int li = 0; li < Layers.Count; li++)
+            {
+                int target = Roles[li] != LayerRole.Custom ? map.LayerFor(Roles[li]) : -1;
+                if (target < 0) target = li < map.Layers.Count ? li : map.Layers.Count - 1;
+                if (target < 0 || map.Layers[target].Locked) continue;
+                var layer = map.Layers[target];
+                for (int yy = 0; yy < Height; yy++)
+                for (int xx = 0; xx < Width; xx++)
+                {
+                    int cell = Layers[li][yy * Width + xx];
+                    if (cell < 0 || !layer.Contains(x + xx, y + yy)) continue;
+                    int slot = MapTile.Slot(cell);
+                    int translated = slot < slotMap.Length && slotMap[slot] >= 0 ? MapTile.Encode(slotMap[slot], MapTile.Index(cell)) : cell;
+                    int before = layer.Get(x + xx, y + yy);
+                    if (before != translated) list.Add(new TileChange(target, x + xx, y + yy, before, translated));
+                }
+            }
+            return list;
+        }
+    }
+
+    /// <summary>Pintar o borrar casillas de una zona de encuentros (deshacible).</summary>
+    public sealed class EncounterPaintCommand : IEditCommand
+    {
+        private readonly EncounterArea _area;
+        private readonly List<(int x, int y)> _added, _removed;
+        public string Label { get; }
+
+        public EncounterPaintCommand(EncounterArea area, IEnumerable<(int x, int y)> added, IEnumerable<(int x, int y)> removed)
+        {
+            _area = area;
+            _added = added.ToList();
+            _removed = removed.ToList();
+            Label = "zona «" + area.Name + "»";
+        }
+
+        public bool IsEmpty => _added.Count == 0 && _removed.Count == 0;
+        public void Do() { foreach (var c in _added) _area.Paint(c.x, c.y); foreach (var c in _removed) _area.Erase(c.x, c.y); }
+        public void Undo() { foreach (var c in _added) _area.Erase(c.x, c.y); foreach (var c in _removed) _area.Paint(c.x, c.y); }
     }
 }
