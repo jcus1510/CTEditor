@@ -375,30 +375,68 @@ namespace CTEditor.Project
     /// <summary>Las especies del proyecto, leídas de «datos/especies.csv» (columnas id y nombre; las de los packs sirven).</summary>
     public sealed class CsvSpeciesDirectory : ISpeciesDirectory
     {
-        private readonly string _path;
+        private readonly string _path, _types, _eggs;
         private DateTime _stamp;
-        private List<(string id, string name)> _cache;
+        private List<SpeciesEntry> _cache;
 
-        public CsvSpeciesDirectory(string projectRoot) { _path = Path.Combine(projectRoot, ProjectLayout.DataFolder, "especies.csv"); }
-
-        public IReadOnlyList<(string id, string name)> All()
+        public CsvSpeciesDirectory(string projectRoot)
         {
-            if (!File.Exists(_path)) return new (string, string)[0];
+            var data = Path.Combine(projectRoot, ProjectLayout.DataFolder);
+            _path = Path.Combine(data, "especies.csv");
+            _types = Path.Combine(data, "tipos.csv");
+            _eggs = Path.Combine(data, "grupos_huevo.csv");
+        }
+
+        public IReadOnlyList<(string id, string name)> All() => Entries().Select(e => (e.Id, e.Name)).ToList();
+
+        /// <summary>Reads «especies.csv» (id, nombre, numero, tipos «a|b», grupos_huevo, forma_de, legendario).</summary>
+        public IReadOnlyList<SpeciesEntry> Entries()
+        {
+            if (!File.Exists(_path)) return new SpeciesEntry[0];
             var stamp = File.GetLastWriteTimeUtc(_path);
             if (_cache != null && stamp == _stamp) return _cache;
             var rows = Csv.Read(File.ReadAllText(_path));
-            var list = new List<(string, string)>();
+            var list = new List<SpeciesEntry>();
             if (rows.Count > 0)
             {
-                int id = rows[0].FindIndex(h => h.Trim().Equals("id", StringComparison.OrdinalIgnoreCase));
-                int name = rows[0].FindIndex(h => h.Trim().Equals("nombre", StringComparison.OrdinalIgnoreCase));
+                int Col(string n) => rows[0].FindIndex(h => h.Trim().Equals(n, StringComparison.OrdinalIgnoreCase));
+                int id = Col("id"), name = Col("nombre"), num = Col("numero"), types = Col("tipos"), eggs = Col("grupos_huevo"),
+                    formOf = Col("forma_de"), legend = Col("legendario");
+                string Cell(List<string> r, int i) => i >= 0 && r.Count > i ? r[i].Trim() : "";
+                string[] Split(string v) => v.Split(new[] { '|', ',' }, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
                 if (id >= 0)
                     foreach (var r in rows.Skip(1))
-                        if (r.Count > id && r[id].Trim().Length > 0)
-                            list.Add((r[id].Trim(), name >= 0 && r.Count > name && r[name].Trim().Length > 0 ? r[name].Trim() : r[id].Trim()));
+                    {
+                        var sid = Cell(r, id);
+                        if (sid.Length == 0) continue;
+                        int.TryParse(Cell(r, num), out int number);
+                        var l = Cell(r, legend).ToLowerInvariant();
+                        list.Add(new SpeciesEntry(sid, Cell(r, name).Length > 0 ? Cell(r, name) : sid, number, Split(Cell(r, types)), Split(Cell(r, eggs)),
+                            Cell(r, formOf), l == "si" || l == "sí" || l == "true" || l == "1" || l == "legendario" || l == "singular" || l == "mitico" || l == "mítico"));
+                    }
             }
             _stamp = stamp;
             return _cache = list;
+        }
+
+        public IReadOnlyDictionary<string, (string name, string color)> Types() => Labels(_types);
+        public IReadOnlyDictionary<string, (string name, string color)> EggGroups() => Labels(_eggs);
+
+        /// <summary>id;nombre;color[;...] → id → (nombre, color). Empty if the file is not there.</summary>
+        private static IReadOnlyDictionary<string, (string name, string color)> Labels(string path)
+        {
+            var map = new Dictionary<string, (string, string)>(StringComparer.OrdinalIgnoreCase);
+            if (!File.Exists(path)) return map;
+            var rows = Csv.Read(File.ReadAllText(path));
+            if (rows.Count == 0) return map;
+            int id = rows[0].FindIndex(h => h.Trim().Equals("id", StringComparison.OrdinalIgnoreCase));
+            int name = rows[0].FindIndex(h => h.Trim().Equals("nombre", StringComparison.OrdinalIgnoreCase));
+            int color = rows[0].FindIndex(h => h.Trim().Equals("color", StringComparison.OrdinalIgnoreCase));
+            if (id < 0) return map;
+            foreach (var r in rows.Skip(1))
+                if (r.Count > id && r[id].Trim().Length > 0)
+                    map[r[id].Trim()] = (name >= 0 && r.Count > name ? r[name].Trim() : r[id].Trim(), color >= 0 && r.Count > color ? r[color].Trim() : "");
+            return map;
         }
     }
 

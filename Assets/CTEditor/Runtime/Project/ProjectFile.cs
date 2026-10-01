@@ -42,6 +42,9 @@ namespace CTEditor.Project
         public int StartY { get; set; }
         /// <summary>Hoja de personaje del jugador (ruta relativa de su imagen; vacío = la primera que haya).</summary>
         public string PlayerCharacter { get; set; } = "";
+        /// <summary>Variocolor en TODO el juego: 1 entre N (4096 desde la 6.ª gen.; 8192 antes). Cada especie de un encuentro puede tener la suya.</summary>
+        public int ShinyOdds { get; set; } = DefaultShinyOdds;
+        public const int DefaultShinyOdds = 4096;
         public int Format { get; set; } = CurrentFormat;
 
         /// <summary>Errores que impiden usar estos ajustes (vacío = bien).</summary>
@@ -64,7 +67,8 @@ namespace CTEditor.Project
             .Set("mapa_inicial", StartMap)
             .Set("inicio_x", StartX)
             .Set("inicio_y", StartY)
-            .Set("personaje_jugador", PlayerCharacter);
+            .Set("personaje_jugador", PlayerCharacter)
+            .Set("variocolor", ShinyOdds);
 
         public static ProjectSettings FromJson(JsonObject o) => new ProjectSettings
         {
@@ -77,6 +81,7 @@ namespace CTEditor.Project
             StartX = o.GetInt("inicio_x"),
             StartY = o.GetInt("inicio_y"),
             PlayerCharacter = o.GetString("personaje_jugador", ""),
+            ShinyOdds = Math.Max(1, o.GetInt("variocolor", DefaultShinyOdds)),
         };
     }
 

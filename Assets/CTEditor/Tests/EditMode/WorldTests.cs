@@ -170,6 +170,45 @@ namespace CTEditor.Tests.EditMode
         }
 
         [Test]
+        public void The_species_picker_sorts_by_pokedex_and_filters_by_types_egg_groups_and_forms()
+        {
+            var root = Path.Combine(Path.GetTempPath(), "ct_especies_" + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(Path.Combine(root, "datos"));
+            try
+            {
+                File.WriteAllText(Path.Combine(root, "datos", "especies.csv"),
+                    "id;nombre;tipos;numero;grupos_huevo;forma_de;legendario\n" +
+                    "raichu_alola;Raichu de Alola;electric|psychic;26;field|fairy;raichu;no\n" +
+                    "pikachu;Pikachu;electric;25;field|fairy;;no\n" +
+                    "raichu;Raichu;electric;26;field|fairy;;no\n" +
+                    "bulbasaur;Bulbasaur;grass|poison;1;monster|grass;;no\n" +
+                    "mewtwo;Mewtwo;psychic;150;undiscovered;;si\n");
+                File.WriteAllText(Path.Combine(root, "datos", "tipos.csv"), "id;nombre;color\nelectric;Eléctrico;F7D02C\n");
+                var dir = new CsvSpeciesDirectory(root);
+                var all = dir.Entries();
+                Assert.AreEqual(5, all.Count);
+                Assert.AreEqual(("Eléctrico", "F7D02C"), dir.Types()["electric"]);
+
+                var f = new SpeciesFilter();
+                CollectionAssert.AreEqual(new[] { "bulbasaur", "pikachu", "raichu", "raichu_alola", "mewtwo" }, f.Apply(all).Select(s => s.Id).ToArray(),
+                    "Pokédex order, forms right after their species");
+                f.Types.Add("electric");
+                Assert.AreEqual(3, f.Apply(all).Count);
+                f.ExactTypes = true;
+                CollectionAssert.AreEqual(new[] { "pikachu", "raichu" }, f.Apply(all).Select(s => s.Id).ToArray(), "exactly electric");
+                f = new SpeciesFilter { Forms = 2 };
+                Assert.AreEqual("raichu_alola", f.Apply(all).Single().Id);
+                f = new SpeciesFilter { EggGroup = "monster" };
+                Assert.AreEqual("bulbasaur", f.Apply(all).Single().Id);
+                f = new SpeciesFilter { OnlyLegendary = true, Generation = 1 };
+                Assert.AreEqual("mewtwo", f.Apply(all).Single().Id);
+                f = new SpeciesFilter { Text = "#25" };
+                Assert.AreEqual("pikachu", f.Apply(all).Single().Id);
+            }
+            finally { Directory.Delete(root, true); }
+        }
+
+        [Test]
         public void Encounters_follow_the_original_games()
         {
             var map = new MapDefinition("ruta1", "Ruta 1", 10, 10);

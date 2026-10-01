@@ -115,4 +115,9 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   miniatura, niveles y peso en cajas pequeñas (rueda del ratón), % real con barra y pasos de media para encontrarlo,
   horas con iconos (amanecer, sol, atardecer, luna), menú «⋯» (condición explicada, forma, objeto equipado,
   variocolor, subir/bajar, duplicar, quitar) y combates dobles por método.
+- **Encuentros, ronda 2**: columnas alineadas con anchos compartidos; % con barra corta y pasos debajo; horas de
+  vista con iconos; color de zona con selector de degradado (`ColorPicker`); sin aviso de «dejar de pintar» (el icono
+  de pintar alterna); variocolor global en Proyecto → Ajustes del juego; selector de especies con todas, en orden de
+  Pokédex y con filtros (tipos exactos, grupo huevo, generación, formas, legendarios: `SpeciesFilter`); botón «i» de
+  ayuda en las ventanas (`PanelHelp`).
 - **Documentación** completa por capítulos (esta carpeta).

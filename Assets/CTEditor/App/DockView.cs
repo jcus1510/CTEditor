@@ -157,6 +157,15 @@ namespace CTEditor.App
             header.style.overflow = Overflow.Hidden;
             for (int i = 0; i < tabs.Panels.Count; i++) header.Add(Tab(tabs, i));
             header.Add(Ui.Spacer());
+            // «i»: what the active window is for and how to use it.
+            var activeId = tabs.ActivePanel;
+            if (PanelHelp.Has(activeId))
+            {
+                var help = Ui.IconButton("info", () => PanelHelp.Show(_shell, activeId), "Qué es esta ventana y cómo se usa", false, Mathf.Round(Ui.FontSize * 0.95f));
+                help.style.height = Ui.FontSize + 8; help.style.minHeight = Ui.FontSize + 8; help.style.width = 24;
+                help.style.opacity = 0.7f;
+                header.Add(help);
+            }
             var add = Ui.IconButton("mas", null, "Abrir una ventana aquí");
             add.clicked += () => ShowAddMenu(tabs, add);
             add.style.height = Ui.FontSize + 8;

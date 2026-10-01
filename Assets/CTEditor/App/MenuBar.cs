@@ -89,6 +89,7 @@ namespace CTEditor.App
                 new MenuItem("Hacer una copia de seguridad", () => _shell.RunAction("copia"), Keys("copia")),
                 new MenuItem("Historial de versiones…", () => _shell.RunAction("historial"), Keys("historial")),
                 new MenuItem("Abrir la carpeta del proyecto", () => Application.OpenURL("file://" + _shell.ProjectRoot)),
+                new MenuItem("Ajustes del juego…", _shell.GameSettingsDialog),
                 new MenuItem("Copiar datos de un pack…", _shell.PackDialog),
                 new MenuItem("Mapa de la región…", () => RegionMapDialog.Show(_shell)),
                 MenuItem.Separator,

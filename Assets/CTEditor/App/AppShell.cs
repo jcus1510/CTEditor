@@ -480,6 +480,42 @@ namespace CTEditor.App
             catch (Exception e) { Error("No se pudo restaurar: " + e.Message); }
         }
 
+        /// <summary>
+        /// Settings that apply to the WHOLE game (not to one map): today the shiny odds; each encounter species can still
+        /// have its own. Saved in proyecto.json.
+        /// </summary>
+        public void GameSettingsDialog()
+        {
+            if (!HasProject) return;
+            var d = ShowDialog("Ajustes del juego", 44);
+            int shiny = Project.ShinyOdds;
+            var presets = Ui.Row(0).Wrap();
+            void Presets()
+            {
+                presets.Clear();
+                foreach (var (n, label) in new[] { (8192, "1/8192 (gen. 2-5)"), (4096, "1/4096 (gen. 6 en adelante)"), (512, "1/512 (con amuleto, aprox.)") })
+                {
+                    int v = n;
+                    presets.Add(Ui.Chip(label, shiny == v, () => { shiny = v; Presets(); }).Margin(0, 2, 4, 2));
+                }
+            }
+            Presets();
+            var custom = Ui.NumberBox("1 de cada", shiny, 1, 1000000, v => { shiny = v; Presets(); });
+            d.Body.With(Ui.Heading("Variocolor"),
+                Ui.Hint("Cada Pokémon salvaje tiene esta probabilidad de salir variocolor. Una especie de una tabla de encuentros puede tener la suya propia (menú «⋯» → Variocolor propio); si no, usa esta."),
+                presets, custom,
+                Ui.Separator(),
+                Ui.Text($"Tile: {Project.TileSize} px · pantalla {Project.ScreenWidth} × {Project.ScreenHeight} (se eligen al crear el proyecto)", 0.85f, dim: true));
+            d.Buttons.With(Ui.Button("Cancelar", () => CloseDialog(d)), Ui.Button("Guardar", () =>
+            {
+                Project.ShinyOdds = Math.Max(1, shiny);
+                try { ProjectFile.Save(ProjectRoot, Project); Success("Ajustes del juego guardados."); }
+                catch (Exception e) { Error("No se pudo guardar: " + e.Message); }
+                CloseDialog(d);
+                ProjectChanged?.Invoke();
+            }, Ui.ButtonKind.Primary));
+        }
+
         /// <summary>The list of copies: when, why and how big; restore or open the folder.</summary>
         public void HistoryDialog()
         {

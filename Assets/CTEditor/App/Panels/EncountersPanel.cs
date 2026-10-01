@@ -106,18 +106,7 @@ namespace CTEditor.App
             foreach (var area in m.Encounters) list.Add(AreaRow(area));
             body.Add(list);
 
-            // Painting banner, with a clear way out.
             var activeArea = S.ActiveArea;
-            if (activeArea != null && S.Tool == MapTool.EncounterPaint)
-            {
-                var banner = Ui.Row(6).Pad(8, 6).Round(4);
-                banner.style.backgroundColor = Ui.WithAlpha(Ui.C("acento"), 0.18f);
-                banner.Border(1, "acento", 4);
-                banner.With(Ui.Text($"Pintando «{activeArea.Name}» en el mapa · clic derecho quita casillas", 0.88f, wrap: true).Grow(),
-                    Ui.Button("Dejar de pintar", () => S.StopAreaPainting(), Ui.ButtonKind.Primary, "Vuelve al lápiz (también con Esc o B)"));
-                body.Add(banner);
-            }
-
             if (activeArea != null) Detail(body, activeArea);
         }
 
@@ -128,8 +117,14 @@ namespace CTEditor.App
             var row = Ui.Row(6).Pad(6, 3).Round(4);
             if (active) row.style.backgroundColor = Ui.C("seleccion");
             ColorUtility.TryParseHtmlString(area.Color, out var color);
-            var sw = Ui.Swatch(color, 14);
-            sw.pickingMode = PickingMode.Ignore;
+            var sw = Ui.Swatch(color, 16);
+            sw.tooltip = "Cambiar el color de la zona";
+            sw.RegisterCallback<PointerUpEvent>(e =>
+            {
+                if (e.button != 0) return;
+                e.StopPropagation();
+                ColorPicker.Show(_shell, "Color de «" + area.Name + "»", color, c => S.SetAreaColor(area.Id, "#" + ColorUtility.ToHtmlStringRGB(c)));
+            });
             var names = Ui.Column(0).Grow();
             names.pickingMode = PickingMode.Ignore;
             var n = Ui.Text(area.Name, 0.95f, bold: active); n.pickingMode = PickingMode.Ignore;
@@ -230,23 +225,16 @@ namespace CTEditor.App
             explain.Margin(12, 0, 12, 8);
             box.Add(explain);
 
-            // Which hour the % are for.
-            var hours = Ui.Row(0).Wrap().Pad(12, 4);
-            hours.Add(Ui.Text("Ver % de:", 0.82f, dim: true).Margin(0, 0, 8, 0));
-            void HourChip(string text, string icon, bool on, Action a, string tip)
-            {
-                var c = Ui.Chip(text, on, a, tip);
-                c.style.fontSize = Mathf.Round(Ui.FontSize * 0.82f);
-                c.style.height = Ui.ControlHeight - 8; c.style.minHeight = Ui.ControlHeight - 8;
-                c.style.paddingLeft = 8; c.style.paddingRight = 8;
-                hours.Add(c.Margin(0, 2, 4, 2));
-            }
-            HourChip("Todas las horas", null, _viewTime == null, () => { _viewTime = null; Refresh(); }, "Según los pesos, sin mirar la hora");
+            // Which hour the % are for: icons (all day, morning, day, evening, night).
+            var hours = Ui.Row(2).Pad(12, 4);
+            hours.Add(Ui.Text("Ver % de:", 0.82f, dim: true).Margin(0, 0, 6, 0));
+            hours.Add(Ui.IconButton("reloj", () => { _viewTime = null; Refresh(); }, "Todas las horas (según los pesos)", _viewTime == null));
             foreach (var (t, label, _) in Times)
             {
                 var tt = t;
-                HourChip(label, null, _viewTime == t, () => { _viewTime = tt; Refresh(); }, "Lo que sale por la " + label.ToLowerInvariant());
+                hours.Add(Ui.IconButton(TimeIcon(t), () => { _viewTime = tt; Refresh(); }, "Lo que sale por la " + label.ToLowerInvariant(), _viewTime == t));
             }
+            hours.Add(Ui.Text(_viewTime == null ? "todas las horas" : Times.First(x => x.time == _viewTime).label.ToLowerInvariant(), 0.82f, dim: true).Margin(6, 0, 0, 0));
             box.Add(hours);
 
             // The species table.
@@ -254,7 +242,9 @@ namespace CTEditor.App
             var head = Ui.Row(10).Pad(12, 6);
             head.style.borderTopWidth = 1; head.style.borderTopColor = Ui.C("borde");
             head.style.borderBottomWidth = 1; head.style.borderBottomColor = Ui.C("borde");
-            head.With(Col("Especie", 0, true), Col("Nivel", 104), Col("Peso", 52), Col("Sale", 120), Col("Horas", 104), Col("", Ui.ControlHeight));
+            var species = Col("Especie", 0, true);
+            species.style.minWidth = SpeciesMin;
+            head.With(species, Col("Nivel", LevelW), Col("Peso", WeightW), Col("Sale", OddsW), Col("Horas", HoursW), Col("", MenuW));
             box.Add(head);
             for (int i = 0; i < table.Slots.Count; i++) box.Add(SlotRow(area, table, i, chances, rate, i % 2 == 1));
             if (table.Slots.Count == 0)
@@ -268,6 +258,11 @@ namespace CTEditor.App
             box.Add(foot);
             return box;
         }
+
+        // Column widths shared by the header and the rows (so they line up).
+        private const float SpeciesMin = 130, LevelW = 92, WeightW = 44, OddsW = 78, HoursW = 94, MenuW = 26;
+
+        private static string TimeIcon(TimeOfDay t) => t == TimeOfDay.Morning ? "manana" : t == TimeOfDay.Day ? "dia" : t == TimeOfDay.Evening ? "tarde" : "noche";
 
         private static VisualElement Col(string text, float width, bool grow = false)
         {
@@ -291,7 +286,7 @@ namespace CTEditor.App
 
             // Species: picture + name (click = change) + a line with its extras.
             var who = Ui.Row(8).Grow();
-            who.style.minWidth = 150;
+            who.style.minWidth = SpeciesMin;
             who.Add(SpeciesPicture(slot.SpeciesId, 30));
             var names = Ui.Column(1).Grow();
             var name = Ui.Button(SpeciesName(slot.SpeciesId), () => PickSpecies(id => S.UpdateSlot(aid, mid, index, x => x.SpeciesId = id)), Ui.ButtonKind.Flat, "Cambiar la especie");
@@ -309,48 +304,51 @@ namespace CTEditor.App
             if (extras.Count > 0) names.Add(Ui.Text(string.Join(" · ", extras), 0.78f).Colored("acento"));
             who.Add(names);
 
-            var levels = Ui.Row(4).NoShrink();
-            levels.style.width = 104;
-            levels.With(Ui.MiniNumber(slot.MinLevel, 1, 100, v => S.UpdateSlot(aid, mid, index, x => { x.MinLevel = v; if (x.MaxLevel < v) x.MaxLevel = v; }), "Nivel mínimo (rueda del ratón o ↑ ↓)"),
+            var levels = Ui.Row(3).NoShrink();
+            levels.style.width = LevelW;
+            levels.With(Ui.MiniNumber(slot.MinLevel, 1, 100, v => S.UpdateSlot(aid, mid, index, x => { x.MinLevel = v; if (x.MaxLevel < v) x.MaxLevel = v; }), "Nivel mínimo (rueda del ratón o ↑ ↓)", 38),
                 Ui.Text("–", dim: true),
-                Ui.MiniNumber(slot.MaxLevel, 1, 100, v => S.UpdateSlot(aid, mid, index, x => { x.MaxLevel = v; if (x.MinLevel > v) x.MinLevel = v; }), "Nivel máximo"));
+                Ui.MiniNumber(slot.MaxLevel, 1, 100, v => S.UpdateSlot(aid, mid, index, x => { x.MaxLevel = v; if (x.MinLevel > v) x.MinLevel = v; }), "Nivel máximo", 38));
             var weightBox = Ui.Row(0).NoShrink();
-            weightBox.style.width = 52;
-            weightBox.Add(Ui.MiniNumber(slot.Weight, 0, 1000, v => S.UpdateSlot(aid, mid, index, x => x.Weight = v), "Peso: frecuencia relativa (con 20 y 10, la primera sale el doble)"));
+            weightBox.style.width = WeightW;
+            weightBox.Add(Ui.MiniNumber(slot.Weight, 0, 1000, v => S.UpdateSlot(aid, mid, index, x => x.Weight = v), "Peso: frecuencia relativa (con 20 y 10, la primera sale el doble)", 42));
 
             // The real %, a bar and the average steps to find it.
             bool shows = chances.TryGetValue(slot, out var p);
-            var odds = Ui.Column(3).NoShrink();
-            odds.style.width = 120;
-            var pctRow = Ui.Row(6);
-            var pct = Ui.Text(shows ? $"{p:0.#} %" : "no sale", 0.9f, bold: true).Colored(shows ? "exito" : "texto_suave");
-            pctRow.Add(pct);
+            // The % with a short bar next to it, and the steps on a second, small line.
+            var odds = Ui.Column(2).NoShrink();
+            odds.style.width = OddsW;
+            var pctRow = Ui.Row(5);
+            var pct = Ui.Text(shows ? $"{p:0.#} %" : "no sale", 0.88f, bold: true).Colored(shows ? "exito" : "texto_suave");
             double steps = EncounterTable.StepsToFind(rate, shows ? p : 0);
-            if (steps > 0) pctRow.Add(Ui.Text($"≈ {steps:0} pasos", 0.75f, dim: true));
             var bar = new VisualElement().Bg("panel_alt").Round(2);
             bar.style.height = 4;
+            bar.style.width = 28;
+            bar.style.flexShrink = 0;
+            pctRow.With(pct, bar);
+            odds.Add(pctRow);
+            if (steps > 0) odds.Add(Ui.Text($"≈ {steps:0} pasos", 0.72f, dim: true));
             var fill = new VisualElement().Bg(shows ? "exito" : "borde").Round(2);
             fill.style.height = Length.Percent(100);
             fill.style.width = Length.Percent(shows ? (float)Math.Max(2, p) : 0);
             bar.Add(fill);
-            odds.With(pctRow, bar);
             odds.tooltip = shows ? $"De cada 100 encuentros con este método, unos {p:0.#} son de esta especie. Hacen falta unos {steps:0} pasos de media para verla." : "Con la hora elegida (o su condición) no sale.";
 
             // Hours as small icons: lit = it shows up then. All four lit = always.
             var hours = Ui.Row(2).NoShrink();
-            hours.style.width = 104;
+            hours.style.width = HoursW;
             var current = slot.Times == TimeOfDay.Any ? TimeOfDay.AllDay : slot.Times;
             foreach (var (t, label, _) in Times)
             {
                 var tt = t;
                 bool on = (current & t) != 0;
-                var b = Ui.IconButton(t == TimeOfDay.Morning ? "manana" : t == TimeOfDay.Day ? "dia" : t == TimeOfDay.Evening ? "tarde" : "noche", () =>
+                var b = Ui.IconButton(TimeIcon(t), () =>
                 {
                     var next = current ^ tt;
                     if (next == 0) { _shell.Warn("Tiene que salir al menos a una hora."); return; }
                     S.UpdateSlot(aid, mid, index, x => x.Times = next == TimeOfDay.AllDay ? TimeOfDay.Any : next);
                 }, label + (on ? ": sale (clic para quitar)" : ": no sale (clic para añadir)"), false, Mathf.Round(Ui.IconSize * 0.95f));
-                b.style.width = 24; b.style.height = 24; b.style.minHeight = 24;
+                b.style.width = 22; b.style.height = 22; b.style.minHeight = 22;
                 var icon = b.Children().FirstOrDefault();
                 if (icon != null) icon.style.unityBackgroundImageTintColor = on ? Ui.C("aviso") : Ui.WithAlpha(Ui.C("texto_suave"), 0.35f);
                 hours.Add(b);
@@ -367,7 +365,8 @@ namespace CTEditor.App
                         v => { if (int.TryParse(v, out int f)) S.UpdateSlot(aid, mid, index, x => x.Form = Math.Max(0, f)); })),
                     new MenuItem("Objeto equipado…", () => _shell.Prompt("Objeto equipado", "Id del objeto (vacío = ninguno)", slot.HeldItem, "Guardar",
                         v => S.UpdateSlot(aid, mid, index, x => x.HeldItem = (v ?? "").Trim()))),
-                    new MenuItem("Variocolor…", () => _shell.Prompt("Variocolor", "1 de cada… (0 = lo normal del juego)", slot.ShinyOdds.ToString(), "Guardar",
+                    new MenuItem(slot.ShinyOdds > 0 ? $"Variocolor propio: 1/{slot.ShinyOdds}…" : $"Variocolor propio (el del juego: 1/{_shell.Project?.ShinyOdds ?? 4096})…",
+                        () => _shell.Prompt("Variocolor propio de esta especie", "1 de cada… (0 = el del juego, en Proyecto → Ajustes del juego)", slot.ShinyOdds.ToString(), "Guardar",
                         v => { if (int.TryParse(v, out int o)) S.UpdateSlot(aid, mid, index, x => x.ShinyOdds = Math.Max(0, o)); })),
                     MenuItem.Separator,
                     new MenuItem("Subir", () => S.MoveSlot(aid, mid, index, -1), enabled: index > 0),
@@ -376,6 +375,7 @@ namespace CTEditor.App
                     new MenuItem("Quitar", () => S.RemoveSlot(aid, mid, index)),
                 });
             }, "Más: condición, forma, objeto, variocolor, ordenar, duplicar, quitar");
+            more.style.width = MenuW;
 
             row.With(who, levels, weightBox, odds, hours, more);
             return row;
@@ -435,38 +435,175 @@ namespace CTEditor.App
             return found.id == null ? id + " (?)" : found.name;
         }
 
-        /// <summary>A searchable list of the project's species.</summary>
+        /// <summary>
+        /// The species picker: every species of the project in Pokédex order (a virtual list: all of them, fast), with
+        /// search (name, id or «#25») and filters: up to two types (exact or not), egg group, generation, alternate forms
+        /// and legendaries. Double click or Intro picks.
+        /// </summary>
         private void PickSpecies(Action<string> picked)
         {
-            var all = S.Species?.All() ?? new (string, string)[0];
-            var d = _shell.ShowDialog("Elegir especie", 40, 70);
-            var list = Ui.Scroll().Grow();
-            void Fill(string filter)
+            var all = S.Species?.Entries() ?? new SpeciesEntry[0];
+            var types = S.Species?.Types() ?? new Dictionary<string, (string name, string color)>();
+            var eggs = S.Species?.EggGroups() ?? new Dictionary<string, (string name, string color)>();
+            var d = _shell.ShowDialog("Elegir especie", 54, 80);
+            var filter = new SpeciesFilter();
+            IReadOnlyList<SpeciesEntry> shown = all;
+
+            var search = Ui.TextBox(null, "", null);
+            search.tooltip = "Nombre, id o número («#25»)";
+            var count = Ui.Text("", 0.82f, dim: true).NoShrink();
+            var top = Ui.Row(10);
+            top.With(search.Grow(), count);
+
+            var filters = Ui.Column(6);
+            var list = new ListView
             {
-                list.Clear();
-                var f = (filter ?? "").Trim();
-                foreach (var (id, name) in all.Where(s => f.Length == 0 || s.name.IndexOf(f, StringComparison.OrdinalIgnoreCase) >= 0
-                                                                      || s.id.IndexOf(f, StringComparison.OrdinalIgnoreCase) >= 0).Take(200))
+                fixedItemHeight = Mathf.Round(Ui.FontSize * 2.9f),
+                selectionType = SelectionType.Single,
+                makeItem = () =>
                 {
-                    var sid = id;
-                    var row = Ui.Row(8).Pad(8, 4).Round(3);
-                    var l = Ui.Text(name);
-                    l.pickingMode = PickingMode.Ignore;
-                    var r = Ui.Text(id, 0.85f, dim: true);
-                    r.pickingMode = PickingMode.Ignore;
-                    row.With(l.Grow(), r);
-                    row.RegisterCallback<PointerEnterEvent>(_ => row.style.backgroundColor = Ui.C("seleccion"));
-                    row.RegisterCallback<PointerLeaveEvent>(_ => row.style.backgroundColor = new Color(0, 0, 0, 0));
-                    row.RegisterCallback<PointerUpEvent>(_ => { _shell.CloseDialog(d); picked(sid); });
-                    list.Add(row);
-                }
-                if (list.childCount == 0) list.Add(Ui.Hint(all.Count == 0 ? "No hay especies: copia los datos de un pack." : "Nada coincide."));
+                    var row = Ui.Row(10).Pad(10, 0);
+                    row.style.height = Length.Percent(100);
+                    var num = Ui.Text("", 0.82f, dim: true).NoShrink(); num.style.width = 42; num.name = "num";
+                    var pic = new VisualElement { name = "pic" };
+                    var name = Ui.Text("", bold: true).Grow(); name.name = "name";
+                    var badges = Ui.Row(4).NoShrink(); badges.name = "badges";
+                    row.With(num, pic, name, badges);
+                    return row;
+                },
+            };
+            list.bindItem = (e, i) =>
+            {
+                var sp = shown[i];
+                e.Q<Label>("num").text = sp.Number > 0 ? "#" + sp.Number.ToString("000") : "";
+                var nameLabel = e.Q<Label>("name");
+                nameLabel.text = sp.Name + (sp.IsAlternateForm ? "  (forma)" : "") + (sp.Legendary ? "  ★" : "");
+                var pic = e.Q("pic");
+                pic.Clear();
+                pic.Add(SpeciesPicture(sp.Id, Mathf.Round(Ui.FontSize * 2.2f)));
+                var badges = e.Q("badges");
+                badges.Clear();
+                foreach (var t in sp.Types) badges.Add(TypeBadge(t, types));
+            };
+            list.style.flexGrow = 1;
+            list.itemsSource = (System.Collections.IList)shown;
+#if UNITY_2022_2_OR_NEWER
+            list.itemsChosen += items => { foreach (var it in items) { _shell.CloseDialog(d); picked(((SpeciesEntry)it).Id); return; } };
+#else
+            list.onItemsChosen += items => { foreach (var it in items) { _shell.CloseDialog(d); picked(((SpeciesEntry)it).Id); return; } };
+#endif
+
+            void Apply()
+            {
+                filter.Text = search.value ?? "";
+                shown = filter.Apply(all);
+                list.itemsSource = shown.ToList();
+                list.Rebuild();
+                count.text = $"{shown.Count} de {all.Count}";
             }
-            var search = Ui.TextBox("Buscar", "", Fill);
-            d.Body.With(search, list);
-            d.Buttons.Add(Ui.Button("Cancelar", () => _shell.CloseDialog(d)));
-            Fill("");
+
+            void BuildFilters()
+            {
+                filters.Clear();
+                // Types: up to two; the colour of each type.
+                var typeRow = Ui.Row(0).Wrap();
+                typeRow.Add(Ui.Text("Tipos", 0.82f, dim: true).Margin(0, 0, 8, 0));
+                foreach (var kv in types)
+                {
+                    var id = kv.Key;
+                    bool on = filter.Types.Contains(id);
+                    var chip = Ui.Chip(kv.Value.name, on, () =>
+                    {
+                        if (filter.Types.Contains(id)) filter.Types.Remove(id);
+                        else { if (filter.Types.Count == 2) filter.Types.RemoveAt(0); filter.Types.Add(id); }
+                        BuildFilters(); Apply();
+                    });
+                    Small(chip);
+                    if (ColorUtility.TryParseHtmlString("#" + kv.Value.color, out var c))
+                    {
+                        chip.style.borderLeftWidth = 4; chip.style.borderLeftColor = c;
+                        if (on) chip.style.backgroundColor = Ui.Mix(c, Color.black, 0.25f);
+                    }
+                    typeRow.Add(chip.Margin(0, 2, 3, 2));
+                }
+                if (types.Count == 0) typeRow.Add(Ui.Hint("(copia tipos.csv de un pack para filtrar por tipos)"));
+                filters.Add(typeRow);
+
+                var opts = Ui.Row(0).Wrap();
+                var exact = Ui.Check("Exactos (solo esos tipos)", filter.ExactTypes, v => { filter.ExactTypes = v; Apply(); });
+                exact.tooltip = "Con dos tipos elegidos: solo las que tienen esos dos. Con uno: solo las de un único tipo.";
+                opts.Add(exact.Margin(0, 0, 12, 0));
+                opts.Add(Menu("Grupo huevo", filter.EggGroup.Length == 0 ? "todos" : (eggs.TryGetValue(filter.EggGroup, out var eg) ? eg.name : filter.EggGroup),
+                    new[] { ("", "todos") }.Concat(eggs.Select(kv => (kv.Key, kv.Value.name))).ToList(), v => { filter.EggGroup = v; BuildFilters(); Apply(); }));
+                opts.Add(Menu("Generación", filter.Generation == 0 ? "todas" : filter.Generation + ".ª",
+                    Enumerable.Range(0, 10).Select(g => (g.ToString(), g == 0 ? "todas" : g + ".ª")).ToList(), v => { filter.Generation = int.Parse(v); BuildFilters(); Apply(); }));
+                opts.Add(Menu("Formas", filter.Forms == 0 ? "con formas" : filter.Forms == 1 ? "sin formas" : "solo formas",
+                    new List<(string, string)> { ("0", "con formas"), ("1", "sin formas"), ("2", "solo formas alternativas") }, v => { filter.Forms = int.Parse(v); BuildFilters(); Apply(); }));
+                opts.Add(Ui.Check("Solo legendarios", filter.OnlyLegendary, v => { filter.OnlyLegendary = v; Apply(); }).Margin(0, 0, 12, 0));
+                opts.Add(Ui.Button("Quitar filtros", () => { filter = new SpeciesFilter { Text = search.value ?? "" }; BuildFilters(); Apply(); }, Ui.ButtonKind.Flat));
+                filters.Add(opts);
+            }
+
+            VisualElement Menu(string label, string current, List<(string value, string text)> items, Action<string> chosen)
+            {
+                var row = Ui.Row(4).Margin(0, 2, 12, 2);
+                Button b = null;
+                b = Ui.Button(current + "  ", () =>
+                {
+                    var r = b.worldBound;
+                    _shell.ShowMenu(new Vector2(r.x, r.yMax + 2), items.Select(it => { var v = it.value; return new MenuItem(it.text, () => chosen(v)); }).ToList());
+                }, Ui.ButtonKind.Normal, label);
+                Small(b);
+                row.With(Ui.Text(label, 0.82f, dim: true), b);
+                return row;
+            }
+
+            search.RegisterValueChangedCallback(_ => Apply());
+            search.RegisterCallback<KeyDownEvent>(e =>
+            {
+                if ((e.keyCode == KeyCode.Return || e.keyCode == KeyCode.KeypadEnter) && shown.Count > 0)
+                {
+                    e.StopPropagation();
+                    var first = list.selectedIndex >= 0 && list.selectedIndex < shown.Count ? shown[list.selectedIndex] : shown[0];
+                    _shell.CloseDialog(d);
+                    picked(first.Id);
+                }
+                else if (e.keyCode == KeyCode.DownArrow) { list.selectedIndex = Mathf.Min(list.selectedIndex + 1, shown.Count - 1); list.ScrollToItem(list.selectedIndex); e.StopPropagation(); }
+                else if (e.keyCode == KeyCode.UpArrow) { list.selectedIndex = Mathf.Max(list.selectedIndex - 1, 0); list.ScrollToItem(list.selectedIndex); e.StopPropagation(); }
+            }, TrickleDown.TrickleDown);
+
+            d.Body.With(top, filters, Ui.Separator(), list);
+            d.Buttons.With(Ui.Hint("Doble clic o Intro: elegir"), Ui.Spacer(), Ui.Button("Cancelar", () => _shell.CloseDialog(d)),
+                Ui.Button("Elegir", () =>
+                {
+                    if (list.selectedIndex < 0 || list.selectedIndex >= shown.Count) { _shell.Warn("Elige una especie de la lista."); return; }
+                    var sp = shown[list.selectedIndex];
+                    _shell.CloseDialog(d);
+                    picked(sp.Id);
+                }, Ui.ButtonKind.Primary));
+            BuildFilters();
+            Apply();
+            if (all.Count == 0) d.Body.Add(Ui.Hint("No hay especies: copia los datos de un pack (Proyecto → Copiar datos de un pack)."));
             search.schedule.Execute(() => search.Q(className: TextField.inputUssClassName)?.Focus()).ExecuteLater(50);
+        }
+
+        private static Button Small(Button b)
+        {
+            b.style.fontSize = Mathf.Round(Ui.FontSize * 0.82f);
+            b.style.height = Ui.ControlHeight - 8; b.style.minHeight = Ui.ControlHeight - 8;
+            b.style.paddingLeft = 8; b.style.paddingRight = 8;
+            return b;
+        }
+
+        /// <summary>A small type label with its colour (from datos/tipos.csv).</summary>
+        private static VisualElement TypeBadge(string typeId, IReadOnlyDictionary<string, (string name, string color)> types)
+        {
+            string label = types.TryGetValue(typeId, out var t) ? t.name : typeId;
+            var l = Ui.Text(label, 0.72f, bold: true);
+            l.style.color = Color.white;
+            l.Pad(6, 1).Round(8);
+            l.style.backgroundColor = ColorUtility.TryParseHtmlString("#" + (t.color ?? ""), out var c) ? Ui.Mix(c, Color.black, 0.2f) : Ui.C("panel_alt");
+            return l;
         }
 
         // ── Methods ──────────────────────────────────────────────────────────────────────────────

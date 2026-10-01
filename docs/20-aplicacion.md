@@ -168,6 +168,18 @@ Se miró cómo lo hacen otros:
 | Combate doble (Pokémon Studio) | Por método y zona: **Dobles %**. |
 | Probabilidad del método | Arriba de la tabla, con la explicación: «De media, un encuentro cada 10 pasos». |
 
+## Encuentros, ronda 2 · ayuda en las ventanas · ajustes del juego
+
+| Qué | Cómo |
+|---|---|
+| **Tabla alineada** | Cabecera y filas comparten los anchos de columna; el % lleva una barra corta al lado y «≈ N pasos» debajo, en pequeño. |
+| **Horas de vista** | Iconos: reloj (todas las horas), amanecer, sol, atardecer, luna. |
+| **Color de la zona** | Clic en su cuadrito: **selector con degradado** (cuadro de saturación y brillo, barra de tono), antes y ahora, hexadecimal, R G B y colores rápidos (`ColorPicker`, reutilizable). |
+| **Dejar de pintar** | Sin aviso aparte: el icono de pintar de la zona alterna (y Esc). |
+| **Variocolor global** | **Proyecto → Ajustes del juego…**: 1/8192, 1/4096 o el que quieras, para todo el juego (`ProjectSettings.ShinyOdds`). En una especie solo cuenta si le pones uno propio. |
+| **Selector de especies** | Todas (lista virtual, sin límite), **en orden de Pokédex** con número, miniatura y tipos de color; buscar por nombre, id o «#25»; filtros: **hasta dos tipos (exactos o no)**, **grupo huevo**, **generación**, **formas** (con, sin, solo alternativas) y **legendarios**. Datos de `datos/especies.csv`, `tipos.csv` y `grupos_huevo.csv` (`SpeciesFilter`, `CsvSpeciesDirectory.Entries`). |
+| **Botón «i»** | En la cabecera de cada ventana: qué es, cómo se usa y trucos (`PanelHelp`; un módulo añade la suya con `PanelHelp.Register`). |
+
 ## Lista de prueba en Unity (antes de seguir)
 
 Marca lo que funcione y mándame captura de lo que no:

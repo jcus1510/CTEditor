@@ -454,6 +454,8 @@ namespace CTEditor.App
             ["rect_relleno"] = () => new[] { Box(4f, 5f, 16f, 14f) },
             ["reemplazar"] = Replace,
             ["interruptor"] = Switch,
+            ["info"] = () => new[] { Ring(12f, 12f, 9.5f, 2f), Box(11f, 10.5f, 2f, 7f), Circle(12f, 7.3f, 1.4f) },
+            ["reloj"] = () => new[] { Ring(12f, 12f, 9f, 2f), Box(11f, 6.5f, 2f, 6.5f), Quad(12f, 12f, 15.5f, 14.5f, 2f) },
             ["dia"] = Sun,
             ["manana"] = () => Horizon(rising: true),
             ["tarde"] = () => Horizon(rising: false),

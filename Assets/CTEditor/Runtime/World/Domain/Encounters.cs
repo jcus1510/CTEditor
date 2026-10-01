@@ -366,5 +366,75 @@ namespace CTEditor.World.Domain
     public interface ISpeciesDirectory
     {
         IReadOnlyList<(string id, string name)> All();
+
+        /// <summary>Las especies con lo necesario para buscarlas y filtrarlas (número, tipos, grupos huevo, formas).</summary>
+        IReadOnlyList<SpeciesEntry> Entries();
+
+        /// <summary>Nombre y color de cada tipo y de cada grupo huevo (id → (nombre, «RRGGBB»)).</summary>
+        IReadOnlyDictionary<string, (string name, string color)> Types();
+        IReadOnlyDictionary<string, (string name, string color)> EggGroups();
+    }
+
+    /// <summary>Una especie para el selector: nombre, n.º de Pokédex, tipos, grupos huevo y si es una forma de otra.</summary>
+    public sealed class SpeciesEntry
+    {
+        public string Id { get; }
+        public string Name { get; }
+        public int Number { get; }
+        public IReadOnlyList<string> Types { get; }
+        public IReadOnlyList<string> EggGroups { get; }
+        /// <summary>Id de la especie de la que es forma alternativa (vacío = es la forma normal).</summary>
+        public string FormOf { get; }
+        public bool Legendary { get; }
+        public bool IsAlternateForm => !string.IsNullOrEmpty(FormOf);
+
+        /// <summary>Generación por el número de Pokédex (0 = desconocida).</summary>
+        public int Generation => Number <= 0 ? 0 : Number <= 151 ? 1 : Number <= 251 ? 2 : Number <= 386 ? 3 : Number <= 493 ? 4
+            : Number <= 649 ? 5 : Number <= 721 ? 6 : Number <= 809 ? 7 : Number <= 905 ? 8 : 9;
+
+        public SpeciesEntry(string id, string name, int number = 0, IReadOnlyList<string> types = null, IReadOnlyList<string> eggGroups = null,
+            string formOf = "", bool legendary = false)
+        {
+            Id = id; Name = name ?? id; Number = number;
+            Types = types ?? new string[0]; EggGroups = eggGroups ?? new string[0];
+            FormOf = formOf ?? ""; Legendary = legendary;
+        }
+    }
+
+    /// <summary>Filtro del selector de especies (todo opcional).</summary>
+    public sealed class SpeciesFilter
+    {
+        public string Text = "";
+        /// <summary>Hasta dos tipos. Con <see cref="ExactTypes"/>, la especie debe tener justo esos (y no otro).</summary>
+        public readonly List<string> Types = new List<string>();
+        public bool ExactTypes;
+        public string EggGroup = "";
+        public int Generation;
+        /// <summary>0 = con formas alternativas, 1 = sin ellas, 2 = solo formas alternativas.</summary>
+        public int Forms;
+        public bool OnlyLegendary;
+
+        public bool Matches(SpeciesEntry s)
+        {
+            var t = (Text ?? "").Trim();
+            if (t.Length > 0 && s.Name.IndexOf(t, StringComparison.OrdinalIgnoreCase) < 0 && s.Id.IndexOf(t, StringComparison.OrdinalIgnoreCase) < 0
+                && !(int.TryParse(t.TrimStart('#'), out int n) && n == s.Number)) return false;
+            if (Types.Count > 0)
+            {
+                if (!Types.All(x => s.Types.Contains(x))) return false;
+                if (ExactTypes && s.Types.Count != Types.Count) return false;
+            }
+            if (EggGroup.Length > 0 && !s.EggGroups.Contains(EggGroup)) return false;
+            if (Generation > 0 && s.Generation != Generation) return false;
+            if (Forms == 1 && s.IsAlternateForm) return false;
+            if (Forms == 2 && !s.IsAlternateForm) return false;
+            if (OnlyLegendary && !s.Legendary) return false;
+            return true;
+        }
+
+        /// <summary>Las que pasan el filtro, en orden de Pokédex (las formas justo detrás de su especie).</summary>
+        public IReadOnlyList<SpeciesEntry> Apply(IEnumerable<SpeciesEntry> all) =>
+            all.Where(Matches).OrderBy(s => s.Number <= 0 ? int.MaxValue : s.Number).ThenBy(s => s.IsAlternateForm ? 1 : 0)
+                .ThenBy(s => s.Name, StringComparer.OrdinalIgnoreCase).ToList();
     }
 }
