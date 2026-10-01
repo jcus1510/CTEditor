@@ -107,6 +107,7 @@ namespace CTEditor.App
             S.StructureChanged += OnStructure;
             S.TilesetChanged += OnTilesetChanged;
             S.SelectionChanged += DrawSelection;
+            _shell.ActionRequested += OnAction;
             Reload();
         }
 
@@ -119,6 +120,7 @@ namespace CTEditor.App
                 S.TilesetChanged -= OnTilesetChanged;
                 S.SelectionChanged -= DrawSelection;
             }
+            _shell.ActionRequested -= OnAction;
             _atlas?.Dispose();
             _atlas = null;
             if (_markTexture != null) UnityEngine.Object.Destroy(_markTexture);
@@ -211,6 +213,23 @@ namespace CTEditor.App
                 }
             }
             _info.text = Modes.First(x => x.mode == _mode).help;
+        }
+
+        /// <summary>Keys 1-7: the modes (paint, passage, priority, terrain, bush, counter, piece).</summary>
+        private void OnAction(string id)
+        {
+            Mode? m = id switch
+            {
+                "modo_pintar" => Mode.Paint,
+                "modo_paso" => Mode.Passage,
+                "modo_prioridad" => Mode.Priority,
+                "modo_terreno" => Mode.Terrain,
+                "modo_arbusto" => Mode.Bush,
+                "modo_mostrador" => Mode.Counter,
+                "modo_pieza" => Mode.Piece,
+                _ => null,
+            };
+            if (m.HasValue && Tileset != null) SetMode(m.Value);
         }
 
         private static readonly float[] ZoomSteps = { 0.5f, 1f, 1.5f, 2f, 3f, 4f };

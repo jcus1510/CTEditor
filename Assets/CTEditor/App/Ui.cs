@@ -133,6 +133,17 @@ namespace CTEditor.App
             return e;
         }
 
+        /// <summary>
+        /// How much an element is enlarged by the transforms above it (the zoom of its window, Alt + wheel). Texture
+        /// sizes use PixelsPerPoint × this, so a zoomed window still gets sharp maps.
+        /// </summary>
+        public static float ScaleOf(VisualElement e)
+        {
+            if (e == null || float.IsNaN(e.layout.width) || e.layout.width <= 0) return 1f;
+            float s = e.worldBound.width / e.layout.width;
+            return float.IsNaN(s) || s <= 0 ? 1f : s;
+        }
+
         /// <summary>Lets a row flow onto more lines when the panel is narrow (instead of squeezing its items).</summary>
         public static T Wrap<T>(this T e) where T : VisualElement
         {
@@ -233,6 +244,10 @@ namespace CTEditor.App
             b.style.minHeight = ControlHeight;
             b.style.flexShrink = 0;
             b.style.whiteSpace = WhiteSpace.NoWrap;
+            // A long text never spills out of its button: it ends in «…» when the button reaches its container's width.
+            b.style.maxWidth = Length.Percent(100);
+            b.style.overflow = Overflow.Hidden;
+            b.style.textOverflow = TextOverflow.Ellipsis;
             b.style.paddingLeft = 10; b.style.paddingRight = 10; b.style.paddingTop = 0; b.style.paddingBottom = 0;
             b.style.marginLeft = 0; b.style.marginRight = 0; b.style.marginTop = 0; b.style.marginBottom = 0;
             b.Border(kind == ButtonKind.Flat ? 0 : 1, kind == ButtonKind.Normal ? "borde" : "acento", Radius);

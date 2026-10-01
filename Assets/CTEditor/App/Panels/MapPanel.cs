@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using CTEditor.Workspace;
 using CTEditor.Editing;
 using CTEditor.World.Domain;
 
@@ -29,13 +30,15 @@ namespace CTEditor.App
             (MapTool.Fill, "Relleno", "relleno", "Rellena la zona del mismo tile"),
             (MapTool.Eraser, "Goma", "goma", "Borra (con capas automáticas, lo de más arriba)"),
             (MapTool.Picker, "Cuentagotas", "cuentagotas", "Coge tiles del mapa como sello (también con clic derecho)"),
-            (MapTool.Select, "Selección", null, "Selecciona una zona: Ctrl+C copiar, Ctrl+X cortar, Supr borrar"),
+            (MapTool.Select, "Selección", "seleccion", "Selecciona una zona: Ctrl+C copiar, Ctrl+X cortar, Supr borrar"),
             (MapTool.Paste, "Pegar", "pegar", "Haz clic donde quieras pegar lo copiado"),
-            (MapTool.EncounterPaint, "Zona", null, "Pinta la zona de encuentros activa (clic derecho quita)"),
-            (MapTool.PlayerStart, "Inicio", null, "Coloca el inicio del jugador"),
+            (MapTool.EncounterPaint, "Zona", "zona", "Pinta la zona de encuentros activa (clic derecho quita)"),
+            (MapTool.PlayerStart, "Inicio", "inicio", "Coloca el inicio del jugador"),
         };
 
         private readonly AppShell _shell;
+        /// <summary>Texture pixels per local point: interface scale × the zoom of this window (Alt + wheel).</summary>
+        private float Ppp => _shell.PixelsPerPoint * Ui.ScaleOf(_viewport);
         private MapEditorSession S => _shell.Maps;
         private MapRenderer _renderer;
         private AtlasCache _atlases;
@@ -160,7 +163,22 @@ namespace CTEditor.App
 
         private void OnAction(string id)
         {
-            if (id == "rejilla") { _showGrid = !_showGrid; BuildToolbar(); RedrawOverlay(); }
+            if (id == "rejilla") { _showGrid = !_showGrid; BuildToolbar(); RedrawOverlay(); return; }
+            if (S?.Map == null || _shell.ActiveEditor != "mapa") return;
+            switch (id)
+            {
+                case "vecinos": _showNeighbors = !_showNeighbors; RebuildSections(); BuildToolbar(); RedrawOverlay(); break;
+                case "acercar": SetZoom(_zoomIndex + 1, CursorPixel()); break;
+                case "alejar": SetZoom(_zoomIndex - 1, CursorPixel()); break;
+                case "encuadrar": FitMap(); break;
+            }
+        }
+
+        /// <summary>Zoom with the keyboard keeps the cell under the mouse in place (or the centre if the mouse is away).</summary>
+        private Vector2? CursorPixel()
+        {
+            if (!_cursor.HasValue || _renderer?.Target == null) return null;
+            return _renderer.CellToPixel(_cursor.Value.x + 0.5f, _cursor.Value.y + 0.5f);
         }
 
         // ── Session events ───────────────────────────────────────────────────────────────────────
@@ -278,7 +296,7 @@ namespace CTEditor.App
                 if (tool == MapTool.Paste && S.Clipboard == null) continue;
                 if (tool == MapTool.EncounterPaint && S.ActiveArea == null) continue;
                 var t = tool;
-                var keys = action == null ? "" : _shell.Workspace.Shortcuts.KeysFor(action);
+                var keys = action == null ? "" : ShortcutMap.Pretty(_shell.Workspace.Shortcuts.KeysFor(action));
                 var button = Ui.IconButton(IconOf(t), () => { _shell.ActiveEditor = "mapa"; S.SetTool(t); },
                     label + ": " + help + (keys.Length > 0 ? $" ({keys})" : ""), S.Tool == t);
                 _toolbar.Add(button.Margin(0, 2, 2, 2));
@@ -311,7 +329,7 @@ namespace CTEditor.App
                     "Vecinos: ver los tramos de alrededor (doble clic en uno lo abre)"));
             _toolbar.Add(Ui.Spacer());
             var play = Ui.Button("", () => _shell.RunAction("probar_aqui"), Ui.ButtonKind.Normal,
-                "Jugar desde la casilla del ratón (" + _shell.Workspace.Shortcuts.KeysFor("probar_aqui") + ")");
+                "Jugar desde la casilla del ratón (" + ShortcutMap.Pretty(_shell.Workspace.Shortcuts.KeysFor("probar_aqui")) + ")");
             play.style.flexDirection = FlexDirection.Row;
             play.style.alignItems = Align.Center;
             play.Add(Icons.Element("jugar", Ui.IconSize * 0.8f, Ui.C("exito")));
@@ -361,9 +379,10 @@ namespace CTEditor.App
         private void ResizeTarget()
         {
             if (_renderer == null) return;
-            float ppp = _shell.PixelsPerPoint;
+            float ppp = Ppp;
             _renderer.Resize(Mathf.RoundToInt(_viewport.layout.width * ppp), Mathf.RoundToInt(_viewport.layout.height * ppp));
             _image.image = _renderer.Target;
+            _renderer.Zoom = ZoomLevels[_zoomIndex] * ppp; // the window's own zoom may have changed
             _renderer.UpdateCamera();
         }
 
@@ -373,7 +392,7 @@ namespace CTEditor.App
             if (_renderer?.Target == null) { _zoomIndex = index; BuildToolbar(); return; }
             Vector2 before = anchorPixel.HasValue ? _renderer.PixelToCell(anchorPixel.Value) : Vector2.zero;
             _zoomIndex = index;
-            _renderer.Zoom = ZoomLevels[index] * _shell.PixelsPerPoint;
+            _renderer.Zoom = ZoomLevels[index] * Ppp;
             if (anchorPixel.HasValue)
             {
                 var after = _renderer.PixelToCell(anchorPixel.Value);
@@ -393,7 +412,7 @@ namespace CTEditor.App
             int best = 0;
             for (int i = 0; i < ZoomLevels.Length; i++) if (ZoomLevels[i] <= fit) best = i;
             _zoomIndex = best;
-            _renderer.Zoom = ZoomLevels[best] * _shell.PixelsPerPoint;
+            _renderer.Zoom = ZoomLevels[best] * Ppp;
             _renderer.Center = MapRenderer.CenterOf(0, 0, S.Map.Width, S.Map.Height);
             _renderer.UpdateCamera();
             BuildToolbar();
@@ -402,7 +421,7 @@ namespace CTEditor.App
 
         // ── Pointer ──────────────────────────────────────────────────────────────────────────────
 
-        private Vector2 LocalToPixel(Vector2 local) => local * _shell.PixelsPerPoint;
+        private Vector2 LocalToPixel(Vector2 local) => local * Ppp;
 
         private (int x, int y) CellAt(Vector2 local)
         {
@@ -416,7 +435,7 @@ namespace CTEditor.App
             _shell.ActiveEditor = "mapa";
             _viewport.CapturePointer(e.pointerId);
             var cell = CellAt(e.localPosition);
-            if (e.button == 2 || (e.button == 0 && e.altKey))
+            if (e.button == 2 || (e.button == 0 && (e.altKey || _shell.SpaceHeld)))
             {
                 _panning = true;
                 _panStart = e.localPosition;
@@ -451,7 +470,7 @@ namespace CTEditor.App
             if (_panning)
             {
                 var delta = (Vector2)e.localPosition - _panStart;
-                float ppu = _renderer.PixelsPerUnit / _shell.PixelsPerPoint;
+                float ppu = _renderer.PixelsPerUnit / Ppp;
                 _renderer.Center = _panCenter + new Vector2(-delta.x / ppu, delta.y / ppu);
                 _renderer.UpdateCamera();
                 RedrawOverlay();
@@ -511,7 +530,7 @@ namespace CTEditor.App
 
         // ── Overlay ──────────────────────────────────────────────────────────────────────────────
 
-        private Vector2 P(float x, float y) => _renderer.CellToPixel(x, y) / _shell.PixelsPerPoint;
+        private Vector2 P(float x, float y) => _renderer.CellToPixel(x, y) / Ppp;
 
         private void RedrawOverlay()
         {

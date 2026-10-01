@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
+using CTEditor.Workspace;
 using CTEditor.Art.Domain;
 using CTEditor.Editing;
 
@@ -224,7 +225,7 @@ namespace CTEditor.App
             foreach (var (tool, label, action) in Tools)
             {
                 var t = tool;
-                var keys = action == null ? "" : _shell.Workspace.Shortcuts.KeysFor(action);
+                var keys = action == null ? "" : ShortcutMap.Pretty(_shell.Workspace.Shortcuts.KeysFor(action));
                 _bar2.Add(Ui.IconButton(IconOf(t), () => { _shell.ActiveEditor = "retoque"; S.SetTool(t); },
                     keys.Length > 0 ? $"{label} ({keys})" : label, S.Tool == t).Margin(0, 2, 2, 2));
             }

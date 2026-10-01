@@ -47,7 +47,7 @@ namespace CTEditor.App
             Add(play);
         }
 
-        private string Keys(string action) => _shell.Workspace.Shortcuts.KeysFor(action);
+        private string Keys(string action) => ShortcutMap.Pretty(_shell.Workspace.Shortcuts.KeysFor(action));
 
         private void AddMenu(string title, Func<IList<MenuItem>> items)
         {
@@ -175,7 +175,7 @@ namespace CTEditor.App
 
         private IList<MenuItem> HelpItems() => new List<MenuItem>
         {
-            new MenuItem("Atajos de teclado…", () => SettingsDialog.Show(_shell, SettingsDialog.Tab.Shortcuts)),
+            new MenuItem("Atajos de teclado…", () => SettingsDialog.Show(_shell, SettingsDialog.Tab.Shortcuts), Keys("atajos")),
             new MenuItem("Ver los avisos", () => { _shell.Workspace.Layout.Open(PanelCatalog.Messages); _shell.SetLayout(_shell.Workspace.Layout); }),
             new MenuItem("Acerca de CTEditor", () =>
             {

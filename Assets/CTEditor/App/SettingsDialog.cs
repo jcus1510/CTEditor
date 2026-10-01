@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -166,33 +167,63 @@ namespace CTEditor.App
         {
             var map = shell.Workspace.Shortcuts;
             body.With(Ui.Heading("Atajos de teclado"),
-                Ui.Hint("Escribe el atajo como «Ctrl+Mayús+Z», «F5» o «B» y pulsa Intro. Si otra acción lo tenía, se queda sin atajo. Vacío = sin atajo."));
-            var rows = Ui.Column(4);
+                Ui.Hint("Haz clic en un atajo y pulsa la nueva combinación (Esc cancela, Retroceso lo deja sin atajo). Si otra acción la tenía, se queda sin atajo. También: Espacio + arrastrar mueve el mapa; Ctrl + rueda, la escala de toda la interfaz; Alt + rueda, la de la ventana bajo el ratón (Ctrl + 0 / Alt + 0 las devuelven al 100 %)."));
+            string filter = "";
+            var search = Ui.TextBox(null, "", null);
+            search.tooltip = "Buscar una acción o un atajo";
+            search.style.maxWidth = 320;
+            body.Add(search);
+            var rows = Ui.Column(2);
             void Fill()
             {
                 rows.Clear();
-                foreach (var action in ShortcutMap.Actions)
+                var actions = ShortcutMap.Actions.Where(a => filter.Length == 0
+                    || a.Label.IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0
+                    || ShortcutMap.Pretty(map.KeysFor(a.Id)).IndexOf(filter, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+                var order = ShortcutMap.Categories.ToList();
+                foreach (var group in actions.GroupBy(a => a.Category)
+                             .OrderBy(g => order.IndexOf(g.Key) < 0 ? 99 : order.IndexOf(g.Key)).ThenBy(g => g.Key))
                 {
-                    var id = action.Id;
-                    var row = Ui.Row(10);
-                    var label = Ui.Text(action.Label);
-                    label.style.width = 300;
-                    var field = Ui.TextBox(null, map.KeysFor(id), null, delayed: true);
-                    field.style.width = 160;
-                    field.RegisterValueChangedCallback(e =>
+                    rows.Add(Ui.Text(group.Key, 0.95f, bold: true).Colored("acento").Margin(0, 10, 0, 2));
+                    foreach (var action in group)
                     {
-                        var clashes = map.Rebind(id, e.newValue);
-                        foreach (var c in clashes)
-                            shell.Warn($"«{ShortcutMap.Actions.First(a => a.Id == c).Label}» se ha quedado sin atajo.");
-                        shell.SaveWorkspaceSoon();
-                        Fill();
-                    });
-                    row.With(label, field, Ui.Text(action.DefaultKeys == map.KeysFor(id) ? "" : "(de fábrica: " + action.DefaultKeys + ")", 0.85f, dim: true));
-                    rows.Add(row);
+                        var id = action.Id;
+                        var row = Ui.Row(10).Pad(6, 2).Round(4);
+                        row.RegisterCallback<PointerEnterEvent>(_ => row.style.backgroundColor = Ui.C("panel_alt"));
+                        row.RegisterCallback<PointerLeaveEvent>(_ => row.style.backgroundColor = new Color(0, 0, 0, 0));
+                        var label = Ui.Text(action.Label).Grow();
+                        var keys = map.KeysFor(id);
+                        var key = Ui.Button(keys.Length > 0 ? ShortcutMap.Pretty(keys) : "—", null, Ui.ButtonKind.Normal,
+                            "Clic y pulsa la nueva combinación");
+                        key.style.minWidth = 140;
+                        key.clicked += () =>
+                        {
+                            key.text = "Pulsa el atajo…";
+                            key.style.borderBottomColor = Ui.C("acento");
+                            shell.CaptureKeys(k =>
+                            {
+                                if (k != null)
+                                {
+                                    foreach (var c in map.Rebind(id, k))
+                                        shell.Warn($"«{ShortcutMap.Actions.First(a => a.Id == c).Label}» se ha quedado sin atajo.");
+                                    shell.SaveWorkspaceSoon();
+                                }
+                                Fill();
+                            });
+                        };
+                        bool changed = ShortcutMap.Normalize(action.DefaultKeys) != keys;
+                        var reset = Ui.IconButton("anterior", () => { map.Rebind(id, action.DefaultKeys); shell.SaveWorkspaceSoon(); Fill(); },
+                            "Volver al de fábrica: " + ShortcutMap.Pretty(ShortcutMap.Normalize(action.DefaultKeys)));
+                        reset.style.visibility = changed ? Visibility.Visible : Visibility.Hidden;
+                        row.With(label, key, reset);
+                        rows.Add(row);
+                    }
                 }
+                if (actions.Count == 0) rows.Add(Ui.Hint("Ninguna acción coincide."));
             }
+            search.RegisterValueChangedCallback(e => { filter = (e.newValue ?? "").Trim(); Fill(); });
             Fill();
-            body.With(rows, Ui.Button("Volver a los de fábrica", () => { map.ResetToDefaults(); shell.SaveWorkspaceSoon(); Fill(); }));
+            body.With(rows, Ui.Button("Volver todos a los de fábrica", () => { map.ResetToDefaults(); shell.SaveWorkspaceSoon(); Fill(); }).Margin(0, 10, 0, 0));
         }
     }
 }

@@ -28,11 +28,11 @@ namespace CTEditor.App
             Register(PanelCatalog.Encounters, s => new EncountersPanel(s));
             Register(PanelCatalog.Events, _ => Placeholder("Eventos", "Eventos en lista o en grafo de nodos, con recetas y el mapa de la historia.", "Fase 7"));
             Register(PanelCatalog.Database, _ => Placeholder("Base de datos", "Especies, movimientos, objetos, habilidades, entrenadores… De momento siguen en los editores de Unity.", "Fase 10"));
-            ShortcutMap.RegisterAction(new ShortcutAction("linea", "Herramienta: línea (retoque)", "L"));
-            ShortcutMap.RegisterAction(new ShortcutAction("copiar", "Copiar la selección", "Ctrl+C"));
-            ShortcutMap.RegisterAction(new ShortcutAction("cortar", "Cortar la selección", "Ctrl+X"));
-            ShortcutMap.RegisterAction(new ShortcutAction("pegar", "Pegar", "Ctrl+V"));
-            ShortcutMap.RegisterAction(new ShortcutAction("borrar_seleccion", "Borrar la selección", "Delete"));
+            ShortcutMap.RegisterAction(new ShortcutAction("linea", "Línea (retoque)", "L", "Herramientas"));
+            ShortcutMap.RegisterAction(new ShortcutAction("copiar", "Copiar la selección", "Ctrl+C", "Selección"));
+            ShortcutMap.RegisterAction(new ShortcutAction("cortar", "Cortar la selección", "Ctrl+X", "Selección"));
+            ShortcutMap.RegisterAction(new ShortcutAction("pegar", "Pegar", "Ctrl+V", "Selección"));
+            ShortcutMap.RegisterAction(new ShortcutAction("borrar_seleccion", "Borrar la selección", "Delete", "Selección"));
         }
 
         public static void Register(string panelId, Func<AppShell, VisualElement> factory)

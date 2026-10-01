@@ -170,7 +170,19 @@ namespace CTEditor.App
             var body = new VisualElement().Grow();
             body.style.overflow = Overflow.Hidden;
             var active = tabs.ActivePanel;
-            if (active != null) body.Add(ContentFor(active));
+            if (active != null)
+            {
+                body.Add(ContentFor(active));
+                // Alt + wheel over a window: its own zoom (remembered per window). Alt + 0 resets it (AppShell).
+                body.RegisterCallback<WheelEvent>(e =>
+                {
+                    if (!e.altKey) return;
+                    ChangeScale(active, e.delta.y < 0 ? 0.1f : -0.1f);
+                    e.StopPropagation();
+                    e.PreventDefault();
+                }, TrickleDown.TrickleDown);
+                body.RegisterCallback<PointerEnterEvent>(_ => HoveredPanel = active);
+            }
             group.Add(body);
             return group;
         }
@@ -250,16 +262,49 @@ namespace CTEditor.App
             _shell.ShowMenu(new Vector2(r.x, r.yMax + 2), items);
         }
 
+        /// <summary>The window under the pointer (for Alt + 0).</summary>
+        public string HoveredPanel { get; private set; }
+
+        /// <summary>
+        /// Each window lives inside a «scaler»: laid out at 1/s of the space and drawn at s times its size, so the whole
+        /// window (text, icons, lists) grows or shrinks and still fills its place exactly.
+        /// </summary>
         private VisualElement ContentFor(string panel)
         {
-            if (!_contents.TryGetValue(panel, out var content))
+            if (!_contents.TryGetValue(panel, out var scaler))
             {
-                content = PanelRegistry.Create(panel, _shell);
+                var content = PanelRegistry.Create(panel, _shell);
                 content.style.flexGrow = 1;
-                _contents[panel] = content;
+                scaler = new VisualElement { name = "escala-" + panel };
+                scaler.style.position = Position.Absolute;
+                scaler.style.left = 0;
+                scaler.style.top = 0;
+                scaler.style.transformOrigin = new TransformOrigin(0, 0, 0);
+                scaler.Add(content);
+                _contents[panel] = scaler;
             }
-            content.RemoveFromHierarchy();
-            return content;
+            ApplyScale(panel, scaler);
+            scaler.RemoveFromHierarchy();
+            return scaler;
+        }
+
+        private void ApplyScale(string panel, VisualElement scaler)
+        {
+            float s = _shell.Workspace.PanelScale(panel);
+            scaler.style.width = Length.Percent(100f / s);
+            scaler.style.height = Length.Percent(100f / s);
+            scaler.style.scale = new Scale(new Vector3(s, s, 1));
+        }
+
+        public void ChangeScale(string panel, float delta) => SetScale(panel, _shell.Workspace.PanelScale(panel) + delta);
+
+        public void SetScale(string panel, float scale)
+        {
+            if (panel == null) return;
+            _shell.Workspace.SetPanelScale(panel, scale);
+            if (_contents.TryGetValue(panel, out var scaler)) ApplyScale(panel, scaler);
+            _shell.SaveWorkspaceSoon();
+            _shell.Toast($"{PanelCatalog.LabelOf(panel)} al {Mathf.RoundToInt(_shell.Workspace.PanelScale(panel) * 100)} % (Alt + 0: volver al 100 %)");
         }
 
         // ── Drag and drop of tabs ────────────────────────────────────────────────────────────────

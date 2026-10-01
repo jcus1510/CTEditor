@@ -82,6 +82,32 @@ Detalle y reglas visuales en [`DISENO.md`](DISENO.md) (documento vivo del diseñ
 | **Menú Ver** | Ver → **Ventanas** → (cada ventana) y Ver → **Distribuciones** → (las de fábrica, las tuyas, guardar). Los menús admiten submenús. En los textos, «ventana» en vez de «panel». |
 | **Escala** | Ctrl + 0 vuelve la interfaz al 100 %; al cambiarla con Ctrl + rueda sale un aviso con el % actual. |
 
+## Pulido 3 — atajos y escala por ventana
+
+| Arreglo / novedad | Qué cambia |
+|---|---|
+| **El mapa ya no se descuadra** | Causa real: cada renderizador se colocaba en x = capa × 100 000 (3 100 000 unidades). Ahí un `float` solo distingue ~0,25: los tiles «saltaban» a cuartos de casilla en horizontal. Ahora están en el origen (se separan solo por la capa de Unity). |
+| **Tilesets en Propiedades** | Una fila compacta por tileset (número + nombre con «…»; el nombre entero en la ayuda) y «Cambiar el principal…» como menú. Los botones con texto largo terminan en «…». |
+| **Escala por ventana** | **Alt + rueda** sobre una ventana la amplía o reduce sola (y se recuerda); **Alt + 0** la devuelve al 100 %. **Ctrl + rueda** / **Ctrl + 0**: toda la interfaz. |
+| **Atajos** | Por categorías y todos cambiables (Entorno → Atajos, o **F1**): clic en el atajo y pulsar la nueva combinación; buscador; volver al de fábrica por acción. **Espacio + arrastrar** mueve el mapa. |
+
+### Atajos de fábrica
+
+| Categoría | Atajos |
+|---|---|
+| General | Ctrl+S guardar · Ctrl+Z / Ctrl+Y deshacer / rehacer · Ctrl+N nuevo mapa · Ctrl+P buscar · F1 atajos · Ctrl+, entorno · F11 pantalla completa |
+| Jugar | F5 jugar · Ctrl+F5 probar desde el ratón · F9 depurador |
+| Herramientas | B lápiz · U rectángulo · G relleno · E goma · I cuentagotas · M selección · P inicio · H zona de encuentros · L línea (retoque) |
+| Selección | Ctrl+A todo · Ctrl+D quitar · Ctrl+C / Ctrl+X / Ctrl+V · Supr borrar |
+| Vista | Ctrl+G rejilla · N vecinos · Z acercar · Mayús+Z alejar · F encuadrar · Espacio + arrastrar mover · Ctrl / Alt + rueda escala |
+| Capas | Av Pág / Re Pág siguiente / anterior · Ctrl+Mayús+N nueva · Ctrl+H ver · Ctrl+Mayús+H bloquear · Ctrl+L capas automáticas |
+| Tiles | 1 pintar · 2 paso · 3 prioridad · 4 terreno · 5 arbusto · 6 mostrador · 7 pieza |
+| Ventanas | Ctrl+1 Mapa · Ctrl+2 Tiles · Ctrl+3 Capas · Ctrl+4 Mundo · Ctrl+5 Encuentros · Ctrl+6 Recursos · Ctrl+7 Retoque · Ctrl+8 Propiedades · Ctrl+9 Mapas |
+
+Inspirados en: herramientas de una letra de Photoshop / Aseprite y de [Tiled](https://doc.mapeditor.org/en/stable/manual/keyboard-shortcuts/)
+(el editor de mapas que usa Pokémon Studio), Ctrl + número para cambiar de vista y números para los modos como en
+[GB Studio](https://www.gbstudio.dev/docs/getting-started/keyboard-shortcuts/), y F para encuadrar como en Unity.
+
 ## Cómo se hace un mapa (flujo)
 
 1. **Recursos** → Importar (o copiar) el tileset en `graficos/tilesets` → **Cortar** (32 px).

@@ -588,6 +588,22 @@ namespace CTEditor.Editing
             DeleteSelection("cortar");
         }
 
+        /// <summary>Selecciona el mapa entero (pasa a la herramienta Selección).</summary>
+        public void SelectAll()
+        {
+            if (Map == null) return;
+            if (Tool != MapTool.Select) SetTool(MapTool.Select);
+            Selection = (0, 0, Map.Width - 1, Map.Height - 1);
+            SelectionChanged?.Invoke();
+        }
+
+        public void ClearSelection()
+        {
+            if (Selection == null) return;
+            Selection = null;
+            SelectionChanged?.Invoke();
+        }
+
         public void DeleteSelection(string label = "borrar zona")
         {
             if (Map == null || !Selection.HasValue) return;

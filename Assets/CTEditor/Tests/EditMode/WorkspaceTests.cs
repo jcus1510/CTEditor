@@ -204,6 +204,34 @@ namespace CTEditor.Tests.EditMode
         }
 
         [Test]
+        public void Default_shortcuts_are_unique_categorized_and_shown_nicely()
+        {
+            var map = new ShortcutMap();
+            var used = ShortcutMap.Actions.Select(a => map.KeysFor(a.Id)).Where(k => k.Length > 0).ToList();
+            CollectionAssert.AllItemsAreUnique(used, "two actions share a factory shortcut");
+            Assert.IsTrue(ShortcutMap.Actions.All(a => !string.IsNullOrEmpty(a.Category)));
+            Assert.AreEqual("Alpha1", ShortcutMap.Normalize("1"), "a typed digit is the number row");
+            Assert.AreEqual("Ctrl+1", ShortcutMap.Pretty("Ctrl+Alpha1"));
+            Assert.AreEqual("Av Pág", ShortcutMap.Pretty("PageDown"));
+            Assert.AreEqual("modo_paso", map.ActionFor("2"));
+            Assert.AreEqual("ventana_mundo", map.ActionFor("Ctrl+4"));
+        }
+
+        [Test]
+        public void Each_window_remembers_its_own_scale()
+        {
+            var w = new WorkspaceSettings();
+            Assert.AreEqual(1f, w.PanelScale("paleta"));
+            w.SetPanelScale("paleta", 1.4f);
+            w.SetPanelScale("mapa", 9f);
+            var back = WorkspaceSettings.FromJson(Json.ParseObject(Json.Write(w.ToJson())));
+            Assert.AreEqual(1.4f, back.PanelScale("paleta"), 0.001f);
+            Assert.AreEqual(WorkspaceSettings.MaxPanelScale, back.PanelScale("mapa"), 0.001f, "clamped");
+            back.SetPanelScale("paleta", 1f);
+            Assert.AreEqual(1f, back.PanelScale("paleta"));
+        }
+
+        [Test]
         public void Workspace_is_saved_and_a_broken_file_falls_back_to_defaults()
         {
             var dir = TempDir();

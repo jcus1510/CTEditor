@@ -62,8 +62,10 @@ namespace CTEditor.App
         {
             _unityLayer = unityLayer;
             _root = new GameObject(name) { hideFlags = HideFlags.DontSave, layer = unityLayer };
-            // Far away from other renderers too (belt and braces with the culling mask).
-            _root.transform.position = new Vector3(unityLayer * 100000f, 0, 0);
+            // At the origin: renderers are kept apart only by their Unity layer and culling mask. (They used to be placed
+            // at x = layer × 100 000; at 3 100 000 units a float only has a precision of about 0.25, so tiles snapped
+            // to quarter cells horizontally and drifted off the grid when zooming.)
+            _root.transform.position = Vector3.zero;
 
             var camGo = new GameObject("Cámara") { layer = unityLayer };
             camGo.transform.SetParent(_root.transform, false);

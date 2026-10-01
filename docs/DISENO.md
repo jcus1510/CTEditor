@@ -128,6 +128,7 @@ Nunca se escribe un color a mano: se usa `Ui.C("token")`.
 
 | Fecha | Cambio |
 |---|---|
+| 2026-10-01 (3) | Mapa sin descuadres (renderizadores en el origen); tilesets de Propiedades compactos; textos largos en botones con «…»; escala por ventana (Alt + rueda / Alt + 0); atajos por categorías, grabables y con buscador. |
 | 2026-10-01 (2) | Tiles compacta con iconos; Capas con iconos, asa para reordenar y deslizador propio con %; barras finas tipo píldora; importar con vista previa y tipo sugerido; menú Ver con submenús Ventanas / Distribuciones; Ctrl + 0; proyección del mapa fijada (los tiles se estrechaban al hacer zoom). |
 | 2026-10-01 | Primera prueba en Unity. Arreglados: la rejilla del mapa no coincidía con los tiles (proporción de la cámara y ajuste al píxel); la interfaz desaparecía al seleccionar «Interfaz» en la Hierarchy; textos encima de botones (ahora «…»); campos más altos que los botones; caja de número unida; inicio de tamaño fijo. Nuevo: iconos en las herramientas y ayudas emergentes. |
 
@@ -135,8 +136,6 @@ Nunca se escribe un color a mano: se usa `Ui.C("token")`.
 
 ## 4. Pendiente de pulir (en orden)
 
-0. **Escala por ventana** (pendiente de decidir): Alt + rueda sobre una ventana para ampliar solo esa (letra e iconos),
-   recordado por ventana. Alternativa: solo la escala global con Ctrl + rueda / Ctrl + 0 (lo que hay hoy).
 1. **Hojas de estilo `.uss` + UI Builder.** Pasar medidas, estados (hover, pulsado, foco, desactivado) y clases
    (`ct-boton`, `ct-chip`, `ct-campo`…) a `Resources/CTEditorApp/CTEditor.uss`. Los colores del tema irán como variables
    USS. Así el diseño se toca desde UI Builder sin compilar, y el hover deja de hacerse por código.

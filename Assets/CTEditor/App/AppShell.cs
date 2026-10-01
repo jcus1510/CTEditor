@@ -110,6 +110,7 @@ namespace CTEditor.App
 
             root.focusable = true;
             root.RegisterCallback<KeyDownEvent>(OnKeyDown, TrickleDown.TrickleDown);
+            root.RegisterCallback<KeyUpEvent>(e => { if (e.keyCode == KeyCode.Space) SpaceHeld = false; }, TrickleDown.TrickleDown);
             root.RegisterCallback<PointerMoveEvent>(OnTipMove, TrickleDown.TrickleDown);
             root.RegisterCallback<PointerDownEvent>(_ => HideTip(), TrickleDown.TrickleDown);
             root.RegisterCallback<PointerLeaveEvent>(_ => HideTip());
@@ -851,10 +852,41 @@ namespace CTEditor.App
                 case "capa_siguiente": if (Maps?.Map != null) Maps.SetActiveLayer(Maps.ActiveLayer + 1); break;
                 case "capa_anterior": if (Maps?.Map != null) Maps.SetActiveLayer(Maps.ActiveLayer - 1); break;
                 case "buscar": Info("La búsqueda en todo el proyecto llegará con los editores de mapas y eventos."); break;
+                case "seleccion": MapOnly(MapTool.Select); break;
+                case "inicio": MapOnly(MapTool.PlayerStart); break;
+                case "zona": MapOnly(MapTool.EncounterPaint); break;
+                case "seleccionar_todo": if (Maps?.Map != null) { ActiveEditor = "mapa"; Maps.SelectAll(); } break;
+                case "deseleccionar": Maps?.ClearSelection(); break;
+                case "nuevo_mapa": if (HasProject) MapTreePanel.NewMapDialog(this, ""); break;
+                case "atajos": SettingsDialog.Show(this, SettingsDialog.Tab.Shortcuts); break;
+                case "entorno": SettingsDialog.Show(this); break;
+                case "capa_nueva": if (Maps?.Map != null) Maps.AddLayer(); break;
+                case "capa_ver":
+                    if (Maps?.Map != null && Maps.ActiveLayer < Maps.Map.Layers.Count)
+                        Maps.SetLayerView(Maps.ActiveLayer, visible: !Maps.Map.Layers[Maps.ActiveLayer].Visible);
+                    break;
+                case "capa_bloquear":
+                    if (Maps?.Map != null && Maps.ActiveLayer < Maps.Map.Layers.Count)
+                        Maps.SetLayerView(Maps.ActiveLayer, locked: !Maps.Map.Layers[Maps.ActiveLayer].Locked);
+                    break;
+                case "capas_auto": if (Maps != null) Maps.SetAutoLayers(!Maps.AutoLayers); break;
+                case var w when w.StartsWith("ventana_"):
+                    var panel = w.Substring("ventana_".Length);
+                    if (PanelCatalog.Find(panel) == null || !HasProject) break;
+                    Workspace.Layout.Open(panel);
+                    SetLayout(Workspace.Layout);
+                    break;
                 default:
                     ActionRequested?.Invoke(id);
                     break;
             }
+        }
+
+        private void MapOnly(MapTool tool)
+        {
+            if (Maps?.Map == null) return;
+            ActiveEditor = "mapa";
+            Maps.SetTool(tool);
         }
 
         private void Tool(MapTool map, PixelTool pixel)
@@ -866,14 +898,49 @@ namespace CTEditor.App
         /// <summary>Actions that belong to a panel (tools, grid...): the panels listen here.</summary>
         public event Action<string> ActionRequested;
 
+        /// <summary>Space is held (Space + drag = move around the map, as in Photoshop, Tiled or GB Studio).</summary>
+        public bool SpaceHeld { get; private set; }
+
+        private Action<string> _keyCapture;
+
+        /// <summary>
+        /// The next key combination goes to onKeys instead of running an action (recording a shortcut): the keys
+        /// («Ctrl+Mayús+Z»), "" for Backspace (no shortcut) or null for Esc (cancel).
+        /// </summary>
+        public void CaptureKeys(Action<string> onKeys) => _keyCapture = onKeys;
+
+        private static bool IsModifierKey(KeyCode k) =>
+            k == KeyCode.LeftControl || k == KeyCode.RightControl || k == KeyCode.LeftShift || k == KeyCode.RightShift ||
+            k == KeyCode.LeftAlt || k == KeyCode.RightAlt || k == KeyCode.LeftCommand || k == KeyCode.RightCommand ||
+            k == KeyCode.AltGr;
+
+        private static string KeysOf(KeyDownEvent e) =>
+            ShortcutMap.Normalize((e.ctrlKey || e.commandKey ? "Ctrl+" : "") + (e.altKey ? "Alt+" : "") + (e.shiftKey ? "Mayús+" : "") + e.keyCode);
+
         private void OnKeyDown(KeyDownEvent e)
         {
             if (e.keyCode == KeyCode.None) return;
+            if (_keyCapture != null)
+            {
+                if (IsModifierKey(e.keyCode)) return;
+                var capture = _keyCapture;
+                _keyCapture = null;
+                e.StopPropagation();
+                capture(e.keyCode == KeyCode.Escape ? null : e.keyCode == KeyCode.Backspace ? "" : KeysOf(e));
+                return;
+            }
             if (IsPlaying && e.keyCode != KeyCode.F5 && e.keyCode != KeyCode.F9 && e.keyCode != KeyCode.F11) return;
             // Ctrl + 0: interface back to 100 % (Ctrl + wheel changes it).
             if ((e.ctrlKey || e.commandKey) && (e.keyCode == KeyCode.Alpha0 || e.keyCode == KeyCode.Keypad0) && HasProject)
             {
                 SetScale(1f);
+                e.StopPropagation();
+                return;
+            }
+            // Alt + 0: the window under the pointer back to 100 % (Alt + wheel changes it).
+            if (e.altKey && (e.keyCode == KeyCode.Alpha0 || e.keyCode == KeyCode.Keypad0) && _dock != null)
+            {
+                _dock.SetScale(_dock.HoveredPanel, 1f);
                 e.StopPropagation();
                 return;
             }
@@ -889,8 +956,8 @@ namespace CTEditor.App
             if (typing && !modifier && !functionKey) return;
             if (_dialogs.Count > 0 && !functionKey) return;
 
-            var keys = ShortcutMap.Normalize((e.ctrlKey || e.commandKey ? "Ctrl+" : "") + (e.altKey ? "Alt+" : "")
-                                             + (e.shiftKey ? "Mayús+" : "") + e.keyCode);
+            if (e.keyCode == KeyCode.Space && !modifier) { SpaceHeld = true; return; }
+            var keys = KeysOf(e);
             var action = Workspace.Shortcuts.ActionFor(keys);
             if (action == null) return;
             e.StopPropagation();

@@ -90,4 +90,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   hacer zoom); ventana Tiles compacta con iconos; Capas con iconos, asa para reordenar arrastrando y deslizador propio
   con %; barras de desplazamiento finas; importar con vista previa y tipo sugerido; cambiar el tipo después; menú
   Ver → Ventanas / Distribuciones (submenús); Ctrl + 0.
+- **Pulido 3**: la causa real del descuadre del mapa (los renderizadores estaban en x = 3 100 000, donde un float solo
+  tiene precisión de ¼ de casilla) — ahora en el origen; tilesets de Propiedades compactos; escala por ventana
+  (Alt + rueda, Alt + 0) recordada; atajos ampliados por categorías (inspirados en Tiled / Pokémon Studio, GB Studio,
+  Photoshop y Unity), grabables pulsándolos y con buscador; Espacio + arrastrar.
 - **Documentación** completa por capítulos (esta carpeta).

@@ -6,13 +6,17 @@ using CTEditor.Project;
 
 namespace CTEditor.Workspace
 {
-    /// <summary>Una acción con atajo de teclado.</summary>
+    /// <summary>Una acción con atajo de teclado, en una categoría (General, Herramientas, Vista...).</summary>
     public sealed class ShortcutAction
     {
         public string Id { get; }
         public string Label { get; }
         public string DefaultKeys { get; }
-        public ShortcutAction(string id, string label, string defaultKeys) { Id = id; Label = label; DefaultKeys = defaultKeys; }
+        public string Category { get; }
+        public ShortcutAction(string id, string label, string defaultKeys, string category = "General")
+        {
+            Id = id; Label = label; DefaultKeys = defaultKeys; Category = category ?? "General";
+        }
     }
 
     /// <summary>
@@ -21,26 +25,105 @@ namespace CTEditor.Workspace
     /// </summary>
     public sealed class ShortcutMap
     {
+        /// <summary>
+        /// Atajos de fábrica: los de siempre en programas de dibujo y de mapas (Photoshop / Aseprite: B, E, G, I, M;
+        /// Tiled y Pokémon Studio: herramientas de una letra; GB Studio: Ctrl + número para cambiar de vista, números
+        /// para los modos; Unity: F para encuadrar). Todos se pueden cambiar en Entorno → Atajos de teclado.
+        /// </summary>
         private static readonly List<ShortcutAction> ActionList = new List<ShortcutAction>
         {
-            new ShortcutAction("jugar", "Jugar desde el principio", "F5"),
-            new ShortcutAction("probar_aqui", "Probar desde aquí", "Ctrl+F5"),
-            new ShortcutAction("depurador", "Depurador (durante el juego)", "F9"),
-            new ShortcutAction("pantalla_completa", "Pantalla completa / ventana", "F11"),
+            // General
             new ShortcutAction("guardar", "Guardar", "Ctrl+S"),
             new ShortcutAction("deshacer", "Deshacer", "Ctrl+Z"),
             new ShortcutAction("rehacer", "Rehacer", "Ctrl+Y"),
             new ShortcutAction("buscar", "Buscar en todo el proyecto", "Ctrl+P"),
-            new ShortcutAction("lapiz", "Herramienta: lápiz", "B"),
-            new ShortcutAction("relleno", "Herramienta: relleno", "G"),
-            new ShortcutAction("rectangulo", "Herramienta: rectángulo", "U"),
-            new ShortcutAction("cuentagotas", "Herramienta: cuentagotas", "I"),
-            new ShortcutAction("goma", "Herramienta: goma", "E"),
-            new ShortcutAction("seleccion", "Herramienta: selección", "M"),
-            new ShortcutAction("rejilla", "Mostrar u ocultar la rejilla", "Ctrl+G"),
-            new ShortcutAction("capa_siguiente", "Capa siguiente", "PageDown"),
-            new ShortcutAction("capa_anterior", "Capa anterior", "PageUp"),
+            new ShortcutAction("nuevo_mapa", "Nuevo mapa…", "Ctrl+N"),
+            new ShortcutAction("atajos", "Ver y cambiar los atajos", "F1"),
+            new ShortcutAction("entorno", "Personalizar el entorno…", "Ctrl+Comma"),
+            new ShortcutAction("pantalla_completa", "Pantalla completa / ventana", "F11"),
+            // Jugar
+            new ShortcutAction("jugar", "Jugar desde el principio", "F5", "Jugar"),
+            new ShortcutAction("probar_aqui", "Probar desde la casilla del ratón", "Ctrl+F5", "Jugar"),
+            new ShortcutAction("depurador", "Depurador (durante el juego)", "F9", "Jugar"),
+            // Herramientas del mapa
+            new ShortcutAction("lapiz", "Lápiz", "B", "Herramientas"),
+            new ShortcutAction("rectangulo", "Rectángulo", "U", "Herramientas"),
+            new ShortcutAction("relleno", "Relleno", "G", "Herramientas"),
+            new ShortcutAction("goma", "Goma", "E", "Herramientas"),
+            new ShortcutAction("cuentagotas", "Cuentagotas", "I", "Herramientas"),
+            new ShortcutAction("seleccion", "Selección", "M", "Herramientas"),
+            new ShortcutAction("inicio", "Colocar el inicio del jugador", "P", "Herramientas"),
+            new ShortcutAction("zona", "Pintar la zona de encuentros", "H", "Herramientas"),
+            // Selección
+            new ShortcutAction("seleccionar_todo", "Seleccionar todo el mapa", "Ctrl+A", "Selección"),
+            new ShortcutAction("deseleccionar", "Quitar la selección", "Ctrl+D", "Selección"),
+            // Vista
+            new ShortcutAction("rejilla", "Mostrar u ocultar la rejilla", "Ctrl+G", "Vista"),
+            new ShortcutAction("vecinos", "Mostrar u ocultar los tramos vecinos", "N", "Vista"),
+            new ShortcutAction("acercar", "Acercar", "Z", "Vista"),
+            new ShortcutAction("alejar", "Alejar", "Mayús+Z", "Vista"),
+            new ShortcutAction("encuadrar", "Encuadrar: ver el tramo entero", "F", "Vista"),
+            // Capas
+            new ShortcutAction("capa_siguiente", "Capa siguiente", "PageDown", "Capas"),
+            new ShortcutAction("capa_anterior", "Capa anterior", "PageUp", "Capas"),
+            new ShortcutAction("capa_nueva", "Nueva capa", "Ctrl+Mayús+N", "Capas"),
+            new ShortcutAction("capa_ver", "Mostrar u ocultar la capa elegida", "Ctrl+H", "Capas"),
+            new ShortcutAction("capa_bloquear", "Bloquear o desbloquear la capa elegida", "Ctrl+Mayús+H", "Capas"),
+            new ShortcutAction("capas_auto", "Capas automáticas sí / no", "Ctrl+L", "Capas"),
+            // Tiles: modes by number (like the collision modes of GB Studio)
+            new ShortcutAction("modo_pintar", "Tiles: pintar", "Alpha1", "Tiles"),
+            new ShortcutAction("modo_paso", "Tiles: paso", "Alpha2", "Tiles"),
+            new ShortcutAction("modo_prioridad", "Tiles: prioridad", "Alpha3", "Tiles"),
+            new ShortcutAction("modo_terreno", "Tiles: terreno", "Alpha4", "Tiles"),
+            new ShortcutAction("modo_arbusto", "Tiles: arbusto", "Alpha5", "Tiles"),
+            new ShortcutAction("modo_mostrador", "Tiles: mostrador", "Alpha6", "Tiles"),
+            new ShortcutAction("modo_pieza", "Tiles: pieza (capa automática)", "Alpha7", "Tiles"),
+            // Ventanas: Ctrl + number (like the views of GB Studio)
+            new ShortcutAction("ventana_mapa", "Ir a la ventana Mapa", "Ctrl+Alpha1", "Ventanas"),
+            new ShortcutAction("ventana_paleta", "Ir a la ventana Tiles", "Ctrl+Alpha2", "Ventanas"),
+            new ShortcutAction("ventana_capas", "Ir a la ventana Capas", "Ctrl+Alpha3", "Ventanas"),
+            new ShortcutAction("ventana_mundo", "Ir a la ventana Mundo", "Ctrl+Alpha4", "Ventanas"),
+            new ShortcutAction("ventana_encuentros", "Ir a la ventana Encuentros", "Ctrl+Alpha5", "Ventanas"),
+            new ShortcutAction("ventana_recursos", "Ir a la ventana Recursos", "Ctrl+Alpha6", "Ventanas"),
+            new ShortcutAction("ventana_retoque", "Ir a la ventana Retoque", "Ctrl+Alpha7", "Ventanas"),
+            new ShortcutAction("ventana_inspector", "Ir a la ventana Propiedades", "Ctrl+Alpha8", "Ventanas"),
+            new ShortcutAction("ventana_mapas", "Ir a la ventana Mapas", "Ctrl+Alpha9", "Ventanas"),
         };
+
+        /// <summary>The order of the categories in lists (others go after, alphabetically).</summary>
+        public static readonly string[] Categories = { "General", "Jugar", "Herramientas", "Selección", "Vista", "Capas", "Tiles", "Ventanas" };
+
+        /// <summary>«Ctrl+Alpha1» → «Ctrl+1», «PageDown» → «Av Pág»: how a shortcut is shown to people.</summary>
+        public static string Pretty(string keys)
+        {
+            if (string.IsNullOrEmpty(keys)) return "";
+            var parts = keys.Split('+');
+            var key = parts[parts.Length - 1];
+            string pretty = key switch
+            {
+                "PageDown" => "Av Pág",
+                "PageUp" => "Re Pág",
+                "Delete" => "Supr",
+                "Backspace" => "Retroceso",
+                "Comma" => ",",
+                "Period" => ".",
+                "Space" => "Espacio",
+                "Return" => "Intro",
+                "Escape" => "Esc",
+                "Equals" => "=",
+                "Minus" => "-",
+                "Plus" => "+",
+                "LeftArrow" => "Izquierda",
+                "RightArrow" => "Derecha",
+                "UpArrow" => "Arriba",
+                "DownArrow" => "Abajo",
+                _ when key.StartsWith("Alpha") && key.Length == 6 => key.Substring(5),
+                _ when key.StartsWith("Keypad") && key.Length == 7 => "Num " + key.Substring(6),
+                _ => key,
+            };
+            parts[parts.Length - 1] = pretty;
+            return string.Join("+", parts);
+        }
 
         public static IReadOnlyList<ShortcutAction> Actions => ActionList;
 
@@ -106,7 +189,12 @@ namespace CTEditor.Workspace
                     case "alt": alt = true; break;
                     case "mayús": case "mayus": case "shift": shift = true; break;
                     case "": break;
-                    default: key = p.Length == 1 ? p.ToUpperInvariant() : char.ToUpperInvariant(p[0]) + p.Substring(1); break;
+                    // A digit typed by hand is the number row («1» → «Alpha1», as Unity names that key).
+                    default:
+                        key = p.Length == 1 && char.IsDigit(p[0]) ? "Alpha" + p
+                            : p == "," ? "Comma" : p == "." ? "Period"
+                            : p.Length == 1 ? p.ToUpperInvariant() : char.ToUpperInvariant(p[0]) + p.Substring(1);
+                        break;
                 }
             }
             if (key.Length == 0) return "";
@@ -149,6 +237,21 @@ namespace CTEditor.Workspace
         private float _uiScale = 1f;
         public float UiScale { get => _uiScale; set => _uiScale = Math.Max(MinScale, Math.Min(MaxScale, value)); }
 
+        public const float MinPanelScale = 0.6f, MaxPanelScale = 2.5f;
+        private readonly Dictionary<string, float> _panelScales = new Dictionary<string, float>();
+
+        /// <summary>Escala propia de una ventana (Alt + rueda sobre ella), por encima de la global. 1 = como las demás.</summary>
+        public float PanelScale(string panelId) =>
+            panelId != null && _panelScales.TryGetValue(panelId, out var s) ? s : 1f;
+
+        public void SetPanelScale(string panelId, float scale)
+        {
+            if (string.IsNullOrEmpty(panelId)) return;
+            scale = (float)Math.Round(Math.Max(MinPanelScale, Math.Min(MaxPanelScale, scale)), 2);
+            if (Math.Abs(scale - 1f) < 0.001f) _panelScales.Remove(panelId);
+            else _panelScales[panelId] = scale;
+        }
+
         private int _fontSize = 13;
         public int FontSize { get => _fontSize; set => _fontSize = Math.Max(9, Math.Min(24, value)); }
 
@@ -186,6 +289,7 @@ namespace CTEditor.Workspace
             .Set("distribuciones_guardadas", SavedLayouts.Select(l => (object)l.ToJson()).ToList())
             .Set("escala", Math.Round(UiScale, 2))
             .Set("tamaño_letra", FontSize)
+            .Set("escala_ventanas", _panelScales.Aggregate(new JsonObject(), (j, kv) => j.Set(kv.Key, Math.Round(kv.Value, 2))))
             .Set("atajos", Shortcuts.ToJson())
             .Set("recientes", RecentProjects.Cast<object>().ToList());
 
@@ -199,6 +303,8 @@ namespace CTEditor.Workspace
                 if (s is JsonObject so) w.SavedLayouts.Add(DockLayout.FromJson(so));
             w.UiScale = o.GetFloat("escala", 1f);
             w.FontSize = o.GetInt("tamaño_letra", 13);
+            if (o.GetObject("escala_ventanas") is JsonObject ps)
+                foreach (var key in ps.Keys) w.SetPanelScale(key, ps.GetFloat(key, 1f));
             w.Shortcuts = ShortcutMap.FromJson(o.GetObject("atajos"));
             foreach (var r in o.GetArray("recientes") ?? new List<object>())
                 if (r is string rs) w.RecentProjects.Add(rs);

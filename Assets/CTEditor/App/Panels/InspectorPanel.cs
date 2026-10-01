@@ -130,30 +130,39 @@ namespace CTEditor.App
             // Tilesets of the map: the first is the main one; Tiles can add more (each cell remembers its tileset).
             var ts = Section("Tilesets del mapa");
             var list = Ui.Column(4);
+            // One compact row per tileset: its number (as in the Tiles tabs), the name cut with «…» (full name in the
+            // tooltip) and, on the last extra one, a remove icon.
             for (int i = 0; i < m.TilesetIds.Count; i++)
             {
                 int slot = i;
                 var t = S.TilesetFor(m.TilesetIds[i]);
                 var row = Ui.Row(6);
-                row.With(Ui.Text((i == 0 ? "Principal: " : $"{i + 1}. ") + (t?.Name ?? m.TilesetIds[i] + " (no está: ¿se borró o no está cortado?)"))
-                    .Colored(t == null ? "aviso" : "texto").Grow());
-                if (i > 0 && i == m.TilesetIds.Count - 1) row.Add(Ui.Button("Quitar", () => S.RemoveTilesetFromMap(slot), Ui.ButtonKind.Flat, "Solo si ningún tile lo usa"));
+                var badge = Ui.Text((i + 1).ToString(), 0.85f, bold: true).NoShrink();
+                badge.style.minWidth = Ui.FontSize + 6;
+                badge.style.unityTextAlign = TextAnchor.MiddleCenter;
+                badge.Bg(i == 0 ? "acento" : "panel_alt").Round(Ui.FontSize);
+                if (i == 0) badge.style.color = Color.white;
+                var name = Ui.Text(t?.Name ?? m.TilesetIds[i] + " (no está)", 0.92f).Colored(t == null ? "aviso" : "texto").Grow();
+                name.tooltip = (i == 0 ? "Principal: " : $"Tileset {i + 1}: ") + (t != null ? $"{t.Name} · {t.ImagePath}" : "no se encuentra: ¿se borró o no está cortado?");
+                row.With(badge, name);
+                if (i > 0 && i == m.TilesetIds.Count - 1)
+                    row.Add(Ui.IconButton("papelera", () => S.RemoveTilesetFromMap(slot), "Quitar este tileset del mapa (solo si ningún tile lo usa)"));
                 list.Add(row);
             }
             var available = S.AvailableTilesets();
             if (available.Count == 0) list.Add(Ui.Hint("No hay tilesets cortados. Corta una imagen de graficos/tilesets en Recursos."));
             else
             {
-                list.Add(Ui.Text("Cambiar el principal:", 0.9f, dim: true));
-                var chips = Ui.Row(4);
-                chips.style.flexWrap = Wrap.Wrap;
-                foreach (var t in available)
+                var change = Ui.Button("Cambiar el principal…", null, Ui.ButtonKind.Normal, "Elegir otro tileset como principal (el 1)");
+                change.style.alignSelf = Align.FlexStart;
+                change.clicked += () =>
                 {
-                    var id = t;
-                    chips.Add(Ui.Chip(S.TilesetFor(t)?.Name ?? t, m.TilesetId == t, () => S.SetMapTileset(id), t).Margin(0, 0, 4, 4));
-                }
-                list.Add(chips);
-                list.Add(Ui.Hint("Para usar varios tilesets a la vez, añádelos en la ventana Tiles con «+»."));
+                    var r = change.worldBound;
+                    var items = available.Select(id => new MenuItem(S.TilesetFor(id)?.Name ?? id, () => S.SetMapTileset(id), isChecked: m.TilesetId == id)).ToList();
+                    _shell.ShowMenu(new Vector2(r.x, r.yMax + 2), items);
+                };
+                list.Add(change);
+                list.Add(Ui.Hint("Para usar varios a la vez: «+» en la ventana Tiles."));
             }
             ts.Add(list);
             body.Add(ts);

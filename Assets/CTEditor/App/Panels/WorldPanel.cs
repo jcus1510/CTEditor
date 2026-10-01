@@ -24,6 +24,8 @@ namespace CTEditor.App
         public static readonly string[] CategoryNames = { "Pueblo", "Ciudad", "Ruta", "Bosque", "Cueva", "Agua", "Montaña", "Edificio", "Especial" };
 
         private readonly AppShell _shell;
+        /// <summary>Texture pixels per local point: interface scale × the zoom of this window (Alt + wheel).</summary>
+        private float Ppp => _shell.PixelsPerPoint * Ui.ScaleOf(_viewport);
         private MapEditorSession S => _shell.Maps;
         private MapRenderer _renderer;
         private AtlasCache _atlases;
@@ -263,7 +265,7 @@ namespace CTEditor.App
         private void Resize()
         {
             if (_renderer == null) return;
-            float ppp = _shell.PixelsPerPoint;
+            float ppp = Ppp;
             _renderer.Resize(Mathf.RoundToInt(_viewport.layout.width * ppp), Mathf.RoundToInt(_viewport.layout.height * ppp));
             _image.image = _renderer.Target;
             _renderer.Zoom = ZoomLevels[_zoomIndex] * ppp;
@@ -274,7 +276,7 @@ namespace CTEditor.App
         {
             _zoomIndex = Mathf.Clamp(i, 0, ZoomLevels.Length - 1);
             if (_renderer == null) return;
-            _renderer.Zoom = ZoomLevels[_zoomIndex] * _shell.PixelsPerPoint;
+            _renderer.Zoom = ZoomLevels[_zoomIndex] * Ppp;
             _renderer.UpdateCamera();
             BuildToolbar();
             RedrawOverlay();
@@ -291,7 +293,7 @@ namespace CTEditor.App
             int best = 0;
             for (int i = 0; i < ZoomLevels.Length; i++) if (ZoomLevels[i] <= fit) best = i;
             _zoomIndex = best;
-            _renderer.Zoom = ZoomLevels[best] * _shell.PixelsPerPoint;
+            _renderer.Zoom = ZoomLevels[best] * Ppp;
             _renderer.Center = MapRenderer.CenterOf(bx, by, bw, bh);
             _renderer.UpdateCamera();
             BuildToolbar();
@@ -305,8 +307,8 @@ namespace CTEditor.App
             _renderer.UpdateCamera();
         }
 
-        private Vector2 CellAt(Vector2 local) => _renderer.PixelToCell(local * _shell.PixelsPerPoint);
-        private Vector2 P(float x, float y) => _renderer.CellToPixel(x, y) / _shell.PixelsPerPoint;
+        private Vector2 CellAt(Vector2 local) => _renderer.PixelToCell(local * Ppp);
+        private Vector2 P(float x, float y) => _renderer.CellToPixel(x, y) / Ppp;
 
         private MapDefinition SectionAt(Vector2 cell) =>
             Visible().FirstOrDefault(m => new WorldSection(m).Contains(Mathf.FloorToInt(cell.x), Mathf.FloorToInt(cell.y)));
@@ -346,7 +348,7 @@ namespace CTEditor.App
             if (_panning)
             {
                 var d = (Vector2)e.localPosition - _panStart;
-                float ppu = _renderer.PixelsPerUnit / _shell.PixelsPerPoint;
+                float ppu = _renderer.PixelsPerUnit / Ppp;
                 _renderer.Center = _panCenter + new Vector2(-d.x / ppu, d.y / ppu);
                 _renderer.UpdateCamera();
                 RedrawOverlay();
