@@ -102,4 +102,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   emergentes con el elemento realmente bajo el ratón; botones de la barra del mapa más grandes y botón para colocarla;
   «Nuevo mapa» rediseñado (formulario en dos columnas, tamaños habituales, brújula para el lado y ficha resumen con el
   tileset). Lista de prueba en Unity en el capítulo 20.
+- **Pulido 6 — Encuentros rediseñada**: zonas como lista compacta, la zona elegida con sus métodos en pestañas,
+  especies en tarjetas con barra de %, horas con las cuatro encendidas = siempre, «Todas las horas», interruptor con
+  icono, «Dejar de pintar» (y Esc), resaltar todas las zonas en el mapa o solo la elegida. Ctrl+Z en cada ventana (el
+  editor activo es la ventana en la que haces clic).
 - **Documentación** completa por capítulos (esta carpeta).

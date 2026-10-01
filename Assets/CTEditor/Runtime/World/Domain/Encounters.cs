@@ -27,7 +27,9 @@ namespace CTEditor.World.Domain
         Morning = 1,
         Day = 2,
         Evening = 4,
-        Night = 8
+        Night = 8,
+        /// <summary>Las cuatro a la vez (para la interfaz; en datos se guarda como Any).</summary>
+        AllDay = Morning | Day | Evening | Night
     }
 
     /// <summary>
@@ -143,6 +145,14 @@ namespace CTEditor.World.Domain
         public IReadOnlyList<(EncounterSlot slot, double percent)> Chances(TimeOfDay now, Func<string, bool> flag)
         {
             var list = Slots.Where(s => s.Weight > 0 && s.AvailableAt(now, flag)).ToList();
+            double total = list.Sum(s => s.Weight);
+            return list.Select(s => (s, total <= 0 ? 0 : s.Weight * 100.0 / total)).ToList();
+        }
+
+        /// <summary>% de cada especie sin mirar la hora ni los interruptores (vista «todas las horas»).</summary>
+        public IReadOnlyList<(EncounterSlot slot, double percent)> BaseChances()
+        {
+            var list = Slots.Where(s => s.Weight > 0).ToList();
             double total = list.Sum(s => s.Weight);
             return list.Select(s => (s, total <= 0 ? 0 : s.Weight * 100.0 / total)).ToList();
         }

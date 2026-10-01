@@ -182,6 +182,9 @@ namespace CTEditor.App
                     e.PreventDefault();
                 }, TrickleDown.TrickleDown);
                 body.RegisterCallback<PointerEnterEvent>(_ => HoveredPanel = active);
+                // The window you click is the one Ctrl+Z, tools and shortcuts talk to.
+                body.RegisterCallback<PointerDownEvent>(_ => _shell.ActiveEditor = active == PanelCatalog.PixelEditor ? "retoque" : "mapa",
+                    TrickleDown.TrickleDown);
             }
             group.Add(body);
             return group;

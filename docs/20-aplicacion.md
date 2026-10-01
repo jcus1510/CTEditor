@@ -127,6 +127,17 @@ Inspirados en: herramientas de una letra de Photoshop / Aseprite y de [Tiled](ht
 | **Barra del mapa** | Botones más grandes (con iconos más grandes) y un botón al final para colocarla (además del clic derecho). |
 | **Nuevo mapa** | Formulario en dos columnas (etiquetas a la izquierda, controles a la derecha), tamaños habituales con un clic (20 × 15, 40 × 30, 60 × 40, 12 × 10), **brújula** para elegir por qué lado se pega al tramo, y una **ficha resumen** a la derecha con la miniatura del tileset y lo que se va a crear. |
 
+## Pulido 6 — ventana Encuentros
+
+| Antes | Ahora |
+|---|---|
+| Todas las zonas abiertas a la vez, con todos los métodos como botones | **Zonas** en una lista compacta (color, nombre, casillas y métodos; pintar y papelera); «+» añade «Todo el tramo» o una zona pintada; doble clic = renombrar. Debajo, solo la **zona elegida**: sus métodos en **pestañas** («Hierba · 10 %») y «+» para añadir otro. |
+| No había forma clara de dejar de pintar | Mientras pintas sale un aviso con **«Dejar de pintar»**; también Esc, B o el mismo icono. |
+| Horas: ninguna marcada = todas (contraintuitivo) | **Las cuatro encendidas = sale siempre**; se apagan las que no. Al menos una queda encendida. Para ver los %: **«Todas las horas»** (según los pesos) o una hora concreta. |
+| Filas largas de cajas | Cada especie es una **tarjeta**: nombre, **barra con el % real**, niveles «Nv. 2 – 4», peso, horas M D T N y el **interruptor** (icono; encendido si hace falta uno). |
+| Solo se veía la zona elegida | Botón para **resaltar todas las zonas** en el mapa (con su nombre) o volver a resaltar solo la elegida. |
+| Ctrl+Z no deshacía aquí (si antes usaste Retoque) | El editor activo es **la ventana en la que haces clic**: Ctrl+Z deshace en Retoque si estás en Retoque, y en el mapa (encuentros incluidos) en las demás. |
+
 ## Lista de prueba en Unity (antes de seguir)
 
 Marca lo que funcione y mándame captura de lo que no:

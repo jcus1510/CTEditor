@@ -835,6 +835,21 @@ namespace CTEditor.Editing
 
         public EncounterArea ActiveArea => Map?.Encounters.FirstOrDefault(a => a.Id == ActiveAreaId);
 
+        /// <summary>Resaltar en el mapa todas las zonas de encuentros (true) o solo la elegida (false).</summary>
+        public bool HighlightAllAreas { get; private set; }
+
+        public void SetHighlightAllAreas(bool all)
+        {
+            HighlightAllAreas = all;
+            EncountersChanged?.Invoke();
+        }
+
+        /// <summary>Deja de pintar la zona (vuelve al lápiz).</summary>
+        public void StopAreaPainting()
+        {
+            if (Tool == MapTool.EncounterPaint) SetTool(MapTool.Pencil);
+        }
+
         public void SetActiveArea(string id)
         {
             ActiveAreaId = Map?.Encounters.Any(a => a.Id == id) == true ? id : null;

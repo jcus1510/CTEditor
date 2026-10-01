@@ -657,19 +657,25 @@ namespace CTEditor.App
             }
 
             // Encounter areas: the painted ones as coloured rectangles (the active one stronger).
+            // Encounter zones: the chosen one stands out; the others are faint, or all shown alike with
+            // «highlight all» (Encuentros window).
             bool encounterTool = S.Tool == MapTool.EncounterPaint;
+            bool all = S.HighlightAllAreas;
             foreach (var area in m.Encounters)
             {
                 ColorUtility.TryParseHtmlString(area.Color, out var c);
                 bool active = area.Id == S.ActiveAreaId;
+                bool strong = active || all;
                 if (area.WholeMap)
                 {
-                    if (active && encounterTool) Tag("Zona de todo el tramo: " + area.Name, P(0, 0) + new Vector2(4, -Ui.FontSize - 6), c);
+                    if ((active && encounterTool) || all) Tag("Todo el tramo: " + area.Name, P(0, 0) + new Vector2(4, -Ui.FontSize - 6), c);
                     continue;
                 }
-                float fill = active ? (encounterTool ? 0.45f : 0.3f) : encounterTool ? 0.12f : 0.18f;
-                foreach (var (x, y, w, h) in area.ToRectangles())
-                    Box(P(x, y), P(x + w, y + h), Ui.WithAlpha(c, active ? 0.9f : 0.4f), active ? 1 : 0, fill);
+                float fill = strong ? (active && encounterTool ? 0.45f : 0.32f) : 0.08f;
+                var rects = area.ToRectangles().ToList();
+                foreach (var (x, y, w, h) in rects)
+                    Box(P(x, y), P(x + w, y + h), Ui.WithAlpha(c, strong ? 0.9f : 0.25f), strong ? 1 : 0, fill);
+                if (all && rects.Count > 0) Tag(area.Name, P(rects[0].x, rects[0].y) + new Vector2(2, 2), c, filled: true);
             }
 
             // Objects (the player start for now).

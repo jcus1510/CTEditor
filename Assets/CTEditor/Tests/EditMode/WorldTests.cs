@@ -197,6 +197,9 @@ namespace CTEditor.Tests.EditMode
             Assert.AreEqual(50.0, day[0].percent, 0.01);
             var night = grass.Chances(TimeOfDay.Night, _ => false);
             Assert.AreEqual(30.0 / 130 * 100, night[2].percent, 0.01);
+            var allHours = grass.BaseChances();
+            Assert.AreEqual(grass.Slots.Count(x => x.Weight > 0), allHours.Count, "«all hours»: every species with weight");
+            Assert.AreEqual(100.0, allHours.Sum(c => c.percent), 0.01);
 
             // Rolls with a scripted dice: first roll = rate check, second = slot, third = level.
             Queue<int> dice = null;
@@ -325,6 +328,13 @@ namespace CTEditor.Tests.EditMode
                 s.PointerDown(1, 1, secondary: true);
                 s.PointerUp(1, 1);
                 Assert.AreEqual(1, s.ActiveArea.Cells.Count, "right click removes");
+                s.StopAreaPainting();
+                Assert.AreEqual(MapTool.Pencil, s.Tool, "stop painting goes back to the pencil");
+                int changes = 0;
+                s.EncountersChanged += () => changes++;
+                s.SetHighlightAllAreas(true);
+                Assert.IsTrue(s.HighlightAllAreas);
+                Assert.AreEqual(1, changes);
 
                 s.SaveMethod(new EncounterMethod("volando", "Volando", EncounterTrigger.Script, 100));
                 s.MoveSection("pueblo", 50, 50);

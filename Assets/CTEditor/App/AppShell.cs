@@ -949,6 +949,9 @@ namespace CTEditor.App
             {
                 if (IsMenuOpen) { CloseMenu(); e.StopPropagation(); return; }
                 if (_dialogs.Count > 0) { CloseDialog(_dialogs[_dialogs.Count - 1]); e.StopPropagation(); return; }
+                // Esc also ends painting a zone, then clears the selection.
+                if (Maps?.Tool == MapTool.EncounterPaint) { Maps.StopAreaPainting(); e.StopPropagation(); return; }
+                if (Maps?.Selection != null) { Maps.ClearSelection(); e.StopPropagation(); }
                 return;
             }
             bool typing = e.target is VisualElement ve && (ve is TextField || ve.GetFirstAncestorOfType<TextField>() != null);

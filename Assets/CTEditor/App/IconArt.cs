@@ -272,6 +272,14 @@ namespace CTEditor.App
             yield return Poly(12.3f, 9.3f, 14.7f, 11.7f, 11f, 13f);
         }
 
+        private static IEnumerable<Shape> Switch()
+        {
+            // A toggle switch: a rounded track with its knob on the right (on).
+            yield return Line(6.5f, 12f, 17.5f, 12f, 11f);
+            yield return Cut(Line(6.5f, 12f, 17.5f, 12f, 7.4f));
+            yield return Circle(17.2f, 12f, 3.4f);
+        }
+
         private static IEnumerable<Shape> Paste()
         {
             foreach (var s in Frame(4f, 4.5f, 13f, 16.5f, 2f)) yield return s;
@@ -335,6 +343,8 @@ namespace CTEditor.App
             ["linea"] = () => new[] { Line(5f, 19f, 19f, 5f, 2.4f) },
             ["rect_relleno"] = () => new[] { Box(4f, 5f, 16f, 14f) },
             ["reemplazar"] = Replace,
+            ["interruptor"] = Switch,
+            ["capas_todas"] = () => new[] { Box(3f, 3f, 8f, 8f), Box(13f, 3f, 8f, 8f), Box(3f, 13f, 8f, 8f), Box(13f, 13f, 8f, 8f) },
             ["ver"] = () => Eye(true),
             ["oculto"] = () => Eye(false),
             ["bloqueado"] = () => Lock(true),
