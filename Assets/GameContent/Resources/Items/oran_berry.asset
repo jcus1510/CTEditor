@@ -15,10 +15,10 @@ MonoBehaviour:
   id: oran_berry
   displayName: Baya Aranja
   englishName: Oran Berry
-  description: Con la mitad de PS o menos, recupera 10 PS (se consume).
-  category: 7
+  description: "Los Pok\xE9mon pueden llevarla o usarla para restaurar 10 PS."
+  category: 12
   icon: {fileID: 0}
-  price: 100
+  price: 80
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

@@ -15,7 +15,8 @@ MonoBehaviour:
   id: quick_claw
   displayName: "Garra R\xE1pida"
   englishName: Quick Claw
-  description: 20 % de actuar el primero dentro de su prioridad.
+  description: "Garra ligera y afilada que permite que el Pok\xE9mon que la lleve
+    ataque a veces el primero."
   category: 7
   icon: {fileID: 0}
   price: 4000

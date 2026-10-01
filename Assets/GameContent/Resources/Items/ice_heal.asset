@@ -15,10 +15,10 @@ MonoBehaviour:
   id: ice_heal
   displayName: Antihielo
   englishName: Ice Heal
-  description: Descongela.
+  description: "Medicina en espray que descongela a un Pok\xE9mon."
   category: 2
   icon: {fileID: 0}
-  price: 250
+  price: 200
   usableInBattle: 1
   usableOutsideBattle: 1
   consumable: 1

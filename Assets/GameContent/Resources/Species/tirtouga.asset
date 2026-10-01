@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: tirtouga
   displayName: Tirtouga
+  englishName: Tirtouga
   types:
   - {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
   - {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
@@ -46,9 +47,9 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 43d0d19b060699548bfc305aecdc232a, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: e973ccbf222973341881f946acbc8e42, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 6e3903fff8a8e9147800ea4859c2420a, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: e973ccbf222973341881f946acbc8e42, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 0636291e4eae3b146b1112aca9b448df, type: 2}
     level: 5
@@ -79,7 +80,7 @@ MonoBehaviour:
   - move: {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
     level: 48
   - move: {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
-    level: 51
+    level: 50
   evolutions:
   - target: {fileID: 11400000, guid: e59af8d29ec9f1344b72a996422e00c4, type: 2}
     requiredLevel: 37
@@ -91,6 +92,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
   - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
   - {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: 288b2a76bf19e5646b2fc8d79382d1dc, type: 2}
   - {fileID: 11400000, guid: b038add5f5a6f804fac709b7d5928f8f, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
@@ -110,6 +112,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
   - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: e9b30167cba759a4384b247fbb304135, type: 2}
   - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
   - {fileID: 11400000, guid: 32cacc67278f51544841007e0dee54cf, type: 2}
@@ -125,13 +129,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
   - {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
   - {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+  - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
+  - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
   eggMoves:
   - {fileID: 11400000, guid: 43d0d19b060699548bfc305aecdc232a, type: 2}
   - {fileID: 11400000, guid: ee44701bbc792004f8c744056ac5452d, type: 2}
   - {fileID: 11400000, guid: b435b36c8dbbe774f8cf6a571a66badd, type: 2}
+  - {fileID: 11400000, guid: d4f0e4294315d344ea18a9c9fa1e5e0e, type: 2}
   - {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
   - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
   - {fileID: 11400000, guid: 463d0914b67fe0e49bb7496ee377b881, type: 2}
@@ -141,3 +148,7 @@ MonoBehaviour:
   eggGroups:
   - {fileID: 11400000, guid: d157f82d264192840973c80fbe0c8b69, type: 2}
   - {fileID: 11400000, guid: ebdd707d7057ed147b45b980cf3f669a, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

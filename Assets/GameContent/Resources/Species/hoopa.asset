@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: hoopa
   displayName: Hoopa
+  englishName: Hoopa
   types:
   - {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
   - {fileID: 11400000, guid: 1f6653f8eb948e44995eccd8804153ac, type: 2}
@@ -44,15 +45,15 @@ MonoBehaviour:
   speed: 70
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: eca7e799eb30cf2458eb4f191ff0d834, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 49408bd7bff365a43941ed9a21b0b47f, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: aeb1e6a9a02f34444afa73bd28e97f48, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: eca7e799eb30cf2458eb4f191ff0d834, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 0e3f0fa51d6203f4b93b171b6cf2bcb8, type: 2}
     level: 6
@@ -64,17 +65,17 @@ MonoBehaviour:
     level: 19
   - move: {fileID: 11400000, guid: 9354c182ae2a8a24686edacf5ccb0995, type: 2}
     level: 25
-  - move: {fileID: 11400000, guid: f6551d2f6f61c104ea9adfa19f819ad7, type: 2}
-    level: 29
   - move: {fileID: 11400000, guid: 0b9440ffc0219d54a81940ba920172ff, type: 2}
+    level: 29
+  - move: {fileID: 11400000, guid: f6551d2f6f61c104ea9adfa19f819ad7, type: 2}
     level: 29
   - move: {fileID: 11400000, guid: 62b38fb2509acd649a44d1f2cc75c3f8, type: 2}
     level: 35
   - move: {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
     level: 46
-  - move: {fileID: 11400000, guid: 92d0ed9ee37aa2b48b4de3cf7ce8db55, type: 2}
-    level: 50
   - move: {fileID: 11400000, guid: e7054229772eef743ae0434f96e036d5, type: 2}
+    level: 50
+  - move: {fileID: 11400000, guid: 92d0ed9ee37aa2b48b4de3cf7ce8db55, type: 2}
     level: 50
   - move: {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
     level: 55
@@ -82,6 +83,8 @@ MonoBehaviour:
     level: 68
   - move: {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
     level: 75
+  - move: {fileID: 11400000, guid: eca7e799eb30cf2458eb4f191ff0d834, type: 2}
+    level: 85
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 4684f72d3faef8940bcbd8c6d3e78a7d, type: 2}
@@ -158,3 +161,7 @@ MonoBehaviour:
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

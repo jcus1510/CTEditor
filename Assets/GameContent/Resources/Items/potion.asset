@@ -15,7 +15,7 @@ MonoBehaviour:
   id: potion
   displayName: "Poci\xF3n"
   englishName: Potion
-  description: Cura 20 PS.
+  description: "Medicina en espray que cura heridas y restaura 20 PS a un Pok\xE9mon."
   category: 0
   icon: {fileID: 0}
   price: 200

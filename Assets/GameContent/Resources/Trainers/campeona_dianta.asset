@@ -29,6 +29,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: hawlucha
     moveIds:
     - swords_dance
@@ -48,6 +51,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: tyrantrum
     moveIds:
     - dragon_dance
@@ -67,6 +73,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: aurorus
     moveIds:
     - thunderbolt
@@ -86,6 +95,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: gourgeist
     moveIds:
     - will_o_wisp
@@ -105,6 +117,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: goodra
     moveIds:
     - draco_meteor
@@ -119,11 +134,14 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
     - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
     - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
-    heldItem: leftovers
+    heldItem: gardevoirite
     nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
     fixedIvs: 31
     nickname: 
     gender: 2
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: gardevoir
     moveIds:
     - moonblast
@@ -133,6 +151,10 @@ MonoBehaviour:
     natureId: timid
   aiLevel: 6
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items:

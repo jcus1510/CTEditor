@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: avalanche
   displayName: Alud
+  englishName: Avalanche
   type: {fileID: 11400000, guid: fa23c32d4260662419de99a9c5528a38, type: 2}
   category: 0
   power: 60
@@ -23,6 +24,7 @@ MonoBehaviour:
   priority: -4
   target: 0
   secondaryEffects: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

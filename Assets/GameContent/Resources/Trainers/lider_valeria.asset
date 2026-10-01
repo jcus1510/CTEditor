@@ -29,6 +29,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 2
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: mawile
     moveIds:
     - iron_head
@@ -48,6 +51,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: mr_mime
     moveIds:
     - psychic
@@ -67,6 +73,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 2
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: sylveon
     moveIds:
     - draining_kiss
@@ -76,6 +85,10 @@ MonoBehaviour:
     natureId: 
   aiLevel: 4
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items:

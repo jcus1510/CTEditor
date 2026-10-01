@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: pancham
   displayName: Pancham
+  englishName: Pancham
   types:
   - {fileID: 11400000, guid: 0941b1891025dc049a69b41fb000c657, type: 2}
   abilityId: iron_fist
@@ -43,9 +44,9 @@ MonoBehaviour:
   speed: 43
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 91d7d14655e701d40b528f342c361bfc, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 12fc73498df84df43912f61161b61671, type: 2}
     level: 7
@@ -166,3 +167,7 @@ MonoBehaviour:
   eggGroups:
   - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
   - {fileID: 11400000, guid: 99ecbb820a1ce684e80a3e98d41a036b, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: gourgeist
   displayName: Gourgeist
+  englishName: Gourgeist
   types:
   - {fileID: 11400000, guid: 1f6653f8eb948e44995eccd8804153ac, type: 2}
   - {fileID: 11400000, guid: 50792a937522d2e4ab6bd6a520a1534f, type: 2}
@@ -44,15 +45,15 @@ MonoBehaviour:
   speed: 84
   customStats: []
   learnset:
+  - move: {fileID: 11400000, guid: 0e3f0fa51d6203f4b93b171b6cf2bcb8, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: 17db9758688531a4a91b48d9e2079c07, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 62b38fb2509acd649a44d1f2cc75c3f8, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: 0e3f0fa51d6203f4b93b171b6cf2bcb8, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: a5b45aaafa9ab3a46bb9c9a44e5e9a04, type: 2}
     level: 4
@@ -64,16 +65,28 @@ MonoBehaviour:
     level: 16
   - move: {fileID: 11400000, guid: 9a515c34c94d9f846a43fbb08b64617b, type: 2}
     level: 20
+  - move: {fileID: 11400000, guid: 90f353fca4da8974ea998f05e41757dd, type: 2}
+    level: 23
   - move: {fileID: 11400000, guid: 4b07d66fdb896c142bbbcbdb4af6e0c8, type: 2}
     level: 26
   - move: {fileID: 11400000, guid: 967dec9d4d420ef4a9c9f67d1395f3ac, type: 2}
     level: 30
   - move: {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
     level: 36
+  - move: {fileID: 11400000, guid: 90f353fca4da8974ea998f05e41757dd, type: 2}
+    level: 40
   - move: {fileID: 11400000, guid: d8e92f9a08c72494da330a1912c78045, type: 2}
     level: 42
   - move: {fileID: 11400000, guid: f9b934ad3cc59fc468d8184a25248dee, type: 2}
     level: 48
+  - move: {fileID: 11400000, guid: 62b38fb2509acd649a44d1f2cc75c3f8, type: 2}
+    level: 57
+  - move: {fileID: 11400000, guid: 90f353fca4da8974ea998f05e41757dd, type: 2}
+    level: 63
+  - move: {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    level: 70
+  - move: {fileID: 11400000, guid: 17db9758688531a4a91b48d9e2079c07, type: 2}
+    level: 75
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
@@ -131,9 +144,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b31ca7e65ab8664298f232da45d96ca, type: 2}
   - {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
   - {fileID: 11400000, guid: 6f8d85b8fb617224589bd3ae8129b1eb, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 66fb6ff0495eebc4795494f32bfb5802, type: 2}
-  - {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
-  - {fileID: 11400000, guid: b346d8bdf41060a4991c7efbac57f083, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 9d53a19e52921834a83345100ec4a2a8, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

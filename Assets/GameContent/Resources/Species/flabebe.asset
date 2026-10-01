@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: flabebe
   displayName: "Flab\xE9b\xE9"
+  englishName: "Flab\xE9b\xE9"
   types:
   - {fileID: 11400000, guid: d65ead7637a8c9c4090b7b6df1d3b171, type: 2}
   abilityId: flower_veil
@@ -124,3 +125,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 90e0df9414a12a649961cdafed3fe972, type: 2}
   eggGroups:
   - {fileID: 11400000, guid: 8f25efafd6dcfb64fb4e0ba722b3e00f, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

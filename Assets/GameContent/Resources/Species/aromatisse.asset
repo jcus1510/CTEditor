@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: aromatisse
   displayName: Aromatisse
+  englishName: Aromatisse
   types:
   - {fileID: 11400000, guid: d65ead7637a8c9c4090b7b6df1d3b171, type: 2}
   abilityId: healer
@@ -45,11 +46,11 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 4d6b29a3327ec884383e9af1b68950a2, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: b8f4de817c276c24bb56f79455c80a2b, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: 8546436521437ff43b866e8cb5019d5d, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 359f2bdcc3c908741b97a2374dbfe96a, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: b8f4de817c276c24bb56f79455c80a2b, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: d713e067fff9f444f97a5ea155af1720, type: 2}
     level: 6
@@ -132,10 +133,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
   - {fileID: 11400000, guid: 9354c182ae2a8a24686edacf5ccb0995, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 68895b077371c7746b74eb4623d4b93d, type: 2}
-  - {fileID: 11400000, guid: b346d8bdf41060a4991c7efbac57f083, type: 2}
-  - {fileID: 11400000, guid: fef6e4309f7b8074da1f47b9d3d972ed, type: 2}
-  - {fileID: 11400000, guid: 535ad57b13bbaf4489189374aaab09c2, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 8f25efafd6dcfb64fb4e0ba722b3e00f, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

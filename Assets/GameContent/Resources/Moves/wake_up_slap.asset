@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: wake_up_slap
   displayName: Espabila
+  englishName: Wake-Up Slap
   type: {fileID: 11400000, guid: 0941b1891025dc049a69b41fb000c657, type: 2}
   category: 0
   power: 70
@@ -45,6 +46,7 @@ MonoBehaviour:
       number: 0
       text: sleep
       negate: 0
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

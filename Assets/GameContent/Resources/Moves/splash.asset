@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: splash
   displayName: Salpicadura
+  englishName: Splash
   type: {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
   category: 2
   power: 0
@@ -23,6 +24,23 @@ MonoBehaviour:
   priority: 0
   target: 1
   secondaryEffects: []
+  zEffects:
+  - chancePercent: 100
+    kind: 4
+    target: 1
+    statusId: 
+    amountPercent: 0
+    statStatId: attack
+    statStages: 3
+    weatherId: 
+    weatherTurns: 0
+    hazardId: 
+    sideConditionId: 
+    turns: 0
+    typeId: 
+    text: 
+    sharesPreviousRoll: 0
+    conditions: []
   minHits: 1
   maxHits: 1
   critStage: 0

@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: landorus_therian
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: landorus_therian
+  displayName: "Landorus (Forma T\xF3tem)"
+  englishName: Landorus-Therian
+  types:
+  - {fileID: 11400000, guid: 3a52b6aa5b301834ab86591d9e18d79a, type: 2}
+  - {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
+  abilityId: intimidate
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: slow
+  baseExpYield: 270
+  evYield:
+  - statId: sp_attack
+    amount: 3
+  baseFriendship: 70
+  catchRate: 3
+  dexNumber: 645
+  category: Fertilidad
+  heightM: 1.3
+  weightKg: 68
+  dexColor: "marr\xF3n"
+  dexDescription: Lo consideran una deidad de las cosechas porque los cultivos crecen
+    en abundancia en las tierras por las que pasa.
+  femalePercent: 0
+  legendary: 1
+  hp: 89
+  attack: 145
+  defense: 90
+  spAttack: 105
+  spDefense: 80
+  speed: 91
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 1df701a85ab4650459d0b301b7a54236, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 7321b81cde0b1c54f8273759a929c270, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 921db3d7f5c5f9f4fafc625796a89641, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: d3fdd80ca0a57d1408a29a12b931a9d5, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 0bcd19fa5b32dc44d85a1d7e1d9450e4, type: 2}
+    level: 7
+  - move: {fileID: 11400000, guid: e7a6e3ba07697384d98442689edd849e, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
+    level: 19
+  - move: {fileID: 11400000, guid: 463d0914b67fe0e49bb7496ee377b881, type: 2}
+    level: 25
+  - move: {fileID: 11400000, guid: 20d6980ec688d274a8705e767b746b3c, type: 2}
+    level: 31
+  - move: {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    level: 37
+  - move: {fileID: 11400000, guid: 72fd9ca207ded4445abe6cf72ae11c4a, type: 2}
+    level: 43
+  - move: {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+    level: 49
+  - move: {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    level: 55
+  - move: {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+    level: 61
+  - move: {fileID: 11400000, guid: 7321b81cde0b1c54f8273759a929c270, type: 2}
+    level: 67
+  - move: {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+    level: 73
+  - move: {fileID: 11400000, guid: 921db3d7f5c5f9f4fafc625796a89641, type: 2}
+    level: 79
+  - move: {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
+    level: 85
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: 4684f72d3faef8940bcbd8c6d3e78a7d, type: 2}
+  - {fileID: 11400000, guid: de6df8795c392904fb16859f362d5cff, type: 2}
+  - {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
+  - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 288b2a76bf19e5646b2fc8d79382d1dc, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+  - {fileID: 11400000, guid: 17db9758688531a4a91b48d9e2079c07, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 0161b2b549675fc4782bfb60b341f598, type: 2}
+  - {fileID: 11400000, guid: 501bdce004914c2448de442cf34434e5, type: 2}
+  - {fileID: 11400000, guid: c3b6da97600a239478d3b1629781f284, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 4403818195e13404cbdf474c68c5ecac, type: 2}
+  - {fileID: 11400000, guid: 61fa77a4f48df8343acd2c2437d3608c, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+  - {fileID: 11400000, guid: 42591adc2ac509240ae0669db50cb613, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: 4cfd413f63f850d4184361b3dcded214, type: 2}
+  - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+  - {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
+  - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
+  - {fileID: 11400000, guid: 8e348842184c97649931a9f92cdd533a, type: 2}
+  - {fileID: 11400000, guid: e9b30167cba759a4384b247fbb304135, type: 2}
+  - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+  - {fileID: 11400000, guid: 32cacc67278f51544841007e0dee54cf, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 2142ec87c94158f47928ed9a938e18b0, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 1df701a85ab4650459d0b301b7a54236, type: 2}
+  - {fileID: 11400000, guid: 72fd9ca207ded4445abe6cf72ae11c4a, type: 2}
+  - {fileID: 11400000, guid: 5f7740b1638070043981274acbd709bd, type: 2}
+  - {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
+  - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+  - {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
+  - {fileID: 11400000, guid: 54532b3c7f8fdea4c97915acc462843b, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+  - {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: landorus
+  variantItem: reveal_glass
+  forms: []
+  formChanges: []

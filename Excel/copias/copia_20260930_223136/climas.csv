@@ -1,0 +1,6 @@
+﻿id;nombre;turnos;potencia_por_tipo;daño_por_turno;tipos_inmunes;color
+hail;Granizo;5;;6,25;ice;BFE0FA
+rain;Lluvia;5;water:1,5|fire:0,5;0;;598CF2
+sandstorm;Tormenta de arena;5;;6,25;rock|ground|steel;CCB273
+snow;Nieve;5;;0;;CCEBFF
+sun;Sol intenso;5;fire:1,5|water:0,5;0;;FAB240

@@ -15,7 +15,8 @@ MonoBehaviour:
   id: dusk_stone
   displayName: Piedra Noche
   englishName: Dusk Stone
-  description: Hace evolucionar a Murkrow, Misdreavus...
+  description: "Una piedra peculiar que hace evolucionar a algunos Pok\xE9mon. Es
+    oscura como la noche."
   category: 5
   icon: {fileID: 0}
   price: 3000

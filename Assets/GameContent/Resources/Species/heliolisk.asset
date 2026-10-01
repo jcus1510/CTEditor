@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: heliolisk
   displayName: Heliolisk
+  englishName: Heliolisk
   types:
   - {fileID: 11400000, guid: 11907be1d5340704a86d6e3df74657fb, type: 2}
   - {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
@@ -46,19 +47,19 @@ MonoBehaviour:
   speed: 109
   customStats: []
   learnset:
+  - move: {fileID: 11400000, guid: 08cdfb1825d63824390d3e2d0828f348, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: e928ae4928364dd46901b243e639727b, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 4d90dbb26ded07b40ae0ed590513e74f, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 0a69e4c57371a0342b73018393540f94, type: 2}
+  - move: {fileID: 11400000, guid: 022191d9718ed9d4c9f1efcfaaea7c92, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: 0a69e4c57371a0342b73018393540f94, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: 62c6a97d50c2ff54dacf531594dd4df0, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: 08cdfb1825d63824390d3e2d0828f348, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: 022191d9718ed9d4c9f1efcfaaea7c92, type: 2}
     level: 1
   evolutions: []
   machineMoves:
@@ -114,11 +115,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 1f2b81afe4909d54f8cc0e7cf445b40b, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 0d7166cfef7ef3a4cb2e264e320038c8, type: 2}
-  - {fileID: 11400000, guid: da114a4da02a3ce4b96f5c453df4c797, type: 2}
-  - {fileID: 11400000, guid: f2b0d1ebe24850e4e9955fa4727387b3, type: 2}
-  - {fileID: 11400000, guid: 7109fca7337deef409398e6496f772a8, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 5e98faa9fa4c1c24dab0304f7ec184a6, type: 2}
   - {fileID: 11400000, guid: 35d19e54946afba4590f44d30dd27355, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: sliggoo
   displayName: Sliggoo
+  englishName: Sliggoo
   types:
   - {fileID: 11400000, guid: e3d9e34536e21ee44b6e4b17fc29a0be, type: 2}
   abilityId: sap_sipper
@@ -43,9 +44,9 @@ MonoBehaviour:
   speed: 60
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: b42a72046ceb81b4395594b2b3f6c8d3, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 36bfb8286b5281b42b15716b99496dde, type: 2}
     level: 5
@@ -117,12 +118,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 90488b54355181a40bef89d9dd57ed14, type: 2}
-  - {fileID: 11400000, guid: 2d976539caa5f634fb6ae04f1eef9ab1, type: 2}
-  - {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
-  - {fileID: 11400000, guid: 0ebb2337b3b88994fb66c3d0757615e6, type: 2}
-  - {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
-  - {fileID: 11400000, guid: cbebfbfd28b053b42abff910ccc642af, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 35d19e54946afba4590f44d30dd27355, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

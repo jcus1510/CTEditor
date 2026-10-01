@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: smooth_rock
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: smooth_rock
-  displayName: Roca Lisa
+  displayName: Roca Suave
   englishName: Smooth Rock
-  description: "Su tormenta de arena dura 3 turnos m\xE1s."
+  description: "Prolonga la duraci\xF3n del movimiento Tormenta de Arena que use
+    el Pok\xE9mon que la lleva."
   category: 7
   icon: {fileID: 0}
   price: 4000

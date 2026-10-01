@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: groudon_ubers_3
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: groudon_ubers_3
+  displayName: Rock Polish
+  speciesId: groudon
+  setFormat: ubers
+  setScore: 25
+  itemOptions: red_orb
+  abilityOptions: 
+  natureOptions: adamant
+  evs: 168 PS / 252 Atq / 32 DefE / 56 Vel
+  ivs: 
+  moveSlots: rock_polish / precipice_blades / swords_dance, dragon_claw / stone_edge,
+    rock_slide

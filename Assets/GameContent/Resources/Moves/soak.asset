@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: soak
   displayName: Empapar
+  englishName: Soak
   type: {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
   category: 2
   power: 0
@@ -36,6 +37,23 @@ MonoBehaviour:
     sideConditionId: 
     turns: 0
     typeId: water
+    text: 
+    sharesPreviousRoll: 0
+    conditions: []
+  zEffects:
+  - chancePercent: 100
+    kind: 4
+    target: 1
+    statusId: 
+    amountPercent: 0
+    statStatId: sp_attack
+    statStages: 1
+    weatherId: 
+    weatherTurns: 0
+    hazardId: 
+    sideConditionId: 
+    turns: 0
+    typeId: 
     text: 
     sharesPreviousRoll: 0
     conditions: []

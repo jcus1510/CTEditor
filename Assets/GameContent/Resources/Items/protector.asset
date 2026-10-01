@@ -15,7 +15,7 @@ MonoBehaviour:
   id: protector
   displayName: Protector
   englishName: Protector
-  description: "Llev\xE1ndolo al intercambiarse: Rhydon evoluciona."
+  description: "Dispositivo de protecci\xF3n muy pesado. Cierto Pok\xE9mon lo adora."
   category: 7
   icon: {fileID: 0}
   price: 2000

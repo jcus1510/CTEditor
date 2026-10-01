@@ -1,0 +1,197 @@
+﻿id;nombre;nombre_en;efectos
+adaptability;Adaptable;Adaptability;siempre: stab x2
+aerilate;Piel Celeste;Aerilate;
+aftermath;Detonación;Aftermath;"contacto [si propio.vida<=0]: perder 25%; al_rival"
+air_lock;Bucle Aire;Air Lock;siempre: anula_clima
+analytic;Cálculo Final;Analytic;siempre [si rival.ya_actuo]: potencia x1,3
+anger_point;Irascible;Anger Point;tras_golpe: irascible
+anticipation;Anticipación;Anticipation;al_entrar: avisar peligro
+arena_trap;Trampa Arena;Arena Trap;siempre: atrapar | siempre: atrapar_en_suelo
+aroma_veil;Velo Aroma;Aroma Veil;siempre: inmune_estado taunt,torment,heal_block,infatuation
+aura_break;Rompeaura;Aura Break;
+bad_dreams;Mal Sueño;Bad Dreams;"fin_de_turno [si rival.estado=sleep]: perder 12,5%; al_rival"
+battle_armor;Armadura Batalla;Battle Armor;siempre: sin_criticos
+big_pecks;Sacapecho;Big Pecks;siempre: sin_bajadas defense
+blaze;Mar Llamas;Blaze;siempre [si mov.tipo=fire & propio.vida<=33]: daño x1,5
+bulletproof;Antibalas;Bulletproof;siempre: inmune_etiqueta bomba
+cheek_pouch;Carrillo;Cheek Pouch;siempre: baya_extra 33,33%
+chlorophyll;Clorofila;Chlorophyll;siempre [si clima=sun]: stat speed x2
+clear_body;Cuerpo Puro;Clear Body;siempre: sin_bajadas
+cloud_nine;Aclimatación;Cloud Nine;siempre: anula_clima
+color_change;Cambio Color;Color Change;siempre: cambio_color
+competitive;Tenacidad;Competitive;al_bajarle_stat: etapa sp_attack +2
+compound_eyes;Ojo Compuesto;Compound Eyes;siempre: precision x1,3
+contrary;Respondón;Contrary;siempre: invierte_etapas
+cursed_body;Cuerpo Maldito;Cursed Body;"tras_golpe: anular; prob=30"
+cute_charm;Gran Encanto;Cute Charm;"contacto: poner_estado infatuation; al_rival; prob=30"
+damp;Humedad;Damp;siempre: bloquea_etiqueta explosion
+dark_aura;Aura Oscura;Dark Aura;siempre [si mov.tipo=dark]: potencia x1,33
+defeatist;Flaqueza;Defeatist;siempre [si propio.vida<=50]: stat attack x0,5 | siempre [si propio.vida<=50]: stat sp_attack x0,5
+defiant;Competitivo;Defiant;al_bajarle_stat: etapa attack +2
+delta_stream;Ráfaga Delta;Delta Stream;
+desolate_land;Tierra del Ocaso;Desolate Land;
+download;Descarga;Download;al_entrar: descarga
+drizzle;Llovizna;Drizzle;al_entrar: poner_clima rain 0
+drought;Sequía;Drought;al_entrar: poner_clima sun 0
+dry_skin;Piel Seca;Dry Skin;siempre: inmune water | al_absorber: curar 25% | siempre [si mov.tipo=fire]: potencia_recibida x1,25 | fin_de_turno [si clima=rain]: curar 12,5% | fin_de_turno [si clima=sun]: perder 12,5%
+early_bird;Madrugar;Early Bird;siempre: madrugar
+effect_spore;Efecto Espora;Effect Spore;"contacto: poner_estado poison,paralysis,sleep; al_rival; prob=30"
+fairy_aura;Aura Feérica;Fairy Aura;siempre [si mov.tipo=fairy]: potencia x1,33
+filter;Filtro;Filter;siempre [si propio.eficacia>1]: potencia_recibida x0,75
+flame_body;Cuerpo Llama;Flame Body;"contacto: poner_estado burn; al_rival; prob=30"
+flare_boost;Ímpetu Ardiente;Flare Boost;siempre [si propio.estado=burn & mov.categoria=especial]: potencia x1,5
+flash_fire;Absorbe Fuego;Flash Fire;siempre: inmune fire | al_absorber: potencia_absorbido
+flower_gift;Don Floral;Flower Gift;siempre [si clima=sun]: stat attack x1,5 | siempre [si clima=sun]: stat sp_defense x1,5
+flower_veil;Velo Flor;Flower Veil;
+fluffy;Peluche;;siempre [si mov.contacto]: potencia_recibida x0,5
+forecast;Predicción;Forecast;siempre [si clima=rain]: cambiar_tipo water | siempre [si clima=sun]: cambiar_tipo fire | siempre [si clima=hail]: cambiar_tipo ice
+forewarn;Alerta;Forewarn;al_entrar: avisar movimiento
+friend_guard;Compiescolta;Friend Guard;
+frisk;Cacheo;Frisk;al_entrar: avisar objeto
+fur_coat;Pelaje Recio;Fur Coat;siempre: stat defense x2
+gale_wings;Alas Vendaval;Gale Wings;siempre [si mov.tipo=flying]: prioridad +1
+gluttony;Gula;Gluttony;siempre: umbral_bayas 50%
+gooey;Baba;Gooey;"contacto: etapa speed -1; al_rival"
+grass_pelt;Manto Frondoso;Grass Pelt;siempre [si campo=grassy_terrain]: stat defense x1,5
+guts;Agallas;Guts;siempre [si propio.estado]: stat attack x1,5
+harvest;Cosecha;Harvest;fin_de_turno: cosecha 50%
+healer;Alma Cura;Healer;
+heatproof;Ignífugo;Heatproof;siempre [si mov.tipo=fire]: potencia_recibida x0,5
+heavy_metal;Metal Pesado;Heavy Metal;siempre: peso x2
+honey_gather;Recogemiel;Honey Gather;
+huge_power;Potencia;Huge Power;siempre: stat attack x2
+hustle;Entusiasmo;Hustle;siempre: stat attack x1,5 | siempre [si mov.categoria=fisico]: precision x0,8
+hydration;Hidratación;Hydration;fin_de_turno [si clima=rain]: curar_estado
+hyper_cutter;Corte Fuerte;Hyper Cutter;siempre: sin_bajadas attack
+ice_body;Gélido;Ice Body;siempre: inmune_clima hail | fin_de_turno [si clima=hail]: curar 6,25%
+illuminate;Iluminación;Illuminate;
+illusion;Ilusión;Illusion;
+immunity;Inmunidad;Immunity;siempre: inmune_estado poison,toxic
+imposter;Impostor;Imposter;al_entrar: impostor
+infiltrator;Allanamiento;Infiltrator;siempre: allanamiento
+inner_focus;Fuerza Mental;Inner Focus;siempre: sin_retroceder
+insomnia;Insomnio;Insomnia;siempre: inmune_estado sleep,drowsy
+intimidate;Intimidación;Intimidate;"al_entrar: etapa attack -1; al_rival"
+iron_barbs;Punta Acero;Iron Barbs;"contacto: perder 12,5%; al_rival"
+iron_fist;Puño Férreo;Iron Fist;siempre [si mov.etiqueta=puño]: potencia x1,2
+justified;Justiciero;Justified;tras_golpe [si mov.tipo=dark]: etapa attack +1
+keen_eye;Vista Lince;Keen Eye;siempre: sin_bajadas accuracy
+klutz;Zoquete;Klutz;siempre: zoquete
+leaf_guard;Defensa Hoja;Leaf Guard;siempre [si clima=sun]: inmune_estado
+levitate;Levitación;Levitate;siempre: inmune ground
+lightning_rod;Pararrayos;Lightning Rod;siempre: inmune electric | al_absorber: etapa sp_attack +1
+light_metal;Metal Liviano;Light Metal;siempre: peso x0,5
+limber;Flexibilidad;Limber;siempre: inmune_estado paralysis
+liquid_ooze;Lodo Líquido;Liquid Ooze;siempre: lodo_liquido
+magician;Prestidigitador;Magician;al_hacer_daño: roba_objeto
+magic_bounce;Espejo Mágico;Magic Bounce;siempre: espejo_magico
+magic_guard;Muro Mágico;Magic Guard;siempre: solo_daño_directo
+magma_armor;Escudo Magma;Magma Armor;siempre: inmune_estado freeze
+magnet_pull;Imán;Magnet Pull;siempre: atrapar steel
+marvel_scale;Escama Especial;Marvel Scale;siempre [si propio.estado]: stat defense x1,5
+mega_launcher;Megadisparador;Mega Launcher;siempre [si mov.etiqueta=pulso]: potencia x1,5
+minus;Menos;Minus;
+mold_breaker;Rompemoldes;Mold Breaker;siempre: rompemoldes
+moody;Veleta;Moody;fin_de_turno: veleta
+motor_drive;Electromotor;Motor Drive;siempre: inmune electric | al_absorber: etapa speed +1
+moxie;Autoestima;Moxie;al_debilitar: etapa attack +1
+multiscale;Multiescamas;Multiscale;siempre [si propio.vida>=100]: potencia_recibida x0,5
+multitype;Multitipo;Multitype;
+mummy;Momia;Mummy;contacto: contagia_habilidad
+natural_cure;Cura Natural;Natural Cure;al_retirarse: curar_estado
+neutralizing_gas;Gas Reactivo;;siempre: gas_reactivo
+normalize;Normalidad;Normalize;siempre: normalidad
+no_guard;Indefenso;No Guard;siempre: indefenso
+oblivious;Despiste;Oblivious;siempre: inmune_estado infatuation
+overcoat;Funda;Overcoat;siempre: inmune_clima sandstorm,hail | siempre: inmune_etiqueta polvo
+overgrow;Espesura;Overgrow;siempre [si mov.tipo=grass & propio.vida<=33]: daño x1,5
+own_tempo;Ritmo Propio;Own Tempo;siempre: inmune_estado confusion
+parental_bond;Amor Filial;Parental Bond;
+pickpocket;Hurto;Pickpocket;contacto: hurto
+pickup;Recogida;Pickup;
+pixilate;Piel Feérica;Pixilate;siempre: normal_a_tipo fairy x1,3
+plus;Más;Plus;
+poison_heal;Antídoto;Poison Heal;fin_de_turno [si propio.estado]: curar 12,5% | siempre: anula_daño_estado
+poison_point;Punto Tóxico;Poison Point;"contacto: poner_estado poison; al_rival; prob=30"
+poison_touch;Toque Tóxico;Poison Touch;"al_hacer_daño [si mov.contacto]: poner_estado poison; al_rival; prob=30"
+prankster;Bromista;Prankster;siempre [si mov.categoria=estado]: prioridad +1
+pressure;Presión;Pressure;siempre: presion
+primordial_sea;Mar del Albor;Primordial Sea;
+protean;Mutatipo;Protean;siempre: mutatipo
+pure_power;Energía Pura;Pure Power;siempre: stat attack x2
+quick_feet;Pies Rápidos;Quick Feet;siempre [si propio.estado]: stat speed x1,5
+rain_dish;Cura Lluvia;Rain Dish;fin_de_turno [si clima=rain]: curar 6,25%
+rattled;Cobardía;Rattled;tras_golpe [si mov.tipo=dark]: etapa speed +1 | tras_golpe [si mov.tipo=bug]: etapa speed +1 | tras_golpe [si mov.tipo=ghost]: etapa speed +1
+reckless;Audaz;Reckless;siempre [si mov.etiqueta=retroceso]: potencia x1,2
+refrigerate;Piel Helada;Refrigerate;siempre: normal_a_tipo ice x1,3
+regenerator;Regeneración;Regenerator;al_retirarse: curar 33,33%
+rivalry;Rivalidad;Rivalry;siempre [si mismo_genero]: potencia x1,25 | siempre [si genero_opuesto]: potencia x0,75
+rock_head;Cabeza Roca;Rock Head;siempre: sin_retroceso
+rough_skin;Piel Tosca;Rough Skin;"contacto: perder 12,5%; al_rival"
+run_away;Fuga;Run Away;siempre: siempre_escapa
+sand_force;Poder Arena;Sand Force;siempre: inmune_clima sandstorm | siempre [si clima=sandstorm & mov.tipo=rock]: potencia x1,3 | siempre [si clima=sandstorm & mov.tipo=ground]: potencia x1,3 | siempre [si clima=sandstorm & mov.tipo=steel]: potencia x1,3
+sand_rush;Ímpetu Arena;Sand Rush;siempre [si clima=sandstorm]: stat speed x2 | siempre: inmune_clima sandstorm
+sand_stream;Chorro Arena;Sand Stream;siempre: inmune_clima sandstorm | al_entrar: poner_clima sandstorm 0
+sand_veil;Velo Arena;Sand Veil;siempre: inmune_clima sandstorm | siempre [si clima=sandstorm]: evasion x0,8
+sap_sipper;Herbívoro;Sap Sipper;siempre: inmune grass | al_absorber: etapa attack +1
+scrappy;Intrépido;Scrappy;siempre: ignora_inmunidad normal,fighting
+serene_grace;Dicha;Serene Grace;siempre: prob_secundarios x2
+shadow_tag;Sombra Trampa;Shadow Tag;siempre: atrapar
+sharpness;Cortante;;siempre [si mov.etiqueta=corte]: potencia x1,5
+shed_skin;Mudar;Shed Skin;"fin_de_turno: curar_estado; prob=33,33"
+sheer_force;Potencia Bruta;Sheer Force;siempre [si mov.secundario]: potencia x1,3 | siempre: sin_secundarios
+shell_armor;Caparazón;Shell Armor;siempre: sin_criticos
+shield_dust;Polvo Escudo;Shield Dust;siempre: bloquea_secundarios
+simple;Simple;Simple;siempre: etapas_x x2
+skill_link;Encadenado;Skill Link;siempre: encadenado
+slow_start;Inicio Lento;Slow Start;siempre [si propio.turnos_campo<5]: stat attack x0,5 | siempre [si propio.turnos_campo<5]: stat speed x0,5
+slush_rush;Quitanieves;;siempre: inmune_clima hail | siempre [si clima=hail]: stat speed x2
+sniper;Francotirador;Sniper;siempre: daño_critico x1,5
+snow_cloak;Manto Níveo;Snow Cloak;siempre: inmune_clima hail | siempre [si clima=hail]: evasion x0,8
+snow_warning;Nevada;Snow Warning;siempre: inmune_clima hail | al_entrar: poner_clima hail 0
+solar_power;Poder Solar;Solar Power;siempre [si mov.categoria=especial & clima=sun]: potencia x1,5 | fin_de_turno [si clima=sun]: perder 12,5%
+solid_rock;Roca Sólida;Solid Rock;siempre [si propio.eficacia>1]: potencia_recibida x0,75
+soundproof;Insonorizar;Soundproof;siempre: inmune_etiqueta sonido
+speed_boost;Impulso;Speed Boost;fin_de_turno: etapa speed +1
+stall;Rezagado;Stall;siempre: rezagado
+stance_change;Cambio Táctico;Stance Change;
+static;Electricidad Estática;Static;"contacto: poner_estado paralysis; al_rival; prob=30"
+steadfast;Impasible;Steadfast;al_retroceder: etapa speed +1
+stench;Hedor;Stench;"al_hacer_daño: retroceso; prob=10"
+sticky_hold;Viscosidad;Sticky Hold;siempre: viscosidad
+storm_drain;Colector;Storm Drain;siempre: inmune water | al_absorber: etapa sp_attack +1
+strong_jaw;Mandíbula Fuerte;Strong Jaw;siempre [si mov.etiqueta=mordisco]: potencia x1,5
+sturdy;Robustez;Sturdy;antes_de_golpe [si propio.vida>=100]: aguantar | siempre: sin_ko_directo
+suction_cups;Ventosas;Suction Cups;siempre: no_cambio_forzado
+super_luck;Afortunado;Super Luck;siempre: critico +1
+swarm;Enjambre;Swarm;siempre [si mov.tipo=bug & propio.vida<=33]: daño x1,5
+sweet_veil;Velo Dulce;Sweet Veil;siempre: inmune_estado sleep,drowsy
+swift_swim;Nado Rápido;Swift Swim;siempre [si clima=rain]: stat speed x2
+symbiosis;Simbiosis;Symbiosis;
+synchronize;Sincronía;Synchronize;al_sufrir_estado: sincronia
+tangled_feet;Tumbos;Tangled Feet;siempre [si propio.estado=confusion]: evasion x0,5
+technician;Experto;Technician;siempre [si mov.potencia<=60]: potencia x1,5
+telepathy;Telepatía;Telepathy;
+teravolt;Terravoltaje;Teravolt;siempre: rompemoldes
+thick_fat;Sebo;Thick Fat;antes_de_golpe [si mov.tipo=fire]: daño_recibido x0,5 | antes_de_golpe [si mov.tipo=ice]: daño_recibido x0,5
+tinted_lens;Cromolente;Tinted Lens;siempre [si rival.eficacia<1]: potencia x2
+torrent;Torrente;Torrent;siempre [si mov.tipo=water & propio.vida<=33]: daño x1,5
+tough_claws;Garra Dura;Tough Claws;siempre [si mov.contacto]: potencia x1,3
+toxic_boost;Ímpetu Tóxico;Toxic Boost;siempre [si propio.estado=poison & mov.categoria=fisico]: potencia x1,5 | siempre [si propio.estado=toxic & mov.categoria=fisico]: potencia x1,5
+trace;Calco;Trace;al_entrar: rastro
+truant;Ausente;Truant;siempre: ausente
+turboblaze;Turbollama;Turboblaze;siempre: rompemoldes
+unaware;Ignorante;Unaware;siempre: ignorante
+unburden;Liviano;Unburden;siempre [si propio.perdio_objeto]: stat speed x2
+unnerve;Nerviosismo;Unnerve;siempre: nerviosismo
+victory_star;Tinovictoria;Victory Star;siempre: precision x1,1
+vital_spirit;Espíritu Vital;Vital Spirit;siempre: inmune_estado sleep,drowsy
+volt_absorb;Absorbe Electricidad;Volt Absorb;siempre: inmune electric | al_absorber: curar 25%
+water_absorb;Absorbe Agua;Water Absorb;siempre: inmune water | al_absorber: curar 25%
+water_veil;Velo Agua;Water Veil;siempre: inmune_estado burn
+weak_armor;Armadura Frágil;Weak Armor;tras_golpe [si mov.categoria=fisico]: etapa defense -1 | tras_golpe [si mov.categoria=fisico]: etapa speed +1
+white_smoke;Humo Blanco;White Smoke;siempre: sin_bajadas
+wind_rider;Surcavientos;;
+wonder_guard;Superguarda;Wonder Guard;siempre: superguarda
+wonder_skin;Piel Milagro;Wonder Skin;siempre [si mov.categoria=estado]: evasion x0,5
+zen_mode;Modo Daruma;Zen Mode;

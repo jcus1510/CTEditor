@@ -15,10 +15,10 @@ MonoBehaviour:
   id: wise_glasses
   displayName: Gafas Especiales
   englishName: Wise Glasses
-  description: "Movimientos especiales \xD71,1."
+  description: "Potencian ligeramente los ataques especiales. Debe llevarlas un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 4000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

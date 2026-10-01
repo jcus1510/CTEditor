@@ -28,6 +28,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: krokorok
     moveIds:
     - bulldoze
@@ -45,6 +48,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: sandslash
     moveIds:
     - bulldoze
@@ -63,6 +69,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: excadrill
     moveIds:
     - bulldoze
@@ -72,6 +81,10 @@ MonoBehaviour:
     natureId: 
   aiLevel: 4
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items:

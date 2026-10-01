@@ -15,7 +15,7 @@ MonoBehaviour:
   id: super_potion
   displayName: "Superpoci\xF3n"
   englishName: Super Potion
-  description: Cura 60 PS.
+  description: "Medicina en espray que cura heridas y restaura 60 PS de un Pok\xE9mon."
   category: 0
   icon: {fileID: 0}
   price: 700

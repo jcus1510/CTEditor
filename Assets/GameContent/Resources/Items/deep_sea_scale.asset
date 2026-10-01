@@ -15,7 +15,8 @@ MonoBehaviour:
   id: deep_sea_scale
   displayName: Escama Marina
   englishName: Deep Sea Scale
-  description: "Llev\xE1ndola al intercambiarse: Clamperl evoluciona a Gorebyss."
+  description: "Tiene un d\xE9bil brillo rosado y debe llevarla Clamperl. Sube la
+    Defensa Especial."
   category: 7
   icon: {fileID: 0}
   price: 2000

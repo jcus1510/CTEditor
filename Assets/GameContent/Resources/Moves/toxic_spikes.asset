@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: toxic_spikes
   displayName: "P\xFAas T\xF3xicas"
+  englishName: Toxic Spikes
   type: {fileID: 11400000, guid: beba3a9ac208f3c43a7bda5d61c338cd, type: 2}
   category: 2
   power: 0
@@ -33,6 +34,23 @@ MonoBehaviour:
     weatherId: 
     weatherTurns: 0
     hazardId: toxic_spikes
+    sideConditionId: 
+    turns: 0
+    typeId: 
+    text: 
+    sharesPreviousRoll: 0
+    conditions: []
+  zEffects:
+  - chancePercent: 100
+    kind: 4
+    target: 1
+    statusId: 
+    amountPercent: 0
+    statStatId: defense
+    statStages: 1
+    weatherId: 
+    weatherTurns: 0
+    hazardId: 
     sideConditionId: 
     turns: 0
     typeId: 

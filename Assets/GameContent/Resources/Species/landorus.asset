@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: landorus
   displayName: Landorus
+  englishName: Landorus
   types:
   - {fileID: 11400000, guid: 3a52b6aa5b301834ab86591d9e18d79a, type: 2}
   - {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
@@ -46,7 +47,13 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 1df701a85ab4650459d0b301b7a54236, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: 7321b81cde0b1c54f8273759a929c270, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 921db3d7f5c5f9f4fafc625796a89641, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: d3fdd80ca0a57d1408a29a12b931a9d5, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
     level: 1
@@ -85,6 +92,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: de6df8795c392904fb16859f362d5cff, type: 2}
   - {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
   - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: 288b2a76bf19e5646b2fc8d79382d1dc, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
@@ -109,6 +117,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
   - {fileID: 11400000, guid: 8e348842184c97649931a9f92cdd533a, type: 2}
   - {fileID: 11400000, guid: e9b30167cba759a4384b247fbb304135, type: 2}
@@ -127,10 +137,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
   - {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
   - {fileID: 11400000, guid: 54532b3c7f8fdea4c97915acc462843b, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
   - {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

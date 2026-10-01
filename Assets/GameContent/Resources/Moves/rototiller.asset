@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: rototiller
   displayName: Fertilizante
+  englishName: Rototiller
   type: {fileID: 11400000, guid: 3a52b6aa5b301834ab86591d9e18d79a, type: 2}
   category: 2
   power: 0
@@ -67,6 +68,7 @@ MonoBehaviour:
       number: 0
       text: grass
       negate: 0
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

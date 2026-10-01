@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: close_combat
   displayName: A Bocajarro
+  englishName: Close Combat
   type: {fileID: 11400000, guid: 0941b1891025dc049a69b41fb000c657, type: 2}
   category: 0
   power: 120
@@ -55,6 +56,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

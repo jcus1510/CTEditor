@@ -15,8 +15,8 @@ MonoBehaviour:
   id: choice_specs
   displayName: "Gafas Elecci\xF3n"
   englishName: Choice Specs
-  description: "Ataque Esp. \xD71,5, pero solo puede usar el primer movimiento que
-    elija."
+  description: "Aumentan la potencia de los ataques especiales del Pok\xE9mon que
+    las lleva, pero solo le permiten usar un movimiento."
   category: 7
   icon: {fileID: 0}
   price: 4000

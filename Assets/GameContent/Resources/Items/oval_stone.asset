@@ -15,7 +15,8 @@ MonoBehaviour:
   id: oval_stone
   displayName: Piedra Oval
   englishName: Oval Stone
-  description: "Llev\xE1ndola al subir de nivel de d\xEDa: Happiny evoluciona."
+  description: "Una piedra peculiar que hace evolucionar a algunos Pok\xE9mon. Tiene
+    forma de huevo."
   category: 7
   icon: {fileID: 0}
   price: 2000

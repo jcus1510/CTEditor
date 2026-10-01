@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: thundurus
   displayName: Thundurus
+  englishName: Thundurus
   types:
   - {fileID: 11400000, guid: 11907be1d5340704a86d6e3df74657fb, type: 2}
   - {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
@@ -44,11 +45,19 @@ MonoBehaviour:
   speed: 111
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: a18d51fa09a21df4ca4319a635faf1fe, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 0e3f0fa51d6203f4b93b171b6cf2bcb8, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: 08cdfb1825d63824390d3e2d0828f348, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 921db3d7f5c5f9f4fafc625796a89641, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 2c668dd6f5f45e8468390d9e05b0ce18, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 3ecd363c4c5be3140a81b39e13fb6c9e, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: 575dbe5143ef5064c81858aee2405e53, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: a18d51fa09a21df4ca4319a635faf1fe, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
     level: 7
@@ -84,6 +93,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4684f72d3faef8940bcbd8c6d3e78a7d, type: 2}
   - {fileID: 11400000, guid: de6df8795c392904fb16859f362d5cff, type: 2}
   - {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: e77a0eea2eae9d34889e6fbbd1bc767f, type: 2}
   - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
@@ -105,7 +116,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: c5c881531d0a5d6408099dd08e1c70b3, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
   - {fileID: 11400000, guid: 8e348842184c97649931a9f92cdd533a, type: 2}
   - {fileID: 11400000, guid: e9b30167cba759a4384b247fbb304135, type: 2}
@@ -123,12 +136,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8f4fb832c81f5bc4f83d784621bf3494, type: 2}
   - {fileID: 11400000, guid: 99f98c99a2073e041baacca1a1600e20, type: 2}
   tutorMoves:
-  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
+  - {fileID: 11400000, guid: 26ff654c6a5a69c45b83f57140540eca, type: 2}
   - {fileID: 11400000, guid: 7cc24518557b0444793d5659a81b3362, type: 2}
   - {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
   - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
   - {fileID: 11400000, guid: 54532b3c7f8fdea4c97915acc462843b, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
   - {fileID: 11400000, guid: 1f2b81afe4909d54f8cc0e7cf445b40b, type: 2}
@@ -136,3 +149,7 @@ MonoBehaviour:
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

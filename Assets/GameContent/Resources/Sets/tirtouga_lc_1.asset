@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: tirtouga_lc_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: tirtouga_lc_1
+  displayName: Stealth Rock + Shell Smash
+  speciesId: tirtouga
+  setFormat: lc
+  setScore: 39
+  itemOptions: eviolite
+  abilityOptions: 
+  natureOptions: adamant
+  evs: 4 PS / 212 Atq / 12 Def / 76 DefE / 180 Vel
+  ivs: 
+  moveSlots: stealth_rock / shell_smash / waterfall / zen_headbutt, stone_edge, knock_off

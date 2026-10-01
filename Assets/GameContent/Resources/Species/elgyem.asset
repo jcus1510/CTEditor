@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: elgyem
   displayName: Elgyem
+  englishName: Elgyem
   types:
   - {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
   abilityId: telepathy
@@ -87,10 +88,11 @@ MonoBehaviour:
     minFriendship: 0
     conditions: []
   machineMoves:
-  - {fileID: 11400000, guid: 49408bd7bff365a43941ed9a21b0b47f, type: 2}
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
   - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
   - {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: 88aea8fc365bb0f438f437d235048d68, type: 2}
   - {fileID: 11400000, guid: 62f256f28e937834fb5f0f116b06455b, type: 2}
@@ -113,10 +115,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: edda7cbc2f438144bbfa2e483946d695, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
-  - {fileID: 11400000, guid: 6ebee087cfb72f04096d41f5011a2dd8, type: 2}
   - {fileID: 11400000, guid: b08a11a32d7c09f4db0c89ad242fbbad, type: 2}
   - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
   - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
@@ -124,15 +128,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e7054229772eef743ae0434f96e036d5, type: 2}
   tutorMoves:
   - {fileID: 11400000, guid: 3c0263f9417ef0d479e327f62c683a81, type: 2}
-  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
   - {fileID: 11400000, guid: 5f7740b1638070043981274acbd709bd, type: 2}
   - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
   - {fileID: 11400000, guid: d8e92f9a08c72494da330a1912c78045, type: 2}
   - {fileID: 11400000, guid: beeb113202b73114c96ea7c86b66b26a, type: 2}
   - {fileID: 11400000, guid: 54532b3c7f8fdea4c97915acc462843b, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
   - {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
   - {fileID: 11400000, guid: 9354c182ae2a8a24686edacf5ccb0995, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 5c1027c4b4b96bd46816f59e451c2afb, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
@@ -140,8 +143,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 92d0ed9ee37aa2b48b4de3cf7ce8db55, type: 2}
   - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
   eggMoves:
+  - {fileID: 11400000, guid: 49408bd7bff365a43941ed9a21b0b47f, type: 2}
   - {fileID: 11400000, guid: 0e3f0fa51d6203f4b93b171b6cf2bcb8, type: 2}
   - {fileID: 11400000, guid: 3eb85418a456a4941a852f0af3d1a28a, type: 2}
+  - {fileID: 11400000, guid: ea4cad193bfcb754dad677b226d36332, type: 2}
   - {fileID: 11400000, guid: b346d8bdf41060a4991c7efbac57f083, type: 2}
   - {fileID: 11400000, guid: d4f0e4294315d344ea18a9c9fa1e5e0e, type: 2}
   - {fileID: 11400000, guid: 2c668dd6f5f45e8468390d9e05b0ce18, type: 2}
@@ -150,3 +155,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f89b8ee84b791ac409fba18b4a7d29dd, type: 2}
   eggGroups:
   - {fileID: 11400000, guid: 99ecbb820a1ce684e80a3e98d41a036b, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

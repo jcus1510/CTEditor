@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.NatureData
   id: naive
   displayName: Ingenua
+  englishName: Naive
   boostedStatId: speed
   hinderedStatId: sp_defense
   boostPercent: 10

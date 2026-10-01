@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: frogadier
   displayName: Frogadier
+  englishName: Frogadier
   types:
   - {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
   abilityId: torrent
@@ -43,9 +44,9 @@ MonoBehaviour:
   speed: 97
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: d28b2fac6e7636849be1e26b1be97043, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 09db799c0c7218e4daad0f76094f6d45, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: d28b2fac6e7636849be1e26b1be97043, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: b42a72046ceb81b4395594b2b3f6c8d3, type: 2}
     level: 5
@@ -130,12 +131,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
   - {fileID: 11400000, guid: cac71445d7be4e742a4dcfb8a5e557f1, type: 2}
   - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 66fb6ff0495eebc4795494f32bfb5802, type: 2}
-  - {fileID: 11400000, guid: da114a4da02a3ce4b96f5c453df4c797, type: 2}
-  - {fileID: 11400000, guid: 08a19af8ee2332a48ad761b95df97147, type: 2}
-  - {fileID: 11400000, guid: ee37c847dba202b4fbed62501b1a3530, type: 2}
-  - {fileID: 11400000, guid: a79bea7b221d868448e8f97e0fb060cc, type: 2}
-  - {fileID: 11400000, guid: 25938b490a569fb458f02c51ede4c0cf, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: d157f82d264192840973c80fbe0c8b69, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

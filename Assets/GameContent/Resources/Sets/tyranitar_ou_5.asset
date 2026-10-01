@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: tyranitar_ou_5
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: tyranitar_ou_5
+  displayName: Choice Scarf
+  speciesId: tyranitar
+  setFormat: ou
+  setScore: 48
+  itemOptions: choice_scarf
+  abilityOptions: 
+  natureOptions: jolly
+  evs: 252 Atq / 4 Def / 252 Vel
+  ivs: 
+  moveSlots: stone_edge / pursuit / superpower / crunch

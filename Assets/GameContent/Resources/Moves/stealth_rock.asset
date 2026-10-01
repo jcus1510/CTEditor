@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: stealth_rock
   displayName: Trampa Rocas
+  englishName: Stealth Rock
   type: {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
   category: 2
   power: 0
@@ -33,6 +34,23 @@ MonoBehaviour:
     weatherId: 
     weatherTurns: 0
     hazardId: stealth_rock
+    sideConditionId: 
+    turns: 0
+    typeId: 
+    text: 
+    sharesPreviousRoll: 0
+    conditions: []
+  zEffects:
+  - chancePercent: 100
+    kind: 4
+    target: 1
+    statusId: 
+    amountPercent: 0
+    statStatId: defense
+    statStages: 1
+    weatherId: 
+    weatherTurns: 0
+    hazardId: 
     sideConditionId: 
     turns: 0
     typeId: 

@@ -15,10 +15,11 @@ MonoBehaviour:
   id: black_glasses
   displayName: Gafas de Sol
   englishName: Black Glasses
-  description: "Movimientos de Siniestro \xD71,2."
+  description: "Debe llevarlas un Pok\xE9mon. Fortalecen los movimientos de tipo
+    Siniestro."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

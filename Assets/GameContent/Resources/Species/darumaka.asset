@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: darumaka
   displayName: Darumaka
+  englishName: Darumaka
   types:
   - {fileID: 11400000, guid: ee71163cdafa45541b041fbd052f055b, type: 2}
   abilityId: hustle
@@ -85,6 +86,7 @@ MonoBehaviour:
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
   - {fileID: 11400000, guid: 4684f72d3faef8940bcbd8c6d3e78a7d, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: 288b2a76bf19e5646b2fc8d79382d1dc, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
@@ -98,6 +100,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
   - {fileID: 11400000, guid: 49bccf2aae17cb248a874f769eedde36, type: 2}
   - {fileID: 11400000, guid: f58fef59fea64c64f8ad3197218007b3, type: 2}
+  - {fileID: 11400000, guid: 4d65741fa51432b4daae4ac90df90f00, type: 2}
   - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
   - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
@@ -106,6 +109,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
   - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
   - {fileID: 11400000, guid: 32cacc67278f51544841007e0dee54cf, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
@@ -116,12 +121,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
   - {fileID: 11400000, guid: 2142ec87c94158f47928ed9a938e18b0, type: 2}
   - {fileID: 11400000, guid: 08a4346f4805fd543915dd9660411ba8, type: 2}
-  - {fileID: 11400000, guid: 2bf945e9e0da7b4469bebca1e26e325f, type: 2}
   tutorMoves:
   - {fileID: 11400000, guid: 13ca1e152dccf554aa16ad9bfcd9ae56, type: 2}
   - {fileID: 11400000, guid: 4f9f91ece063c54449c2b9d6a8c067d6, type: 2}
+  - {fileID: 11400000, guid: 2e8430aef83b94342bfc40deeb8d4462, type: 2}
   - {fileID: 11400000, guid: 4ac768068ede7b54a9d4d7c62ff43dc9, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 5c1027c4b4b96bd46816f59e451c2afb, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
   - {fileID: 11400000, guid: a18d51fa09a21df4ca4319a635faf1fe, type: 2}
@@ -134,7 +139,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2e8430aef83b94342bfc40deeb8d4462, type: 2}
   - {fileID: 11400000, guid: 921db3d7f5c5f9f4fafc625796a89641, type: 2}
   - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 5c1027c4b4b96bd46816f59e451c2afb, type: 2}
   - {fileID: 11400000, guid: 95c0d63a4a28c9f4a82a3da9fecf1712, type: 2}
   - {fileID: 11400000, guid: a5374efedeac1dc4f86e24a698d19e6d, type: 2}
   eggGroups:
   - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

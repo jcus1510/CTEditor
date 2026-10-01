@@ -28,6 +28,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: metapod
     moveIds:
     - tackle
@@ -45,6 +48,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: kakuna
     moveIds:
     - poison_sting
@@ -62,6 +68,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: scyther
     moveIds:
     - quick_attack
@@ -70,6 +79,10 @@ MonoBehaviour:
     natureId: 
   aiLevel: 4
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items:

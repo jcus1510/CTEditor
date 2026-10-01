@@ -15,7 +15,8 @@ MonoBehaviour:
   id: shiny_stone
   displayName: "Piedra D\xEDa"
   englishName: Shiny Stone
-  description: Hace evolucionar a Togetic, Roselia...
+  description: "Una piedra peculiar que hace evolucionar a algunos Pok\xE9mon. Tiene
+    un brillo espectacular."
   category: 5
   icon: {fileID: 0}
   price: 3000

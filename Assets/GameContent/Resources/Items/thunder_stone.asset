@@ -15,7 +15,8 @@ MonoBehaviour:
   id: thunder_stone
   displayName: Piedra Trueno
   englishName: Thunder Stone
-  description: Hace evolucionar a ciertas especies.
+  description: "Curiosa piedra que hace evolucionar a determinadas especies de Pok\xE9mon.
+    Tiene grabado un rayo."
   category: 5
   icon: {fileID: 0}
   price: 3000

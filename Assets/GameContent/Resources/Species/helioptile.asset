@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: helioptile
   displayName: Helioptile
+  englishName: Helioptile
   types:
   - {fileID: 11400000, guid: 11907be1d5340704a86d6e3df74657fb, type: 2}
   - {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
@@ -130,3 +131,7 @@ MonoBehaviour:
   eggGroups:
   - {fileID: 11400000, guid: 5e98faa9fa4c1c24dab0304f7ec184a6, type: 2}
   - {fileID: 11400000, guid: 35d19e54946afba4590f44d30dd27355, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

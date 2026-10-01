@@ -15,7 +15,8 @@ MonoBehaviour:
   id: icy_rock
   displayName: Roca Helada
   englishName: Icy Rock
-  description: "Su granizo dura 3 turnos m\xE1s."
+  description: "Prolonga la duraci\xF3n del movimiento Granizo que use el Pok\xE9mon
+    que la lleva."
   category: 7
   icon: {fileID: 0}
   price: 4000

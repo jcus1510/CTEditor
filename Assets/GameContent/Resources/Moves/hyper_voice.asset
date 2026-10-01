@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: hyper_voice
   displayName: "Vozarr\xF3n"
+  englishName: Hyper Voice
   type: {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
   category: 1
   power: 90
@@ -23,6 +24,7 @@ MonoBehaviour:
   priority: 0
   target: 2
   secondaryEffects: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: florges
   displayName: Florges
+  englishName: Florges
   types:
   - {fileID: 11400000, guid: d65ead7637a8c9c4090b7b6df1d3b171, type: 2}
   abilityId: flower_veil
@@ -43,13 +44,9 @@ MonoBehaviour:
   speed: 75
   customStats: []
   learnset:
+  - move: {fileID: 11400000, guid: 69b329ba8b23b714fb4b598da2c276ba, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: 28ae9c503b6619343901b82d25aec117, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: 24edcbb52418dad48bdbceab0fe4feef, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: 535ad57b13bbaf4489189374aaab09c2, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: 04b3983320d7ccf479a5341ad02916b2, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 0dd0fec6f250be54590111aa0fa7554b, type: 2}
     level: 1
@@ -57,15 +54,19 @@ MonoBehaviour:
     level: 1
   - move: {fileID: 11400000, guid: fa042007311f8ad4e960a43725b32892, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 8b52a03bdc9b78e4b99cca41fcbbc102, type: 2}
+  - move: {fileID: 11400000, guid: 24edcbb52418dad48bdbceab0fe4feef, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 04b3983320d7ccf479a5341ad02916b2, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 35fe2804aa535164fbcb02e340ea9a9d, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: baa7ee72081a7cb45b25899d0f1bfad0, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: 8b52a03bdc9b78e4b99cca41fcbbc102, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: 08e98f5a8f6cf05419ab6404e1405864, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 69b329ba8b23b714fb4b598da2c276ba, type: 2}
+  - move: {fileID: 11400000, guid: 535ad57b13bbaf4489189374aaab09c2, type: 2}
     level: 1
   evolutions: []
   machineMoves:
@@ -111,9 +112,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 7b31ca7e65ab8664298f232da45d96ca, type: 2}
   - {fileID: 11400000, guid: 6f8d85b8fb617224589bd3ae8129b1eb, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: da114a4da02a3ce4b96f5c453df4c797, type: 2}
-  - {fileID: 11400000, guid: 68895b077371c7746b74eb4623d4b93d, type: 2}
-  - {fileID: 11400000, guid: 90e0df9414a12a649961cdafed3fe972, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 8f25efafd6dcfb64fb4e0ba722b3e00f, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

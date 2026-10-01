@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: fell_stinger
   displayName: "Aguij\xF3n Letal"
+  englishName: Fell Stinger
   type: {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
   category: 0
   power: 30
@@ -45,6 +46,7 @@ MonoBehaviour:
       number: 0
       text: 
       negate: 0
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

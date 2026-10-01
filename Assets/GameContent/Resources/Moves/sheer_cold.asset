@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: sheer_cold
   displayName: "Fr\xEDo Polar"
+  englishName: Sheer Cold
   type: {fileID: 11400000, guid: fa23c32d4260662419de99a9c5528a38, type: 2}
   category: 1
   power: 0
@@ -23,6 +24,7 @@ MonoBehaviour:
   priority: 0
   target: 0
   secondaryEffects: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

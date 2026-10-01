@@ -15,7 +15,7 @@ MonoBehaviour:
   id: ether
   displayName: "\xC9ter"
   englishName: Ether
-  description: Recupera 10 PP de un movimiento.
+  description: "Restaura 10 PP del movimiento elegido de un Pok\xE9mon."
   category: 3
   icon: {fileID: 0}
   price: 1200

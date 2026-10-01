@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: scatterbug
   displayName: Scatterbug
+  englishName: Scatterbug
   types:
   - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
   abilityId: shield_dust
@@ -43,9 +44,9 @@ MonoBehaviour:
   speed: 35
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 184df6f1a473561489ce56235cfb309f, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: de7425f38b0577848a9def95bac54fe2, type: 2}
     level: 6
@@ -67,3 +68,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: de7425f38b0577848a9def95bac54fe2, type: 2}
   eggGroups:
   - {fileID: 11400000, guid: 1db6d26df99d9ca4180072eb358a7436, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: lilligant
   displayName: Lilligant
+  englishName: Lilligant
   types:
   - {fileID: 11400000, guid: 50792a937522d2e4ab6bd6a520a1534f, type: 2}
   abilityId: chlorophyll
@@ -57,9 +58,12 @@ MonoBehaviour:
     level: 28
   - move: {fileID: 11400000, guid: 08e98f5a8f6cf05419ab6404e1405864, type: 2}
     level: 46
+  - move: {fileID: 11400000, guid: 8b52a03bdc9b78e4b99cca41fcbbc102, type: 2}
+    level: 50
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: bcc1d78857f00f041a19fbc5a4d58a00, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: 88aea8fc365bb0f438f437d235048d68, type: 2}
@@ -72,11 +76,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
   - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
   - {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
+  - {fileID: 11400000, guid: fd059fe98a9650e41806d434b05e2af8, type: 2}
   - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
   - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
@@ -91,19 +98,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
   - {fileID: 11400000, guid: 54532b3c7f8fdea4c97915acc462843b, type: 2}
   - {fileID: 11400000, guid: f9b934ad3cc59fc468d8184a25248dee, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 7b31ca7e65ab8664298f232da45d96ca, type: 2}
   - {fileID: 11400000, guid: 6f8d85b8fb617224589bd3ae8129b1eb, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 43d0d19b060699548bfc305aecdc232a, type: 2}
-  - {fileID: 11400000, guid: 5d29e88ccdc542d4696bf4230ca1a84e, type: 2}
-  - {fileID: 11400000, guid: 0ebb2337b3b88994fb66c3d0757615e6, type: 2}
-  - {fileID: 11400000, guid: 5219dbe264a2b274ca37c4eba0fca2e5, type: 2}
-  - {fileID: 11400000, guid: 1f26f10dc9510a24e9395f65e0b41337, type: 2}
-  - {fileID: 11400000, guid: b552275b75c88fe44ab70599b7325ec0, type: 2}
-  - {fileID: 11400000, guid: 48b74de16b8701f4995a5e4c8990d9cd, type: 2}
-  - {fileID: 11400000, guid: 359f2bdcc3c908741b97a2374dbfe96a, type: 2}
-  - {fileID: 11400000, guid: 6f8d85b8fb617224589bd3ae8129b1eb, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: b4975cfbd49fba741b038059ce01f1b2, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

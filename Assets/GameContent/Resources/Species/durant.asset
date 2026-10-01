@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: durant
   displayName: Durant
+  englishName: Durant
   types:
   - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
   - {fileID: 11400000, guid: bf405ce6e8c187d4eb662c226bd3ab72, type: 2}
@@ -44,9 +45,15 @@ MonoBehaviour:
   speed: 109
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 2e2f297cae7ced64fb755d636477f546, type: 2}
+  - move: {fileID: 11400000, guid: 6656f54f667c8694eb11bbb7b419cd94, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 7ce7ff990b0321741a8bc6f26ba81eb7, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 34cc99783d94cc14a8ac87f62ffb7ff7, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 2e2f297cae7ced64fb755d636477f546, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 0927fa82b29ce494f9e7659bf9e2c328, type: 2}
     level: 6
@@ -78,6 +85,7 @@ MonoBehaviour:
   machineMoves:
   - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: bcc1d78857f00f041a19fbc5a4d58a00, type: 2}
   - {fileID: 11400000, guid: 288b2a76bf19e5646b2fc8d79382d1dc, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
@@ -98,7 +106,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: 31e908a8bab2b1a48b4863c7c49a01ae, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
   - {fileID: 11400000, guid: 32cacc67278f51544841007e0dee54cf, type: 2}
   - {fileID: 11400000, guid: 7e7d50f1e089d9346b8a5af3aa61855e, type: 2}
@@ -112,7 +122,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 13ca1e152dccf554aa16ad9bfcd9ae56, type: 2}
   - {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
   - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
   eggMoves:
@@ -124,3 +133,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 33fb06c1031c979428eb58227666cef1, type: 2}
   eggGroups:
   - {fileID: 11400000, guid: 1db6d26df99d9ca4180072eb358a7436, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

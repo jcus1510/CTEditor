@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: snorlax_uu_2
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: snorlax_uu_2
+  displayName: Choice Band
+  speciesId: snorlax
+  setFormat: uu
+  setScore: 17
+  itemOptions: choice_band
+  abilityOptions: thick_fat
+  natureOptions: adamant
+  evs: 4 PS / 252 Atq / 252 DefE
+  ivs: 
+  moveSlots: return / facade / earthquake / fire_punch, pursuit

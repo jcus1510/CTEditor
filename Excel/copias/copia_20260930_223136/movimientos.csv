@@ -1,0 +1,622 @@
+﻿id;nombre;nombre_en;tipo;categoria;potencia;precision;pp;prioridad;objetivo;golpes;critico;dos_turnos;contacto;daño_especial;respeta_inmunidad;potencia_mod;formula_potencia;stat_ataque;stat_defensa;ataca_con_rival;etiquetas;requisitos;efectos;efecto_z;tipo_clima;animacion
+absorb;Absorber;;grass;especial;20;100;25;0;rival;1;0;no;no;;no;;;;;no;;;drenar:50;;;0
+acid;Ácido;;poison;especial;40;100;30;0;rivales;1;0;no;no;;no;;;;;no;;;stat:sp_defense:-1@10;;;0
+acid_armor;Armadura Ácida;;poison;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:defense:+2;;;0
+acid_spray;Bomba Ácida;;poison;especial;40;100;20;0;rival;1;0;no;no;;no;;;;;no;bomba;;stat:sp_defense:-2;;;0
+acrobatics;Acróbata;;flying;fisico;55;100;15;0;rival;1;0;no;si;;no;x2 [si !propio.objeto];;;;no;;;;;;0
+acupressure;Acupresión;;normal;estado;0;nunca;30;0;propio;1;0;no;no;;no;;;;;no;;;stat_al_azar:2;;;0
+aerial_ace;Golpe Aéreo;;flying;fisico;60;nunca;20;0;rival;1;0;no;si;;no;;;;;no;corte;;;;;0
+aeroblast;Aerochorro;;flying;especial;100;95;5;0;rival;1;1;no;no;;no;;;;;no;;;;;;0
+after_you;Cede Paso;;normal;estado;0;nunca;15;0;rival;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+agility;Agilidad;;psychic;estado;0;nunca;30;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:speed:+2;;;0
+air_cutter;Aire Afilado;;flying;especial;60;95;25;0;rivales;1;1;no;no;;no;;;;;no;corte;;;;;0
+air_slash;Tajo Aéreo;;flying;especial;75;95;15;0;rival;1;0;no;no;;no;;;;;no;corte;;amedrentar@30;;;0
+ally_switch;Cambio de Banda;;psychic;estado;0;nunca;15;2;propio;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+amnesia;Amnesia;;psychic;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:sp_defense:+2;;;0
+ancient_power;Poder Pasado;;rock;especial;60;100;5;0;rival;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1@10|stat_propio:defense:+1@10|stat_propio:sp_attack:+1@10|stat_propio:sp_defense:+1@10|stat_propio:speed:+1@10;;;0
+aqua_jet;Acua Jet;;water;fisico;40;100;20;1;rival;1;0;no;si;;no;;;;;no;;;;;;0
+aqua_ring;Acua Aro;;water;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;estado_propio:aqua_ring;;;0
+aqua_tail;Acua Cola;;water;fisico;90;90;10;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+arm_thrust;Empujón;;fighting;fisico;15;100;20;0;rival;2-5;0;no;si;;no;;;;;no;;;;;;0
+aromatherapy;Aromaterapia;;grass;estado;0;nunca;5;0;todos;1;0;no;no;;no;;;;;no;;;curar_equipo;;;0
+aromatic_mist;Niebla Aromática;;fairy;estado;0;nunca;20;0;aliado;1;0;no;no;;no;;;;;no;;;;;;0
+assist;Ayuda;;normal;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;no_metronomo;;ayuda;;;0
+assurance;Buena Baza;;dark;fisico;60;100;10;0;rival;1;0;no;si;;no;x2 [si rival.dañado];;;;no;;;;;;0
+astonish;Impresionar;;ghost;fisico;30;100;15;0;rival;1;0;no;si;;no;;;;;no;;;amedrentar@30;;;0
+attack_order;Al Ataque;;bug;fisico;90;100;15;0;rival;1;1;no;no;;no;;;;;no;;;;;;0
+attract;Atracción;;normal;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:infatuation;;;0
+aura_sphere;Esfera Aural;;fighting;especial;80;nunca;20;0;rival;1;0;no;no;;no;;;;;no;pulso|bomba;;;;;0
+aurora_beam;Rayo Aurora;;ice;especial;65;100;20;0;rival;1;0;no;no;;no;;;;;no;;;stat:attack:-1@10;;;0
+autotomize;Aligerar;;steel;estado;0;nunca;15;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:speed:+2;;;0
+avalanche;Alud;;ice;fisico;60;100;10;-4;rival;1;0;no;si;;no;x2 [si propio.dañado];;;;no;;;;;;0
+baby_doll_eyes;Ojitos Tiernos;;fairy;estado;0;100;30;1;rival;1;0;no;no;;no;;;;;no;;;stat:attack:-1;;;0
+barrage;Bombardeo;;normal;fisico;15;85;20;0;rival;2-5;0;no;no;;no;;;;;no;bomba;;;;;0
+barrier;Barrera;;psychic;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:defense:+2;;;0
+baton_pass;Relevo;;normal;estado;0;nunca;40;0;propio;1;0;no;no;;no;;;;;no;;;relevo;;;0
+beat_up;Paliza;;dark;fisico;10;100;10;0;rival;6;0;no;no;;no;;;;;no;;;;;;0
+belch;Eructo;;poison;especial;120;90;10;0;rival;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+belly_drum;Tambor;;normal;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;retroceso_ps:50|stat_propio:attack:+6;;;0
+bestow;Ofrenda;;normal;estado;0;nunca;15;0;rival;1;0;no;no;;no;;;;;no;no_metronomo;;dar_objeto;;;0
+bide;Venganza;;normal;fisico;0;nunca;10;1;propio;1;0;no;si;venganza;no;;;;;no;;;;;;0
+bind;Atadura;;normal;fisico;15;85;20;0;rival;1;0;no;si;;no;;;;;no;;;estado:trapped;;;0
+bite;Mordisco;;dark;fisico;60;100;25;0;rival;1;0;no;si;;no;;;;;no;mordisco;;amedrentar@30;;;0
+blast_burn;Anillo Ígneo;;fire;especial;150;90;5;0;rival;1;0;recarga;no;;no;;;;;no;;;;;;0
+blaze_kick;Patada Ígnea;;fire;fisico;85;90;10;0;rival;1;1;no;si;;no;;;;;no;;;estado:burn@10;;;0
+blizzard;Ventisca;;ice;especial;110;70;5;0;rivales;1;0;no;no;;no;;;;;no;;;estado:freeze@10;;;0
+block;Bloqueo;;normal;estado;0;nunca;5;0;rival;1;0;no;no;;no;;;;;no;;;estado:cant_escape;;;0
+blue_flare;Llama Azul;;fire;especial;130;85;5;0;rival;1;0;no;no;;no;;;;;no;;;estado:burn@20;;;0
+body_slam;Golpe Cuerpo;;normal;fisico;85;100;15;0;rival;1;0;no;si;;no;;;;;no;;;estado:paralysis@30;;;0
+bolt_strike;Ataque Fulgor;;electric;fisico;130;85;5;0;rival;1;0;no;si;;no;;;;;no;;;estado:paralysis@20;;;0
+bonemerang;Huesomerang;;ground;fisico;50;90;10;0;rival;2;0;no;no;;no;;;;;no;;;;;;0
+bone_club;Hueso Palo;;ground;fisico;65;85;20;0;rival;1;0;no;no;;no;;;;;no;;;amedrentar@10;;;0
+bone_rush;Ataque Óseo;;ground;fisico;25;90;10;0;rival;2-5;0;no;no;;no;;;;;no;;;;;;0
+boomburst;Estruendo;;normal;especial;140;100;10;0;todos;1;0;no;no;;no;;;;;no;sonido;;;;;0
+bounce;Bote;;flying;fisico;85;85;5;0;rival;1;0;carga;si;;no;;;;;no;semiinvulnerable;;estado:paralysis@30;;;0
+brave_bird;Pájaro Osado;;flying;fisico;120;100;15;0;rival;1;0;no;si;;no;;;;;no;retroceso;;retroceso:33;;;0
+brick_break;Demolición;;fighting;fisico;75;100;15;0;rival;1;0;no;si;;no;;;;;no;;;quitar_lado;;;0
+brine;Salmuera;;water;especial;65;100;10;0;rival;1;0;no;no;;no;x2 [si rival.vida<=50];;;;no;;;;;;0
+bubble;Burbuja;;water;especial;40;100;30;0;rivales;1;0;no;no;;no;;;;;no;;;stat:speed:-1@10;;;0
+bubble_beam;Rayo Burbuja;;water;especial;65;100;20;0;rival;1;0;no;no;;no;;;;;no;;;stat:speed:-1@10;;;0
+bug_bite;Picadura;;bug;fisico;60;100;20;0;rival;1;0;no;si;;no;;;;;no;;;comer_baya;;;0
+bug_buzz;Zumbido;;bug;especial;90;100;10;0;rival;1;0;no;no;;no;;;;;no;sonido;;stat:sp_defense:-1@10;;;0
+bulk_up;Corpulencia;;fighting;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1|stat_propio:defense:+1;;;0
+bulldoze;Terratemblor;;ground;fisico;60;100;20;0;todos;1;0;no;no;;no;;;;;no;;;stat:speed:-1;;;0
+bullet_punch;Puño Bala;;steel;fisico;40;100;30;1;rival;1;0;no;si;;no;;;;;no;puño;;;;;0
+bullet_seed;Semilladora;;grass;fisico;25;100;30;0;rival;2-5;0;no;no;;no;;;;;no;bomba;;;;;0
+calm_mind;Paz Mental;;psychic;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:sp_attack:+1|stat_propio:sp_defense:+1;;;0
+camouflage;Camuflaje;;normal;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;cambiar_tipo:normal;;;0
+captivate;Seducción;;normal;estado;0;100;20;0;rivales;1;0;no;no;;no;;;;;no;;;stat:sp_attack:-2;;;0
+celebrate;Celebración;;normal;estado;0;nunca;40;0;propio;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+charge;Carga;;electric;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;estado_propio:charge|stat_propio:sp_defense:+1;;;0
+charge_beam;Rayo Carga;;electric;especial;50;90;10;0;rival;1;0;no;no;;no;;;;;no;;;stat_propio:sp_attack:+1@70;;;0
+charm;Encanto;;fairy;estado;0;100;20;0;rival;1;0;no;no;;no;;;;;no;;;stat:attack:-2;;;0
+chatter;Cháchara;;flying;especial;65;100;20;0;rival;1;0;no;no;;no;;;;;no;sonido|no_metronomo;;estado:confusion;;;0
+chip_away;Guardia Baja;;normal;fisico;70;100;20;0;rival;1;0;no;si;;no;;;;;no;ignora_etapas;;;;;0
+circle_throw;Llave Giro;;fighting;fisico;60;90;10;-6;rival;1;0;no;si;;no;;;;;no;;;forzar_cambio;;;0
+clamp;Tenaza;;water;fisico;35;85;15;0;rival;1;0;no;si;;no;;;;;no;;;estado:trapped;;;0
+clear_smog;Niebla Clara;;poison;especial;50;nunca;15;0;rival;1;0;no;no;;no;;;;;no;;;reiniciar_etapas_rival;;;0
+close_combat;A Bocajarro;;fighting;fisico;120;100;5;0;rival;1;0;no;si;;no;;;;;no;;;stat_propio:defense:-1|stat_propio:sp_defense:-1;;;0
+coil;Enrosque;;poison;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1|stat_propio:defense:+1|stat_propio:accuracy:+1;;;0
+comet_punch;Puño Cometa;;normal;fisico;18;85;15;0;rival;2-5;0;no;si;;no;;;;;no;puño;;;;;0
+confide;Confidencia;;normal;estado;0;nunca;20;0;rival;1;0;no;no;;no;;;;;no;sonido;;stat:sp_attack:-1;;;0
+confuse_ray;Rayo Confuso;;ghost;estado;0;100;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:confusion;;;0
+confusion;Confusión;;psychic;especial;50;100;25;0;rival;1;0;no;no;;no;;;;;no;;;estado:confusion@10;;;0
+constrict;Restricción;;normal;fisico;10;100;35;0;rival;1;0;no;si;;no;;;;;no;;;stat:speed:-1@10;;;0
+conversion;Conversión;;normal;estado;0;nunca;30;0;propio;1;0;no;no;;no;;;;;no;;;cambiar_tipo;;;0
+conversion_2;Conversión 2;;normal;estado;0;nunca;30;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+copycat;Copión;;normal;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;no_metronomo;;espejo;;;0
+cosmic_power;Masa Cósmica;;psychic;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:defense:+1|stat_propio:sp_defense:+1;;;0
+cotton_guard;Rizo Algodón;;grass;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:defense:+3;;;0
+cotton_spore;Esporagodón;;grass;estado;0;100;40;0;rivales;1;0;no;no;;no;;;;;no;polvo;;stat:speed:-2;;;0
+counter;Contraataque;;fighting;fisico;0;100;20;-5;rival;1;0;no;si;devolver_fisico;no;;;;;no;no_metronomo;;;;;0
+covet;Antojo;;normal;fisico;60;100;25;0;rival;1;0;no;si;;no;;;;;no;no_metronomo;;robar_objeto;;;0
+crabhammer;Martillazo;;water;fisico;100;90;10;0;rival;1;1;no;si;;no;;;;;no;;;;;;0
+crafty_shield;Truco Defensa;;fairy;estado;0;nunca;10;3;propio;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+cross_chop;Tajo Cruzado;;fighting;fisico;100;80;5;0;rival;1;1;no;si;;no;;;;;no;;;;;;0
+cross_poison;Veneno X;;poison;fisico;70;100;20;0;rival;1;1;no;si;;no;;;;;no;corte;;estado:poison@10;;;0
+crunch;Triturar;;dark;fisico;80;100;15;0;rival;1;0;no;si;;no;;;;;no;mordisco;;stat:defense:-1@20;;;0
+crush_claw;Garra Brutal;;normal;fisico;75;95;10;0;rival;1;0;no;si;;no;;;;;no;;;stat:defense:-1@50;;;0
+crush_grip;Agarrón;;normal;fisico;1;100;5;0;rival;1;0;no;si;;no;;1+120*vida_rival/100;;;no;;;;;;0
+curse;Maldición;;ghost;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;;retroceso_ps:50 [si propio.tipo=ghost]|estado:curse [si propio.tipo=ghost]|stat_propio:attack:+1 [si !propio.tipo=ghost]|stat_propio:defense:+1 [si !propio.tipo=ghost]|stat_propio:speed:-1 [si !propio.tipo=ghost];;;0
+cut;Corte;;normal;fisico;50;95;30;0;rival;1;0;no;si;;no;;;;;no;corte;;;;;0
+dark_pulse;Pulso Umbrío;;dark;especial;80;100;15;0;rival;1;0;no;no;;no;;;;;no;pulso;;amedrentar@20;;;0
+dark_void;Brecha Negra;;dark;estado;0;80;10;0;rivales;1;0;no;no;;no;;;;;no;;;estado:sleep;;;0
+dazzling_gleam;Brillo Mágico;;fairy;especial;80;100;10;0;rivales;1;0;no;no;;no;;;;;no;;;;;;0
+defend_order;A Defender;;bug;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:defense:+1|stat_propio:sp_defense:+1;;;0
+defense_curl;Rizo Defensa;;normal;estado;0;nunca;40;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:defense:+1;;;0
+defog;Despejar;;flying;estado;0;nunca;15;0;rival;1;0;no;no;;no;;;;;no;;;stat:evasion:-1|quitar_trampas_rival|quitar_lado:reflect:light_screen:safeguard:mist;;;0
+destiny_bond;Mismo Destino;;ghost;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;no_metronomo;;estado_propio:destiny_bond;;;0
+detect;Detección;;fighting;estado;0;nunca;5;4;propio;1;0;no;no;;no;;;;;no;no_metronomo;;estado_propio:protect;;;0
+diamond_storm;Tormenta de Diamantes;;rock;fisico;100;95;5;0;rivales;1;0;no;no;;no;;;;;no;;;stat_propio:defense:+2@50;;;0
+dig;Excavar;;ground;fisico;80;100;10;0;rival;1;0;carga;si;;no;;;;;no;semiinvulnerable;;;;;0
+disable;Anulación;;normal;estado;0;100;20;0;rival;1;0;no;no;;no;;;;;no;;;anular:4;;;0
+disarming_voice;Voz Cautivadora;;fairy;especial;40;nunca;15;0;rivales;1;0;no;no;;no;;;;;no;sonido;;;;;0
+discharge;Chispazo;;electric;especial;80;100;15;0;todos;1;0;no;no;;no;;;;;no;;;estado:paralysis@30;;;0
+dive;Buceo;;water;fisico;80;100;10;0;rival;1;0;carga;si;;no;;;;;no;semiinvulnerable;;;;;0
+dizzy_punch;Puño Mareo;;normal;fisico;70;100;10;0;rival;1;0;no;si;;no;;;;;no;puño;;estado:confusion@20;;;0
+doom_desire;Deseo Oculto;;steel;especial;140;100;5;0;rival;1;0;no;no;;no;;;;;no;;;premonicion:3;;;0
+double_edge;Doble Filo;;normal;fisico;120;100;15;0;rival;1;0;no;si;;no;;;;;no;retroceso;;retroceso:33;;;0
+double_hit;Doble Golpe;;normal;fisico;35;90;10;0;rival;2;0;no;si;;no;;;;;no;;;;;;0
+double_kick;Doble Patada;;fighting;fisico;30;100;30;0;rival;2;0;no;si;;no;;;;;no;;;;;;0
+double_slap;Doble Bofetón;;normal;fisico;15;85;10;0;rival;2-5;0;no;si;;no;;;;;no;;;;;;0
+double_team;Doble Equipo;;normal;estado;0;nunca;15;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:evasion:+1;;;0
+draco_meteor;Cometa Draco;;dragon;especial;130;90;5;0;rival;1;0;no;no;;no;;;;;no;;;stat_propio:sp_attack:-2;;;0
+dragon_ascent;Ascenso Draco;;flying;fisico;120;100;5;0;rival;1;0;no;si;;no;;;;;no;;;stat_propio:defense:-1|stat_propio:sp_defense:-1;;;0
+dragon_breath;Dragoaliento;;dragon;especial;60;100;20;0;rival;1;0;no;no;;no;;;;;no;;;estado:paralysis@30;;;0
+dragon_claw;Garra Dragón;;dragon;fisico;80;100;15;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+dragon_dance;Danza Dragón;;dragon;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;danza;;stat_propio:attack:+1|stat_propio:speed:+1;;;0
+dragon_pulse;Pulso Dragón;;dragon;especial;85;100;10;0;rival;1;0;no;no;;no;;;;;no;pulso;;;;;0
+dragon_rage;Furia Dragón;;dragon;especial;0;100;10;0;rival;1;0;no;no;fijo:40;no;;;;;no;;;;;;0
+dragon_rush;Carga Dragón;;dragon;fisico;100;75;10;0;rival;1;0;no;si;;no;;;;;no;;;amedrentar@20;;;0
+dragon_tail;Cola Dragón;;dragon;fisico;60;90;10;-6;rival;1;0;no;si;;no;;;;;no;;;forzar_cambio;;;0
+draining_kiss;Beso Drenaje;;fairy;especial;50;100;10;0;rival;1;0;no;si;;no;;;;;no;;;drenar:75;;;0
+drain_punch;Puño Drenaje;;fighting;fisico;75;100;10;0;rival;1;0;no;si;;no;;;;;no;puño;;drenar:50;;;0
+dream_eater;Comesueños;;psychic;especial;100;100;15;0;rival;1;0;no;no;;no;;;;;no;;rival.estado=sleep;drenar:50;;;0
+drill_peck;Pico Taladro;;flying;fisico;80;100;20;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+drill_run;Taladradora;;ground;fisico;80;95;10;0;rival;1;1;no;si;;no;;;;;no;;;;;;0
+dual_chop;Golpe Bis;;dragon;fisico;40;90;15;0;rival;2;0;no;si;;no;;;;;no;;;;;;0
+dynamic_punch;Puño Dinámico;;fighting;fisico;100;50;5;0;rival;1;0;no;si;;no;;;;;no;puño;;estado:confusion;;;0
+earthquake;Terremoto;;ground;fisico;100;100;10;0;todos;1;0;no;no;;no;;;;;no;;;;;;0
+earth_power;Tierra Viva;;ground;especial;90;100;10;0;rival;1;0;no;no;;no;;;;;no;;;stat:sp_defense:-1@10;;;0
+echoed_voice;Eco Voz;;normal;especial;40;100;15;0;rival;1;0;no;no;;no;;40*(1+min(seguidos,4));;;no;sonido;;;;;0
+eerie_impulse;Onda Anómala;;electric;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;;;stat:sp_attack:-2;;;0
+egg_bomb;Bomba Huevo;;normal;fisico;100;75;10;0;rival;1;0;no;no;;no;;;;;no;bomba;;;;;0
+electric_terrain;Campo Eléctrico;;electric;estado;0;nunca;10;0;todos;1;0;no;no;;no;;;;;no;;;lado:electric_terrain;;;0
+electrify;Electrificación;;electric;estado;0;nunca;20;0;rival;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+electroweb;Electrotela;;electric;especial;55;95;15;0;rivales;1;0;no;no;;no;;;;;no;;;stat:speed:-1;;;0
+electro_ball;Bola Voltio;;electric;especial;1;100;10;0;rival;1;0;no;no;;no;;40+20*paso(velocidad/max(1,velocidad_rival),1)+20*paso(velocidad/max(1,velocidad_rival),2)+40*paso(velocidad/max(1,velocidad_rival),3)+30*paso(velocidad/max(1,velocidad_rival),4);;;no;bomba;;;;;0
+embargo;Embargo;;dark;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:embargo;;;0
+ember;Ascuas;;fire;especial;40;100;25;0;rival;1;0;no;no;;no;;;;;no;;;estado:burn@10;;;0
+encore;Otra Vez;;normal;estado;0;100;5;0;rival;1;0;no;no;;no;;;;;no;;;otra_vez:3;;;0
+endeavor;Esfuerzo;;normal;fisico;0;100;5;0;rival;1;0;no;si;esfuerzo;no;;;;;no;;;;;;0
+endure;Aguante;;normal;estado;0;nunca;10;4;propio;1;0;no;no;;no;;;;;no;no_metronomo;;estado_propio:endure;;;0
+energy_ball;Energibola;;grass;especial;90;100;10;0;rival;1;0;no;no;;no;;;;;no;bomba;;stat:sp_defense:-1@10;;;0
+entrainment;Danza Amiga;;normal;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;;;dar_habilidad;;;0
+eruption;Estallido;;fire;especial;150;100;5;0;rivales;1;0;no;no;;no;;max(1,150*vida/100);;;no;;;;;;0
+explosion;Explosión;;normal;fisico;250;100;5;0;todos;1;0;no;no;;no;;;;;no;explosion;;debilitarse;;;0
+extrasensory;Paranormal;;psychic;especial;80;100;20;0;rival;1;0;no;no;;no;;;;;no;;;amedrentar@10;;;0
+extreme_speed;Velocidad Extrema;;normal;fisico;80;100;5;2;rival;1;0;no;si;;no;;;;;no;;;;;;0
+facade;Fachada;;normal;fisico;70;100;20;0;rival;1;0;no;si;;no;x2 [si propio.estado];;;;no;;;;;;0
+fairy_lock;Cerrojo Feérico;;fairy;estado;0;nunca;10;0;todos;1;0;no;no;;no;;;;;no;;;estado:fairy_lock|estado_propio:fairy_lock;;;0
+fairy_wind;Viento Feérico;;fairy;especial;40;100;30;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+fake_out;Sorpresa;;normal;fisico;40;100;10;3;rival;1;0;no;si;;no;;;;;no;;propio.turnos_campo<1;amedrentar;;;0
+fake_tears;Llanto Falso;;dark;estado;0;100;20;0;rival;1;0;no;no;;no;;;;;no;;;stat:sp_defense:-2;;;0
+false_swipe;Falso Tortazo;;normal;fisico;40;100;40;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+feather_dance;Danza Pluma;;flying;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;danza;;stat:attack:-2;;;0
+feint;Amago;;normal;fisico;30;100;10;2;rival;1;0;no;no;;no;;;;;no;rompe_proteccion|no_metronomo;;;;;0
+feint_attack;Finta;;dark;fisico;60;nunca;20;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+fell_stinger;Aguijón Letal;;bug;fisico;30;100;25;0;rival;1;0;no;si;;no;;;;;no;;;stat_propio:attack:+2 [si rival.vida<=0];;;0
+fiery_dance;Danza Llama;;fire;especial;80;100;10;0;rival;1;0;no;no;;no;;;;;no;danza;;stat_propio:sp_attack:+1@50;;;0
+final_gambit;Sacrificio;;fighting;especial;0;100;5;0;rival;1;0;no;no;ps_propios;no;;;;;no;;;debilitarse;;;0
+fire_blast;Llamarada;;fire;especial;110;85;5;0;rival;1;0;no;no;;no;;;;;no;;;estado:burn@10;;;0
+fire_fang;Colmillo Ígneo;;fire;fisico;65;95;15;0;rival;1;0;no;si;;no;;;;;no;mordisco;;estado:burn@10|amedrentar@10;;;0
+fire_pledge;Voto Fuego;;fire;especial;80;100;10;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+fire_punch;Puño Fuego;;fire;fisico;75;100;15;0;rival;1;0;no;si;;no;;;;;no;puño;;estado:burn@10;;;0
+fire_spin;Giro Fuego;;fire;especial;35;85;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:trapped;;;0
+fissure;Fisura;;ground;fisico;0;30;5;0;rival;1;0;no;no;ko;no;;;;;no;;;;;;0
+flail;Azote;;normal;fisico;1;100;15;0;rival;1;0;no;si;;no;;20+20*paso(-vida,-68.75)+40*paso(-vida,-35.42)+20*paso(-vida,-20.83)+50*paso(-vida,-10.42)+50*paso(-vida,-4.17);;;no;;;;;;0
+flamethrower;Lanzallamas;;fire;especial;90;100;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:burn@10;;;0
+flame_burst;Pirotecnia;;fire;especial;70;100;15;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+flame_charge;Nitrocarga;;fire;fisico;50;100;20;0;rival;1;0;no;si;;no;;;;;no;;;stat_propio:speed:+1;;;0
+flame_wheel;Rueda Fuego;;fire;fisico;60;100;25;0;rival;1;0;no;si;;no;;;;;no;;;estado:burn@10;;;0
+flare_blitz;Envite Ígneo;;fire;fisico;120;100;15;0;rival;1;0;no;si;;no;;;;;no;retroceso;;estado:burn@10|retroceso:33;;;0
+flash;Destello;;normal;estado;0;100;20;0;rival;1;0;no;no;;no;;;;;no;;;stat:accuracy:-1;;;0
+flash_cannon;Cañón Resplandor;;steel;especial;80;100;10;0;rival;1;0;no;no;;no;;;;;no;;;stat:sp_defense:-1@10;;;0
+flatter;Camelo;;dark;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:confusion|stat:sp_attack:+1;;;0
+fling;Lanzamiento;;dark;fisico;40;100;10;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+flower_shield;Defensa Floral;;fairy;estado;0;nunca;10;0;todos;1;0;no;no;;no;;;;;no;;;stat_propio:defense:+1 [si propio.tipo=grass];;;0
+fly;Vuelo;;flying;fisico;90;95;15;0;rival;1;0;carga;si;;no;;;;;no;semiinvulnerable;;;;;0
+flying_press;Plancha Voladora;;fighting;fisico;80;95;10;0;rival;1;0;no;si;;no;;;;;no;tipo_extra:flying;;;;;0
+focus_blast;Onda Certera;;fighting;especial;120;70;5;0;rival;1;0;no;no;;no;;;;;no;bomba;;stat:sp_defense:-1@10;;;0
+focus_energy;Foco Energía;;normal;estado;0;nunca;30;0;propio;1;0;no;no;;no;;;;;no;;;foco;;;0
+focus_punch;Puño Certero;;fighting;fisico;150;100;20;-3;rival;1;0;no;si;;no;;;;;no;puño|no_metronomo;!propio.dañado;;;;0
+follow_me;Señuelo;;normal;estado;0;nunca;20;2;propio;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+force_palm;Palmeo;;fighting;fisico;60;100;10;0;rival;1;0;no;si;;no;;;;;no;;;estado:paralysis@30;;;0
+foresight;Profecía;;normal;estado;0;nunca;40;0;rival;1;0;no;no;;no;;;;;no;;;estado:identified;;;0
+forests_curse;Condena Silvana;;grass;estado;0;100;20;0;rival;1;0;no;no;;no;;;;;no;;;añadir_tipo:grass;;;0
+foul_play;Juego Sucio;;dark;fisico;95;100;15;0;rival;1;0;no;si;;no;;;attack;;si;;;;;;0
+freeze_dry;Liofilización;;ice;especial;70;100;20;0;rival;1;0;no;no;;no;;;;;no;eficaz_contra:water;;estado:freeze@10;;;0
+freeze_shock;Rayo Gélido;;ice;fisico;140;90;5;0;rival;1;0;carga;no;;no;;;;;no;;;estado:paralysis@30;;;0
+frenzy_plant;Planta Feroz;;grass;especial;150;90;5;0;rival;1;0;recarga;no;;no;;;;;no;;;;;;0
+frost_breath;Vaho Gélido;;ice;especial;60;90;10;0;rival;1;6;no;no;;no;;;;;no;;;;;;0
+frustration;Frustración;;normal;fisico;1;100;20;0;rival;1;0;no;si;;no;;(255-amistad)*10/25;;;no;;;;;;0
+fury_attack;Ataque Furia;;normal;fisico;15;85;20;0;rival;2-5;0;no;si;;no;;;;;no;;;;;;0
+fury_cutter;Corte Furia;;bug;fisico;40;95;20;0;rival;1;0;no;si;;no;;10*pow(2,min(seguidos,4));;;no;corte;;;;;0
+fury_swipes;Golpes Furia;;normal;fisico;18;80;15;0;rival;2-5;0;no;si;;no;;;;;no;;;;;;0
+fusion_bolt;Rayo Fusión;;electric;fisico;100;100;5;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+fusion_flare;Llama Fusión;;fire;especial;100;100;5;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+future_sight;Premonición;;psychic;especial;120;100;10;0;rival;1;0;no;no;;no;;;;;no;;;premonicion:3;;;0
+gastro_acid;Bilis;;poison;estado;0;100;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:gastro_acid;;;0
+gear_grind;Rueda Doble;;steel;fisico;50;85;15;0;rival;2;0;no;si;;no;;;;;no;;;;;;0
+geomancy;Geocontrol;;fairy;estado;0;nunca;10;0;propio;1;0;carga;no;;no;;;;;no;;;stat_propio:sp_attack:+2|stat_propio:sp_defense:+2|stat_propio:speed:+2;;;0
+giga_drain;Gigadrenado;;grass;especial;75;100;10;0;rival;1;0;no;no;;no;;;;;no;;;drenar:50;;;0
+giga_impact;Gigaimpacto;;normal;fisico;150;90;5;0;rival;1;0;recarga;si;;no;;;;;no;;;;;;0
+glaciate;Mundo Gélido;;ice;especial;65;95;10;0;rivales;1;0;no;no;;no;;;;;no;;;stat:speed:-1;;;0
+glare;Deslumbrar;;normal;estado;0;100;30;0;rival;1;0;no;no;;no;;;;;no;;;estado:paralysis;;;0
+grassy_terrain;Campo de Hierba;;grass;estado;0;nunca;10;0;todos;1;0;no;no;;no;;;;;no;;;lado:grassy_terrain;;;0
+grass_knot;Hierba Lazo;;grass;especial;1;100;20;0;rival;1;0;no;si;;no;;20+20*paso(peso_rival,10)+20*paso(peso_rival,25)+20*paso(peso_rival,50)+20*paso(peso_rival,100)+20*paso(peso_rival,200);;;no;;;;;;0
+grass_pledge;Voto Planta;;grass;especial;80;100;10;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+grass_whistle;Silbato;;grass;estado;0;55;15;0;rival;1;0;no;no;;no;;;;;no;sonido;;estado:sleep;;;0
+gravity;Gravedad;;psychic;estado;0;nunca;5;0;todos;1;0;no;no;;no;;;;;no;;;lado:gravity;;;0
+growl;Gruñido;;normal;estado;0;100;40;0;rivales;1;0;no;no;;no;;;;;no;sonido;;stat:attack:-1;;;0
+growth;Desarrollo;;normal;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1|stat_propio:sp_attack:+1;;;0
+grudge;Rabia;;ghost;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;;estado_propio:grudge;;;0
+guard_split;Isoguardia;;psychic;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+guard_swap;Cambiadefensa;;psychic;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;;intercambiar_etapas:defense,sp_defense;;;0
+guillotine;Guillotina;;normal;fisico;0;30;5;0;rival;1;0;no;si;ko;no;;;;;no;;;;;;0
+gunk_shot;Lanzamugre;;poison;fisico;120;80;5;0;rival;1;0;no;no;;no;;;;;no;;;estado:poison@30;;;0
+gust;Tornado;;flying;especial;40;100;35;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+gyro_ball;Giro Bola;;steel;fisico;1;100;5;0;rival;1;0;no;si;;no;;min(150,1+25*velocidad_rival/max(1,velocidad));;;no;bomba;;;;;0
+hail;Granizo;;ice;estado;0;nunca;10;0;todos;1;0;no;no;;no;;;;;no;;;clima:hail;;;0
+hammer_arm;Machada;;fighting;fisico;100;90;10;0;rival;1;0;no;si;;no;;;;;no;puño;;stat_propio:speed:-1;;;0
+happy_hour;Paga Extra;;normal;estado;0;nunca;30;0;propio;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+harden;Fortaleza;;normal;estado;0;nunca;30;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:defense:+1;;;0
+haze;Niebla;;ice;estado;0;nunca;30;0;todos;1;0;no;no;;no;;;;;no;;;reiniciar_etapas|reiniciar_etapas_rival;;;0
+headbutt;Golpe Cabeza;;normal;fisico;70;100;15;0;rival;1;0;no;si;;no;;;;;no;;;amedrentar@30;;;0
+head_charge;Ariete;;normal;fisico;120;100;15;0;rival;1;0;no;si;;no;;;;;no;retroceso;;retroceso:25;;;0
+head_smash;Testarazo;;rock;fisico;150;80;5;0;rival;1;0;no;si;;no;;;;;no;retroceso;;retroceso:50;;;0
+healing_wish;Deseo Cura;;psychic;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;deseo_cura|debilitarse;;;0
+heal_bell;Cascabel Cura;;normal;estado;0;nunca;5;0;todos;1;0;no;no;;no;;;;;no;sonido;;curar_equipo;;;0
+heal_block;Anticura;;psychic;estado;0;100;15;0;rivales;1;0;no;no;;no;;;;;no;;;estado:heal_block;;;0
+heal_order;Auxilio;;bug;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;curar:50;;;0
+heal_pulse;Pulso Cura;;psychic;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;pulso;;curar_rival:50;;;0
+heart_stamp;Arrumaco;;psychic;fisico;60;100;25;0;rival;1;0;no;si;;no;;;;;no;;;amedrentar@30;;;0
+heart_swap;Cambiaalmas;;psychic;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;;intercambiar_etapas;;;0
+heat_crash;Golpe Calor;;fire;fisico;1;100;10;0;rival;1;0;no;si;;no;;40+20*paso(peso/max(0.1,peso_rival),2)+20*paso(peso/max(0.1,peso_rival),3)+20*paso(peso/max(0.1,peso_rival),4)+20*paso(peso/max(0.1,peso_rival),5);;;no;;;;;;0
+heat_wave;Onda Ígnea;;fire;especial;95;90;10;0;rivales;1;0;no;no;;no;;;;;no;;;estado:burn@10;;;0
+heavy_slam;Cuerpo Pesado;;steel;fisico;1;100;10;0;rival;1;0;no;si;;no;;40+20*paso(peso/max(0.1,peso_rival),2)+20*paso(peso/max(0.1,peso_rival),3)+20*paso(peso/max(0.1,peso_rival),4)+20*paso(peso/max(0.1,peso_rival),5);;;no;;;;;;0
+helping_hand;Refuerzo;;normal;estado;0;nunca;20;5;aliado;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+hex;Infortunio;;ghost;especial;65;100;10;0;rival;1;0;no;no;;no;x2 [si rival.estado];;;;no;;;;;;0
+hidden_power;Poder Oculto;;normal;especial;60;100;15;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+high_jump_kick;Patada Salto Alta;;fighting;fisico;130;90;10;0;rival;1;0;no;si;;no;;;;;no;retroceso;;;;;0
+hold_back;Clemencia;;normal;fisico;40;100;40;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+hold_hands;Manos Juntas;;normal;estado;0;nunca;40;0;aliado;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+hone_claws;Afilagarras;;dark;estado;0;nunca;15;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1|stat_propio:accuracy:+1;;;0
+horn_attack;Cornada;;normal;fisico;65;100;25;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+horn_drill;Perforador;;normal;fisico;0;30;5;0;rival;1;0;no;si;ko;no;;;;;no;;;;;;0
+horn_leech;Asta Drenaje;;grass;fisico;75;100;10;0;rival;1;0;no;si;;no;;;;;no;;;drenar:50;;;0
+howl;Aullido;;normal;estado;0;nunca;40;0;todos;1;0;no;no;;no;;;;;no;sonido;;stat:attack:+1;;;0
+hurricane;Vendaval;;flying;especial;110;70;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:confusion@30;;;0
+hydro_cannon;Hidrocañón;;water;especial;150;90;5;0;rival;1;0;recarga;no;;no;;;;;no;;;;;;0
+hydro_pump;Hidrobomba;;water;especial;110;80;5;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+hyperspace_fury;Cerco Dimensión;;dark;fisico;100;nunca;5;0;rival;1;0;no;no;;no;;;;;no;rompe_proteccion;;stat_propio:defense:-1;;;0
+hyperspace_hole;Paso Dimensional;;psychic;especial;80;nunca;5;0;rival;1;0;no;no;;no;;;;;no;rompe_proteccion;;;;;0
+hyper_beam;Hiperrayo;;normal;especial;150;90;5;0;rival;1;0;recarga;no;;no;;;;;no;;;;;;0
+hyper_fang;Hipercolmillo;;normal;fisico;80;90;15;0;rival;1;0;no;si;;no;;;;;no;mordisco;;amedrentar@10;;;0
+hyper_voice;Vozarrón;;normal;especial;90;100;10;0;rivales;1;0;no;no;;no;;;;;no;sonido;;;;;0
+hypnosis;Hipnosis;;psychic;estado;0;60;20;0;rival;1;0;no;no;;no;;;;;no;;;estado:sleep;;;0
+ice_ball;Bola Hielo;;ice;fisico;30;90;20;0;rival;1;0;no;si;;no;;30*pow(2,min(seguidos,4));;;no;bomba;;;;;0
+ice_beam;Rayo Hielo;;ice;especial;90;100;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:freeze@10;;;0
+ice_burn;Llama Gélida;;ice;especial;140;90;5;0;rival;1;0;carga;no;;no;;;;;no;;;estado:burn@30;;;0
+ice_fang;Colmillo Hielo;;ice;fisico;65;95;15;0;rival;1;0;no;si;;no;;;;;no;mordisco;;estado:freeze@10|amedrentar@10;;;0
+ice_punch;Puño Hielo;;ice;fisico;75;100;15;0;rival;1;0;no;si;;no;;;;;no;puño;;estado:freeze@10;;;0
+ice_shard;Esquirla Helada;;ice;fisico;40;100;30;1;rival;1;0;no;no;;no;;;;;no;;;;;;0
+icicle_crash;Chuzos;;ice;fisico;85;90;10;0;rival;1;0;no;no;;no;;;;;no;;;amedrentar@30;;;0
+icicle_spear;Carámbano;;ice;fisico;25;100;30;0;rival;2-5;0;no;no;;no;;;;;no;;;;;;0
+icy_wind;Viento Hielo;;ice;especial;55;95;15;0;rivales;1;0;no;no;;no;;;;;no;;;stat:speed:-1;;;0
+imprison;Sellar;;psychic;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;estado_propio:imprison;;;0
+incinerate;Calcinación;;fire;especial;60;100;15;0;rivales;1;0;no;no;;no;;;;;no;;;;;;0
+inferno;Infierno;;fire;especial;100;50;5;0;rival;1;0;no;no;;no;;;;;no;;;estado:burn;;;0
+infestation;Acoso;;bug;especial;20;100;20;0;rival;1;0;no;si;;no;;;;;no;;;estado:trapped;;;0
+ingrain;Arraigo;;grass;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;estado_propio:ingrain;;;0
+ion_deluge;Cortina Plasma;;electric;estado;0;nunca;25;1;todos;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+iron_defense;Defensa Férrea;;steel;estado;0;nunca;15;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:defense:+2;;;0
+iron_head;Cabeza de Hierro;;steel;fisico;80;100;15;0;rival;1;0;no;si;;no;;;;;no;;;amedrentar@30;;;0
+iron_tail;Cola Férrea;;steel;fisico;100;75;15;0;rival;1;0;no;si;;no;;;;;no;;;stat:defense:-1@30;;;0
+judgment;Sentencia;;normal;especial;100;100;10;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+jump_kick;Patada Salto;;fighting;fisico;100;95;10;0;rival;1;0;no;si;;no;;;;;no;retroceso;;;;;0
+karate_chop;Golpe Kárate;;fighting;fisico;50;100;25;0;rival;1;1;no;si;;no;;;;;no;;;;;;0
+kinesis;Kinético;;psychic;estado;0;80;15;0;rival;1;0;no;no;;no;;;;;no;;;stat:accuracy:-1;;;0
+kings_shield;Escudo Real;;steel;estado;0;nunca;10;4;propio;1;0;no;no;;no;;;;;no;no_metronomo;;estado_propio:kings_shield;;;0
+knock_off;Desarme;;dark;fisico;65;100;20;0;rival;1;0;no;si;;no;;;;;no;;;quitar_objeto;;;0
+lands_wrath;Fuerza Telúrica;;ground;fisico;90;100;10;0;rivales;1;0;no;no;;no;;;;;no;;;;;;0
+last_resort;Última Baza;;normal;fisico;140;100;5;0;rival;1;0;no;si;;no;;;;;no;;propio.uso_todos;;;;0
+lava_plume;Humareda;;fire;especial;80;100;15;0;todos;1;0;no;no;;no;;;;;no;;;estado:burn@30;;;0
+leaf_blade;Hoja Aguda;;grass;fisico;90;100;15;0;rival;1;1;no;si;;no;;;;;no;corte;;;;;0
+leaf_storm;Lluevehojas;;grass;especial;130;90;5;0;rival;1;0;no;no;;no;;;;;no;;;stat_propio:sp_attack:-2;;;0
+leaf_tornado;Ciclón de Hojas;;grass;especial;65;90;10;0;rival;1;0;no;no;;no;;;;;no;;;stat:accuracy:-1@50;;;0
+leech_life;Chupavidas;;bug;fisico;20;100;15;0;rival;1;0;no;si;;no;;;;;no;;;drenar:50;;;0
+leech_seed;Drenadoras;;grass;estado;0;90;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:leech_seed;;;0
+leer;Malicioso;;normal;estado;0;100;30;0;rivales;1;0;no;no;;no;;;;;no;;;stat:defense:-1;;;0
+lick;Lengüetazo;;ghost;fisico;30;100;30;0;rival;1;0;no;si;;no;;;;;no;;;estado:paralysis@30;;;0
+light_of_ruin;Luz Aniquiladora;;fairy;especial;140;90;5;0;rival;1;0;no;no;;no;;;;;no;retroceso;;retroceso:50;;;0
+light_screen;Pantalla de Luz;;psychic;estado;0;nunca;30;0;propio;1;0;no;no;;no;;;;;no;;;lado:light_screen;;;0
+lock_on;Fijar Blanco;;normal;estado;0;nunca;5;0;rival;1;0;no;no;;no;;;;;no;;;estado_propio:lock_on;;;0
+lovely_kiss;Beso Amoroso;;normal;estado;0;75;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:sleep;;;0
+low_kick;Patada Baja;;fighting;fisico;1;100;20;0;rival;1;0;no;si;;no;;20+20*paso(peso_rival,10)+20*paso(peso_rival,25)+20*paso(peso_rival,50)+20*paso(peso_rival,100)+20*paso(peso_rival,200);;;no;;;;;;0
+low_sweep;Puntapié;;fighting;fisico;65;100;20;0;rival;1;0;no;si;;no;;;;;no;;;stat:speed:-1;;;0
+lucky_chant;Conjuro;;normal;estado;0;nunca;30;0;propio;1;0;no;no;;no;;;;;no;;;lado:lucky_chant;;;0
+lunar_dance;Danza Lunar;;psychic;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;danza;;deseo_cura|debilitarse;;;0
+luster_purge;Resplandor;;psychic;especial;95;100;5;0;rival;1;0;no;no;;no;;;;;no;;;stat:sp_defense:-1@50;;;0
+mach_punch;Ultrapuño;;fighting;fisico;40;100;30;1;rival;1;0;no;si;;no;;;;;no;puño;;;;;0
+magical_leaf;Hoja Mágica;;grass;especial;60;nunca;20;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+magic_coat;Capa Mágica;;psychic;estado;0;nunca;15;4;propio;1;0;no;no;;no;;;;;no;;;estado_propio:magic_coat;;;0
+magic_room;Zona Mágica;;psychic;estado;0;nunca;10;0;todos;1;0;no;no;;no;;;;;no;;;lado:magic_room;;;0
+magma_storm;Lluvia Ígnea;;fire;especial;100;75;5;0;rival;1;0;no;no;;no;;;;;no;;;estado:trapped;;;0
+magnetic_flux;Aura Magnética;;electric;estado;0;nunca;20;0;todos;1;0;no;no;;no;;;;;no;;;;;;0
+magnet_bomb;Bomba Imán;;steel;fisico;60;nunca;20;0;rival;1;0;no;no;;no;;;;;no;bomba;;;;;0
+magnet_rise;Levitón;;electric;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;estado_propio:magnet_rise;;;0
+magnitude;Magnitud;;ground;fisico;1;100;30;0;todos;1;0;no;no;;no;;10+20*paso(azar,5)+20*paso(azar,15)+20*paso(azar,35)+20*paso(azar,65)+20*paso(azar,85)+40*paso(azar,95);;;no;;;;;;0
+mat_block;Escudo Tatami;;fighting;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;no_metronomo;propio.turnos_campo<1;estado_propio:protect;;;0
+mean_look;Mal de Ojo;;normal;estado;0;nunca;5;0;rival;1;0;no;no;;no;;;;;no;;;estado:cant_escape;;;0
+meditate;Meditación;;psychic;estado;0;nunca;40;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1;;;0
+megahorn;Megacuerno;;bug;fisico;120;85;10;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+mega_drain;Megaagotar;;grass;especial;40;100;15;0;rival;1;0;no;no;;no;;;;;no;;;drenar:50;;;0
+mega_kick;Megapatada;;normal;fisico;120;75;5;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+mega_punch;Megapuño;;normal;fisico;80;85;20;0;rival;1;0;no;si;;no;;;;;no;puño;;;;;0
+memento;Legado;;dark;estado;0;100;10;0;rival;1;0;no;no;;no;;;;;no;;;stat:attack:-2|stat:sp_attack:-2|debilitarse;;;0
+metal_burst;Represión Metal;;steel;fisico;0;100;10;0;rival;1;0;no;no;devolver;no;;;;;no;;;;;;0
+metal_claw;Garra Metal;;steel;fisico;50;95;35;0;rival;1;0;no;si;;no;;;;;no;;;stat_propio:attack:+1@10;;;0
+metal_sound;Eco Metálico;;steel;estado;0;85;40;0;rival;1;0;no;no;;no;;;;;no;sonido;;stat:sp_defense:-2;;;0
+meteor_mash;Puño Meteoro;;steel;fisico;90;90;10;0;rival;1;0;no;si;;no;;;;;no;puño;;stat_propio:attack:+1@20;;;0
+metronome;Metrónomo;;normal;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;no_metronomo;;metronomo;;;0
+me_first;Yo Primero;;normal;estado;0;nunca;20;0;rival;1;0;no;no;;no;;;;;no;no_metronomo;;yo_primero;;;0
+milk_drink;Batido;;normal;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;;curar:50;;;0
+mimic;Mimético;;normal;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;no_metronomo;;mimetico;;;0
+mind_reader;Telépata;;normal;estado;0;nunca;5;0;rival;1;0;no;no;;no;;;;;no;;;estado_propio:lock_on;;;0
+minimize;Reducción;;normal;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:evasion:+2;;;0
+miracle_eye;Gran Ojo;;psychic;estado;0;nunca;40;0;rival;1;0;no;no;;no;;;;;no;;;estado:miracle_eye;;;0
+mirror_coat;Manto Espejo;;psychic;especial;0;100;20;-5;rival;1;0;no;no;devolver_especial;no;;;;;no;no_metronomo;;;;;0
+mirror_move;Espejo;;flying;estado;0;nunca;20;0;rival;1;0;no;no;;no;;;;;no;;;espejo;;;0
+mirror_shot;Disparo Espejo;;steel;especial;65;85;10;0;rival;1;0;no;no;;no;;;;;no;;;stat:accuracy:-1@30;;;0
+mist;Neblina;;ice;estado;0;nunca;30;0;propio;1;0;no;no;;no;;;;;no;;;lado:mist;;;0
+misty_terrain;Campo de Niebla;;fairy;estado;0;nunca;10;0;todos;1;0;no;no;;no;;;;;no;;;lado:misty_terrain;;;0
+mist_ball;Bola Neblina;;psychic;especial;70;100;5;0;rival;1;0;no;no;;no;;;;;no;bomba;;stat:sp_attack:-1@50;;;0
+moonblast;Fuerza Lunar;;fairy;especial;95;100;15;0;rival;1;0;no;no;;no;;;;;no;;;stat:sp_attack:-1@30;;;0
+moonlight;Luz Lunar;;fairy;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;;curar:50;;;0
+morning_sun;Sol Matinal;;normal;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;;curar:50;;;0
+muddy_water;Agua Lodosa;;water;especial;90;85;10;0;rivales;1;0;no;no;;no;;;;;no;;;stat:accuracy:-1@30;;;0
+mud_bomb;Bomba Fango;;ground;especial;65;85;10;0;rival;1;0;no;no;;no;;;;;no;bomba;;stat:accuracy:-1@30;;;0
+mud_shot;Disparo Lodo;;ground;especial;55;95;15;0;rival;1;0;no;no;;no;;;;;no;;;stat:speed:-1;;;0
+mud_slap;Bofetón Lodo;;ground;especial;20;100;10;0;rival;1;0;no;no;;no;;;;;no;;;stat:accuracy:-1;;;0
+mud_sport;Chapoteo Lodo;;ground;estado;0;nunca;15;0;todos;1;0;no;no;;no;;;;;no;;;lado:mud_sport;;;0
+mystical_fire;Llama Embrujada;;fire;especial;65;100;10;0;rival;1;0;no;no;;no;;;;;no;;;stat:sp_attack:-1;;;0
+nasty_plot;Maquinación;;dark;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:sp_attack:+2;;;0
+natural_gift;Don Natural;;normal;fisico;60;100;15;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+nature_power;Adaptación;;normal;estado;0;nunca;20;0;rival;1;0;no;no;;no;;;;;no;;;usar:tri_attack;;;0
+needle_arm;Brazo Pincho;;grass;fisico;60;100;15;0;rival;1;0;no;si;;no;;;;;no;;;amedrentar@30;;;0
+nightmare;Pesadilla;;ghost;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;;rival.estado=sleep;estado:nightmare;;;0
+night_daze;Pulso Noche;;dark;especial;85;95;10;0;rival;1;0;no;no;;no;;;;;no;;;stat:accuracy:-1@40;;;0
+night_shade;Tinieblas;;ghost;especial;0;100;15;0;rival;1;0;no;no;nivel;no;;;;;no;;;;;;0
+night_slash;Tajo Umbrío;;dark;fisico;70;100;15;0;rival;1;1;no;si;;no;;;;;no;corte;;;;;0
+noble_roar;Rugido de Guerra;;normal;estado;0;100;30;0;rival;1;0;no;no;;no;;;;;no;sonido;;stat:attack:-1|stat:sp_attack:-1;;;0
+nuzzle;Moflete Estático;;electric;fisico;20;100;20;0;rival;1;0;no;si;;no;;;;;no;;;estado:paralysis;;;0
+oblivion_wing;Ala Mortífera;;flying;especial;80;100;10;0;rival;1;0;no;no;;no;;;;;no;;;drenar:75;;;0
+octazooka;Pulpocañón;;water;especial;65;85;10;0;rival;1;0;no;no;;no;;;;;no;bomba;;stat:accuracy:-1@50;;;0
+odor_sleuth;Rastreo;;normal;estado;0;nunca;40;0;rival;1;0;no;no;;no;;;;;no;;;estado:identified;;;0
+ominous_wind;Viento Aciago;;ghost;especial;60;100;5;0;rival;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1@10|stat_propio:defense:+1@10|stat_propio:sp_attack:+1@10|stat_propio:sp_defense:+1@10|stat_propio:speed:+1@10;;;0
+origin_pulse;Pulso Primigenio;;water;especial;110;85;10;0;rivales;1;0;no;no;;no;;;;;no;pulso;;;;;0
+outrage;Enfado;;dragon;fisico;120;100;10;0;rival;1;0;no;si;;no;;;;;no;;;desenfreno:3:confusion;;;0
+overheat;Sofoco;;fire;especial;130;90;5;0;rival;1;0;no;no;;no;;;;;no;;;stat_propio:sp_attack:-2;;;0
+pain_split;Divide Dolor;;normal;estado;0;nunca;20;0;rival;1;0;no;no;;no;;;;;no;;;dividir_dolor;;;0
+parabolic_charge;Carga Parábola;;electric;especial;50;100;20;0;todos;1;0;no;no;;no;;;;;no;;;drenar:50;;;0
+parting_shot;Última Palabra;;dark;estado;0;100;20;0;rival;1;0;no;no;;no;;;;;no;sonido;;stat:attack:-1|stat:sp_attack:-1|cambio_propio;;;0
+payback;Vendetta;;dark;fisico;50;100;10;0;rival;1;0;no;si;;no;x2 [si rival.ya_actuo];;;;no;;;;;;0
+pay_day;Día de Pago;;normal;fisico;40;100;20;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+peck;Picotazo;;flying;fisico;35;100;35;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+perish_song;Canto Mortal;;normal;estado;0;nunca;5;0;todos;1;0;no;no;;no;;;;;no;sonido;;estado:perish_song|estado_propio:perish_song;;;0
+petal_blizzard;Tormenta Floral;;grass;fisico;90;100;15;0;todos;1;0;no;no;;no;;;;;no;;;;;;0
+petal_dance;Danza Pétalo;;grass;especial;120;100;10;0;rival;1;0;no;si;;no;;;;;no;danza;;desenfreno:3:confusion;;;0
+phantom_force;Golpe Fantasma;;ghost;fisico;90;100;10;0;rival;1;0;carga;si;;no;;;;;no;semiinvulnerable|rompe_proteccion;;;;;0
+pin_missile;Pin Misil;;bug;fisico;25;95;20;0;rival;2-5;0;no;no;;no;;;;;no;;;;;;0
+play_nice;Camaradería;;normal;estado;0;nunca;20;0;rival;1;0;no;no;;no;;;;;no;;;stat:attack:-1;;;0
+play_rough;Carantoña;;fairy;fisico;90;90;10;0;rival;1;0;no;si;;no;;;;;no;;;stat:attack:-1@10;;;0
+pluck;Picoteo;;flying;fisico;60;100;20;0;rival;1;0;no;si;;no;;;;;no;;;comer_baya;;;0
+poison_fang;Colmillo Veneno;;poison;fisico;50;100;15;0;rival;1;0;no;si;;no;;;;;no;mordisco;;estado:poison@50;;;0
+poison_gas;Gas Venenoso;;poison;estado;0;90;40;0;rivales;1;0;no;no;;no;;;;;no;;;estado:poison;;;0
+poison_jab;Puya Nociva;;poison;fisico;80;100;20;0;rival;1;0;no;si;;no;;;;;no;;;estado:poison@30;;;0
+poison_powder;Polvo Veneno;;poison;estado;0;75;35;0;rival;1;0;no;no;;no;;;;;no;polvo;;estado:poison;;;0
+poison_sting;Picotazo Veneno;;poison;fisico;15;100;35;0;rival;1;0;no;no;;no;;;;;no;;;estado:poison@30;;;0
+poison_tail;Cola Veneno;;poison;fisico;50;100;25;0;rival;1;1;no;si;;no;;;;;no;;;estado:poison@10;;;0
+pound;Destructor;;normal;fisico;40;100;35;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+powder;Polvo Explosivo;;bug;estado;0;100;20;1;rival;1;0;no;no;;no;;;;;no;polvo|no_metronomo;;;;;0
+powder_snow;Nieve Polvo;;ice;especial;40;100;25;0;rivales;1;0;no;no;;no;;;;;no;;;estado:freeze@10;;;0
+power_gem;Joya de Luz;;rock;especial;80;100;20;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+power_split;Isofuerza;;psychic;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+power_swap;Cambiafuerza;;psychic;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;;intercambiar_etapas:attack,sp_attack;;;0
+power_trick;Truco Fuerza;;psychic;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;cambiar_stats:attack,defense;;;0
+power_up_punch;Puño Incremento;;fighting;fisico;40;100;20;0;rival;1;0;no;si;;no;;;;;no;puño;;stat_propio:attack:+1;;;0
+power_whip;Latigazo;;grass;fisico;120;85;10;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+precipice_blades;Filo del Abismo;;ground;fisico;120;85;10;0;rivales;1;0;no;no;;no;;;;;no;;;;;;0
+present;Presente;;normal;fisico;40;90;15;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+protect;Protección;;normal;estado;0;nunca;10;4;propio;1;0;no;no;;no;;;;;no;no_metronomo;;estado_propio:protect;;;0
+psybeam;Psicorrayo;;psychic;especial;65;100;20;0;rival;1;0;no;no;;no;;;;;no;;;estado:confusion@10;;;0
+psychic;Psíquico;;psychic;especial;90;100;10;0;rival;1;0;no;no;;no;;;;;no;;;stat:sp_defense:-1@10;;;0
+psycho_boost;Psicoataque;;psychic;especial;140;90;5;0;rival;1;0;no;no;;no;;;;;no;;;stat_propio:sp_attack:-2;;;0
+psycho_cut;Psicocorte;;psychic;fisico;70;100;20;0;rival;1;1;no;no;;no;;;;;no;corte;;;;;0
+psycho_shift;Psicocambio;;psychic;estado;0;100;10;0;rival;1;0;no;no;;no;;;;;no;;;pasar_estado;;;0
+psych_up;Autosugestión;;normal;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;;copiar_etapas;;;0
+psyshock;Psicocarga;;psychic;especial;80;100;10;0;rival;1;0;no;no;;no;;;;defense;no;;;;;;0
+psystrike;Onda Mental;;psychic;especial;100;100;10;0;rival;1;0;no;no;;no;;;;defense;no;;;;;;0
+psywave;Psicoonda;;psychic;especial;0;100;15;0;rival;1;0;no;no;nivel;no;;;;;no;;;;;;0
+punishment;Castigo;;dark;fisico;1;100;5;0;rival;1;0;no;si;;no;;min(200,60+20*subidas_rival);;;no;;;;;;0
+pursuit;Persecución;;dark;fisico;40;100;20;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+quash;Último Lugar;;dark;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+quick_attack;Ataque Rápido;;normal;fisico;40;100;30;1;rival;1;0;no;si;;no;;;;;no;;;;;;0
+quick_guard;Anticipo;;fighting;estado;0;nunca;15;3;propio;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+quiver_dance;Danza Aleteo;;bug;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;danza;;stat_propio:sp_attack:+1|stat_propio:sp_defense:+1|stat_propio:speed:+1;;;0
+rage;Furia;;normal;fisico;20;100;20;0;rival;1;0;no;si;;no;;;;;no;;;furia;;;0
+rage_powder;Polvo Ira;;bug;estado;0;nunca;20;2;propio;1;0;no;no;;no;;;;;no;polvo|no_metronomo;;;;;0
+rain_dance;Danza Lluvia;;water;estado;0;nunca;5;0;todos;1;0;no;no;;no;;;;;no;;;clima:rain;;;0
+rapid_spin;Giro Rápido;;normal;fisico;20;100;40;0;rival;1;0;no;si;;no;;;;;no;;;quitar_trampas;;;0
+razor_leaf;Hoja Afilada;;grass;fisico;55;95;25;0;rivales;1;1;no;no;;no;;;;;no;corte;;;;;0
+razor_shell;Concha Filo;;water;fisico;75;95;10;0;rival;1;0;no;si;;no;;;;;no;corte;;stat:defense:-1@50;;;0
+razor_wind;Viento Cortante;;normal;especial;80;100;10;0;rivales;1;1;carga;no;;no;;;;;no;corte;;;;;0
+recover;Recuperación;;normal;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;;curar:50;;;0
+recycle;Reciclaje;;normal;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;reciclar;;;0
+reflect;Reflejo;;psychic;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;lado:reflect;;;0
+reflect_type;Clonatipo;;normal;estado;0;nunca;15;0;rival;1;0;no;no;;no;;;;;no;;;copiar_tipos;;;0
+refresh;Alivio;;normal;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;curar_estado;;;0
+relic_song;Canto Arcaico;;normal;especial;75;100;10;0;rivales;1;0;no;no;;no;;;;;no;sonido;;estado:sleep@10;;;0
+rest;Descanso;;psychic;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;;curar_estado|curar:100|estado_propio:sleep;;;0
+retaliate;Represalia;;normal;fisico;70;100;5;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+return;Retribución;;normal;fisico;1;100;20;0;rival;1;0;no;si;;no;;amistad*10/25;;;no;;;;;;0
+revenge;Desquite;;fighting;fisico;60;100;10;-4;rival;1;0;no;si;;no;x2 [si propio.dañado];;;;no;;;;;;0
+reversal;Inversión;;fighting;fisico;1;100;15;0;rival;1;0;no;si;;no;;20+20*paso(-vida,-68.75)+40*paso(-vida,-35.42)+20*paso(-vida,-20.83)+50*paso(-vida,-10.42)+50*paso(-vida,-4.17);;;no;;;;;;0
+roar;Rugido;;normal;estado;0;nunca;20;-6;rival;1;0;no;no;;no;;;;;no;sonido;;forzar_cambio;;;0
+roar_of_time;Distorsión;;dragon;especial;150;90;5;0;rival;1;0;recarga;no;;no;;;;;no;;;;;;0
+rock_blast;Pedrada;;rock;fisico;25;90;10;0;rival;2-5;0;no;no;;no;;;;;no;bomba;;;;;0
+rock_climb;Treparrocas;;normal;fisico;90;85;20;0;rival;1;0;no;si;;no;;;;;no;;;estado:confusion@20;;;0
+rock_polish;Pulimento;;rock;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:speed:+2;;;0
+rock_slide;Avalancha;;rock;fisico;75;90;10;0;rivales;1;0;no;no;;no;;;;;no;;;amedrentar@30;;;0
+rock_smash;Golpe Roca;;fighting;fisico;40;100;15;0;rival;1;0;no;si;;no;;;;;no;;;stat:defense:-1@50;;;0
+rock_throw;Lanzarrocas;;rock;fisico;50;90;15;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+rock_tomb;Tumba Rocas;;rock;fisico;60;95;15;0;rival;1;0;no;no;;no;;;;;no;;;stat:speed:-1;;;0
+rock_wrecker;Romperrocas;;rock;fisico;150;90;5;0;rival;1;0;recarga;no;;no;;;;;no;bomba;;;;;0
+role_play;Imitación;;psychic;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;;copiar_habilidad;;;0
+rolling_kick;Patada Giro;;fighting;fisico;60;85;15;0;rival;1;0;no;si;;no;;;;;no;;;amedrentar@30;;;0
+rollout;Rodar;;rock;fisico;30;90;20;0;rival;1;0;no;si;;no;;30*pow(2,min(seguidos,4));;;no;;;;;;0
+roost;Respiro;;flying;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;;curar:50|estado_propio:roost;;;0
+rototiller;Fertilizante;;ground;estado;0;nunca;10;0;todos;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1 [si propio.tipo=grass]|stat_propio:sp_attack:+1 [si propio.tipo=grass];;;0
+round;Canon;;normal;especial;60;100;15;0;rival;1;0;no;no;;no;;;;;no;sonido;;;;;0
+sacred_fire;Fuego Sagrado;;fire;fisico;100;95;5;0;rival;1;0;no;no;;no;;;;;no;;;estado:burn@50;;;0
+sacred_sword;Espada Santa;;fighting;fisico;90;100;15;0;rival;1;0;no;si;;no;;;;;no;corte|ignora_etapas;;;;;0
+safeguard;Velo Sagrado;;normal;estado;0;nunca;25;0;propio;1;0;no;no;;no;;;;;no;;;lado:safeguard;;;0
+sandstorm;Tormenta de Arena;;rock;estado;0;nunca;10;0;todos;1;0;no;no;;no;;;;;no;;;clima:sandstorm;;;0
+sand_attack;Ataque Arena;;ground;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;;;stat:accuracy:-1;;;0
+sand_tomb;Bucle Arena;;ground;fisico;35;85;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:trapped;;;0
+scald;Escaldar;;water;especial;80;100;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:burn@30;;;0
+scary_face;Cara Susto;;normal;estado;0;100;10;0;rival;1;0;no;no;;no;;;;;no;;;stat:speed:-2;;;0
+scratch;Arañazo;;normal;fisico;40;100;35;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+screech;Chirrido;;normal;estado;0;85;40;0;rival;1;0;no;no;;no;;;;;no;sonido;;stat:defense:-2;;;0
+searing_shot;Bomba Ígnea;;fire;especial;100;100;5;0;todos;1;0;no;no;;no;;;;;no;bomba;;estado:burn@30;;;0
+secret_power;Daño Secreto;;normal;fisico;70;100;20;0;rival;1;0;no;no;;no;;;;;no;;;estado:paralysis@30;;;0
+secret_sword;Sable Místico;;fighting;especial;85;100;10;0;rival;1;0;no;no;;no;;;;defense;no;corte;;;;;0
+seed_bomb;Bomba Germen;;grass;fisico;80;100;15;0;rival;1;0;no;no;;no;;;;;no;bomba;;;;;0
+seed_flare;Fulgor Semilla;;grass;especial;120;85;5;0;rival;1;0;no;no;;no;;;;;no;;;stat:sp_defense:-2@40;;;0
+seismic_toss;Sísmico;;fighting;fisico;0;100;20;0;rival;1;0;no;si;nivel;no;;;;;no;;;;;;0
+self_destruct;Autodestrucción;;normal;fisico;200;100;5;0;todos;1;0;no;no;;no;;;;;no;explosion;;debilitarse;;;0
+shadow_ball;Bola Sombra;;ghost;especial;80;100;15;0;rival;1;0;no;no;;no;;;;;no;bomba;;stat:sp_defense:-1@20;;;0
+shadow_claw;Garra Umbría;;ghost;fisico;70;100;15;0;rival;1;1;no;si;;no;;;;;no;;;;;;0
+shadow_force;Golpe Umbrío;;ghost;fisico;120;100;5;0;rival;1;0;carga;si;;no;;;;;no;semiinvulnerable|rompe_proteccion;;;;;0
+shadow_punch;Puño Sombra;;ghost;fisico;60;nunca;20;0;rival;1;0;no;si;;no;;;;;no;puño;;;;;0
+shadow_sneak;Sombra Vil;;ghost;fisico;40;100;30;1;rival;1;0;no;si;;no;;;;;no;;;;;;0
+sharpen;Afilar;;normal;estado;0;nunca;30;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1;;;0
+sheer_cold;Frío Polar;;ice;especial;0;30;5;0;rival;1;0;no;no;ko;no;;;;;no;;;;;;0
+shell_smash;Rompecoraza;;normal;estado;0;nunca;15;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:defense:-1|stat_propio:sp_defense:-1|stat_propio:attack:+2|stat_propio:sp_attack:+2|stat_propio:speed:+2;;;0
+shift_gear;Cambio de Marcha;;steel;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1|stat_propio:speed:+2;;;0
+shock_wave;Onda Voltio;;electric;especial;60;nunca;20;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+signal_beam;Rayo Señal;;bug;especial;75;100;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:confusion@10;;;0
+silver_wind;Viento Plata;;bug;especial;60;100;5;0;rival;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1@10|stat_propio:defense:+1@10|stat_propio:sp_attack:+1@10|stat_propio:sp_defense:+1@10|stat_propio:speed:+1@10;;;0
+simple_beam;Onda Simple;;normal;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;;;poner_habilidad:simple;;;0
+sing;Canto;;normal;estado;0;55;15;0;rival;1;0;no;no;;no;;;;;no;sonido;;estado:sleep;;;0
+sketch;Esquema;;normal;estado;0;nunca;1;0;rival;1;0;no;no;;no;;;;;no;no_metronomo;;mimetico;;;0
+skill_swap;Intercambio;;psychic;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;;cambiar_habilidades;;;0
+skull_bash;Cabezazo;;normal;fisico;130;100;10;0;rival;1;0;carga;si;;no;;;;;no;;;;;;0
+sky_attack;Ataque Aéreo;;flying;fisico;140;90;5;0;rival;1;1;carga;no;;no;;;;;no;;;amedrentar@30;;;0
+sky_drop;Caída Libre;;flying;fisico;60;100;10;0;rival;1;0;carga;si;;no;;;;;no;semiinvulnerable;;;;;0
+sky_uppercut;Gancho Alto;;fighting;fisico;85;90;15;0;rival;1;0;no;si;;no;;;;;no;puño;;;;;0
+slack_off;Relajo;;normal;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;;curar:50;;;0
+slam;Atizar;;normal;fisico;80;75;20;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+slash;Cuchillada;;normal;fisico;70;100;20;0;rival;1;1;no;si;;no;;;;;no;corte;;;;;0
+sleep_powder;Somnífero;;grass;estado;0;75;15;0;rival;1;0;no;no;;no;;;;;no;polvo;;estado:sleep;;;0
+sleep_talk;Sonámbulo;;normal;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;dormido|no_sonambulo|no_metronomo;propio.estado=sleep;sonambulo;;;0
+sludge;Residuos;;poison;especial;65;100;20;0;rival;1;0;no;no;;no;;;;;no;;;estado:poison@30;;;0
+sludge_bomb;Bomba Lodo;;poison;especial;90;100;10;0;rival;1;0;no;no;;no;;;;;no;bomba;;estado:poison@30;;;0
+sludge_wave;Onda Tóxica;;poison;especial;95;100;10;0;todos;1;0;no;no;;no;;;;;no;;;estado:poison@10;;;0
+smack_down;Antiaéreo;;rock;fisico;50;100;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:smacked_down;;;0
+smelling_salts;Estímulo;;normal;fisico;70;100;10;0;rival;1;0;no;si;;no;x2 [si rival.estado=paralysis];;;;no;;;curar_estado_rival:paralysis [si rival.estado=paralysis];;;0
+smog;Polución;;poison;especial;30;70;20;0;rival;1;0;no;no;;no;;;;;no;;;estado:poison@40;;;0
+smokescreen;Pantalla de Humo;;normal;estado;0;100;20;0;rival;1;0;no;no;;no;;;;;no;;;stat:accuracy:-1;;;0
+snarl;Alarido;;dark;especial;55;95;15;0;rivales;1;0;no;no;;no;;;;;no;sonido;;stat:sp_attack:-1;;;0
+snatch;Robo;;dark;estado;0;nunca;10;4;propio;1;0;no;no;;no;;;;;no;no_metronomo;;estado_propio:snatch;;;0
+snore;Ronquido;;normal;especial;50;100;15;0;rival;1;0;no;no;;no;;;;;no;sonido|dormido;propio.estado=sleep;amedrentar@30;;;0
+soak;Empapar;;water;estado;0;100;20;0;rival;1;0;no;no;;no;;;;;no;;;cambiar_tipo_rival:water;;;0
+soft_boiled;Ovocuración;;normal;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;;curar:50;;;0
+solar_beam;Rayo Solar;;grass;especial;120;100;10;0;rival;1;0;carga;no;;no;x0,5 [si clima=rain] | x0,5 [si clima=hail] | x0,5 [si clima=sandstorm];;;;no;;;;;;0
+sonic_boom;Bomba Sónica;;normal;especial;0;90;20;0;rival;1;0;no;no;fijo:20;no;;;;;no;;;;;;0
+spacial_rend;Corte Vacío;;dragon;especial;100;95;5;0;rival;1;1;no;no;;no;;;;;no;;;;;;0
+spark;Chispa;;electric;fisico;65;100;20;0;rival;1;0;no;si;;no;;;;;no;;;estado:paralysis@30;;;0
+spider_web;Telaraña;;bug;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:cant_escape;;;0
+spikes;Púas;;ground;estado;0;nunca;20;0;rivales;1;0;no;no;;no;;;;;no;;;trampa:spikes;;;0
+spike_cannon;Clavo Cañón;;normal;fisico;20;100;15;0;rival;2-5;0;no;no;;no;;;;;no;;;;;;0
+spiky_shield;Barrera Espinosa;;grass;estado;0;nunca;10;4;propio;1;0;no;no;;no;;;;;no;no_metronomo;;estado_propio:spiky_shield;;;0
+spite;Rencor;;ghost;estado;0;100;10;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+spit_up;Escupir;;normal;especial;1;100;10;0;rival;1;0;no;no;;no;;100*reserva;;;no;;propio.reserva>0;usar_reserva;;;0
+splash;Salpicadura;;normal;estado;0;nunca;40;0;propio;1;0;no;no;;no;;;;;no;;;;;;0
+spore;Espora;;grass;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;polvo;;estado:sleep;;;0
+stealth_rock;Trampa Rocas;;rock;estado;0;nunca;20;0;rivales;1;0;no;no;;no;;;;;no;;;trampa:stealth_rock;;;0
+steamroller;Rodillo de Púas;;bug;fisico;65;100;20;0;rival;1;0;no;si;;no;;;;;no;;;amedrentar@30;;;0
+steam_eruption;Chorro de Vapor;;water;especial;110;95;5;0;rival;1;0;no;no;;no;;;;;no;;;estado:burn@30;;;0
+steel_wing;Ala de Acero;;steel;fisico;70;90;25;0;rival;1;0;no;si;;no;;;;;no;;;stat_propio:defense:+1@10;;;0
+sticky_web;Red Viscosa;;bug;estado;0;nunca;20;0;rivales;1;0;no;no;;no;;;;;no;;;trampa:sticky_web;;;0
+stockpile;Reserva;;normal;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;reserva|stat_propio:defense:+1|stat_propio:sp_defense:+1;;;0
+stomp;Pisotón;;normal;fisico;65;100;20;0;rival;1;0;no;si;;no;;;;;no;;;amedrentar@30;;;0
+stone_edge;Roca Afilada;;rock;fisico;100;80;5;0;rival;1;1;no;no;;no;;;;;no;;;;;;0
+stored_power;Poder Reserva;;psychic;especial;20;100;10;0;rival;1;0;no;no;;no;;20+20*subidas;;;no;;;;;;0
+storm_throw;Llave Corsé;;fighting;fisico;60;100;10;0;rival;1;6;no;si;;no;;;;;no;;;;;;0
+strength;Fuerza;;normal;fisico;80;100;15;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+string_shot;Disparo Demora;;bug;estado;0;95;40;0;rivales;1;0;no;no;;no;;;;;no;;;stat:speed:-2;;;0
+struggle;Forcejeo;;typeless;fisico;50;nunca;1;0;rival;1;0;no;si;;no;;;;;no;;;retroceso_ps:25;;;0
+struggle_bug;Estoicismo;;bug;especial;50;100;20;0;rivales;1;0;no;no;;no;;;;;no;;;stat:sp_attack:-1;;;0
+stun_spore;Paralizador;;grass;estado;0;75;30;0;rival;1;0;no;no;;no;;;;;no;polvo;;estado:paralysis;;;0
+submission;Sumisión;;fighting;fisico;80;80;20;0;rival;1;0;no;si;;no;;;;;no;retroceso;;retroceso:25;;;0
+substitute;Sustituto;;normal;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;sustituto;;;0
+sucker_punch;Golpe Bajo;;dark;fisico;80;100;5;1;rival;1;0;no;si;;no;;;;;no;;rival.va_a_atacar & !rival.ya_actuo;;;;0
+sunny_day;Día Soleado;;fire;estado;0;nunca;5;0;todos;1;0;no;no;;no;;;;;no;;;clima:sun;;;0
+superpower;Fuerza Bruta;;fighting;fisico;120;100;5;0;rival;1;0;no;si;;no;;;;;no;;;stat_propio:attack:-1|stat_propio:defense:-1;;;0
+supersonic;Supersónico;;normal;estado;0;55;20;0;rival;1;0;no;no;;no;;;;;no;sonido;;estado:confusion;;;0
+super_fang;Superdiente;;normal;fisico;0;90;10;0;rival;1;0;no;si;mitad;no;;;;;no;;;;;;0
+surf;Surf;;water;especial;90;100;15;0;todos;1;0;no;no;;no;;;;;no;;;;;;0
+swagger;Fanfarronear;;normal;estado;0;90;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:confusion|stat:attack:+2;;;0
+swallow;Tragar;;normal;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;propio.reserva>0;usar_reserva:curar;;;0
+sweet_kiss;Beso Dulce;;fairy;estado;0;75;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:confusion;;;0
+sweet_scent;Dulce Aroma;;normal;estado;0;100;20;0;rivales;1;0;no;no;;no;;;;;no;;;stat:evasion:-2;;;0
+swift;Meteoros;;normal;especial;60;nunca;20;0;rivales;1;0;no;no;;no;;;;;no;;;;;;0
+switcheroo;Trapicheo;;dark;estado;0;100;10;0;rival;1;0;no;no;;no;;;;;no;no_metronomo;;cambiar_objetos;;;0
+swords_dance;Danza Espada;;normal;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;danza;;stat_propio:attack:+2;;;0
+synchronoise;Sincrorruido;;psychic;especial;120;100;10;0;todos;1;0;no;no;;no;;;;;no;;;;;;0
+synthesis;Fotosíntesis;;grass;estado;0;nunca;5;0;propio;1;0;no;no;;no;;;;;no;;;curar:50;;;0
+tackle;Placaje;;normal;fisico;50;100;35;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+tailwind;Viento Afín;;flying;estado;0;nunca;15;0;propio;1;0;no;no;;no;;;;;no;;;lado:tailwind;;;0
+tail_glow;Luminicola;;bug;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:sp_attack:+3;;;0
+tail_slap;Plumerazo;;normal;fisico;25;85;10;0;rival;2-5;0;no;si;;no;;;;;no;;;;;;0
+tail_whip;Agitacola;;normal;estado;0;100;30;0;rivales;1;0;no;no;;no;;;;;no;;;stat:defense:-1;;;0
+take_down;Derribo;;normal;fisico;90;85;20;0;rival;1;0;no;si;;no;;;;;no;retroceso;;retroceso:25;;;0
+taunt;Mofa;;dark;estado;0;100;20;0;rival;1;0;no;no;;no;;;;;no;;;estado:taunt;;;0
+techno_blast;Tecno Shock;;normal;especial;120;100;5;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+teeter_dance;Danza Caos;;normal;estado;0;100;20;0;todos;1;0;no;no;;no;;;;;no;danza;;estado:confusion;;;0
+telekinesis;Telequinesis;;psychic;estado;0;nunca;15;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+teleport;Teletransporte;;psychic;estado;0;nunca;20;0;propio;1;0;no;no;;no;;;;;no;;;teletransporte;;;0
+thief;Ladrón;;dark;fisico;60;100;25;0;rival;1;0;no;si;;no;;;;;no;no_metronomo;;robar_objeto;;;0
+thousand_arrows;Mil Flechas;;ground;fisico;90;100;10;0;rivales;1;0;no;no;;no;;;;;no;ignora_inmunidad;;estado:smacked_down;;;0
+thousand_waves;Mil Temblores;;ground;fisico;90;100;10;0;rivales;1;0;no;no;;no;;;;;no;;;estado:cant_escape;;;0
+thrash;Saña;;normal;fisico;120;100;10;0;rival;1;0;no;si;;no;;;;;no;;;desenfreno:3:confusion;;;0
+thunder;Trueno;;electric;especial;110;70;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:paralysis@30;;;0
+thunderbolt;Rayo;;electric;especial;90;100;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:paralysis@10;;;0
+thunder_fang;Colmillo Rayo;;electric;fisico;65;95;15;0;rival;1;0;no;si;;no;;;;;no;mordisco;;estado:paralysis@10|amedrentar@10;;;0
+thunder_punch;Puño Trueno;;electric;fisico;75;100;15;0;rival;1;0;no;si;;no;;;;;no;puño;;estado:paralysis@10;;;0
+thunder_shock;Impactrueno;;electric;especial;40;100;30;0;rival;1;0;no;no;;no;;;;;no;;;estado:paralysis@10;;;0
+thunder_wave;Onda Trueno;;electric;estado;0;100;20;0;rival;1;0;no;no;;si;;;;;no;;;estado:paralysis;;;0
+tickle;Cosquillas;;normal;estado;0;100;20;0;rival;1;0;no;no;;no;;;;;no;;;stat:attack:-1|stat:defense:-1;;;0
+topsy_turvy;Reversión;;dark;estado;0;nunca;20;0;rival;1;0;no;no;;no;;;;;no;;;invertir_etapas;;;0
+torment;Tormento;;dark;estado;0;100;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:torment;;;0
+toxic;Tóxico;;poison;estado;0;90;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:toxic;;;0
+toxic_spikes;Púas Tóxicas;;poison;estado;0;nunca;20;0;rivales;1;0;no;no;;no;;;;;no;;;trampa:toxic_spikes;;;0
+transform;Transformación;;normal;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;no_metronomo;;transformarse;;;0
+trick;Truco;;psychic;estado;0;100;10;0;rival;1;0;no;no;;no;;;;;no;no_metronomo;;cambiar_objetos;;;0
+trick_or_treat;Halloween;;ghost;estado;0;100;20;0;rival;1;0;no;no;;no;;;;;no;;;añadir_tipo:ghost;;;0
+trick_room;Espacio Raro;;psychic;estado;0;nunca;5;-7;todos;1;0;no;no;;no;;;;;no;;;lado:trick_room;;;0
+triple_kick;Triple Patada;;fighting;fisico;10;90;10;0;rival;3;0;no;si;;no;;;;;no;;;;;;0
+tri_attack;Triataque;;normal;especial;80;100;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:burn@6.67|estado:paralysis@6.67|estado:freeze@6.67;;;0
+trump_card;As Oculto;;normal;especial;1;nunca;5;0;rival;1;0;no;si;;no;;40+10*paso(-pp,-3)+10*paso(-pp,-2)+20*paso(-pp,-1)+120*paso(-pp,0);;;no;;;;;;0
+twineedle;Doble Ataque;;bug;fisico;25;100;20;0;rival;2;0;no;no;;no;;;;;no;;;estado:poison@20;;;0
+twister;Ciclón;;dragon;especial;40;100;20;0;rivales;1;0;no;no;;no;;;;;no;;;amedrentar@20;;;0
+uproar;Alboroto;;normal;especial;90;100;10;0;rival;1;0;no;no;;no;;;;;no;sonido;;desenfreno:3;;;0
+u_turn;Ida y Vuelta;;bug;fisico;70;100;20;0;rival;1;0;no;si;;no;;;;;no;;;cambio_propio;;;0
+vacuum_wave;Onda Vacío;;fighting;especial;40;100;30;1;rival;1;0;no;no;;no;;;;;no;;;;;;0
+venom_drench;Trampa Venenosa;;poison;estado;0;100;20;0;rivales;1;0;no;no;;no;;;;;no;;;stat:attack:-1 [si rival.estado=poison]|stat:sp_attack:-1 [si rival.estado=poison]|stat:speed:-1 [si rival.estado=poison]|stat:attack:-1 [si rival.estado=toxic]|stat:sp_attack:-1 [si rival.estado=toxic]|stat:speed:-1 [si rival.estado=toxic];;;0
+venoshock;Carga Tóxica;;poison;especial;65;100;10;0;rival;1;0;no;no;;no;x2 [si rival.estado=poison] | x2 [si rival.estado=toxic];;;;no;;;;;;0
+vice_grip;Agarre;;normal;fisico;55;100;30;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+vine_whip;Látigo Cepa;;grass;fisico;45;100;25;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+vital_throw;Llave Vital;;fighting;fisico;70;nunca;10;-1;rival;1;0;no;si;;no;;;;;no;;;;;;0
+volt_switch;Voltiocambio;;electric;especial;70;100;20;0;rival;1;0;no;no;;no;;;;;no;;;cambio_propio;;;0
+volt_tackle;Placaje Eléctrico;;electric;fisico;120;100;15;0;rival;1;0;no;si;;no;;;;;no;retroceso;;estado:paralysis@10|retroceso:33;;;0
+v_create;V de Fuego;;fire;fisico;180;95;5;0;rival;1;0;no;si;;no;;;;;no;;;stat_propio:defense:-1|stat_propio:sp_defense:-1|stat_propio:speed:-1;;;0
+wake_up_slap;Espabila;;fighting;fisico;70;100;10;0;rival;1;0;no;si;;no;x2 [si rival.estado=sleep];;;;no;;;curar_estado_rival:sleep [si rival.estado=sleep];;;0
+waterfall;Cascada;;water;fisico;80;100;15;0;rival;1;0;no;si;;no;;;;;no;;;amedrentar@20;;;0
+water_gun;Pistola Agua;;water;especial;40;100;25;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+water_pledge;Voto Agua;;water;especial;80;100;10;0;rival;1;0;no;no;;no;;;;;no;;;;;;0
+water_pulse;Hidropulso;;water;especial;60;100;20;0;rival;1;0;no;no;;no;;;;;no;pulso;;estado:confusion@20;;;0
+water_shuriken;Shuriken de Agua;;water;especial;15;100;20;1;rival;2-5;0;no;no;;no;;;;;no;;;;;;0
+water_sport;Hidrochorro;;water;estado;0;nunca;15;0;todos;1;0;no;no;;no;;;;;no;;;lado:water_sport;;;0
+water_spout;Salpicar;;water;especial;150;100;5;0;rivales;1;0;no;no;;no;;max(1,150*vida/100);;;no;;;;;;0
+weather_ball;Meteorobola;;normal;especial;50;100;10;0;rival;1;0;no;no;;no;x2 [si clima=rain] | x2 [si clima=sun] | x2 [si clima=hail] | x2 [si clima=sandstorm];;;;no;bomba;;;;rain:water|sun:fire|hail:ice|sandstorm:rock;0
+whirlpool;Torbellino;;water;especial;35;85;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:trapped;;;0
+whirlwind;Remolino;;normal;estado;0;nunca;20;-6;rival;1;0;no;no;;no;;;;;no;;;forzar_cambio;;;0
+wide_guard;Vasta Guardia;;rock;estado;0;nunca;10;3;propio;1;0;no;no;;no;;;;;no;no_metronomo;;;;;0
+wild_charge;Voltio Cruel;;electric;fisico;90;100;15;0;rival;1;0;no;si;;no;;;;;no;retroceso;;retroceso:25;;;0
+will_o_wisp;Fuego Fatuo;;fire;estado;0;85;15;0;rival;1;0;no;no;;no;;;;;no;;;estado:burn;;;0
+wing_attack;Ataque Ala;;flying;fisico;60;100;35;0;rival;1;0;no;si;;no;;;;;no;;;;;;0
+wish;Deseo;;normal;estado;0;nunca;10;0;propio;1;0;no;no;;no;;;;;no;;;deseo:2:50;;;0
+withdraw;Refugio;;water;estado;0;nunca;40;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:defense:+1;;;0
+wonder_room;Zona Extraña;;psychic;estado;0;nunca;10;0;todos;1;0;no;no;;no;;;;;no;;;lado:wonder_room;;;0
+wood_hammer;Mazazo;;grass;fisico;120;100;15;0;rival;1;0;no;si;;no;;;;;no;retroceso;;retroceso:33;;;0
+work_up;Avivar;;normal;estado;0;nunca;30;0;propio;1;0;no;no;;no;;;;;no;;;stat_propio:attack:+1|stat_propio:sp_attack:+1;;;0
+worry_seed;Abatidoras;;grass;estado;0;100;10;0;rival;1;0;no;no;;no;;;;;no;;;poner_habilidad:insomnia;;;0
+wrap;Constricción;;normal;fisico;15;90;20;0;rival;1;0;no;si;;no;;;;;no;;;estado:trapped;;;0
+wring_out;Estrujón;;normal;especial;1;100;5;0;rival;1;0;no;si;;no;;1+120*vida_rival/100;;;no;;;;;;0
+x_scissor;Tijera X;;bug;fisico;80;100;15;0;rival;1;0;no;si;;no;;;;;no;corte;;;;;0
+yawn;Bostezo;;normal;estado;0;nunca;10;0;rival;1;0;no;no;;no;;;;;no;;;estado:drowsy;;;0
+zap_cannon;Electrocañón;;electric;especial;120;50;5;0;rival;1;0;no;no;;no;;;;;no;bomba;;estado:paralysis;;;0
+zen_headbutt;Cabezazo Zen;;psychic;fisico;80;90;15;0;rival;1;0;no;si;;no;;;;;no;;;amedrentar@20;;;0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: zygarde
   displayName: Zygarde
+  englishName: Zygarde
   types:
   - {fileID: 11400000, guid: e3d9e34536e21ee44b6e4b17fc29a0be, type: 2}
   - {fileID: 11400000, guid: 3a52b6aa5b301834ab86591d9e18d79a, type: 2}
@@ -44,13 +45,13 @@ MonoBehaviour:
   speed: 95
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 7109fca7337deef409398e6496f772a8, type: 2}
+  - move: {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: bb2a46c3e900da44e86313655582e86b, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+  - move: {fileID: 11400000, guid: 7109fca7337deef409398e6496f772a8, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
     level: 5
@@ -131,3 +132,7 @@ MonoBehaviour:
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

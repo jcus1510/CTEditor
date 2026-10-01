@@ -15,10 +15,11 @@ MonoBehaviour:
   id: razor_claw
   displayName: Garra Afilada
   englishName: Razor Claw
-  description: "Llev\xE1ndola al subir de nivel de noche: Sneasel evoluciona."
+  description: "Aumenta la probabilidad de que el Pok\xE9mon que la lleve consiga
+    un golpe cr\xEDtico."
   category: 7
   icon: {fileID: 0}
-  price: 2000
+  price: 5000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

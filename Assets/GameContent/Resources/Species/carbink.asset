@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: carbink
   displayName: Carbink
+  englishName: Carbink
   types:
   - {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
   - {fileID: 11400000, guid: d65ead7637a8c9c4090b7b6df1d3b171, type: 2}
@@ -46,9 +47,9 @@ MonoBehaviour:
   speed: 50
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 0a7589ec211131d45b8c65c725894de0, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 463d0914b67fe0e49bb7496ee377b881, type: 2}
     level: 5
@@ -130,3 +131,7 @@ MonoBehaviour:
   eggGroups:
   - {fileID: 11400000, guid: 8f25efafd6dcfb64fb4e0ba722b3e00f, type: 2}
   - {fileID: 11400000, guid: 2a9396fa90416b64f84c4a3cdedb4711, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

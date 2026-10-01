@@ -15,10 +15,11 @@ MonoBehaviour:
   id: sharp_beak
   displayName: Pico Afilado
   englishName: Sharp Beak
-  description: "Movimientos de Volador \xD71,2."
+  description: "Pico largo y afilado que aumenta la potencia de los movimientos de
+    tipo Volador. Debe llevarlo un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

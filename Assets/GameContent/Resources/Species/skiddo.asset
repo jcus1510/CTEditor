@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: skiddo
   displayName: Skiddo
+  englishName: Skiddo
   types:
   - {fileID: 11400000, guid: 50792a937522d2e4ab6bd6a520a1534f, type: 2}
   abilityId: sap_sipper
@@ -43,9 +44,9 @@ MonoBehaviour:
   speed: 52
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 8ce8218b5414e0443948bdad7e6671c3, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 60ac62c386d80ab4db17b3e8a05c4df0, type: 2}
     level: 7
@@ -130,3 +131,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0636291e4eae3b146b1112aca9b448df, type: 2}
   eggGroups:
   - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

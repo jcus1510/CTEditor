@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: dragon_ascent
   displayName: Ascenso Draco
+  englishName: Dragon Ascent
   type: {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
   category: 0
   power: 120
@@ -55,6 +56,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

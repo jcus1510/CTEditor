@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.NatureData
   id: quirky
   displayName: Rara
+  englishName: Quirky
   boostedStatId: sp_defense
   hinderedStatId: sp_defense
   boostPercent: 10

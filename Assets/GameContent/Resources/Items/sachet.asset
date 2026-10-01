@@ -15,7 +15,8 @@ MonoBehaviour:
   id: sachet
   displayName: Saquito Fragante
   englishName: Sachet
-  description: "Llev\xE1ndolo al intercambiarse: Spritzee evoluciona."
+  description: "Un saquito lleno de sustancias arom\xE1ticas cuyo perfume resulta
+    abrumador, pero que a ciertos Pok\xE9mon les encanta."
   category: 7
   icon: {fileID: 0}
   price: 2000

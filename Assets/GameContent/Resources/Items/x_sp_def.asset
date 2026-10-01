@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: x_sp_def
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: x_sp_def
-  displayName: Defensa Esp. X
+  displayName: Def. Especial X
   englishName: X Sp. Def
-  description: +2 a la Defensa Especial.
+  description: "Aumenta mucho la Defensa Especial en combate. Al cambiar de Pok\xE9mon,
+    el efecto desaparece."
   category: 6
   icon: {fileID: 0}
   price: 2000

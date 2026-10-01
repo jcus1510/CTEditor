@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: sylveon
   displayName: Sylveon
+  englishName: Sylveon
   types:
   - {fileID: 11400000, guid: d65ead7637a8c9c4090b7b6df1d3b171, type: 2}
   abilityId: cute_charm
@@ -45,11 +46,11 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 28ae9c503b6619343901b82d25aec117, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 812c302455412644a8ec26ad1160755d, type: 2}
+  - move: {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
+  - move: {fileID: 11400000, guid: 812c302455412644a8ec26ad1160755d, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 34cc99783d94cc14a8ac87f62ffb7ff7, type: 2}
     level: 5
@@ -117,8 +118,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
   - {fileID: 11400000, guid: 9354c182ae2a8a24686edacf5ccb0995, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 5d29e88ccdc542d4696bf4230ca1a84e, type: 2}
-  - {fileID: 11400000, guid: b435b36c8dbbe774f8cf6a571a66badd, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

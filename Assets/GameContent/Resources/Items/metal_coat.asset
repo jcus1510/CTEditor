@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: metal_coat
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: metal_coat
-  displayName: "Revestimiento Met\xE1lico"
+  displayName: "Revest. Met\xE1lico"
   englishName: Metal Coat
-  description: "Movimientos de Acero \xD71,2. Llev\xE1ndolo al intercambiarse: Onix
-    y Scyther evolucionan."
+  description: "Pel\xEDcula met\xE1lica que fortalece los ataques de tipo Acero.
+    Debe llevarlo un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
   price: 2000

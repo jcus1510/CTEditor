@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: druddigon
   displayName: Druddigon
+  englishName: Druddigon
   types:
   - {fileID: 11400000, guid: e3d9e34536e21ee44b6e4b17fc29a0be, type: 2}
   abilityId: rough_skin
@@ -81,7 +82,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
   - {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
   - {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: bcc1d78857f00f041a19fbc5a4d58a00, type: 2}
+  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
   - {fileID: 11400000, guid: 288b2a76bf19e5646b2fc8d79382d1dc, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: 6e47f34420dc9c74eb3d04177fb23c56, type: 2}
@@ -99,6 +102,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
   - {fileID: 11400000, guid: 49bccf2aae17cb248a874f769eedde36, type: 2}
   - {fileID: 11400000, guid: 42591adc2ac509240ae0669db50cb613, type: 2}
+  - {fileID: 11400000, guid: 4d65741fa51432b4daae4ac90df90f00, type: 2}
   - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
   - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
   - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
@@ -109,7 +113,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
   - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: 31e908a8bab2b1a48b4863c7c49a01ae, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
   - {fileID: 11400000, guid: e9b30167cba759a4384b247fbb304135, type: 2}
   - {fileID: 11400000, guid: db8e8ac98a8e9fb43ab03fe32938b7ff, type: 2}
@@ -123,7 +129,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
   tutorMoves:
   - {fileID: 11400000, guid: 2958df99c8d8ca34ea9fdb47154368c8, type: 2}
-  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
   - {fileID: 11400000, guid: 63c7218d2af498c4f9d214b944b0dc43, type: 2}
   - {fileID: 11400000, guid: dd4884f42955eb740b13d5099da28245, type: 2}
   - {fileID: 11400000, guid: 4f9f91ece063c54449c2b9d6a8c067d6, type: 2}
@@ -132,7 +137,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
   - {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
   - {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
   - {fileID: 11400000, guid: 5c1027c4b4b96bd46816f59e451c2afb, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
@@ -153,3 +158,7 @@ MonoBehaviour:
   eggGroups:
   - {fileID: 11400000, guid: 35d19e54946afba4590f44d30dd27355, type: 2}
   - {fileID: 11400000, guid: 5e98faa9fa4c1c24dab0304f7ec184a6, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

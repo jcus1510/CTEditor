@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: klang
   displayName: Klang
+  englishName: Klang
   types:
   - {fileID: 11400000, guid: bf405ce6e8c187d4eb662c226bd3ab72, type: 2}
   abilityId: plus
@@ -43,14 +44,20 @@ MonoBehaviour:
   speed: 50
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 2e2f297cae7ced64fb755d636477f546, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 08cdfb1825d63824390d3e2d0828f348, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: 575dbe5143ef5064c81858aee2405e53, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 30c2afd1afa8ba64a85424d6c8048b3b, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: 575dbe5143ef5064c81858aee2405e53, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 2e2f297cae7ced64fb755d636477f546, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 08cdfb1825d63824390d3e2d0828f348, type: 2}
+    level: 6
+  - move: {fileID: 11400000, guid: 575dbe5143ef5064c81858aee2405e53, type: 2}
+    level: 11
+  - move: {fileID: 11400000, guid: 30c2afd1afa8ba64a85424d6c8048b3b, type: 2}
+    level: 16
   - move: {fileID: 11400000, guid: 5c964643bcc6e544eb8b98ecb96c2d5a, type: 2}
     level: 21
   - move: {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
@@ -82,6 +89,7 @@ MonoBehaviour:
     conditions: []
   machineMoves:
   - {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
   - {fileID: 11400000, guid: 2fd745dccb0947b42b56bb569dde9db2, type: 2}
@@ -95,6 +103,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
   - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
@@ -109,10 +119,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
   - {fileID: 11400000, guid: 6589ee989c30c544cb926ea68983bc7d, type: 2}
   - {fileID: 11400000, guid: beeb113202b73114c96ea7c86b66b26a, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
   - {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: a18d51fa09a21df4ca4319a635faf1fe, type: 2}
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 2a9396fa90416b64f84c4a3cdedb4711, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

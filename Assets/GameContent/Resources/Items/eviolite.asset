@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: eviolite
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: eviolite
-  displayName: Mineral Evolutivo
+  displayName: Mineral Evol
   englishName: Eviolite
-  description: "Defensa y Def. Esp. \xD71,5 si a\xFAn puede evolucionar."
+  description: "Roca misteriosa. El Pok\xE9mon portador aumentar\xE1 su Defensa y
+    su Defensa Especial si a\xFAn puede evolucionar."
   category: 7
   icon: {fileID: 0}
   price: 4000

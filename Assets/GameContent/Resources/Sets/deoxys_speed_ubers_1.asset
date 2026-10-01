@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: deoxys_speed_ubers_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: deoxys_speed_ubers_1
+  displayName: Entry Hazard Lead
+  speciesId: deoxys_speed
+  setFormat: ubers
+  setScore: 67
+  itemOptions: rocky_helmet, focus_sash
+  abilityOptions: 
+  natureOptions: timid
+  evs: 248 PS / 244 Def / 16 Vel
+  ivs: 
+  moveSlots: taunt / stealth_rock / skill_swap / magic_coat, spikes

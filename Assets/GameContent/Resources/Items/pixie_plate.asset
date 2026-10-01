@@ -15,10 +15,11 @@ MonoBehaviour:
   id: pixie_plate
   displayName: Tabla Duende
   englishName: Pixie Plate
-  description: "Movimientos de Hada \xD71,2."
+  description: "Tabla de piedra que potencia los movimientos de tipo Hada. Debe llevarla
+    un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 4000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

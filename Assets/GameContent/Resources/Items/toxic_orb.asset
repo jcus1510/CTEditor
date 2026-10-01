@@ -15,8 +15,8 @@ MonoBehaviour:
   id: toxic_orb
   displayName: Toxisfera
   englishName: Toxic Orb
-  description: "Al final del turno le envenena gravemente (\xFAtil con Ant\xEDdoto
-    / \xCDmpetu T\xF3xico)."
+  description: "Extra\xF1a esfera que envenena gravemente al Pok\xE9mon que la lleva
+    en combate."
   category: 7
   icon: {fileID: 0}
   price: 4000

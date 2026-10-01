@@ -15,7 +15,8 @@ MonoBehaviour:
   id: sun_stone
   displayName: Piedra Solar
   englishName: Sun Stone
-  description: Hace evolucionar a ciertas especies (Gloom, Sunkern).
+  description: "Curiosa piedra que hace evolucionar a determinadas especies de Pok\xE9mon.
+    Es roja como el n\xFAcleo del sol."
   category: 5
   icon: {fileID: 0}
   price: 3000

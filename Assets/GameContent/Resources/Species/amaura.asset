@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: amaura
   displayName: Amaura
+  englishName: Amaura
   types:
   - {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
   - {fileID: 11400000, guid: fa23c32d4260662419de99a9c5528a38, type: 2}
@@ -166,3 +167,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aa227febb56c30e44903499d5c32999f, type: 2}
   eggGroups:
   - {fileID: 11400000, guid: 5e98faa9fa4c1c24dab0304f7ec184a6, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

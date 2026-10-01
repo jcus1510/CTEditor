@@ -15,7 +15,8 @@ MonoBehaviour:
   id: moon_stone
   displayName: Piedra Lunar
   englishName: Moon Stone
-  description: Hace evolucionar a ciertas especies.
+  description: "Curiosa piedra que hace evolucionar a determinadas especies de Pok\xE9mon.
+    Es oscura como la noche."
   category: 5
   icon: {fileID: 0}
   price: 3000

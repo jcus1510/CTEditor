@@ -28,6 +28,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: swadloon
     moveIds:
     - struggle_bug
@@ -45,6 +48,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: dwebble
     moveIds:
     - struggle_bug
@@ -62,6 +68,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: leavanny
     moveIds:
     - struggle_bug
@@ -70,6 +79,10 @@ MonoBehaviour:
     natureId: 
   aiLevel: 4
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items:

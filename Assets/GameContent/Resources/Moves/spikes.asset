@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: spikes
   displayName: "P\xFAas"
+  englishName: Spikes
   type: {fileID: 11400000, guid: 3a52b6aa5b301834ab86591d9e18d79a, type: 2}
   category: 2
   power: 0
@@ -33,6 +34,23 @@ MonoBehaviour:
     weatherId: 
     weatherTurns: 0
     hazardId: spikes
+    sideConditionId: 
+    turns: 0
+    typeId: 
+    text: 
+    sharesPreviousRoll: 0
+    conditions: []
+  zEffects:
+  - chancePercent: 100
+    kind: 4
+    target: 1
+    statusId: 
+    amountPercent: 0
+    statStatId: defense
+    statStages: 1
+    weatherId: 
+    weatherTurns: 0
+    hazardId: 
     sideConditionId: 
     turns: 0
     typeId: 

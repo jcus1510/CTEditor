@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: kings_rock
   displayName: Roca del Rey
-  englishName: 'King’s Rock'
-  description: "Llev\xE1ndolo al intercambiarse: Slowpoke y Poliwhirl evolucionan."
+  englishName: "King\u2019s Rock"
+  description: "El Pok\xE9mon que la lleva puede hacer retroceder al Pok\xE9mon al
+    que le inflige da\xF1o."
   category: 7
   icon: {fileID: 0}
   price: 5000

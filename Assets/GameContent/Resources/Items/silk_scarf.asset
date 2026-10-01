@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: silk_scarf
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: silk_scarf
-  displayName: "Pa\xF1uelo Seda"
+  displayName: "Pa\xF1uelo de Seda"
   englishName: Silk Scarf
-  description: "Movimientos de Normal \xD71,2."
+  description: "La delicadeza del pa\xF1uelo fortalece los movimientos de tipo Normal.
+    Debe llevarlo un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

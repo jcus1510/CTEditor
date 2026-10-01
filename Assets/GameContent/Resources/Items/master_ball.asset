@@ -15,7 +15,8 @@ MonoBehaviour:
   id: master_ball
   displayName: Master Ball
   englishName: Master Ball
-  description: Captura siempre.
+  description: "La Pok\xE9 Ball definitiva. Atrapa cualquier Pok\xE9mon salvaje y
+    no falla nunca."
   category: 4
   icon: {fileID: 0}
   price: 0

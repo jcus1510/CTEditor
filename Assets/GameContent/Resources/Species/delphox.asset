@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: delphox
   displayName: Delphox
+  englishName: Delphox
   types:
   - {fileID: 11400000, guid: ee71163cdafa45541b041fbd052f055b, type: 2}
   - {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
@@ -48,11 +49,11 @@ MonoBehaviour:
     level: 1
   - move: {fileID: 11400000, guid: 54532b3c7f8fdea4c97915acc462843b, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: a7dbe0870a9aa3741bbb2815c3b1881d, type: 2}
+  - move: {fileID: 11400000, guid: 83e15bfa5ee51a645b9ed3309c839d2b, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 83e15bfa5ee51a645b9ed3309c839d2b, type: 2}
+  - move: {fileID: 11400000, guid: a7dbe0870a9aa3741bbb2815c3b1881d, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 812c302455412644a8ec26ad1160755d, type: 2}
     level: 1
@@ -86,6 +87,10 @@ MonoBehaviour:
     level: 58
   - move: {fileID: 11400000, guid: 67e39177df7f57a4cb582344e81b4f4b, type: 2}
     level: 61
+  - move: {fileID: 11400000, guid: 410127588044ed048b244aa183d4f233, type: 2}
+    level: 69
+  - move: {fileID: 11400000, guid: 3b102613b0084d9409050c5b4f04efb8, type: 2}
+    level: 75
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
@@ -152,10 +157,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
   - {fileID: 11400000, guid: 92d0ed9ee37aa2b48b4de3cf7ce8db55, type: 2}
   - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 4ac768068ede7b54a9d4d7c62ff43dc9, type: 2}
-  - {fileID: 11400000, guid: 57b6a36f57133a848a8e6f2372fe652c, type: 2}
-  - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
-  - {fileID: 11400000, guid: 535ad57b13bbaf4489189374aaab09c2, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

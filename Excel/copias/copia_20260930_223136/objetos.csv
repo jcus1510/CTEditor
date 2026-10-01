@@ -1,0 +1,120 @@
+﻿id;nombre;nombre_en;descripcion;categoria;precio;en_combate;fuera_combate;se_gasta;es_baya;efectos
+air_balloon;Globo Helio;Air Balloon;Inmune a Tierra hasta que le golpean (entonces revienta).;Equipable;4000;no;no;no;no;"siempre: inmune ground | tras_golpe: gastar; se_gasta"
+antidote;Antídoto;Antidote;Cura el envenenamiento.;Cura de estado;100;si;si;si;no;al_usar: curar_estado poison,toxic
+assault_vest;Chaleco Asalto;Assault Vest;Def. Esp. ×1,5, pero no puede usar movimientos de estado.;Equipable;4000;no;no;no;no;siempre: stat sp_defense x1,5 | siempre: sin_movs_estado
+awakening;Despertar;Awakening;Despierta.;Cura de estado;250;si;si;si;no;al_usar: curar_estado sleep
+babiri_berry;Baya Baribá;Babiri Berry;El primer golpe MUY EFICAZ de tipo Acero que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=steel & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+black_belt;Cinturón Negro;Black Belt;Movimientos de Lucha ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=fighting]: potencia x1,2
+black_glasses;Gafas de Sol;Black Glasses;Movimientos de Siniestro ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=dark]: potencia x1,2
+black_sludge;Lodo Negro;Black Sludge;"Si es de tipo Veneno recupera 1/16 de PS por turno; si no, pierde 1/8.";Equipable;4000;no;no;no;no;fin_de_turno [si propio.tipo=poison]: curar 6,25% | fin_de_turno [si !propio.tipo=poison]: perder 12,5%
+bright_powder;Polvo Brillo;Bright Powder;Los que le atacan tienen precisión ×0,9.;Equipable;4000;no;no;no;no;siempre: evasion x0,9
+burn_heal;Antiquemar;Burn Heal;Cura las quemaduras.;Cura de estado;300;si;si;si;no;al_usar: curar_estado burn
+charcoal;Carbón;Charcoal;Movimientos de Fuego ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=fire]: potencia x1,2
+charti_berry;Baya Alcho;Charti Berry;El primer golpe MUY EFICAZ de tipo Roca que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=rock & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+chilan_berry;Baya Chilan;Chilan Berry;El primer golpe de tipo Normal que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=normal]: daño_recibido x0,5; se_gasta"
+choice_band;Cinta Elección;Choice Band;Ataque ×1,5, pero solo puede usar el primer movimiento que elija hasta que se retire.;Equipable;4000;no;no;no;no;siempre: stat attack x1,5 | siempre: eleccion
+choice_scarf;Pañuelo Elección;Choice Scarf;Velocidad ×1,5, pero solo puede usar el primer movimiento que elija.;Equipable;4000;no;no;no;no;siempre: stat speed x1,5 | siempre: eleccion
+choice_specs;Gafas Elección;Choice Specs;Ataque Esp. ×1,5, pero solo puede usar el primer movimiento que elija.;Equipable;4000;no;no;no;no;siempre: stat sp_attack x1,5 | siempre: eleccion
+chople_berry;Baya Pomaro;Chople Berry;El primer golpe MUY EFICAZ de tipo Lucha que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=fighting & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+coba_berry;Baya Kouba;Coba Berry;El primer golpe MUY EFICAZ de tipo Volador que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=flying & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+colbur_berry;Baya Dillo;Colbur Berry;El primer golpe MUY EFICAZ de tipo Siniestro que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=dark & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+damp_rock;Roca Lluvia;Damp Rock;Su lluvia dura 3 turnos más.;Equipable;4000;no;no;no;no;siempre: clima rain +3
+dawn_stone;Piedra Alba;Dawn Stone;Hace evolucionar a Kirlia macho y Snorunt hembra.;Evolución;3000;no;si;si;no;
+deep_sea_scale;Escama Marina;Deep Sea Scale;Llevándola al intercambiarse: Clamperl evoluciona a Gorebyss.;Equipable;2000;no;no;no;no;
+deep_sea_tooth;Diente Marino;Deep Sea Tooth;Llevándolo al intercambiarse: Clamperl evoluciona a Huntail.;Equipable;2000;no;no;no;no;
+dragon_fang;Colmillo Dragón;Dragon Fang;Movimientos de Dragón ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=dragon]: potencia x1,2
+dragon_scale;Escama Dragón;Dragon Scale;Llevándolo al intercambiarse: Seadra evoluciona.;Equipable;2000;no;no;no;no;
+dubious_disc;Disco Extraño;Dubious Disc;Llevándolo al intercambiarse: Porygon2 evoluciona.;Equipable;2000;no;no;no;no;
+dusk_stone;Piedra Noche;Dusk Stone;Hace evolucionar a Murkrow, Misdreavus...;Evolución;3000;no;si;si;no;
+electirizer;Electrizador;Electirizer;Llevándolo al intercambiarse: Electabuzz evoluciona.;Equipable;2000;no;no;no;no;
+elixir;Elixir;Elixir;Recupera 10 PP de todos los movimientos.;Recuperar PP;3000;si;si;si;no;al_usar: pp_todos 10
+ether;Éter;Ether;Recupera 10 PP de un movimiento.;Recuperar PP;1200;si;si;si;no;al_usar: pp 10
+eviolite;Mineral Evolutivo;Eviolite;Defensa y Def. Esp. ×1,5 si aún puede evolucionar.;Equipable;4000;no;no;no;no;siempre [si propio.puede_evolucionar]: stat defense x1,5 | siempre [si propio.puede_evolucionar]: stat sp_defense x1,5
+expert_belt;Cinta Experto;Expert Belt;Sus golpes muy eficaces hacen ×1,2.;Equipable;4000;no;no;no;no;siempre [si rival.eficacia>1]: daño x1,2
+fire_stone;Piedra Fuego;Fire Stone;Hace evolucionar a ciertas especies.;Evolución;3000;no;si;si;no;
+flame_orb;Llamasfera;Flame Orb;Al final del turno le quema (útil con Agallas).;Equipable;4000;no;no;no;no;fin_de_turno: poner_estado burn
+focus_sash;Banda Focus;Focus Sash;Con los PS al máximo, aguanta con 1 PS un golpe que le debilitaría (se gasta).;Equipable;4000;no;no;no;no;"antes_de_golpe [si propio.vida>=100]: aguantar; se_gasta"
+full_heal;Cura Total;Full Heal;Cura cualquier estado.;Cura de estado;400;si;si;si;no;al_usar: curar_estado
+full_restore;Restaurar Todo;Full Restore;Cura todos los PS y cualquier estado.;Medicina;3000;si;si;si;no;al_usar: curar 100% | al_usar: curar_estado
+great_ball;Super Ball;Great Ball;Mejor que la Poké Ball (×1,5).;Bola;600;si;no;si;no;al_usar: captura x1,5
+haban_berry;Baya Anjiro;Haban Berry;El primer golpe MUY EFICAZ de tipo Dragón que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=dragon & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+hard_stone;Piedra Dura;Hard Stone;Movimientos de Roca ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=rock]: potencia x1,2
+heat_rock;Roca Calor;Heat Rock;Su sol dura 3 turnos más.;Equipable;4000;no;no;no;no;siempre: clima sun +3
+hyper_potion;Hiperpoción;Hyper Potion;Cura 120 PS.;Medicina;1500;si;si;si;no;al_usar: curar 120
+ice_heal;Antihielo;Ice Heal;Descongela.;Cura de estado;250;si;si;si;no;al_usar: curar_estado freeze
+icy_rock;Roca Helada;Icy Rock;Su granizo dura 3 turnos más.;Equipable;4000;no;no;no;no;siempre: clima hail +3
+kasib_berry;Baya Drasi;Kasib Berry;El primer golpe MUY EFICAZ de tipo Fantasma que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=ghost & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+kebia_berry;Baya Kebia;Kebia Berry;El primer golpe MUY EFICAZ de tipo Veneno que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=poison & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+kings_rock;Roca del Rey;King’s Rock;Llevándolo al intercambiarse: Slowpoke y Poliwhirl evolucionan.;Equipable;5000;no;no;no;no;"al_hacer_daño: retroceso; prob=10"
+leaf_stone;Piedra Hoja;Leaf Stone;Hace evolucionar a ciertas especies.;Evolución;3000;no;si;si;no;
+leftovers;Restos;Leftovers;Recupera 1/16 de PS cada turno.;Equipable;4000;no;no;no;no;fin_de_turno: curar 6,25%
+life_orb;Vidasfera;Life Orb;Sus ataques ×1,3, pero pierde 1/10 de sus PS cada vez que hace daño.;Equipable;4000;no;no;no;no;siempre: potencia x1,3 | al_hacer_daño: perder 10%
+light_clay;Refleluz;Light Clay;Sus pantallas (Reflejo, Pantalla de Luz) duran 3 turnos más.;Equipable;4000;no;no;no;no;siempre: pantallas +3
+lum_berry;Baya Ziuela;Lum Berry;Se cura de cualquier estado en cuanto lo sufre (se consume).;Equipable;200;no;no;no;si;"al_sufrir_estado: curar_estado; se_gasta"
+magmarizer;Magmatizador;Magmarizer;Llevándolo al intercambiarse: Magmar evoluciona.;Equipable;2000;no;no;no;no;
+magnet;Imán;Magnet;Movimientos de Eléctrico ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=electric]: potencia x1,2
+master_ball;Master Ball;Master Ball;Captura siempre.;Bola;0;si;no;si;no;al_usar: captura x255
+max_elixir;Elixir Máximo;Max Elixir;Recupera todos los PP de todos los movimientos.;Recuperar PP;4500;si;si;si;no;al_usar: pp_todos 999
+max_ether;Éter Máximo;Max Ether;Recupera todos los PP de un movimiento.;Recuperar PP;2000;si;si;si;no;al_usar: pp 999
+max_potion;Poción Máxima;Max Potion;Cura todos los PS.;Medicina;2500;si;si;si;no;al_usar: curar 100%
+max_revive;Revivir Máximo;Max Revive;Revive con todos los PS.;Revivir;4000;si;si;si;no;al_usar: revivir 100%
+metal_coat;Revestimiento Metálico;Metal Coat;Movimientos de Acero ×1,2. Llevándolo al intercambiarse: Onix y Scyther evolucionan.;Equipable;2000;no;no;no;no;siempre [si mov.tipo=steel]: potencia x1,2
+miracle_seed;Semilla Milagro;Miracle Seed;Movimientos de Planta ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=grass]: potencia x1,2
+moon_stone;Piedra Lunar;Moon Stone;Hace evolucionar a ciertas especies.;Evolución;3000;no;si;si;no;
+muscle_band;Cinta Fuerte;Muscle Band;Movimientos físicos ×1,1.;Equipable;3000;no;no;no;no;siempre [si mov.categoria=fisico]: potencia x1,1
+mystic_water;Agua Mística;Mystic Water;Movimientos de Agua ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=water]: potencia x1,2
+never_melt_ice;Antiderretir;Never-Melt Ice;Movimientos de Hielo ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=ice]: potencia x1,2
+occa_berry;Baya Caoca;Occa Berry;El primer golpe MUY EFICAZ de tipo Fuego que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=fire & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+oran_berry;Baya Aranja;Oran Berry;Con la mitad de PS o menos, recupera 10 PS (se consume).;Equipable;100;no;no;no;si;"poca_vida@50: curar 10; se_gasta"
+oval_stone;Piedra Oval;Oval Stone;Llevándola al subir de nivel de día: Happiny evoluciona.;Equipable;2000;no;no;no;no;
+paralyze_heal;Antiparalizador;Paralyze Heal;Cura la parálisis.;Cura de estado;300;si;si;si;no;al_usar: curar_estado paralysis
+passho_berry;Baya Pasio;Passho Berry;El primer golpe MUY EFICAZ de tipo Agua que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=water & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+payapa_berry;Baya Payapa;Payapa Berry;El primer golpe MUY EFICAZ de tipo Psíquico que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=psychic & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+pixie_plate;Tabla Duende;Pixie Plate;Movimientos de Hada ×1,2.;Equipable;4000;no;no;no;no;siempre [si mov.tipo=fairy]: potencia x1,2
+poison_barb;Flecha Venenosa;Poison Barb;Movimientos de Veneno ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=poison]: potencia x1,2
+poke_ball;Poké Ball;Poké Ball;Bola básica (×1).;Bola;200;si;no;si;no;al_usar: captura x1
+pomeg_berry;Baya Grana;Pomeg Berry;Sube la amistad.;Amistad / vitaminas;100;no;si;si;si;al_usar: amistad 10
+potion;Poción;Potion;Cura 20 PS.;Medicina;200;si;si;si;no;al_usar: curar 20
+prism_scale;Escama Bella;Prism Scale;Llevándola al intercambiarse: Feebas evoluciona.;Equipable;2000;no;no;no;no;
+protector;Protector;Protector;Llevándolo al intercambiarse: Rhydon evoluciona.;Equipable;2000;no;no;no;no;
+quick_claw;Garra Rápida;Quick Claw;20 % de actuar el primero dentro de su prioridad.;Equipable;4000;no;no;no;no;"siempre: primero; prob=20"
+razor_claw;Garra Afilada;Razor Claw;Llevándola al subir de nivel de noche: Sneasel evoluciona.;Equipable;2000;no;no;no;no;siempre: critico +1
+razor_fang;Colmillo Agudo;Razor Fang;Llevándolo al subir de nivel de noche: Gligar evoluciona.;Equipable;2000;no;no;no;no;"al_hacer_daño: retroceso; prob=10"
+reaper_cloth;Tela Terrible;Reaper Cloth;Llevándola al intercambiarse: Dusclops evoluciona.;Equipable;2000;no;no;no;no;
+revive;Revivir;Revive;Revive con la mitad de los PS.;Revivir;2000;si;si;si;no;al_usar: revivir 50%
+rindo_berry;Baya Tamar;Rindo Berry;El primer golpe MUY EFICAZ de tipo Planta que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=grass & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+rocky_helmet;Casco Dentado;Rocky Helmet;Quien le golpea con contacto pierde 1/6 de sus PS.;Equipable;4000;no;no;no;no;"contacto: perder 16,67%; al_rival"
+roseli_berry;Baya Hibis;Roseli Berry;El primer golpe MUY EFICAZ de tipo Hada que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=fairy & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+sachet;Saquito Fragante;Sachet;Llevándolo al intercambiarse: Spritzee evoluciona.;Equipable;2000;no;no;no;no;
+scope_lens;Periscopio;Scope Lens;Sube el índice de crítico.;Equipable;4000;no;no;no;no;siempre: critico +1
+sharp_beak;Pico Afilado;Sharp Beak;Movimientos de Volador ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=flying]: potencia x1,2
+shell_bell;Campana Concha;Shell Bell;Recupera 1/8 del daño que hace.;Equipable;4000;no;no;no;no;al_hacer_daño: curar_del_daño 12,5%
+shiny_stone;Piedra Día;Shiny Stone;Hace evolucionar a Togetic, Roselia...;Evolución;3000;no;si;si;no;
+shuca_berry;Baya Acardo;Shuca Berry;El primer golpe MUY EFICAZ de tipo Tierra que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=ground & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+silk_scarf;Pañuelo Seda;Silk Scarf;Movimientos de Normal ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=normal]: potencia x1,2
+silver_powder;Polvo Plata;Silver Powder;Movimientos de Bicho ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=bug]: potencia x1,2
+sitrus_berry;Baya Zidra;Sitrus Berry;Con la mitad de PS o menos, recupera 1/4 de PS (se consume).;Equipable;200;no;no;no;si;"poca_vida@50: curar 25%; se_gasta"
+smooth_rock;Roca Lisa;Smooth Rock;Su tormenta de arena dura 3 turnos más.;Equipable;4000;no;no;no;no;siempre: clima sandstorm +3
+soft_sand;Arena Fina;Soft Sand;Movimientos de Tierra ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=ground]: potencia x1,2
+spell_tag;Hechizo;Spell Tag;Movimientos de Fantasma ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=ghost]: potencia x1,2
+sun_stone;Piedra Solar;Sun Stone;Hace evolucionar a ciertas especies (Gloom, Sunkern).;Evolución;3000;no;si;si;no;
+super_potion;Superpoción;Super Potion;Cura 60 PS.;Medicina;700;si;si;si;no;al_usar: curar 60
+tanga_berry;Baya Yecana;Tanga Berry;El primer golpe MUY EFICAZ de tipo Bicho que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=bug & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+thunder_stone;Piedra Trueno;Thunder Stone;Hace evolucionar a ciertas especies.;Evolución;3000;no;si;si;no;
+toxic_orb;Toxisfera;Toxic Orb;Al final del turno le envenena gravemente (útil con Antídoto / Ímpetu Tóxico).;Equipable;4000;no;no;no;no;fin_de_turno: poner_estado toxic
+twisted_spoon;Cuchara Torcida;Twisted Spoon;Movimientos de Psíquico ×1,2.;Equipable;3000;no;no;no;no;siempre [si mov.tipo=psychic]: potencia x1,2
+ultra_ball;Ultra Ball;Ultra Ball;Muy buena (×2).;Bola;800;si;no;si;no;al_usar: captura x2
+up_grade;Mejora;Upgrade;Llevándolo al intercambiarse: Porygon evoluciona.;Equipable;2000;no;no;no;no;
+wacan_berry;Baya Gualot;Wacan Berry;El primer golpe MUY EFICAZ de tipo Eléctrico que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=electric & propio.eficacia>1]: daño_recibido x0,5; se_gasta"
+water_stone;Piedra Agua;Water Stone;Hace evolucionar a ciertas especies.;Evolución;3000;no;si;si;no;
+weakness_policy;Seguro Debilidad;Weakness Policy;Si recibe un golpe muy eficaz: Ataque y Ataque Esp. +2 (se gasta).;Equipable;4000;no;no;no;no;"tras_golpe [si propio.eficacia>1]: etapa attack +2; se_gasta | tras_golpe [si propio.eficacia>1]: etapa sp_attack +2; se_gasta"
+whipped_dream;Dulce de Nata;Whipped Dream;Llevándolo al intercambiarse: Swirlix evoluciona.;Equipable;2000;no;no;no;no;
+wide_lens;Lupa;Wide Lens;Precisión de sus movimientos ×1,1.;Equipable;4000;no;no;no;no;siempre: precision x1,1
+wise_glasses;Gafas Especiales;Wise Glasses;Movimientos especiales ×1,1.;Equipable;3000;no;no;no;no;siempre [si mov.categoria=especial]: potencia x1,1
+x_accuracy;Precisión X;X Accuracy;+2 a la Precisión.;Objeto de combate;1000;si;no;si;no;al_usar: etapa accuracy +2
+x_attack;Ataque X;X Attack;+2 al Ataque durante el combate.;Objeto de combate;1000;si;no;si;no;al_usar: etapa attack +2
+x_defense;Defensa X;X Defense;+2 a la Defensa.;Objeto de combate;2000;si;no;si;no;al_usar: etapa defense +2
+x_speed;Velocidad X;X Speed;+2 a la Velocidad.;Objeto de combate;1000;si;no;si;no;al_usar: etapa speed +2
+x_sp_atk;Ataque Esp. X;X Sp. Atk;+2 al Ataque Especial.;Objeto de combate;1000;si;no;si;no;al_usar: etapa sp_attack +2
+x_sp_def;Defensa Esp. X;X Sp. Def;+2 a la Defensa Especial.;Objeto de combate;2000;si;no;si;no;al_usar: etapa sp_defense +2
+yache_berry;Baya Rimoya;Yache Berry;El primer golpe MUY EFICAZ de tipo Hielo que recibe hace la mitad (se consume).;Equipable;200;no;no;no;si;"antes_de_golpe [si mov.tipo=ice & propio.eficacia>1]: daño_recibido x0,5; se_gasta"

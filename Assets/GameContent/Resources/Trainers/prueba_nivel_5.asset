@@ -25,6 +25,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: garchomp
     moveIds: []
     natureId: 
@@ -36,6 +39,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: metagross
     moveIds: []
     natureId: 
@@ -47,6 +53,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: gyarados
     moveIds: []
     natureId: 
@@ -58,6 +67,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: gengar
     moveIds: []
     natureId: 
@@ -69,6 +81,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: scizor
     moveIds: []
     natureId: 
@@ -80,11 +95,18 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: togekiss
     moveIds: []
     natureId: 
   aiLevel: 5
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items: []

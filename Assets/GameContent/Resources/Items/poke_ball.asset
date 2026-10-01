@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: poke_ball
   displayName: "Pok\xE9 Ball"
-  englishName: Poké Ball
-  description: "Bola b\xE1sica (\xD71)."
+  englishName: "Pok\xE9 Ball"
+  description: "Dispositivo con dise\xF1o capsular que atrapa Pok\xE9mon salvajes.
+    Se lanza como una bola contra el blanco."
   category: 4
   icon: {fileID: 0}
   price: 200

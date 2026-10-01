@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87be1434e07342cdad145ed9a9b24c86, type: 3}
+  m_Name: z_moves
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MechanicData
+  id: z_moves
+  displayName: Movimientos Z
+  mechanicKind: 1
+  description: "Los oficiales (7.\xAA gen.): con su cristal Z, un movimiento se convierte
+    en movimiento Z una vez por combate; el jugador necesita la Pulsera Z."
+  megaMaxPerBattle: 1
+  megaRequiredKeyItem: mega_ring
+  megaRevertOnSwitch: 0
+  zMaxPerBattle: 1
+  zRequiredKeyItem: z_ring
+  zProtectDamagePercent: 25
+  zPowerTable: 55:100|65:120|75:140|85:160|95:175|100:180|110:185|125:190|130:195|*:200

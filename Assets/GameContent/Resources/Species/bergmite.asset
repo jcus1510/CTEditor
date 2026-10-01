@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: bergmite
   displayName: Bergmite
+  englishName: Bergmite
   types:
   - {fileID: 11400000, guid: fa23c32d4260662419de99a9c5528a38, type: 2}
   abilityId: own_tempo
@@ -43,11 +44,11 @@ MonoBehaviour:
   speed: 28
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 0a7589ec211131d45b8c65c725894de0, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: c92d6f2f38bdc624f9c66130e3f1b69a, type: 2}
     level: 5
@@ -126,3 +127,7 @@ MonoBehaviour:
   eggGroups:
   - {fileID: 11400000, guid: 5e98faa9fa4c1c24dab0304f7ec184a6, type: 2}
   - {fileID: 11400000, guid: 2a9396fa90416b64f84c4a3cdedb4711, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

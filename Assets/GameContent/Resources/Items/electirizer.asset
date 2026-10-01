@@ -15,7 +15,8 @@ MonoBehaviour:
   id: electirizer
   displayName: Electrizador
   englishName: Electirizer
-  description: "Llev\xE1ndolo al intercambiarse: Electabuzz evoluciona."
+  description: "Este dispositivo contiene una gran cantidad de energ\xEDa el\xE9ctrica.
+    Cierto Pok\xE9mon lo adora."
   category: 7
   icon: {fileID: 0}
   price: 2000

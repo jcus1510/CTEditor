@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: shell_bell
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: shell_bell
-  displayName: Campana Concha
+  displayName: Cascabel Concha
   englishName: Shell Bell
-  description: "Recupera 1/8 del da\xF1o que hace."
+  description: "Debe llevarla un Pok\xE9mon. Cada vez que este inflige da\xF1o, recupera
+    algunos PS."
   category: 7
   icon: {fileID: 0}
   price: 4000

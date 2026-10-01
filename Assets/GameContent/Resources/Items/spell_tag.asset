@@ -15,10 +15,11 @@ MonoBehaviour:
   id: spell_tag
   displayName: Hechizo
   englishName: Spell Tag
-  description: "Movimientos de Fantasma \xD71,2."
+  description: "Misterioso y siniestro objeto que potencia los movimientos de tipo
+    Fantasma. Debe llevarlo un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

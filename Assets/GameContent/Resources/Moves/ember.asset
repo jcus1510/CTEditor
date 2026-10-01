@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: ember
   displayName: Ascuas
+  englishName: Ember
   type: {fileID: 11400000, guid: ee71163cdafa45541b041fbd052f055b, type: 2}
   category: 1
   power: 40
@@ -39,6 +40,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: cryogonal
   displayName: Cryogonal
+  englishName: Cryogonal
   types:
   - {fileID: 11400000, guid: fa23c32d4260662419de99a9c5528a38, type: 2}
   abilityId: levitate
@@ -45,6 +46,16 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 5c964643bcc6e544eb8b98ecb96c2d5a, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: 25c737bace85c664989731b45995b0fc, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: ffaa0c9df25d20848a44a1f77b5aba3f, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 47014b3c95299d845803425b77307df1, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: d6fc617569a3bd947948534486732eb3, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: fe1961de7a86cbd48886a065b3eaa5fb, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: ffaa0c9df25d20848a44a1f77b5aba3f, type: 2}
     level: 5
   - move: {fileID: 11400000, guid: 2ce90d536807323498594e753b260f7d, type: 2}
@@ -53,9 +64,9 @@ MonoBehaviour:
     level: 13
   - move: {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
     level: 17
-  - move: {fileID: 11400000, guid: 47014b3c95299d845803425b77307df1, type: 2}
-    level: 21
   - move: {fileID: 11400000, guid: 25c737bace85c664989731b45995b0fc, type: 2}
+    level: 21
+  - move: {fileID: 11400000, guid: 47014b3c95299d845803425b77307df1, type: 2}
     level: 21
   - move: {fileID: 11400000, guid: 1a5ed636848adc34388ed06c75125f4a, type: 2}
     level: 25
@@ -73,6 +84,8 @@ MonoBehaviour:
     level: 45
   - move: {fileID: 11400000, guid: 0eb8b27313372d04b914fe06dab256f8, type: 2}
     level: 49
+  - move: {fileID: 11400000, guid: 2ece1a59d6e44104080c17d2aeaf4b81, type: 2}
+    level: 50
   - move: {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
     level: 53
   - move: {fileID: 11400000, guid: d6fc617569a3bd947948534486732eb3, type: 2}
@@ -84,6 +97,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 61f5c64e93bc85b48aecaa66d733c5d2, type: 2}
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
   - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: 17db9758688531a4a91b48d9e2079c07, type: 2}
   - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
@@ -102,6 +116,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
@@ -113,8 +129,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
   - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
   - {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 2a9396fa90416b64f84c4a3cdedb4711, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

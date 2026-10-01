@@ -15,7 +15,8 @@ MonoBehaviour:
   id: x_speed
   displayName: Velocidad X
   englishName: X Speed
-  description: +2 a la Velocidad.
+  description: "Aumenta mucho la Velocidad en combate. Al cambiar de Pok\xE9mon,
+    el efecto desaparece."
   category: 6
   icon: {fileID: 0}
   price: 1000

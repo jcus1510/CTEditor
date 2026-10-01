@@ -29,6 +29,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: xatu
     moveIds:
     - quick_attack
@@ -48,6 +51,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: jynx
     moveIds:
     - double_slap
@@ -67,6 +73,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: exeggutor
     moveIds:
     - reflect
@@ -86,6 +95,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: slowbro
     moveIds:
     - curse
@@ -105,6 +117,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: xatu
     moveIds:
     - quick_attack
@@ -114,6 +129,10 @@ MonoBehaviour:
     natureId: 
   aiLevel: 5
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items:

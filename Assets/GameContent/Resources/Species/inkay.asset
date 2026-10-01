@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: inkay
   displayName: Inkay
+  englishName: Inkay
   types:
   - {fileID: 11400000, guid: bbd8692173525a3468bd903198cef800, type: 2}
   - {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
@@ -44,11 +45,11 @@ MonoBehaviour:
   speed: 45
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+  - move: {fileID: 11400000, guid: 4c1be241870b3b2408914a0226222162, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: b3a389fd866513d478e40ab770375b53, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 4c1be241870b3b2408914a0226222162, type: 2}
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
     level: 4
@@ -143,3 +144,7 @@ MonoBehaviour:
   eggGroups:
   - {fileID: 11400000, guid: d157f82d264192840973c80fbe0c8b69, type: 2}
   - {fileID: 11400000, guid: 608620a8fe5afe549bc0d00df5e04503, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

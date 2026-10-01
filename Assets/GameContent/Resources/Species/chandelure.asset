@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: chandelure
   displayName: Chandelure
+  englishName: Chandelure
   types:
   - {fileID: 11400000, guid: 1f6653f8eb948e44995eccd8804153ac, type: 2}
   - {fileID: 11400000, guid: ee71163cdafa45541b041fbd052f055b, type: 2}
@@ -44,18 +45,22 @@ MonoBehaviour:
   speed: 80
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 67a15338148b37f4c82e6dc0c8da95df, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: f1e00ae5e34955f47b2dbcc821809bf0, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 079f8ef57f99e5a4d8d5e2ee8ae862a5, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: d8e92f9a08c72494da330a1912c78045, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 67a15338148b37f4c82e6dc0c8da95df, type: 2}
+    level: 1
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
   - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: 88aea8fc365bb0f438f437d235048d68, type: 2}
   - {fileID: 11400000, guid: e77a0eea2eae9d34889e6fbbd1bc767f, type: 2}
@@ -79,32 +84,29 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
   - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
   - {fileID: 11400000, guid: a8a239b6bce5e5f47a72807fd74d8e14, type: 2}
-  - {fileID: 11400000, guid: 6ebee087cfb72f04096d41f5011a2dd8, type: 2}
   - {fileID: 11400000, guid: b08a11a32d7c09f4db0c89ad242fbbad, type: 2}
   - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
   - {fileID: 11400000, guid: e7054229772eef743ae0434f96e036d5, type: 2}
   - {fileID: 11400000, guid: 08a4346f4805fd543915dd9660411ba8, type: 2}
   tutorMoves:
-  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
   - {fileID: 11400000, guid: 4ac768068ede7b54a9d4d7c62ff43dc9, type: 2}
   - {fileID: 11400000, guid: d8e92f9a08c72494da330a1912c78045, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
   - {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 9736104cee34b11448d721dd65cfd988, type: 2}
-  - {fileID: 11400000, guid: 90488b54355181a40bef89d9dd57ed14, type: 2}
-  - {fileID: 11400000, guid: 68895b077371c7746b74eb4623d4b93d, type: 2}
-  - {fileID: 11400000, guid: 19ff0ccc54c6a394bb57687853ca3d8d, type: 2}
-  - {fileID: 11400000, guid: 0ebb2337b3b88994fb66c3d0757615e6, type: 2}
-  - {fileID: 11400000, guid: 25c737bace85c664989731b45995b0fc, type: 2}
-  - {fileID: 11400000, guid: 4ac768068ede7b54a9d4d7c62ff43dc9, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 9d53a19e52921834a83345100ec4a2a8, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

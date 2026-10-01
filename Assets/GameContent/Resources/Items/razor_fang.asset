@@ -15,10 +15,11 @@ MonoBehaviour:
   id: razor_fang
   displayName: Colmillo Agudo
   englishName: Razor Fang
-  description: "Llev\xE1ndolo al subir de nivel de noche: Gligar evoluciona."
+  description: "Si lo lleva un Pok\xE9mon cuando inflige da\xF1o al objetivo, puede
+    hacerle retroceder."
   category: 7
   icon: {fileID: 0}
-  price: 2000
+  price: 5000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

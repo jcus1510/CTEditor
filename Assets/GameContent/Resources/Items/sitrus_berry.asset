@@ -15,10 +15,10 @@ MonoBehaviour:
   id: sitrus_berry
   displayName: Baya Zidra
   englishName: Sitrus Berry
-  description: Con la mitad de PS o menos, recupera 1/4 de PS (se consume).
-  category: 7
+  description: "Los Pok\xE9mon pueden llevarla o usarla para restaurar algunos PS."
+  category: 12
   icon: {fileID: 0}
-  price: 200
+  price: 80
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

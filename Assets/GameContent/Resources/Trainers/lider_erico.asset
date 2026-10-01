@@ -29,6 +29,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: voltorb
     moveIds:
     - rollout
@@ -48,6 +51,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: electrike
     moveIds:
     - shock_wave
@@ -67,6 +73,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: magneton
     moveIds:
     - supersonic
@@ -86,6 +95,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: manectric
     moveIds:
     - quick_attack
@@ -95,6 +107,10 @@ MonoBehaviour:
     natureId: 
   aiLevel: 4
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items:

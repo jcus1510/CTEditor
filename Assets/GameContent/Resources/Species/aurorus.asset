@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: aurorus
   displayName: Aurorus
+  englishName: Aurorus
   types:
   - {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
   - {fileID: 11400000, guid: fa23c32d4260662419de99a9c5528a38, type: 2}
@@ -82,6 +83,8 @@ MonoBehaviour:
     level: 63
   - move: {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
     level: 74
+  - move: {fileID: 11400000, guid: 2ece1a59d6e44104080c17d2aeaf4b81, type: 2}
+    level: 77
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
@@ -146,11 +149,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
   - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
   - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 3eb85418a456a4941a852f0af3d1a28a, type: 2}
-  - {fileID: 11400000, guid: 8569ef588b635d041ad1ec6188a2d6e4, type: 2}
-  - {fileID: 11400000, guid: 25c737bace85c664989731b45995b0fc, type: 2}
-  - {fileID: 11400000, guid: 6589ee989c30c544cb926ea68983bc7d, type: 2}
-  - {fileID: 11400000, guid: aa227febb56c30e44903499d5c32999f, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 5e98faa9fa4c1c24dab0304f7ec184a6, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

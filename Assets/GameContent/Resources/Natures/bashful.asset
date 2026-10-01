@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.NatureData
   id: bashful
   displayName: "T\xEDmida"
+  englishName: Bashful
   boostedStatId: sp_attack
   hinderedStatId: sp_attack
   boostPercent: 10

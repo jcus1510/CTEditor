@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: meowstic
   displayName: Meowstic
+  englishName: Meowstic
   types:
   - {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
   abilityId: keen_eye
@@ -43,15 +44,15 @@ MonoBehaviour:
   speed: 104
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 38720ecd8e6cef0459bef6c6f53cfced, type: 2}
+  - move: {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 91d7d14655e701d40b528f342c361bfc, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 1e9502e238640da499f3cfa87629b763, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
+  - move: {fileID: 11400000, guid: 38720ecd8e6cef0459bef6c6f53cfced, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 83e15bfa5ee51a645b9ed3309c839d2b, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: 91d7d14655e701d40b528f342c361bfc, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 58188db92c809e946a9e31c9e4bf61f6, type: 2}
     level: 5
@@ -83,6 +84,8 @@ MonoBehaviour:
     level: 48
   - move: {fileID: 11400000, guid: 35fe2804aa535164fbcb02e340ea9a9d, type: 2}
     level: 50
+  - move: {fileID: 11400000, guid: 38720ecd8e6cef0459bef6c6f53cfced, type: 2}
+    level: 53
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
@@ -143,10 +146,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
   - {fileID: 11400000, guid: 92d0ed9ee37aa2b48b4de3cf7ce8db55, type: 2}
   - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 2a89d3b191d74f740b4ea0417d794ab2, type: 2}
-  - {fileID: 11400000, guid: 3eb85418a456a4941a852f0af3d1a28a, type: 2}
-  - {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
-  - {fileID: 11400000, guid: a5374efedeac1dc4f86e24a698d19e6d, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

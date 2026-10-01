@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: genesect
   displayName: Genesect
+  englishName: Genesect
   types:
   - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
   - {fileID: 11400000, guid: bf405ce6e8c187d4eb662c226bd3ab72, type: 2}
@@ -48,15 +49,17 @@ MonoBehaviour:
   speed: 99
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: d1cc8cfb170429046b50072e8b031b54, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
+  - move: {fileID: 11400000, guid: f6384e9543fa01042a6b538af18583ff, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 6589ee989c30c544cb926ea68983bc7d, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 672ae440922c556449b4aa964f87219d, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: ec6a5f145f8a7cc419fa06a9ff9e1076, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: d1cc8cfb170429046b50072e8b031b54, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 0927fa82b29ce494f9e7659bf9e2c328, type: 2}
     level: 7
@@ -91,6 +94,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
   - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
   - {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: ff87c561ab2d5d5488da04047c6f5db4, type: 2}
   - {fileID: 11400000, guid: 17db9758688531a4a91b48d9e2079c07, type: 2}
@@ -106,6 +111,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 15e14e7a89c9ee249adf570342cbcd52, type: 2}
   - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
   - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+  - {fileID: 11400000, guid: b9c4a4072b4846d4682b7aa97e95c2c5, type: 2}
   - {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
   - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
   - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
@@ -114,7 +120,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: 4cfd413f63f850d4184361b3dcded214, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: 31e908a8bab2b1a48b4863c7c49a01ae, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
   - {fileID: 11400000, guid: 7e7d50f1e089d9346b8a5af3aa61855e, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
@@ -127,7 +135,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cad6229bd6396e54ab2ae591cec87009, type: 2}
   tutorMoves:
   - {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
-  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
   - {fileID: 11400000, guid: 26ff654c6a5a69c45b83f57140540eca, type: 2}
   - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
   - {fileID: 11400000, guid: 5f7740b1638070043981274acbd709bd, type: 2}
@@ -138,10 +145,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
   - {fileID: 11400000, guid: 6589ee989c30c544cb926ea68983bc7d, type: 2}
   - {fileID: 11400000, guid: beeb113202b73114c96ea7c86b66b26a, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
   - {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

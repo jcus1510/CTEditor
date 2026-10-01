@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: goomy
   displayName: Goomy
+  englishName: Goomy
   types:
   - {fileID: 11400000, guid: e3d9e34536e21ee44b6e4b17fc29a0be, type: 2}
   abilityId: sap_sipper
@@ -43,9 +44,9 @@ MonoBehaviour:
   speed: 40
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: b42a72046ceb81b4395594b2b3f6c8d3, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 36bfb8286b5281b42b15716b99496dde, type: 2}
     level: 5
@@ -112,3 +113,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cbebfbfd28b053b42abff910ccc642af, type: 2}
   eggGroups:
   - {fileID: 11400000, guid: 35d19e54946afba4590f44d30dd27355, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

@@ -29,6 +29,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: pidgeot
     moveIds:
     - hurricane
@@ -48,6 +51,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: alakazam
     moveIds:
     - psychic
@@ -67,6 +73,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: rhydon
     moveIds:
     - earthquake
@@ -86,6 +95,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: exeggutor
     moveIds:
     - leaf_storm
@@ -105,6 +117,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: gyarados
     moveIds:
     - dragon_dance
@@ -124,6 +139,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: charizard
     moveIds:
     - flamethrower
@@ -133,6 +151,10 @@ MonoBehaviour:
     natureId: timid
   aiLevel: 6
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items:

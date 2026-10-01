@@ -15,10 +15,11 @@ MonoBehaviour:
   id: lum_berry
   displayName: Baya Ziuela
   englishName: Lum Berry
-  description: Se cura de cualquier estado en cuanto lo sufre (se consume).
-  category: 7
+  description: "Los Pok\xE9mon pueden llevarla o usarla para recuperarse de problemas
+    de estado."
+  category: 12
   icon: {fileID: 0}
-  price: 200
+  price: 80
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

@@ -15,7 +15,8 @@ MonoBehaviour:
   id: expert_belt
   displayName: Cinta Experto
   englishName: Expert Belt
-  description: "Sus golpes muy eficaces hacen \xD71,2."
+  description: "Potencia ligeramente los movimientos supereficaces. Debe llevarla
+    un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
   price: 4000

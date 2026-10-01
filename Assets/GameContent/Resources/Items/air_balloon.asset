@@ -15,7 +15,8 @@ MonoBehaviour:
   id: air_balloon
   displayName: Globo Helio
   englishName: Air Balloon
-  description: Inmune a Tierra hasta que le golpean (entonces revienta).
+  description: "El Pok\xE9mon que lo lleve flotar\xE1 en el aire. Si recibe un golpe,
+    estallar\xE1."
   category: 7
   icon: {fileID: 0}
   price: 4000

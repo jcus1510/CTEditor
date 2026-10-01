@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: venoshock
   displayName: "Carga T\xF3xica"
+  englishName: Venoshock
   type: {fileID: 11400000, guid: beba3a9ac208f3c43a7bda5d61c338cd, type: 2}
   category: 1
   power: 65
@@ -23,6 +24,7 @@ MonoBehaviour:
   priority: 0
   target: 0
   secondaryEffects: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0
@@ -36,7 +38,7 @@ MonoBehaviour:
     conditions:
     - kind: 1
       subject: 1
-      comparison: 3
+      comparison: 2
       number: 0
       text: poison
       negate: 0
@@ -44,7 +46,7 @@ MonoBehaviour:
     conditions:
     - kind: 1
       subject: 1
-      comparison: 3
+      comparison: 2
       number: 0
       text: toxic
       negate: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: doublade
   displayName: Doublade
+  englishName: Doublade
   types:
   - {fileID: 11400000, guid: bf405ce6e8c187d4eb662c226bd3ab72, type: 2}
   - {fileID: 11400000, guid: 1f6653f8eb948e44995eccd8804153ac, type: 2}
@@ -44,9 +45,9 @@ MonoBehaviour:
   speed: 35
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 0927fa82b29ce494f9e7659bf9e2c328, type: 2}
     level: 5
@@ -117,10 +118,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
-  - {fileID: 11400000, guid: 7ce7ff990b0321741a8bc6f26ba81eb7, type: 2}
-  - {fileID: 11400000, guid: 967dec9d4d420ef4a9c9f67d1395f3ac, type: 2}
-  - {fileID: 11400000, guid: f0c6915b05197a74e8e3860e9378ddee, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 2a9396fa90416b64f84c4a3cdedb4711, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

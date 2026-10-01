@@ -15,10 +15,11 @@ MonoBehaviour:
   id: poison_barb
   displayName: Flecha Venenosa
   englishName: Poison Barb
-  description: "Movimientos de Veneno \xD71,2."
+  description: "Flecha venenosa que refuerza los movimientos de tipo Veneno. Debe
+    llevarla un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

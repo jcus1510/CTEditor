@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: taunt
   displayName: Mofa
+  englishName: Taunt
   type: {fileID: 11400000, guid: bbd8692173525a3468bd903198cef800, type: 2}
   category: 2
   power: 0
@@ -30,6 +31,23 @@ MonoBehaviour:
     amountPercent: 0
     statStatId: 
     statStages: 0
+    weatherId: 
+    weatherTurns: 0
+    hazardId: 
+    sideConditionId: 
+    turns: 0
+    typeId: 
+    text: 
+    sharesPreviousRoll: 0
+    conditions: []
+  zEffects:
+  - chancePercent: 100
+    kind: 4
+    target: 1
+    statusId: 
+    amountPercent: 0
+    statStatId: attack
+    statStages: 1
     weatherId: 
     weatherTurns: 0
     hazardId: 

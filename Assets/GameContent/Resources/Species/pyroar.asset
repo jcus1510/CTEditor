@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: pyroar
   displayName: Pyroar
+  englishName: Pyroar
   types:
   - {fileID: 11400000, guid: ee71163cdafa45541b041fbd052f055b, type: 2}
   - {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
@@ -46,9 +47,9 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 91d7d14655e701d40b528f342c361bfc, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 4aec5593c053635429649f39ee0b9ab5, type: 2}
     level: 5
@@ -126,10 +127,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
   - {fileID: 11400000, guid: 5c1027c4b4b96bd46816f59e451c2afb, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 4e29bb33b6aeb2147b97cdc67267359a, type: 2}
-  - {fileID: 11400000, guid: c77de5c4f73123949bb608823bc41a5b, type: 2}
-  - {fileID: 11400000, guid: 5c1027c4b4b96bd46816f59e451c2afb, type: 2}
-  - {fileID: 11400000, guid: a5374efedeac1dc4f86e24a698d19e6d, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

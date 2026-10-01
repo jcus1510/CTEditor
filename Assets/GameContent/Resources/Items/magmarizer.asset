@@ -15,7 +15,8 @@ MonoBehaviour:
   id: magmarizer
   displayName: Magmatizador
   englishName: Magmarizer
-  description: "Llev\xE1ndolo al intercambiarse: Magmar evoluciona."
+  description: "Esta caja contiene una enorme cantidad de energ\xEDa magm\xE1tica.
+    Cierto Pok\xE9mon la adora."
   category: 7
   icon: {fileID: 0}
   price: 2000

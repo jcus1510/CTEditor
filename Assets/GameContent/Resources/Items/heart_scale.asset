@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf143fd2b9740747be4aa810a1bbf6c, type: 3}
+  m_Name: heart_scale
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
+  id: heart_scale
+  displayName: "Escama Coraz\xF3n"
+  englishName: Heart Scale
+  description: "Una bella y rara escama con forma de coraz\xF3n que m\xE1s de uno
+    apreciar\xE1 si se la entregas."
+  category: 10
+  icon: {fileID: 0}
+  price: 100
+  usableInBattle: 0
+  usableOutsideBattle: 0
+  consumable: 0
+  isBerry: 0
+  effects: []

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: dragon_dance
   displayName: "Danza Drag\xF3n"
+  englishName: Dragon Dance
   type: {fileID: 11400000, guid: e3d9e34536e21ee44b6e4b17fc29a0be, type: 2}
   category: 2
   power: 0
@@ -46,6 +47,23 @@ MonoBehaviour:
     amountPercent: 0
     statStatId: speed
     statStages: 1
+    weatherId: 
+    weatherTurns: 0
+    hazardId: 
+    sideConditionId: 
+    turns: 0
+    typeId: 
+    text: 
+    sharesPreviousRoll: 0
+    conditions: []
+  zEffects:
+  - chancePercent: 100
+    kind: 14
+    target: 1
+    statusId: 
+    amountPercent: 0
+    statStatId: 
+    statStages: 0
     weatherId: 
     weatherTurns: 0
     hazardId: 

@@ -15,7 +15,8 @@ MonoBehaviour:
   id: up_grade
   displayName: Mejora
   englishName: Upgrade
-  description: "Llev\xE1ndolo al intercambiarse: Porygon evoluciona."
+  description: Peculiar dispositivo fabricado en Silph S. A. que contiene todo tipo
+    de datos.
   category: 7
   icon: {fileID: 0}
   price: 2000

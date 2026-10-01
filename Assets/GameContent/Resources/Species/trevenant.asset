@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: trevenant
   displayName: Trevenant
+  englishName: Trevenant
   types:
   - {fileID: 11400000, guid: 1f6653f8eb948e44995eccd8804153ac, type: 2}
   - {fileID: 11400000, guid: 50792a937522d2e4ab6bd6a520a1534f, type: 2}
@@ -44,11 +45,11 @@ MonoBehaviour:
   speed: 56
   customStats: []
   learnset:
+  - move: {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: 3ea4295c8de50214da5e17f628579c91, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 0e3f0fa51d6203f4b93b171b6cf2bcb8, type: 2}
     level: 5
@@ -74,6 +75,8 @@ MonoBehaviour:
     level: 49
   - move: {fileID: 11400000, guid: 31e908a8bab2b1a48b4863c7c49a01ae, type: 2}
     level: 55
+  - move: {fileID: 11400000, guid: 3ea4295c8de50214da5e17f628579c91, type: 2}
+    level: 62
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
@@ -135,11 +138,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
   - {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
   - {fileID: 11400000, guid: 6f8d85b8fb617224589bd3ae8129b1eb, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 66fb6ff0495eebc4795494f32bfb5802, type: 2}
-  - {fileID: 11400000, guid: ae403df0ffcd1784c85ac6a222fd063b, type: 2}
-  - {fileID: 11400000, guid: 0bcd19fa5b32dc44d85a1d7e1d9450e4, type: 2}
-  - {fileID: 11400000, guid: 551df29d8509d104880218a230ac1658, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: b4975cfbd49fba741b038059ce01f1b2, type: 2}
   - {fileID: 11400000, guid: 9d53a19e52921834a83345100ec4a2a8, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

@@ -15,7 +15,8 @@ MonoBehaviour:
   id: prism_scale
   displayName: Escama Bella
   englishName: Prism Scale
-  description: "Llev\xE1ndola al intercambiarse: Feebas evoluciona."
+  description: "Curiosa escama que hace evolucionar a determinadas especies de Pok\xE9mon.
+    Brilla con los colores del arco\xEDris."
   category: 7
   icon: {fileID: 0}
   price: 2000

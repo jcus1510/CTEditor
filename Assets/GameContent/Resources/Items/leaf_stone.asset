@@ -15,7 +15,8 @@ MonoBehaviour:
   id: leaf_stone
   displayName: Piedra Hoja
   englishName: Leaf Stone
-  description: Hace evolucionar a ciertas especies.
+  description: "Curiosa piedra que hace evolucionar a determinadas especies de Pok\xE9mon.
+    Tiene grabada una hoja."
   category: 5
   icon: {fileID: 0}
   price: 3000

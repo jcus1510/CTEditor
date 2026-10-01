@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: dragalge
   displayName: Dragalge
+  englishName: Dragalge
   types:
   - {fileID: 11400000, guid: beba3a9ac208f3c43a7bda5d61c338cd, type: 2}
   - {fileID: 11400000, guid: e3d9e34536e21ee44b6e4b17fc29a0be, type: 2}
@@ -46,11 +47,11 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 304e733cbfef103478c9a958679a1156, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: ca9fc4c5693cb354082fe227793967b3, type: 2}
+  - move: {fileID: 11400000, guid: 086b0bf63b44f0f4c8ead69ce6291aa8, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 086b0bf63b44f0f4c8ead69ce6291aa8, type: 2}
+  - move: {fileID: 11400000, guid: ca9fc4c5693cb354082fe227793967b3, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 6e3903fff8a8e9147800ea4859c2420a, type: 2}
     level: 1
@@ -80,6 +81,10 @@ MonoBehaviour:
     level: 42
   - move: {fileID: 11400000, guid: dd4884f42955eb740b13d5099da28245, type: 2}
     level: 53
+  - move: {fileID: 11400000, guid: 304e733cbfef103478c9a958679a1156, type: 2}
+    level: 59
+  - move: {fileID: 11400000, guid: ca9fc4c5693cb354082fe227793967b3, type: 2}
+    level: 67
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
@@ -125,12 +130,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 90488b54355181a40bef89d9dd57ed14, type: 2}
-  - {fileID: 11400000, guid: 25c737bace85c664989731b45995b0fc, type: 2}
-  - {fileID: 11400000, guid: fa03bdd225dc1ab408335b9f558a87d3, type: 2}
-  - {fileID: 11400000, guid: a79bea7b221d868448e8f97e0fb060cc, type: 2}
-  - {fileID: 11400000, guid: 551df29d8509d104880218a230ac1658, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: d157f82d264192840973c80fbe0c8b69, type: 2}
   - {fileID: 11400000, guid: 35d19e54946afba4590f44d30dd27355, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

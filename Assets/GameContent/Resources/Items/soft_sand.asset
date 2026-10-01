@@ -15,10 +15,11 @@ MonoBehaviour:
   id: soft_sand
   displayName: Arena Fina
   englishName: Soft Sand
-  description: "Movimientos de Tierra \xD71,2."
+  description: "Debe llevarla un Pok\xE9mon. La suavidad de la arena fortalece los
+    movimientos de tipo Tierra."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: ditto
   displayName: Ditto
+  englishName: Ditto
   types:
   - {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
   abilityId: limber
@@ -51,3 +52,7 @@ MonoBehaviour:
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: e3eee8b94546dbc47a8b9f589a41aff2, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

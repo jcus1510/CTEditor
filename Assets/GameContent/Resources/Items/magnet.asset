@@ -15,10 +15,11 @@ MonoBehaviour:
   id: magnet
   displayName: "Im\xE1n"
   englishName: Magnet
-  description: "Movimientos de El\xE9ctrico \xD71,2."
+  description: "Debe llevarlo un Pok\xE9mon. Su potente magnetismo fortalece los
+    movimientos de tipo El\xE9ctrico."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

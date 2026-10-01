@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: tyrantrum
   displayName: Tyrantrum
+  englishName: Tyrantrum
   types:
   - {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
   - {fileID: 11400000, guid: e3d9e34536e21ee44b6e4b17fc29a0be, type: 2}
@@ -47,9 +48,9 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 6135443f3a09a53488875430dc21600b, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 812c302455412644a8ec26ad1160755d, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 812c302455412644a8ec26ad1160755d, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 034c48472772d604caaa172d102c6f0c, type: 2}
     level: 6
@@ -77,6 +78,8 @@ MonoBehaviour:
     level: 47
   - move: {fileID: 11400000, guid: c29a8063b28c2b94c9e1f7a2b33b1d44, type: 2}
     level: 53
+  - move: {fileID: 11400000, guid: 6135443f3a09a53488875430dc21600b, type: 2}
+    level: 58
   - move: {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
     level: 68
   - move: {fileID: 11400000, guid: 4403818195e13404cbdf474c68c5ecac, type: 2}
@@ -132,14 +135,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
   - {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
   - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
-  - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
-  - {fileID: 11400000, guid: 79c16ae15564dfe4c90f01ef6a28087a, type: 2}
-  - {fileID: 11400000, guid: c1df94702d81ed2418d2beeba0ecb2f1, type: 2}
-  - {fileID: 11400000, guid: 87fe94a6339b5b04cac6e5e5a12848c8, type: 2}
-  - {fileID: 11400000, guid: 4cfd413f63f850d4184361b3dcded214, type: 2}
-  - {fileID: 11400000, guid: 33fb06c1031c979428eb58227666cef1, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 5e98faa9fa4c1c24dab0304f7ec184a6, type: 2}
   - {fileID: 11400000, guid: 35d19e54946afba4590f44d30dd27355, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

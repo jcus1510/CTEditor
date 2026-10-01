@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: memento
   displayName: Legado
+  englishName: Memento
   type: {fileID: 11400000, guid: bbd8692173525a3468bd903198cef800, type: 2}
   category: 2
   power: 0
@@ -71,6 +72,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: tyrunt
   displayName: Tyrunt
+  englishName: Tyrunt
   types:
   - {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
   - {fileID: 11400000, guid: e3d9e34536e21ee44b6e4b17fc29a0be, type: 2}
@@ -44,9 +45,9 @@ MonoBehaviour:
   speed: 48
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 812c302455412644a8ec26ad1160755d, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 812c302455412644a8ec26ad1160755d, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 034c48472772d604caaa172d102c6f0c, type: 2}
     level: 6
@@ -152,3 +153,7 @@ MonoBehaviour:
   eggGroups:
   - {fileID: 11400000, guid: 5e98faa9fa4c1c24dab0304f7ec184a6, type: 2}
   - {fileID: 11400000, guid: 35d19e54946afba4590f44d30dd27355, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

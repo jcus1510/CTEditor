@@ -15,8 +15,8 @@ MonoBehaviour:
   id: black_sludge
   displayName: Lodo Negro
   englishName: Black Sludge
-  description: Si es de tipo Veneno recupera 1/16 de PS por turno; si no, pierde
-    1/8.
+  description: "Restaura gradualmente los PS de los Pok\xE9mon de tipo Veneno y da\xF1a
+    a todos los dem\xE1s."
   category: 7
   icon: {fileID: 0}
   price: 4000

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: espurr
   displayName: Espurr
+  englishName: Espurr
   types:
   - {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
   abilityId: keen_eye
@@ -43,9 +44,9 @@ MonoBehaviour:
   speed: 68
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 83e15bfa5ee51a645b9ed3309c839d2b, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 91d7d14655e701d40b528f342c361bfc, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 83e15bfa5ee51a645b9ed3309c839d2b, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 58188db92c809e946a9e31c9e4bf61f6, type: 2}
     level: 5
@@ -129,3 +130,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5374efedeac1dc4f86e24a698d19e6d, type: 2}
   eggGroups:
   - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

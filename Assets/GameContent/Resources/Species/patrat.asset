@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: patrat
   displayName: Patrat
+  englishName: Patrat
   types:
   - {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
   abilityId: run_away
@@ -82,6 +83,7 @@ MonoBehaviour:
     conditions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: bcc1d78857f00f041a19fbc5a4d58a00, type: 2}
   - {fileID: 11400000, guid: 288b2a76bf19e5646b2fc8d79382d1dc, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
@@ -96,14 +98,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d783373f10e72584b8c07508ed727511, type: 2}
   - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
   - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
   - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
   - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
   - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
   - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
-  - {fileID: 11400000, guid: 2bf945e9e0da7b4469bebca1e26e325f, type: 2}
   tutorMoves:
   - {fileID: 11400000, guid: 3c0263f9417ef0d479e327f62c683a81, type: 2}
   - {fileID: 11400000, guid: 2958df99c8d8ca34ea9fdb47154368c8, type: 2}
@@ -115,7 +118,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4c153afd182796a48a7ddadc0bf0a432, type: 2}
   - {fileID: 11400000, guid: c7965f535ac7df04a918d59d14894ab7, type: 2}
   - {fileID: 11400000, guid: f9b934ad3cc59fc468d8184a25248dee, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 8e84b3faad0dc9342a953a0de1c0f317, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 26c19931e2bff9d499fcbb698047d1b0, type: 2}
   - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
@@ -129,3 +132,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ec6a5f145f8a7cc419fa06a9ff9e1076, type: 2}
   eggGroups:
   - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

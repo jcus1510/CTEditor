@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: blastoise_uu_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: blastoise_uu_1
+  displayName: Offensive Spinner
+  speciesId: blastoise
+  setFormat: uu
+  setScore: 36
+  itemOptions: blastoisinite
+  abilityOptions: rain_dish
+  natureOptions: modest
+  evs: 184 PS / 252 AtqE / 72 Vel
+  ivs: 
+  moveSlots: rapid_spin / scald, hydro_pump / dark_pulse / ice_beam, dragon_pulse,
+    aura_sphere

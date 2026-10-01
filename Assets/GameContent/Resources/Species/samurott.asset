@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: samurott
   displayName: Samurott
+  englishName: Samurott
   types:
   - {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
   abilityId: torrent
@@ -53,6 +54,12 @@ MonoBehaviour:
     level: 1
   - move: {fileID: 11400000, guid: 25938b490a569fb458f02c51ede4c0cf, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: 812c302455412644a8ec26ad1160755d, type: 2}
+    level: 5
+  - move: {fileID: 11400000, guid: 6e3903fff8a8e9147800ea4859c2420a, type: 2}
+    level: 7
+  - move: {fileID: 11400000, guid: 25938b490a569fb458f02c51ede4c0cf, type: 2}
+    level: 11
   - move: {fileID: 11400000, guid: 35ec7c22733f4ef42ac930adbd0e6a85, type: 2}
     level: 13
   - move: {fileID: 11400000, guid: cd236a9f7c6f45a4fa1f6daab744b50f, type: 2}
@@ -82,6 +89,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
   - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: bcc1d78857f00f041a19fbc5a4d58a00, type: 2}
   - {fileID: 11400000, guid: 288b2a76bf19e5646b2fc8d79382d1dc, type: 2}
   - {fileID: 11400000, guid: b038add5f5a6f804fac709b7d5928f8f, type: 2}
@@ -105,6 +113,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
   - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
   - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 32cacc67278f51544841007e0dee54cf, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
@@ -123,18 +133,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
   - {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
   - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
   - {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
   - {fileID: 11400000, guid: cac71445d7be4e742a4dcfb8a5e557f1, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: e58af6e84f63b4f4ba6b9ba942911e57, type: 2}
-  - {fileID: 11400000, guid: 151ab876109418e4480eb80f999734ae, type: 2}
-  - {fileID: 11400000, guid: c5e92a848508aa34d9664bbcf6789999, type: 2}
-  - {fileID: 11400000, guid: 90e0df9414a12a649961cdafed3fe972, type: 2}
-  - {fileID: 11400000, guid: e7f9f507129688542bac3c5fdbf9ba82, type: 2}
-  - {fileID: 11400000, guid: d6fc617569a3bd947948534486732eb3, type: 2}
-  - {fileID: 11400000, guid: ec6a5f145f8a7cc419fa06a9ff9e1076, type: 2}
-  - {fileID: 11400000, guid: 71713cc2972e20b4a8489b3acc9ecb11, type: 2}
+  - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: diancie
   displayName: Diancie
+  englishName: Diancie
   types:
   - {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
   - {fileID: 11400000, guid: d65ead7637a8c9c4090b7b6df1d3b171, type: 2}
@@ -46,9 +47,9 @@ MonoBehaviour:
   speed: 50
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 0a7589ec211131d45b8c65c725894de0, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 463d0914b67fe0e49bb7496ee377b881, type: 2}
     level: 5
@@ -72,9 +73,9 @@ MonoBehaviour:
     level: 46
   - move: {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
     level: 49
-  - move: {fileID: 11400000, guid: baa7ee72081a7cb45b25899d0f1bfad0, type: 2}
-    level: 50
   - move: {fileID: 11400000, guid: 40264eee241b92a4486a4fe118f59faf, type: 2}
+    level: 50
+  - move: {fileID: 11400000, guid: baa7ee72081a7cb45b25899d0f1bfad0, type: 2}
     level: 50
   - move: {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
     level: 60
@@ -137,3 +138,27 @@ MonoBehaviour:
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: 
+  variantItem: 
+  forms:
+  - id: mega
+    displayName: Mega-Diancie
+    type1: 
+    type2: 
+    attack: 160
+    defense: 110
+    spAttack: 160
+    spDefense: 110
+    speed: 110
+    ability: magic_bounce
+    revertsOnSwitch: 0
+  formChanges:
+  - from: 
+    to: mega
+    trigger: 6
+    item: diancite
+    move: 
+    hpPercent: 50
+    weather: 
+    requiredAbility: 
+    afterMove: 0

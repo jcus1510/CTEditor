@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: air_cutter
   displayName: Aire Afilado
+  englishName: Air Cutter
   type: {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
   category: 1
   power: 60
@@ -23,6 +24,7 @@ MonoBehaviour:
   priority: 0
   target: 2
   secondaryEffects: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 1

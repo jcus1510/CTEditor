@@ -29,6 +29,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: volcarona
     moveIds:
     - quiver_dance
@@ -48,6 +51,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: hydreigon
     moveIds:
     - draco_meteor
@@ -67,6 +73,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: excadrill
     moveIds:
     - swords_dance
@@ -86,6 +95,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: chandelure
     moveIds:
     - calm_mind
@@ -105,6 +117,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: conkeldurr
     moveIds:
     - drain_punch
@@ -124,6 +139,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: haxorus
     moveIds:
     - dragon_dance
@@ -133,6 +151,10 @@ MonoBehaviour:
     natureId: jolly
   aiLevel: 7
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items:

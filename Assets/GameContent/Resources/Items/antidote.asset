@@ -15,10 +15,11 @@ MonoBehaviour:
   id: antidote
   displayName: "Ant\xEDdoto"
   englishName: Antidote
-  description: Cura el envenenamiento.
+  description: "Medicina en espray que contrarresta los efectos del veneno en un
+    Pok\xE9mon."
   category: 2
   icon: {fileID: 0}
-  price: 100
+  price: 200
   usableInBattle: 1
   usableOutsideBattle: 1
   consumable: 1

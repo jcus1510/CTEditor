@@ -29,6 +29,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: metagross
     moveIds:
     - meteor_mash
@@ -48,6 +51,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: salamence
     moveIds:
     - dragon_dance
@@ -67,6 +73,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: rotom
     moveIds:
     - thunderbolt
@@ -86,6 +95,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: ferrothorn
     moveIds:
     - spikes
@@ -105,6 +117,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: azumarill
     moveIds:
     - aqua_jet
@@ -124,6 +139,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: tyranitar
     moveIds:
     - dragon_dance
@@ -133,6 +151,10 @@ MonoBehaviour:
     natureId: jolly
   aiLevel: 6
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items:

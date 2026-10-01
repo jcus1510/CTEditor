@@ -15,7 +15,8 @@ MonoBehaviour:
   id: dragon_scale
   displayName: "Escama Drag\xF3n"
   englishName: Dragon Scale
-  description: "Llev\xE1ndolo al intercambiarse: Seadra evoluciona."
+  description: "Una gruesa y resistente escama que pueden llevar los Pok\xE9mon de
+    tipo Drag\xF3n cuando son capturados."
   category: 7
   icon: {fileID: 0}
   price: 2000

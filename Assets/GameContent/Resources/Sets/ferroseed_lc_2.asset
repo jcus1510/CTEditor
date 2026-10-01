@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: ferroseed_lc_2
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: ferroseed_lc_2
+  displayName: Eviolite
+  speciesId: ferroseed
+  setFormat: lc
+  setScore: 51
+  itemOptions: eviolite
+  abilityOptions: 
+  natureOptions: sassy
+  evs: 84 PS / 188 Def / 84 AtqE / 148 DefE
+  ivs: 
+  moveSlots: stealth_rock / thunder_wave / knock_off / giga_drain

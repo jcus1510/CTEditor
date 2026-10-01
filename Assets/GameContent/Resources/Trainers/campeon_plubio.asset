@@ -29,6 +29,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: wailord
     moveIds:
     - water_spout
@@ -48,6 +51,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: tentacruel
     moveIds:
     - scald
@@ -67,6 +73,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: ludicolo
     moveIds:
     - rain_dance
@@ -86,6 +95,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: whiscash
     moveIds:
     - dragon_dance
@@ -105,6 +117,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: gyarados
     moveIds:
     - dragon_dance
@@ -124,6 +139,9 @@ MonoBehaviour:
     fixedIvs: 31
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: milotic
     moveIds:
     - scald
@@ -133,6 +151,10 @@ MonoBehaviour:
     natureId: bold
   aiLevel: 6
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items:

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: rapid_spin
   displayName: "Giro R\xE1pido"
+  englishName: Rapid Spin
   type: {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
   category: 0
   power: 20
@@ -39,6 +40,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: binacle
   displayName: Binacle
+  englishName: Binacle
   types:
   - {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
   - {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
@@ -44,11 +45,11 @@ MonoBehaviour:
   speed: 50
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 6e591eadf38b0be47a08e6db5e5ee087, type: 2}
+  - move: {fileID: 11400000, guid: 34cc99783d94cc14a8ac87f62ffb7ff7, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 83e15bfa5ee51a645b9ed3309c839d2b, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 34cc99783d94cc14a8ac87f62ffb7ff7, type: 2}
+  - move: {fileID: 11400000, guid: 6e591eadf38b0be47a08e6db5e5ee087, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 6e3903fff8a8e9147800ea4859c2420a, type: 2}
     level: 4
@@ -153,3 +154,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 25938b490a569fb458f02c51ede4c0cf, type: 2}
   eggGroups:
   - {fileID: 11400000, guid: ebdd707d7057ed147b45b980cf3f669a, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

@@ -15,7 +15,8 @@ MonoBehaviour:
   id: revive
   displayName: Revivir
   englishName: Revive
-  description: Revive con la mitad de los PS.
+  description: "Medicina que revive a un Pok\xE9mon debilitado y le devuelve la mitad
+    de sus PS."
   category: 1
   icon: {fileID: 0}
   price: 2000

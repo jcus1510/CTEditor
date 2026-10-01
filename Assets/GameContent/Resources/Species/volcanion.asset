@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: volcanion
   displayName: Volcanion
+  englishName: Volcanion
   types:
   - {fileID: 11400000, guid: ee71163cdafa45541b041fbd052f055b, type: 2}
   - {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
@@ -44,9 +45,9 @@ MonoBehaviour:
   speed: 70
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: e7a0f0b8ca96eee48bc15b7f4f8f0894, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: 310b368bbee24ff4a9be7e1ef098fb21, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: e7a0f0b8ca96eee48bc15b7f4f8f0894, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 95c0d63a4a28c9f4a82a3da9fecf1712, type: 2}
     level: 1
@@ -68,10 +69,14 @@ MonoBehaviour:
     level: 46
   - move: {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
     level: 50
+  - move: {fileID: 11400000, guid: 310b368bbee24ff4a9be7e1ef098fb21, type: 2}
+    level: 58
   - move: {fileID: 11400000, guid: f58fef59fea64c64f8ad3197218007b3, type: 2}
     level: 65
   - move: {fileID: 11400000, guid: 17db9758688531a4a91b48d9e2079c07, type: 2}
     level: 76
+  - move: {fileID: 11400000, guid: e7a0f0b8ca96eee48bc15b7f4f8f0894, type: 2}
+    level: 85
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 4684f72d3faef8940bcbd8c6d3e78a7d, type: 2}
@@ -126,3 +131,7 @@ MonoBehaviour:
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

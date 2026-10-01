@@ -15,7 +15,8 @@ MonoBehaviour:
   id: elixir
   displayName: Elixir
   englishName: Elixir
-  description: Recupera 10 PP de todos los movimientos.
+  description: "Restaura 10 PP de todos los movimientos aprendidos por el Pok\xE9mon
+    elegido."
   category: 3
   icon: {fileID: 0}
   price: 3000
