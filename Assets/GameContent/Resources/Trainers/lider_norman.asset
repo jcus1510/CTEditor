@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: spinda
+    moveIds:
+    - teeter_dance
+    - facade
+    - encore
+    - psybeam
+    natureId: 
   - species: {fileID: 11400000, guid: 7694d8f7cc03a294ab83dc85633bc2ed, type: 2}
     level: 27
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: vigoroth
+    moveIds:
+    - slash
+    - facade
+    - encore
+    - feint_attack
+    natureId: 
   - species: {fileID: 11400000, guid: 1a37f88eba508b848a1d83cf8dd25ab1, type: 2}
     level: 29
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: linoone
+    moveIds:
+    - slash
+    - belly_drum
+    - facade
+    - headbutt
+    natureId: 
   - species: {fileID: 11400000, guid: aa1b5485db304db46936923f6864479e, type: 2}
     level: 31
     moves:
@@ -61,7 +85,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: slaking
+    moveIds:
+    - counter
+    - yawn
+    - facade
+    - feint_attack
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

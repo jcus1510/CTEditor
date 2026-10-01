@@ -19,15 +19,19 @@ MonoBehaviour:
     minLevel: 6
     maxLevel: 10
     weight: 55
+    speciesId: zubat
   - species: {fileID: 11400000, guid: 0949dcb79f87e03459d0550e7db28e07, type: 2}
     minLevel: 7
     maxLevel: 10
     weight: 30
+    speciesId: geodude
   - species: {fileID: 11400000, guid: 5ec56ba31d1a6604c99b66745ffe2475, type: 2}
     minLevel: 8
     maxLevel: 10
     weight: 10
+    speciesId: paras
   - species: {fileID: 11400000, guid: c03206aa48a0db647a7b438765715451, type: 2}
     minLevel: 12
     maxLevel: 14
     weight: 5
+    speciesId: onix

@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: venusaur
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 2ca17a2317036b2469359a38a07a614a, type: 2}
     level: 50
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: charizard
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: f7bdd799cc1a6484ab6addd4b51b9f78, type: 2}
     level: 50
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: blastoise
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: d148172c1ce1a0947a931dda22f9f42e, type: 2}
     level: 50
     moves: []
@@ -45,6 +57,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: pikachu
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: e82dc14f3f7028040bd4c208195566b2, type: 2}
     level: 50
     moves: []
@@ -52,6 +68,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: snorlax
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: bc0caf2b3ee63b540acec34fe72ee456, type: 2}
     level: 50
     moves: []
@@ -59,6 +79,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: gengar
+    moveIds: []
+    natureId: 
   money: 50000
   items:
   - itemId: hyper_potion

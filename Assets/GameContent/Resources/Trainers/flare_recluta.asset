@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: flare_recluta
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: flare_recluta
+  displayName: Recluta Flare
+  trainerClass: Team Flare
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 38f73d25da8c7754ab7addf8e5ab235e, type: 2}
+    level: 28
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: houndour
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: f34be13282143ba4eaf3117a1a09d5ea, type: 2}
+    level: 28
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: croagunk
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: b7ae9f59d7ec1e5468c697e2233a603b, type: 2}
+    level: 29
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: scraggy
+    moveIds: []
+    natureId: 
+  aiLevel: 3
+  aiProfileId: 
+  ai: 1
+  useItems: 1
+  items: []
+  healBelowPercent: 25
+  canSwitch: 0
+  movesetStyle: 0
+  baseMoney: 30
+  introLine: "\xA1El Team Flare har\xE1 un mundo bello!"
+  defeatLine: "\xA1Qu\xE9 feo!"
+  victoryLine: "\xA1Qu\xE9 elegancia!"

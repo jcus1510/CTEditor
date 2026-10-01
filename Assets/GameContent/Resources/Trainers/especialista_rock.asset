@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: especialista_rock
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: especialista_rock
+  displayName: Roca
+  trainerClass: Especialista Roca
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: a6624bceabde2cc4e871c6c586a6ac82, type: 2}
+    level: 42
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: armaldo
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 7269a754a3a534d42a8d6006543bf5fa, type: 2}
+    level: 43
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: bastiodon
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 238c91b41af498c42b67a57a9c5782cc, type: 2}
+    level: 44
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: cradily
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 8998d4af8bf57f8438a4d66cee307424, type: 2}
+    level: 46
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: golem
+    moveIds: []
+    natureId: 
+  aiLevel: 3
+  aiProfileId: 
+  ai: 1
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 48
+  introLine: "\xA1Solo conf\xEDo en el tipo Roca! \xBFTienes con qu\xE9 contrarrestarlo?"
+  defeatLine: 'Me ganaste con cabeza: el tipo Roca no lo es todo.'
+  victoryLine: "\xA1El tipo Roca nunca falla!"

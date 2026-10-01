@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: campeona_iris
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: campeona_iris
+  displayName: Iris
+  trainerClass: "Campe\xF3n"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: dce0d02662dd06449bc2477dd75ac2ba, type: 2}
+    level: 57
+    moves:
+    - {fileID: 11400000, guid: 63c7218d2af498c4f9d214b944b0dc43, type: 2}
+    - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
+    - {fileID: 11400000, guid: a69a5906d0943504fb50821889185528, type: 2}
+    - {fileID: 11400000, guid: c3b6da97600a239478d3b1629781f284, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 417342a86f1356144b635971dd808ada, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: hydreigon
+    moveIds:
+    - draco_meteor
+    - dark_pulse
+    - flamethrower
+    - focus_blast
+    natureId: modest
+  - species: {fileID: 11400000, guid: 70662d00e815c72448d0f3c2c3eeee22, type: 2}
+    level: 57
+    moves:
+    - {fileID: 11400000, guid: 6e47f34420dc9c74eb3d04177fb23c56, type: 2}
+    - {fileID: 11400000, guid: 73c995529de98aa4ea05633c95125a39, type: 2}
+    - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    heldItem: rocky_helmet
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: druddigon
+    moveIds:
+    - dragon_claw
+    - sucker_punch
+    - stealth_rock
+    - earthquake
+    natureId: adamant
+  - species: {fileID: 11400000, guid: 432aefd345ebae64f81feebff62dce16, type: 2}
+    level: 57
+    moves:
+    - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
+    - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 4cfd413f63f850d4184361b3dcded214, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: aggron
+    moveIds:
+    - iron_head
+    - stone_edge
+    - earthquake
+    - rock_polish
+    natureId: adamant
+  - species: {fileID: 11400000, guid: e2ea53fbb8f58064f955fe65278a59a8, type: 2}
+    level: 57
+    moves:
+    - {fileID: 11400000, guid: 61f5c64e93bc85b48aecaa66d733c5d2, type: 2}
+    - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 2142ec87c94158f47928ed9a938e18b0, type: 2}
+    heldItem: focus_sash
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: archeops
+    moveIds:
+    - acrobatics
+    - stone_edge
+    - earthquake
+    - u_turn
+    natureId: jolly
+  - species: {fileID: 11400000, guid: ff03f7c3f9213b54bbf70bff0d3922be, type: 2}
+    level: 57
+    moves:
+    - {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: ffaa0c9df25d20848a44a1f77b5aba3f, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 417342a86f1356144b635971dd808ada, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: lapras
+    moveIds:
+    - hydro_pump
+    - ice_beam
+    - thunderbolt
+    - ice_shard
+    natureId: modest
+  - species: {fileID: 11400000, guid: 0abca9277bf5c6542a302aa92cd2233e, type: 2}
+    level: 59
+    moves:
+    - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
+    - {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: e241c34283f45a343b6140504cd58b9e, type: 2}
+    heldItem: lum_berry
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 2
+    speciesId: haxorus
+    moveIds:
+    - dragon_dance
+    - outrage
+    - earthquake
+    - poison_jab
+    natureId: jolly
+  aiLevel: 6
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 3
+  - itemId: full_heal
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 150
+  introLine: "\xA1Soy Iris, la Campeona! \xA1Mis Pok\xE9mon y yo lo daremos todo!"
+  defeatLine: "\xA1Eres incre\xEDble! Ahora el Campe\xF3n eres t\xFA."
+  victoryLine: "\xA1Hay que ser m\xE1s fuerte que un drag\xF3n!"

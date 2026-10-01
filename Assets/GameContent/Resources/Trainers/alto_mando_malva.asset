@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: alto_mando_malva
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: alto_mando_malva
+  displayName: Malva
+  trainerClass: Alto Mando
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 29a1bf46bc121134fbf2518c5056069f, type: 2}
+    level: 63
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 2
+    speciesId: pyroar
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 6d59add5f8a484a4db404a3a218f14d4, type: 2}
+    level: 63
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: torkoal
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 5b134710a37703e4ab3c2f34327997cb, type: 2}
+    level: 63
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: chandelure
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 05a9978d6adac7c48981950c1c61ca8b, type: 2}
+    level: 65
+    moves: []
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: talonflame
+    moveIds: []
+    natureId: 
+  aiLevel: 5
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "Qu\xE9 fastidio... acabemos r\xE1pido."
+  defeatLine: "Hmph. Suerte, nada m\xE1s."
+  victoryLine: "Te lo advert\xED."

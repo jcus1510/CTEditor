@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: umbreon
+    moveIds:
+    - sand_attack
+    - confuse_ray
+    - feint_attack
+    - mean_look
+    natureId: 
   - species: {fileID: 11400000, guid: 2ad8f294dc6a06f45b6ad7cdc0c03f49, type: 2}
     level: 42
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: vileplume
+    moveIds:
+    - stun_spore
+    - acid
+    - moonlight
+    - petal_dance
+    natureId: 
   - species: {fileID: 11400000, guid: bc0caf2b3ee63b540acec34fe72ee456, type: 2}
     level: 45
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: gengar
+    moveIds:
+    - lick
+    - spite
+    - curse
+    - destiny_bond
+    natureId: 
   - species: {fileID: 11400000, guid: 23be15b7206f2714c811ea1e3dd9ca2b, type: 2}
     level: 44
     moves:
@@ -61,6 +85,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: murkrow
+    moveIds:
+    - quick_attack
+    - whirlwind
+    - pursuit
+    - feint_attack
+    natureId: 
   - species: {fileID: 11400000, guid: 81aa7bf166a64c8409d1fbc7490f6280, type: 2}
     level: 47
     moves:
@@ -72,7 +104,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: houndoom
+    moveIds:
+    - roar
+    - pursuit
+    - flamethrower
+    - crunch
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

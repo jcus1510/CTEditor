@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: alto_mando_lotto
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: alto_mando_lotto
+  displayName: Lotto
+  trainerClass: Alto Mando
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 4b908c5b1b3cbdf49b87577050cfa138, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: throh
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 62e243843b2bcf544a97b78a0b1b54a4, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: sawk
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 113b3b0bf1f9c91499ce12991d2ae1f6, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: mienshao
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 9778c4041abcb264b92fb1b3aa29b3a8, type: 2}
+    level: 58
+    moves: []
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: conkeldurr
+    moveIds: []
+    natureId: 
+  aiLevel: 5
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "\xA1Mi cuerpo y mi esp\xEDritu est\xE1n en guardia!"
+  defeatLine: "Admirable t\xE9cnica."
+  victoryLine: Sigue entrenando.

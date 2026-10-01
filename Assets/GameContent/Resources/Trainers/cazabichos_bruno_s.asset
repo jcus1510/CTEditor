@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: kricketot
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: f781bca91fd24294f8ec7d4a073e153a, type: 2}
     level: 6
     moves: []
@@ -31,7 +35,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: wurmple
+    moveIds: []
+    natureId: 
   aiLevel: 1
+  aiProfileId: 
   ai: 0
   useItems: 0
   items: []

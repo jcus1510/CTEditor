@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: jolteon
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 1c041cac37f899347b071f2a811801de, type: 2}
     level: 46
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: raichu
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: e97322a6327dd8249bebc01de5bf6011, type: 2}
     level: 48
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: luxray
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 711a7e5fd54d3574dbf74c6cc77bcc25, type: 2}
     level: 50
     moves: []
@@ -45,7 +57,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: electivire
+    moveIds: []
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

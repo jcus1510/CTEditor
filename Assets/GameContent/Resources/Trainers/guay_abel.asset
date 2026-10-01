@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: heracross
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 1fdeebc48b4832347ba76f2dd6ebaa0e, type: 2}
     level: 38
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: skarmory
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 483996160831b5e45bacc0ed48c02999, type: 2}
     level: 40
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: ampharos
+    moveIds: []
+    natureId: 
   aiLevel: 3
+  aiProfileId: 
   ai: 1
   useItems: 1
   items:

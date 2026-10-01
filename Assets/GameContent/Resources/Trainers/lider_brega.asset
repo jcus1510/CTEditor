@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: meditite
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 62027c40f4edcc44db6f77c61069e456, type: 2}
     level: 29
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: machoke
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: ec1a172ab8771cc47ac5520570de699c, type: 2}
     level: 32
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: lucario
+    moveIds: []
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

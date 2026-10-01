@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: as_frente_espacio_raro
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: as_frente_espacio_raro
+  displayName: Crono
+  trainerClass: As del Frente
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 56b63d8921c072f4d94f61e419002a2a, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: e7054229772eef743ae0434f96e036d5, type: 2}
+    - {fileID: 11400000, guid: c49703054ffc0dc40a9619b9efe13529, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: fc093f1c50139f94f93c3c279c783297, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: bronzong
+    moveIds:
+    - trick_room
+    - gyro_ball
+    - earthquake
+    - stealth_rock
+    natureId: relaxed
+  - species: {fileID: 11400000, guid: a1339c07a1a64694db5c15d6b2f168ba, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: e7054229772eef743ae0434f96e036d5, type: 2}
+    - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+    - {fileID: 11400000, guid: c3b6da97600a239478d3b1629781f284, type: 2}
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 42ab80e534b90e542b175fdacb594b42, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: reuniclus
+    moveIds:
+    - trick_room
+    - psychic
+    - focus_blast
+    - shadow_ball
+    natureId: quiet
+  - species: {fileID: 11400000, guid: 9778c4041abcb264b92fb1b3aa29b3a8, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 13d60738e9b44814b80557dd96b5063d, type: 2}
+    - {fileID: 11400000, guid: 92a135ffd9400eb4795a760f2163ffec, type: 2}
+    - {fileID: 11400000, guid: 0dff38465403d64468cee754c6fab39c, type: 2}
+    - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+    heldItem: assault_vest
+    nature: {fileID: 11400000, guid: c386f22dfffdf2d4dbca0c690c4d59c4, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: conkeldurr
+    moveIds:
+    - drain_punch
+    - mach_punch
+    - ice_punch
+    - knock_off
+    natureId: brave
+  - species: {fileID: 11400000, guid: 205f56a218b10d34f9c9bac90738e113, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+    - {fileID: 11400000, guid: 6155db801e5508b439818e3dd983e804, type: 2}
+    - {fileID: 11400000, guid: 0dff38465403d64468cee754c6fab39c, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: c386f22dfffdf2d4dbca0c690c4d59c4, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: rhyperior
+    moveIds:
+    - earthquake
+    - stone_edge
+    - megahorn
+    - ice_punch
+    natureId: brave
+  - species: {fileID: 11400000, guid: e82dc14f3f7028040bd4c208195566b2, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: ee44701bbc792004f8c744056ac5452d, type: 2}
+    - {fileID: 11400000, guid: b2c063ae9f8542b4a946e7619d7bc4b6, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: f9393ac71e402e94d92eba2ed456c563, type: 2}
+    heldItem: choice_band
+    nature: {fileID: 11400000, guid: c386f22dfffdf2d4dbca0c690c4d59c4, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: snorlax
+    moveIds:
+    - body_slam
+    - crunch
+    - earthquake
+    - self_destruct
+    natureId: brave
+  - species: {fileID: 11400000, guid: b852cbfe631126a4c8018352c3b4a8cc, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: e7054229772eef743ae0434f96e036d5, type: 2}
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    - {fileID: 11400000, guid: 08a4346f4805fd543915dd9660411ba8, type: 2}
+    - {fileID: 11400000, guid: 2c668dd6f5f45e8468390d9e05b0ce18, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 42ab80e534b90e542b175fdacb594b42, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: cofagrigus
+    moveIds:
+    - trick_room
+    - shadow_ball
+    - will_o_wisp
+    - nasty_plot
+    natureId: quiet
+  aiLevel: 6
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  - itemId: full_heal
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 150
+  introLine: "Espacio Raro. \xBFAguantar\xE1s mi estrategia?"
+  defeatLine: "Has le\xEDdo mi estrategia de principio a fin."
+  victoryLine: La estrategia siempre gana.

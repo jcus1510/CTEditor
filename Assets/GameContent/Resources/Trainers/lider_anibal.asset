@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: primeape
+    moveIds:
+    - leer
+    - rage
+    - karate_chop
+    - fury_swipes
+    natureId: 
   - species: {fileID: 11400000, guid: 9ada0f6cbe9ef7a43828a12b040abc4b, type: 2}
     level: 30
     moves:
@@ -39,7 +47,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: poliwrath
+    moveIds:
+    - hypnosis
+    - mind_reader
+    - surf
+    - dynamic_punch
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

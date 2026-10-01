@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: plasma_soldado
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: plasma_soldado
+  displayName: Soldado Plasma
+  trainerClass: Team Plasma
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: b7c315a7060277d44afb6e4e45c1c006, type: 2}
+    level: 26
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: watchog
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: b7ae9f59d7ec1e5468c697e2233a603b, type: 2}
+    level: 26
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: scraggy
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: b8cf11e0451606e41b8a6a3f41a6cc71, type: 2}
+    level: 27
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: koffing
+    moveIds: []
+    natureId: 
+  aiLevel: 3
+  aiProfileId: 
+  ai: 1
+  useItems: 1
+  items: []
+  healBelowPercent: 25
+  canSwitch: 0
+  movesetStyle: 0
+  baseMoney: 30
+  introLine: "\xA1Liberaremos a los Pok\xE9mon!"
+  defeatLine: "\xA1Imposible!"
+  victoryLine: "\xA1Por el Team Plasma!"

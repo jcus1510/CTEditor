@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: lopunny
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: a78a4ae9a7bb0594c95f41fd5ef36d3b, type: 2}
     level: 46
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: roserade
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 9533862dd63a809478c128cbba83eedf, type: 2}
     level: 47
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: togekiss
+    moveIds: []
+    natureId: 
   aiLevel: 3
+  aiProfileId: 
   ai: 1
   useItems: 1
   items:

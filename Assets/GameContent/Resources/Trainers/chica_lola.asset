@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: pidgey
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: b4168dd2e493c0b4e8b1064280e024e5, type: 2}
     level: 9
     moves: []
@@ -31,7 +35,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: nidoran_f
+    moveIds: []
+    natureId: 
   aiLevel: 1
+  aiProfileId: 
   ai: 0
   useItems: 0
   items: []

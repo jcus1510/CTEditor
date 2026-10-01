@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: magnemite
+    moveIds:
+    - thunderbolt
+    - supersonic
+    - sonic_boom
+    - thunder_wave
+    natureId: 
   - species: {fileID: 11400000, guid: 7e85960e09af29548b1a27ee87106cc6, type: 2}
     level: 30
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: magnemite
+    moveIds:
+    - thunderbolt
+    - supersonic
+    - sonic_boom
+    - thunder_wave
+    natureId: 
   - species: {fileID: 11400000, guid: d69c2b6a5851da24a9590aeae639fcfd, type: 2}
     level: 35
     moves:
@@ -50,7 +66,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: steelix
+    moveIds:
+    - screech
+    - sunny_day
+    - rock_throw
+    - iron_tail
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

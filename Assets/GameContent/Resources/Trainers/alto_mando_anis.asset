@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: alto_mando_anis
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: alto_mando_anis
+  displayName: "An\xEDs"
+  trainerClass: Alto Mando
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: b852cbfe631126a4c8018352c3b4a8cc, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: cofagrigus
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 2ac70c36466c20448ab8c7008a4312ae, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: drifblim
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 78e5a03eb05160442adf603d6c2a60fd, type: 2}
+    level: 56
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: golurk
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 5b134710a37703e4ab3c2f34327997cb, type: 2}
+    level: 58
+    moves: []
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: chandelure
+    moveIds: []
+    natureId: 
+  aiLevel: 5
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "Mis fantasmas escriben historias... \xBFcu\xE1l ser\xE1 la tuya?"
+  defeatLine: "Qu\xE9 final tan conmovedor."
+  victoryLine: Una historia de terror.

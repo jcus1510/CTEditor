@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: especialista_fighting
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: especialista_fighting
+  displayName: Bruno
+  trainerClass: Especialista Lucha
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: b0c8a8a805c92f14081bc77862ffb483, type: 2}
+    level: 42
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: pangoro
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: a861bdc0a2b4e3e4cbc680d82d54bbd9, type: 2}
+    level: 43
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: hariyama
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 30a0263a29aec8342bb84b07f5b30678, type: 2}
+    level: 44
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: hawlucha
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 9778c4041abcb264b92fb1b3aa29b3a8, type: 2}
+    level: 46
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: conkeldurr
+    moveIds: []
+    natureId: 
+  aiLevel: 3
+  aiProfileId: 
+  ai: 1
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 48
+  introLine: "\xA1Solo conf\xEDo en el tipo Lucha! \xBFTienes con qu\xE9 contrarrestarlo?"
+  defeatLine: 'Me ganaste con cabeza: el tipo Lucha no lo es todo.'
+  victoryLine: "\xA1El tipo Lucha nunca falla!"

@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: dustox
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 99e79723db2646947921f4421176c786, type: 2}
     level: 51
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: heracross
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 8d377b0d6cc4f8c4c90eb9055428a238, type: 2}
     level: 50
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: vespiquen
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 16b55d6e08fc6724387f0cce3fe04746, type: 2}
     level: 49
     moves: []
@@ -45,6 +57,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: beautifly
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: b618f5e911632864aacda08a302ea3fc, type: 2}
     level: 53
     moves: []
@@ -52,7 +68,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: drapion
+    moveIds: []
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

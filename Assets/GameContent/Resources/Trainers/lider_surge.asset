@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: voltorb
+    moveIds:
+    - tackle
+    - sonic_boom
+    - screech
+    - self_destruct
+    natureId: 
   - species: {fileID: 11400000, guid: d148172c1ce1a0947a931dda22f9f42e, type: 2}
     level: 18
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: pikachu
+    moveIds:
+    - thunder_shock
+    - quick_attack
+    - thunder_wave
+    - growl
+    natureId: 
   - species: {fileID: 11400000, guid: 1c041cac37f899347b071f2a811801de, type: 2}
     level: 24
     moves:
@@ -50,7 +66,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: raichu
+    moveIds:
+    - thunderbolt
+    - quick_attack
+    - thunder_wave
+    - double_team
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

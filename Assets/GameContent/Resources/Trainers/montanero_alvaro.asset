@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: geodude
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: c03206aa48a0db647a7b438765715451, type: 2}
     level: 20
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: onix
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 4660fdc6a7cf3d74aa8953b36872ecf5, type: 2}
     level: 21
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: machop
+    moveIds: []
+    natureId: 
   aiLevel: 2
+  aiProfileId: 
   ai: 1
   useItems: 1
   items: []

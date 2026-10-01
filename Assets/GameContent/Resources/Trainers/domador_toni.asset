@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: arbok
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 662b60dd1124c7b4ebc1c93751ae7c75, type: 2}
     level: 42
     moves: []
@@ -31,7 +35,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: tauros
+    moveIds: []
+    natureId: 
   aiLevel: 2
+  aiProfileId: 
   ai: 1
   useItems: 1
   items:

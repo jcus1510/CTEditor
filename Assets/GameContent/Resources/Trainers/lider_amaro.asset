@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_amaro
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_amaro
+  displayName: Amaro
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: d4a5448e5a06a814c8f6749be5ad1143, type: 2}
+    level: 30
+    moves:
+    - {fileID: 11400000, guid: 9a515c34c94d9f846a43fbb08b64617b, type: 2}
+    - {fileID: 11400000, guid: 61f5c64e93bc85b48aecaa66d733c5d2, type: 2}
+    - {fileID: 11400000, guid: 36d61ae0543c3c047861588b54ff9311, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: jumpluff
+    moveIds:
+    - leech_seed
+    - acrobatics
+    - sleep_powder
+    natureId: 
+  - species: {fileID: 11400000, guid: d8e0746a037a6e74da3d142f9940ab8c, type: 2}
+    level: 31
+    moves:
+    - {fileID: 11400000, guid: 61fa77a4f48df8343acd2c2437d3608c, type: 2}
+    - {fileID: 11400000, guid: 9736104cee34b11448d721dd65cfd988, type: 2}
+    - {fileID: 11400000, guid: 1c707176215de6247ac6f78337170e78, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: weepinbell
+    moveIds:
+    - grass_knot
+    - acid
+    - poison_powder
+    natureId: 
+  - species: {fileID: 11400000, guid: 8be9599e42735f345b4188d5e8e988c1, type: 2}
+    level: 34
+    moves:
+    - {fileID: 11400000, guid: 61fa77a4f48df8343acd2c2437d3608c, type: 2}
+    - {fileID: 11400000, guid: 95c0d63a4a28c9f4a82a3da9fecf1712, type: 2}
+    - {fileID: 11400000, guid: 9a515c34c94d9f846a43fbb08b64617b, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: gogoat
+    moveIds:
+    - grass_knot
+    - take_down
+    - leech_seed
+    natureId: 
+  aiLevel: 4
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "Las plantas crecen despacio, pero con ra\xEDces fuertes."
+  defeatLine: Tu equipo ha florecido. Toma la Medalla Planta.
+  victoryLine: Paciencia, joven.

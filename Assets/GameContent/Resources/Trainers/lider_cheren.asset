@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_cheren
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_cheren
+  displayName: Cheren
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 8182b0ec21b5ff348b75f009d7470b23, type: 2}
+    level: 11
+    moves:
+    - {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    - {fileID: 11400000, guid: 91d7d14655e701d40b528f342c361bfc, type: 2}
+    - {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+    - {fileID: 11400000, guid: 2bf945e9e0da7b4469bebca1e26e325f, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: patrat
+    moveIds:
+    - tackle
+    - leer
+    - bite
+    - work_up
+    natureId: 
+  - species: {fileID: 11400000, guid: 6c061df82b1ea5b41a388ce1802aebb4, type: 2}
+    level: 13
+    moves:
+    - {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    - {fileID: 11400000, guid: 91d7d14655e701d40b528f342c361bfc, type: 2}
+    - {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}
+    - {fileID: 11400000, guid: 2bf945e9e0da7b4469bebca1e26e325f, type: 2}
+    heldItem: oran_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: lillipup
+    moveIds:
+    - tackle
+    - leer
+    - bite
+    - work_up
+    natureId: 
+  aiLevel: 4
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "Soy Cheren, el l\xEDder del Gimnasio Aspertia. \xA1Veamos qu\xE9 has
+    aprendido!"
+  defeatLine: Has entendido lo que significa ser fuerte. Toma la Medalla Base.
+  victoryLine: Vuelve cuando lo tengas claro.

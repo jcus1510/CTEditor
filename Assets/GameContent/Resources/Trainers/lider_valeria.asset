@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_valeria
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_valeria
+  displayName: Valeria
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 263fd63a059e55b4d8c4c45b1c2765d7, type: 2}
+    level: 38
+    moves:
+    - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
+    - {fileID: 11400000, guid: fa03bdd225dc1ab408335b9f558a87d3, type: 2}
+    - {fileID: 11400000, guid: b2c063ae9f8542b4a946e7619d7bc4b6, type: 2}
+    - {fileID: 11400000, guid: 5d240fb3209712d44a5837a03f22dc96, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 2
+    speciesId: mawile
+    moveIds:
+    - iron_head
+    - play_rough
+    - crunch
+    - fake_tears
+    natureId: 
+  - species: {fileID: 11400000, guid: 00ff512db2633954fa87967699cb5fb5, type: 2}
+    level: 39
+    moves:
+    - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+    - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+    - {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
+    - {fileID: 11400000, guid: acb45f8f9b7456142aba86ae9ef2b098, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: mr_mime
+    moveIds:
+    - psychic
+    - reflect
+    - light_screen
+    - dazzling_gleam
+    natureId: 
+  - species: {fileID: 11400000, guid: 121d83fe3ed1bb94ab5b022fb28e54ff, type: 2}
+    level: 42
+    moves:
+    - {fileID: 11400000, guid: 8c9ce4c3b8ee14e418216cfe04b58483, type: 2}
+    - {fileID: 11400000, guid: 36afc492c55a0744fbfa3fb385bebc1d, type: 2}
+    - {fileID: 11400000, guid: 5d29e88ccdc542d4696bf4230ca1a84e, type: 2}
+    - {fileID: 11400000, guid: 35fe2804aa535164fbcb02e340ea9a9d, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 2
+    speciesId: sylveon
+    moveIds:
+    - draining_kiss
+    - swift
+    - charm
+    - misty_terrain
+    natureId: 
+  aiLevel: 4
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: hyper_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "Los Pok\xE9mon Hada son delicados... pero no te conf\xEDes."
+  defeatLine: "Qu\xE9 bello combate. Toma la Medalla Hada."
+  victoryLine: Tan bonito como mortal.

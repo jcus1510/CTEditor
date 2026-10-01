@@ -26,6 +26,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: pidgey
+    moveIds:
+    - tackle
+    - mud_slap
+    natureId: 
   - species: {fileID: 11400000, guid: 7a222c698438ac34d81e440c3ce22905, type: 2}
     level: 9
     moves:
@@ -36,7 +42,15 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: pidgeotto
+    moveIds:
+    - tackle
+    - mud_slap
+    - gust
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_lem
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_lem
+  displayName: Lem
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 5252b82c1b132b64e842c64bdc0206b8, type: 2}
+    level: 35
+    moves:
+    - {fileID: 11400000, guid: 8f4fb832c81f5bc4f83d784621bf3494, type: 2}
+    - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
+    - {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: emolga
+    moveIds:
+    - volt_switch
+    - aerial_ace
+    - quick_attack
+    natureId: 
+  - species: {fileID: 11400000, guid: dd39c9e7c324f124197628311bc79ff1, type: 2}
+    level: 35
+    moves:
+    - {fileID: 11400000, guid: f2b0d1ebe24850e4e9955fa4727387b3, type: 2}
+    - {fileID: 11400000, guid: ae4d44d1d62317842ba1b364c0d71eb7, type: 2}
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: magneton
+    moveIds:
+    - electric_terrain
+    - mirror_shot
+    - thunderbolt
+    natureId: 
+  - species: {fileID: 11400000, guid: a5babac9da292be488b9dde4275c96ac, type: 2}
+    level: 37
+    moves:
+    - {fileID: 11400000, guid: f2b0d1ebe24850e4e9955fa4727387b3, type: 2}
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
+    - {fileID: 11400000, guid: 61fa77a4f48df8343acd2c2437d3608c, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: heliolisk
+    moveIds:
+    - electric_terrain
+    - thunderbolt
+    - quick_attack
+    - grass_knot
+    natureId: 
+  aiLevel: 4
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: hyper_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "\xA1La ciencia es el futuro! \xA1Te lo demostrar\xE9 con mis inventos!"
+  defeatLine: "\xA1Tu estrategia es m\xE1s brillante que mis inventos! Toma la Medalla
+    Voltio."
+  victoryLine: "\xA1\xC9xito del experimento!"

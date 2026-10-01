@@ -48,6 +48,10 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 0e3f0fa51d6203f4b93b171b6cf2bcb8, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: b8f4de817c276c24bb56f79455c80a2b, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: fa03bdd225dc1ab408335b9f558a87d3, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: 5d240fb3209712d44a5837a03f22dc96, type: 2}
     level: 6
   - move: {fileID: 11400000, guid: 6d9679cc6ee802843a0799ef2e80fd18, type: 2}

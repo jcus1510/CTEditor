@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: numel
+    moveIds:
+    - overheat
+    - take_down
+    - magnitude
+    - sunny_day
+    natureId: 
   - species: {fileID: 11400000, guid: bc0c6be0ba1932f40b3d34f70d207cef, type: 2}
     level: 24
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: slugma
+    moveIds:
+    - overheat
+    - smog
+    - light_screen
+    - sunny_day
+    natureId: 
   - species: {fileID: 11400000, guid: 186f5f89fad245e4bb72565b4f8a922e, type: 2}
     level: 26
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: camerupt
+    moveIds:
+    - overheat
+    - tackle
+    - sunny_day
+    - attract
+    natureId: 
   - species: {fileID: 11400000, guid: 6d59add5f8a484a4db404a3a218f14d4, type: 2}
     level: 29
     moves:
@@ -61,7 +85,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: torkoal
+    moveIds:
+    - overheat
+    - sunny_day
+    - body_slam
+    - attract
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

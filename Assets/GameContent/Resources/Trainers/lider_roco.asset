@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: geodude
+    moveIds:
+    - stealth_rock
+    - rock_throw
+    - tackle
+    - defense_curl
+    natureId: 
   - species: {fileID: 11400000, guid: c03206aa48a0db647a7b438765715451, type: 2}
     level: 12
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: onix
+    moveIds:
+    - stealth_rock
+    - rock_throw
+    - screech
+    - bind
+    natureId: 
   - species: {fileID: 11400000, guid: e6850ce46cd05f343a89aec272c08511, type: 2}
     level: 14
     moves:
@@ -50,7 +66,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: cranidos
+    moveIds:
+    - headbutt
+    - pursuit
+    - leer
+    - rock_throw
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

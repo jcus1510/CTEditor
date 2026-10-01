@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: geodude
+    moveIds:
+    - tackle
+    - defense_curl
+    - rock_throw
+    - rock_tomb
+    natureId: 
   - species: {fileID: 11400000, guid: 0949dcb79f87e03459d0550e7db28e07, type: 2}
     level: 12
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: geodude
+    moveIds:
+    - tackle
+    - defense_curl
+    - rock_throw
+    - rock_tomb
+    natureId: 
   - species: {fileID: 11400000, guid: c9bcbee40ceb2f046aae913c496dfd59, type: 2}
     level: 15
     moves:
@@ -50,7 +66,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: nosepass
+    moveIds:
+    - tackle
+    - harden
+    - rock_tomb
+    - block
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

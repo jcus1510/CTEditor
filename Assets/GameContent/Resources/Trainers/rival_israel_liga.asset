@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: staraptor
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: e3ef4de9529e6e34bab25e1c1d9c2030, type: 2}
     level: 49
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: floatzel
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: a78a4ae9a7bb0594c95f41fd5ef36d3b, type: 2}
     level: 49
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: roserade
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: e82dc14f3f7028040bd4c208195566b2, type: 2}
     level: 51
     moves: []
@@ -45,6 +57,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: snorlax
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 99e79723db2646947921f4421176c786, type: 2}
     level: 50
     moves: []
@@ -52,6 +68,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: heracross
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 46f1e88b0307eb04b8e433a7d78f21bc, type: 2}
     level: 53
     moves: []
@@ -59,7 +79,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: empoleon
+    moveIds: []
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

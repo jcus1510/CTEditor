@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: xatu
+    moveIds:
+    - quick_attack
+    - future_sight
+    - confuse_ray
+    - psychic
+    natureId: 
   - species: {fileID: 11400000, guid: e6b8e6a6c578f7a45b79f657b78f4d0a, type: 2}
     level: 41
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: jynx
+    moveIds:
+    - double_slap
+    - lovely_kiss
+    - ice_punch
+    - psychic
+    natureId: 
   - species: {fileID: 11400000, guid: 7b43ab56c52edee4c959f6fcf0b6658e, type: 2}
     level: 41
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: exeggutor
+    moveIds:
+    - reflect
+    - leech_seed
+    - egg_bomb
+    - psychic
+    natureId: 
   - species: {fileID: 11400000, guid: 342f593bef94bbd4c9d03b70ea37cb08, type: 2}
     level: 41
     moves:
@@ -61,6 +85,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: slowbro
+    moveIds:
+    - curse
+    - amnesia
+    - body_slam
+    - psychic
+    natureId: 
   - species: {fileID: 11400000, guid: 5b49eab32b62cfe40b820a5f6e00d3fb, type: 2}
     level: 42
     moves:
@@ -72,7 +104,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: xatu
+    moveIds:
+    - quick_attack
+    - future_sight
+    - confuse_ray
+    - psychic
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: marill
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 944ef7e518e6cf44fa448c57143966cf, type: 2}
     level: 13
     moves: []
@@ -31,7 +35,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: skitty
+    moveIds: []
+    natureId: 
   aiLevel: 1
+  aiProfileId: 
   ai: 0
   useItems: 0
   items: []

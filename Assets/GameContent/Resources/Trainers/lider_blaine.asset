@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: growlithe
+    moveIds:
+    - bite
+    - roar
+    - take_down
+    - flamethrower
+    natureId: 
   - species: {fileID: 11400000, guid: 7710b1d52f0f8c740b243a9b5c007ec1, type: 2}
     level: 40
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: ponyta
+    moveIds:
+    - stomp
+    - fire_spin
+    - take_down
+    - agility
+    natureId: 
   - species: {fileID: 11400000, guid: 23e4f24d2b4841f4abd6b1696364be7c, type: 2}
     level: 42
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: rapidash
+    moveIds:
+    - stomp
+    - fire_spin
+    - take_down
+    - agility
+    natureId: 
   - species: {fileID: 11400000, guid: 532b223a89e630d4ebdffcdee71b86c6, type: 2}
     level: 47
     moves:
@@ -61,7 +85,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: arcanine
+    moveIds:
+    - fire_blast
+    - take_down
+    - roar
+    - extreme_speed
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: as_frente_arena
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: as_frente_arena
+  displayName: "Roc\xEDo"
+  trainerClass: As del Frente
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 2d48c443db6539d43a0b6f71ffae5b4c, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+    - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+    - {fileID: 11400000, guid: b2c063ae9f8542b4a946e7619d7bc4b6, type: 2}
+    - {fileID: 11400000, guid: 23c41488587880a41af470a39ef66e7a, type: 2}
+    heldItem: chople_berry
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: tyranitar
+    moveIds:
+    - stealth_rock
+    - stone_edge
+    - crunch
+    - pursuit
+    natureId: adamant
+  - species: {fileID: 11400000, guid: 255d9e8a02243744fa7c6b8f2fbdfc49, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
+    - {fileID: 11400000, guid: 69635592b0c0e8143974cc17729d57f4, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: excadrill
+    moveIds:
+    - swords_dance
+    - earthquake
+    - iron_head
+    - rapid_spin
+    natureId: adamant
+  - species: {fileID: 11400000, guid: aa3cf5b61c8f6ec478bd71db5634bceb, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 6e47f34420dc9c74eb3d04177fb23c56, type: 2}
+    - {fileID: 11400000, guid: 79c16ae15564dfe4c90f01ef6a28087a, type: 2}
+    heldItem: focus_sash
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: garchomp
+    moveIds:
+    - swords_dance
+    - earthquake
+    - dragon_claw
+    - fire_fang
+    natureId: jolly
+  - species: {fileID: 11400000, guid: 1fdeebc48b4832347ba76f2dd6ebaa0e, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: c5455309fb8e55c40b5981fc5704feb2, type: 2}
+    - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+    - {fileID: 11400000, guid: d47cc258ebd8daf478118213e60c0582, type: 2}
+    - {fileID: 11400000, guid: bcccef566519fe44c8d5402f12197963, type: 2}
+    heldItem: rocky_helmet
+    nature: {fileID: 11400000, guid: d245b2695513c6b46ad886c4c8cdb507, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: skarmory
+    moveIds:
+    - spikes
+    - roost
+    - brave_bird
+    - whirlwind
+    natureId: impish
+  - species: {fileID: 11400000, guid: 085417c8a5c44d64b95099ec5cff0022, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    - {fileID: 11400000, guid: 8f4fb832c81f5bc4f83d784621bf3494, type: 2}
+    - {fileID: 11400000, guid: 08a4346f4805fd543915dd9660411ba8, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: rotom
+    moveIds:
+    - thunderbolt
+    - shadow_ball
+    - volt_switch
+    - will_o_wisp
+    natureId: timid
+  - species: {fileID: 11400000, guid: 9778c4041abcb264b92fb1b3aa29b3a8, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 13d60738e9b44814b80557dd96b5063d, type: 2}
+    - {fileID: 11400000, guid: 92a135ffd9400eb4795a760f2163ffec, type: 2}
+    - {fileID: 11400000, guid: 0dff38465403d64468cee754c6fab39c, type: 2}
+    - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+    heldItem: assault_vest
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: conkeldurr
+    moveIds:
+    - drain_punch
+    - mach_punch
+    - ice_punch
+    - knock_off
+    natureId: adamant
+  aiLevel: 6
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  - itemId: full_heal
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 150
+  introLine: "Arena y trampas. \xBFAguantar\xE1s mi estrategia?"
+  defeatLine: "Has le\xEDdo mi estrategia de principio a fin."
+  victoryLine: La estrategia siempre gana.

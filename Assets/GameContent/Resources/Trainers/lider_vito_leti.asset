@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: claydol
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 5b49eab32b62cfe40b820a5f6e00d3fb, type: 2}
     level: 41
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: xatu
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 38330705edceaf94da4385d759825357, type: 2}
     level: 42
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: lunatone
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: ce10532dcb537ad4bb102678c9e00539, type: 2}
     level: 42
     moves: []
@@ -45,7 +57,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: solrock
+    moveIds: []
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

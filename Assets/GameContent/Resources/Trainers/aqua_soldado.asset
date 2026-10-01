@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: carvanha
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 9ce49242aa387814485402aa3c445546, type: 2}
     level: 17
     moves: []
@@ -31,7 +35,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: poochyena
+    moveIds: []
+    natureId: 
   aiLevel: 3
+  aiProfileId: 
   ai: 1
   useItems: 1
   items: []

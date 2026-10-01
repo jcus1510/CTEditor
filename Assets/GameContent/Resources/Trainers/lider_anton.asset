@@ -27,6 +27,13 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: metapod
+    moveIds:
+    - tackle
+    - string_shot
+    - harden
+    natureId: 
   - species: {fileID: 11400000, guid: 2d7a3a21e7185cd42bdd7974749472aa, type: 2}
     level: 14
     moves:
@@ -37,6 +44,13 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: kakuna
+    moveIds:
+    - poison_sting
+    - string_shot
+    - harden
+    natureId: 
   - species: {fileID: 11400000, guid: 940c847721ee2d947ab9310a7934f4d0, type: 2}
     level: 16
     moves:
@@ -47,7 +61,15 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: scyther
+    moveIds:
+    - quick_attack
+    - leer
+    - fury_cutter
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

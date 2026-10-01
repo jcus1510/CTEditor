@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: starly
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: efa878c4f67879c4f8afeafb311ec6b1, type: 2}
     level: 9
     moves: []
@@ -31,7 +35,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: chimchar
+    moveIds: []
+    natureId: 
   aiLevel: 2
+  aiProfileId: 
   ai: 1
   useItems: 1
   items:

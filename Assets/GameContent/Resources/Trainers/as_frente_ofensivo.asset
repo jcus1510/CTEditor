@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: as_frente_ofensivo
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: as_frente_ofensivo
+  displayName: Leo
+  trainerClass: As del Frente
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: ce4bbb5abf5490d46984bd2ed2dbd62f, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+    - {fileID: 11400000, guid: ffaa0c9df25d20848a44a1f77b5aba3f, type: 2}
+    - {fileID: 11400000, guid: c7965f535ac7df04a918d59d14894ab7, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: weavile
+    moveIds:
+    - swords_dance
+    - knock_off
+    - ice_shard
+    - low_kick
+    natureId: jolly
+  - species: {fileID: 11400000, guid: bc0caf2b3ee63b540acec34fe72ee456, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
+    - {fileID: 11400000, guid: c3b6da97600a239478d3b1629781f284, type: 2}
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    heldItem: choice_specs
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: gengar
+    moveIds:
+    - shadow_ball
+    - sludge_bomb
+    - focus_blast
+    - thunderbolt
+    natureId: timid
+  - species: {fileID: 11400000, guid: 79469bbd6417e3d448e4f41069216d91, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
+    - {fileID: 11400000, guid: 2c8d927e56982e142b3c96771a695edb, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: f688138a081b68d48a33415bdf250b90, type: 2}
+    heldItem: lum_berry
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: dragonite
+    moveIds:
+    - dragon_dance
+    - outrage
+    - earthquake
+    - extreme_speed
+    natureId: adamant
+  - species: {fileID: 11400000, guid: ec1a172ab8771cc47ac5520570de699c, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    - {fileID: 11400000, guid: 4ffc2275349815749b8e70f372f6ebd8, type: 2}
+    - {fileID: 11400000, guid: f688138a081b68d48a33415bdf250b90, type: 2}
+    - {fileID: 11400000, guid: 1d7a6fcbd33d8ba46a53fd951d741f10, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: lucario
+    moveIds:
+    - swords_dance
+    - close_combat
+    - extreme_speed
+    - bullet_punch
+    natureId: adamant
+  - species: {fileID: 11400000, guid: c023926d1419f9f43ab3c60d5beeedc3, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+    - {fileID: 11400000, guid: 69635592b0c0e8143974cc17729d57f4, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: starmie
+    moveIds:
+    - hydro_pump
+    - ice_beam
+    - thunderbolt
+    - rapid_spin
+    natureId: timid
+  - species: {fileID: 11400000, guid: 139ade08b89957142bcb49361c6d3a9f, type: 2}
+    level: 50
+    moves:
+    - {fileID: 11400000, guid: bf7478c2d0dfd5149b958b89aa90e56a, type: 2}
+    - {fileID: 11400000, guid: 4b07d66fdb896c142bbbcbdb4af6e0c8, type: 2}
+    - {fileID: 11400000, guid: 92a135ffd9400eb4795a760f2163ffec, type: 2}
+    - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
+    heldItem: focus_sash
+    nature: {fileID: 11400000, guid: 87f47e4327cda6d4696b2edcc2eb40e1, type: 2}
+    fixedIvs: 31
+    nickname: 
+    gender: 0
+    speciesId: breloom
+    moveIds:
+    - spore
+    - bullet_seed
+    - mach_punch
+    - rock_tomb
+    natureId: jolly
+  aiLevel: 6
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  - itemId: full_heal
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 150
+  introLine: "Hiperofensivo. \xBFAguantar\xE1s mi estrategia?"
+  defeatLine: "Has le\xEDdo mi estrategia de principio a fin."
+  victoryLine: La estrategia siempre gana.

@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: sneasel
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 80fd2fdcc8c1dd4498953185cd3ffee9, type: 2}
     level: 40
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: piloswine
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 0188e1ce990c18a43a4808f5f14a1a15, type: 2}
     level: 42
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: abomasnow
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: a0bec252c6272fd4998c54c491018b8c, type: 2}
     level: 44
     moves: []
@@ -45,7 +57,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: froslass
+    moveIds: []
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: magnemite
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: e0d1d3629fa4fde4593727d54141926c, type: 2}
     level: 30
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: voltorb
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 8ddf7620912aa824c9fb6e33e1c8e97d, type: 2}
     level: 32
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: electrode
+    moveIds: []
+    natureId: 
   aiLevel: 2
+  aiProfileId: 
   ai: 1
   useItems: 1
   items:

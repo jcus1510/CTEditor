@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: nidoking
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: ef535827a992d784999385fe504515fb, type: 2}
     level: 43
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: kingler
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: baf26009b69f660448076f4d92e8e344, type: 2}
     level: 45
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: electabuzz
+    moveIds: []
+    natureId: 
   aiLevel: 3
+  aiProfileId: 
   ai: 1
   useItems: 1
   items:

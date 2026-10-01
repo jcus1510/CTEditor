@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_violeta
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_violeta
+  displayName: Violeta
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 01f7565bf61f5f3459cb8ea2ab932c1a, type: 2}
+    level: 10
+    moves:
+    - {fileID: 11400000, guid: 2406f462df3231240b8d1b29c198060f, type: 2}
+    - {fileID: 11400000, guid: b42a72046ceb81b4395594b2b3f6c8d3, type: 2}
+    - {fileID: 11400000, guid: 25938b490a569fb458f02c51ede4c0cf, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: surskit
+    moveIds:
+    - quick_attack
+    - bubble
+    - water_sport
+    natureId: 
+  - species: {fileID: 11400000, guid: 9b4748d3dee2d484bbccd2b026783164, type: 2}
+    level: 12
+    moves:
+    - {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    - {fileID: 11400000, guid: 0a7589ec211131d45b8c65c725894de0, type: 2}
+    - {fileID: 11400000, guid: b9c4a4072b4846d4682b7aa97e95c2c5, type: 2}
+    heldItem: oran_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 2
+    speciesId: vivillon
+    moveIds:
+    - tackle
+    - harden
+    - infestation
+    natureId: 
+  aiLevel: 4
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "\xA1Soy Violeta! \xA1Voy a capturar tu derrota con mi c\xE1mara!"
+  defeatLine: "\xA1Qu\xE9 foto tan buena! Toma la Medalla Insecto."
+  victoryLine: "\xA1Clic! \xA1Foto de victoria!"

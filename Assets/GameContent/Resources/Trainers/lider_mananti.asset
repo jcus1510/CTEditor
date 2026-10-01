@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: gyarados
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 1b56a1bfd2ecb7641806b229b0842499, type: 2}
     level: 34
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: quagsire
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: e3ef4de9529e6e34bab25e1c1d9c2030, type: 2}
     level: 37
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: floatzel
+    moveIds: []
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

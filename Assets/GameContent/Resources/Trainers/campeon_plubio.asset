@@ -19,47 +19,120 @@ MonoBehaviour:
   team:
   - species: {fileID: 11400000, guid: 5737e748d120c774da0a05d69b644707, type: 2}
     level: 57
-    moves: []
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: e8b480df93c4c3445a6e55e176d47be3, type: 2}
+    - {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
+    heldItem: choice_specs
+    nature: {fileID: 11400000, guid: 417342a86f1356144b635971dd808ada, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: wailord
+    moveIds:
+    - water_spout
+    - hydro_pump
+    - ice_beam
+    - surf
+    natureId: modest
   - species: {fileID: 11400000, guid: f153cf65501250846a7637ffb08c0e5a, type: 2}
     level: 55
-    moves: []
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
+    - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
+    - {fileID: 11400000, guid: 69635592b0c0e8143974cc17729d57f4, type: 2}
+    - {fileID: 11400000, guid: a79bea7b221d868448e8f97e0fb060cc, type: 2}
+    heldItem: black_sludge
+    nature: {fileID: 11400000, guid: 1ddd8a2eef198a14abbcfb06fe530987, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: tentacruel
+    moveIds:
+    - scald
+    - sludge_bomb
+    - rapid_spin
+    - toxic_spikes
+    natureId: timid
   - species: {fileID: 11400000, guid: 8476e056865204c4580a0bec71f1ec7c, type: 2}
     level: 56
-    moves: []
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+    - {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+    - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    heldItem: life_orb
+    nature: {fileID: 11400000, guid: 417342a86f1356144b635971dd808ada, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: ludicolo
+    moveIds:
+    - rain_dance
+    - hydro_pump
+    - giga_drain
+    - ice_beam
+    natureId: modest
   - species: {fileID: 11400000, guid: 2d1cc53685434c844827dfea710e4309, type: 2}
     level: 56
-    moves: []
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: 630606dd415e65a4ca5db9fbffaaa633, type: 2}
+    - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+    heldItem: lum_berry
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: whiscash
+    moveIds:
+    - dragon_dance
+    - earthquake
+    - waterfall
+    - stone_edge
+    natureId: adamant
   - species: {fileID: 11400000, guid: ae9fd7d998bc49a4ea5829d7a235ced9, type: 2}
     level: 56
-    moves: []
-    heldItem: 
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: 04c81c1ac3fecd04295b90dc6689dff2, type: 2}
+    - {fileID: 11400000, guid: 630606dd415e65a4ca5db9fbffaaa633, type: 2}
+    - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    - {fileID: 11400000, guid: f291a6ab8ca34194cbcc76a39c489ee4, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: 0e366f7b3d39d344788d41a0325df19b, type: 2}
+    fixedIvs: 31
     nickname: 
+    gender: 0
+    speciesId: gyarados
+    moveIds:
+    - dragon_dance
+    - waterfall
+    - earthquake
+    - bounce
+    natureId: adamant
   - species: {fileID: 11400000, guid: 8fc72c85164573a4aa2e44e0d254ac48, type: 2}
     level: 58
-    moves: []
-    heldItem: sitrus_berry
-    nature: {fileID: 0}
-    fixedIvs: -1
+    moves:
+    - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
+    - {fileID: 11400000, guid: 0eb8b27313372d04b914fe06dab256f8, type: 2}
+    - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    - {fileID: 11400000, guid: 25c737bace85c664989731b45995b0fc, type: 2}
+    heldItem: leftovers
+    nature: {fileID: 11400000, guid: cf36dc122159e1840bceda761357f5d3, type: 2}
+    fixedIvs: 31
     nickname: 
-  aiLevel: 5
+    gender: 0
+    speciesId: milotic
+    moveIds:
+    - scald
+    - recover
+    - ice_beam
+    - haze
+    natureId: bold
+  aiLevel: 6
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

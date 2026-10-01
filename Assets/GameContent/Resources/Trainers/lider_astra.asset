@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_astra
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_astra
+  displayName: "\xC1strid"
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 8fef2d9a35de1ff4fad2803d5649dbc5, type: 2}
+    level: 44
+    moves:
+    - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+    - {fileID: 11400000, guid: e58af6e84f63b4f4ba6b9ba942911e57, type: 2}
+    - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+    - {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: sigilyph
+    moveIds:
+    - psychic
+    - air_slash
+    - reflect
+    - light_screen
+    natureId: 
+  - species: {fileID: 11400000, guid: ffe0484ff5a4e2c489d4f0c0558ed611, type: 2}
+    level: 45
+    moves:
+    - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+    - {fileID: 11400000, guid: a5374efedeac1dc4f86e24a698d19e6d, type: 2}
+    - {fileID: 11400000, guid: c4de1d9b8d3d78a4994ac30739fede35, type: 2}
+    - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: slowking
+    moveIds:
+    - psychic
+    - yawn
+    - power_gem
+    - calm_mind
+    natureId: 
+  - species: {fileID: 11400000, guid: 994611875e069f34ba98bb92e8d318b9, type: 2}
+    level: 48
+    moves:
+    - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+    - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    - {fileID: 11400000, guid: 072891eab0ca8804abe49a40dcaff9f0, type: 2}
+    - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 2
+    speciesId: meowstic
+    moveIds:
+    - psychic
+    - shadow_ball
+    - fake_out
+    - calm_mind
+    natureId: 
+  aiLevel: 4
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: hyper_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: Las estrellas ya me dijeron el resultado.
+  defeatLine: Las estrellas se equivocaron. Toma la Medalla Psique.
+  victoryLine: Tal como predijeron.

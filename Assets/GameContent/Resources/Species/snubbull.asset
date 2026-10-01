@@ -59,6 +59,8 @@ MonoBehaviour:
     level: 26
   - move: {fileID: 11400000, guid: 26291bcf3da149b4abcf8cdf3d253969, type: 2}
     level: 34
+  - move: {fileID: 11400000, guid: fa03bdd225dc1ab408335b9f558a87d3, type: 2}
+    level: 37
   - move: {fileID: 11400000, guid: 95c0d63a4a28c9f4a82a3da9fecf1712, type: 2}
     level: 43
   evolutions:

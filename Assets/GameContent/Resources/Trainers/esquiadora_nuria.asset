@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: swinub
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: e6b8e6a6c578f7a45b79f657b78f4d0a, type: 2}
     level: 28
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: jynx
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: da0eae12c229fee498ec949b7302c9a3, type: 2}
     level: 28
     moves: []
@@ -38,7 +46,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: delibird
+    moveIds: []
+    natureId: 
   aiLevel: 2
+  aiProfileId: 
   ai: 1
   useItems: 1
   items:

@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: lider_ciprian
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: lider_ciprian
+  displayName: "Cipri\xE1n"
+  trainerClass: "L\xEDder de gimnasio"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: e59af8d29ec9f1344b72a996422e00c4, type: 2}
+    level: 49
+    moves:
+    - {fileID: 11400000, guid: b2c063ae9f8542b4a946e7619d7bc4b6, type: 2}
+    - {fileID: 11400000, guid: cd236a9f7c6f45a4fa1f6daab744b50f, type: 2}
+    - {fileID: 11400000, guid: c5e92a848508aa34d9664bbcf6789999, type: 2}
+    - {fileID: 11400000, guid: 6e591eadf38b0be47a08e6db5e5ee087, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: carracosta
+    moveIds:
+    - crunch
+    - razor_shell
+    - brine
+    - shell_smash
+    natureId: 
+  - species: {fileID: 11400000, guid: 5737e748d120c774da0a05d69b644707, type: 2}
+    level: 49
+    moves:
+    - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
+    - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+    - {fileID: 11400000, guid: a651acac4e913d940b3655bbd0583ea4, type: 2}
+    - {fileID: 11400000, guid: c5e92a848508aa34d9664bbcf6789999, type: 2}
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: wailord
+    moveIds:
+    - water_pulse
+    - rest
+    - heavy_slam
+    - brine
+    natureId: 
+  - species: {fileID: 11400000, guid: 7becf3dc1dfb68b4ab8198ce1ae01460, type: 2}
+    level: 51
+    moves:
+    - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
+    - {fileID: 11400000, guid: 079f8ef57f99e5a4d8d5e2ee8ae862a5, type: 2}
+    - {fileID: 11400000, guid: c5e92a848508aa34d9664bbcf6789999, type: 2}
+    - {fileID: 11400000, guid: 0eb8b27313372d04b914fe06dab256f8, type: 2}
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: jellicent
+    moveIds:
+    - scald
+    - hex
+    - brine
+    - recover
+    natureId: 
+  aiLevel: 4
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 1
+  - itemId: hyper_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "\xA1Uooo! \xA1Te voy a arrastrar con mis olas!"
+  defeatLine: "\xA1Eres imparable como el mar! Toma la Medalla Ola."
+  victoryLine: "\xA1Olas y m\xE1s olas!"

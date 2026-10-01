@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: gengar
+    moveIds:
+    - confuse_ray
+    - night_shade
+    - hypnosis
+    - dream_eater
+    natureId: 
   - species: {fileID: 11400000, guid: 57a9b4deca86cc547958c1a00b6d44f5, type: 2}
     level: 56
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: golbat
+    moveIds:
+    - bite
+    - confuse_ray
+    - wing_attack
+    - haze
+    natureId: 
   - species: {fileID: 11400000, guid: 9f8050426d9ce95438006f82732fc8a8, type: 2}
     level: 55
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: haunter
+    moveIds:
+    - confuse_ray
+    - night_shade
+    - hypnosis
+    - dream_eater
+    natureId: 
   - species: {fileID: 11400000, guid: da1a0cdada5431a4585f61e226a97698, type: 2}
     level: 58
     moves:
@@ -61,6 +85,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: arbok
+    moveIds:
+    - bite
+    - glare
+    - acid
+    - wrap
+    natureId: 
   - species: {fileID: 11400000, guid: bc0caf2b3ee63b540acec34fe72ee456, type: 2}
     level: 60
     moves:
@@ -72,7 +104,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: gengar
+    moveIds:
+    - confuse_ray
+    - night_shade
+    - hypnosis
+    - dream_eater
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

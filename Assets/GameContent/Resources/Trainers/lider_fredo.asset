@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: seel
+    moveIds:
+    - headbutt
+    - icy_wind
+    - aurora_beam
+    - rest
+    natureId: 
   - species: {fileID: 11400000, guid: fbf4ba8e41a55904f8851760dc4708b0, type: 2}
     level: 29
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: dewgong
+    moveIds:
+    - headbutt
+    - icy_wind
+    - aurora_beam
+    - rest
+    natureId: 
   - species: {fileID: 11400000, guid: 80fd2fdcc8c1dd4498953185cd3ffee9, type: 2}
     level: 31
     moves:
@@ -50,7 +66,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: piloswine
+    moveIds:
+    - icy_wind
+    - fury_attack
+    - mist
+    - blizzard
+    natureId: 
   aiLevel: 4
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

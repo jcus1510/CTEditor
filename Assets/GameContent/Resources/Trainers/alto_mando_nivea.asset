@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: sealeo
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: a26453276e957bd4cac448f2d8a9acc3, type: 2}
     level: 50
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: glalie
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: f4c900d6ae026c0439fa358993c9d7b6, type: 2}
     level: 52
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: sealeo
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: a26453276e957bd4cac448f2d8a9acc3, type: 2}
     level: 52
     moves: []
@@ -45,6 +57,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: glalie
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 284d2b3efa894e54db3cb1fa1448e2b9, type: 2}
     level: 53
     moves: []
@@ -52,7 +68,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: walrein
+    moveIds: []
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: especialista_ice
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: especialista_ice
+  displayName: Nieves
+  trainerClass: Especialista Hielo
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 6db703064e33a4f459c50d9300a8911f, type: 2}
+    level: 42
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: beartic
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: e05dcd1b1fb0b0249bcf3442a66c2d54, type: 2}
+    level: 43
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: cryogonal
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: a0bec252c6272fd4998c54c491018b8c, type: 2}
+    level: 44
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: froslass
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: a26453276e957bd4cac448f2d8a9acc3, type: 2}
+    level: 46
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: glalie
+    moveIds: []
+    natureId: 
+  aiLevel: 3
+  aiProfileId: 
+  ai: 1
+  useItems: 1
+  items:
+  - itemId: super_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 48
+  introLine: "\xA1Solo conf\xEDo en el tipo Hielo! \xBFTienes con qu\xE9 contrarrestarlo?"
+  defeatLine: 'Me ganaste con cabeza: el tipo Hielo no lo es todo.'
+  victoryLine: "\xA1El tipo Hielo nunca falla!"

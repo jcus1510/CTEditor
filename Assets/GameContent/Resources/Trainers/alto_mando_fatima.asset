@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: dusclops
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 4c95ae99ed68d8f439f7797d5332f852, type: 2}
     level: 49
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: banette
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 2f44a6efd5fc2ea4383af1e1da91dca8, type: 2}
     level: 50
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: sableye
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 4c95ae99ed68d8f439f7797d5332f852, type: 2}
     level: 49
     moves: []
@@ -45,6 +57,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: banette
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: a096acd1fc2a4084aa37794036bf1a98, type: 2}
     level: 51
     moves: []
@@ -52,7 +68,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: dusclops
+    moveIds: []
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

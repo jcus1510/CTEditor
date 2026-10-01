@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: acromo
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: acromo
+  displayName: Acromo
+  trainerClass: "Cient\xEDfico del Team Plasma"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: dd39c9e7c324f124197628311bc79ff1, type: 2}
+    level: 50
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: magneton
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 47b5b8af6f496dd4f9f815928c26aa2a, type: 2}
+    level: 50
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: metang
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 2d0feea6e6a446c4d9e936a55131f0a9, type: 2}
+    level: 50
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: beheeyem
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: c80611bb25d145e4ba5ebcf0dd65e392, type: 2}
+    level: 52
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: magnezone
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: e5d896f0729d0f74ab2ee648041db354, type: 2}
+    level: 52
+    moves: []
+    heldItem: sitrus_berry
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    speciesId: klinklang
+    moveIds: []
+    natureId: 
+  aiLevel: 4
+  aiProfileId: 
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: hyper_potion
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 80
+  introLine: "Quiero ver hasta d\xF3nde llega el poder de los Pok\xE9mon."
+  defeatLine: Fascinante... de verdad.
+  victoryLine: Los datos no mienten.

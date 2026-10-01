@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: houndoom
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: c1ec7b1da38e6d44f931f28be304dc67, type: 2}
     level: 55
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: flareon
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 23e4f24d2b4841f4abd6b1696364be7c, type: 2}
     level: 53
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: rapidash
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: c3fd5b847cd49334d9e8931333da0739, type: 2}
     level: 55
     moves: []
@@ -45,6 +57,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: infernape
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 45ae760b89e3dd043a9e62a07d54dfb6, type: 2}
     level: 57
     moves: []
@@ -52,7 +68,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: magmortar
+    moveIds: []
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

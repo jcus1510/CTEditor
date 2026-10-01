@@ -19,23 +19,29 @@ MonoBehaviour:
     minLevel: 3
     maxLevel: 5
     weight: 35
+    speciesId: caterpie
   - species: {fileID: 11400000, guid: c96956f6c0532084b9ffc5adb3705e97, type: 2}
     minLevel: 3
     maxLevel: 5
     weight: 35
+    speciesId: weedle
   - species: {fileID: 11400000, guid: c1f4e757011ee6140a15f30c4c946459, type: 2}
     minLevel: 4
     maxLevel: 6
     weight: 10
+    speciesId: metapod
   - species: {fileID: 11400000, guid: 2d7a3a21e7185cd42bdd7974749472aa, type: 2}
     minLevel: 4
     maxLevel: 6
     weight: 10
+    speciesId: kakuna
   - species: {fileID: 11400000, guid: d148172c1ce1a0947a931dda22f9f42e, type: 2}
     minLevel: 3
     maxLevel: 5
     weight: 5
+    speciesId: pikachu
   - species: {fileID: 11400000, guid: 48137f4a5ce288d4f81b8268482104cb, type: 2}
     minLevel: 4
     maxLevel: 6
     weight: 5
+    speciesId: pidgey

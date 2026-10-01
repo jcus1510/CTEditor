@@ -24,6 +24,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: mr_mime
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 0d29763e2ca560e40906db54bbc5b317, type: 2}
     level: 53
     moves: []
@@ -31,6 +35,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: girafarig
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 99a6502731a462e44b0698276355c1b4, type: 2}
     level: 54
     moves: []
@@ -38,6 +46,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: medicham
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 3493c02ee4939854899a97e2a720d872, type: 2}
     level: 56
     moves: []
@@ -45,6 +57,10 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: alakazam
+    moveIds: []
+    natureId: 
   - species: {fileID: 11400000, guid: 56b63d8921c072f4d94f61e419002a2a, type: 2}
     level: 57
     moves: []
@@ -52,7 +68,12 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: bronzong
+    moveIds: []
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:

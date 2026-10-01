@@ -28,6 +28,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: hitmontop
+    moveIds:
+    - pursuit
+    - quick_attack
+    - dig
+    - detect
+    natureId: 
   - species: {fileID: 11400000, guid: b349ed3a4e4fc044cab99672d49ff02f, type: 2}
     level: 42
     moves:
@@ -39,6 +47,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: hitmonlee
+    moveIds:
+    - swagger
+    - double_kick
+    - high_jump_kick
+    - foresight
+    natureId: 
   - species: {fileID: 11400000, guid: f680bdd468c14654e9204e3a2951d071, type: 2}
     level: 42
     moves:
@@ -50,6 +66,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: hitmonchan
+    moveIds:
+    - thunder_punch
+    - ice_punch
+    - fire_punch
+    - mach_punch
+    natureId: 
   - species: {fileID: 11400000, guid: c03206aa48a0db647a7b438765715451, type: 2}
     level: 43
     moves:
@@ -61,6 +85,14 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: onix
+    moveIds:
+    - bind
+    - earthquake
+    - sandstorm
+    - rock_slide
+    natureId: 
   - species: {fileID: 11400000, guid: f64f097fe9958af4689b6d3550cbe73d, type: 2}
     level: 46
     moves:
@@ -72,7 +104,16 @@ MonoBehaviour:
     nature: {fileID: 0}
     fixedIvs: -1
     nickname: 
+    gender: 0
+    speciesId: machamp
+    moveIds:
+    - rock_slide
+    - foresight
+    - vital_throw
+    - cross_chop
+    natureId: 
   aiLevel: 5
+  aiProfileId: 
   ai: 2
   useItems: 1
   items:
