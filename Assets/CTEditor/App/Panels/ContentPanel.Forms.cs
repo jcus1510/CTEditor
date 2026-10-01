@@ -108,9 +108,10 @@ namespace CTEditor.App
             if (col.Name == "efectos" && (_category == ContentSchemas.Items || _category == ContentSchemas.Abilities || _category == ContentSchemas.Moves)) return Editor(r, col);
             var row = Ui.Row(8);
             row.style.alignItems = Align.FlexStart;
+            row.style.minWidth = 0;
             var label = Ui.Text(col.Label + (col.Required ? " *" : ""), 0.9f).NoShrink();
-            label.style.width = 150;
-            label.style.marginTop = 5;
+            label.style.width = 130;
+            label.style.marginTop = 4;
             label.style.whiteSpace = WhiteSpace.Normal;
             label.tooltip = string.IsNullOrEmpty(col.Help) ? col.Name : col.Help;
             row.Add(label);
@@ -155,10 +156,11 @@ namespace CTEditor.App
                     return Ui.Check("", ContentChecks.IsYes(value), on => Save(on ? "si" : "no"));
                 case ColumnKind.Choice:
                 {
-                    var items = col.Options.Select(o => new MenuItem(ContentWidgets.CategoryLabel(o) == o ? StatNames.Label(o) : ContentWidgets.CategoryLabel(o), () => Save(o),
-                        isChecked: string.Equals(value.Trim(), o, StringComparison.OrdinalIgnoreCase))).ToList();
+                    var current = _category == ContentSchemas.Items && name == "categoria" ? ItemCategories.Normalize(value) : value.Trim();
+                    var items = col.Options.Select(o => new MenuItem(ContentLabels.Of(_category, name, o), () => Save(o),
+                        isChecked: string.Equals(current, o, StringComparison.OrdinalIgnoreCase))).ToList();
                     items.Insert(0, new MenuItem("— (vacío)", () => Save("")));
-                    var shown = value.Trim().Length == 0 ? "—" : ContentWidgets.CategoryLabel(value) == value ? StatNames.Label(value) : ContentWidgets.CategoryLabel(value);
+                    var shown = value.Trim().Length == 0 ? "—" : ContentLabels.Of(_category, name, value);
                     return ContentWidgets.Dropdown(_shell, shown, () => items);
                 }
                 case ColumnKind.Color:
@@ -214,11 +216,11 @@ namespace CTEditor.App
                     var known = KnownValues(col.Name);
                     if (known != null)
                     {
-                        var items = known.Select(v => new MenuItem(Pretty(v), () => Save(v), isChecked: v == value.Trim())).ToList();
+                        var items = known.Select(v => new MenuItem(Pretty(name, v), () => Save(v), isChecked: v == value.Trim())).ToList();
                         items.Insert(0, new MenuItem("— (vacío)", () => Save("")));
                         items.Add(MenuItem.Separator);
                         items.Add(new MenuItem("Otro…", () => AskText(col.Label, value, Save)));
-                        return ContentWidgets.Dropdown(_shell, value.Trim().Length == 0 ? "—" : Pretty(value.Trim()), () => items);
+                        return ContentWidgets.Dropdown(_shell, value.Trim().Length == 0 ? "—" : Pretty(name, value.Trim()), () => items);
                     }
                     return ContentWidgets.WrapBox(value, Save);
                 }
@@ -238,7 +240,7 @@ namespace CTEditor.App
             return values.Count >= 2 && values.Count <= 16 ? values.OrderBy(v => v).ToList() : null;
         }
 
-        private static string Pretty(string v) => StatNames.IndexOf(v) >= 0 ? StatNames.Label(v) : ContentWidgets.CategoryLabel(v);
+        private string Pretty(string column, string v) => ContentLabels.Of(_category, column, v);
 
         /// <summary>A reference shown by its name (types in their colour): clic = open it; red when it does not exist.</summary>
         private VisualElement RefChip(string category, string id, Action remove = null)
@@ -391,8 +393,8 @@ namespace CTEditor.App
             var row = Ui.Row(8);
             row.style.alignItems = Align.FlexStart;
             var label = Ui.Text(text, 0.9f).NoShrink();
-            label.style.width = 150;
-            label.style.marginTop = 5;
+            label.style.width = 130;
+            label.style.marginTop = 4;
             editor.style.flexGrow = 1;
             editor.style.flexShrink = 1;
             row.With(label, editor);
@@ -426,23 +428,86 @@ namespace CTEditor.App
             return box;
         }
 
-        private VisualElement EggGroupMembers(string group)
+        private static string[] EggGroupsOf(ContentRecord species) =>
+            species["grupos_huevo"].Split('|', ',').Select(g => g.Trim()).Where(g => g.Length > 0).ToArray();
+
+        /// <summary>
+        /// The species of an egg group as small cards (number, name, types), grouped by the OTHER group they are in — the
+        /// bridges to breed moves from other groups — with a search box. One card per family root first, then its family.
+        /// </summary>
+        private VisualElement EggGroupMembers(string group, Action opened = null)
         {
-            var t = Table.Schema.Key == ContentSchemas.Species ? Table : C.Db.Table(ContentSchemas.Species);
-            var members = t.Records.Where(x => x["grupos_huevo"].Split('|', ',').Any(g => string.Equals(g.Trim(), group, StringComparison.OrdinalIgnoreCase))).ToList();
-            var row = Ui.Row(0).Wrap();
-            row.Add(Ui.Text($"{members.Count} especies", 0.85f, dim: true).Margin(0, 0, 8, 4));
-            foreach (var m in members.Take(200)) row.Add(RefChip(ContentSchemas.Species, t.IdOf(m)));
-            return row;
+            var t = C.Db.Table(ContentSchemas.Species);
+            var members = t.Records.Where(x => EggGroupsOf(x).Contains(group, StringComparer.OrdinalIgnoreCase)).ToList();
+            var box = Ui.Column(6);
+            var search = Ui.TextBox("", "");
+            search.tooltip = "Buscar por nombre o número";
+            search.style.maxWidth = 260;
+            var head = Ui.Row(8).With(search.Grow(), Ui.Text($"{members.Count} especies", 0.85f, dim: true).NoShrink());
+            head.style.alignItems = Align.Center;
+            var groups = Ui.Column(8);
+            box.With(head, groups);
+            void Fill()
+            {
+                groups.Clear();
+                var q = (search.value ?? "").Trim();
+                var shown = members.Where(m => q.Length == 0 || ContentLook.Matches(t, m, q)).ToList();
+                var byOther = shown.GroupBy(m => EggGroupsOf(m).FirstOrDefault(g => !string.Equals(g, group, StringComparison.OrdinalIgnoreCase)) ?? "")
+                    .OrderBy(g => g.Key.Length == 0 ? 0 : 1).ThenBy(g => NameOf(ContentSchemas.EggGroups, g.Key));
+                foreach (var g in byOther)
+                {
+                    var title = g.Key.Length == 0 ? "Solo en este grupo" : $"También en {NameOf(ContentSchemas.EggGroups, g.Key)}";
+                    var color = g.Key.Length == 0 ? null : ContentLook.Hex(C.Db.Table(ContentSchemas.EggGroups).Find(g.Key)?["color"]);
+                    var caption = Ui.Row(6);
+                    caption.style.alignItems = Align.Center;
+                    if (color is Color c) caption.Add(Ui.Swatch(c, Ui.FontSize * 0.8f));
+                    caption.Add(Ui.Text($"{title} ({g.Count()})", 0.82f, bold: true).Colored("texto_suave"));
+                    var cards = Ui.Row(0).Wrap();
+                    foreach (var m in g.Take(300)) cards.Add(SpeciesCard(t, m, opened));
+                    groups.Add(Ui.Column(3).With(caption, cards));
+                }
+                if (shown.Count == 0) groups.Add(Ui.Hint("Ninguna especie coincide."));
+            }
+            search.RegisterValueChangedCallback(_ => Fill());
+            Fill();
+            return box;
+        }
+
+        /// <summary>A small card of a species: a stripe of its first type, «#004 Charmander» and its types. Clic = open it.</summary>
+        private VisualElement SpeciesCard(ContentTable t, ContentRecord m, Action opened = null)
+        {
+            var id = t.IdOf(m);
+            var card = Ui.Row(0).Round(5);
+            card.style.width = 150;
+            card.style.marginRight = 5; card.style.marginBottom = 5;
+            card.style.backgroundColor = Ui.C("panel_alt");
+            card.style.overflow = Overflow.Hidden;
+            var stripe = new VisualElement();
+            stripe.style.width = 4;
+            stripe.style.backgroundColor = ContentLook.Mark(C.Db, t, m) ?? Ui.C("borde");
+            var inner = Ui.Column(2).Pad(6, 4).Grow();
+            inner.style.minWidth = 0;
+            int.TryParse(m["numero"], out var n);
+            var name = Ui.Text((n > 0 ? $"#{n:000} " : "") + t.NameOf(m), 0.85f, bold: true);
+            name.style.overflow = Overflow.Hidden; name.style.textOverflow = TextOverflow.Ellipsis; name.style.whiteSpace = WhiteSpace.NoWrap;
+            var types = Ui.Row(0);
+            foreach (var ty in ContentLook.TypesOf(ContentSchemas.Species, m)) types.Add(ContentWidgets.TypeChip(C.Db, ty));
+            inner.With(name, types);
+            card.With(stripe, inner);
+            card.tooltip = $"{t.NameOf(m)} ({id}) · clic: abrir su ficha";
+            card.RegisterCallback<PointerEnterEvent>(_ => card.style.backgroundColor = Ui.Mix(Ui.C("panel_alt"), Ui.C("texto"), 0.08f));
+            card.RegisterCallback<PointerLeaveEvent>(_ => card.style.backgroundColor = Ui.C("panel_alt"));
+            card.RegisterCallback<ClickEvent>(_ => { opened?.Invoke(); _shell.OpenContentItem(ContentSchemas.Species, id); });
+            return card;
         }
 
         private void EggGroupDialog(string group)
         {
-            var d = _shell.ShowDialog($"Grupo huevo «{NameOf(ContentSchemas.EggGroups, group)}»", 50, 70);
+            var d = _shell.ShowDialog($"Grupo huevo «{NameOf(ContentSchemas.EggGroups, group)}»", 60, 76);
             var scroll = Ui.Scroll().Grow();
-            scroll.Add(EggGroupMembers(group));
+            scroll.Add(EggGroupMembers(group, () => _shell.CloseDialog(d)));
             d.Body.Add(scroll);
-            d.Buttons.With(Ui.Spacer(), Ui.Button("Cerrar", () => _shell.CloseDialog(d), Ui.ButtonKind.Primary));
+            d.Buttons.With(Ui.Hint("Clic en una ficha: abrirla."), Ui.Spacer(), Ui.Button("Cerrar", () => _shell.CloseDialog(d), Ui.ButtonKind.Primary));
         }
 
         /// <summary>Who can pass an egg move: species that share an egg group with this one and know the move.</summary>
@@ -458,7 +523,7 @@ namespace CTEditor.App
             d.Body.Add(Ui.Hint($"Especies de sus grupos huevo ({string.Join(", ", groups.Select(g => NameOf(ContentSchemas.EggGroups, g)))}) que pueden saber el movimiento (por nivel, MT, tutor o huevo)."));
             var row = Ui.Row(0).Wrap();
             if (parents.Count == 0) row.Add(Ui.Hint("Ninguna: solo se podría heredar por otros medios.").Colored("aviso"));
-            foreach (var p in parents) row.Add(RefChip(ContentSchemas.Species, species.IdOf(p)));
+            foreach (var p in parents) row.Add(SpeciesCard(species, p, () => _shell.CloseDialog(d)));
             var scroll = Ui.Scroll().Grow();
             scroll.Add(row);
             d.Body.Add(scroll);

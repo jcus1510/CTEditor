@@ -168,8 +168,10 @@ namespace CTEditor.Content
                                 yield return new ContentIssue(ContentIssueLevel.Error, s.Key, id, col, row, $"{at}: «{v}» tiene que ser si o no.");
                             break;
                         case ColumnKind.Choice:
-                            if (spec.Options.Count > 0 && !spec.Options.Contains(v.Trim().ToLowerInvariant()))
-                                yield return new ContentIssue(ContentIssueLevel.Warning, s.Key, id, col, row, $"{at}: «{v}» no es {string.Join(", ", spec.Options)}.");
+                            var choice = s.Key == ContentSchemas.Items && col == "categoria" ? ItemCategories.Normalize(v) : v.Trim();
+                            if (spec.Options.Count > 0 && !spec.Options.Any(o => string.Equals(o, choice, StringComparison.OrdinalIgnoreCase)))
+                                yield return new ContentIssue(ContentIssueLevel.Warning, s.Key, id, col, row,
+                                    $"{at}: «{v}» no es {string.Join(", ", spec.Options.Select(o => ContentLabels.Of(s.Key, col, o)))}.");
                             break;
                         case ColumnKind.LevelRefs:
                             foreach (var e in v.Split('|'))

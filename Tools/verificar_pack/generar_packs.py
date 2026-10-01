@@ -329,6 +329,18 @@ ITEM_HEADERS = ['id', 'nombre', 'nombre_en', 'descripcion', 'categoria', 'precio
 
 ITEM_CATEGORY = {'evolution': 'Evolution', 'vitamins': 'Vitamin'}
 
+# Las categorías de la mochila, como en los juegos (pocas): las finas de antes cuentan como la suya (ItemCategories).
+BAG_CATEGORY = {'Revive': 'Medicine', 'StatusCure': 'Medicine', 'PpRestore': 'Medicine', 'Vitamin': 'Medicine',
+                'Held': 'Other', 'Evolution': 'Other'}
+
+
+def bag_category(row):
+    if row.get('es_baya') == 'si':
+        return 'Berry'
+    if re.match(r'^(tm|hm|tr)\d', row['id']):
+        return 'Machine'
+    return BAG_CATEGORY.get(row['categoria'], row['categoria'] or 'Other')
+
 
 ENGLISH = '9'   # local_language_id del inglés (los nombres de Showdown)
 
@@ -412,6 +424,7 @@ def items_for(n):
                    'es_baya': 'si' if cat.endswith('berries') or iid.endswith('_berry') else 'no',
                    # Bolas especiales: de momento como una Poké Ball (sus condiciones se añaden en su efecto).
                    'efectos': 'al_usar: captura x1' if category == 'Ball' else ''}
+        row['categoria'] = bag_category(row)
         rows.append(row)
     return rows
 
