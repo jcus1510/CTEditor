@@ -15,7 +15,8 @@ MonoBehaviour:
   id: bright_powder
   displayName: Polvo Brillo
   englishName: Bright Powder
-  description: "Los que le atacan tienen precisi\xF3n \xD70,9."
+  description: "Lanza un destello que baja la Precisi\xF3n del enemigo. Debe llevarlo
+    un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
   price: 4000

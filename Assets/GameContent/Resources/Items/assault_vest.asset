@@ -15,10 +15,11 @@ MonoBehaviour:
   id: assault_vest
   displayName: Chaleco Asalto
   englishName: Assault Vest
-  description: "Def. Esp. \xD71,5, pero no puede usar movimientos de estado."
+  description: "Chaleco que potencia la Defensa Especial del Pok\xE9mon que lo lleva,
+    pero le impide lanzar ataques de estado."
   category: 7
   icon: {fileID: 0}
-  price: 4000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

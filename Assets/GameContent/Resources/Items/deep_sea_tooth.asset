@@ -15,7 +15,8 @@ MonoBehaviour:
   id: deep_sea_tooth
   displayName: Diente Marino
   englishName: Deep Sea Tooth
-  description: "Llev\xE1ndolo al intercambiarse: Clamperl evoluciona a Huntail."
+  description: Tiene el brillo afilado de la plata y debe llevarlo Clamperl. Sube
+    el Ataque Especial.
   category: 7
   icon: {fileID: 0}
   price: 2000

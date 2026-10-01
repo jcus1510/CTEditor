@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: kahuna_hala
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: kahuna_hala
+  displayName: Kaudan
+  trainerClass: Kahuna
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: 91fb98b4ca542b540b55f5981c969f0e, type: 2}
+    level: 14
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: mankey
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: cb02779026408bd4f991ef4b1b316150, type: 2}
+    level: 14
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: makuhita
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 288ce89aa66367d4187da46533fb6b0a, type: 2}
+    level: 15
+    moves: []
+    heldItem: fightinium_z
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: crabrawler
+    moveIds: []
+    natureId: 
+  aiLevel: 3
+  aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
+  ai: 1
+  useItems: 1
+  items:
+  - itemId: hyper_potion
+    quantity: 1
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 80
+  introLine: "\xA1Mu\xE9strame lo que has aprendido en tus pruebas!"
+  defeatLine: "\xA1Ja, ja! \xA1Qu\xE9 combate m\xE1s bueno!"
+  victoryLine: "A\xFAn te queda camino."

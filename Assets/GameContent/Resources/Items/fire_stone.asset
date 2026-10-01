@@ -15,7 +15,8 @@ MonoBehaviour:
   id: fire_stone
   displayName: Piedra Fuego
   englishName: Fire Stone
-  description: Hace evolucionar a ciertas especies.
+  description: "Curiosa piedra que hace evolucionar a determinadas especies de Pok\xE9mon.
+    Es amarilla con una marca naranja."
   category: 5
   icon: {fileID: 0}
   price: 3000

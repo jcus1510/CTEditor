@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: oricorio_pau
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: oricorio_pau
+  displayName: "Oricorio (Estilo Pl\xE1cido)"
+  englishName: Oricorio-Pau
+  types:
+  - {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
+  - {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
+  abilityId: dancer
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: medium_fast
+  baseExpYield: 167
+  evYield:
+  - statId: sp_attack
+    amount: 2
+  baseFriendship: 70
+  catchRate: 45
+  dexNumber: 741
+  category: Danza
+  heightM: 0.6
+  weightKg: 3.4
+  dexColor: rojo
+  dexDescription: Con su danza apasionada cautiva al enemigo. En cuanto este baja
+    la guardia, lo calcina con sus enormes llamaradas.
+  femalePercent: 75
+  legendary: 0
+  hp: 75
+  attack: 70
+  defense: 70
+  spAttack: 98
+  spDefense: 70
+  speed: 93
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: d28b2fac6e7636849be1e26b1be97043, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 09db799c0c7218e4daad0f76094f6d45, type: 2}
+    level: 4
+  - move: {fileID: 11400000, guid: b3a389fd866513d478e40ab770375b53, type: 2}
+    level: 6
+  - move: {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
+    level: 10
+  - move: {fileID: 11400000, guid: 3e2de162939d6f3408ccbe81ab6abca3, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: 32bf48b141ec911459f9b4f4637a0690, type: 2}
+    level: 16
+  - move: {fileID: 11400000, guid: a2125caf293ce194a848539d75d1bc65, type: 2}
+    level: 20
+  - move: {fileID: 11400000, guid: c4d7ccc5d1e19aa4493aae534a4889b1, type: 2}
+    level: 23
+  - move: {fileID: 11400000, guid: 568dd70d96ee4f24a996e16e471ff506, type: 2}
+    level: 26
+  - move: {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+    level: 30
+  - move: {fileID: 11400000, guid: 68895b077371c7746b74eb4623d4b93d, type: 2}
+    level: 33
+  - move: {fileID: 11400000, guid: e58af6e84f63b4f4ba6b9ba942911e57, type: 2}
+    level: 36
+  - move: {fileID: 11400000, guid: 36ac8fd24ca4dc547b8c98c22d10ee95, type: 2}
+    level: 40
+  - move: {fileID: 11400000, guid: a1b2f5b10f7c17a4e905736abdf02e9d, type: 2}
+    level: 43
+  - move: {fileID: 11400000, guid: 0d7166cfef7ef3a4cb2e264e320038c8, type: 2}
+    level: 46
+  - move: {fileID: 11400000, guid: 6ad04777d81cb434c83a369dfdb4aebb, type: 2}
+    level: 50
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 61f5c64e93bc85b48aecaa66d733c5d2, type: 2}
+  - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: e77a0eea2eae9d34889e6fbbd1bc767f, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 501bdce004914c2448de442cf34434e5, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: d2cedf5e9fff33743ae4354f485b6e95, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: edda7cbc2f438144bbfa2e483946d695, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+  - {fileID: 11400000, guid: a8a239b6bce5e5f47a72807fd74d8e14, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 2142ec87c94158f47928ed9a938e18b0, type: 2}
+  - {fileID: 11400000, guid: 2bf945e9e0da7b4469bebca1e26e325f, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 58188db92c809e946a9e31c9e4bf61f6, type: 2}
+  - {fileID: 11400000, guid: 48d24011cb0cf0444a20bc6228099f8f, type: 2}
+  - {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
+  - {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
+  - {fileID: 11400000, guid: 54532b3c7f8fdea4c97915acc462843b, type: 2}
+  - {fileID: 11400000, guid: b864c07923f73a54caa267bc31a7c34d, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: e2eafcf36d9b5f3448a0147c4d23cbc2, type: 2}
+  eggMoves:
+  - {fileID: 11400000, guid: 68895b077371c7746b74eb4623d4b93d, type: 2}
+  - {fileID: 11400000, guid: 9071856a7a74042488f58a94650270bd, type: 2}
+  - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: e2eafcf36d9b5f3448a0147c4d23cbc2, type: 2}
+  eggGroups:
+  - {fileID: 11400000, guid: 78da671a46a78e94092e1e370dc10319, type: 2}
+  formOf: oricorio
+  variantItem: pink_nectar
+  forms: []
+  formChanges: []

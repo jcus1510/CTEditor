@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: vulpix_alola
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: vulpix_alola
+  displayName: Vulpix (Forma de Alola)
+  englishName: Vulpix-Alola
+  types:
+  - {fileID: 11400000, guid: fa23c32d4260662419de99a9c5528a38, type: 2}
+  abilityId: snow_cloak
+  secondAbilityId: 
+  hiddenAbilityId: snow_warning
+  growthCurveId: medium_fast
+  baseExpYield: 60
+  evYield:
+  - statId: speed
+    amount: 1
+  baseFriendship: 70
+  catchRate: 190
+  dexNumber: 37
+  category: Zorro
+  heightM: 0.6
+  weightKg: 9.9
+  dexColor: "marr\xF3n"
+  dexDescription: Cuando nace solo tiene una cola, pero a medida que crece, esta
+    se va dividiendo desde la punta.
+  femalePercent: 75
+  legendary: 0
+  hp: 38
+  attack: 41
+  defense: 40
+  spAttack: 50
+  spDefense: 65
+  speed: 65
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: c92d6f2f38bdc624f9c66130e3f1b69a, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 812c302455412644a8ec26ad1160755d, type: 2}
+    level: 4
+  - move: {fileID: 11400000, guid: 034c48472772d604caaa172d102c6f0c, type: 2}
+    level: 7
+  - move: {fileID: 11400000, guid: fc78a0576f68413459f4000570331414, type: 2}
+    level: 9
+  - move: {fileID: 11400000, guid: ffaa0c9df25d20848a44a1f77b5aba3f, type: 2}
+    level: 10
+  - move: {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
+    level: 12
+  - move: {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
+    level: 15
+  - move: {fileID: 11400000, guid: 42591adc2ac509240ae0669db50cb613, type: 2}
+    level: 18
+  - move: {fileID: 11400000, guid: 47014b3c95299d845803425b77307df1, type: 2}
+    level: 20
+  - move: {fileID: 11400000, guid: c5e1db74b3925d74da4b7f669af8a601, type: 2}
+    level: 23
+  - move: {fileID: 11400000, guid: 079f8ef57f99e5a4d8d5e2ee8ae862a5, type: 2}
+    level: 26
+  - move: {fileID: 11400000, guid: 1a5ed636848adc34388ed06c75125f4a, type: 2}
+    level: 28
+  - move: {fileID: 11400000, guid: 20d6980ec688d274a8705e767b746b3c, type: 2}
+    level: 31
+  - move: {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+    level: 34
+  - move: {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+    level: 36
+  - move: {fileID: 11400000, guid: 0bcd19fa5b32dc44d85a1d7e1d9450e4, type: 2}
+    level: 39
+  - move: {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
+    level: 42
+  - move: {fileID: 11400000, guid: ae403df0ffcd1784c85ac6a222fd063b, type: 2}
+    level: 44
+  - move: {fileID: 11400000, guid: 68895b077371c7746b74eb4623d4b93d, type: 2}
+    level: 47
+  - move: {fileID: 11400000, guid: fe1961de7a86cbd48886a065b3eaa5fb, type: 2}
+    level: 50
+  evolutions:
+  - target: {fileID: 11400000, guid: 6de256aef1376e74e80ab8b163e509d7, type: 2}
+    requiredLevel: 0
+    method: 1
+    itemId: ice_stone
+    minFriendship: 0
+    conditions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: 8a0796bf978e7ca48bca8da0a308bca4, type: 2}
+  - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 622b1a7464451114cbd9d4000826cf81, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 9c6182dd7b87d714d8cbbe83e31cca40, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 24621966b700ed443bc298f05e2d88f8, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 883792ef23ae3594890268e6066eb45a, type: 2}
+  - {fileID: 11400000, guid: 42591adc2ac509240ae0669db50cb613, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 2a18e3c45efa21d4994f8c7d3d9050b8, type: 2}
+  - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: 034c48472772d604caaa172d102c6f0c, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 2958df99c8d8ca34ea9fdb47154368c8, type: 2}
+  - {fileID: 11400000, guid: 58188db92c809e946a9e31c9e4bf61f6, type: 2}
+  - {fileID: 11400000, guid: 7cc24518557b0444793d5659a81b3362, type: 2}
+  - {fileID: 11400000, guid: 41fc0e4a3612bf34e9b8789409e151a2, type: 2}
+  - {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
+  - {fileID: 11400000, guid: 23696bd669967aa4e8b4cd8a357012de, type: 2}
+  - {fileID: 11400000, guid: d8e92f9a08c72494da330a1912c78045, type: 2}
+  - {fileID: 11400000, guid: 54532b3c7f8fdea4c97915acc462843b, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
+  - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
+  eggMoves:
+  - {fileID: 11400000, guid: 0d7166cfef7ef3a4cb2e264e320038c8, type: 2}
+  - {fileID: 11400000, guid: 5d29e88ccdc542d4696bf4230ca1a84e, type: 2}
+  - {fileID: 11400000, guid: b346d8bdf41060a4991c7efbac57f083, type: 2}
+  - {fileID: 11400000, guid: d08e6cd61a2206c47b36ca5a67274a88, type: 2}
+  - {fileID: 11400000, guid: 20d6980ec688d274a8705e767b746b3c, type: 2}
+  - {fileID: 11400000, guid: b435b36c8dbbe774f8cf6a571a66badd, type: 2}
+  - {fileID: 11400000, guid: 2ece1a59d6e44104080c17d2aeaf4b81, type: 2}
+  - {fileID: 11400000, guid: 7cf17ccfb7d37c742973c6692b880389, type: 2}
+  - {fileID: 11400000, guid: 57b6a36f57133a848a8e6f2372fe652c, type: 2}
+  - {fileID: 11400000, guid: baa7ee72081a7cb45b25899d0f1bfad0, type: 2}
+  - {fileID: 11400000, guid: b98c1ed350f9beb46bf766241592f4a0, type: 2}
+  - {fileID: 11400000, guid: 01ec2d07e204f854eaf26b224cf7fd7f, type: 2}
+  - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
+  - {fileID: 11400000, guid: 47d4728241a4a12499d0fee69ca6c2df, type: 2}
+  eggGroups:
+  - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: vulpix
+  variantItem: 
+  forms: []
+  formChanges: []

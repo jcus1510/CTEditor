@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: mesprit_nu_5
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: mesprit_nu_5
+  displayName: Offensive Stealth Rock
+  speciesId: mesprit
+  setFormat: nu
+  setScore: 39
+  itemOptions: life_orb, leftovers
+  abilityOptions: 
+  natureOptions: modest, timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
+  ivs: 
+  moveSlots: stealth_rock / psychic / hidden_power, ice_beam / healing_wish, signal_beam,
+    u_turn

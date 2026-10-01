@@ -15,7 +15,8 @@ MonoBehaviour:
   id: water_stone
   displayName: Piedra Agua
   englishName: Water Stone
-  description: Hace evolucionar a ciertas especies.
+  description: "Curiosa piedra que hace evolucionar a determinadas especies de Pok\xE9mon.
+    Es de color azul."
   category: 5
   icon: {fileID: 0}
   price: 3000

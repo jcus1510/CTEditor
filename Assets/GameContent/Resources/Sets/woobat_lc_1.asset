@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: woobat_lc_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: woobat_lc_1
+  displayName: Simple Sweeper
+  speciesId: woobat
+  setFormat: lc
+  setScore: 74
+  itemOptions: eviolite, salac_berry
+  abilityOptions: simple
+  natureOptions: timid
+  evs: 76 PS / 12 Def / 236 AtqE / 180 Vel
+  ivs: 
+  moveSlots: calm_mind / stored_power / heat_wave, air_slash / roost, substitute

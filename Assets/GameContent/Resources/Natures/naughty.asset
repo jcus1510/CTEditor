@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.NatureData
   id: naughty
   displayName: "P\xEDcara"
+  englishName: Naughty
   boostedStatId: attack
   hinderedStatId: sp_defense
   boostPercent: 10

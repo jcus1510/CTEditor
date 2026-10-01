@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: teleport
   displayName: Teletransporte
+  englishName: Teleport
   type: {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
   category: 2
   power: 0
   neverMisses: 1
   accuracy: 100
   maxPp: 20
-  priority: 0
+  priority: -6
   target: 1
   secondaryEffects:
   - chancePercent: 100
@@ -39,6 +40,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

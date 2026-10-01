@@ -15,7 +15,8 @@ MonoBehaviour:
   id: x_defense
   displayName: Defensa X
   englishName: X Defense
-  description: +2 a la Defensa.
+  description: "Aumenta mucho la Defensa en combate. Al cambiar de Pok\xE9mon, el
+    efecto desaparece."
   category: 6
   icon: {fileID: 0}
   price: 2000

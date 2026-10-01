@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.NatureData
   id: serious
   displayName: Seria
+  englishName: Serious
   boostedStatId: speed
   hinderedStatId: speed
   boostPercent: 10

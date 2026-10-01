@@ -15,10 +15,11 @@ MonoBehaviour:
   id: hard_stone
   displayName: Piedra Dura
   englishName: Hard Stone
-  description: "Movimientos de Roca \xD71,2."
+  description: "Debe llevarla un Pok\xE9mon. La robustez de la piedra fortalece los
+    movimientos de tipo Roca."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

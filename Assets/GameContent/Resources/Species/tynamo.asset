@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: tynamo
   displayName: Tynamo
+  englishName: Tynamo
   types:
   - {fileID: 11400000, guid: 11907be1d5340704a86d6e3df74657fb, type: 2}
   abilityId: levitate
@@ -43,13 +44,13 @@ MonoBehaviour:
   speed: 60
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
-    level: 1
-  - move: {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+  - move: {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 01b037f4fcc5f4c46a053726e778dff2, type: 2}
     level: 1
-  - move: {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
     level: 1
   evolutions:
   - target: {fileID: 11400000, guid: cae550d2071a08448b0e03db9a392d99, type: 2}
@@ -58,9 +59,15 @@ MonoBehaviour:
     itemId: 
     minFriendship: 0
     conditions: []
-  machineMoves: []
+  machineMoves:
+  - {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
+  - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
   tutorMoves:
   - {fileID: 11400000, guid: 6589ee989c30c544cb926ea68983bc7d, type: 2}
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 9d53a19e52921834a83345100ec4a2a8, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

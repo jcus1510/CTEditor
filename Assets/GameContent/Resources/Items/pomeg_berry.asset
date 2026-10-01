@@ -15,10 +15,11 @@ MonoBehaviour:
   id: pomeg_berry
   displayName: Baya Grana
   englishName: Pomeg Berry
-  description: Sube la amistad.
+  description: "Al usarla con un Pok\xE9mon, se gana su amistad, pero tambi\xE9n
+    reduce sus PS de base."
   category: 8
   icon: {fileID: 0}
-  price: 100
+  price: 80
   usableInBattle: 0
   usableOutsideBattle: 1
   consumable: 1

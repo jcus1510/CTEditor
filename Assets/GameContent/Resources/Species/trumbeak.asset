@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: trumbeak
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: trumbeak
+  displayName: Trumbeak
+  englishName: Trumbeak
+  types:
+  - {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
+  - {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
+  abilityId: keen_eye
+  secondAbilityId: skill_link
+  hiddenAbilityId: pickup
+  growthCurveId: medium_fast
+  baseExpYield: 124
+  evYield:
+  - statId: attack
+    amount: 2
+  baseFriendship: 70
+  catchRate: 120
+  dexNumber: 732
+  category: Trompeta
+  heightM: 0.6
+  weightKg: 14.8
+  dexColor: negro
+  dexDescription: "Al torcer la punta del pico es capaz de emitir a su antojo m\xE1s
+    de 100 graznidos diferentes."
+  femalePercent: 50
+  legendary: 0
+  hp: 55
+  attack: 85
+  defense: 50
+  spAttack: 40
+  spDefense: 50
+  speed: 75
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 62f256f28e937834fb5f0f116b06455b, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 09db799c0c7218e4daad0f76094f6d45, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: b3a389fd866513d478e40ab770375b53, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 16187846ec82a374297f4849fff6bc2a, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 09db799c0c7218e4daad0f76094f6d45, type: 2}
+    level: 3
+  - move: {fileID: 11400000, guid: 62f256f28e937834fb5f0f116b06455b, type: 2}
+    level: 7
+  - move: {fileID: 11400000, guid: 6cd32da7c5bc20941ba3a5c18fda1662, type: 2}
+    level: 9
+  - move: {fileID: 11400000, guid: 3e9034391b20cc249ad2ece60d793edf, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: 9071856a7a74042488f58a94650270bd, type: 2}
+    level: 16
+  - move: {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+    level: 21
+  - move: {fileID: 11400000, guid: dd75bb1c5f91e7d408ecdf21c195ba48, type: 2}
+    level: 24
+  - move: {fileID: 11400000, guid: ec6a5f145f8a7cc419fa06a9ff9e1076, type: 2}
+    level: 29
+  - move: {fileID: 11400000, guid: f84b9f7b86c46eb4eb06ae17aa899c3d, type: 2}
+    level: 32
+  - move: {fileID: 11400000, guid: 4b07d66fdb896c142bbbcbdb4af6e0c8, type: 2}
+    level: 37
+  - move: {fileID: 11400000, guid: a2125caf293ce194a848539d75d1bc65, type: 2}
+    level: 40
+  - move: {fileID: 11400000, guid: e75cd35db3e94e94b8575043174947e5, type: 2}
+    level: 45
+  evolutions:
+  - target: {fileID: 11400000, guid: 9394550627a345b42a284a0576ac59f1, type: 2}
+    requiredLevel: 28
+    method: 0
+    itemId: 
+    minFriendship: 0
+    conditions: []
+  machineMoves:
+  - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: 4684f72d3faef8940bcbd8c6d3e78a7d, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 62f256f28e937834fb5f0f116b06455b, type: 2}
+  - {fileID: 11400000, guid: 2cbc10d10b9ca3949b58775e1a71e440, type: 2}
+  - {fileID: 11400000, guid: 501bdce004914c2448de442cf34434e5, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: e223790909b457a4d90040be25084d82, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: e9b30167cba759a4384b247fbb304135, type: 2}
+  - {fileID: 11400000, guid: edda7cbc2f438144bbfa2e483946d695, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+  - {fileID: 11400000, guid: b08a11a32d7c09f4db0c89ad242fbbad, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 2142ec87c94158f47928ed9a938e18b0, type: 2}
+  - {fileID: 11400000, guid: 2bf945e9e0da7b4469bebca1e26e325f, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 48d24011cb0cf0444a20bc6228099f8f, type: 2}
+  - {fileID: 11400000, guid: 62fe66217191b7c41a159d6a1b586a35, type: 2}
+  - {fileID: 11400000, guid: 4ac768068ede7b54a9d4d7c62ff43dc9, type: 2}
+  - {fileID: 11400000, guid: e75cd35db3e94e94b8575043174947e5, type: 2}
+  - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+  - {fileID: 11400000, guid: b864c07923f73a54caa267bc31a7c34d, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: e2eafcf36d9b5f3448a0147c4d23cbc2, type: 2}
+  - {fileID: 11400000, guid: a18d51fa09a21df4ca4319a635faf1fe, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 78da671a46a78e94092e1e370dc10319, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

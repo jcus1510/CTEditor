@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: swampert_ou_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: swampert_ou_1
+  displayName: Rain Sweeper
+  speciesId: swampert
+  setFormat: ou
+  setScore: 35
+  itemOptions: swampertite
+  abilityOptions: damp
+  natureOptions: jolly
+  evs: 4 PS / 244 Atq / 8 DefE / 252 Vel
+  ivs: 
+  moveSlots: waterfall / earthquake / ice_punch, toxic / stealth_rock, substitute,
+    superpower

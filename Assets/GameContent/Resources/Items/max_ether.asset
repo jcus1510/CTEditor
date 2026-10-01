@@ -15,7 +15,7 @@ MonoBehaviour:
   id: max_ether
   displayName: "\xC9ter M\xE1ximo"
   englishName: Max Ether
-  description: Recupera todos los PP de un movimiento.
+  description: "Restaura completamente los PP del movimiento elegido de un Pok\xE9mon."
   category: 3
   icon: {fileID: 0}
   price: 2000

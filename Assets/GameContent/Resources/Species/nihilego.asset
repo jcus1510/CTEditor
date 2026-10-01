@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: nihilego
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: nihilego
+  displayName: Nihilego
+  englishName: Nihilego
+  types:
+  - {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
+  - {fileID: 11400000, guid: beba3a9ac208f3c43a7bda5d61c338cd, type: 2}
+  abilityId: beast_boost
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: slow
+  baseExpYield: 257
+  evYield:
+  - statId: sp_defense
+    amount: 3
+  baseFriendship: 70
+  catchRate: 45
+  dexNumber: 793
+  category: "Par\xE1sito"
+  heightM: 1.2
+  weightKg: 55.5
+  dexColor: blanco
+  dexDescription: Una forma de vida de otro mundo conocida como Ultraente. Se cree
+    que posee una neurotoxina muy potente.
+  femalePercent: -1
+  legendary: 0
+  hp: 109
+  attack: 53
+  defense: 47
+  spAttack: 127
+  spDefense: 131
+  speed: 103
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 9736104cee34b11448d721dd65cfd988, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 4c1be241870b3b2408914a0226222162, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 0b9440ffc0219d54a81940ba920172ff, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: d28b2fac6e7636849be1e26b1be97043, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: f6551d2f6f61c104ea9adfa19f819ad7, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: f854a66fc8cf9cc4b89e9f61a15212b1, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 19ff0ccc54c6a394bb57687853ca3d8d, type: 2}
+    level: 7
+  - move: {fileID: 11400000, guid: 1d38223dcfcba794ba0c7a6a28e3847b, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: d7ebc163d4e8db240b120994b84bbdef, type: 2}
+    level: 19
+  - move: {fileID: 11400000, guid: dc9e0c2056c2b294f84c482941be156e, type: 2}
+    level: 23
+  - move: {fileID: 11400000, guid: a79bea7b221d868448e8f97e0fb060cc, type: 2}
+    level: 29
+  - move: {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+    level: 31
+  - move: {fileID: 11400000, guid: c4de1d9b8d3d78a4994ac30739fede35, type: 2}
+    level: 37
+  - move: {fileID: 11400000, guid: aa227febb56c30e44903499d5c32999f, type: 2}
+    level: 43
+  - move: {fileID: 11400000, guid: 192e40539ff45814187c85b82f947ab6, type: 2}
+    level: 47
+  - move: {fileID: 11400000, guid: 551df29d8509d104880218a230ac1658, type: 2}
+    level: 53
+  - move: {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+    level: 59
+  - move: {fileID: 11400000, guid: 92d0ed9ee37aa2b48b4de3cf7ce8db55, type: 2}
+    level: 67
+  - move: {fileID: 11400000, guid: 6135443f3a09a53488875430dc21600b, type: 2}
+    level: 73
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: eb28e4d400e575447b40bd2ded73d008, type: 2}
+  - {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: acb45f8f9b7456142aba86ae9ef2b098, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 62f256f28e937834fb5f0f116b06455b, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 61fa77a4f48df8343acd2c2437d3608c, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
+  - {fileID: 11400000, guid: e241c34283f45a343b6140504cd58b9e, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+  - {fileID: 11400000, guid: be3592e8f82f0974aab83fb23edfd6fb, type: 2}
+  - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 4596c0ae90eef7e4abf7d6001acf15b5, type: 2}
+  - {fileID: 11400000, guid: 8e348842184c97649931a9f92cdd533a, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 62c6a97d50c2ff54dacf531594dd4df0, type: 2}
+  - {fileID: 11400000, guid: 58598d1e94cfe324fa4cd32075a2ddb3, type: 2}
+  - {fileID: 11400000, guid: 53fe8863a0008c042b9603060b3f75fc, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: e7054229772eef743ae0434f96e036d5, type: 2}
+  - {fileID: 11400000, guid: dc9e0c2056c2b294f84c482941be156e, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 49408bd7bff365a43941ed9a21b0b47f, type: 2}
+  - {fileID: 11400000, guid: 5c964643bcc6e544eb8b98ecb96c2d5a, type: 2}
+  - {fileID: 11400000, guid: 7cc24518557b0444793d5659a81b3362, type: 2}
+  - {fileID: 11400000, guid: 62fe66217191b7c41a159d6a1b586a35, type: 2}
+  - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
+  - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+  - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
+  - {fileID: 11400000, guid: d8e92f9a08c72494da330a1912c78045, type: 2}
+  - {fileID: 11400000, guid: 54532b3c7f8fdea4c97915acc462843b, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
+  - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+  - {fileID: 11400000, guid: 6ebee087cfb72f04096d41f5011a2dd8, type: 2}
+  - {fileID: 11400000, guid: 92d0ed9ee37aa2b48b4de3cf7ce8db55, type: 2}
+  - {fileID: 11400000, guid: 6f8d85b8fb617224589bd3ae8129b1eb, type: 2}
+  - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

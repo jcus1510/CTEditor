@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: articuno_nu_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: articuno_nu_1
+  displayName: Burd (Offensive)
+  speciesId: articuno
+  setFormat: nu
+  setScore: 48
+  itemOptions: life_orb, choice_specs
+  abilityOptions: 
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
+  ivs: 
+  moveSlots: freeze_dry / hurricane / roost, ice_beam / ice_beam, u_turn

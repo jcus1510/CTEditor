@@ -15,10 +15,10 @@ MonoBehaviour:
   id: burn_heal
   displayName: Antiquemar
   englishName: Burn Heal
-  description: Cura las quemaduras.
+  description: "Medicina en espray que cura las quemaduras a un Pok\xE9mon."
   category: 2
   icon: {fileID: 0}
-  price: 300
+  price: 200
   usableInBattle: 1
   usableOutsideBattle: 1
   consumable: 1

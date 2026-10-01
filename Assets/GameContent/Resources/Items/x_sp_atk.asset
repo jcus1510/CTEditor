@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: x_sp_atk
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: x_sp_atk
-  displayName: Ataque Esp. X
+  displayName: At. Especial X
   englishName: X Sp. Atk
-  description: +2 al Ataque Especial.
+  description: "Aumenta mucho el Ataque Especial en combate. Al cambiar de Pok\xE9mon,
+    el efecto desaparece."
   category: 6
   icon: {fileID: 0}
   price: 1000

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: earth_power
   displayName: Tierra Viva
+  englishName: Earth Power
   type: {fileID: 11400000, guid: 3a52b6aa5b301834ab86591d9e18d79a, type: 2}
   category: 1
   power: 90
@@ -39,6 +40,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

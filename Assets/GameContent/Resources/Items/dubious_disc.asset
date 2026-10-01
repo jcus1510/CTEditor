@@ -15,7 +15,8 @@ MonoBehaviour:
   id: dubious_disc
   displayName: "Disco Extra\xF1o"
   englishName: Dubious Disc
-  description: "Llev\xE1ndolo al intercambiarse: Porygon2 evoluciona."
+  description: Dispositivo transparente que contiene datos misteriosos. Es de fabricante
+    desconocido.
   category: 7
   icon: {fileID: 0}
   price: 2000

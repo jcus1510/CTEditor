@@ -15,7 +15,8 @@ MonoBehaviour:
   id: wide_lens
   displayName: Lupa
   englishName: Wide Lens
-  description: "Precisi\xF3n de sus movimientos \xD71,1."
+  description: "Debe llevarla un Pok\xE9mon. Aumenta ligeramente la precisi\xF3n
+    de los movimientos."
   category: 7
   icon: {fileID: 0}
   price: 4000

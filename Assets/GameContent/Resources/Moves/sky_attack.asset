@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: sky_attack
   displayName: "Ataque A\xE9reo"
+  englishName: Sky Attack
   type: {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
   category: 0
-  power: 140
+  power: 200
   neverMisses: 0
   accuracy: 90
   maxPp: 5
@@ -39,6 +40,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 1

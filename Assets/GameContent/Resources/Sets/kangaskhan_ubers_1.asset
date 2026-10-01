@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: kangaskhan_ubers_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: kangaskhan_ubers_1
+  displayName: Utility Attacker
+  speciesId: kangaskhan
+  setFormat: ubers
+  setScore: 64
+  itemOptions: kangaskhanite
+  abilityOptions: scrappy
+  natureOptions: jolly
+  evs: 52 PS / 180 Atq / 36 Def / 8 DefE / 232 Vel
+  ivs: 
+  moveSlots: fake_out / seismic_toss / shadow_claw, crunch / body_slam, rock_tomb

@@ -15,7 +15,8 @@ MonoBehaviour:
   id: dawn_stone
   displayName: Piedra Alba
   englishName: Dawn Stone
-  description: Hace evolucionar a Kirlia macho y Snorunt hembra.
+  description: "Una piedra peculiar que hace evolucionar a algunos Pok\xE9mon. Brilla
+    como un lucero."
   category: 5
   icon: {fileID: 0}
   price: 3000

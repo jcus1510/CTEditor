@@ -15,10 +15,10 @@ MonoBehaviour:
   id: paralyze_heal
   displayName: Antiparalizador
   englishName: Paralyze Heal
-  description: "Cura la par\xE1lisis."
+  description: "Medicina en espray que cura a un Pok\xE9mon paralizado."
   category: 2
   icon: {fileID: 0}
-  price: 300
+  price: 200
   usableInBattle: 1
   usableOutsideBattle: 1
   consumable: 1

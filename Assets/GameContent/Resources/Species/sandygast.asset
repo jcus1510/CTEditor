@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: sandygast
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: sandygast
+  displayName: Sandygast
+  englishName: Sandygast
+  types:
+  - {fileID: 11400000, guid: 1f6653f8eb948e44995eccd8804153ac, type: 2}
+  - {fileID: 11400000, guid: 3a52b6aa5b301834ab86591d9e18d79a, type: 2}
+  abilityId: water_compaction
+  secondAbilityId: 
+  hiddenAbilityId: sand_veil
+  growthCurveId: medium_fast
+  baseExpYield: 64
+  evYield:
+  - statId: defense
+    amount: 1
+  baseFriendship: 70
+  catchRate: 140
+  dexNumber: 769
+  category: Montearena
+  heightM: 0.5
+  weightKg: 70
+  dexColor: "marr\xF3n"
+  dexDescription: "Siente mucho apego por la pala de su cabeza. Si un ni\xF1o intenta
+    quit\xE1rsela, se enfurece y pelea por ella."
+  femalePercent: 50
+  legendary: 0
+  hp: 55
+  attack: 55
+  defense: 80
+  spAttack: 70
+  spDefense: 45
+  speed: 15
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 36bfb8286b5281b42b15716b99496dde, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 0a7589ec211131d45b8c65c725894de0, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 0e3f0fa51d6203f4b93b171b6cf2bcb8, type: 2}
+    level: 5
+  - move: {fileID: 11400000, guid: 34cc99783d94cc14a8ac87f62ffb7ff7, type: 2}
+    level: 9
+  - move: {fileID: 11400000, guid: 74aaa2c45029e3848a9655edf99e495b, type: 2}
+    level: 14
+  - move: {fileID: 11400000, guid: 58b3bb2d11a3dd74689abe52955d6f02, type: 2}
+    level: 18
+  - move: {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
+    level: 23
+  - move: {fileID: 11400000, guid: 57b6a36f57133a848a8e6f2372fe652c, type: 2}
+    level: 27
+  - move: {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
+    level: 32
+  - move: {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+    level: 36
+  - move: {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+    level: 41
+  - move: {fileID: 11400000, guid: 72fd9ca207ded4445abe6cf72ae11c4a, type: 2}
+    level: 45
+  - move: {fileID: 11400000, guid: ebc476eb94710aa489d70e767686a986, type: 2}
+    level: 50
+  - move: {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+    level: 54
+  evolutions:
+  - target: {fileID: 11400000, guid: 2e63613270fb44c45ae3f41399ff3a1f, type: 2}
+    requiredLevel: 42
+    method: 0
+    itemId: 
+    minFriendship: 0
+    conditions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+  - {fileID: 11400000, guid: ff87c561ab2d5d5488da04047c6f5db4, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: b9c4a4072b4846d4682b7aa97e95c2c5, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: 4cfd413f63f850d4184361b3dcded214, type: 2}
+  - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+  - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+  - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 3c0263f9417ef0d479e327f62c683a81, type: 2}
+  - {fileID: 11400000, guid: 1df701a85ab4650459d0b301b7a54236, type: 2}
+  - {fileID: 11400000, guid: 72fd9ca207ded4445abe6cf72ae11c4a, type: 2}
+  - {fileID: 11400000, guid: 746ec8c2b7f0837438c2acd49b2c87ce, type: 2}
+  - {fileID: 11400000, guid: 5f7740b1638070043981274acbd709bd, type: 2}
+  - {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
+  - {fileID: 11400000, guid: d8e92f9a08c72494da330a1912c78045, type: 2}
+  - {fileID: 11400000, guid: beeb113202b73114c96ea7c86b66b26a, type: 2}
+  - {fileID: 11400000, guid: 54532b3c7f8fdea4c97915acc462843b, type: 2}
+  - {fileID: 11400000, guid: 9354c182ae2a8a24686edacf5ccb0995, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 93a3995697d435c4aa1c06b7784b4bf1, type: 2}
+  - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+  - {fileID: 11400000, guid: df31a0238c74b604399f6fb7eddae29d, type: 2}
+  eggMoves:
+  - {fileID: 11400000, guid: 5d68f7ae3f19057498187d163e8bf589, type: 2}
+  - {fileID: 11400000, guid: 9f157f347c6812e4ca50a9355fdfa9de, type: 2}
+  - {fileID: 11400000, guid: 314010b41c3a9ec41bd1372223cc690f, type: 2}
+  - {fileID: 11400000, guid: a5dab5088d23dd141b9028acf6b50a60, type: 2}
+  - {fileID: 11400000, guid: 9b45a57d37c96d144a9e05a00b5c1e15, type: 2}
+  - {fileID: 11400000, guid: f0f3bf87980a9504191e424a1f6d65b3, type: 2}
+  - {fileID: 11400000, guid: 121a776a25cb2ba4dbc6992ebf7fbb4d, type: 2}
+  eggGroups:
+  - {fileID: 11400000, guid: 9d53a19e52921834a83345100ec4a2a8, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

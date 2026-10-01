@@ -15,7 +15,8 @@ MonoBehaviour:
   id: heat_rock
   displayName: Roca Calor
   englishName: Heat Rock
-  description: "Su sol dura 3 turnos m\xE1s."
+  description: "Prolonga la duraci\xF3n del movimiento D\xEDa Soleado que use el
+    Pok\xE9mon que la lleva."
   category: 7
   icon: {fileID: 0}
   price: 4000

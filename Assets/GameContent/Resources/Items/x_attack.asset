@@ -15,7 +15,8 @@ MonoBehaviour:
   id: x_attack
   displayName: Ataque X
   englishName: X Attack
-  description: +2 al Ataque durante el combate.
+  description: "Aumenta mucho el Ataque en combate. Al cambiar de Pok\xE9mon, el
+    efecto desaparece."
   category: 6
   icon: {fileID: 0}
   price: 1000

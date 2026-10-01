@@ -15,10 +15,11 @@ MonoBehaviour:
   id: twisted_spoon
   displayName: Cuchara Torcida
   englishName: Twisted Spoon
-  description: "Movimientos de Ps\xEDquico \xD71,2."
+  description: "Cuchara imbuida de energ\xEDa telequin\xE9tica que potencia los movimientos
+    de tipo Ps\xEDquico. Debe llevarla un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

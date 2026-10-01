@@ -15,10 +15,11 @@ MonoBehaviour:
   id: charcoal
   displayName: "Carb\xF3n"
   englishName: Charcoal
-  description: "Movimientos de Fuego \xD71,2."
+  description: "Act\xFAa como combustible y potencia los movimientos de tipo Fuego.
+    Debe llevarlo un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

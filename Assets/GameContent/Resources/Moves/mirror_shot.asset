@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: mirror_shot
   displayName: Disparo Espejo
+  englishName: Mirror Shot
   type: {fileID: 11400000, guid: bf405ce6e8c187d4eb662c226bd3ab72, type: 2}
   category: 1
   power: 65
@@ -39,6 +40,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

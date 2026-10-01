@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: parabolic_charge
   displayName: "Carga Par\xE1bola"
+  englishName: Parabolic Charge
   type: {fileID: 11400000, guid: 11907be1d5340704a86d6e3df74657fb, type: 2}
   category: 1
-  power: 50
+  power: 65
   neverMisses: 0
   accuracy: 100
   maxPp: 20
@@ -39,6 +40,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

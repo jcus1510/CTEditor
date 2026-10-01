@@ -15,7 +15,8 @@ MonoBehaviour:
   id: light_clay
   displayName: Refleluz
   englishName: Light Clay
-  description: "Sus pantallas (Reflejo, Pantalla de Luz) duran 3 turnos m\xE1s."
+  description: "Prolonga la duraci\xF3n de barreras como Reflejo y Pantalla de Luz.
+    Debe llevarla un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
   price: 4000

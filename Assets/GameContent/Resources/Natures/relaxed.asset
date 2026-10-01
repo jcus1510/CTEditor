@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.NatureData
   id: relaxed
   displayName: "Pl\xE1cida"
+  englishName: Relaxed
   boostedStatId: defense
   hinderedStatId: speed
   boostPercent: 10

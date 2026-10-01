@@ -14,15 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: solar_beam
   displayName: Rayo Solar
+  englishName: Solar Beam
   type: {fileID: 11400000, guid: 50792a937522d2e4ab6bd6a520a1534f, type: 2}
   category: 1
-  power: 120
+  power: 200
   neverMisses: 0
   accuracy: 100
   maxPp: 10
   priority: 0
   target: 0
   secondaryEffects: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

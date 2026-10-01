@@ -15,10 +15,11 @@ MonoBehaviour:
   id: mystic_water
   displayName: "Agua M\xEDstica"
   englishName: Mystic Water
-  description: "Movimientos de Agua \xD71,2."
+  description: "Gema con forma de gota de agua que fortalece los movimientos de tipo
+    Agua. Debe llevarla un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

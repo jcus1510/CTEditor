@@ -15,7 +15,8 @@ MonoBehaviour:
   id: great_ball
   displayName: Super Ball
   englishName: Great Ball
-  description: "Mejor que la Pok\xE9 Ball (\xD71,5)."
+  description: "Pok\xE9 Ball de alto rendimiento. Tiene un \xEDndice de \xE9xito
+    superior al de la Pok\xE9 Ball."
   category: 4
   icon: {fileID: 0}
   price: 600

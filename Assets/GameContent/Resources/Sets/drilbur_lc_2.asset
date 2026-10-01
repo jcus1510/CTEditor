@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: drilbur_lc_2
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: drilbur_lc_2
+  displayName: Utility
+  speciesId: drilbur
+  setFormat: lc
+  setScore: 66
+  itemOptions: berry_juice, eviolite
+  abilityOptions: mold_breaker
+  natureOptions: jolly
+  evs: 36 PS / 76 Atq / 36 Def / 76 DefE / 212 Vel
+  ivs: 
+  moveSlots: earthquake / rock_slide, rock_tomb / stealth_rock, swords_dance / rapid_spin,
+    swords_dance

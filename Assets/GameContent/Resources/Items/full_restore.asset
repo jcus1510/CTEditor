@@ -15,7 +15,8 @@ MonoBehaviour:
   id: full_restore
   displayName: Restaurar Todo
   englishName: Full Restore
-  description: Cura todos los PS y cualquier estado.
+  description: "Medicina que restaura todos los PS y cura todos los problemas de
+    estado de un Pok\xE9mon."
   category: 0
   icon: {fileID: 0}
   price: 3000

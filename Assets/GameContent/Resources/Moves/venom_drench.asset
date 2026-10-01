@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: venom_drench
   displayName: Trampa Venenosa
+  englishName: Venom Drench
   type: {fileID: 11400000, guid: beba3a9ac208f3c43a7bda5d61c338cd, type: 2}
   category: 2
   power: 0
@@ -155,6 +156,7 @@ MonoBehaviour:
       number: 0
       text: toxic
       negate: 0
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

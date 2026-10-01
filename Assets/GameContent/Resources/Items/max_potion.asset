@@ -15,7 +15,8 @@ MonoBehaviour:
   id: max_potion
   displayName: "Poci\xF3n M\xE1xima"
   englishName: Max Potion
-  description: Cura todos los PS.
+  description: "Medicina en espray que cura heridas y restaura todos los PS de un
+    Pok\xE9mon."
   category: 0
   icon: {fileID: 0}
   price: 2500

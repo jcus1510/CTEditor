@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: minior
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: minior
+  displayName: Minior
+  englishName: Minior
+  types:
+  - {fileID: 11400000, guid: f67cf695669c26b4e83615944c69cdce, type: 2}
+  - {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
+  abilityId: shields_down
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: medium_slow
+  baseExpYield: 154
+  evYield:
+  - statId: defense
+    amount: 1
+  - statId: sp_defense
+    amount: 1
+  baseFriendship: 70
+  catchRate: 30
+  dexNumber: 774
+  category: Meteoro
+  heightM: 0.3
+  weightKg: 40
+  dexColor: "marr\xF3n"
+  dexDescription: "Vive en la capa de ozono, donde puede resultar presa de Pok\xE9mon
+    m\xE1s fuertes. Al huir, acaba precipit\xE1ndose a tierra firme."
+  femalePercent: -1
+  legendary: 0
+  hp: 60
+  attack: 60
+  defense: 100
+  spAttack: 60
+  spDefense: 100
+  speed: 60
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: d760e0124145e274a807af9a3cb02b35, type: 2}
+    level: 3
+  - move: {fileID: 11400000, guid: 0636291e4eae3b146b1112aca9b448df, type: 2}
+    level: 8
+  - move: {fileID: 11400000, guid: aa8cb47a15c657b4383ea9524f32c59b, type: 2}
+    level: 10
+  - move: {fileID: 11400000, guid: 36afc492c55a0744fbfa3fb385bebc1d, type: 2}
+    level: 15
+  - move: {fileID: 11400000, guid: 9f157f347c6812e4ca50a9355fdfa9de, type: 2}
+    level: 17
+  - move: {fileID: 11400000, guid: f9393ac71e402e94d92eba2ed456c563, type: 2}
+    level: 22
+  - move: {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+    level: 24
+  - move: {fileID: 11400000, guid: 95c0d63a4a28c9f4a82a3da9fecf1712, type: 2}
+    level: 29
+  - move: {fileID: 11400000, guid: c7d5fc352a8bd5a41936db4341695266, type: 2}
+    level: 31
+  - move: {fileID: 11400000, guid: ea4cad193bfcb754dad677b226d36332, type: 2}
+    level: 36
+  - move: {fileID: 11400000, guid: c4de1d9b8d3d78a4994ac30739fede35, type: 2}
+    level: 38
+  - move: {fileID: 11400000, guid: 40002ae0540723e4b867c61b40abaed3, type: 2}
+    level: 43
+  - move: {fileID: 11400000, guid: 6e591eadf38b0be47a08e6db5e5ee087, type: 2}
+    level: 45
+  - move: {fileID: 11400000, guid: 17db9758688531a4a91b48d9e2079c07, type: 2}
+    level: 50
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 61f5c64e93bc85b48aecaa66d733c5d2, type: 2}
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
+  - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+  - {fileID: 11400000, guid: 3cd5c4bd311548e4dae6f005216cadb1, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: acb45f8f9b7456142aba86ae9ef2b098, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+  - {fileID: 11400000, guid: 17db9758688531a4a91b48d9e2079c07, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 4403818195e13404cbdf474c68c5ecac, type: 2}
+  - {fileID: 11400000, guid: c49703054ffc0dc40a9619b9efe13529, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+  - {fileID: 11400000, guid: 3ad3383d6ef49d44ab088c5c6cd866e3, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 2a18e3c45efa21d4994f8c7d3d9050b8, type: 2}
+  - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+  - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: 4cfd413f63f850d4184361b3dcded214, type: 2}
+  - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+  - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 3f27654d4ee6af241ab171c4f2812b88, type: 2}
+  - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 2142ec87c94158f47928ed9a938e18b0, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 13ca1e152dccf554aa16ad9bfcd9ae56, type: 2}
+  - {fileID: 11400000, guid: 5f7740b1638070043981274acbd709bd, type: 2}
+  - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
+  - {fileID: 11400000, guid: 4c153afd182796a48a7ddadc0bf0a432, type: 2}
+  - {fileID: 11400000, guid: 6589ee989c30c544cb926ea68983bc7d, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+  - {fileID: 11400000, guid: 6ebee087cfb72f04096d41f5011a2dd8, type: 2}
+  - {fileID: 11400000, guid: 4684c92cf670dbb46ab68228e6a997e4, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 2a9396fa90416b64f84c4a3cdedb4711, type: 2}
+  formOf: 
+  variantItem: 
+  forms:
+  - id: core
+    displayName: "N\xFAcleo Rojo"
+    type1: 
+    type2: 
+    attack: 100
+    defense: 60
+    spAttack: 100
+    spDefense: 60
+    speed: 120
+    ability: 
+    revertsOnSwitch: 1
+  formChanges:
+  - from: 
+    to: core
+    trigger: 3
+    item: 
+    move: 
+    hpPercent: 50
+    weather: 
+    requiredAbility: shields_down
+    afterMove: 0
+  - from: core
+    to: 
+    trigger: 4
+    item: 
+    move: 
+    hpPercent: 50
+    weather: 
+    requiredAbility: shields_down
+    afterMove: 0

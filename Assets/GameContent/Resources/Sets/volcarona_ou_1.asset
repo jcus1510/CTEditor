@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: volcarona_ou_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: volcarona_ou_1
+  displayName: Offensive Quiver Dance
+  speciesId: volcarona
+  setFormat: ou
+  setScore: 51
+  itemOptions: buginium_z, aguav_berry, lum_berry, leftovers, psychium_z, firium_z,
+    life_orb
+  abilityOptions: 
+  natureOptions: timid
+  evs: 252 AtqE / 4 DefE / 252 Vel
+  ivs: 
+  moveSlots: quiver_dance / flamethrower, fire_blast / bug_buzz, giga_drain, psychic
+    / hidden_power, psychic

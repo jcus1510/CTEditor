@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: combee
   displayName: Combee
+  englishName: Combee
   types:
   - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
   - {fileID: 11400000, guid: 90318c293db6959418112361e09f8ef4, type: 2}
@@ -44,12 +45,14 @@ MonoBehaviour:
   speed: 70
   customStats: []
   learnset:
-  - move: {fileID: 11400000, guid: 359f2bdcc3c908741b97a2374dbfe96a, type: 2}
-    level: 1
   - move: {fileID: 11400000, guid: a104d95bb4f50a742a792b72a428b9ac, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 359f2bdcc3c908741b97a2374dbfe96a, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
     level: 13
+  - move: {fileID: 11400000, guid: 864f13fee3c5ce84d90871a93cbb3670, type: 2}
+    level: 29
   evolutions:
   - target: {fileID: 11400000, guid: 8d377b0d6cc4f8c4c90eb9055428a238, type: 2}
     requiredLevel: 21
@@ -71,12 +74,14 @@ MonoBehaviour:
       negate: 0
   machineMoves: []
   tutorMoves:
-  - {fileID: 11400000, guid: 3e2de162939d6f3408ccbe81ab6abca3, type: 2}
+  - {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
   - {fileID: 11400000, guid: 13ca1e152dccf554aa16ad9bfcd9ae56, type: 2}
-  - {fileID: 11400000, guid: f050730ea6b643346a1bd3c76ba306a1, type: 2}
-  - {fileID: 11400000, guid: fcd420fd41769334a997d9b3c9e2a7a2, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
-  - {fileID: 11400000, guid: 36afc492c55a0744fbfa3fb385bebc1d, type: 2}
+  - {fileID: 11400000, guid: e2eafcf36d9b5f3448a0147c4d23cbc2, type: 2}
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 1db6d26df99d9ca4180072eb358a7436, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

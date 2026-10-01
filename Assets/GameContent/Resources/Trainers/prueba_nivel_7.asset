@@ -25,6 +25,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: garchomp
     moveIds: []
     natureId: 
@@ -36,6 +39,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: metagross
     moveIds: []
     natureId: 
@@ -47,6 +53,9 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: gyarados
     moveIds: []
     natureId: 
@@ -58,10 +67,13 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
     speciesId: gengar
     moveIds: []
     natureId: 
-  - species: {fileID: 11400000, guid: 9b71779bedb6cc946a8897e446aac8f2, type: 2}
+  - species: {fileID: 11400000, guid: 1b515c27482a2684f9b4b3b72425cf53, type: 2}
     level: 50
     moves: []
     heldItem: 
@@ -69,10 +81,13 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
-    speciesId: scizor
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: toxapex
     moveIds: []
     natureId: 
-  - species: {fileID: 11400000, guid: 9533862dd63a809478c128cbba83eedf, type: 2}
+  - species: {fileID: 11400000, guid: 96b2e6c4991fed045a7dd8c33e975c55, type: 2}
     level: 50
     moves: []
     heldItem: 
@@ -80,11 +95,18 @@ MonoBehaviour:
     fixedIvs: -1
     nickname: 
     gender: 0
-    speciesId: togekiss
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: kommo_o
     moveIds: []
     natureId: 
   aiLevel: 7
   aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
   ai: 2
   useItems: 1
   items: []

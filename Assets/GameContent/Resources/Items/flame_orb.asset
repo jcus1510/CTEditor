@@ -15,7 +15,8 @@ MonoBehaviour:
   id: flame_orb
   displayName: Llamasfera
   englishName: Flame Orb
-  description: "Al final del turno le quema (\xFAtil con Agallas)."
+  description: "Extra\xF1a esfera que causa quemaduras al Pok\xE9mon que la lleva
+    en combate."
   category: 7
   icon: {fileID: 0}
   price: 4000

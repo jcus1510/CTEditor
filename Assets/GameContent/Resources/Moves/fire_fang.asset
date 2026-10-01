@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: fire_fang
   displayName: "Colmillo \xCDgneo"
+  englishName: Fire Fang
   type: {fileID: 11400000, guid: ee71163cdafa45541b041fbd052f055b, type: 2}
   category: 0
   power: 65
@@ -55,6 +56,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

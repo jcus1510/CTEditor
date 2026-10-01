@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: wormadam_sandy
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: wormadam_sandy
+  displayName: Wormadam (Tronco Arena)
+  englishName: Wormadam-Sandy
+  types:
+  - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
+  - {fileID: 11400000, guid: 3a52b6aa5b301834ab86591d9e18d79a, type: 2}
+  abilityId: anticipation
+  secondAbilityId: 
+  hiddenAbilityId: overcoat
+  growthCurveId: medium_fast
+  baseExpYield: 148
+  evYield:
+  - statId: sp_defense
+    amount: 2
+  baseFriendship: 70
+  catchRate: 45
+  dexNumber: 413
+  category: Larva
+  heightM: 0.5
+  weightKg: 6.5
+  dexColor: verde
+  dexDescription: "Su apariencia var\xEDa seg\xFAn d\xF3nde evolucione. Los materiales
+    que haya pasan a formar parte de su cuerpo."
+  femalePercent: 100
+  legendary: 0
+  hp: 60
+  attack: 79
+  defense: 105
+  spAttack: 59
+  spDefense: 85
+  speed: 36
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: c597e297f17bace489178d1ec0dcbc91, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 73c995529de98aa4ea05633c95125a39, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 99bf9dacd2e720848b9f78516c61d712, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+    level: 10
+  - move: {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
+    level: 15
+  - move: {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+    level: 20
+  - move: {fileID: 11400000, guid: aeb1e6a9a02f34444afa73bd28e97f48, type: 2}
+    level: 23
+  - move: {fileID: 11400000, guid: 16187846ec82a374297f4849fff6bc2a, type: 2}
+    level: 26
+  - move: {fileID: 11400000, guid: 0a7589ec211131d45b8c65c725894de0, type: 2}
+    level: 29
+  - move: {fileID: 11400000, guid: 8bd907a69824a5347ade2a787659e959, type: 2}
+    level: 32
+  - move: {fileID: 11400000, guid: 68895b077371c7746b74eb4623d4b93d, type: 2}
+    level: 35
+  - move: {fileID: 11400000, guid: b435b36c8dbbe774f8cf6a571a66badd, type: 2}
+    level: 38
+  - move: {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+    level: 41
+  - move: {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+    level: 44
+  - move: {fileID: 11400000, guid: 7321b81cde0b1c54f8273759a929c270, type: 2}
+    level: 47
+  - move: {fileID: 11400000, guid: 864f13fee3c5ce84d90871a93cbb3670, type: 2}
+    level: 50
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 88aea8fc365bb0f438f437d235048d68, type: 2}
+  - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 4403818195e13404cbdf474c68c5ecac, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+  - {fileID: 11400000, guid: b9c4a4072b4846d4682b7aa97e95c2c5, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 2a18e3c45efa21d4994f8c7d3d9050b8, type: 2}
+  - {fileID: 11400000, guid: 9217ca956ae2750429717b1146636bd4, type: 2}
+  - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+  - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: b986b811f74bfde4b99e8340775b7028, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: b08a11a32d7c09f4db0c89ad242fbbad, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: dc9e0c2056c2b294f84c482941be156e, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 49408bd7bff365a43941ed9a21b0b47f, type: 2}
+  - {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
+  - {fileID: 11400000, guid: 72fd9ca207ded4445abe6cf72ae11c4a, type: 2}
+  - {fileID: 11400000, guid: 26ff654c6a5a69c45b83f57140540eca, type: 2}
+  - {fileID: 11400000, guid: 13ca1e152dccf554aa16ad9bfcd9ae56, type: 2}
+  - {fileID: 11400000, guid: 1989b151e0bed7e4fb7d3aaf45313c80, type: 2}
+  - {fileID: 11400000, guid: 9354c182ae2a8a24686edacf5ccb0995, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+  - {fileID: 11400000, guid: 6ebee087cfb72f04096d41f5011a2dd8, type: 2}
+  - {fileID: 11400000, guid: a18d51fa09a21df4ca4319a635faf1fe, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 1db6d26df99d9ca4180072eb358a7436, type: 2}
+  formOf: wormadam
+  variantItem: 
+  forms: []
+  formChanges: []

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: spewpa
   displayName: Spewpa
+  englishName: Spewpa
   types:
   - {fileID: 11400000, guid: cde6ae288a9231a4997e1dc6b407a781, type: 2}
   abilityId: shed_skin
@@ -46,7 +47,7 @@ MonoBehaviour:
   - move: {fileID: 11400000, guid: 0a7589ec211131d45b8c65c725894de0, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
-    level: 9
+    level: 1
   evolutions:
   - target: {fileID: 11400000, guid: 9b4748d3dee2d484bbccd2b026783164, type: 2}
     requiredLevel: 12
@@ -60,9 +61,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 055f5a4902a53a343b502c9820b912cc, type: 2}
   - {fileID: 11400000, guid: 26ff654c6a5a69c45b83f57140540eca, type: 2}
   - {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
-  eggMoves:
-  - {fileID: 11400000, guid: 1c707176215de6247ac6f78337170e78, type: 2}
-  - {fileID: 11400000, guid: 968b4416f050235449462bac4305fecb, type: 2}
-  - {fileID: 11400000, guid: de7425f38b0577848a9def95bac54fe2, type: 2}
+  eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 1db6d26df99d9ca4180072eb358a7436, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

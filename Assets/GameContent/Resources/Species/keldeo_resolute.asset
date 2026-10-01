@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: keldeo_resolute
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: keldeo_resolute
+  displayName: "Keldeo (Forma Br\xEDo)"
+  englishName: Keldeo-Resolute
+  types:
+  - {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
+  - {fileID: 11400000, guid: 0941b1891025dc049a69b41fb000c657, type: 2}
+  abilityId: justified
+  secondAbilityId: 
+  hiddenAbilityId: 
+  growthCurveId: slow
+  baseExpYield: 261
+  evYield:
+  - statId: sp_attack
+    amount: 3
+  baseFriendship: 70
+  catchRate: 3
+  dexNumber: 647
+  category: Potro
+  heightM: 1.4
+  weightKg: 48.5
+  dexColor: amarillo
+  dexDescription: "Corre por mares, r\xEDos o cualquier superficie acu\xE1tica de
+    todo el mundo. Aparece en aguas l\xEDmpidas."
+  femalePercent: -1
+  legendary: 1
+  hp: 91
+  attack: 72
+  defense: 90
+  spAttack: 129
+  spDefense: 90
+  speed: 108
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: e096ddf076ed7e241ba30d62ab46123c, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 6a1f2a343ec493f488b11de043229785, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: eadf095108fdd03448a22a2499ac4318, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 91d7d14655e701d40b528f342c361bfc, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: eadf095108fdd03448a22a2499ac4318, type: 2}
+    level: 7
+  - move: {fileID: 11400000, guid: 6a1f2a343ec493f488b11de043229785, type: 2}
+    level: 13
+  - move: {fileID: 11400000, guid: 95c0d63a4a28c9f4a82a3da9fecf1712, type: 2}
+    level: 19
+  - move: {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
+    level: 25
+  - move: {fileID: 11400000, guid: d783373f10e72584b8c07508ed727511, type: 2}
+    level: 31
+  - move: {fileID: 11400000, guid: 2958df99c8d8ca34ea9fdb47154368c8, type: 2}
+    level: 37
+  - move: {fileID: 11400000, guid: 462a0206fda152043a170d964f28f2be, type: 2}
+    level: 43
+  - move: {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+    level: 49
+  - move: {fileID: 11400000, guid: 38720ecd8e6cef0459bef6c6f53cfced, type: 2}
+    level: 55
+  - move: {fileID: 11400000, guid: 2bf945e9e0da7b4469bebca1e26e325f, type: 2}
+    level: 61
+  - move: {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+    level: 67
+  - move: {fileID: 11400000, guid: 4ffc2275349815749b8e70f372f6ebd8, type: 2}
+    level: 73
+  evolutions: []
+  machineMoves:
+  - {fileID: 11400000, guid: b07f609e3c2190842a08d2010f427806, type: 2}
+  - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 394d58ae125778d47ab4bfa87263bff9, type: 2}
+  - {fileID: 11400000, guid: c3b6da97600a239478d3b1629781f284, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 4403818195e13404cbdf474c68c5ecac, type: 2}
+  - {fileID: 11400000, guid: 24621966b700ed443bc298f05e2d88f8, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 350ae0e61eefe7d42b9bf4f9a428cde4, type: 2}
+  - {fileID: 11400000, guid: e241c34283f45a343b6140504cd58b9e, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: 2a18e3c45efa21d4994f8c7d3d9050b8, type: 2}
+  - {fileID: 11400000, guid: 9f5cd9ef47428874cb8eda43ecacf360, type: 2}
+  - {fileID: 11400000, guid: 96be138d87bd49949800771a1162fed3, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: 034c48472772d604caaa172d102c6f0c, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
+  - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 87919d3d01a83c14a90036db57a6700a, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 8e4a13fc272d3554796413e608af8ef2, type: 2}
+  - {fileID: 11400000, guid: a8a239b6bce5e5f47a72807fd74d8e14, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  - {fileID: 11400000, guid: 2bf945e9e0da7b4469bebca1e26e325f, type: 2}
+  - {fileID: 11400000, guid: cad6229bd6396e54ab2ae591cec87009, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 2958df99c8d8ca34ea9fdb47154368c8, type: 2}
+  - {fileID: 11400000, guid: f291a6ab8ca34194cbcc76a39c489ee4, type: 2}
+  - {fileID: 11400000, guid: 58188db92c809e946a9e31c9e4bf61f6, type: 2}
+  - {fileID: 11400000, guid: 13ca1e152dccf554aa16ad9bfcd9ae56, type: 2}
+  - {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
+  - {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
+  - {fileID: 11400000, guid: 4c153afd182796a48a7ddadc0bf0a432, type: 2}
+  - {fileID: 11400000, guid: 35d4435395e67784c85ffb4ad31ab72d, type: 2}
+  - {fileID: 11400000, guid: c7965f535ac7df04a918d59d14894ab7, type: 2}
+  - {fileID: 11400000, guid: 0f6525e3b6df4664d9568036cdb11a50, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
+  - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
+  eggMoves: []
+  eggGroups:
+  - {fileID: 11400000, guid: 1b241ef97aad0a34c9951f0d46107789, type: 2}
+  formOf: keldeo
+  variantItem: 
+  forms: []
+  formChanges: []

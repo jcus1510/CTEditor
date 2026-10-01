@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: wimpod_lc_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: wimpod_lc_1
+  displayName: Spikes Setter
+  speciesId: wimpod
+  setFormat: lc
+  setScore: 83
+  itemOptions: focus_sash
+  abilityOptions: 
+  natureOptions: naive
+  evs: 76 Atq / 196 Def / 36 AtqE / 196 Vel
+  ivs: 
+  moveSlots: spikes / taunt / scald / aqua_jet

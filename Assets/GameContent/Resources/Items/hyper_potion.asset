@@ -15,7 +15,7 @@ MonoBehaviour:
   id: hyper_potion
   displayName: "Hiperpoci\xF3n"
   englishName: Hyper Potion
-  description: Cura 120 PS.
+  description: "Medicina en espray que cura heridas y restaura 120 PS de un Pok\xE9mon."
   category: 0
   icon: {fileID: 0}
   price: 1500

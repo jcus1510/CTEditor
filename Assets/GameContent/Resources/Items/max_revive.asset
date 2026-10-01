@@ -15,7 +15,8 @@ MonoBehaviour:
   id: max_revive
   displayName: "Revivir M\xE1ximo"
   englishName: Max Revive
-  description: Revive con todos los PS.
+  description: "Medicina que revive a un Pok\xE9mon debilitado y le devuelve todos
+    sus PS."
   category: 1
   icon: {fileID: 0}
   price: 4000

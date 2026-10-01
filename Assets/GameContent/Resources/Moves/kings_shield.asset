@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: kings_shield
   displayName: Escudo Real
+  englishName: "King\u2019s Shield"
   type: {fileID: 11400000, guid: bf405ce6e8c187d4eb662c226bd3ab72, type: 2}
   category: 2
   power: 0
@@ -27,6 +28,23 @@ MonoBehaviour:
     kind: 0
     target: 1
     statusId: kings_shield
+    amountPercent: 0
+    statStatId: 
+    statStages: 0
+    weatherId: 
+    weatherTurns: 0
+    hazardId: 
+    sideConditionId: 
+    turns: 0
+    typeId: 
+    text: 
+    sharesPreviousRoll: 0
+    conditions: []
+  zEffects:
+  - chancePercent: 100
+    kind: 14
+    target: 1
+    statusId: 
     amountPercent: 0
     statStatId: 
     statStages: 0

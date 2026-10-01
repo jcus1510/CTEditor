@@ -15,7 +15,8 @@ MonoBehaviour:
   id: whipped_dream
   displayName: Dulce de Nata
   englishName: Whipped Dream
-  description: "Llev\xE1ndolo al intercambiarse: Swirlix evoluciona."
+  description: "Un dulce a base de suave y esponjosa nata montada. A algunos Pok\xE9mon
+    les encanta."
   category: 7
   icon: {fileID: 0}
   price: 2000

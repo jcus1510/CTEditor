@@ -15,7 +15,8 @@ MonoBehaviour:
   id: leftovers
   displayName: Restos
   englishName: Leftovers
-  description: Recupera 1/16 de PS cada turno.
+  description: "Este objeto restaura gradualmente durante el combate los PS del Pok\xE9mon
+    que lo lleva."
   category: 7
   icon: {fileID: 0}
   price: 4000

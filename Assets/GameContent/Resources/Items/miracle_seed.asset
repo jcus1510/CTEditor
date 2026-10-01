@@ -15,10 +15,11 @@ MonoBehaviour:
   id: miracle_seed
   displayName: Semilla Milagro
   englishName: Miracle Seed
-  description: "Movimientos de Planta \xD71,2."
+  description: "Debe llevarla un Pok\xE9mon. La vitalidad de la semilla fortalece
+    los movimientos de tipo Planta."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

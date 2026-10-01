@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: camerupt_ou_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: camerupt_ou_1
+  displayName: Offensive Stealth Rock
+  speciesId: camerupt
+  setFormat: ou
+  setScore: 90
+  itemOptions: cameruptite
+  abilityOptions: 
+  natureOptions: modest
+  evs: 132 PS / 252 AtqE / 124 Vel
+  ivs: 
+  moveSlots: stealth_rock / fire_blast / earth_power / toxic, substitute, rock_slide,
+    nature_power

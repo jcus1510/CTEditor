@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: focus_sash
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: focus_sash
-  displayName: Banda Focus
+  displayName: Banda Aguante
   englishName: Focus Sash
-  description: "Con los PS al m\xE1ximo, aguanta con 1 PS un golpe que le debilitar\xEDa
-    (se gasta)."
+  description: "Si el Pok\xE9mon que la lleva tiene los PS al m\xE1ximo, puede resistir
+    un golpe que lo dejar\xEDa K. O. y se queda con 1 PS."
   category: 7
   icon: {fileID: 0}
   price: 4000

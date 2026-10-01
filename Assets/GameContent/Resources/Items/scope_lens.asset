@@ -15,7 +15,8 @@ MonoBehaviour:
   id: scope_lens
   displayName: Periscopio
   englishName: Scope Lens
-  description: "Sube el \xEDndice de cr\xEDtico."
+  description: "Su lente aumenta la probabilidad que tiene el Pok\xE9mon que lo lleva
+    de conseguir un golpe cr\xEDtico."
   category: 7
   icon: {fileID: 0}
   price: 4000

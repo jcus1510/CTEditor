@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: dig
   displayName: Excavar
+  englishName: Dig
   type: {fileID: 11400000, guid: 3a52b6aa5b301834ab86591d9e18d79a, type: 2}
   category: 0
   power: 80
@@ -23,6 +24,7 @@ MonoBehaviour:
   priority: 0
   target: 0
   secondaryEffects: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

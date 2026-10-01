@@ -15,8 +15,8 @@ MonoBehaviour:
   id: choice_band
   displayName: "Cinta Elecci\xF3n"
   englishName: Choice Band
-  description: "Ataque \xD71,5, pero solo puede usar el primer movimiento que elija
-    hasta que se retire."
+  description: "Aumenta la potencia de los ataques f\xEDsicos del Pok\xE9mon que
+    la lleva, pero solo le permite usar un movimiento."
   category: 7
   icon: {fileID: 0}
   price: 4000

@@ -15,7 +15,8 @@ MonoBehaviour:
   id: reaper_cloth
   displayName: Tela Terrible
   englishName: Reaper Cloth
-  description: "Llev\xE1ndola al intercambiarse: Dusclops evoluciona."
+  description: "Tela imbuida de una energ\xEDa espiritual muy potente. Cierto Pok\xE9mon
+    la adora."
   category: 7
   icon: {fileID: 0}
   price: 2000

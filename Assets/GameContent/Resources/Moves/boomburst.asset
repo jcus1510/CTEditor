@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: boomburst
   displayName: Estruendo
+  englishName: Boomburst
   type: {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
   category: 1
   power: 140
@@ -23,6 +24,7 @@ MonoBehaviour:
   priority: 0
   target: 4
   secondaryEffects: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

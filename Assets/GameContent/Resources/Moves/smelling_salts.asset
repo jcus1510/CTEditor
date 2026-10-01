@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: smelling_salts
   displayName: "Est\xEDmulo"
+  englishName: Smelling Salts
   type: {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
   category: 0
   power: 70
@@ -45,6 +46,7 @@ MonoBehaviour:
       number: 0
       text: paralysis
       negate: 0
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

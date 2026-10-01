@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: absorb
   displayName: Absorber
+  englishName: Absorb
   type: {fileID: 11400000, guid: 50792a937522d2e4ab6bd6a520a1534f, type: 2}
   category: 1
-  power: 20
+  power: 40
   neverMisses: 0
   accuracy: 100
-  maxPp: 25
+  maxPp: 15
   priority: 0
   target: 0
   secondaryEffects:
@@ -39,6 +40,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: alomomola
   displayName: Alomomola
+  englishName: Alomomola
   types:
   - {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
   abilityId: healer
@@ -43,9 +44,19 @@ MonoBehaviour:
   speed: 65
   customStats: []
   learnset:
+  - move: {fileID: 11400000, guid: 1f26f10dc9510a24e9395f65e0b41337, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 0c1fef756e0db804c9f02115d87a6f76, type: 2}
+    level: 1
   - move: {fileID: 11400000, guid: d28b2fac6e7636849be1e26b1be97043, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 25938b490a569fb458f02c51ede4c0cf, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: f0c6915b05197a74e8e3860e9378ddee, type: 2}
     level: 1
   - move: {fileID: 11400000, guid: 7627b7998c029d64084ddec3bcda1deb, type: 2}
     level: 5
@@ -69,20 +80,22 @@ MonoBehaviour:
     level: 41
   - move: {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
     level: 45
-  - move: {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
+  - move: {fileID: 11400000, guid: 1df4f4a3194cca948bc22c7ba6dc44a0, type: 2}
     level: 49
-  - move: {fileID: 11400000, guid: f0c6915b05197a74e8e3860e9378ddee, type: 2}
+  - move: {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
     level: 53
   - move: {fileID: 11400000, guid: 1f26f10dc9510a24e9395f65e0b41337, type: 2}
     level: 57
-  - move: {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+  - move: {fileID: 11400000, guid: f0c6915b05197a74e8e3860e9378ddee, type: 2}
     level: 61
+  - move: {fileID: 11400000, guid: 0a9c5d041a887544c9eb42c6faf1ba8f, type: 2}
+    level: 65
   evolutions: []
   machineMoves:
   - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
   - {fileID: 11400000, guid: ed582e952bd55fb4fb1fb09d5089928b, type: 2}
   - {fileID: 11400000, guid: 7fedd59feab8ea64d9b100fcc251bdd0, type: 2}
-  - {fileID: 11400000, guid: b038add5f5a6f804fac709b7d5928f8f, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
   - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
   - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
   - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
@@ -100,6 +113,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d943fb156bd0ea14b86c8406c0dc4bef, type: 2}
   - {fileID: 11400000, guid: 6ef9e04989b763c49a5cbf5b19d7cd12, type: 2}
   - {fileID: 11400000, guid: 9557d7327b44bd14fb7a0d07e52995da, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
   - {fileID: 11400000, guid: e1eef3767e5050e4ba47364c806833a9, type: 2}
   - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
@@ -110,10 +124,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 912e8be1fb61fe246b378699bf071628, type: 2}
   - {fileID: 11400000, guid: a91c99b7223a76c4480f00ba653e21f7, type: 2}
   - {fileID: 11400000, guid: 0a1341605e543e3428ab22579fa63d2d, type: 2}
+  - {fileID: 11400000, guid: 35d4435395e67784c85ffb4ad31ab72d, type: 2}
   - {fileID: 11400000, guid: 0455cfad2a0f4de49b8d62d634315197, type: 2}
   - {fileID: 11400000, guid: d8e92f9a08c72494da330a1912c78045, type: 2}
-  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
   - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: 0868c7d6930901144b63f1fa040295f3, type: 2}
   eggMoves:
   - {fileID: 11400000, guid: 0ebb2337b3b88994fb66c3d0757615e6, type: 2}
   - {fileID: 11400000, guid: aa227febb56c30e44903499d5c32999f, type: 2}
@@ -124,3 +139,7 @@ MonoBehaviour:
   eggGroups:
   - {fileID: 11400000, guid: d157f82d264192840973c80fbe0c8b69, type: 2}
   - {fileID: 11400000, guid: 608620a8fe5afe549bc0d00df5e04503, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

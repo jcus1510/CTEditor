@@ -15,7 +15,8 @@ MonoBehaviour:
   id: max_elixir
   displayName: "Elixir M\xE1ximo"
   englishName: Max Elixir
-  description: Recupera todos los PP de todos los movimientos.
+  description: "Restaura completamente los PP de todos los movimientos aprendidos
+    por el Pok\xE9mon elegido."
   category: 3
   icon: {fileID: 0}
   price: 4500

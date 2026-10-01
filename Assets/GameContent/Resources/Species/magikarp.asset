@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: magikarp
   displayName: Magikarp
+  englishName: Magikarp
   types:
   - {fileID: 11400000, guid: d7423d4bf2369a44aa25371b6333a5e4, type: 2}
   abilityId: swift_swim
@@ -57,8 +58,13 @@ MonoBehaviour:
     minFriendship: 0
     conditions: []
   machineMoves: []
-  tutorMoves: []
+  tutorMoves:
+  - {fileID: 11400000, guid: f291a6ab8ca34194cbcc76a39c489ee4, type: 2}
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 608620a8fe5afe549bc0d00df5e04503, type: 2}
   - {fileID: 11400000, guid: 35d19e54946afba4590f44d30dd27355, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

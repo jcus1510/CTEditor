@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: aromatic_mist
   displayName: "Niebla Arom\xE1tica"
+  englishName: Aromatic Mist
   type: {fileID: 11400000, guid: d65ead7637a8c9c4090b7b6df1d3b171, type: 2}
   category: 2
   power: 0
@@ -23,6 +24,7 @@ MonoBehaviour:
   priority: 0
   target: 3
   secondaryEffects: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: presidenta_samina
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: presidenta_samina
+  displayName: Samina
+  trainerClass: "Presidenta de la Fundaci\xF3n \xC6ther"
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: efbbab0d81f369f4788fed80b25b2ab0, type: 2}
+    level: 63
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: clefable
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 9b99de21b2b4c5e4390ffa9f4a9511ed, type: 2}
+    level: 63
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: lilligant
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 8fc72c85164573a4aa2e44e0d254ac48, type: 2}
+    level: 63
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: milotic
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: c19f1c9a94d4d0744a76ba70bdd73b05, type: 2}
+    level: 63
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: mismagius
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 7231b0a0877dd1b488eb9209512bb897, type: 2}
+    level: 65
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: bewear
+    moveIds: []
+    natureId: 
+  aiLevel: 6
+  aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 3
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 120
+  introLine: Todo lo bello debe quedarse conmigo para siempre.
+  defeatLine: "No... mis preciosos Pok\xE9mon..."
+  victoryLine: "Tan hermoso y tan in\xFAtil."

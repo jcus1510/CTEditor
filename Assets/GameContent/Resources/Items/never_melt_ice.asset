@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: never_melt_ice
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: never_melt_ice
-  displayName: Antiderretir
+  displayName: Hielo Perpetuo
   englishName: Never-Melt Ice
-  description: "Movimientos de Hielo \xD71,2."
+  description: "Fragmento de hielo que repele el calor y fortalece los movimientos
+    de tipo Hielo. Debe llevarlo un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

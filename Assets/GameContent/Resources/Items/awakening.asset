@@ -15,10 +15,10 @@ MonoBehaviour:
   id: awakening
   displayName: Despertar
   englishName: Awakening
-  description: Despierta.
+  description: "Medicina en espray que libera a un Pok\xE9mon de las garras del sue\xF1o."
   category: 2
   icon: {fileID: 0}
-  price: 250
+  price: 200
   usableInBattle: 1
   usableOutsideBattle: 1
   consumable: 1

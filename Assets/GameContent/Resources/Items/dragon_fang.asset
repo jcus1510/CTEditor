@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: dragon_fang
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.ItemData
   id: dragon_fang
-  displayName: "Colmillo Drag\xF3n"
+  displayName: "Colmillo de Drag\xF3n"
   englishName: Dragon Fang
-  description: "Movimientos de Drag\xF3n \xD71,2."
+  description: "Colmillo de gran dureza que refuerza los movimientos de tipo Drag\xF3n.
+    Debe llevarlo un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

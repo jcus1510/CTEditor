@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: confuse_ray
   displayName: Rayo Confuso
+  englishName: Confuse Ray
   type: {fileID: 11400000, guid: 1f6653f8eb948e44995eccd8804153ac, type: 2}
   category: 2
   power: 0
@@ -39,6 +40,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

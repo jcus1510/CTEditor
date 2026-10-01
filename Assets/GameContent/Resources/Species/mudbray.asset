@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1582658e21782b4db93b762913ad24c, type: 3}
+  m_Name: mudbray
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
+  id: mudbray
+  displayName: Mudbray
+  englishName: Mudbray
+  types:
+  - {fileID: 11400000, guid: 3a52b6aa5b301834ab86591d9e18d79a, type: 2}
+  abilityId: own_tempo
+  secondAbilityId: stamina
+  hiddenAbilityId: inner_focus
+  growthCurveId: medium_fast
+  baseExpYield: 77
+  evYield:
+  - statId: attack
+    amount: 1
+  baseFriendship: 70
+  catchRate: 190
+  dexNumber: 749
+  category: Asno
+  heightM: 1
+  weightKg: 110
+  dexColor: "marr\xF3n"
+  dexDescription: "Le encanta chapotear en el lodo. Si no recibe su ba\xF1o de lodo
+    diario, se vuelve desobediente por el estr\xE9s."
+  femalePercent: 50
+  legendary: 0
+  hp: 70
+  attack: 100
+  defense: 70
+  spAttack: 45
+  spDefense: 55
+  speed: 45
+  customStats: []
+  learnset:
+  - move: {fileID: 11400000, guid: f050730ea6b643346a1bd3c76ba306a1, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: ee37c847dba202b4fbed62501b1a3530, type: 2}
+    level: 3
+  - move: {fileID: 11400000, guid: 39e6c32f0982e6949918f9d191a4673f, type: 2}
+    level: 8
+  - move: {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
+    level: 10
+  - move: {fileID: 11400000, guid: eadf095108fdd03448a22a2499ac4318, type: 2}
+    level: 15
+  - move: {fileID: 11400000, guid: 12ccc34268807ab44a6b74882d69fed6, type: 2}
+    level: 17
+  - move: {fileID: 11400000, guid: 43d0d19b060699548bfc305aecdc232a, type: 2}
+    level: 22
+  - move: {fileID: 11400000, guid: f804aced9c2c48048a8991589c4e0dd0, type: 2}
+    level: 24
+  - move: {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
+    level: 29
+  - move: {fileID: 11400000, guid: a651acac4e913d940b3655bbd0583ea4, type: 2}
+    level: 31
+  - move: {fileID: 11400000, guid: 2d976539caa5f634fb6ae04f1eef9ab1, type: 2}
+    level: 36
+  - move: {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+    level: 38
+  - move: {fileID: 11400000, guid: b438c69aa4968ae45a27a48a272178ba, type: 2}
+    level: 43
+  - move: {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
+    level: 45
+  evolutions:
+  - target: {fileID: 11400000, guid: 1f2c81ae2bee00e4cba0eddf02285d4a, type: 2}
+    requiredLevel: 30
+    method: 0
+    itemId: 
+    minFriendship: 0
+    conditions: []
+  machineMoves:
+  - {fileID: 11400000, guid: 6e8353da7b42c7e41bee0d06f268501e, type: 2}
+  - {fileID: 11400000, guid: feeffd3b5aa8565418b9e81783c83e29, type: 2}
+  - {fileID: 11400000, guid: d25e5f58cde0e96489325ce775ab2c10, type: 2}
+  - {fileID: 11400000, guid: 8c327efcd356aa448aa8a486f9bf0b6e, type: 2}
+  - {fileID: 11400000, guid: 1394899970e8a414ab00ccfde24e8945, type: 2}
+  - {fileID: 11400000, guid: a1745d4bc53efec45b94d0510c961d41, type: 2}
+  - {fileID: 11400000, guid: 0dd9118853e3d6d449b319342c0027ad, type: 2}
+  - {fileID: 11400000, guid: 8fdcceac58aebc6419a3fcde5cdc71d2, type: 2}
+  - {fileID: 11400000, guid: 6b57932640e3e3344963cc0b47bd1ad8, type: 2}
+  - {fileID: 11400000, guid: 42591adc2ac509240ae0669db50cb613, type: 2}
+  - {fileID: 11400000, guid: 141b4145a29a56f469d0ceca5395aaef, type: 2}
+  - {fileID: 11400000, guid: bb5b676920e01eb43880315e61d6a0be, type: 2}
+  - {fileID: 11400000, guid: 05d02f2163aa90f41bd05606d62c4f23, type: 2}
+  - {fileID: 11400000, guid: 034c48472772d604caaa172d102c6f0c, type: 2}
+  - {fileID: 11400000, guid: f1698f782f719cb4e944a4f0eeb777a7, type: 2}
+  - {fileID: 11400000, guid: 34e6cc33fa1386d49addfed0dd8d12bd, type: 2}
+  - {fileID: 11400000, guid: c8321886cbed7724cadf073cce79ca47, type: 2}
+  - {fileID: 11400000, guid: 731b3d40764554e40893434f92d6e648, type: 2}
+  - {fileID: 11400000, guid: cd9f2bf5cbf8f6d448ba9285d03a22a4, type: 2}
+  - {fileID: 11400000, guid: 1ac78425cf21e6d4b84d940ad9e363f2, type: 2}
+  - {fileID: 11400000, guid: 032c3aedfb7b57343a194ab18b214dae, type: 2}
+  - {fileID: 11400000, guid: 6c76f515d0ee9ec40aded50f3ea5b808, type: 2}
+  tutorMoves:
+  - {fileID: 11400000, guid: 72fd9ca207ded4445abe6cf72ae11c4a, type: 2}
+  - {fileID: 11400000, guid: 13ca1e152dccf554aa16ad9bfcd9ae56, type: 2}
+  - {fileID: 11400000, guid: 8e82972a7e3ed2a4e8ecc0971ffe09b0, type: 2}
+  - {fileID: 11400000, guid: 62fb304bd22a0944fb6d15336f804ffd, type: 2}
+  - {fileID: 11400000, guid: c7965f535ac7df04a918d59d14894ab7, type: 2}
+  - {fileID: 11400000, guid: 1da0dd18cd439594498053078ac05e64, type: 2}
+  - {fileID: 11400000, guid: a48fe4bc14a71d04a904961d7fae7824, type: 2}
+  - {fileID: 11400000, guid: 05fb494dd749dd6468f999bf493bc580, type: 2}
+  - {fileID: 11400000, guid: 8e43442fecfdc56469873f7a3a7210c2, type: 2}
+  eggMoves:
+  - {fileID: 11400000, guid: ee44701bbc792004f8c744056ac5452d, type: 2}
+  - {fileID: 11400000, guid: 4ffc2275349815749b8e70f372f6ebd8, type: 2}
+  - {fileID: 11400000, guid: 40002ae0540723e4b867c61b40abaed3, type: 2}
+  - {fileID: 11400000, guid: c21589e013d609547a9a300bfc2de303, type: 2}
+  - {fileID: 11400000, guid: e335c546a3ad2d141b516fd2a86ca34d, type: 2}
+  eggGroups:
+  - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

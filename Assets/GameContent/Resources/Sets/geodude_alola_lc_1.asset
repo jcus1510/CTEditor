@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: geodude_alola_lc_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: geodude_alola_lc_1
+  displayName: Magnet Pull
+  speciesId: geodude_alola
+  setFormat: lc
+  setScore: 78
+  itemOptions: eviolite
+  abilityOptions: 
+  natureOptions: adamant
+  evs: 36 PS / 116 Atq / 116 Def / 196 DefE / 36 Vel
+  ivs: 
+  moveSlots: rock_blast / fire_punch / superpower / stealth_rock

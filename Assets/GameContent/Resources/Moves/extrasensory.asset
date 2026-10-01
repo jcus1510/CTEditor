@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.MoveData
   id: extrasensory
   displayName: Paranormal
+  englishName: Extrasensory
   type: {fileID: 11400000, guid: adcd37372f69ef7438a372e9e7d3c026, type: 2}
   category: 1
   power: 80
@@ -39,6 +40,7 @@ MonoBehaviour:
     text: 
     sharesPreviousRoll: 0
     conditions: []
+  zEffects: []
   minHits: 1
   maxHits: 1
   critStage: 0

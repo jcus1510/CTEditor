@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.SpeciesData
   id: smeargle
   displayName: Smeargle
+  englishName: Smeargle
   types:
   - {fileID: 11400000, guid: db0377b3a55d9c54f838886b7cd32d91, type: 2}
   abilityId: own_tempo
@@ -45,9 +46,31 @@ MonoBehaviour:
   learnset:
   - move: {fileID: 11400000, guid: 16dc276473880f14ead55c03f85adbd8, type: 2}
     level: 1
+  - move: {fileID: 11400000, guid: 16dc276473880f14ead55c03f85adbd8, type: 2}
+    level: 11
+  - move: {fileID: 11400000, guid: 16dc276473880f14ead55c03f85adbd8, type: 2}
+    level: 21
+  - move: {fileID: 11400000, guid: 16dc276473880f14ead55c03f85adbd8, type: 2}
+    level: 31
+  - move: {fileID: 11400000, guid: 16dc276473880f14ead55c03f85adbd8, type: 2}
+    level: 41
+  - move: {fileID: 11400000, guid: 16dc276473880f14ead55c03f85adbd8, type: 2}
+    level: 51
+  - move: {fileID: 11400000, guid: 16dc276473880f14ead55c03f85adbd8, type: 2}
+    level: 61
+  - move: {fileID: 11400000, guid: 16dc276473880f14ead55c03f85adbd8, type: 2}
+    level: 71
+  - move: {fileID: 11400000, guid: 16dc276473880f14ead55c03f85adbd8, type: 2}
+    level: 81
+  - move: {fileID: 11400000, guid: 16dc276473880f14ead55c03f85adbd8, type: 2}
+    level: 91
   evolutions: []
   machineMoves: []
   tutorMoves: []
   eggMoves: []
   eggGroups:
   - {fileID: 11400000, guid: 0d8fc37ae355d9b4f9f6bc931438cf62, type: 2}
+  formOf: 
+  variantItem: 
+  forms: []
+  formChanges: []

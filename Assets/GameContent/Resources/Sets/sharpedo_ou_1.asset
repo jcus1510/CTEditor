@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: sharpedo_ou_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: sharpedo_ou_1
+  displayName: Cleaner
+  speciesId: sharpedo
+  setFormat: ou
+  setScore: 40
+  itemOptions: sharpedonite
+  abilityOptions: speed_boost
+  natureOptions: naughty
+  evs: 224 Atq / 32 AtqE / 252 Vel
+  ivs: 
+  moveSlots: protect / crunch / hydro_pump / ice_fang, poison_jab

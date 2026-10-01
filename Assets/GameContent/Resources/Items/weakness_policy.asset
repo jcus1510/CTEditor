@@ -15,10 +15,11 @@ MonoBehaviour:
   id: weakness_policy
   displayName: Seguro Debilidad
   englishName: Weakness Policy
-  description: 'Si recibe un golpe muy eficaz: Ataque y Ataque Esp. +2 (se gasta).'
+  description: "Aumenta mucho el Ataque y el Ataque Especial cuando el Pok\xE9mon
+    que lo lleva recibe un ataque frente al cual es d\xE9bil."
   category: 7
   icon: {fileID: 0}
-  price: 4000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.NatureData
   id: sassy
   displayName: Grosera
+  englishName: Sassy
   boostedStatId: sp_defense
   hinderedStatId: speed
   boostPercent: 10

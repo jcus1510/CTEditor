@@ -1,0 +1,5 @@
+﻿id;nombre;color;capas;daño_por_capa;tipo_daño;estado_por_capa;estadistica;etapas;tipos_inmunes;inmune_por_habilidad;la_retiran
+spikes;Púas;A68C66;3;12,5|16,67|25;;;;0;flying;ground;
+stealth_rock;Trampa Rocas;B29E73;1;12,5;rock;;;0;;;
+sticky_web;Red Viscosa;D9CC59;1;;;;speed;-1;flying;ground;
+toxic_spikes;Púas Tóxicas;9959B2;2;;;poison|toxic;;0;flying|steel;ground;poison

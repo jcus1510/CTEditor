@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad480dd1cdb43734ea91f1612d18b7f3, type: 3}
+  m_Name: jefe_guzman
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.TrainerData
+  id: jefe_guzman
+  displayName: "Guzm\xE1n"
+  trainerClass: Jefe del Team Skull
+  portrait: {fileID: 0}
+  team:
+  - species: {fileID: 11400000, guid: cc07571f47dce2d45ae7129749ea4b06, type: 2}
+    level: 57
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: masquerain
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 320fc56282f2cc44db1a652eb5d1e92a, type: 2}
+    level: 57
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: pinsir
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 9b71779bedb6cc946a8897e446aac8f2, type: 2}
+    level: 57
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: scizor
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 31c5dcf663c15914fa21049039c03e5b, type: 2}
+    level: 57
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: crawdaunt
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: 19c00586647377645bd3a6f2e7114995, type: 2}
+    level: 57
+    moves: []
+    heldItem: 
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: ariados
+    moveIds: []
+    natureId: 
+  - species: {fileID: 11400000, guid: cbb7f5854d403d745a77826185c5277b, type: 2}
+    level: 58
+    moves: []
+    heldItem: buginium_z
+    nature: {fileID: 0}
+    fixedIvs: -1
+    nickname: 
+    gender: 0
+    abilityId: 
+    evs: 
+    ivs: 
+    speciesId: golisopod
+    moveIds: []
+    natureId: 
+  aiLevel: 5
+  aiProfileId: 
+  canMegaEvolve: 1
+  canUseZMoves: 1
+  setFormats: 
+  variableSets: 0
+  ai: 2
+  useItems: 1
+  items:
+  - itemId: full_restore
+    quantity: 2
+  healBelowPercent: 25
+  canSwitch: 1
+  movesetStyle: 0
+  baseMoney: 100
+  introLine: "\xA1Guzm\xE1n es quien te va a dar la paliza, que lo sepas!"
+  defeatLine: "\xBFPero qu\xE9...? \xA1Esto no puede ser!"
+  victoryLine: "\xA1Guzm\xE1n gana, como siempre!"

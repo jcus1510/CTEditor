@@ -15,11 +15,11 @@ MonoBehaviour:
   id: coba_berry
   displayName: Baya Kouba
   englishName: Coba Berry
-  description: El primer golpe MUY EFICAZ de tipo Volador que recibe hace la mitad
-    (se consume).
-  category: 7
+  description: "Si la lleva un Pok\xE9mon, debilita un ataque supereficaz de tipo
+    Volador de un enemigo."
+  category: 12
   icon: {fileID: 0}
-  price: 200
+  price: 80
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

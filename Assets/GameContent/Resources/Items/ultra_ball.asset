@@ -15,7 +15,8 @@ MonoBehaviour:
   id: ultra_ball
   displayName: Ultra Ball
   englishName: Ultra Ball
-  description: "Muy buena (\xD72)."
+  description: "Pok\xE9 Ball de rendimiento superior. Tiene un \xEDndice de \xE9xito
+    mayor al de la Super Ball."
   category: 4
   icon: {fileID: 0}
   price: 800

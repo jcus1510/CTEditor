@@ -15,11 +15,11 @@ MonoBehaviour:
   id: wacan_berry
   displayName: Baya Gualot
   englishName: Wacan Berry
-  description: "El primer golpe MUY EFICAZ de tipo El\xE9ctrico que recibe hace la
-    mitad (se consume)."
-  category: 7
+  description: "Si la lleva un Pok\xE9mon, debilita un ataque supereficaz de tipo
+    El\xE9ctrico de un enemigo."
+  category: 12
   icon: {fileID: 0}
-  price: 200
+  price: 80
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: minccino_lc_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: minccino_lc_1
+  displayName: Life Orb
+  speciesId: minccino
+  setFormat: lc
+  setScore: 68
+  itemOptions: life_orb
+  abilityOptions: skill_link
+  natureOptions: jolly
+  evs: 196 Atq / 36 Def / 36 DefE / 236 Vel
+  ivs: 
+  moveSlots: tail_slap / knock_off / seed_bomb, u_turn / u_turn, wake_up_slap

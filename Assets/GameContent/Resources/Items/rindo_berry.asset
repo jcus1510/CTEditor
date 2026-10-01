@@ -15,11 +15,11 @@ MonoBehaviour:
   id: rindo_berry
   displayName: Baya Tamar
   englishName: Rindo Berry
-  description: El primer golpe MUY EFICAZ de tipo Planta que recibe hace la mitad
-    (se consume).
-  category: 7
+  description: "Si la lleva un Pok\xE9mon, debilita un ataque supereficaz de tipo
+    Planta de un enemigo."
+  category: 12
   icon: {fileID: 0}
-  price: 200
+  price: 80
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

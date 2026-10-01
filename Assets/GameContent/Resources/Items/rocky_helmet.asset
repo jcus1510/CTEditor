@@ -15,7 +15,8 @@ MonoBehaviour:
   id: rocky_helmet
   displayName: Casco Dentado
   englishName: Rocky Helmet
-  description: Quien le golpea con contacto pierde 1/6 de sus PS.
+  description: "Si el portador es alcanzado por un movimiento de contacto, el agresor
+    tambi\xE9n recibe da\xF1o."
   category: 7
   icon: {fileID: 0}
   price: 4000

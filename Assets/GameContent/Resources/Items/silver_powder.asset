@@ -15,10 +15,11 @@ MonoBehaviour:
   id: silver_powder
   displayName: Polvo Plata
   englishName: Silver Powder
-  description: "Movimientos de Bicho \xD71,2."
+  description: "Polvo de brillo arg\xE9nteo que fortalece los ataques de tipo Bicho.
+    Debe llevarlo un Pok\xE9mon."
   category: 7
   icon: {fileID: 0}
-  price: 3000
+  price: 1000
   usableInBattle: 0
   usableOutsideBattle: 0
   consumable: 0

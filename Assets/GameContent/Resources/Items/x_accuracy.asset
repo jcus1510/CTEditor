@@ -15,7 +15,8 @@ MonoBehaviour:
   id: x_accuracy
   displayName: "Precisi\xF3n X"
   englishName: X Accuracy
-  description: "+2 a la Precisi\xF3n."
+  description: "Aumenta mucho la Precisi\xF3n en combate. Al cambiar de Pok\xE9mon,
+    el efecto desaparece."
   category: 6
   icon: {fileID: 0}
   price: 1000

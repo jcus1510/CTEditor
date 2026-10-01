@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467e3a79eb7c4c378d22475aab3183fc, type: 3}
+  m_Name: budew_lc_1
+  m_EditorClassIdentifier: CTEditor.GameDefinition::CTEditor.GameDefinition.Infrastructure.ScriptableObjects.CompetitiveSetData
+  id: budew_lc_1
+  displayName: Entry Hazard Setter
+  speciesId: budew
+  setFormat: lc
+  setScore: 79
+  itemOptions: eviolite
+  abilityOptions: 
+  natureOptions: bold
+  evs: 36 PS / 236 Def / 40 AtqE / 196 DefE
+  ivs: 
+  moveSlots: spikes / sleep_powder, sludge_bomb / synthesis, giga_drain / giga_drain,
+    sludge_bomb, hidden_power
