@@ -157,9 +157,10 @@ namespace CTEditor.App
             header.style.overflow = Overflow.Hidden;
             for (int i = 0; i < tabs.Panels.Count; i++) header.Add(Tab(tabs, i));
             header.Add(Ui.Spacer());
-            var add = Ui.Button("+", null, Ui.ButtonKind.Flat, "Abrir un panel aquí");
+            var add = Ui.IconButton("mas", null, "Abrir un panel aquí");
             add.clicked += () => ShowAddMenu(tabs, add);
             add.style.height = Ui.FontSize + 8;
+            add.style.minHeight = Ui.FontSize + 8;
             add.style.width = 26;
             add.style.paddingLeft = 0; add.style.paddingRight = 0;
             add.style.marginRight = 4;
@@ -188,8 +189,9 @@ namespace CTEditor.App
             var label = Ui.Text(PanelCatalog.LabelOf(id), 0.95f, dim: !active, bold: active);
             label.pickingMode = PickingMode.Ignore;
             tab.Add(label);
-            var close = Ui.Button("×", () => { _layout.Close(id); Changed(); }, Ui.ButtonKind.Flat, "Cerrar el panel");
-            close.style.height = Ui.FontSize + 2;
+            var close = Ui.IconButton("cerrar", () => { _layout.Close(id); Changed(); }, "Cerrar el panel", iconSize: Mathf.Round(Ui.FontSize * 0.8f));
+            close.style.height = Ui.FontSize + 4;
+            close.style.minHeight = Ui.FontSize + 4;
             close.style.width = Ui.FontSize + 4;
             close.style.paddingLeft = 0; close.style.paddingRight = 0;
             close.style.fontSize = Ui.FontSize - 2;

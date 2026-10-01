@@ -18,6 +18,11 @@ namespace CTEditor.App
 
         public const float Gap = 6f;
         public const float Radius = 4f;
+        /// <summary>Physical pixels per interface point (user scale × screen dpi): icons are drawn at this resolution.</summary>
+        public static float PixelsPerPoint { get; set; } = 1f;
+        /// <summary>One height for every control in a row (buttons, fields, steppers), so they always line up.</summary>
+        public static float ControlHeight => FontSize + 14;
+        public static float IconSize => Mathf.Round(FontSize * 1.25f);
 
         // ── Colors ───────────────────────────────────────────────────────────────────────────────
 
@@ -128,6 +133,20 @@ namespace CTEditor.App
             return e;
         }
 
+        /// <summary>Lets a row flow onto more lines when the panel is narrow (instead of squeezing its items).</summary>
+        public static T Wrap<T>(this T e) where T : VisualElement
+        {
+            e.style.flexWrap = UnityEngine.UIElements.Wrap.Wrap;
+            return e;
+        }
+
+        /// <summary>Keeps its natural size in a row (it never squeezes).</summary>
+        public static T NoShrink<T>(this T e) where T : VisualElement
+        {
+            e.style.flexShrink = 0;
+            return e;
+        }
+
         public static T Show<T>(this T e, bool visible) where T : VisualElement
         {
             e.style.display = visible ? DisplayStyle.Flex : DisplayStyle.None;
@@ -164,6 +183,14 @@ namespace CTEditor.App
             l.style.paddingLeft = 0; l.style.paddingRight = 0; l.style.paddingTop = 0; l.style.paddingBottom = 0;
             l.style.unityTextAlign = TextAnchor.MiddleLeft;
             if (wrap) l.style.whiteSpace = WhiteSpace.Normal;
+            else
+            {
+                // A single line that ends in «…» when there is no room: texts never spill over their neighbours.
+                l.style.whiteSpace = WhiteSpace.NoWrap;
+                l.style.overflow = Overflow.Hidden;
+                l.style.textOverflow = TextOverflow.Ellipsis;
+                l.style.minWidth = 0;
+            }
             return l;
         }
 
@@ -202,7 +229,10 @@ namespace CTEditor.App
             b.style.color = fg;
             b.style.fontSize = FontSize;
             b.style.unityTextAlign = TextAnchor.MiddleCenter;
-            b.style.height = FontSize + 14;
+            b.style.height = ControlHeight;
+            b.style.minHeight = ControlHeight;
+            b.style.flexShrink = 0;
+            b.style.whiteSpace = WhiteSpace.NoWrap;
             b.style.paddingLeft = 10; b.style.paddingRight = 10; b.style.paddingTop = 0; b.style.paddingBottom = 0;
             b.style.marginLeft = 0; b.style.marginRight = 0; b.style.marginTop = 0; b.style.marginBottom = 0;
             b.Border(kind == ButtonKind.Flat ? 0 : 1, kind == ButtonKind.Normal ? "borde" : "acento", Radius);
@@ -223,8 +253,36 @@ namespace CTEditor.App
         public static Button Chip(string text, bool selected, Action onClick, string tooltip = null)
         {
             var b = Button(text, onClick, selected ? ButtonKind.Primary : ButtonKind.Normal, tooltip);
-            b.style.height = FontSize + 10;
+            b.style.height = ControlHeight - 4;
+            b.style.minHeight = ControlHeight - 4;
             b.Round(12);
+            return b;
+        }
+
+        /// <summary>A square button with an icon (tools). Selected = filled with the accent colour.</summary>
+        public static Button IconButton(string icon, Action onClick, string tooltip, bool selected = false, float iconSize = 0)
+        {
+            var b = Button("", onClick, selected ? ButtonKind.Primary : ButtonKind.Flat, tooltip);
+            b.style.width = ControlHeight;
+            b.style.paddingLeft = 0; b.style.paddingRight = 0;
+            b.style.alignItems = Align.Center;
+            b.style.justifyContent = Justify.Center;
+            b.Add(Icons.Element(icon, iconSize > 0 ? iconSize : IconSize, selected ? Color.white : C("texto")));
+            return b;
+        }
+
+        /// <summary>An icon button that stays pressed while on (grid, neighbours...).</summary>
+        public static Button IconToggle(string icon, bool on, Action<bool> onChange, string tooltip)
+        {
+            var b = IconButton(icon, null, tooltip);
+            void Look()
+            {
+                b.style.backgroundColor = on ? WithAlpha(C("acento"), 0.35f) : new Color(0, 0, 0, 0);
+                b.Border(1, on ? "acento" : "panel", Radius);
+            }
+            b.clicked += () => { on = !on; Look(); onChange?.Invoke(on); };
+            Look();
+            b.RegisterCallback<PointerLeaveEvent>(_ => Look());
             return b;
         }
 
@@ -240,12 +298,22 @@ namespace CTEditor.App
         {
             field.style.marginLeft = 0; field.style.marginRight = 0; field.style.marginTop = 0; field.style.marginBottom = 0;
             field.style.fontSize = FontSize;
+            // Label and box on one line, centred: the box has the same height as the buttons next to it.
+            field.style.flexDirection = FlexDirection.Row;
+            field.style.alignItems = Align.Center;
+            field.style.minHeight = ControlHeight;
             var label = field.Q<Label>();
             if (label != null)
             {
                 label.style.color = C("texto_suave");
                 label.style.fontSize = FontSize;
                 label.style.minWidth = 0;
+                label.style.flexShrink = 0;
+                label.style.unityTextAlign = TextAnchor.MiddleLeft;
+                label.style.paddingLeft = 0; label.style.paddingTop = 0; label.style.paddingBottom = 0;
+                label.style.marginLeft = 0; label.style.marginTop = 0; label.style.marginBottom = 0;
+                label.style.marginRight = string.IsNullOrEmpty(label.text) ? 0 : 8;
+                if (string.IsNullOrEmpty(label.text)) label.style.display = DisplayStyle.None;
             }
             var input = field.Q(className: TextField.inputUssClassName);
             if (input != null)
@@ -253,25 +321,42 @@ namespace CTEditor.App
                 input.style.backgroundColor = C("fondo");
                 input.style.color = C("texto");
                 input.Border(1, "borde", Radius);
-                input.style.minHeight = FontSize + 12;
+                input.style.height = ControlHeight;
+                input.style.minHeight = ControlHeight;
+                input.style.flexGrow = 1;
+                input.style.marginLeft = 0; input.style.marginRight = 0; input.style.marginTop = 0; input.style.marginBottom = 0;
+                input.style.paddingTop = 0; input.style.paddingBottom = 0; input.style.paddingLeft = 8; input.style.paddingRight = 8;
                 input.style.unityTextAlign = TextAnchor.MiddleLeft;
-                input.style.paddingLeft = 6;
+                // The focused box gets the accent border.
+                input.RegisterCallback<FocusInEvent>(_ => input.Border(1, "acento", Radius));
+                input.RegisterCallback<FocusOutEvent>(_ => input.Border(1, "borde", Radius));
             }
         }
 
         /// <summary>Whole-number box with − / + buttons. Calls onChange with the clamped value.</summary>
         public static VisualElement NumberBox(string label, int value, int min, int max, Action<int> onChange, string tooltip = null)
         {
-            var row = Row(2);
+            // [label] [−][ value ][+]: the three boxes joined in one stepper.
+            var row = Row(0).NoShrink();
             if (!string.IsNullOrEmpty(label))
             {
-                var l = Text(label, dim: true);
-                l.style.minWidth = 90;
+                var l = Text(label, dim: true).NoShrink();
+                l.style.minWidth = 56;
+                l.style.marginRight = 8;
                 row.Add(l);
             }
             var field = new TextField { value = value.ToString(), isDelayed = true, tooltip = tooltip ?? "" };
             StyleField(field);
-            field.style.width = 58;
+            field.style.width = Mathf.Max(56, FontSize * 4.4f);
+            field.style.flexShrink = 0;
+            var box = field.Q(className: TextField.inputUssClassName);
+            if (box != null)
+            {
+                box.Round(0);
+                box.style.unityTextAlign = TextAnchor.MiddleCenter;
+                box.style.borderLeftWidth = 0; box.style.borderRightWidth = 0;
+                box.RegisterCallback<FocusOutEvent>(_ => { box.style.borderLeftWidth = 0; box.style.borderRightWidth = 0; });
+            }
             int current = value;
             void SetValue(int v, bool notify)
             {
@@ -285,9 +370,18 @@ namespace CTEditor.App
                 if (int.TryParse(e.newValue.Trim(), out int v)) SetValue(v, true);
                 else SetValue(current, false);
             });
-            var minus = Button("-", () => SetValue(current - 1, true), ButtonKind.Normal);
-            var plus = Button("+", () => SetValue(current + 1, true), ButtonKind.Normal);
-            foreach (var b in new[] { minus, plus }) { b.style.width = 24; b.style.paddingLeft = 0; b.style.paddingRight = 0; }
+            var minus = IconButton("menos", () => SetValue(current - 1, true), "Menos");
+            var plus = IconButton("mas", () => SetValue(current + 1, true), "Más");
+            foreach (var b in new[] { minus, plus })
+            {
+                b.style.width = ControlHeight - 2;
+                b.style.backgroundColor = Mix(C("panel_alt"), C("texto"), 0.08f);
+                b.Border(1, "borde");
+            }
+            minus.style.borderTopLeftRadius = Radius; minus.style.borderBottomLeftRadius = Radius;
+            minus.style.borderTopRightRadius = 0; minus.style.borderBottomRightRadius = 0;
+            plus.style.borderTopRightRadius = Radius; plus.style.borderBottomRightRadius = Radius;
+            plus.style.borderTopLeftRadius = 0; plus.style.borderBottomLeftRadius = 0;
             row.Add(minus);
             row.Add(field);
             row.Add(plus);
@@ -298,8 +392,24 @@ namespace CTEditor.App
         {
             var t = new Toggle(label) { value = value };
             t.style.marginLeft = 0; t.style.marginRight = 0; t.style.marginTop = 0; t.style.marginBottom = 0;
+            t.style.flexShrink = 0;
+            t.style.alignItems = Align.Center;
+            t.style.minHeight = ControlHeight;
             var l = t.Q<Label>();
-            if (l != null) { l.style.color = C("texto"); l.style.fontSize = FontSize; l.style.minWidth = 0; }
+            if (l != null)
+            {
+                l.style.color = C("texto"); l.style.fontSize = FontSize; l.style.minWidth = 0;
+                l.style.marginRight = 6; l.style.unityTextAlign = TextAnchor.MiddleLeft;
+            }
+            var mark = t.Q(className: Toggle.checkmarkUssClassName);
+            if (mark != null)
+            {
+                float box = Mathf.Round(FontSize * 1.15f);
+                mark.style.width = box; mark.style.height = box;
+                mark.style.backgroundColor = C("fondo");
+                mark.style.unityBackgroundImageTintColor = C("acento");
+                mark.Border(1, "borde", 3);
+            }
             if (onChange != null) t.RegisterValueChangedCallback(e => onChange(e.newValue));
             return t;
         }
@@ -307,11 +417,22 @@ namespace CTEditor.App
         public static Slider SliderBox(string label, float value, float min, float max, Action<float> onChange)
         {
             var s = new Slider(label, min, max) { value = value };
-            s.style.marginLeft = 0; s.style.marginRight = 0;
+            StyleSlider(s);
             var l = s.Q<Label>();
             if (l != null) { l.style.color = C("texto_suave"); l.style.fontSize = FontSize; l.style.minWidth = 90; }
             if (onChange != null) s.RegisterValueChangedCallback(e => onChange(e.newValue));
             return s;
+        }
+
+        /// <summary>Theme colours for a slider; it keeps its width in a row.</summary>
+        public static void StyleSlider(Slider s)
+        {
+            s.style.marginLeft = 0; s.style.marginRight = 0; s.style.marginTop = 0; s.style.marginBottom = 0;
+            s.style.flexShrink = 0;
+            var tracker = s.Q(className: "unity-base-slider__tracker");
+            if (tracker != null) { tracker.style.backgroundColor = C("fondo"); tracker.Border(1, "borde", 2); }
+            var dragger = s.Q(className: "unity-base-slider__dragger");
+            if (dragger != null) { dragger.style.backgroundColor = C("acento"); dragger.Border(0, "acento", 3); }
         }
 
         public static ScrollView Scroll(ScrollViewMode mode = ScrollViewMode.Vertical)

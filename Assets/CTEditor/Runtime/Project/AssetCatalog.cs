@@ -44,6 +44,8 @@ namespace CTEditor.Project
         };
 
         public static readonly string[] ImageExtensions = { ".png" };
+        /// <summary>Imágenes que se ven en la carpeta pero hay que convertir a PNG para usarlas (BMP, DIB).</summary>
+        public static readonly string[] ConvertibleExtensions = { ".bmp", ".dib" };
 
         /// <summary>Tipo de una ruta relativa a la raíz del proyecto («graficos/tilesets/pueblo.png» → Tileset).</summary>
         public static AssetKind KindOf(string relativePath)
@@ -93,6 +95,10 @@ namespace CTEditor.Project
             Problem = problem;
         }
 
+        public const string NeedsPngProblem = "Está en BMP: conviértela a PNG para cortarla y usarla.";
+        /// <summary>¿Es un BMP/DIB que se puede convertir a PNG con un clic?</summary>
+        public bool NeedsPng => Problem == NeedsPngProblem;
+
         public string Name => Path.GetFileNameWithoutExtension(RelativePath);
         public override string ToString() => $"{RelativePath} ({Width}×{Height})";
     }
@@ -110,8 +116,15 @@ namespace CTEditor.Project
             var list = new List<AssetEntry>();
             foreach (var file in Directory.EnumerateFiles(graphics, "*", SearchOption.AllDirectories))
             {
-                if (!ProjectLayout.ImageExtensions.Contains(Path.GetExtension(file).ToLowerInvariant())) continue;
+                var ext = Path.GetExtension(file).ToLowerInvariant();
                 var rel = ProjectLayout.Normalize(Path.GetRelativePath(projectRoot, file));
+                if (ProjectLayout.ConvertibleExtensions.Contains(ext))
+                {
+                    Bmp.TryReadSize(file, out int bw, out int bh);
+                    list.Add(new AssetEntry(rel, ProjectLayout.KindOf(rel), bw, bh, false, AssetEntry.NeedsPngProblem));
+                    continue;
+                }
+                if (!ProjectLayout.ImageExtensions.Contains(ext)) continue;
                 bool sliced = File.Exists(ProjectLayout.SlicePathFor(file));
                 string problem = null;
                 int w = 0, h = 0;

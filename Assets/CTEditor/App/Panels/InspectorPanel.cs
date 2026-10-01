@@ -77,14 +77,14 @@ namespace CTEditor.App
             body.Add(Ui.Separator());
 
             var size = Section("Tamaño");
-            var wh = Ui.Row(10);
+            var wh = Ui.Row(10).Wrap();
             wh.With(Ui.NumberBox("Ancho", m.Width, 1, MapDefinition.MaxSize, v => _newW = v), Ui.NumberBox("Alto", m.Height, 1, MapDefinition.MaxSize, v => _newH = v));
-            var ax = Ui.Row(4);
+            var ax = Ui.Row(4).Wrap();
             ax.With(Ui.Text("Añadir o quitar por:", 0.9f, dim: true),
                 Ui.Chip("derecha", _anchorX == 0f, () => { _anchorX = 0f; Refresh(); }),
                 Ui.Chip("los dos lados", _anchorX == 0.5f, () => { _anchorX = 0.5f; Refresh(); }),
                 Ui.Chip("izquierda", _anchorX == 1f, () => { _anchorX = 1f; Refresh(); }));
-            var ay = Ui.Row(4);
+            var ay = Ui.Row(4).Wrap();
             ay.With(Ui.Text("y por:", 0.9f, dim: true),
                 Ui.Chip("abajo", _anchorY == 0f, () => { _anchorY = 0f; Refresh(); }),
                 Ui.Chip("los dos lados", _anchorY == 0.5f, () => { _anchorY = 0.5f; Refresh(); }),
@@ -95,7 +95,7 @@ namespace CTEditor.App
 
             // The section: kind, category and its place in the continuous world.
             var sec = Section("Tramo");
-            var kinds = Ui.Row(4);
+            var kinds = Ui.Row(4).Wrap();
             kinds.With(Ui.Chip("Exterior", m.Kind == MapKind.Exterior, () => S.SetMapProperties(kind: MapKind.Exterior)),
                 Ui.Chip("Interior", m.Kind == MapKind.Interior, () => S.SetMapProperties(kind: MapKind.Interior)));
             var cats = Ui.Row(4);
@@ -111,9 +111,9 @@ namespace CTEditor.App
                 if (m.InWorld)
                 {
                     int wx = m.WorldX, wy = m.WorldY;
-                    var pos = Ui.Row(8);
+                    var pos = Ui.Row(8).Wrap();
                     pos.With(Ui.NumberBox("Mundo X", wx, -100000, 100000, v => wx = v), Ui.NumberBox("Y", wy, -100000, 100000, v => wy = v));
-                    var acts = Ui.Row(6);
+                    var acts = Ui.Row(6).Wrap();
                     acts.With(Ui.Button("Mover", () => S.MoveSection(m.Id, wx, wy), Ui.ButtonKind.Primary, "También se puede arrastrar en el panel Mundo"),
                         Ui.Button("Quitar del mundo", () => S.RemoveFromWorld(m.Id), Ui.ButtonKind.Flat));
                     sec.With(pos, acts);

@@ -40,7 +40,7 @@ namespace CTEditor.App
             search.style.minWidth = 120;
             search.Grow();
             bar.With(search,
-                Ui.Button("Importar…", ImportImage, Ui.ButtonKind.Primary, "Copiar un PNG al proyecto"),
+                Ui.Button("Importar…", ImportImage, Ui.ButtonKind.Primary, "Copiar imágenes PNG, BMP o DIB al proyecto (las BMP se convierten a PNG)"),
                 Ui.Button("Carpeta…", ImportFolder, Ui.ButtonKind.Normal, "Importar todas las imágenes de una carpeta"),
                 Ui.Button("Recargar", Refresh, Ui.ButtonKind.Normal, "Volver a leer la carpeta"),
                 Ui.Button("Carpeta", () => Application.OpenURL("file://" + _shell.GraphicsFolder), Ui.ButtonKind.Normal, "Abrir la carpeta de gráficos"));
@@ -160,6 +160,9 @@ namespace CTEditor.App
             info.Add(Ui.Text(a.RelativePath, 0.85f, dim: true));
             row.Add(info);
 
+            if (a.NeedsPng)
+                row.Add(Ui.Button("Convertir a PNG", () => ConvertToPng(full), Ui.ButtonKind.Primary,
+                    "Crea «" + a.Name + ".png» al lado y quita el BMP (el proyecto trabaja en PNG)"));
             if (a.Problem == null)
             {
                 var cut = Ui.Button(a.IsSliced ? "Editar corte…" : "Cortar…", () => SliceWizard.Show(_shell, full, a.Kind),
@@ -172,7 +175,21 @@ namespace CTEditor.App
 
         private void ImportImage()
         {
-            FolderBrowser.PickFile(_shell, "Importar una imagen", ".png", file => AskKind(new[] { file }, Path.GetFileName(file)));
+            FolderBrowser.PickFile(_shell, "Importar una imagen (PNG, BMP o DIB)", string.Join(",", ImageFile.ImportExtensions),
+                file => AskKind(new[] { file }, Path.GetFileName(file)));
+        }
+
+        private void ConvertToPng(string path)
+        {
+            try
+            {
+                var png = ImageFile.ImportAsPng(path, Path.GetDirectoryName(path));
+                File.Delete(path);
+                _shell.Success("Convertida: " + Path.GetFileName(png));
+                _shell.NotifyAssetsChanged();
+                Refresh();
+            }
+            catch (Exception e) { _shell.Error($"No se pudo convertir {Path.GetFileName(path)}: {e.Message}"); }
         }
 
         /// <summary>Imports every PNG of a folder (e.g. Graphics/Tilesets of an Essentials project) with the same kind.</summary>
@@ -180,8 +197,8 @@ namespace CTEditor.App
         {
             FolderBrowser.PickFolder(_shell, "Importar todas las imágenes de una carpeta", folder =>
             {
-                var files = Directory.GetFiles(folder, "*.png");
-                if (files.Length == 0) { _shell.Warn("En esa carpeta no hay imágenes PNG."); return; }
+                var files = Directory.GetFiles(folder).Where(ImageFile.CanImport).ToArray();
+                if (files.Length == 0) { _shell.Warn("En esa carpeta no hay imágenes PNG, BMP ni DIB."); return; }
                 AskKind(files, $"{files.Length} imágenes de «{Path.GetFileName(folder)}»");
             });
         }
@@ -205,9 +222,8 @@ namespace CTEditor.App
                     {
                         try
                         {
-                            var dest = Path.Combine(_shell.GraphicsFolder, folder, Path.GetFileName(file));
-                            Directory.CreateDirectory(Path.GetDirectoryName(dest));
-                            File.Copy(file, dest, true);
+                            // BMP/DIB become PNG on the way in: the project always works in PNG.
+                            var dest = ImageFile.ImportAsPng(file, Path.Combine(_shell.GraphicsFolder, folder));
                             done++;
                             if (kind == AssetKind.Tileset || kind == AssetKind.Character)
                             {

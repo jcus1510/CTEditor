@@ -233,7 +233,7 @@ namespace CTEditor.App
         {
             _shell = shell;
             style.flexGrow = 1;
-            _bar = Ui.Row(4).Pad(8, 6);
+            _bar = Ui.Row(4).Pad(8, 6).Wrap();
             _bar.style.flexShrink = 0;
             _bar.style.flexWrap = Wrap.Wrap;
             Add(_bar);
@@ -281,7 +281,8 @@ namespace CTEditor.App
                 var visible = Ui.Chip("Ver", l.Visible, () => S.SetLayerView(index, visible: !l.Visible), "Mostrar u ocultar (solo en el editor)");
                 var locked = Ui.Chip("Bloq.", l.Locked, () => S.SetLayerView(index, locked: !l.Locked), "Bloquear: las herramientas no la cambian");
                 var opacity = new Slider(0f, 1f) { value = l.Opacity, tooltip = "Opacidad en el editor" };
-                opacity.style.width = 70;
+                Ui.StyleSlider(opacity);
+                opacity.style.width = 64;
                 opacity.RegisterValueChangedCallback(e => S.SetLayerView(index, opacity: e.newValue));
                 row.With(visible, locked, name, opacity);
                 row.RegisterCallback<PointerUpEvent>(e =>

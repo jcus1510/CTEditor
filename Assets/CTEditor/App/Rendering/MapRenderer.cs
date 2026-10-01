@@ -204,6 +204,8 @@ namespace CTEditor.App
                 { filterMode = FilterMode.Point, hideFlags = HideFlags.DontSave, name = "Mapa" };
             _target.Create();
             _camera.targetTexture = _target;
+            // Unity may keep the screen's aspect for a camera with a target texture: set it, or cells stretch sideways.
+            _camera.aspect = width / (float)height;
         }
 
         /// <summary>One cell in screen pixels at the current zoom.</summary>
@@ -213,11 +215,14 @@ namespace CTEditor.App
         public void UpdateCamera()
         {
             if (_target == null) return;
+            _camera.aspect = _target.width / (float)_target.height;
             _camera.orthographicSize = _target.height / (2f * PixelsPerUnit);
-            // Snap to whole screen pixels so pixel art never shimmers.
+            // Snap so cell edges fall on whole texture pixels (also with odd sizes): pixel art never shimmers and the
+            // overlay grid, which uses the same Center, matches the tiles exactly.
             float ppu = PixelsPerUnit;
-            var c = new Vector2(Mathf.Round(Center.x * ppu) / ppu, Mathf.Round(Center.y * ppu) / ppu);
-            _camera.transform.position = Origin + new Vector3(c.x, c.y, -10f);
+            float halfW = _target.width / 2f, halfH = _target.height / 2f;
+            Center = new Vector2((Mathf.Round(Center.x * ppu - halfW) + halfW) / ppu, (Mathf.Round(Center.y * ppu - halfH) + halfH) / ppu);
+            _camera.transform.position = Origin + new Vector3(Center.x, Center.y, -10f);
         }
 
         /// <summary>Texture pixel (top-left origin) → cell (fractional, y down).</summary>

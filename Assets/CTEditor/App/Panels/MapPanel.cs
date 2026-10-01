@@ -271,36 +271,60 @@ namespace CTEditor.App
                 if (tool == MapTool.EncounterPaint && S.ActiveArea == null) continue;
                 var t = tool;
                 var keys = action == null ? "" : _shell.Workspace.Shortcuts.KeysFor(action);
-                var chip = Ui.Chip(label, S.Tool == t, () => { _shell.ActiveEditor = "mapa"; S.SetTool(t); },
-                    help + (keys.Length > 0 ? $" ({keys})" : ""));
-                _toolbar.Add(chip.Margin(0, 0, 4, 2));
+                var button = Ui.IconButton(IconOf(t), () => { _shell.ActiveEditor = "mapa"; S.SetTool(t); },
+                    label + ": " + help + (keys.Length > 0 ? $" ({keys})" : ""), S.Tool == t);
+                _toolbar.Add(button.Margin(0, 2, 2, 2));
             }
-            _toolbar.Add(Ui.Separator(vertical: true).Margin(4, 2, 8, 2));
+            _toolbar.Add(ToolbarGap());
 
             _toolbar.Add(Ui.Check("Capas automáticas", S.AutoLayers, v => S.SetAutoLayers(v)).Margin(0, 0, 6, 0));
             if (!S.AutoLayers)
             {
                 var layer = S.ActiveLayer < S.Map.Layers.Count ? S.Map.Layers[S.ActiveLayer] : null;
-                _toolbar.Add(Ui.Button("<", () => S.SetActiveLayer(S.ActiveLayer - 1), Ui.ButtonKind.Flat, "Capa anterior"));
+                _toolbar.Add(Ui.IconButton("anterior", () => S.SetActiveLayer(S.ActiveLayer - 1), "Capa anterior"));
                 var ln = Ui.Text("Capa: " + (layer?.Name ?? "-") + (layer?.Locked == true ? " (bloqueada)" : ""), bold: true);
                 ln.style.minWidth = 100;
                 _toolbar.Add(ln);
-                _toolbar.Add(Ui.Button(">", () => S.SetActiveLayer(S.ActiveLayer + 1), Ui.ButtonKind.Flat, "Capa siguiente"));
+                _toolbar.Add(Ui.IconButton("siguiente", () => S.SetActiveLayer(S.ActiveLayer + 1), "Capa siguiente"));
                 _toolbar.Add(Ui.Check("Atenuar las otras", S.DimOtherLayers, v => S.SetDimOtherLayers(v)).Margin(6, 0, 0, 0));
             }
-            _toolbar.Add(Ui.Separator(vertical: true).Margin(4, 2, 8, 2));
+            _toolbar.Add(ToolbarGap());
 
-            _toolbar.Add(Ui.Button("-", () => SetZoom(_zoomIndex - 1), Ui.ButtonKind.Flat, "Alejar (rueda)"));
-            _toolbar.Add(Ui.Text(Mathf.RoundToInt(ZoomLevels[_zoomIndex] * 100) + " %"));
-            _toolbar.Add(Ui.Button("+", () => SetZoom(_zoomIndex + 1), Ui.ButtonKind.Flat, "Acercar (rueda)"));
-            _toolbar.Add(Ui.Button("Ajustar", FitMap, Ui.ButtonKind.Flat, "Ver el tramo entero"));
-            _toolbar.Add(Ui.Check("Rejilla", _showGrid, v => { _showGrid = v; RedrawOverlay(); }).Margin(6, 0, 0, 0));
+            _toolbar.Add(Ui.IconButton("menos", () => SetZoom(_zoomIndex - 1), "Alejar (rueda del ratón)"));
+            var zoom = Ui.Text(Mathf.RoundToInt(ZoomLevels[_zoomIndex] * 100) + " %").NoShrink();
+            zoom.style.minWidth = Ui.FontSize * 3.2f;
+            zoom.style.unityTextAlign = TextAnchor.MiddleCenter;
+            _toolbar.Add(zoom);
+            _toolbar.Add(Ui.IconButton("mas", () => SetZoom(_zoomIndex + 1), "Acercar (rueda del ratón)"));
+            _toolbar.Add(Ui.IconButton("ajustar", FitMap, "Ajustar: ver el tramo entero"));
+            _toolbar.Add(Ui.IconToggle("rejilla", _showGrid, v => { _showGrid = v; RedrawOverlay(); }, "Rejilla"));
             if (S.Map.InWorld)
-                _toolbar.Add(Ui.Check("Vecinos", _showNeighbors, v => { _showNeighbors = v; RebuildSections(); RedrawOverlay(); }).Margin(6, 0, 0, 0));
+                _toolbar.Add(Ui.IconToggle("vecinos", _showNeighbors, v => { _showNeighbors = v; RebuildSections(); RedrawOverlay(); },
+                    "Vecinos: ver los tramos de alrededor (doble clic en uno lo abre)"));
             _toolbar.Add(Ui.Spacer());
-            _toolbar.Add(Ui.Button("Probar aquí", () => _shell.RunAction("probar_aqui"), Ui.ButtonKind.Normal,
-                "Jugar desde la casilla del ratón (" + _shell.Workspace.Shortcuts.KeysFor("probar_aqui") + ")"));
+            var play = Ui.Button("", () => _shell.RunAction("probar_aqui"), Ui.ButtonKind.Normal,
+                "Jugar desde la casilla del ratón (" + _shell.Workspace.Shortcuts.KeysFor("probar_aqui") + ")");
+            play.style.flexDirection = FlexDirection.Row;
+            play.style.alignItems = Align.Center;
+            play.Add(Icons.Element("jugar", Ui.IconSize * 0.8f, Ui.C("exito")));
+            play.Add(Ui.Text("Probar aquí").Margin(6, 0, 0, 0));
+            _toolbar.Add(play);
         }
+
+        private static VisualElement ToolbarGap() => Ui.Separator(vertical: true).Margin(6, 4, 6, 4);
+
+        private static string IconOf(MapTool tool) => tool switch
+        {
+            MapTool.Pencil => "lapiz",
+            MapTool.Rectangle => "rectangulo",
+            MapTool.Fill => "relleno",
+            MapTool.Eraser => "goma",
+            MapTool.Picker => "cuentagotas",
+            MapTool.Select => "seleccion",
+            MapTool.Paste => "pegar",
+            MapTool.EncounterPaint => "zona",
+            _ => "inicio",
+        };
 
         private void UpdateStatus()
         {

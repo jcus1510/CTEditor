@@ -53,6 +53,22 @@ como ventanas del editor de Unity. Plan completo y decisiones: [PROPUESTA_APLICA
 | **Importar y cortar** | Recursos | Importar una imagen o una **carpeta entera**: las que encajan (8 columnas de 32 px, hojas 4 × 4 o 3 × 4) se cortan solas. El asistente de corte ya no pierde el foco al escribir. |
 | **Datos de un pack** | Inicio y Proyecto → «Copiar datos de un pack…» | Copia a `datos/` las hojas de Gen1…Gen7 (especies, movimientos, objetos...). |
 
+## Pulido 1 — tras la primera prueba en Unity
+
+Detalle y reglas visuales en [`DISENO.md`](DISENO.md) (documento vivo del diseño).
+
+| Arreglo / novedad | Qué cambia |
+|---|---|
+| **Rejilla y tiles alineados** | La cámara del mapa no tomaba la proporción de su textura: con zoom o al moverse los tiles se salían de la rejilla. Ahora se fija la proporción y el centro se ajusta al píxel (el mapa, la rejilla y el cursor usan el mismo centro). Vale para Mapa, Mundo y el juego. |
+| **La interfaz ya no desaparece** | Al seleccionar «Interfaz» en la Hierarchy, Unity reconstruía el `UIDocument` y borraba todo. La aplicación vive en su propio elemento y se vuelve a enganchar sola. |
+| **Sin solapamientos** | Textos de una línea terminan en «…»; botones, chips y cajas de número no se encogen; las filas estrechas se parten en varias líneas. |
+| **Controles alineados** | Una sola altura para botones, campos y cajas de número (`Ui.ControlHeight`); etiqueta y campo en la misma línea; caja de número [−][valor][+] unida. |
+| **Iconos** | Herramientas del mapa y de Retoque, zoom, ajustar, rejilla, vecinos, cerrar... con iconos nítidos a cualquier escala (`IconArt`). |
+| **Ayudas emergentes** | Unity no las muestra en una aplicación: ahora aparecen al dejar el ratón quieto (nombre, qué hace y atajo). |
+| **Inicio fijo** | La pantalla de inicio tiene un tamaño fijo, centrada; no se escala con Ctrl + rueda. |
+| **BMP y DIB** | Se pueden importar (`Bmp`, `ImageFile`): se convierten a PNG al entrar. Si ya hay un BMP en `graficos/`, Recursos ofrece «Convertir a PNG». |
+| **Tamaños habituales al cortar** | El asistente ofrece siempre 16, 32 y 48 px (y el del proyecto), encajen o no, y dice cuántos píxeles sobran; luego se ajustan desplazamiento y separación. Un tileset de 16 px se dibuja al tamaño de tile del proyecto. |
+
 ## Cómo se hace un mapa (flujo)
 
 1. **Recursos** → Importar (o copiar) el tileset en `graficos/tilesets` → **Cortar** (32 px).
@@ -70,6 +86,7 @@ como ventanas del editor de Unity. Plan completo y decisiones: [PROPUESTA_APLICA
   Usar letras, `×`, `·`, `«»`, `—`, `•`.
 - La lógica (corte, JSON, proyecto, paneles, atajos) vive en los dominios puros (`Art`, `Project`, `Workspace`) con
   tests; la aplicación solo dibuja y reenvía clics.
+- **Herramientas con icono** y ayuda emergente; textos que no caben, con «…». Ver [`DISENO.md`](DISENO.md).
 - Solo APIs de UI Toolkit que ya existían en Unity 2021.3 (sin `IntegerField` ni `Painter2D`): así se puede compilar sin
   Unity. Para números, `Ui.NumberBox`.
 

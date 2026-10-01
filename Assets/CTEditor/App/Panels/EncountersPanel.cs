@@ -105,8 +105,8 @@ namespace CTEditor.App
                     S.SetTool(MapTool.EncounterPaint);
                 }, Ui.ButtonKind.Normal, "Pinta la zona en el mapa (clic derecho quita casillas)"));
             head.With(Ui.Button("Nombre", () => _shell.Prompt("Nombre de la zona", "Nombre", area.Name, "Cambiar", n => S.RenameArea(area.Id, n)), Ui.ButtonKind.Flat),
-                Ui.Button("×", () => _shell.Confirm("Quitar zona", $"¿Quitar «{area.Name}» y sus tablas? Se puede deshacer con Ctrl+Z.", "Quitar",
-                    () => S.RemoveArea(area.Id), danger: true), Ui.ButtonKind.Flat, "Quitar la zona"));
+                Ui.IconButton("cerrar", () => _shell.Confirm("Quitar zona", $"¿Quitar «{area.Name}» y sus tablas? Se puede deshacer con Ctrl+Z.", "Quitar",
+                    () => S.RemoveArea(area.Id), danger: true), "Quitar la zona"));
             card.Add(head);
 
             // Methods without a table yet: one click adds it.
@@ -155,7 +155,7 @@ namespace CTEditor.App
                 Ui.Spacer(),
                 Ui.Button("Pesos clásicos", () => S.ApplyClassicWeights(area.Id, table.MethodId), Ui.ButtonKind.Flat,
                     "Hierba 20/20/10/10/10/10/5/5/4/4/1/1 · agua 60/30/5/4/1 · cañas 70/30, en el orden de la lista"),
-                Ui.Button("×", () => S.RemoveTable(area.Id, table.MethodId), Ui.ButtonKind.Flat, "Quitar el método de esta zona"));
+                Ui.IconButton("cerrar", () => S.RemoveTable(area.Id, table.MethodId), "Quitar el método de esta zona"));
             box.Add(head);
             if (method != null) box.Add(Ui.Hint(TriggerHelp(method)));
 
@@ -201,7 +201,7 @@ namespace CTEditor.App
             flag.style.width = 110;
             flag.RegisterValueChangedCallback(e => S.UpdateSlot(aid, mid, index, x => x.RequiredFlag = (e.newValue ?? "").Trim()));
             row.Add(flag);
-            row.Add(Ui.Button("×", () => S.RemoveSlot(aid, mid, index), Ui.ButtonKind.Flat, "Quitar"));
+            row.Add(Ui.IconButton("cerrar", () => S.RemoveSlot(aid, mid, index), "Quitar"));
             return row;
         }
 
