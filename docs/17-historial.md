@@ -125,4 +125,7 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   (`EncounterTemplate`); aviso de casillas sin su terreno (`EncounterChecks`, apagado por defecto); títulos de
   sección iguales (`Ui.SectionTitle`); densidad cómoda/compacta; animaciones rápidas y desactivables
   (`Ui.Appear`); color de acento sin cambiar el tema. Nace [`HOJA_DE_RUTA.md`](HOJA_DE_RUTA.md). `EncounterToolsTests`.
+- **Bloque A (fase 5b)**: jugar dentro de la ventana Juego con cambios en vivo; perfiles de prueba (equipo,
+  medallas, dinero, objetos, interruptores, hora) con su editor y selector; selector de especies común; estados
+  vacíos (`Ui.EmptyState`). `TestProfileTests`.
 - **Documentación** completa por capítulos (esta carpeta).
