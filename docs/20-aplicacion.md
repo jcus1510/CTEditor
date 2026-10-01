@@ -194,6 +194,15 @@ Se miró cómo lo hacen otros:
 | 9 | **Animaciones** de 0,12 s al abrir menús, ventanas y ayudas; desactivables | Entorno → Interfaz, `Ui.Appear` |
 | 10 | **Color de acento** sin cambiar el tema (azul, verde, morado... u otro con el selector); los colores admiten transparencia (#RRGGBBAA) para temas propios | Entorno → Tema |
 
+## Bloque A — probar sin salir (fase 5b)
+
+| Pieza | Qué hace |
+|---|---|
+| **Ventana Juego** (`GameWindow`) | Se juega **dentro de la ventana** mientras se edita al lado: con la ventana Juego abierta, F5 juega ahí. Lo que pintas, el paso, las capas y los tilesets cambian **al momento** en el juego. Clic en el juego para jugar; si haces clic en el editor, el juego se pone en pausa («haz clic en el juego para seguir»). Botones: Jugar aquí, pantalla completa, desde el ratón, Parar. |
+| **Perfiles de prueba** (`TestProfile`, `datos/perfiles_prueba.json`) | Con qué se empieza: equipo (hasta 6, con el selector de especies), medallas, dinero, objetos, interruptores encendidos y hora fija o la del reloj. Los encuentros usan su hora y sus interruptores; el depurador (F9) lo muestra. Se eligen en la ventana Juego, en Jugar → Perfil de prueba y con Ctrl+P; se editan en «Editar perfiles…». |
+| **Selector de especies común** (`SpeciesPicker`) | El mismo en encuentros, perfiles y (pronto) entrenadores. |
+| **Estados vacíos** (`Ui.EmptyState`) | Una ventana sin nada muestra un icono, qué hacer y el botón principal (Encuentros, Mapas, Capas, Recursos, Problemas). |
+
 ## Lista de prueba en Unity (antes de seguir)
 
 Marca lo que funcione y mándame captura de lo que no:

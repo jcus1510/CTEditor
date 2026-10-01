@@ -127,6 +127,15 @@ namespace CTEditor.App
                 var t = preset;
                 list.Add(new CommandEntry("Tema: " + t().Name, "Entorno", () => shell.SetTheme(t())));
             }
+            if (shell.HasProject)
+            {
+                foreach (var p in shell.Profiles)
+                {
+                    var id = p.Id;
+                    list.Add(new CommandEntry("Perfil de prueba: " + p.Name, "Jugar", () => shell.SetActiveProfile(id), extra: "perfil prueba equipo"));
+                }
+                list.Add(new CommandEntry("Editar perfiles de prueba…", "Jugar", () => ProfilesDialog.Show(shell), extra: "perfil equipo medallas"));
+            }
             list.Add(new CommandEntry("Interfaz al 100 %", "Entorno", () => shell.SetScale(1f), "Ctrl+0", "escala zoom tamaño"));
             return list;
         }

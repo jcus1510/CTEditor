@@ -38,9 +38,15 @@ namespace CTEditor.App
         private float _fps;
         private int _screenW, _screenH;
 
-        public PlayScreen(AppShell shell, string mapId, int x, int y)
+        private readonly bool _docked;
+        private readonly TestProfile _profile;
+        private readonly Label _paused;
+
+        public PlayScreen(AppShell shell, string mapId, int x, int y, bool docked = false)
         {
             _shell = shell;
+            _docked = docked;
+            _profile = shell.ActiveProfile;
             var map = shell.Maps.Find(mapId) ?? throw new InvalidOperationException($"No existe el mapa «{mapId}».");
             var sets = shell.Maps.TilesetsOf(map);
             if (sets.IsEmpty) shell.Warn("El mapa no tiene un tileset cortado: se juega sin gráficos ni bloqueos.");
@@ -60,8 +66,9 @@ namespace CTEditor.App
             _player.sortingOrder = MapRenderer.PlayerSortingOrder;
             LoadCharacter();
 
-            // UI: the game image centred on black, scaled by a whole number.
-            this.Fill();
+            // UI: the game image centred on black, scaled by a whole number (or to fit, inside a small window).
+            if (docked) { style.flexGrow = 1; style.overflow = Overflow.Hidden; }
+            else this.Fill();
             style.backgroundColor = Color.black;
             style.alignItems = Align.Center;
             style.justifyContent = Justify.Center;
@@ -71,7 +78,9 @@ namespace CTEditor.App
             Add(_view);
             RegisterCallback<GeometryChangedEvent>(_ => FitView());
 
-            var hint = Ui.Text("Flechas o WASD: andar · Mayús o X: correr · F9: depurador · Esc: volver al editor", 0.95f);
+            var hint = Ui.Text(docked
+                ? "Clic aquí para jugar · flechas o WASD · Mayús o X: correr · F9: depurador · Esc: parar. Lo que pintes en el mapa se ve al momento."
+                : "Flechas o WASD: andar · Mayús o X: correr · F9: depurador · Esc: volver al editor", 0.95f, wrap: docked);
             hint.style.color = Color.white;
             hint.style.backgroundColor = new Color(0, 0, 0, 0.6f);
             hint.Pad(10, 5).Round(4);
@@ -109,6 +118,28 @@ namespace CTEditor.App
             Add(_banner);
             ShowBanner(map.Name, 2200);
 
+            // Docked: when the editor has the keyboard, the game waits (and says how to come back).
+            _paused = Ui.Text("En pausa: haz clic en el juego para seguir", 0.9f, bold: true);
+            _paused.style.color = Color.white;
+            _paused.style.backgroundColor = new Color(0, 0, 0, 0.6f);
+            _paused.Pad(10, 4).Round(4);
+            _paused.style.position = Position.Absolute;
+            _paused.style.bottom = 10;
+            _paused.style.alignSelf = Align.Center;
+            _paused.pickingMode = PickingMode.Ignore;
+            _paused.Show(false);
+            Add(_paused);
+            if (docked)
+            {
+                RegisterCallback<PointerDownEvent>(_ => Focus());
+                RegisterCallback<FocusInEvent>(_ => _paused.Show(false));
+                RegisterCallback<FocusOutEvent>(_ => _paused.Show(true));
+                // Live edits: tiles, passage, layers and tilesets change the running game at once.
+                shell.Maps.TilesChanged += OnTilesChanged;
+                shell.Maps.StructureChanged += OnStructureChanged;
+                shell.Maps.TilesetChanged += OnTilesetChanged;
+            }
+
             RegisterCallback<KeyDownEvent>(OnKeyDown);
             RegisterCallback<KeyUpEvent>(OnKeyUp);
             RegisterCallback<BlurEvent>(_ => { _held.Clear(); _pressedOrder.Clear(); });
@@ -119,10 +150,12 @@ namespace CTEditor.App
 
         private void FitView()
         {
-            float ppp = Mathf.Max(0.01f, _shell.PixelsPerPoint);
+            float ppp = Mathf.Max(0.01f, _shell.PixelsPerPoint * Ui.ScaleOf(this));
             float availW = layout.width * ppp, availH = layout.height * ppp;
             if (availW <= 0 || availH <= 0) return;
-            int factor = Mathf.Max(1, Mathf.FloorToInt(Mathf.Min(availW / _screenW, availH / _screenH)));
+            float fit = Mathf.Min(availW / _screenW, availH / _screenH);
+            // Whole multiples when there is room (crisp pixels); smaller than the game, just fit (a docked window).
+            float factor = fit >= 1f ? Mathf.FloorToInt(fit) : fit;
             _view.style.width = _screenW * factor / ppp;
             _view.style.height = _screenH * factor / ppp;
         }
@@ -219,7 +252,10 @@ namespace CTEditor.App
                     .Where(d => Passability.CanMove(_sim.Map, _sim.Tileset, p.X, p.Y, d)).Select(d => DirectionNames[(int)d]);
                 _debugText.text = $"Mapa: {_sim.Map.Name} ({_sim.Map.Id})\nCasilla: {p.X}, {p.Y} · mira {DirectionNames[(int)p.Facing]}\n"
                                   + $"Terreno: {_shell.Maps.Terrains.LabelOf(tag)}\nSe puede ir: {string.Join(", ", free)}\n"
-                                  + $"Pasos: {p.Steps} · {Mathf.RoundToInt(_fps)} fps";
+                                  + $"Pasos: {p.Steps} · {Mathf.RoundToInt(_fps)} fps\n"
+                                  + $"Perfil: {_profile.Name} · {_profile.Badges} medallas · {_profile.Party.Count} en el equipo"
+                                  + $" · hora: {(_profile.Time.HasValue ? _profile.Time.Value.ToString() : "la del reloj")}"
+                                  + (_profile.Flags.Count > 0 ? $"\nInterruptores: {string.Join(", ", _profile.Flags)}" : "");
             }
         }
 
@@ -242,10 +278,11 @@ namespace CTEditor.App
         private void OnStep(int x, int y, int terrain)
         {
             if (!_encountersOn || _sim.Map.Encounters.Count == 0) return;
-            var now = EncounterResolver.TimeAt(DateTime.Now.Hour);
+            // The hour and the switches come from the test profile.
+            var now = _profile.TimeNow(DateTime.Now);
             foreach (var method in EncounterResolver.StepMethods(_shell.Maps.Methods, terrain, false))
             {
-                var result = EncounterResolver.Roll(_sim.Map, x, y, method, now, _ => false, n => _rng.Next(Math.Max(1, n)));
+                var result = EncounterResolver.Roll(_sim.Map, x, y, method, now, _profile.FlagOn, n => _rng.Next(Math.Max(1, n)));
                 if (result == null) continue;
                 var name = _shell.Maps.Species?.All().FirstOrDefault(s => s.id == result.SpeciesId).name ?? result.SpeciesId;
                 ShowBanner($"¡Un {name} salvaje (nv. {result.Level})!   [{method.Label} · {result.Area.Name}]", 1800);
@@ -262,10 +299,26 @@ namespace CTEditor.App
             _banner.schedule.Execute(() => { if (_banner.text == text) _banner.Show(false); }).ExecuteLater(ms);
         }
 
+        private void OnTilesChanged(int x, int y, int w, int h)
+        {
+            var m = _shell.Maps.Map;
+            if (m != null) _renderer.RefreshTiles(m.Id, x, y, w, h);
+        }
+
+        private void OnStructureChanged() => BuildSections();
+
+        private void OnTilesetChanged(string id) => ReloadGraphics();
+
         public void Dispose()
         {
             _shell.Ticked -= Update;
             _shell.AssetsChanged -= ReloadGraphics;
+            if (_docked && _shell.Maps != null)
+            {
+                _shell.Maps.TilesChanged -= OnTilesChanged;
+                _shell.Maps.StructureChanged -= OnStructureChanged;
+                _shell.Maps.TilesetChanged -= OnTilesetChanged;
+            }
             _character?.Dispose();
             _atlases.Dispose();
             _renderer.Dispose();

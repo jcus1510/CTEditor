@@ -58,7 +58,7 @@ namespace CTEditor.App
             var walk = S.Tree.Walk(onlyExpanded: true).ToList();
             if (walk.Count == 0)
             {
-                _list.Add(Ui.Hint("Aún no hay mapas. Pulsa «Nuevo mapa…».").Margin(10, 8, 10, 8));
+                _list.Add(Ui.EmptyState("mapa", "Aún no hay mapas", "Empieza por el primer pueblo o la primera ruta.", "+ Nuevo mapa", () => NewMapDialog(_shell, "")));
                 return;
             }
             foreach (var (entry, depth) in walk) _list.Add(Row(entry, depth));
@@ -359,7 +359,7 @@ namespace CTEditor.App
             _list.Clear();
             _rows.Clear();
             var m = S?.Map;
-            if (m == null) { _list.Add(Ui.Hint("Abre un mapa para ver sus capas.").Margin(10, 8, 10, 8)); return; }
+            if (m == null) { _list.Add(Ui.EmptyState("prioridad", "Sin mapa abierto", "Abre un mapa en la ventana Mapas para ver sus capas.")); return; }
             int active = Mathf.Clamp(S.ActiveLayer, 0, m.Layers.Count - 1);
             _bar.With(Ui.IconButton("mas", () => S.AddLayer(), "Añadir una capa encima de la elegida"),
                 Ui.IconButton("arriba", () => S.MoveLayer(active, +1), "Subir la capa (se dibuja más encima)"),

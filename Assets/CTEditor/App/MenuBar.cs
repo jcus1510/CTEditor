@@ -177,6 +177,9 @@ namespace CTEditor.App
             new MenuItem("Probar desde aquí", () => _shell.RunAction("probar_aqui"), Keys("probar_aqui")),
             new MenuItem("Depurador", () => _shell.RunAction("depurador"), Keys("depurador")),
             MenuItem.Separator,
+            MenuItem.Submenu("Perfil de prueba: " + _shell.ActiveProfile.Name, _shell.Profiles.Select(p => { var id = p.Id; return new MenuItem(p.Name, () => _shell.SetActiveProfile(id), isChecked: p.Id == _shell.ActiveProfile.Id); })
+                .Concat(new[] { MenuItem.Separator, new MenuItem("Editar perfiles…", () => ProfilesDialog.Show(_shell)) }).ToList()),
+            MenuItem.Separator,
             new MenuItem("Exportar el juego (Windows)…", () => _shell.Info("La exportación llegará cuando el juego se pueda jugar (fase 3 en adelante)."), enabled: true),
         };
 

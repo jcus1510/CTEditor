@@ -373,6 +373,55 @@ namespace CTEditor.Project
     }
 
     /// <summary>Las especies del proyecto, leídas de «datos/especies.csv» (columnas id y nombre; las de los packs sirven).</summary>
+    /// <summary>Perfiles de prueba en «datos/perfiles_prueba.json» (se escriben con seguridad, vía .tmp).</summary>
+    public sealed class JsonTestProfileRepository : ITestProfileRepository
+    {
+        private static readonly string[] TimeKeys = { "manana", "dia", "tarde", "noche" };
+        private readonly string _path;
+
+        public JsonTestProfileRepository(string projectRoot) { _path = Path.Combine(projectRoot, ProjectLayout.DataFolder, "perfiles_prueba.json"); }
+
+        public IReadOnlyList<TestProfile> Load()
+        {
+            var list = new List<TestProfile>();
+            if (!File.Exists(_path)) return list;
+            var o = Json.ParseObject(File.ReadAllText(_path));
+            foreach (var e in o.GetArray("perfiles") ?? new List<object>())
+            {
+                if (!(e is JsonObject po) || !(po.GetString("id") is string id)) continue;
+                var p = new TestProfile(id, po.GetString("nombre", id)) { Badges = po.GetInt("medallas", 0), Money = po.GetInt("dinero", 3000) };
+                int t = Array.IndexOf(TimeKeys, po.GetString("hora", ""));
+                if (t >= 0) p.Time = (TimeOfDay)(1 << t);
+                foreach (var m in po.GetArray("equipo") ?? new List<object>())
+                    if (m is JsonObject mo) p.Party.Add(new TestMember(mo.GetString("especie", ""), mo.GetInt("nivel", 5)));
+                if (po.GetObject("objetos") is JsonObject io)
+                    foreach (var k in io.Keys) p.Items[k] = io.GetInt(k, 1);
+                foreach (var f in po.GetArray("interruptores") ?? new List<object>()) if (f is string fs) p.Flags.Add(fs);
+                list.Add(p);
+            }
+            return list;
+        }
+
+        public void Save(IReadOnlyList<TestProfile> profiles)
+        {
+            var arr = profiles.Select(p =>
+            {
+                var items = new JsonObject();
+                foreach (var kv in p.Items) items[kv.Key] = kv.Value;
+                var po = new JsonObject().Set("id", p.Id).Set("nombre", p.Name).Set("medallas", p.Badges).Set("dinero", p.Money)
+                    .Set("equipo", p.Party.Select(m => (object)new JsonObject().Set("especie", m.SpeciesId).Set("nivel", m.Level)).ToList())
+                    .Set("objetos", items).Set("interruptores", p.Flags.OrderBy(f => f).Cast<object>().ToList());
+                if (p.Time.HasValue) po["hora"] = TimeKeys[(int)Math.Log((int)p.Time.Value, 2)];
+                return (object)po;
+            }).ToList();
+            Directory.CreateDirectory(Path.GetDirectoryName(_path));
+            var tmp = _path + ".tmp";
+            File.WriteAllText(tmp, Json.Write(new JsonObject().Set("formato", 1).Set("perfiles", arr)));
+            if (File.Exists(_path)) File.Delete(_path);
+            File.Move(tmp, _path);
+        }
+    }
+
     public sealed class CsvSpeciesDirectory : ISpeciesDirectory
     {
         private readonly string _path, _types, _eggs;

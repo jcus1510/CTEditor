@@ -23,10 +23,11 @@ Estados: ✅ hecho · 🔶 en curso · ⬜ pendiente.
 
 | Tarea | Estado | Comprobación |
 |---|---|---|
-| A1. **Jugar dentro de una ventana** (la ventana «Juego»): el mapa se edita en una y se juega en otra; los cambios de tiles, paso y encuentros se ven al momento sin reiniciar | ⬜ | Pintar un tile mientras el jugador anda: aparece; bloquear el paso de una casilla: ya no se puede pisar. |
-| A2. **Perfiles de prueba**: con qué se empieza a probar (equipo, nivel, medallas, objetos, interruptores encendidos, hora del día) | ⬜ | Dominio `TestProfile` con pruebas; elegir un perfil y que el juego arranque con él. |
-| A3. Selector de perfil junto a «Jugar» y en Ctrl+P | ⬜ | Cambiar de perfil y jugar: se nota (otro equipo, otra hora). |
-| A4. Documentación (20, DISENO, historial) | ⬜ | — |
+| A1. **Jugar dentro de una ventana** (la ventana «Juego»): el mapa se edita en una y se juega en otra; los cambios de tiles, paso y encuentros se ven al momento sin reiniciar | ✅ (`GameWindow`, `PlayScreen` acoplada) | Pintar un tile mientras el jugador anda: aparece; bloquear el paso de una casilla: ya no se puede pisar. |
+| A2. **Perfiles de prueba**: con qué se empieza a probar (equipo, nivel, medallas, objetos, interruptores encendidos, hora del día) | ✅ (`TestProfile`, `JsonTestProfileRepository`, `TestProfileTests`) | Dominio `TestProfile` con pruebas; elegir un perfil y que el juego arranque con él. |
+| A3. Selector de perfil junto a «Jugar» y en Ctrl+P | ✅ (ventana Juego, menú Jugar, Ctrl+P, `ProfilesDialog`) | Cambiar de perfil y jugar: se nota (otro equipo, otra hora). |
+| A4. Documentación (20, DISENO, historial) | ✅ | — |
+| A5. **Estados vacíos** (sugerencia 7): icono, título, qué hacer y botón principal | ✅ (`Ui.EmptyState` en Encuentros, Mapas, Capas, Recursos, Problemas) | Ventanas vacías muestran qué hacer con un clic. |
 
 ## B · Fase 6 — el mundo
 

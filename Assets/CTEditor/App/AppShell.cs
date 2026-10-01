@@ -8,6 +8,7 @@ using CTEditor.Art.Domain;
 using CTEditor.Editing;
 using CTEditor.Project;
 using CTEditor.Workspace;
+using CTEditor.World.Domain;
 
 namespace CTEditor.App
 {
@@ -64,6 +65,12 @@ namespace CTEditor.App
         /// <summary>Píxeles físicos por punto de la interfaz (escala del usuario × ppp): para texturas nítidas.</summary>
         public float PixelsPerPoint { get; set; } = 1f;
         public bool IsPlaying => _play != null;
+        /// <summary>Playing inside the «Juego» window (the editor stays usable around it).</summary>
+        public bool PlayDocked { get; private set; }
+        /// <summary>The game has the keyboard: full screen, or docked and clicked.</summary>
+        public bool PlayHasKeys => _play != null && (!PlayDocked || _play.panel?.focusController?.focusedElement == _play);
+        /// <summary>Where docked play goes (the «Juego» window registers it while it is open).</summary>
+        public VisualElement GameHost { get; set; }
 
         /// <summary>Cada fotograma (segundos desde el anterior).</summary>
         public event Action<float> Ticked;
@@ -352,6 +359,40 @@ namespace CTEditor.App
 
             Pixels = new PixelEditorSession(new PngImageRepository());
             Pixels.Message += OnSessionMessage;
+            LoadProfiles();
+        }
+
+        // ── Test profiles (A2) ───────────────────────────────────────────────────────────────────
+
+        private ITestProfileRepository _profileRepo;
+        public List<TestProfile> Profiles { get; } = new List<TestProfile>();
+        public event Action ProfilesChanged;
+
+        /// <summary>The profile «Jugar» uses (team, badges, items, switches, hour).</summary>
+        public TestProfile ActiveProfile => Profiles.FirstOrDefault(p => p.Id == Workspace.Pref("perfil_prueba", "")) ?? Profiles.FirstOrDefault() ?? TestProfile.Default();
+
+        private void LoadProfiles()
+        {
+            Profiles.Clear();
+            _profileRepo = new JsonTestProfileRepository(ProjectRoot);
+            try { Profiles.AddRange(_profileRepo.Load()); }
+            catch (Exception e) { Error("No se pudieron leer los perfiles de prueba: " + e.Message); }
+            if (Profiles.Count == 0) Profiles.Add(TestProfile.Default());
+        }
+
+        public void SaveProfiles()
+        {
+            try { _profileRepo?.Save(Profiles); }
+            catch (Exception e) { Error("No se pudieron guardar los perfiles de prueba: " + e.Message); }
+            ProfilesChanged?.Invoke();
+        }
+
+        public void SetActiveProfile(string id)
+        {
+            Workspace.SetPref("perfil_prueba", id);
+            SaveWorkspaceSoon();
+            ProfilesChanged?.Invoke();
+            Info("Perfil de prueba: " + ActiveProfile.Name);
         }
 
         private void CloseSessions()
@@ -590,9 +631,10 @@ namespace CTEditor.App
             CloseMenu();
             try { Maps.Save(); }
             catch (Exception e) { Error("No se pudo guardar antes de jugar: " + e.Message); }
+            bool docked = GameHost?.panel != null;
             try
             {
-                _play = new PlayScreen(this, mapId, x, y);
+                _play = new PlayScreen(this, mapId, x, y, docked);
             }
             catch (Exception e)
             {
@@ -600,8 +642,13 @@ namespace CTEditor.App
                 Error("No se pudo empezar a jugar: " + e.Message);
                 return;
             }
-            _screen.Show(false);
-            Root.Insert(Root.IndexOf(_screen) + 1, _play);
+            PlayDocked = docked;
+            if (docked) GameHost.Add(_play);
+            else
+            {
+                _screen.Show(false);
+                Root.Insert(Root.IndexOf(_screen) + 1, _play);
+            }
             _play.Focus();
             PlayingChanged?.Invoke(true);
         }
@@ -612,6 +659,7 @@ namespace CTEditor.App
             _play.Dispose();
             _play.RemoveFromHierarchy();
             _play = null;
+            PlayDocked = false;
             _screen.Show(true);
             Root.Focus();
             PlayingChanged?.Invoke(false);
@@ -1090,7 +1138,7 @@ namespace CTEditor.App
                 capture(e.keyCode == KeyCode.Escape ? null : e.keyCode == KeyCode.Backspace ? "" : KeysOf(e));
                 return;
             }
-            if (IsPlaying && e.keyCode != KeyCode.F5 && e.keyCode != KeyCode.F9 && e.keyCode != KeyCode.F11) return;
+            if (PlayHasKeys && e.keyCode != KeyCode.F5 && e.keyCode != KeyCode.F9 && e.keyCode != KeyCode.F11) return;
             // Ctrl + 0: interface back to 100 % (Ctrl + wheel changes it).
             if ((e.ctrlKey || e.commandKey) && (e.keyCode == KeyCode.Alpha0 || e.keyCode == KeyCode.Keypad0) && HasProject)
             {

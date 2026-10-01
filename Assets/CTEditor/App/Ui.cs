@@ -39,6 +39,37 @@ namespace CTEditor.App
         }
 
         /// <summary>
+        /// What a window shows when it has nothing yet: a big icon, a title, one line saying what to do and the main
+        /// button (and an optional second one). Only while empty: as soon as there is something, the normal view.
+        /// </summary>
+        public static VisualElement EmptyState(string icon, string title, string text, string action = null, Action onAction = null,
+            string secondary = null, Action onSecondary = null)
+        {
+            var box = Column(8).Pad(24, 28);
+            box.style.alignItems = Align.Center;
+            box.style.justifyContent = Justify.Center;
+            box.style.flexGrow = 1;
+            if (IconArt.Has(icon)) box.Add(Icons.Element(icon, Mathf.Round(IconSize * 3.2f), WithAlpha(C("acento"), 0.75f)));
+            var t = Text(title, 1.1f, bold: true);
+            t.style.unityTextAlign = TextAnchor.MiddleCenter;
+            t.style.whiteSpace = WhiteSpace.Normal;
+            var h = Hint(text);
+            h.style.unityTextAlign = TextAnchor.MiddleCenter;
+            h.style.maxWidth = 380;
+            box.With(t, h);
+            if (action != null)
+            {
+                var b = Button(action, onAction, ButtonKind.Primary);
+                b.style.height = ControlHeight + 6; b.style.minHeight = ControlHeight + 6;
+                b.style.paddingLeft = 18; b.style.paddingRight = 18;
+                b.style.marginTop = 6;
+                box.Add(b);
+            }
+            if (secondary != null) box.Add(Button(secondary, onSecondary, ButtonKind.Flat));
+            return box.Appear();
+        }
+
+        /// <summary>
         /// The one look for section titles in every window: small grey capitals, with an optional control on the right
         /// («ZONAS  [+]», «TAMAÑO»...).
         /// </summary>

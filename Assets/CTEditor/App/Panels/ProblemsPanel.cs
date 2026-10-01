@@ -72,9 +72,7 @@ namespace CTEditor.App
                 Ui.Button("Revisar", Refresh, Ui.ButtonKind.Flat, "Volver a revisar ahora (se revisa sola tras cada cambio)"));
             if (problems.Count == 0)
             {
-                var ok = Ui.Row(8).Pad(12, 10);
-                ok.With(Icons.Element("jugar", Ui.IconSize, Ui.C("exito")), Ui.Text("Todo en orden: no hay problemas.", bold: true).Colored("exito"));
-                _list.Add(ok);
+                _list.Add(Ui.EmptyState("estrella", "Todo en orden", "No hay problemas en el proyecto. Se vuelve a revisar solo después de cada cambio."));
                 return;
             }
             foreach (var p in problems)

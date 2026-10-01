@@ -108,12 +108,9 @@ namespace CTEditor.App
 
             if (all.Count == 0)
             {
-                var empty = Ui.Column(8).Pad(16);
-                empty.With(Ui.Heading("Aún no hay imágenes"),
-                    Ui.Hint("Pulsa «Importar…» o copia tus PNG en la carpeta del proyecto:"),
-                    Ui.Hint("graficos/tilesets · graficos/personajes · graficos/combate · graficos/iconos · graficos/interfaz · graficos/retratos"),
-                    Ui.Hint("Los tilesets y personajes de RPG Maker XP / Essentials sirven tal cual."));
-                _list.Add(empty);
+                _list.Add(Ui.EmptyState("carpeta", "Aún no hay imágenes",
+                    "Importa tilesets, personajes o sprites (PNG, BMP o DIB). Los de RPG Maker XP / Essentials sirven tal cual.",
+                    "Importar imágenes…", ImportImage, "o una carpeta entera…", ImportFolder));
                 return;
             }
             foreach (var group in shown.GroupBy(a => a.Kind))

@@ -23,7 +23,7 @@ namespace CTEditor.App
             Register(PanelCatalog.Layers, s => new LayersPanel(s));
             Register(PanelCatalog.Inspector, s => new InspectorPanel(s));
             Register(PanelCatalog.PixelEditor, s => new RetouchPanel(s));
-            Register(PanelCatalog.Game, s => GamePanel(s));
+            Register(PanelCatalog.Game, s => new GameWindow(s));
             Register(PanelCatalog.World, s => new WorldPanel(s));
             Register(PanelCatalog.Encounters, s => new EncountersPanel(s));
             Register(PanelCatalog.Problems, s => new ProblemsPanel(s));
@@ -54,14 +54,6 @@ namespace CTEditor.App
                 shell.Error($"No se pudo abrir el panel «{PanelCatalog.LabelOf(panelId)}»: {e.Message}");
                 return Placeholder(PanelCatalog.LabelOf(panelId), "Este panel falló al abrirse (ver Avisos).", "");
             }
-        }
-
-        private static VisualElement GamePanel(AppShell shell)
-        {
-            var box = Placeholder("Juego", "El juego se abre a toda la ventana, con la resolución del proyecto ampliada en píxeles exactos. Esc vuelve aquí.", "");
-            box.With(Ui.Button("Jugar desde el inicio", () => shell.StartPlay(), Ui.ButtonKind.Primary),
-                Ui.Button("Probar desde el ratón (mapa)", () => shell.RunAction("probar_aqui")));
-            return box;
         }
 
         private static VisualElement Placeholder(string title, string text, string phase)
