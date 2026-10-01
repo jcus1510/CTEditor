@@ -1079,6 +1079,16 @@ namespace CTEditor.App
                         Maps.SetLayerView(Maps.ActiveLayer, locked: !Maps.Map.Layers[Maps.ActiveLayer].Locked);
                     break;
                 case "capas_auto": if (Maps != null) Maps.SetAutoLayers(!Maps.AutoLayers); break;
+                case "voltear_h": if (Maps?.Map != null) { ActiveEditor = "mapa"; Maps.FlipStamp(true); } break;
+                case "voltear_v": if (Maps?.Map != null) { ActiveEditor = "mapa"; Maps.FlipStamp(false); } break;
+                case "girar": if (Maps?.Map != null) { ActiveEditor = "mapa"; Maps.RotateStamp(true); } break;
+                case "girar_izq": if (Maps?.Map != null) { ActiveEditor = "mapa"; Maps.RotateStamp(false); } break;
+                case var r when r.StartsWith("sello_"):
+                    if (Maps?.Map != null && int.TryParse(r.Substring("sello_".Length), out var recall)) Maps.RecallStamp(recall);
+                    break;
+                case var g when g.StartsWith("guardar_sello_"):
+                    if (Maps?.Map != null && int.TryParse(g.Substring("guardar_sello_".Length), out var store)) Maps.StoreStamp(store);
+                    break;
                 case var w when w.StartsWith("ventana_"):
                     var panel = w.Substring("ventana_".Length);
                     if (PanelCatalog.Find(panel) == null || !HasProject) break;

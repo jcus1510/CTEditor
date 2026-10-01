@@ -56,6 +56,29 @@ namespace CTEditor.Workspace
             new ShortcutAction("seleccion", "Selección", "M", "Herramientas"),
             new ShortcutAction("inicio", "Colocar el inicio del jugador", "P", "Herramientas"),
             new ShortcutAction("zona", "Pintar la zona de encuentros", "H", "Herramientas"),
+
+            new ShortcutAction("voltear_h", "Voltear el sello en horizontal", "X", "Sello"),
+            new ShortcutAction("voltear_v", "Voltear el sello en vertical", "Y", "Sello"),
+            new ShortcutAction("girar", "Girar el sello a la derecha", "R", "Sello"),
+            new ShortcutAction("girar_izq", "Girar el sello a la izquierda", "Mayús+R", "Sello"),
+            new ShortcutAction("sello_1", "Recuperar el sello 1", "Alt+Alpha1", "Sello"),
+            new ShortcutAction("sello_2", "Recuperar el sello 2", "Alt+Alpha2", "Sello"),
+            new ShortcutAction("sello_3", "Recuperar el sello 3", "Alt+Alpha3", "Sello"),
+            new ShortcutAction("sello_4", "Recuperar el sello 4", "Alt+Alpha4", "Sello"),
+            new ShortcutAction("sello_5", "Recuperar el sello 5", "Alt+Alpha5", "Sello"),
+            new ShortcutAction("sello_6", "Recuperar el sello 6", "Alt+Alpha6", "Sello"),
+            new ShortcutAction("sello_7", "Recuperar el sello 7", "Alt+Alpha7", "Sello"),
+            new ShortcutAction("sello_8", "Recuperar el sello 8", "Alt+Alpha8", "Sello"),
+            new ShortcutAction("sello_9", "Recuperar el sello 9", "Alt+Alpha9", "Sello"),
+            new ShortcutAction("guardar_sello_1", "Guardar el sello actual en el 1", "Ctrl+Alt+Alpha1", "Sello"),
+            new ShortcutAction("guardar_sello_2", "Guardar el sello actual en el 2", "Ctrl+Alt+Alpha2", "Sello"),
+            new ShortcutAction("guardar_sello_3", "Guardar el sello actual en el 3", "Ctrl+Alt+Alpha3", "Sello"),
+            new ShortcutAction("guardar_sello_4", "Guardar el sello actual en el 4", "Ctrl+Alt+Alpha4", "Sello"),
+            new ShortcutAction("guardar_sello_5", "Guardar el sello actual en el 5", "Ctrl+Alt+Alpha5", "Sello"),
+            new ShortcutAction("guardar_sello_6", "Guardar el sello actual en el 6", "Ctrl+Alt+Alpha6", "Sello"),
+            new ShortcutAction("guardar_sello_7", "Guardar el sello actual en el 7", "Ctrl+Alt+Alpha7", "Sello"),
+            new ShortcutAction("guardar_sello_8", "Guardar el sello actual en el 8", "Ctrl+Alt+Alpha8", "Sello"),
+            new ShortcutAction("guardar_sello_9", "Guardar el sello actual en el 9", "Ctrl+Alt+Alpha9", "Sello"),
             // Selección
             new ShortcutAction("seleccionar_todo", "Seleccionar todo el mapa", "Ctrl+A", "Selección"),
             new ShortcutAction("deseleccionar", "Quitar la selección", "Ctrl+D", "Selección"),
@@ -94,7 +117,7 @@ namespace CTEditor.Workspace
         };
 
         /// <summary>The order of the categories in lists (others go after, alphabetically).</summary>
-        public static readonly string[] Categories = { "General", "Jugar", "Herramientas", "Selección", "Vista", "Capas", "Tiles", "Ventanas" };
+        public static readonly string[] Categories = { "General", "Jugar", "Herramientas", "Sello", "Selección", "Vista", "Capas", "Tiles", "Ventanas" };
 
         /// <summary>«Ctrl+Alpha1» → «Ctrl+1», «PageDown» → «Av Pág»: how a shortcut is shown to people.</summary>
         public static string Pretty(string keys)

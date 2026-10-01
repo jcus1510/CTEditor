@@ -128,4 +128,6 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
 - **Bloque A (fase 5b)**: jugar dentro de la ventana Juego con cambios en vivo; perfiles de prueba (equipo,
   medallas, dinero, objetos, interruptores, hora) con su editor y selector; selector de especies común; estados
   vacíos (`Ui.EmptyState`). `TestProfileTests`.
+- **B2 edición rápida**: Mayús + clic = línea; voltear (X / Y) y girar (R, Mayús+R) el sello, con el giro guardado en
+  cada casilla; sellos guardados en Ctrl+Alt+1-9 / Alt+1-9. Pruebas en `MapEditingTests`.
 - **Documentación** completa por capítulos (esta carpeta).

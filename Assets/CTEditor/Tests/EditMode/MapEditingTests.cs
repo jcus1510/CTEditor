@@ -323,6 +323,84 @@ namespace CTEditor.Tests.EditMode
         }
 
         [Test]
+        public void Tile_flags_turn_and_flip_without_touching_slot_or_index()
+        {
+            int cell = MapTile.Encode(3, 1234);
+            Assert.AreEqual(0, MapTile.Flags(cell), "old cells have no flags");
+            int flipped = MapTile.WithFlags(cell, MapTile.FlipH | MapTile.FlipD);
+            Assert.AreEqual((3, 1234), (MapTile.Slot(flipped), MapTile.Index(flipped)));
+            Assert.Greater(flipped, 0, "flags never make a cell look empty");
+
+            for (int f = 0; f < 8; f++)
+            {
+                int flags = (f & 1) * MapTile.FlipH | ((f >> 1) & 1) * MapTile.FlipV | ((f >> 2) & 1) * MapTile.FlipD;
+                Assert.AreEqual(flags, MapTile.FlagsOf(MapTile.Matrix(flags)), "matrix round trip");
+                int turned = flags;
+                for (int i = 0; i < 4; i++) turned = MapTile.Rotated(turned, true);
+                Assert.AreEqual(flags, turned, "four quarter turns = the same");
+                Assert.AreEqual(flags, MapTile.Rotated(MapTile.Rotated(flags, true), false), "right then left = the same");
+            }
+            Assert.AreEqual(MapTile.Empty, MapTile.WithFlags(MapTile.Empty, MapTile.FlipH));
+        }
+
+        [Test]
+        public void Stamps_flip_and_turn_as_a_block_and_tile_by_tile()
+        {
+            var stamp = new TileStamp(2, 1, new[] { 1, MapLayer.Empty });
+            var h = stamp.FlippedHorizontally();
+            Assert.AreEqual(MapLayer.Empty, h[0, 0]);
+            Assert.AreEqual(1 | MapTile.FlipH, h[1, 0]);
+            Assert.IsTrue(stamp.SameAs(h.FlippedHorizontally()));
+            Assert.IsTrue(stamp.SameAs(stamp.FlippedVertically().FlippedVertically()));
+
+            var r = stamp.Rotated();
+            Assert.AreEqual((1, 2), (r.Width, r.Height));
+            Assert.AreEqual(MapTile.Index(1), MapTile.Index(r[0, 0]));
+            Assert.AreEqual(MapLayer.Empty, r[0, 1]);
+            Assert.IsTrue(stamp.SameAs(r.Rotated().Rotated().Rotated()));
+            Assert.IsTrue(stamp.SameAs(r.Rotated(false)));
+        }
+
+        [Test]
+        public void Lines_include_both_ends_and_have_no_gaps()
+        {
+            var line = TileStamp.Line(0, 0, 5, 2).ToList();
+            Assert.AreEqual((0, 0), line[0]);
+            Assert.AreEqual((5, 2), line[line.Count - 1]);
+            Assert.AreEqual(6, line.Count);
+            for (int i = 1; i < line.Count; i++)
+                Assert.LessOrEqual(Math.Max(Math.Abs(line[i].x - line[i - 1].x), Math.Abs(line[i].y - line[i - 1].y)), 1);
+            Assert.AreEqual(new[] { (2, 2) }, TileStamp.Line(2, 2, 2, 2).ToArray());
+        }
+
+        [Test]
+        public void Shift_click_paints_a_line_from_the_last_cell_as_one_undo_and_stamps_can_be_stored()
+        {
+            var session = new MapEditorSession(new MemoryMaps(), new NoTilesets());
+            session.CreateMap("M", width: 6, height: 6, tilesetId: "");
+            session.SetAutoLayers(false);
+            session.SetActiveLayer(0);
+            var layer = session.Map.Layers[0];
+            session.SetStamp(TileStamp.Single(1));
+            Assert.IsFalse(session.PaintLine(4, 0), "no line before painting something");
+            session.PointerDown(0, 0);
+            session.PointerUp(0, 0);
+            Assert.IsTrue(session.PaintLine(4, 0));
+            Assert.IsTrue(Enumerable.Range(0, 5).All(x => layer.Get(x, 0) == 1));
+            session.Undo();
+            Assert.AreEqual(1, layer.Get(0, 0), "the first click stays");
+            Assert.IsTrue(Enumerable.Range(1, 4).All(x => layer.Get(x, 0) == MapLayer.Empty), "the line goes in one step");
+
+            session.StoreStamp(3);
+            session.RotateStamp();
+            session.FlipStamp(true);
+            Assert.AreNotEqual(1, session.Stamp[0, 0]);
+            Assert.IsTrue(session.RecallStamp(3));
+            Assert.AreEqual(1, session.Stamp[0, 0]);
+            Assert.IsFalse(session.RecallStamp(5));
+        }
+
+        [Test]
         public void Any_unused_tileset_can_be_removed_and_later_tiles_keep_theirs()
         {
             var session = new MapEditorSession(new MemoryMaps(), new NoTilesets());

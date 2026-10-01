@@ -549,6 +549,12 @@ namespace CTEditor.App
                 }
             }
             else if (e.button != 0) return;
+            if (e.button == 0 && e.shiftKey && S.PaintLine(cell.x, cell.y))
+            {
+                _viewport.ReleasePointer(e.pointerId);
+                RedrawOverlay();
+                return;
+            }
             _painting = true;
             S.PointerDown(cell.x, cell.y, secondary);
             RedrawOverlay();
@@ -740,6 +746,13 @@ namespace CTEditor.App
                 var img = new Image { image = uv.Value.texture, uv = uv.Value.uv, scaleMode = ScaleMode.StretchToFill, pickingMode = PickingMode.Ignore };
                 img.Absolute(a.x, a.y, b.x - a.x, b.y - a.y);
                 img.style.opacity = 0.65f;
+                int flags = MapTile.Flags(cell);
+                if (flags != 0)
+                {
+                    var (deg, sx) = MapRenderer.UiTransformOf(flags);
+                    img.style.rotate = new Rotate(new Angle(deg, AngleUnit.Degree));
+                    img.style.scale = new Scale(new Vector3(sx, 1, 1));
+                }
                 _overlay.Add(img);
             }
         }

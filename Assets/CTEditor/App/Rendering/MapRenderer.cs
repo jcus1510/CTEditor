@@ -188,10 +188,45 @@ namespace CTEditor.App
                 }
                 s.Layers[i].below.SetTiles(positions, below);
                 s.Layers[i].above.SetTiles(positions, above);
+                // Flipped or turned tiles (B2): each cell gets its own transform.
+                n = 0;
+                for (int yy = y0; yy < y1; yy++)
+                for (int xx = x0; xx < x1; xx++)
+                {
+                    int cell = layer.Get(xx, yy);
+                    var target = above[n] != null ? s.Layers[i].above : below[n] != null ? s.Layers[i].below : null;
+                    if (target != null) target.SetTransformMatrix(positions[n], TransformOf(MapTile.Flags(cell)));
+                    n++;
+                }
             }
         }
 
         public static Vector3Int Cell(int x, int y) => new Vector3Int(x, -y - 1, 0);
+
+        /// <summary>The cell transform for a tile's flip/turn flags (our matrix is y-down; Unity's cells are y-up).</summary>
+        public static Matrix4x4 TransformOf(int flags)
+        {
+            if (flags == 0) return Matrix4x4.identity;
+            var (a, b, c, d) = MapTile.Matrix(flags);
+            var m = Matrix4x4.identity;
+            m.m00 = a; m.m01 = -b; m.m10 = -c; m.m11 = d;
+            return m;
+        }
+
+        /// <summary>The same flags as a UI rotation (degrees, clockwise) and horizontal scale (±1), for previews.</summary>
+        public static (float degrees, float scaleX) UiTransformOf(int flags)
+        {
+            var target = MapTile.Matrix(flags);
+            foreach (int deg in new[] { 0, 90, 180, 270 })
+            foreach (int sx in new[] { 1, -1 })
+            {
+                // R(deg) · diag(sx, 1), y down: R(90) = (x, y) → (−y, x).
+                (int a, int b, int c, int d) r = deg == 0 ? (1, 0, 0, 1) : deg == 90 ? (0, -1, 1, 0) : deg == 180 ? (-1, 0, 0, -1) : (0, 1, -1, 0);
+                var m = (r.a * sx, r.b, r.c * sx, r.d);
+                if (m == target) return (deg, sx);
+            }
+            return (0, 1);
+        }
 
         // ── Camera and texture ───────────────────────────────────────────────────────────────────
 

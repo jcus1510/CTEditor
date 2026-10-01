@@ -34,7 +34,7 @@ Estados: ✅ hecho · 🔶 en curso · ⬜ pendiente.
 | Tarea | Estado | Comprobación |
 |---|---|---|
 | B1. **Corte libre**: rectángulos a mano en la imagen, con lupa y precisión de píxel (tiles grandes, objetos sueltos de ripeos) | ⬜ | Cortar un tileset ripeado con piezas de distinto tamaño; los mapas las usan. |
-| B2. **Edición rápida**: Mayús + clic = línea; X / Y voltear y R girar el sello; Ctrl+Alt+1-9 guardar sello y Alt+1-9 recuperarlo | ⬜ | Pruebas del dominio (`TileStamp` volteado y girado) + uso en Unity. |
+| B2. **Edición rápida**: Mayús + clic = línea; X / Y voltear y R girar el sello; Ctrl+Alt+1-9 guardar sello y Alt+1-9 recuperarlo | ✅ (`MapTile` con giro, `TileStamp` volteado/girado/`Line`, `PaintLine`) | Pruebas del dominio (`TileStamp` volteado y girado) + uso en Unity. |
 | B3. **Puertas que se enlazan solas**: una puerta en un exterior y su salida en el interior, creadas juntas; moverlas mantiene el enlace | ⬜ | Entrar y salir jugando; borrar una avisa de la otra (ventana Problemas). |
 | B4. **Autotiles**: formato RPG Maker XP (escalado al tile del proyecto), 47 piezas, o detectado por las medidas | ⬜ | Pintar agua y caminos: los bordes salen solos; pruebas de las 47 combinaciones. |
 | B5. **Pinceles de terreno y aleatorio** (con pesos) | ⬜ | Pintar hierba con variaciones al azar. |

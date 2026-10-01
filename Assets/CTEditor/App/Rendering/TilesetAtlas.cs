@@ -67,6 +67,7 @@ namespace CTEditor.App
             tile.hideFlags = HideFlags.DontSave;
             tile.sprite = sprite;
             tile.colliderType = Tile.ColliderType.None;
+            tile.flags = TileFlags.None; // cells may carry their own transform (flipped / turned tiles)
             _owned.Add(tile);
             _tiles[index] = tile;
             return tile;

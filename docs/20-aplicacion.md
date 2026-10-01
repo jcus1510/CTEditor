@@ -101,6 +101,7 @@ Detalle y reglas visuales en [`DISENO.md`](DISENO.md) (documento vivo del diseñ
 | Selección | Ctrl+A todo · Ctrl+D quitar · Ctrl+C / Ctrl+X / Ctrl+V · Supr borrar |
 | Vista | Ctrl+G rejilla · N vecinos · Z acercar · Mayús+Z alejar · F encuadrar · Espacio + arrastrar mover · Ctrl / Alt + rueda escala |
 | Capas | Av Pág / Re Pág siguiente / anterior · Ctrl+Mayús+N nueva · Ctrl+H ver · Ctrl+Mayús+K bloquear · Ctrl+L capas automáticas |
+| Sello | X / Y voltear · R girar a la derecha · Mayús+R a la izquierda · Ctrl+Alt+1-9 guardar el sello · Alt+1-9 recuperarlo |
 | Tiles | 1 pintar · 2 paso · 3 prioridad · 4 terreno · 5 arbusto · 6 mostrador · 7 pieza |
 | Ventanas | Ctrl+1 Mapa · Ctrl+2 Tiles · Ctrl+3 Capas · Ctrl+4 Mundo · Ctrl+5 Encuentros · Ctrl+6 Recursos · Ctrl+7 Retoque · Ctrl+8 Propiedades · Ctrl+9 Mapas |
 
@@ -252,3 +253,17 @@ Marca lo que funcione y mándame captura de lo que no:
 Vía principal **motor listo + datos**: el motor del juego se compila con Unity una vez por plataforma y la aplicación
 lo copia junto a los datos empaquetados (**un archivo, cifrado opcional**), con el nombre y el icono del juego.
 **Windows primero**. Después, **Exportar a proyecto Unity** para profesionales (consolas, código propio). Ver la propuesta.
+
+### Edición rápida (fase 6, B2)
+
+- **Mayús + clic** con el lápiz o la goma: una **línea recta** desde la última casilla pintada hasta esa (un solo Ctrl+Z).
+- **Voltear y girar el sello**: X (horizontal), Y (vertical), R (girar a la derecha), Mayús+R (a la izquierda). Se gira
+  el bloque y cada tile; la vista previa del sello en el mapa ya sale girada.
+- **Sellos guardados**: Ctrl+Alt+1…9 guarda el sello actual; Alt+1…9 lo recupera.
+- Las casillas guardan el giro en tres bits (voltear H, voltear V, diagonal) que los mapas antiguos no tienen: siguen
+  igual. El paso, el terreno y la prioridad son los del tile original.
+
+**Probar en Unity**: pintar un tile, Mayús + clic cinco casillas más allá (sale la línea; Ctrl+Z la quita entera);
+elegir un bloque de 2×1, pulsar R y X y pintar (sale girado y volteado, también en «Jugar»); guardar con Ctrl+Alt+1,
+elegir otro y recuperarlo con Alt+1; guardar el proyecto y volver a abrirlo: los giros se conservan.
+

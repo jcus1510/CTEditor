@@ -408,6 +408,62 @@ namespace CTEditor.Editing
             SelectionChanged?.Invoke();
         }
 
+        // ── Quick editing (B2): turn/flip the stamp, stored stamps, straight lines ─────────────────
+
+        public void FlipStamp(bool horizontal)
+        {
+            Stamp = horizontal ? Stamp.FlippedHorizontally() : Stamp.FlippedVertically();
+            SelectionChanged?.Invoke();
+        }
+
+        public void RotateStamp(bool clockwise = true)
+        {
+            Stamp = Stamp.Rotated(clockwise);
+            SelectionChanged?.Invoke();
+        }
+
+        private readonly TileStamp[] _stored = new TileStamp[10];
+
+        /// <summary>Keeps the current stamp in slot 1-9 (Ctrl+Alt+number) to bring it back later (Alt+number).</summary>
+        public void StoreStamp(int slot)
+        {
+            if (slot < 1 || slot > 9) return;
+            _stored[slot] = Stamp;
+            Message?.Invoke($"Sello guardado en el {slot} (Alt+{slot} lo recupera).", "texto");
+        }
+
+        public bool RecallStamp(int slot)
+        {
+            if (slot < 1 || slot > 9 || _stored[slot] == null) { Message?.Invoke($"No hay sello guardado en el {slot} (Ctrl+Alt+{slot} guarda el actual).", "aviso"); return false; }
+            SetStamp(_stored[slot]);
+            return true;
+        }
+
+        public TileStamp StoredStamp(int slot) => slot >= 1 && slot <= 9 ? _stored[slot] : null;
+
+        /// <summary>Where the pencil last painted (for Shift + click = straight line).</summary>
+        public (int x, int y)? LastPaint { get; private set; }
+
+        /// <summary>
+        /// Shift + click with the pencil: the stamp along a straight line from the last painted cell to this one, as a
+        /// single undo step (like Tiled and GB Studio).
+        /// </summary>
+        public bool PaintLine(int x, int y)
+        {
+            if (Map == null || !LastPaint.HasValue || (Tool != MapTool.Pencil && Tool != MapTool.Eraser)) return false;
+            var (x0, y0) = LastPaint.Value;
+            var stroke = new TileStroke(Map);
+            foreach (var (lx, ly) in TileStamp.Line(x0, y0, x, y))
+            {
+                var changes = PencilAt(lx, ly, CurrentStamp);
+                stroke.Add(changes);
+                RaiseTiles(changes);
+            }
+            LastPaint = (x, y);
+            if (!stroke.IsEmpty) { MarkDirty(Map.Id); Record(stroke.ToCommand("línea")); }
+            return true;
+        }
+
         public void SetActiveLayer(int index)
         {
             if (Map == null) return;
@@ -549,6 +605,7 @@ namespace CTEditor.Editing
 
         private void StrokeAt(int x, int y)
         {
+            LastPaint = (x, y);
             var changes = PencilAt(x, y, CurrentStamp);
             if (changes.Count == 0) return;
             _stroke.Add(changes);

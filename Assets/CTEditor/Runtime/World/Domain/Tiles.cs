@@ -243,16 +243,53 @@ namespace CTEditor.World.Domain
     /// tileset. Así un mapa puede usar varios tilesets (césped, ciudad, playa) a la vez. Los mapas de un solo tileset
     /// quedan igual que antes (hueco 0 = el número del tile tal cual). -1 = vacía.
     /// </summary>
+    /// <summary>
+    /// Una casilla de una capa en un entero: el tile (bits 0-19), el tileset del mapa (hueco, bits 20-27) y cómo se
+    /// dibuja: volteado en horizontal (bit 28), en vertical (29) o en diagonal (30; con los otros dos da los giros),
+    /// como en Tiled. -1 = vacía. Los mapas antiguos no tienen esos bits: se leen igual.
+    /// </summary>
     public static class MapTile
     {
         public const int Empty = -1;
         public const int SlotShift = 20;
         public const int IndexMask = (1 << SlotShift) - 1;
-        public const int MaxSlots = 1 << (31 - SlotShift);
+        public const int SlotMask = 0xFF;
+        public const int MaxSlots = SlotMask + 1;
+        public const int FlipH = 1 << 28, FlipV = 1 << 29, FlipD = 1 << 30;
+        public const int FlagMask = FlipH | FlipV | FlipD;
 
-        public static int Encode(int slot, int index) => index < 0 || slot < 0 ? Empty : (slot << SlotShift) | index;
-        public static int Slot(int cell) => cell < 0 ? -1 : cell >> SlotShift;
+        public static int Encode(int slot, int index, int flags = 0) =>
+            index < 0 || slot < 0 ? Empty : ((slot & SlotMask) << SlotShift) | (index & IndexMask) | (flags & FlagMask);
+        public static int Slot(int cell) => cell < 0 ? -1 : (cell >> SlotShift) & SlotMask;
         public static int Index(int cell) => cell < 0 ? -1 : cell & IndexMask;
+        public static int Flags(int cell) => cell < 0 ? 0 : cell & FlagMask;
+        public static int WithFlags(int cell, int flags) => cell < 0 ? cell : (cell & ~FlagMask) | (flags & FlagMask);
+
+        // The drawing of a tile as a 2 × 2 matrix (x' = a·x + b·y, y' = c·x + d·y; y downwards): diagonal first, then
+        // horizontal, then vertical (Tiled's order).
+        public static (int a, int b, int c, int d) Matrix(int flags)
+        {
+            int a = 1, b = 0, c = 0, d = 1;
+            if ((flags & FlipD) != 0) (a, b, c, d) = (0, 1, 1, 0);
+            if ((flags & FlipH) != 0) (a, b) = (-a, -b);
+            if ((flags & FlipV) != 0) (c, d) = (-c, -d);
+            return (a, b, c, d);
+        }
+
+        public static int FlagsOf((int a, int b, int c, int d) m)
+        {
+            foreach (int f in new[] { 0, FlipH, FlipV, FlipH | FlipV, FlipD, FlipD | FlipH, FlipD | FlipV, FlipD | FlipH | FlipV })
+                if (Matrix(f) == m) return f;
+            return 0;
+        }
+
+        /// <summary>The flags after turning the tile a quarter clockwise (or anticlockwise).</summary>
+        public static int Rotated(int flags, bool clockwise)
+        {
+            var (a, b, c, d) = Matrix(flags);
+            // Clockwise with y down: (x, y) → (−y, x).
+            return clockwise ? FlagsOf((-c, -d, a, b)) : FlagsOf((c, d, -a, -b));
+        }
     }
 
     /// <summary>Los tilesets de un mapa, por hueco. Traduce una casilla a su tileset y a las propiedades de su tile.</summary>

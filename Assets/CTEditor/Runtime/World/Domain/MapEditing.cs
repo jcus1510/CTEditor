@@ -38,6 +38,63 @@ namespace CTEditor.World.Domain
         }
 
         private static int Mod(int a, int m) => ((a % m) + m) % m;
+
+        // ── Turning and flipping (each tile is turned too, not only moved) ──
+
+        public TileStamp FlippedHorizontally()
+        {
+            var t = new int[_tiles.Length];
+            for (int y = 0; y < Height; y++)
+            for (int x = 0; x < Width; x++)
+            {
+                int c = this[Width - 1 - x, y];
+                t[y * Width + x] = c < 0 ? c : c ^ MapTile.FlipH;
+            }
+            return new TileStamp(Width, Height, t);
+        }
+
+        public TileStamp FlippedVertically()
+        {
+            var t = new int[_tiles.Length];
+            for (int y = 0; y < Height; y++)
+            for (int x = 0; x < Width; x++)
+            {
+                int c = this[x, Height - 1 - y];
+                t[y * Width + x] = c < 0 ? c : c ^ MapTile.FlipV;
+            }
+            return new TileStamp(Width, Height, t);
+        }
+
+        /// <summary>A quarter turn: the block turns and so does each tile (width and height swap).</summary>
+        public TileStamp Rotated(bool clockwise = true)
+        {
+            int w = Height, h = Width;
+            var t = new int[_tiles.Length];
+            for (int y = 0; y < h; y++)
+            for (int x = 0; x < w; x++)
+            {
+                // Clockwise: new (x, y) comes from old (y, H − 1 − x); anticlockwise from old (W − 1 − y, x).
+                int c = clockwise ? this[y, Height - 1 - x] : this[Width - 1 - y, x];
+                t[y * w + x] = c < 0 ? c : MapTile.WithFlags(c, MapTile.Rotated(MapTile.Flags(c), clockwise));
+            }
+            return new TileStamp(w, h, t);
+        }
+
+        public bool SameAs(TileStamp o) => o != null && o.Width == Width && o.Height == Height && _tiles.SequenceEqual(o._tiles);
+
+        /// <summary>The cells of a straight line from one cell to another (Bresenham), both ends included.</summary>
+        public static IEnumerable<(int x, int y)> Line(int x0, int y0, int x1, int y1)
+        {
+            int dx = Math.Abs(x1 - x0), sx = x0 < x1 ? 1 : -1, dy = -Math.Abs(y1 - y0), sy = y0 < y1 ? 1 : -1, err = dx + dy;
+            while (true)
+            {
+                yield return (x0, y0);
+                if (x0 == x1 && y0 == y1) yield break;
+                int e2 = 2 * err;
+                if (e2 >= dy) { err += dy; x0 += sx; }
+                if (e2 <= dx) { err += dx; y0 += sy; }
+            }
+        }
     }
 
     /// <summary>Un cambio de una casilla de una capa.</summary>
