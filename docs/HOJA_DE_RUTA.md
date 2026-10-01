@@ -57,8 +57,8 @@ controles...). Pasan a la aplicación **con más rigor**: nada se rompe al borra
 | C4. **Validación** completa (la de `ContentValidator`) como comprobaciones de la ventana Problemas | ✅ `ContentChecks` en Problemas (clic = abrir la ficha); 🔶 faltan las reglas de mecánica de `ContentValidator` | Los mismos avisos que en Unity, con clic = ir al sitio. |
 | C5. Ventanas en este orden: **Especies** (formas, evoluciones, aprendizaje, árbol de familia) → **Movimientos** → **Habilidades** (bloques) → **Objetos** (bloques) → **Tipos y tabla de tipos** → Naturalezas, grupos huevo, curvas → Estados, climas, campos, peligros → **Entrenadores**, equipos, plantillas y sets (con Showdown) → **Reglas y mecánicas** → Menús y controles | ⬜ | Cada una: crear, cambiar, duplicar, borrar con referencias, deshacer; lo mismo que en Unity o más. |
 | C6. **Cambio de generación** con **vista previa** de lo que cambia (diferencias), copia de seguridad automática antes y vuelta atrás | ✅ (`PackChange`, `ApplyPack`, `GenerationDialog`; un Ctrl+Z lo deja igual) | Pasar un proyecto de Gen 3 a Gen 7 y volver: queda igual. |
-| C7. Herramientas: calculadora de daño, simulador de combate, torneo de IA | ⬜ | Mismos resultados que en Unity con la misma semilla. |
-| C8. Las ventanas de Unity se quedan solo para desarrollo (no para el autor) | ⬜ | Todo el contenido se edita sin abrir Unity. |
+| C7. Herramientas: calculadora de daño, simulador de combate, torneo de IA. **Antes**: sacar los códecs CSV → dominio (efectos, equipos, reglas) del ensamblado de Editor a uno puro (`CsvContentMapper`), para que el motor lea `datos/*.csv` sin fichas de Unity | ⬜ siguiente | Mismos resultados que en Unity con la misma semilla. |
+| C8. Las ventanas de Unity se quedan solo para desarrollo (no para el autor). Requiere C7 y pasar a CSV/JSON los niveles de IA, menús y controles (hoy son fichas de Unity) | ⬜ | Todo el contenido se edita sin abrir Unity. |
 
 
 ### C0 · Inventario (36 ventanas de Unity → aplicación)
