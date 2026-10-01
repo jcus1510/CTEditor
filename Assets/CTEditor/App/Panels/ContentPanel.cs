@@ -126,7 +126,7 @@ namespace CTEditor.App
                 Ui.IconButton("propiedades", RenameDialog, "Cambiar el id (se cambia en todo el proyecto)").SetEnabledLook(has),
                 Ui.IconButton("vecinos", ShowUses, "¿Quién lo usa?").SetEnabledLook(has),
                 Ui.IconButton("papelera", DeleteDialog, "Borrar (dice quién lo usa y deja sustituirlo)").SetEnabledLook(has),
-                _category == ContentSchemas.Species ? Ui.IconButton("arbol", () => FamilyTreeDialog(_selected), "Árbol de familia completo (evoluciones y variantes)").SetEnabledLook(has) : new VisualElement(),
+                _category == ContentSchemas.Species ? Ui.IconButton("arbol", () => FamilyTreePanel.Open(_shell, _selected), "Editor del árbol de familia (evoluciones, formas y variantes)").SetEnabledLook(has) : new VisualElement(),
                 Ui.Separator(vertical: true).Margin(6, 4, 6, 4),
                 Ui.IconButton("anterior", () => { C.Undo(); }, "Deshacer (Ctrl+Z)"),
                 Ui.IconButton("siguiente", () => { C.Redo(); }, "Rehacer (Ctrl+Y)"),

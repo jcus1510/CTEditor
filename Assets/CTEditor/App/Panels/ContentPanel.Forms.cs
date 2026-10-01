@@ -132,6 +132,8 @@ namespace CTEditor.App
             switch (_category + "." + col.Name)
             {
                 case "especies.evs": return ContentWidgets.StatPairs(_shell, value, Save);
+                case "especies.formas": return FormsSummary(r, false);
+                case "especies.cambios_forma": return FormsSummary(r, true);
                 case "habilidades.categoria":
                 {
                     var guess = AbilityCategories.Guess(r["efectos"]);
@@ -530,60 +532,12 @@ namespace CTEditor.App
             d.Buttons.With(Ui.Spacer(), Ui.Button("Cerrar", () => _shell.CloseDialog(d), Ui.ButtonKind.Primary));
         }
 
-        // ── Evolutions: target + how, with dropdowns ──────────────────────────────────────────────
-
-        private static readonly (string key, string label)[] EvoMethods =
-        {
-            ("nivel", "Al llegar al nivel"), ("objeto", "Con un objeto"), ("amistad", "Con amistad"), ("intercambio", "Al intercambiarlo"),
-            ("subir", "Al subir de nivel"), ("otro", "Otra condición"),
-        };
-
-        private sealed class Evo
-        {
-            public string Target = "", Method = "nivel", Value = "", Extra = "";
-        }
-
-        private static List<Evo> ParseEvos(string text)
-        {
-            var list = new List<Evo>();
-            foreach (var e in (text ?? "").Split('|'))
-            {
-                if (e.Trim().Length == 0) continue;
-                int at = e.IndexOf('@');
-                var evo = new Evo { Target = (at >= 0 ? e.Substring(0, at) : e).Trim() };
-                var cond = at >= 0 ? e.Substring(at + 1).Trim() : "";
-                int plus = cond.IndexOf('+');
-                if (plus >= 0) { evo.Extra = cond.Substring(plus + 1); cond = cond.Substring(0, plus); }
-                if (int.TryParse(cond, out _)) { evo.Method = "nivel"; evo.Value = cond; }
-                else if (cond.StartsWith("objeto:")) { evo.Method = "objeto"; evo.Value = cond.Substring(7); }
-                else if (cond.StartsWith("amistad")) { evo.Method = "amistad"; evo.Value = cond.Length > 8 ? cond.Substring(8) : ""; }
-                else if (cond.StartsWith("intercambio")) { evo.Method = "intercambio"; evo.Value = cond.Length > 12 ? cond.Substring(12) : ""; }
-                else if (cond == "subir") evo.Method = "subir";
-                else { evo.Method = cond.Length == 0 ? "nivel" : "otro"; evo.Value = cond; }
-                list.Add(evo);
-            }
-            return list;
-        }
-
-        private static string WriteEvos(IEnumerable<Evo> list) => string.Join("|", list.Select(e =>
-        {
-            string cond = e.Method switch
-            {
-                "nivel" => e.Value,
-                "objeto" => "objeto:" + e.Value,
-                "amistad" => e.Value.Length > 0 ? "amistad:" + e.Value : "amistad",
-                "intercambio" => e.Value.Length > 0 ? "intercambio:" + e.Value : "intercambio",
-                "subir" => "subir",
-                _ => e.Value,
-            };
-            if (e.Extra.Length > 0) cond += "+" + e.Extra;
-            return cond.Length > 0 ? $"{e.Target}@{cond}" : e.Target;
-        }));
+        // ── Evolutions: target + how, with dropdowns (the extra conditions, in the family tree) ───────
 
         private VisualElement EvolutionEditor(string value, Action<string> save)
         {
-            var evos = ParseEvos(value);
-            void Save() => save(WriteEvos(evos));
+            var evos = Evolutions.Parse(value);
+            void Save() => save(Evolutions.Write(evos));
             var box = Ui.Column(4);
             foreach (var e in evos)
             {
@@ -591,8 +545,8 @@ namespace CTEditor.App
                 var row = Ui.Row(6).Wrap();
                 row.style.alignItems = Align.Center;
                 row.Add(ContentWidgets.RefDropdown(_shell, ContentSchemas.Species, evo.Target, p => { evo.Target = p; Save(); }));
-                row.Add(ContentWidgets.Dropdown(_shell, EvoMethods.First(m => m.key == evo.Method).label,
-                    () => EvoMethods.Select(m => new MenuItem(m.label, () => { evo.Method = m.key; evo.Value = m.key == "nivel" ? "16" : ""; Save(); }, isChecked: m.key == evo.Method)).ToList()));
+                row.Add(ContentWidgets.Dropdown(_shell, Evolutions.MethodLabel(evo.Method),
+                    () => Evolutions.Methods.Where(m => m.key != "otro").Select(m => new MenuItem(m.label, () => { evo.Method = m.key; evo.Value = m.key == "nivel" ? "16" : ""; Save(); }, isChecked: m.key == evo.Method)).ToList()));
                 switch (evo.Method)
                 {
                     case "nivel":
@@ -604,60 +558,49 @@ namespace CTEditor.App
                         if (evo.Method == "intercambio" && evo.Value.Length > 0) row.Add(Ui.IconButton("cerrar", () => { evo.Value = ""; Save(); }, "Sin objeto", iconSize: Ui.IconSize * 0.7f));
                         break;
                     case "amistad":
-                        row.Add(Ui.MiniNumber(int.TryParse(evo.Value, out var f) ? f : 220, 1, 255, n => { evo.Value = n.ToString(); Save(); }, "Amistad mínima", 56));
-                        break;
-                    case "otro":
-                        row.Add(ContentWidgets.WrapBox(evo.Value, v => { evo.Value = v; Save(); }));
+                        row.Add(Ui.MiniNumber(int.TryParse(evo.Value, out var f) ? f : 220, 1, 255, n => { evo.Value = n == 220 ? "" : n.ToString(); Save(); }, "Amistad mínima", 56));
                         break;
                 }
-                // Time of day as a dropdown (the most common extra condition).
-                string hour = evo.Extra.Contains("hora:dia") ? "De día" : evo.Extra.Contains("hora:noche") ? "De noche" : "A cualquier hora";
-                row.Add(ContentWidgets.Dropdown(_shell, hour, () => new List<MenuItem>
+                if (evo.Conditions.Count > 0)
                 {
-                    new MenuItem("A cualquier hora", () => { evo.Extra = RemoveHour(evo.Extra); Save(); }),
-                    new MenuItem("De día", () => { evo.Extra = AddPart(RemoveHour(evo.Extra), "hora:dia"); Save(); }),
-                    new MenuItem("De noche", () => { evo.Extra = AddPart(RemoveHour(evo.Extra), "hora:noche"); Save(); }),
-                }));
-                var rest = RemoveHour(evo.Extra);
-                if (rest.Length > 0) row.Add(Ui.Text("+ " + rest, 0.8f, dim: true));
+                    var extra = Evolutions.Describe(new Evolution { Method = "", Conditions = evo.Conditions }, (c, id) => C.Db.NameOf(c, id) ?? id);
+                    row.Add(Ui.Text("+ " + extra.TrimStart(' ', '·'), 0.8f, dim: true));
+                }
                 row.Add(Ui.IconButton("cerrar", () => { evos.Remove(evo); Save(); }, "Quitar esta evolución", iconSize: Ui.IconSize * 0.7f));
                 box.Add(row);
             }
-            box.Add(Ui.Button("+ Añadir evolución", () => ContentPicker.Show(_shell, ContentSchemas.Species, p => { evos.Add(new Evo { Target = p, Value = "16" }); Save(); })));
+            var buttons = Ui.Row(6).Wrap();
+            buttons.Add(Ui.Button("+ Añadir evolución", () => ContentPicker.Show(_shell, ContentSchemas.Species, p => { evos.Add(new Evolution { Target = p, Value = "16" }); Save(); })));
+            buttons.Add(Ui.Button("Condiciones (hora, objeto, movimiento…)", () => FamilyTreePanel.Open(_shell, _selected), Ui.ButtonKind.Flat,
+                "Las condiciones extra se cambian en el árbol de familia (clic en la flecha)"));
+            box.Add(buttons);
             return box;
         }
 
-        private static string RemoveHour(string extra) => string.Join("+", (extra ?? "").Split('+').Where(x => x.Length > 0 && !x.StartsWith("hora:")));
-        private static string AddPart(string extra, string part) => extra.Length == 0 ? part : extra + "+" + part;
-
-        // ── Family tree: the whole family, from the first stage ──────────────────────────────────
-
-        private string RootOf(string id)
-        {
-            var t = C.Db.Table(ContentSchemas.Species);
-            var seen = new HashSet<string>();
-            while (seen.Add(id))
-            {
-                var pre = t.Records.FirstOrDefault(x => ParseEvos(x["evoluciona"]).Any(e => string.Equals(e.Target, id, StringComparison.OrdinalIgnoreCase)));
-                if (pre == null) break;
-                id = t.IdOf(pre);
-            }
-            return id;
-        }
+        // ── Family tree preview: the whole family, from the first stage (the editor is its own window) ──
 
         private VisualElement FamilyTree(string id, bool compact)
         {
             var t = C.Db.Table(ContentSchemas.Species);
-            var root = RootOf(id);
-            var box = Ui.Row(10);
-            box.style.alignItems = Align.Center;
-            box.style.flexWrap = Wrap.Wrap;
-            box.Add(Node(t, root, id, compact, new HashSet<string>()));
+            var g = FamilyGraph.For(C.Db);
+            var box = Ui.Column(4);
+            var head = Ui.Row(6);
+            head.style.alignItems = Align.Center;
+            head.Add(Ui.Text("Vista previa de la familia", 0.82f, dim: true));
+            head.Add(Ui.Spacer());
+            head.Add(Ui.Button("Abrir el editor del árbol", () => FamilyTreePanel.Open(_shell, id), Ui.ButtonKind.Normal,
+                "Evoluciones con sus condiciones, formas de combate (megas...) y variantes, en un grafo"));
+            box.Add(head);
+            var tree = Ui.Row(10);
+            tree.style.alignItems = Align.Center;
+            tree.style.flexWrap = Wrap.Wrap;
+            tree.Add(Node(t, g, g.RootOf(id), id, compact, new HashSet<string>(StringComparer.OrdinalIgnoreCase)));
+            box.Add(tree);
             return box;
         }
 
         /// <summary>A card and, to its right, its evolutions (each with how), recursively; variants under it.</summary>
-        private VisualElement Node(ContentTable t, string id, string current, bool compact, HashSet<string> seen)
+        private VisualElement Node(ContentTable t, FamilyGraph g, string id, string current, bool compact, HashSet<string> seen)
         {
             var row = Ui.Row(8);
             row.style.alignItems = Align.Center;
@@ -673,22 +616,23 @@ namespace CTEditor.App
                 var types = Ui.Row(2);
                 foreach (var ty in ContentLook.TypesOf(ContentSchemas.Species, r)) types.Add(ContentWidgets.TypeChip(C.Db, ty));
                 card.Add(types);
+                var forms = SpeciesForms.ParseForms(r["formas"]);
+                if (forms.Count > 0) card.Add(Ui.Text("⚔ " + string.Join(", ", forms.Select(f => f.Name.Length > 0 ? f.Name : f.Id)), 0.72f, dim: true));
             }
             card.RegisterCallback<ClickEvent>(_ => { if (r != null) _shell.OpenContentItem(ContentSchemas.Species, id); });
-            card.tooltip = "Clic: abrir";
+            card.tooltip = "Clic: abrir su ficha";
             col.Add(card);
             // Variants (Rotom Lavado, formas regionales) under the card.
-            if (!compact || true)
-                foreach (var v in t.Records.Where(x => string.Equals(x["forma_de"].Trim(), id, StringComparison.OrdinalIgnoreCase)).Take(compact ? 4 : 30))
-                {
-                    var vc = Ui.Text("◇ " + t.NameOf(v), 0.8f, dim: true);
-                    var vid = t.IdOf(v);
-                    vc.RegisterCallback<ClickEvent>(_ => _shell.OpenContentItem(ContentSchemas.Species, vid));
-                    col.Add(vc);
-                }
+            foreach (var v in g.VariantsOf(id).Take(compact ? 4 : 30))
+            {
+                var vc = Ui.Text("◇ " + (C.Db.NameOf(ContentSchemas.Species, v) ?? v), 0.8f, dim: true);
+                var vid = v;
+                vc.RegisterCallback<ClickEvent>(_ => _shell.OpenContentItem(ContentSchemas.Species, vid));
+                col.Add(vc);
+            }
             row.Add(col);
             if (r == null || !seen.Add(id)) return row;
-            var evos = ParseEvos(r["evoluciona"]);
+            var evos = g.EvolutionsOf(id);
             if (evos.Count == 0) return row;
             var branches = Ui.Column(6);
             foreach (var e in evos)
@@ -698,40 +642,45 @@ namespace CTEditor.App
                 var how = Ui.Column(0);
                 how.style.alignItems = Align.Center;
                 how.Add(Ui.Text("→", 1.2f, dim: true));
-                how.Add(Ui.Text(EvoLabel(e), 0.75f, dim: true));
+                var label = Ui.Text(Evolutions.Describe(e, (c, i) => C.Db.NameOf(c, i) ?? i), 0.75f, dim: true);
+                label.style.maxWidth = 120;
+                label.style.whiteSpace = WhiteSpace.Normal;
+                how.Add(label);
                 b.Add(how);
-                b.Add(Node(t, e.Target, current, compact, seen));
+                b.Add(Node(t, g, e.Target, current, compact, seen));
                 branches.Add(b);
             }
             row.Add(branches);
             return row;
         }
 
-        private string EvoLabel(Evo e)
+        /// <summary>Battle forms and their changes: a summary (they are edited in the family tree, by lists).</summary>
+        private VisualElement FormsSummary(ContentRecord r, bool changes)
         {
-            string s = e.Method switch
+            var box = Ui.Column(3);
+            if (!changes)
             {
-                "nivel" => "nv. " + e.Value,
-                "objeto" => NameOf(ContentSchemas.Items, e.Value),
-                "amistad" => "amistad",
-                "intercambio" => e.Value.Length > 0 ? "interc. + " + NameOf(ContentSchemas.Items, e.Value) : "intercambio",
-                "subir" => "subir nivel",
-                _ => e.Value,
-            };
-            if (e.Extra.Contains("hora:dia")) s += " (día)";
-            if (e.Extra.Contains("hora:noche")) s += " (noche)";
-            return s;
-        }
-
-        private void FamilyTreeDialog(string id)
-        {
-            if (id == null) return;
-            var d = _shell.ShowDialog($"Árbol de familia de {NameOf(ContentSchemas.Species, id)}", 80, 70);
-            var scroll = Ui.Scroll(ScrollViewMode.VerticalAndHorizontal).Grow();
-            scroll.Add(FamilyTree(id, compact: false).Pad(10));
-            d.Body.Add(Ui.Hint("De la primera fase a la última, con cómo evoluciona cada una; debajo de cada tarjeta, sus variantes (◇). Clic en una tarjeta: abrir su ficha."));
-            d.Body.Add(scroll);
-            d.Buttons.With(Ui.Spacer(), Ui.Button("Cerrar", () => _shell.CloseDialog(d), Ui.ButtonKind.Primary));
+                var forms = SpeciesForms.ParseForms(r["formas"]);
+                if (forms.Count == 0) box.Add(Ui.Hint("Sin formas de combate."));
+                foreach (var f in forms)
+                {
+                    var line = (f.Name.Length > 0 ? f.Name : f.Id)
+                        + (f.Type1.Length > 0 ? " · " + string.Join("/", new[] { f.Type1, f.Type2 }.Where(x => x.Length > 0).Select(TypeName)) : "")
+                        + (f.Ability.Length > 0 ? " · " + NameOf(ContentSchemas.Abilities, f.Ability) : "");
+                    box.Add(Ui.Text("⚔ " + line, 0.88f));
+                }
+            }
+            else
+            {
+                var list = SpeciesForms.ParseChanges(r["cambios_forma"]);
+                if (list.Count == 0) box.Add(Ui.Hint("Nada la hace cambiar."));
+                foreach (var c in list.Take(20))
+                    box.Add(Ui.Text($"{(c.From == SpeciesForms.AnyForm ? "cualquiera" : c.From.Length == 0 ? "normal" : c.From)} → {(c.To.Length == 0 ? "normal" : c.To)}: "
+                        + SpeciesForms.TriggerLabel(c.Trigger).ToLowerInvariant() + (c.Value.Length > 0 ? " " + (C.Db.NameOf(ContentSchemas.Items, c.Value) ?? C.Db.NameOf(ContentSchemas.Moves, c.Value) ?? c.Value) : ""), 0.85f, dim: true));
+                if (list.Count > 20) box.Add(Ui.Hint($"… y {list.Count - 20} más."));
+            }
+            box.Add(Ui.Button("Editar en el árbol de familia", () => FamilyTreePanel.Open(_shell, _selected)));
+            return box;
         }
 
         // ── Competitive sets ─────────────────────────────────────────────────────────────────────
