@@ -414,7 +414,7 @@ namespace CTEditor.App
         {
             // The content checks join the Problems window (each one goes to its sheet, row and column).
             ProblemFinder.Register(_ => _problemsSource?.Content == null ? Enumerable.Empty<Problem>() :
-                ContentChecks.Run(_problemsSource.Content.Db).Select(i => new Problem(
+                ContentChecks.RunCached(_problemsSource.Content.Db).Select(i => new Problem(
                     i.Level == ContentIssueLevel.Error ? ProblemLevel.Error : i.Level == ContentIssueLevel.Warning ? ProblemLevel.Warning : ProblemLevel.Tip,
                     i.Text) { Link = i.Category == null ? null : $"contenido:{i.Category}:{i.Id}" }));
         }

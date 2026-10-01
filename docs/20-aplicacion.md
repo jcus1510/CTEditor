@@ -437,3 +437,30 @@ Lo propio de cada editor de Unity, ya en la aplicación:
 3. **Cambiar**: primero una copia de seguridad (Historial de versiones), luego se aplica en un solo paso. Las columnas
    que solo tiene el proyecto se conservan. **Ctrl+Z** en una ventana de datos lo deja exactamente como estaba.
 
+### Rediseño de las ventanas de datos (tras la primera prueba)
+
+- **Secciones plegables** en todas las fichas (se recuerda cuáles abres); los textos largos **crecen hacia abajo** en
+  vez de salirse de la ventana.
+- **Nada de escribir códigos**: desplegables para las opciones (y para cualquier columna con pocos valores, como el
+  objetivo o la estadística de ataque, con «Otro…»), naturalezas con «↑ sube ↓ baja» al lado, EVs que da como
+  «estadística + número», EVs e IVs con **deslizadores** (total sobre 510), evoluciones con desplegables (a quién,
+  cómo: nivel, objeto, amistad, intercambio, subir de nivel; y de día / de noche).
+- **Buscadores con filtros**: tipos (siempre en su color, el elegido con borde blanco), categoría de movimiento,
+  bolsillo del objeto, **categoría de habilidad** (deducida de sus efectos y cambiable a mano), formato del set...
+  Cada fila dice algo útil (tipo, categoría y potencia de un movimiento; ↑/↓ de una naturaleza).
+- **Especies**: estadísticas, General, Habilidades, Crecimiento, Movimientos (por nivel, MT/MO, tutor y huevo, todos
+  como tablas con tipo, categoría, potencia y precisión), Crianza (grupos huevo con «i» para ver quién más está, y
+  «¿Quién lo pasa?» en cada movimiento huevo), Evolución y familia (el **árbol entero** desde la primera fase, con
+  variantes, y botón de árbol en la barra), Pokédex, Formas.
+- **Sets de competición**: la lista dice «Heatran · OU · Z-Move»; el id se forma solo (especie_formato_nombre);
+  formato con desplegable; objeto, habilidad (solo las de su especie, con casilla para ver todas) y naturaleza con
+  alternativas; los 4 movimientos en tabla con sus alternativas (aviso si no lo aprende); EVs/IVs plegables.
+- **Equipos de entrenadores**: cada miembro en una tarjeta plegable con especie, nivel, sexo, objeto, naturaleza,
+  habilidad (de su especie; **aviso de habilidad ilegal**, sin prohibirla), movimientos en tabla y EVs/IVs.
+- **Avisos** (no errores) en Problemas: habilidad ilegal y movimientos que la especie no aprende, en sets y equipos.
+- **Nuevo** con **plantillas** de los packs (con filtros) o vacío; en Curvas, «Crear las 6 clásicas».
+- **Rapidez**: las comprobaciones se calculan una vez por cambio y volver a una pestaña no la rehace si nada cambió.
+
+Pendiente: el **editor de efectos por bloques** (objetos, habilidades, movimientos) como en Unity, y el resto de
+validadores de Unity.
+

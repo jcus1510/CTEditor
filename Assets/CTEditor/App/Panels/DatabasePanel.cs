@@ -41,7 +41,7 @@ namespace CTEditor.App
             _box.Clear();
             var c = _shell.Content;
             if (c == null) { _box.Add(Ui.EmptyState("base", "Sin proyecto", "Abre un proyecto.")); return; }
-            var issues = ContentChecks.Run(c.Db);
+            var issues = ContentChecks.RunCached(c.Db);
             _box.Add(Ui.Hint("Los datos del juego del proyecto (carpeta «datos/», también se abren con Excel). Clic en una tarjeta para editarla. " +
                              "Borrar avisa de quién lo usa; cambiar un id lo cambia en todas partes; todo se deshace con Ctrl+Z."));
             var known = Groups.SelectMany(g => g.keys).ToList();

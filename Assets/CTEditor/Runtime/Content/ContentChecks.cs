@@ -43,11 +43,71 @@ namespace CTEditor.Content
         public static List<ContentIssue> Run(ContentDatabase db)
         {
             var list = new List<ContentIssue>(db.LoadIssues);
-            foreach (var t in db.Tables) list.AddRange(Check(db, t));
+            foreach (var t in db.Tables) list.AddRange(Cached(db, t));
+            return list.OrderBy(i => i.Level).ThenBy(i => i.Category).ThenBy(i => i.Row).ToList();
+        }
+
+        private static readonly Dictionary<string, (int version, List<ContentIssue> issues)> Cache = new Dictionary<string, (int, List<ContentIssue>)>();
+
+        /// <summary>The checks of one sheet, computed once per change of the data (lists and windows call it often).</summary>
+        public static List<ContentIssue> Cached(ContentDatabase db, ContentTable t)
+        {
+            var key = t.Schema.Key + "@" + db.GetHashCode();
+            if (Cache.TryGetValue(key, out var c) && c.version == db.Version) return c.issues;
+            var list = Check(db, t).ToList();
+            Cache[key] = (db.Version, list);
+            return list;
+        }
+
+        /// <summary>All the sheets, cached per change.</summary>
+        public static List<ContentIssue> RunCached(ContentDatabase db)
+        {
+            var list = new List<ContentIssue>(db.LoadIssues);
+            foreach (var t in db.Tables) list.AddRange(Cached(db, t));
             return list.OrderBy(i => i.Level).ThenBy(i => i.Category).ThenBy(i => i.Row).ToList();
         }
 
         public static IEnumerable<ContentIssue> Check(ContentDatabase db, ContentTable t)
+        {
+            foreach (var i in Basic(db, t)) yield return i;
+            foreach (var i in LegalityIssues(db, t)) yield return i;
+        }
+
+        /// <summary>Warnings (never errors): an ability the species cannot have, a move it cannot learn (sets and teams).</summary>
+        private static IEnumerable<ContentIssue> LegalityIssues(ContentDatabase db, ContentTable t)
+        {
+            var key = t.Schema.Key;
+            if (key != ContentSchemas.Sets && key != ContentSchemas.Trainers && key != ContentSchemas.Teams) yield break;
+            var species = db.Table(ContentSchemas.Species);
+            if (species.Records.Count == 0) yield break;
+            var moves = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase);
+            HashSet<string> Learn(string sp) => moves.TryGetValue(sp, out var m) ? m : moves[sp] = Legality.MovesOf(species, sp);
+            for (int i = 0; i < t.Records.Count; i++)
+            {
+                var r = t.Records[i];
+                string id = t.IdOf(r), where = $"{t.Schema.File}, fila {i + 2}";
+                var members = key == ContentSchemas.Sets
+                    ? new[] { (sp: r["especie"].Trim(), abilities: r["habilidad"].Split(',', '|').Select(x => x.Trim()).Where(x => x.Length > 0).ToList(),
+                        mv: r["movimientos"].Split('/', ',').Select(x => x.Trim()).Where(x => x.Length > 0).ToList(), col: "habilidad", mcol: "movimientos") }
+                    : TeamFormat.Parse(r["equipo"]).Where(m => m.Raw == null)
+                        .Select(m => (sp: m.Species, abilities: m.Ability.Length > 0 ? new List<string> { m.Ability } : new List<string>(), mv: m.Moves, col: "equipo", mcol: "equipo")).ToArray();
+                foreach (var m in members)
+                {
+                    var sp = species.Find(m.sp);
+                    if (sp == null) continue;
+                    var legal = new HashSet<string>(Legality.AbilitiesOf(sp), StringComparer.OrdinalIgnoreCase);
+                    if (legal.Count > 0)
+                        foreach (var a in m.abilities.Where(a => !legal.Contains(a)))
+                            yield return new ContentIssue(ContentIssueLevel.Warning, key, id, m.col, i + 2, $"{where}: {species.NameOf(sp)} no tiene la habilidad «{a}» (habilidad ilegal).");
+                    var learn = Learn(m.sp);
+                    if (learn.Count > 0)
+                        foreach (var mv in m.mv.Where(x => !learn.Contains(x)))
+                            yield return new ContentIssue(ContentIssueLevel.Warning, key, id, m.mcol, i + 2, $"{where}: {species.NameOf(sp)} no aprende «{mv}».");
+                }
+            }
+        }
+
+        private static IEnumerable<ContentIssue> Basic(ContentDatabase db, ContentTable t)
         {
             var s = t.Schema;
             var seen = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);

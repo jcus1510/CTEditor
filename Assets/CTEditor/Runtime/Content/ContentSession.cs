@@ -149,6 +149,23 @@ namespace CTEditor.Content
             return true;
         }
 
+        /// <summary>Changes a cell and the id at the same time (competitive sets: the id follows species, format and name).</summary>
+        public bool SetValueAndId(string category, string id, string column, string value, string newId)
+        {
+            var t = Db.Table(category);
+            var r = t.Find(id);
+            if (r == null) return false;
+            newId = ContentIds.Normalize(newId);
+            bool idChanges = newId.Length > 0 && !string.Equals(newId, id, StringComparison.OrdinalIgnoreCase) && !t.Contains(newId);
+            if (!idChanges || UsesOf(category, id).Count > 0) return SetValue(category, id, column, value);
+            Change($"cambiar {t.Schema.ColumnOrText(column).Label.ToLowerInvariant()}", new[] { category }, () =>
+            {
+                r[column] = value ?? "";
+                r[t.Schema.IdColumn] = newId;
+            });
+            return true;
+        }
+
         /// <summary>A new piece of content (empty, or a copy of a template) with a free id made from the name.</summary>
         public ContentRecord Create(string category, string name, ContentRecord template = null)
         {

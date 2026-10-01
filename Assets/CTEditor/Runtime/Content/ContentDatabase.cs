@@ -176,7 +176,14 @@ namespace CTEditor.Content
             (_tables.TryGetValue(category, out var t) && t.Contains(id))
             || (ContentSchemas.Find(category)?.BuiltIn.Contains(id, StringComparer.OrdinalIgnoreCase) ?? false);
 
-        public void Put(ContentTable table) => _tables[table.Schema.Key] = table;
+        public void Put(ContentTable table)
+        {
+            _tables[table.Schema.Key] = table;
+            Version++;
+        }
+
+        /// <summary>Goes up with every change: caches (checks, lists) know when to recompute.</summary>
+        public int Version { get; private set; }
 
         public static ContentDatabase Load(string folder)
         {
@@ -197,6 +204,7 @@ namespace CTEditor.Content
 
         public void MarkDirty(string category)
         {
+            Version++;
             _dirty.Add(category);
             Changed?.Invoke(category);
         }

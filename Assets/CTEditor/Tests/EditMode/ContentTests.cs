@@ -220,6 +220,36 @@ namespace CTEditor.Tests.EditMode
         }
 
         [Test]
+        public void Spreads_pairs_legality_and_set_ids()
+        {
+            CollectionAssert.AreEqual(new[] { 0, 0, 4, 252, 0, 252 }, StatNames.ParseSpread("4 Def/252 AtqE/252 Vel"));
+            Assert.AreEqual("4 Def/252 AtqE/252 Vel", StatNames.FormatSpread(new[] { 0, 0, 4, 252, 0, 252 }));
+            CollectionAssert.AreEqual(new[] { 31, 0, 31, 31, 31, 31 }, StatNames.ParseSpread("0 Atq", fill: 31));
+            Assert.AreEqual("attack:3|speed:1", StatNames.FormatPairs(StatNames.ParsePairs("attack:3|speed:1")));
+            Assert.AreEqual("Clima", AbilityCategories.Guess("al_entrar: pone_clima rain"));
+            Assert.AreEqual("heatran_ou_z_move", Legality.SetId("heatran", "ou", "Z-Move"));
+
+            File.WriteAllText(Path.Combine(_root, "habilidades.csv"), "id;nombre\r\nstatic;Elec. Estática\r\nlevitate;Levitación\r\n");
+            File.AppendAllText(Path.Combine(_root, "especies.csv"), "");
+            var text = File.ReadAllText(Path.Combine(_root, "especies.csv")).Replace("columna_mia", "columna_mia;habilidad")
+                .Replace(";Ratón;y", ";Ratón;y;static");
+            File.WriteAllText(Path.Combine(_root, "especies.csv"), text);
+            File.WriteAllText(Path.Combine(_root, "sets.csv"), "id;especie;formato;nombre;habilidad;movimientos\r\npikachu_ou_a;pikachu;ou;A;levitate;thunder_shock,tackle/surf\r\n");
+            var s = new ContentSession(ContentDatabase.Load(_root));
+            var issues = ContentChecks.Run(s.Db).Where(i => i.Category == ContentSchemas.Sets).ToList();
+            Assert.IsTrue(issues.Any(i => i.Level == ContentIssueLevel.Warning && i.Text.Contains("habilidad ilegal")));
+            Assert.IsFalse(issues.Any(i => i.Text.Contains("no aprende «tackle»")), "learnt at level 5");
+            Assert.IsTrue(issues.Any(i => i.Text.Contains("«surf»")), "surf: does not exist (error) and is not learnable");
+
+            Assert.IsTrue(s.SetValueAndId(ContentSchemas.Sets, "pikachu_ou_a", "nombre", "Rápido", Legality.SetId("pikachu", "ou", "Rápido")));
+            Assert.IsNotNull(s.Get(ContentSchemas.Sets, "pikachu_ou_rapido"));
+            s.Rename(ContentSchemas.Moves, "tackle", "placaje");
+            Assert.AreEqual("thunder_shock,placaje/surf", s.Get(ContentSchemas.Sets, "pikachu_ou_rapido")["movimientos"], "alternatives in a slot");
+            s.Undo(); s.Undo();
+            Assert.IsNotNull(s.Get(ContentSchemas.Sets, "pikachu_ou_a"), "one undo per change");
+        }
+
+        [Test]
         public void Ids_are_made_from_names()
         {
             Assert.AreEqual("bola_sombra", ContentIds.Normalize("Bola Sombra!"));

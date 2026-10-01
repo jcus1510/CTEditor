@@ -114,18 +114,36 @@ namespace CTEditor.Content
                     if (Same(value)) { result = newId ?? ""; ch = true; }
                     break;
                 case ColumnKind.RefList:
+                {
+                    char sep0 = value.Contains('|') || !value.Contains(',') ? '|' : ',';
+                    var parts0 = value.Split(sep0).ToList();
+                    var output0 = new List<string>();
+                    foreach (var p in parts0)
+                    {
+                        if (!Same(p)) { output0.Add(p); continue; }
+                        ch = true;
+                        if (newId != null && !output0.Any(o => string.Equals(o.Trim(), newId, StringComparison.OrdinalIgnoreCase))) output0.Add(newId);
+                    }
+                    result = string.Join(sep0.ToString(), output0);
+                    break;
+                }
                 case ColumnKind.SlashRefs:
                 {
-                    char sep = col.Kind == ColumnKind.SlashRefs ? '/' : value.Contains('|') || !value.Contains(',') ? '|' : ',';
-                    var parts = value.Split(sep).ToList();
-                    var output = new List<string>();
-                    foreach (var p in parts)
+                    // Move slots «a,b/c/d»: each slot may have alternatives separated with commas.
+                    var slots = value.Split('/').Select(slot =>
                     {
-                        if (!Same(p)) { output.Add(p); continue; }
+                        var alts = slot.Split(',').ToList();
+                        if (!alts.Any(Same)) return slot;
                         ch = true;
-                        if (newId != null && !output.Any(o => string.Equals(o.Trim(), newId, StringComparison.OrdinalIgnoreCase))) output.Add(newId);
-                    }
-                    result = string.Join(sep.ToString(), output);
+                        var kept = new List<string>();
+                        foreach (var a in alts)
+                        {
+                            if (!Same(a)) { kept.Add(a); continue; }
+                            if (newId != null && !kept.Any(k => string.Equals(k.Trim(), newId, StringComparison.OrdinalIgnoreCase))) kept.Add(newId);
+                        }
+                        return string.Join(",", kept);
+                    }).Where(x => x.Trim().Length > 0);
+                    result = string.Join("/", slots);
                     break;
                 }
                 case ColumnKind.LevelRefs:

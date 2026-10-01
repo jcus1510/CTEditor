@@ -223,6 +223,7 @@ namespace CTEditor.Content
             Register(new CategorySchema(Abilities, "habilidades.csv", "habilidad", "Habilidades", true, new[]
             {
                 Id(), Name(), English(),
+                new ColumnSpec("categoria", "Categoría", ColumnKind.Choice, "General", "Para buscarla (vacío = se deduce de sus efectos).", options: AbilityCategories.All),
                 new ColumnSpec("efectos", "Efectos", ColumnKind.Script, "Efectos", "cuándo: qué (siempre: anula_clima).", targets: Battle),
             }, "Las habilidades: cada una es una lista de efectos «cuándo / si / qué».", "estrella"));
 
