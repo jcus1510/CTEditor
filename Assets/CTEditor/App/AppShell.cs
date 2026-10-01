@@ -352,6 +352,8 @@ namespace CTEditor.App
             Maps.PlayerStartChanged += OnPlayerStartChanged;
             Maps.BrushRepository = new JsonBrushRepository(ProjectRoot);
             Maps.LoadBrushes();
+            Maps.PieceRepository = new JsonMapPieceRepository(ProjectRoot);
+            Maps.LoadPieces();
             try { Maps.LoadTree(); }
             catch (Exception e) { Error("No se pudo leer el árbol de mapas: " + e.Message); }
             var first = !string.IsNullOrEmpty(Project.StartMap) && Maps.Tree.Contains(Project.StartMap)
@@ -1067,6 +1069,9 @@ namespace CTEditor.App
                 case "inicio": MapOnly(MapTool.PlayerStart); break;
                 case "zona": MapOnly(MapTool.EncounterPaint); break;
                 case "puerta": MapOnly(MapTool.Door); break;
+                case "pieza_guardar": if (Maps?.Map != null) { ActiveEditor = "mapa"; Maps.SavePieceFromSelection("Pieza " + (Maps.Pieces.Count + 1)); } break;
+                case "piezas": PiecesDialog.Show(this); break;
+                case "pinceles": BrushesDialog.Show(this); break;
                 case "seleccionar_todo": if (Maps?.Map != null) { ActiveEditor = "mapa"; Maps.SelectAll(); } break;
                 case "deseleccionar": Maps?.ClearSelection(); break;
                 case "nuevo_mapa": if (HasProject) MapTreePanel.NewMapDialog(this, ""); break;

@@ -417,6 +417,67 @@ namespace CTEditor.Editing
             SelectionChanged?.Invoke();
         }
 
+        // ── Reusable pieces (B6) ───────────────────────────────────────────────────────────────────
+
+        public IMapPieceRepository PieceRepository { get; set; }
+        public List<MapPiece> Pieces { get; } = new List<MapPiece>();
+        public event Action PiecesChanged;
+
+        public void LoadPieces()
+        {
+            Pieces.Clear();
+            if (PieceRepository != null)
+                try { Pieces.AddRange(PieceRepository.Load()); }
+                catch (Exception e) { Message?.Invoke("No se pudieron leer las piezas: " + e.Message, "error"); }
+            PiecesChanged?.Invoke();
+        }
+
+        public void SavePieces()
+        {
+            try { PieceRepository?.Save(Pieces); }
+            catch (Exception e) { Message?.Invoke("No se pudieron guardar las piezas: " + e.Message, "error"); }
+            PiecesChanged?.Invoke();
+        }
+
+        /// <summary>Saves the selection (all its layers) as a piece to place in other maps.</summary>
+        public MapPiece SavePieceFromSelection(string name)
+        {
+            if (Map == null || !Selection.HasValue) { Message?.Invoke("Selecciona antes la zona (herramienta Selección, M).", "aviso"); return null; }
+            var (x0, y0, x1, y1) = Selection.Value;
+            var content = MapClipboard.Copy(Map, x0, y0, x1, y1);
+            if (!content.HasTiles) { Message?.Invoke("La selección está vacía.", "aviso"); return null; }
+            var used = new HashSet<string>(Pieces.Select(p => p.Id));
+            var baseId = new MapTree().NewId(string.IsNullOrWhiteSpace(name) ? "pieza" : name);
+            var id = baseId;
+            for (int i = 2; used.Contains(id); i++) id = baseId + "_" + i;
+            var piece = new MapPiece(id, string.IsNullOrWhiteSpace(name) ? "Pieza" : name.Trim(), content);
+            Pieces.Add(piece);
+            SavePieces();
+            Message?.Invoke($"Pieza «{piece.Name}» guardada ({piece.Width} × {piece.Height}). Colócala desde Tiles → Piezas.", "exito");
+            return piece;
+        }
+
+        /// <summary>Places a piece: the paste tool with the piece (a click puts a copy; the piece itself never changes the map later).</summary>
+        public void PlacePiece(MapPiece piece)
+        {
+            if (Map == null || piece == null) return;
+            Clipboard = piece.Content;
+            SetTool(MapTool.Paste);
+            Message?.Invoke($"Haz clic donde quieras poner «{piece.Name}» (Esc o otra herramienta para terminar).", "texto");
+        }
+
+        public void DeletePiece(MapPiece piece)
+        {
+            if (Pieces.Remove(piece)) SavePieces();
+        }
+
+        public void RenamePiece(MapPiece piece, string name)
+        {
+            if (piece == null || string.IsNullOrWhiteSpace(name)) return;
+            piece.Name = name.Trim();
+            SavePieces();
+        }
+
         // ── Random brushes (B5) ────────────────────────────────────────────────────────────────────
 
         /// <summary>Where the brushes are saved (null = only this session).</summary>

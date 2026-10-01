@@ -377,6 +377,63 @@ namespace CTEditor.Project
 
     /// <summary>Las especies del proyecto, leídas de «datos/especies.csv» (columnas id y nombre; las de los packs sirven).</summary>
     /// <summary>Perfiles de prueba en «datos/perfiles_prueba.json» (se escriben con seguridad, vía .tmp).</summary>
+    /// <summary>«datos/piezas.json»: the reusable pieces (houses, trees...), each layer as rows of numbers like the maps.</summary>
+    public sealed class JsonMapPieceRepository : IMapPieceRepository
+    {
+        private static readonly string[] RoleKeys = { "", "suelo", "detalles", "encima" };
+        private readonly string _path;
+
+        public JsonMapPieceRepository(string projectRoot) { _path = Path.Combine(projectRoot, ProjectLayout.DataFolder, "piezas.json"); }
+
+        public IReadOnlyList<MapPiece> Load()
+        {
+            var list = new List<MapPiece>();
+            if (!File.Exists(_path)) return list;
+            var o = Json.ParseObject(File.ReadAllText(_path));
+            foreach (var e in o.GetArray("piezas") ?? new List<object>())
+            {
+                if (!(e is JsonObject po) || !(po.GetString("id") is string id) || string.IsNullOrWhiteSpace(id)) continue;
+                int w = po.GetInt("ancho"), h = po.GetInt("alto");
+                if (w <= 0 || h <= 0) continue;
+                var layers = new List<(LayerRole, int[])>();
+                foreach (var l in po.GetArray("capas") ?? new List<object>())
+                {
+                    if (!(l is JsonObject lo)) continue;
+                    var cells = new int[w * h];
+                    var rows = lo.GetArray("filas") ?? new List<object>();
+                    for (int y = 0; y < h; y++)
+                    {
+                        var parts = (y < rows.Count ? rows[y] as string ?? "" : "").Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                        for (int x = 0; x < w; x++)
+                            cells[y * w + x] = x < parts.Length && int.TryParse(parts[x], out var v) ? v : MapLayer.Empty;
+                    }
+                    layers.Add(((LayerRole)Math.Max(0, Array.IndexOf(RoleKeys, lo.GetString("papel", ""))), cells));
+                }
+                var tilesets = (po.GetArray("tilesets") ?? new List<object>()).OfType<string>();
+                try { list.Add(new MapPiece(id, po.GetString("nombre", id), MapClipboard.FromData(w, h, layers, tilesets))); }
+                catch (ArgumentException) { /* a broken piece is skipped */ }
+            }
+            return list;
+        }
+
+        public void Save(IReadOnlyList<MapPiece> pieces)
+        {
+            var arr = pieces.Select(p =>
+            {
+                var c = p.Content;
+                var layers = c.Layers.Select((cells, i) => (object)new JsonObject()
+                    .Set("papel", RoleKeys[(int)c.Roles[i]])
+                    .Set("filas", Enumerable.Range(0, c.Height)
+                        .Select(y => (object)string.Join(" ", Enumerable.Range(0, c.Width).Select(x => cells[y * c.Width + x].ToString()))).ToList()))
+                    .ToList();
+                return (object)new JsonObject().Set("id", p.Id).Set("nombre", p.Name).Set("ancho", c.Width).Set("alto", c.Height)
+                    .Set("tilesets", c.TilesetIds.Cast<object>().ToList()).Set("capas", layers);
+            }).ToList();
+            Directory.CreateDirectory(Path.GetDirectoryName(_path));
+            File.WriteAllText(_path, Json.Write(new JsonObject().Set("piezas", arr)));
+        }
+    }
+
     /// <summary>«datos/pinceles.json»: the random brushes of the project (tiles by tileset id, with their weights).</summary>
     public sealed class JsonBrushRepository : IBrushRepository
     {

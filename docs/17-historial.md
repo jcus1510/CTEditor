@@ -137,4 +137,6 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
 - **B4 autotiles**: XP, VX/MV y 47 piezas detectados por las medidas y escalados; 47 piezas en la paleta; bordes que se
   recalculan al pintar, rellenar, pegar y borrar (`AutotileResolver`). `AutotileTests`.
 - **B5 pinceles aleatorios** con pesos para lápiz, rectángulo y relleno, guardados en `datos/pinceles.json`. `BrushTests`.
+- **B6 piezas reutilizables**: guardar una selección con sus capas y colocarla en otros mapas como copia
+  (`datos/piezas.json`); pegar conserva el giro de los tiles. `PieceTests`. **Fase 6 completa.**
 - **Documentación** completa por capítulos (esta carpeta).

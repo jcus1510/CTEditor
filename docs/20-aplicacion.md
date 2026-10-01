@@ -102,6 +102,7 @@ Detalle y reglas visuales en [`DISENO.md`](DISENO.md) (documento vivo del diseñ
 | Vista | Ctrl+G rejilla · N vecinos · Z acercar · Mayús+Z alejar · F encuadrar · Espacio + arrastrar mover · Ctrl / Alt + rueda escala |
 | Capas | Av Pág / Re Pág siguiente / anterior · Ctrl+Mayús+N nueva · Ctrl+H ver · Ctrl+Mayús+K bloquear · Ctrl+L capas automáticas |
 | Puertas | O herramienta Puerta · Esc cancela la puerta a medias |
+| Piezas y pinceles | Ctrl+Mayús+C guardar la selección como pieza · Ctrl+Mayús+B piezas · Ctrl+Mayús+R pinceles |
 | Sello | X / Y voltear · R girar a la derecha · Mayús+R a la izquierda · Ctrl+Alt+1-9 guardar el sello · Alt+1-9 recuperarlo |
 | Tiles | 1 pintar · 2 paso · 3 prioridad · 4 terreno · 5 arbusto · 6 mostrador · 7 pieza |
 | Ventanas | Ctrl+1 Mapa · Ctrl+2 Tiles · Ctrl+3 Capas · Ctrl+4 Mundo · Ctrl+5 Encuentros · Ctrl+6 Recursos · Ctrl+7 Retoque · Ctrl+8 Propiedades · Ctrl+9 Mapas |
@@ -343,4 +344,29 @@ Botón del **dado** en la cabecera de Tiles → ventana **Pinceles aleatorios**:
 
 **Probar en Unity**: elegir en Tiles hierba y dos de flores, dado → «Nuevo pincel…», subir el peso de la hierba a 6,
 «Usar» y pintar con el rectángulo: hierba con flores sueltas; Ctrl+Z lo quita entero.
+
+### Piezas reutilizables (fase 6, B6)
+
+Botón de la **casa** en la cabecera de Tiles (o Ctrl+Mayús+B) → ventana **Piezas reutilizables**:
+
+- **Guardar la selección como pieza** (o Ctrl+Mayús+C con una zona seleccionada): se guarda el trozo con **todas sus
+  capas** (suelo, detalles y lo que va encima, como el tejado) y los tilesets que usa.
+- **Colocar**: la herramienta Pegar con la pieza; cada clic pone una copia (varias seguidas; Esc u otra herramienta
+  termina). Si el mapa no tiene alguno de sus tilesets, se le añade. Cada capa va a la capa de su tipo; los tiles
+  girados o volteados se conservan (antes, pegar perdía el giro: arreglado).
+- Colocar hace una **copia**: cambiar el nombre de la pieza o quitarla no toca los mapas donde ya está.
+- Se guardan en `datos/piezas.json` (cada capa en filas de números, como los mapas).
+
+**Probar en Unity**: seleccionar una casa con su tejado, Ctrl+Mayús+C; abrir otro pueblo, Ctrl+Mayús+B → «Colocar», clic
+en dos sitios; quitar la pieza: las casas siguen ahí; Ctrl+Z quita la última.
+
+### Resumen de la fase 6 (B1-B6)
+
+| Qué | Dónde | Atajo |
+|---|---|---|
+| Corte libre y autotiles | Recursos → «Corte libre…» o Tiles → selección | — |
+| Edición rápida | Mapa | Mayús+clic, X, Y, R, Alt+1-9, Ctrl+Alt+1-9 |
+| Puertas enlazadas | Barra del mapa → Puerta | O |
+| Pinceles aleatorios | Tiles → dado | Ctrl+Mayús+R |
+| Piezas reutilizables | Tiles → casa | Ctrl+Mayús+B, Ctrl+Mayús+C |
 

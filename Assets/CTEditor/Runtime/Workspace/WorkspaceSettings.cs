@@ -83,6 +83,9 @@ namespace CTEditor.Workspace
             // Selección
             new ShortcutAction("seleccionar_todo", "Seleccionar todo el mapa", "Ctrl+A", "Selección"),
             new ShortcutAction("deseleccionar", "Quitar la selección", "Ctrl+D", "Selección"),
+            new ShortcutAction("pieza_guardar", "Guardar la selección como pieza reutilizable", "Ctrl+Mayús+C", "Selección"),
+            new ShortcutAction("piezas", "Piezas reutilizables (casas, árboles...)", "Ctrl+Mayús+B", "Herramientas"),
+            new ShortcutAction("pinceles", "Pinceles aleatorios", "Ctrl+Mayús+R", "Herramientas"),
             // Vista
             new ShortcutAction("rejilla", "Mostrar u ocultar la rejilla", "Ctrl+G", "Vista"),
             new ShortcutAction("vecinos", "Mostrar u ocultar los tramos vecinos", "N", "Vista"),

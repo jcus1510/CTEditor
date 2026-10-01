@@ -437,6 +437,18 @@ namespace CTEditor.World.Domain
             Width = w; Height = h; Layers = layers; Roles = roles; TilesetIds = tilesets;
         }
 
+        /// <summary>Rebuilds a copied block from saved data (a reusable piece read from the project).</summary>
+        public static MapClipboard FromData(int width, int height, IEnumerable<(LayerRole role, int[] cells)> layers, IEnumerable<string> tilesetIds)
+        {
+            if (width <= 0 || height <= 0) throw new ArgumentOutOfRangeException(nameof(width));
+            var list = layers.ToList();
+            if (list.Any(l => l.cells == null || l.cells.Length != width * height)) throw new ArgumentException("Cada capa necesita ancho × alto casillas.");
+            return new MapClipboard(width, height, list.Select(l => l.cells).ToList(), list.Select(l => l.role).ToList(), tilesetIds.ToList());
+        }
+
+        /// <summary>True if some layer has something in it.</summary>
+        public bool HasTiles => Layers.Any(l => l.Any(c => c >= 0));
+
         public static MapClipboard Copy(MapDefinition map, int x0, int y0, int x1, int y1)
         {
             int minX = Math.Max(0, Math.Min(x0, x1)), maxX = Math.Min(map.Width - 1, Math.Max(x0, x1));
@@ -472,7 +484,7 @@ namespace CTEditor.World.Domain
                     int cell = Layers[li][yy * Width + xx];
                     if (cell < 0 || !layer.Contains(x + xx, y + yy)) continue;
                     int slot = MapTile.Slot(cell);
-                    int translated = slot < slotMap.Length && slotMap[slot] >= 0 ? MapTile.Encode(slotMap[slot], MapTile.Index(cell)) : cell;
+                    int translated = slot < slotMap.Length && slotMap[slot] >= 0 ? MapTile.Encode(slotMap[slot], MapTile.Index(cell), MapTile.Flags(cell)) : cell;
                     int before = layer.Get(x + xx, y + yy);
                     if (before != translated) list.Add(new TileChange(target, x + xx, y + yy, before, translated));
                 }

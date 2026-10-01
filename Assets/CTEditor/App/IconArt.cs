@@ -515,6 +515,7 @@ namespace CTEditor.App
             ["zona"] = Zone,
             ["inicio"] = Start,
             ["puerta"] = Door,
+            ["casa"] = () => new[] { Poly(3.5f, 11.5f, 12f, 4f, 20.5f, 11.5f), Box(6f, 11f, 12f, 9.5f) },
             ["jugar"] = () => new[] { Poly(7f, 4.5f, 19.5f, 12f, 7f, 19.5f) },
             ["ajustar"] = Fit,
             ["rejilla"] = GridIcon,

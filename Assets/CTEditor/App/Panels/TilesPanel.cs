@@ -199,6 +199,7 @@ namespace CTEditor.App
                 Ui.IconButton("retocar", RetouchSelected, "Retocar: abrir el tile elegido en el editor de píxeles"),
                 Ui.IconButton("seleccion", () => { if (Tileset != null) FreeSliceDialog.Show(_shell, Path.Combine(_shell.ProjectRoot, Tileset.ImagePath)); },
                     "Corte libre: cortar a mano piezas de cualquier tamaño de este tileset (salen al final de la paleta)"),
+                Ui.IconButton("casa", () => PiecesDialog.Show(_shell), "Piezas reutilizables: casas, árboles... guardados de una selección y colocados con un clic (Ctrl+Mayús+B)"),
                 Ui.IconButton("dado", () => BrushesDialog.Show(_shell),
                     "Pinceles aleatorios: pintar con varios tiles al azar, con pesos (hierba con flores, rocas variadas...)", S.ActiveBrush != null));
             if (S.ActiveBrush != null)
