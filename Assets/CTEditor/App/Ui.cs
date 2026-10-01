@@ -435,6 +435,77 @@ namespace CTEditor.App
             if (dragger != null) { dragger.style.backgroundColor = C("acento"); dragger.Border(0, "acento", 3); }
         }
 
+        /// <summary>
+        /// A slider of our own: drag anywhere on it (or click) and it follows the pointer; it shows its value
+        /// («75 %»). onChange is called while dragging; dragging(true/false) tells when a drag starts and ends.
+        /// </summary>
+        public static VisualElement Range(float value, float min, float max, Action<float> onChange, string tooltip = null,
+            Func<float, string> format = null, float width = 72, Action<bool> dragging = null)
+        {
+            format ??= v => Mathf.RoundToInt((v - min) / (max - min) * 100) + " %";
+            var root = Row(6).NoShrink();
+            root.tooltip = tooltip ?? "";
+            var hit = new VisualElement();
+            hit.style.width = width;
+            hit.style.height = ControlHeight - 6;
+            hit.style.justifyContent = Justify.Center;
+            var track = new VisualElement { pickingMode = PickingMode.Ignore }.Bg("fondo").Border(1, "borde", 3);
+            track.style.height = 6;
+            var fill = new VisualElement { pickingMode = PickingMode.Ignore }.Bg("acento").Round(3);
+            fill.style.position = Position.Absolute;
+            fill.style.left = 0; fill.style.top = 0; fill.style.bottom = 0;
+            track.Add(fill);
+            float knobSize = Mathf.Round(FontSize * 0.95f);
+            var knob = new VisualElement { pickingMode = PickingMode.Ignore }.Bg("texto").Round(knobSize / 2);
+            knob.style.position = Position.Absolute;
+            knob.style.width = knobSize; knob.style.height = knobSize;
+            knob.style.top = (ControlHeight - 6 - knobSize) / 2f;
+            knob.Border(2, "acento", knobSize / 2);
+            hit.Add(track);
+            hit.Add(knob);
+            var label = Text(format(value), 0.85f, dim: true).NoShrink();
+            label.style.minWidth = FontSize * 2.6f;
+            label.style.unityTextAlign = TextAnchor.MiddleRight;
+            root.Add(hit);
+            root.Add(label);
+
+            float current = value;
+            void Draw()
+            {
+                float t = Mathf.InverseLerp(min, max, current);
+                fill.style.width = Length.Percent(t * 100);
+                knob.style.left = t * (width - knobSize);
+                label.text = format(current);
+            }
+            void SetFrom(Vector2 local)
+            {
+                float t = Mathf.Clamp01((local.x - knobSize / 2) / Mathf.Max(1, width - knobSize));
+                float v = Mathf.Lerp(min, max, t);
+                if (Mathf.Approximately(v, current)) return;
+                current = v;
+                Draw();
+                onChange?.Invoke(v);
+            }
+            hit.RegisterCallback<PointerDownEvent>(e =>
+            {
+                if (e.button != 0) return;
+                hit.CapturePointer(e.pointerId);
+                dragging?.Invoke(true);
+                SetFrom(e.localPosition);
+                e.StopPropagation();
+            });
+            hit.RegisterCallback<PointerMoveEvent>(e => { if (hit.HasPointerCapture(e.pointerId)) SetFrom(e.localPosition); });
+            hit.RegisterCallback<PointerUpEvent>(e =>
+            {
+                if (!hit.HasPointerCapture(e.pointerId)) return;
+                hit.ReleasePointer(e.pointerId);
+                dragging?.Invoke(false);
+                e.StopPropagation();
+            });
+            Draw();
+            return root;
+        }
+
         public static ScrollView Scroll(ScrollViewMode mode = ScrollViewMode.Vertical)
         {
             var s = new ScrollView(mode);
@@ -445,14 +516,30 @@ namespace CTEditor.App
 
         private static void StyleScroller(Scroller scroller)
         {
+            // A thin, discreet bar: no arrows, no track, a rounded «pill» that lights up when touched.
             if (scroller == null) return;
-            scroller.style.backgroundColor = C("panel");
+            bool vertical = scroller.direction == SliderDirection.Vertical;
+            scroller.style.backgroundColor = new Color(0, 0, 0, 0);
+            scroller.style.borderLeftWidth = 0; scroller.style.borderRightWidth = 0; scroller.style.borderTopWidth = 0; scroller.style.borderBottomWidth = 0;
+            if (vertical) { scroller.style.width = 10; scroller.style.minWidth = 10; }
+            else { scroller.style.height = 10; scroller.style.minHeight = 10; }
             scroller.lowButton.style.display = DisplayStyle.None;
             scroller.highButton.style.display = DisplayStyle.None;
+            scroller.slider.style.marginLeft = 0; scroller.slider.style.marginRight = 0; scroller.slider.style.marginTop = 0; scroller.slider.style.marginBottom = 0;
             var tracker = scroller.slider.Q(className: "unity-base-slider__tracker");
-            if (tracker != null) { tracker.style.backgroundColor = C("panel"); tracker.style.borderLeftWidth = 0; tracker.style.borderRightWidth = 0; tracker.style.borderTopWidth = 0; tracker.style.borderBottomWidth = 0; }
+            if (tracker != null) { tracker.style.backgroundColor = new Color(0, 0, 0, 0); tracker.Border(0); }
             var dragger = scroller.slider.Q(className: "unity-base-slider__dragger");
-            if (dragger != null) { dragger.style.backgroundColor = C("borde"); dragger.Round(3); dragger.style.borderLeftWidth = 0; dragger.style.borderRightWidth = 0; dragger.style.borderTopWidth = 0; dragger.style.borderBottomWidth = 0; }
+            if (dragger != null)
+            {
+                var normal = Mix(C("borde"), C("texto"), 0.15f);
+                dragger.style.backgroundColor = normal;
+                dragger.Border(0);
+                dragger.Round(4);
+                if (vertical) { dragger.style.width = 6; dragger.style.left = 2; dragger.style.marginLeft = 0; }
+                else { dragger.style.height = 6; dragger.style.top = 2; dragger.style.marginTop = 0; }
+                dragger.RegisterCallback<PointerEnterEvent>(_ => dragger.style.backgroundColor = C("texto_suave"));
+                dragger.RegisterCallback<PointerLeaveEvent>(_ => dragger.style.backgroundColor = normal);
+            }
         }
 
         public static VisualElement Separator(bool vertical = false)

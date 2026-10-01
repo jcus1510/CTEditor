@@ -115,6 +115,7 @@ namespace CTEditor.App
             S.MapOpened += OnMapOpened;
             S.TilesChanged += OnTilesChanged;
             S.StructureChanged += OnStructureChanged;
+            S.LayerViewChanged += OnLayerViewChanged;
             S.SelectionChanged += OnSelectionChanged;
             S.TilesetChanged += OnTilesetChanged;
             S.EncountersChanged += RedrawOverlay;
@@ -136,6 +137,7 @@ namespace CTEditor.App
                 S.MapOpened -= OnMapOpened;
                 S.TilesChanged -= OnTilesChanged;
                 S.StructureChanged -= OnStructureChanged;
+                S.LayerViewChanged -= OnLayerViewChanged;
                 S.SelectionChanged -= OnSelectionChanged;
                 S.TilesetChanged -= OnTilesetChanged;
                 S.EncountersChanged -= RedrawOverlay;
@@ -204,6 +206,12 @@ namespace CTEditor.App
             ShowEmptyState();
             RedrawOverlay();
             UpdateStatus();
+        }
+
+        private void OnLayerViewChanged(int index)
+        {
+            _renderer?.RefreshLayerView(index);
+            if (!S.AutoLayers) BuildToolbar(); // the «(bloqueada)» note of the active layer
         }
 
         private void OnWorldChanged()

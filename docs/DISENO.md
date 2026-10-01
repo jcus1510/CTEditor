@@ -103,7 +103,17 @@ Nunca se escribe un color a mano: se usa `Ui.C("token")`.
 - **Añadir un icono:** una entrada en `IconArt.Library` con sus formas en la cuadrícula de 24 × 24 (`Line`, `Quad`,
   `Poly`, `Box`, `Frame`, `Circle`, `Ring`; `Cut` recorta). Un módulo puede añadir los suyos con `IconArt.Register`.
 
-### 2.5 Texto
+### 2.5 Controles propios
+
+- **Deslizador** (`Ui.Range`): pista fina, relleno de acento, bola, y el valor a la derecha («75 %»). Se arrastra desde
+  cualquier punto. Mientras se arrastra, la ventana no se reconstruye.
+- **Barras de desplazamiento**: 10 px de zona, píldora de 6 px redondeada, sin flechas ni pista.
+- **Submenús**: `MenuItem.Submenu(nombre, hijos)`; se abren a la derecha al pasar el ratón (o a la izquierda si no caben).
+- **Arrastrar para reordenar**: un asa (seis puntos) a la izquierda de la fila; una línea de acento marca dónde caerá.
+- **Palabras**: «ventana» para lo que se acopla dentro de la aplicación (Mapa, Tiles, Capas...); «distribución» para
+  cómo están colocadas.
+
+### 2.6 Texto
 
 - Tamaño base: `FontSize` (13 por defecto, ajustable en *Entorno*).
 - Títulos ×1,6; encabezados ×1,15; pistas ×0,92 (color `texto_suave`).
@@ -118,12 +128,15 @@ Nunca se escribe un color a mano: se usa `Ui.C("token")`.
 
 | Fecha | Cambio |
 |---|---|
+| 2026-10-01 (2) | Tiles compacta con iconos; Capas con iconos, asa para reordenar y deslizador propio con %; barras finas tipo píldora; importar con vista previa y tipo sugerido; menú Ver con submenús Ventanas / Distribuciones; Ctrl + 0; proyección del mapa fijada (los tiles se estrechaban al hacer zoom). |
 | 2026-10-01 | Primera prueba en Unity. Arreglados: la rejilla del mapa no coincidía con los tiles (proporción de la cámara y ajuste al píxel); la interfaz desaparecía al seleccionar «Interfaz» en la Hierarchy; textos encima de botones (ahora «…»); campos más altos que los botones; caja de número unida; inicio de tamaño fijo. Nuevo: iconos en las herramientas y ayudas emergentes. |
 
 ---
 
 ## 4. Pendiente de pulir (en orden)
 
+0. **Escala por ventana** (pendiente de decidir): Alt + rueda sobre una ventana para ampliar solo esa (letra e iconos),
+   recordado por ventana. Alternativa: solo la escala global con Ctrl + rueda / Ctrl + 0 (lo que hay hoy).
 1. **Hojas de estilo `.uss` + UI Builder.** Pasar medidas, estados (hover, pulsado, foco, desactivado) y clases
    (`ct-boton`, `ct-chip`, `ct-campo`…) a `Resources/CTEditorApp/CTEditor.uss`. Los colores del tema irán como variables
    USS. Así el diseño se toca desde UI Builder sin compilar, y el hover deja de hacerse por código.

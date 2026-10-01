@@ -140,3 +140,60 @@ namespace CTEditor.Project
         }
     }
 }
+
+namespace CTEditor.Project
+{
+    /// <summary>
+    /// Adivina qué es una imagen al importarla (para proponer la carpeta): primero por el nombre del archivo
+    /// («Tileset», «battler», «icon»...) y si no, por las medidas (8 columnas de 32 px = tileset de RPG Maker XP, hojas de
+    /// personaje 4 × 4 o 3 × 4, cuadrados de combate...). Solo propone: el autor elige.
+    /// </summary>
+    public static class AssetKindGuesser
+    {
+        private static readonly (string[] words, AssetKind kind)[] ByName =
+        {
+            (new[] { "autotile", "tileset", "tiles", "tile" }, AssetKind.Tileset),
+            (new[] { "battler", "battle", "combate", "front", "back", "frente", "espalda" }, AssetKind.Battle),
+            (new[] { "icon", "icono" }, AssetKind.Icon),
+            (new[] { "portrait", "retrato", "face", "faceset", "busto" }, AssetKind.Portrait),
+            (new[] { "windowskin", "window", "ventana", "interfaz", "interface", "hud", "title", "titulo", "picture" }, AssetKind.Interface),
+            (new[] { "character", "personaje", "charset", "trainer", "entrenador", "npc", "player", "jugador", "walk", "overworld" }, AssetKind.Character),
+        };
+
+        public static (AssetKind kind, string reason) Guess(string fileName, int width, int height)
+        {
+            var name = System.IO.Path.GetFileNameWithoutExtension(fileName ?? "").ToLowerInvariant();
+            foreach (var (words, kind) in ByName)
+                foreach (var w in words)
+                    if (name.Contains(w)) return (kind, $"el nombre contiene «{w}»");
+            if (width <= 0 || height <= 0) return (AssetKind.Other, "no se pudo leer el tamaño");
+            if (width == 256 && height % 32 == 0) return (AssetKind.Tileset, "8 columnas de 32 px: tileset de RPG Maker XP");
+            if (width == height && width <= 48) return (AssetKind.Icon, "cuadrado pequeño");
+            if (Art.Domain.CharacterSheetLayout.Detect(width, height) != null) return (AssetKind.Character, "medidas de hoja de personaje");
+            if (width == height && width <= 192) return (AssetKind.Battle, "cuadrado: sprite de combate");
+            if (width % 16 == 0 && height % 16 == 0 && width >= 64 && height >= 64) return (AssetKind.Tileset, "medidas de rejilla de tiles");
+            return (AssetKind.Tileset, "imagen grande: probablemente un tileset");
+        }
+    }
+
+    /// <summary>Cambia el tipo de una imagen ya importada: la mueve a la carpeta de ese tipo junto con su corte.</summary>
+    public static class AssetMover
+    {
+        /// <returns>La nueva ruta relativa.</returns>
+        public static string MoveToKind(string projectRoot, string relativePath, AssetKind kind)
+        {
+            var from = System.IO.Path.Combine(projectRoot, relativePath);
+            if (!System.IO.File.Exists(from)) throw new System.IO.FileNotFoundException("No existe la imagen.", relativePath);
+            if (!ProjectLayout.KindFolders.TryGetValue(kind, out var folder)) throw new ArgumentException("Tipo sin carpeta: " + kind);
+            var destDir = System.IO.Path.Combine(projectRoot, ProjectLayout.GraphicsFolder, folder);
+            System.IO.Directory.CreateDirectory(destDir);
+            var to = System.IO.Path.Combine(destDir, System.IO.Path.GetFileName(from));
+            if (System.IO.Path.GetFullPath(to) == System.IO.Path.GetFullPath(from)) return relativePath;
+            if (System.IO.File.Exists(to)) throw new System.IO.IOException($"Ya hay una imagen llamada «{System.IO.Path.GetFileName(to)}» en {folder}.");
+            var slice = ProjectLayout.SlicePathFor(from);
+            System.IO.File.Move(from, to);
+            if (System.IO.File.Exists(slice)) System.IO.File.Move(slice, ProjectLayout.SlicePathFor(to));
+            return ProjectLayout.Normalize(System.IO.Path.GetRelativePath(projectRoot, to));
+        }
+    }
+}

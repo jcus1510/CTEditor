@@ -223,6 +223,10 @@ namespace CTEditor.App
             float halfW = _target.width / 2f, halfH = _target.height / 2f;
             Center = new Vector2((Mathf.Round(Center.x * ppu - halfW) + halfW) / ppu, (Mathf.Round(Center.y * ppu - halfH) + halfH) / ppu);
             _camera.transform.position = Origin + new Vector3(Center.x, Center.y, -10f);
+            // An explicit projection: exactly width × height texture pixels, ppu pixels per cell, whatever the render
+            // pipeline does with the camera's aspect (the cells came out about 3 % narrower than the grid when zooming).
+            float halfWorldW = halfW / ppu, halfWorldH = halfH / ppu;
+            _camera.projectionMatrix = Matrix4x4.Ortho(-halfWorldW, halfWorldW, -halfWorldH, halfWorldH, _camera.nearClipPlane, _camera.farClipPlane);
         }
 
         /// <summary>Texture pixel (top-left origin) → cell (fractional, y down).</summary>

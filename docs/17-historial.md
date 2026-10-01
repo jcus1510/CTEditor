@@ -86,4 +86,8 @@ tests EditMode → Eventing y contratos → bootstrap y escena de prueba → IA 
   en la Hierarchy, sin solapamientos de texto, controles a la misma altura, iconos en las herramientas, ayudas
   emergentes, inicio de tamaño fijo, importar BMP/DIB, tamaños habituales en el corte. Nace [`DISENO.md`](DISENO.md).
   `ImageFormatTests`.
+- **Pulido 2**: proyección de la cámara del mapa fijada a mano (los tiles salían ~3 % más estrechos que la rejilla al
+  hacer zoom); ventana Tiles compacta con iconos; Capas con iconos, asa para reordenar arrastrando y deslizador propio
+  con %; barras de desplazamiento finas; importar con vista previa y tipo sugerido; cambiar el tipo después; menú
+  Ver → Ventanas / Distribuciones (submenús); Ctrl + 0.
 - **Documentación** completa por capítulos (esta carpeta).

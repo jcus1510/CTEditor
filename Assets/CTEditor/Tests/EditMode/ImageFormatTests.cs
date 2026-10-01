@@ -60,6 +60,37 @@ namespace CTEditor.Tests.EditMode
         }
 
         [Test]
+        public void The_kind_is_guessed_from_the_name_then_from_the_size()
+        {
+            Assert.AreEqual(AssetKind.Tileset, AssetKindGuesser.Guess("Game Boy Advance - Tileset.png", 300, 450).kind);
+            Assert.AreEqual(AssetKind.Battle, AssetKindGuesser.Guess("025_front.png", 80, 80).kind);
+            Assert.AreEqual(AssetKind.Tileset, AssetKindGuesser.Guess("pueblo.png", 256, 4096).kind, "8 columns of 32 px");
+            Assert.AreEqual(AssetKind.Character, AssetKindGuesser.Guess("rojo.png", 128, 192).kind, "RPG Maker XP sheet 4 × 4");
+            Assert.AreEqual(AssetKind.Icon, AssetKindGuesser.Guess("pocion.png", 24, 24).kind);
+            StringAssert.Contains("tileset", AssetKindGuesser.Guess("Game Boy Advance - Tileset.png", 300, 450).reason);
+        }
+
+        [Test]
+        public void Changing_the_kind_moves_the_image_and_its_slice()
+        {
+            var root = Path.Combine(Path.GetTempPath(), "ct_kind_" + Guid.NewGuid().ToString("N"));
+            try
+            {
+                ProjectLayout.CreateFolders(root);
+                var img = Path.Combine(root, "graficos", "tilesets", "rojo.png");
+                File.WriteAllBytes(img, Png.Write(new PixelImage(4, 4)));
+                File.WriteAllText(ProjectLayout.SlicePathFor(img), "{}");
+                var rel = AssetMover.MoveToKind(root, "graficos/tilesets/rojo.png", AssetKind.Character);
+                Assert.AreEqual("graficos/personajes/rojo.png", rel);
+                Assert.IsTrue(File.Exists(Path.Combine(root, "graficos", "personajes", "rojo.png")));
+                Assert.IsTrue(File.Exists(Path.Combine(root, "graficos", "personajes", "rojo" + ProjectLayout.SliceSuffix)));
+                Assert.IsFalse(File.Exists(img));
+                Assert.AreEqual(rel, AssetMover.MoveToKind(root, rel, AssetKind.Character), "same kind: nothing moves");
+            }
+            finally { if (Directory.Exists(root)) Directory.Delete(root, true); }
+        }
+
+        [Test]
         public void Importing_a_bmp_writes_a_png_next_to_the_others()
         {
             var dir = Path.Combine(Path.GetTempPath(), "ct_bmp_" + Guid.NewGuid().ToString("N"));

@@ -118,7 +118,7 @@ namespace CTEditor.App
                 Ui.Separator(),
                 Ui.Heading("Ventana"),
                 Ui.Check("Pantalla completa (F11)", shell.IsFullscreen?.Invoke() ?? true, _ => shell.ToggleFullscreen?.Invoke()),
-                Ui.Hint("La aplicación ocupa una sola ventana a la resolución de tu monitor. Los paneles se ajustan arrastrando sus separadores."));
+                Ui.Hint("La aplicación ocupa una sola ventana a la resolución de tu monitor. Las ventanas interiores se ajustan arrastrando sus separadores."));
         }
 
         private static void LayoutsTab(AppShell shell, VisualElement body, System.Action reopen)
@@ -137,7 +137,7 @@ namespace CTEditor.App
             }
             body.Add(Ui.Separator());
             body.Add(Ui.Heading("Mis distribuciones"));
-            if (ws.SavedLayouts.Count == 0) body.Add(Ui.Hint("Aún no has guardado ninguna. Coloca los paneles a tu gusto y pulsa «Guardar la actual»."));
+            if (ws.SavedLayouts.Count == 0) body.Add(Ui.Hint("Aún no has guardado ninguna. Coloca las ventanas a tu gusto y pulsa «Guardar la actual»."));
             foreach (var saved in ws.SavedLayouts.ToList())
             {
                 var name = saved.Name;

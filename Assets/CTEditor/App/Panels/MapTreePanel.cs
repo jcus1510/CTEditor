@@ -184,7 +184,7 @@ namespace CTEditor.App
                         }
                         where.Add(Ui.Chip("en un hueco libre", side == null, () => { side = null; Fill(); }).Margin(0, 0, 4, 4));
                     }
-                    else where.Add(Ui.Hint("Se coloca en un hueco libre del mundo; luego lo puedes arrastrar en el panel Mundo."));
+                    else where.Add(Ui.Hint("Se coloca en un hueco libre del mundo; luego lo puedes arrastrar en la ventana Mundo."));
                     body.With(Ui.Text("Dónde en el mundo", bold: true), where);
                 }
                 else body.Add(Ui.Hint("Los interiores no van en el mundo: se entra por puertas (fase de eventos)."));
@@ -221,21 +221,28 @@ namespace CTEditor.App
         }
     }
 
-    /// <summary>Panel CAPAS: las capas del mapa (arriba la de encima): ver, bloquear, opacidad, orden, nombre.</summary>
+    /// <summary>
+    /// Ventana CAPAS: las capas del mapa (arriba la de encima). Cada fila: asa para arrastrarla a otra posición, ver,
+    /// bloquear, nombre y opacidad (deslizador con %). Arriba: añadir, subir, bajar y quitar.
+    /// </summary>
     public sealed class LayersPanel : VisualElement
     {
         private readonly AppShell _shell;
         private MapEditorSession S => _shell.Maps;
         private readonly ScrollView _list;
         private readonly VisualElement _bar;
+        private readonly List<(VisualElement row, int index)> _rows = new List<(VisualElement, int)>();
+        private bool _sliding;
+
+        // Reordering by dragging the grip.
+        private int _dragIndex = -1, _dropIndex = -1;
 
         public LayersPanel(AppShell shell)
         {
             _shell = shell;
             style.flexGrow = 1;
-            _bar = Ui.Row(4).Pad(8, 6).Wrap();
+            _bar = Ui.Row(0).Pad(6, 4).Wrap();
             _bar.style.flexShrink = 0;
-            _bar.style.flexWrap = Wrap.Wrap;
             Add(_bar);
             Add(Ui.Separator());
             _list = Ui.Scroll().Grow();
@@ -246,6 +253,7 @@ namespace CTEditor.App
                 S.MapOpened += Refresh;
                 S.StructureChanged += Refresh;
                 S.SelectionChanged += Refresh;
+                S.LayerViewChanged += OnLayerView;
                 Refresh();
             });
             RegisterCallback<DetachFromPanelEvent>(_ =>
@@ -254,44 +262,79 @@ namespace CTEditor.App
                 S.MapOpened -= Refresh;
                 S.StructureChanged -= Refresh;
                 S.SelectionChanged -= Refresh;
+                S.LayerViewChanged -= OnLayerView;
             });
+        }
+
+        // While the opacity slider is being dragged the rows stay as they are (rebuilding them would drop the drag).
+        private void OnLayerView(int index)
+        {
+            if (!_sliding) Refresh();
         }
 
         private void Refresh()
         {
             _bar.Clear();
             _list.Clear();
+            _rows.Clear();
             var m = S?.Map;
             if (m == null) { _list.Add(Ui.Hint("Abre un mapa para ver sus capas.").Margin(10, 8, 10, 8)); return; }
-            int active = S.ActiveLayer;
-            _bar.With(Ui.Button("Añadir", () => S.AddLayer(), Ui.ButtonKind.Primary, "Nueva capa encima de la activa"),
-                Ui.Button("Subir", () => S.MoveLayer(active, +1), Ui.ButtonKind.Normal, "Más arriba (se dibuja encima)"),
-                Ui.Button("Bajar", () => S.MoveLayer(active, -1)),
-                Ui.Button("Quitar", () => _shell.Confirm("Quitar capa", $"¿Quitar la capa «{m.Layers[active].Name}»? Se puede deshacer con Ctrl+Z.",
-                    "Quitar", () => S.RemoveLayer(active), danger: true), Ui.ButtonKind.Flat));
+            int active = Mathf.Clamp(S.ActiveLayer, 0, m.Layers.Count - 1);
+            _bar.With(Ui.IconButton("mas", () => S.AddLayer(), "Añadir una capa encima de la elegida"),
+                Ui.IconButton("arriba", () => S.MoveLayer(active, +1), "Subir la capa (se dibuja más encima)"),
+                Ui.IconButton("abajo", () => S.MoveLayer(active, -1), "Bajar la capa"),
+                Ui.IconButton("papelera", () => _shell.Confirm("Quitar capa", $"¿Quitar la capa «{m.Layers[active].Name}»? Se puede deshacer con Ctrl+Z.",
+                    "Quitar", () => S.RemoveLayer(active), danger: true), "Quitar la capa elegida"),
+                Ui.Spacer(),
+                Ui.Text($"{m.Layers.Count} capas", 0.85f, dim: true).NoShrink().Margin(0, 0, 4, 0));
+
+            string[] roles = { "", "suelo", "detalles", "encima" };
             for (int i = m.Layers.Count - 1; i >= 0; i--)
             {
                 int index = i;
                 var l = m.Layers[i];
-                var row = Ui.Row(6).Pad(8, 4);
+                var row = Ui.Row(2).Pad(4, 2);
                 if (i == active) row.style.backgroundColor = Ui.C("seleccion");
-                string[] roles = { "", " · suelo", " · detalles", " · encima" };
-                var name = Ui.Text(l.Name + roles[(int)l.Role], bold: i == active).Grow();
+                row.style.borderTopWidth = 2; row.style.borderBottomWidth = 2;
+                row.style.borderTopColor = new Color(0, 0, 0, 0); row.style.borderBottomColor = new Color(0, 0, 0, 0);
+
+                var grip = Icons.Element("asa", Ui.IconSize, Ui.C("texto_suave"));
+                grip.pickingMode = PickingMode.Position;
+                grip.tooltip = "Arrastra para cambiar el orden";
+                grip.style.marginLeft = 2; grip.style.marginRight = 2;
+                RegisterDrag(grip, index);
+
+                var visible = Ui.IconButton(l.Visible ? "ver" : "oculto", () => S.SetLayerView(index, visible: !l.Visible),
+                    l.Visible ? "Visible (clic: ocultar; solo en el editor)" : "Oculta (clic: mostrar)");
+                if (!l.Visible) visible.style.opacity = 0.55f;
+                var locked = Ui.IconButton(l.Locked ? "bloqueado" : "desbloqueado", () => S.SetLayerView(index, locked: !l.Locked),
+                    l.Locked ? "Bloqueada: las herramientas no la cambian (clic: desbloquear)" : "Desbloqueada (clic: bloquear)");
+                if (!l.Locked) locked.style.opacity = 0.45f;
+
+                var names = Ui.Column(0).Grow();
+                names.pickingMode = PickingMode.Ignore;
+                var name = Ui.Text(l.Name, bold: i == active);
                 name.pickingMode = PickingMode.Ignore;
-                var visible = Ui.Chip("Ver", l.Visible, () => S.SetLayerView(index, visible: !l.Visible), "Mostrar u ocultar (solo en el editor)");
-                var locked = Ui.Chip("Bloq.", l.Locked, () => S.SetLayerView(index, locked: !l.Locked), "Bloquear: las herramientas no la cambian");
-                var opacity = new Slider(0f, 1f) { value = l.Opacity, tooltip = "Opacidad en el editor" };
-                Ui.StyleSlider(opacity);
-                opacity.style.width = 64;
-                opacity.RegisterValueChangedCallback(e => S.SetLayerView(index, opacity: e.newValue));
-                row.With(visible, locked, name, opacity);
+                names.Add(name);
+                if (l.Role != LayerRole.Custom)
+                {
+                    var role = Ui.Text(roles[(int)l.Role], 0.8f, dim: true);
+                    role.pickingMode = PickingMode.Ignore;
+                    names.Add(role);
+                }
+                names.style.marginLeft = 4;
+
+                var opacity = Ui.Range(l.Opacity, 0f, 1f, v => S.SetLayerView(index, opacity: v), "Opacidad en el editor",
+                    width: 64, dragging: d => { _sliding = d; if (!d) Refresh(); });
+                row.With(grip, visible, locked, names, opacity);
+
                 row.RegisterCallback<PointerUpEvent>(e =>
                 {
-                    if (e.button == 0 && (e.target == row || e.target == name)) S.SetActiveLayer(index);
+                    if (e.button == 0 && _dragIndex < 0 && (e.target == row || e.target == names)) S.SetActiveLayer(index);
                 });
                 row.RegisterCallback<ClickEvent>(e =>
                 {
-                    if (e.clickCount == 2 && (e.target == row || e.target == name))
+                    if (e.clickCount == 2 && (e.target == row || e.target == names))
                         _shell.Prompt("Nombre de la capa", "Nombre", l.Name, "Cambiar", n => S.RenameLayer(index, n));
                 });
                 // Right click: what the layer is for (automatic layers send each tile to the layer of its piece).
@@ -307,9 +350,50 @@ namespace CTEditor.App
                     });
                 });
                 _list.Add(row);
+                _rows.Add((row, index));
             }
-            _list.Add(Ui.Hint("Arriba, la que se dibuja encima. Doble clic: cambiar el nombre. Clic derecho: para qué es (suelo, detalles, encima) — con capas automáticas cada tile va solo a la suya. Los tiles con prioridad se ven por encima del jugador sea cual sea su capa.")
+            _list.Add(Ui.Hint("Arriba, la que se dibuja encima. Arrastra el asa para reordenar. Doble clic: cambiar el nombre. Clic derecho: para qué es (suelo, detalles, encima) — con capas automáticas cada tile va solo a la suya.")
                 .Margin(10, 8, 10, 8));
+        }
+
+        private void RegisterDrag(VisualElement grip, int index)
+        {
+            grip.RegisterCallback<PointerDownEvent>(e =>
+            {
+                if (e.button != 0) return;
+                grip.CapturePointer(e.pointerId);
+                _dragIndex = index;
+                _dropIndex = index;
+                e.StopPropagation();
+            });
+            grip.RegisterCallback<PointerMoveEvent>(e =>
+            {
+                if (!grip.HasPointerCapture(e.pointerId)) return;
+                // The row under the pointer is where the layer goes; a line marks it (above or below that row).
+                _dropIndex = _dragIndex;
+                foreach (var (row, i) in _rows)
+                {
+                    var r = row.worldBound;
+                    bool over = e.position.y >= r.yMin && e.position.y < r.yMax;
+                    if (over) _dropIndex = i;
+                    var line = Ui.C("acento");
+                    var none = new Color(0, 0, 0, 0);
+                    // Higher index = higher in the list: moving up shows the line on top, moving down at the bottom.
+                    row.style.borderTopColor = over && i > _dragIndex ? line : none;
+                    row.style.borderBottomColor = over && i < _dragIndex ? line : none;
+                }
+            });
+            grip.RegisterCallback<PointerUpEvent>(e =>
+            {
+                if (!grip.HasPointerCapture(e.pointerId)) return;
+                grip.ReleasePointer(e.pointerId);
+                int from = _dragIndex, to = _dropIndex;
+                _dragIndex = -1;
+                _dropIndex = -1;
+                e.StopPropagation();
+                if (to >= 0 && to != from) S.MoveLayer(from, to - from);
+                else Refresh();
+            });
         }
     }
 }

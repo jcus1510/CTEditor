@@ -114,7 +114,7 @@ namespace CTEditor.App
                     var pos = Ui.Row(8).Wrap();
                     pos.With(Ui.NumberBox("Mundo X", wx, -100000, 100000, v => wx = v), Ui.NumberBox("Y", wy, -100000, 100000, v => wy = v));
                     var acts = Ui.Row(6).Wrap();
-                    acts.With(Ui.Button("Mover", () => S.MoveSection(m.Id, wx, wy), Ui.ButtonKind.Primary, "También se puede arrastrar en el panel Mundo"),
+                    acts.With(Ui.Button("Mover", () => S.MoveSection(m.Id, wx, wy), Ui.ButtonKind.Primary, "También se puede arrastrar en la ventana Mundo"),
                         Ui.Button("Quitar del mundo", () => S.RemoveFromWorld(m.Id), Ui.ButtonKind.Flat));
                     sec.With(pos, acts);
                 }
@@ -122,7 +122,7 @@ namespace CTEditor.App
                 {
                     var (x, y) = S.World().FreeSpot(m.Width, m.Height);
                     S.MoveSection(m.Id, x, y);
-                }, Ui.ButtonKind.Primary, "Luego se puede arrastrar en el panel Mundo"));
+                }, Ui.ButtonKind.Primary, "Luego se puede arrastrar en la ventana Mundo"));
             }
             body.Add(sec);
             body.Add(Ui.Separator());
@@ -153,7 +153,7 @@ namespace CTEditor.App
                     chips.Add(Ui.Chip(S.TilesetFor(t)?.Name ?? t, m.TilesetId == t, () => S.SetMapTileset(id), t).Margin(0, 0, 4, 4));
                 }
                 list.Add(chips);
-                list.Add(Ui.Hint("Para usar varios tilesets a la vez, añádelos en el panel Tiles con «+ Tileset»."));
+                list.Add(Ui.Hint("Para usar varios tilesets a la vez, añádelos en la ventana Tiles con «+»."));
             }
             ts.Add(list);
             body.Add(ts);

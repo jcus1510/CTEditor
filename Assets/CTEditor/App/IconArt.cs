@@ -154,6 +154,124 @@ namespace CTEditor.App
             yield return Poly(8.5f, 16.2f, 8.5f, 21.8f, 11.8f, 19f);
         }
 
+        private static IEnumerable<Shape> Eye(bool open)
+        {
+            // Almond outline: two arcs approximated by polygons.
+            var outer = new List<float>();
+            var inner = new List<float>();
+            for (int i = 0; i <= 16; i++)
+            {
+                float t = i / 16f, x = 2f + 20f * t, h = (float)Math.Sin(t * Math.PI);
+                outer.Add(x); outer.Add(12f - 7.5f * h);
+                inner.Add(x); inner.Add(12f - 5.6f * h);
+            }
+            for (int i = 16; i >= 0; i--)
+            {
+                float t = i / 16f, x = 2f + 20f * t, h = (float)Math.Sin(t * Math.PI);
+                outer.Add(x); outer.Add(12f + 7.5f * h);
+                inner.Add(x); inner.Add(12f + 5.6f * h);
+            }
+            yield return Poly(outer.ToArray());
+            yield return Cut(Poly(inner.ToArray()));
+            yield return Circle(12f, 12f, 3.6f);
+            if (!open) { yield return Cut(Line(4f, 21f, 20f, 3f, 4.4f)); yield return Line(4.5f, 20.5f, 19.5f, 3.5f, 2f); }
+        }
+
+        private static IEnumerable<Shape> Lock(bool closed)
+        {
+            yield return Box(5f, 10.5f, 14f, 10.5f);
+            yield return Cut(Circle(12f, 15f, 1.6f));
+            yield return Cut(Box(11.3f, 15f, 1.4f, 3.2f));
+            if (closed)
+            {
+                yield return Ring(12f, 9f, 5f, 2.1f);
+                yield return Cut(Box(5f, 9f, 14f, 1.5f));
+                yield return Box(7f, 8.5f, 2.1f, 2.5f);
+                yield return Box(14.9f, 8.5f, 2.1f, 2.5f);
+            }
+            else
+            {
+                yield return Ring(16f, 7f, 4.5f, 2.1f);
+                yield return Cut(Box(10f, 7f, 12f, 4f));
+                yield return Box(18.4f, 6.5f, 2.1f, 4.5f);
+            }
+        }
+
+        private static IEnumerable<Shape> Trash()
+        {
+            yield return Box(4f, 5f, 16f, 2.2f);
+            yield return Box(9f, 2.5f, 6f, 2.5f);
+            yield return Poly(5.5f, 8.5f, 18.5f, 8.5f, 17.2f, 21.5f, 6.8f, 21.5f);
+            yield return Cut(Box(9f, 10.5f, 1.6f, 9f));
+            yield return Cut(Box(13.4f, 10.5f, 1.6f, 9f));
+        }
+
+        private static IEnumerable<Shape> Grip()
+        {
+            for (int r = 0; r < 3; r++)
+            for (int c = 0; c < 2; c++)
+                yield return Circle(9f + c * 6f, 6f + r * 6f, 1.6f);
+        }
+
+        private static IEnumerable<Shape> Passage()
+        {
+            // «No pasar»: a ring with a bar.
+            yield return Ring(12f, 12f, 9f, 2.4f);
+            yield return Quad(6.3f, 6.3f, 17.7f, 17.7f, 2.4f);
+        }
+
+        private static IEnumerable<Shape> Priority()
+        {
+            // Two stacked layers, the top one solid.
+            yield return Poly(12f, 3f, 21f, 8f, 12f, 13f, 3f, 8f);
+            yield return Poly(3f, 12f, 5.2f, 10.8f, 12f, 14.6f, 18.8f, 10.8f, 21f, 12f, 12f, 17f);
+            yield return Poly(3f, 16f, 5.2f, 14.8f, 12f, 18.6f, 18.8f, 14.8f, 21f, 16f, 12f, 21f);
+        }
+
+        private static IEnumerable<Shape> Terrain()
+        {
+            // A label (tag) with its hole: terrain tags.
+            yield return Poly(3f, 4f, 13f, 4f, 21f, 12f, 13f, 20f, 3f, 20f);
+            yield return Cut(Circle(7.5f, 12f, 1.8f));
+        }
+
+        private static IEnumerable<Shape> Bush()
+        {
+            yield return Circle(8f, 13f, 4.6f);
+            yield return Circle(16f, 13f, 4.6f);
+            yield return Circle(12f, 9f, 5f);
+            yield return Box(3.5f, 13f, 17f, 5f);
+            yield return Box(2f, 19.5f, 20f, 2f);
+        }
+
+        private static IEnumerable<Shape> Counter()
+        {
+            // A counter seen from the front with a person behind.
+            yield return Circle(12f, 5.5f, 2.6f);
+            yield return Poly(7.5f, 12f, 9f, 9f, 15f, 9f, 16.5f, 12f);
+            yield return Box(2.5f, 12f, 19f, 3f);
+            yield return Box(4.5f, 15f, 2.2f, 6.5f);
+            yield return Box(17.3f, 15f, 2.2f, 6.5f);
+        }
+
+        private static IEnumerable<Shape> Piece()
+        {
+            // Three flat layers: ground, detail, above.
+            yield return Box(3f, 17f, 18f, 3f);
+            yield return Box(6f, 11f, 12f, 3f);
+            yield return Box(9f, 5f, 6f, 3f);
+        }
+
+        private static IEnumerable<Shape> Retouch()
+        {
+            // Pixels (a 3 × 3 checker) and a small pencil.
+            for (int r = 0; r < 3; r++)
+            for (int c = 0; c < 3; c++)
+                if ((r + c) % 2 == 0) yield return Box(2.5f + c * 4.5f, 9.5f + r * 4.5f, 4.5f, 4.5f);
+            yield return Quad(13.5f, 10.5f, 19.5f, 4.5f, 3.4f);
+            yield return Poly(12.3f, 9.3f, 14.7f, 11.7f, 11f, 13f);
+        }
+
         private static IEnumerable<Shape> Paste()
         {
             foreach (var s in Frame(4f, 4.5f, 13f, 16.5f, 2f)) yield return s;
@@ -217,6 +335,21 @@ namespace CTEditor.App
             ["linea"] = () => new[] { Line(5f, 19f, 19f, 5f, 2.4f) },
             ["rect_relleno"] = () => new[] { Box(4f, 5f, 16f, 14f) },
             ["reemplazar"] = Replace,
+            ["ver"] = () => Eye(true),
+            ["oculto"] = () => Eye(false),
+            ["bloqueado"] = () => Lock(true),
+            ["desbloqueado"] = () => Lock(false),
+            ["papelera"] = Trash,
+            ["asa"] = Grip,
+            ["arriba"] = () => new[] { Line(5f, 15f, 12f, 8f, 2.4f), Line(12f, 8f, 19f, 15f, 2.4f) },
+            ["abajo"] = () => new[] { Line(5f, 9f, 12f, 16f, 2.4f), Line(12f, 16f, 19f, 9f, 2.4f) },
+            ["paso"] = Passage,
+            ["prioridad"] = Priority,
+            ["terreno"] = Terrain,
+            ["arbusto"] = Bush,
+            ["mostrador"] = Counter,
+            ["pieza"] = Piece,
+            ["retocar"] = Retouch,
             ["seleccion"] = () => Dashed(3.5f, 4.5f, 17f, 15f, 2f, 3.4f, 2.2f),
             ["pegar"] = Paste,
             ["zona"] = Zone,

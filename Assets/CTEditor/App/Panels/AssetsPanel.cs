@@ -138,7 +138,7 @@ namespace CTEditor.App
             thumbBox.style.flexShrink = 0;
             thumbBox.style.alignItems = Align.Center;
             thumbBox.style.justifyContent = Justify.Center;
-            var tex = a.Problem == null ? Textures.Thumbnail(full) : null;
+            var tex = a.Problem == null || a.NeedsPng ? Textures.Thumbnail(full) : null;
             if (tex != null)
             {
                 var img = new Image { image = tex, scaleMode = ScaleMode.ScaleToFit };
@@ -160,6 +160,20 @@ namespace CTEditor.App
             info.Add(Ui.Text(a.RelativePath, 0.85f, dim: true));
             row.Add(info);
 
+            // The kind (folder) can be changed after importing.
+            if (a.Kind != AssetKind.Other || a.Problem == null)
+            {
+                var kindButton = Ui.Button(KindLabels[(int)a.Kind] + "  ", null, Ui.ButtonKind.Flat, "Cambiar de tipo (la mueve a otra carpeta con su corte)");
+                kindButton.style.color = Ui.C("texto_suave");
+                kindButton.clicked += () =>
+                {
+                    var r = kindButton.worldBound;
+                    var items = ProjectLayout.KindFolders.Keys.Select(k => new MenuItem(KindLabels[(int)k], () => ChangeKind(a, k),
+                        isChecked: k == a.Kind)).ToList();
+                    _shell.ShowMenu(new Vector2(r.x, r.yMax + 2), items);
+                };
+                row.Add(kindButton);
+            }
             if (a.NeedsPng)
                 row.Add(Ui.Button("Convertir a PNG", () => ConvertToPng(full), Ui.ButtonKind.Primary,
                     "Crea «" + a.Name + ".png» al lado y quita el BMP (el proyecto trabaja en PNG)"));
@@ -177,6 +191,26 @@ namespace CTEditor.App
         {
             FolderBrowser.PickFile(_shell, "Importar una imagen (PNG, BMP o DIB)", string.Join(",", ImageFile.ImportExtensions),
                 file => AskKind(new[] { file }, Path.GetFileName(file)));
+        }
+
+        private void ChangeKind(AssetEntry a, AssetKind kind)
+        {
+            if (kind == a.Kind) return;
+            void Move()
+            {
+                try
+                {
+                    var rel = AssetMover.MoveToKind(_shell.ProjectRoot, a.RelativePath, kind);
+                    _shell.Success($"«{a.Name}» ahora es de {KindLabels[(int)kind]} ({rel}).");
+                    _shell.NotifyAssetsChanged();
+                    Refresh();
+                }
+                catch (Exception e) { _shell.Error("No se pudo mover: " + e.Message); }
+            }
+            if (a.Kind == AssetKind.Tileset && a.IsSliced)
+                _shell.Confirm("Cambiar de tipo", $"«{a.Name}» es un tileset cortado: los mapas que lo usan dejarán de encontrarlo hasta que vuelva a Tilesets. ¿Moverlo a {KindLabels[(int)kind]}?",
+                    "Mover", Move);
+            else Move();
         }
 
         private void ConvertToPng(string path)
@@ -205,15 +239,45 @@ namespace CTEditor.App
 
         private void AskKind(IReadOnlyList<string> files, string what)
         {
-            var d = _shell.ShowDialog("¿Qué son?");
-            d.Body.Add(Ui.Hint(what + ". Las que se puedan se cortan solas (las de 8 columnas de 32 px, las hojas de personaje 4 × 4 o 3 × 4); las demás abren el asistente."));
+            var d = _shell.ShowDialog("Importar: ¿qué son?", 56);
+            // A preview of what is being imported (up to 8 images) and a guess of their kind.
+            var guesses = new List<(AssetKind kind, string reason)>();
+            var previews = Ui.Row(8).Wrap();
+            foreach (var file in files)
+            {
+                ImageFile.TryReadSize(file, out int w, out int h);
+                guesses.Add(AssetKindGuesser.Guess(file, w, h));
+                if (previews.childCount >= 8) continue;
+                var card = Ui.Column(4).Bg("fondo").Border(1, "borde", 4).Pad(6);
+                card.style.width = 148;
+                card.style.marginBottom = 8;
+                var box = new VisualElement();
+                box.style.height = 110;
+                box.style.alignItems = Align.Center;
+                box.style.justifyContent = Justify.Center;
+                var tex = Textures.Thumbnail(file, 220);
+                if (tex != null)
+                {
+                    var img = new Image { image = tex, scaleMode = ScaleMode.ScaleToFit };
+                    img.style.width = 132; img.style.height = 106;
+                    box.Add(img);
+                }
+                else box.Add(Ui.Text("?", 1.4f, dim: true));
+                card.With(box, Ui.Text(Path.GetFileName(file), 0.85f, bold: true), Ui.Text($"{w} × {h} px", 0.8f, dim: true));
+                previews.Add(card);
+            }
+            if (files.Count > 8) previews.Add(Ui.Hint($"y {files.Count - 8} más…"));
+            var suggested = guesses.GroupBy(g => g.kind).OrderByDescending(g => g.Count()).First();
+            d.Body.Add(previews);
+            d.Body.Add(Ui.Hint(what + $". Sugerido: {KindLabels[(int)suggested.Key]} ({suggested.First().reason}). Las que se puedan se cortan solas (8 columnas de 32 px, hojas de personaje 4 × 4 o 3 × 4); las demás abren el asistente. Las BMP/DIB se convierten a PNG. El tipo se puede cambiar después en Recursos."));
             var kinds = Ui.Row(6);
             kinds.style.flexWrap = Wrap.Wrap;
             foreach (var kv in ProjectLayout.KindFolders)
             {
                 var kind = kv.Key;
                 var folder = kv.Value;
-                kinds.Add(Ui.Button(KindLabels[(int)kind], () =>
+                bool isSuggested = kind == suggested.Key;
+                kinds.Add(Ui.Button(KindLabels[(int)kind] + (isSuggested ? " (sugerido)" : ""), () =>
                 {
                     _shell.CloseDialog(d);
                     int done = 0, auto = 0;
@@ -237,7 +301,7 @@ namespace CTEditor.App
                     _shell.NotifyAssetsChanged();
                     Refresh();
                     if (firstManual != null) SliceWizard.Show(_shell, firstManual, kind);
-                }).Margin(0, 0, 6, 6));
+                }, isSuggested ? Ui.ButtonKind.Primary : Ui.ButtonKind.Normal).Margin(0, 0, 6, 6));
             }
             d.Body.Add(kinds);
             d.Buttons.Add(Ui.Button("Cancelar", () => _shell.CloseDialog(d)));

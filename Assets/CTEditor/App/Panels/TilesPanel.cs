@@ -60,11 +60,11 @@ namespace CTEditor.App
             _shell = shell;
             style.flexGrow = 1;
 
-            _header = Ui.Row(6).Pad(8, 4);
+            _header = Ui.Row(0).Pad(6, 4);
             _header.style.flexShrink = 0;
             _header.style.flexWrap = Wrap.Wrap;
             Add(_header);
-            _modes = Ui.Row(4).Pad(8, 2);
+            _modes = Ui.Row(0).Pad(6, 2);
             _modes.style.flexShrink = 0;
             _modes.style.flexWrap = Wrap.Wrap;
             Add(_modes);
@@ -154,16 +154,19 @@ namespace CTEditor.App
             _modes.Clear();
             _terrainRow.Clear();
             if (S?.Map == null) { _header.Add(Ui.Hint("Abre un mapa para ver sus tiles.")); return; }
-            // One tab per tileset of the map (a map can mix several) and «+» to add another one.
+            // One small numbered tab per tileset of the map (a map can mix several; the name is in the tooltip and next
+            // to the tabs) and «+» to add another one.
             for (int i = 0; i < S.Map.TilesetIds.Count; i++)
             {
                 int slot = i;
                 var ts = S.TilesetFor(S.Map.TilesetIds[i]);
-                var tab = Ui.Chip(ts?.Name ?? S.Map.TilesetIds[i] + " (falta)", slot == S.PaletteSlot,
-                    () => S.UsePaletteTileset(S.Map.TilesetIds[slot]), "Tileset " + (slot + 1) + " del mapa");
-                _header.Add(tab.Margin(0, 0, 4, 4));
+                var tab = Ui.Chip((slot + 1).ToString(), slot == S.PaletteSlot,
+                    () => S.UsePaletteTileset(S.Map.TilesetIds[slot]), $"Tileset {slot + 1}: {ts?.Name ?? S.Map.TilesetIds[slot] + " (falta)"}");
+                tab.style.minWidth = Ui.ControlHeight;
+                tab.style.paddingLeft = 6; tab.style.paddingRight = 6;
+                _header.Add(tab.Margin(0, 0, 3, 0));
             }
-            var add = Ui.Button("+ Tileset", null, Ui.ButtonKind.Flat, "Usar otro tileset en este mapa");
+            var add = Ui.IconButton("mas", null, "Usar otro tileset en este mapa");
             add.clicked += () =>
             {
                 var items = S.AvailableTilesets().Where(id => !S.Map.TilesetIds.Contains(id))
@@ -175,19 +178,27 @@ namespace CTEditor.App
             _header.Add(add);
             if (Tileset == null)
             {
-                _header.Add(Ui.Hint("Este mapa aún no tiene un tileset cortado: córtalo en Recursos y añádelo con «+ Tileset»."));
+                _header.Add(Ui.Hint("Este mapa aún no tiene un tileset cortado: córtalo en Recursos y añádelo con «+»."));
                 return;
             }
-            _header.With(Ui.Spacer(),
-                Ui.Text($"{Tileset.Columns} × {Tileset.Rows} · {Tileset.TileWidth} px", 0.9f, dim: true),
-                Ui.Chip("1×", Mathf.Approximately(_zoom, 1f), () => SetZoom(1f)),
-                Ui.Chip("2×", Mathf.Approximately(_zoom, 2f), () => SetZoom(2f)),
-                Ui.Button("Retocar", RetouchSelected, Ui.ButtonKind.Normal, "Abrir el tile elegido en el editor de píxeles"));
+            // The name, discreet: small, dim, cut with «…».
+            var name = Ui.Text(Tileset.Name, 0.85f, dim: true).Grow();
+            name.tooltip = $"{Tileset.Name} · {Tileset.Columns} × {Tileset.Rows} tiles de {Tileset.TileWidth} px";
+            name.style.marginLeft = 6;
+            var zoom = Ui.Text(Mathf.RoundToInt(_zoom * 100) + " %", 0.85f, dim: true).NoShrink();
+            zoom.style.minWidth = Ui.FontSize * 2.8f;
+            zoom.style.unityTextAlign = TextAnchor.MiddleCenter;
+            _header.With(name,
+                Ui.IconButton("menos", () => SetZoom(Step(-1)), "Alejar la paleta"),
+                zoom,
+                Ui.IconButton("mas", () => SetZoom(Step(+1)), "Acercar la paleta"),
+                Ui.IconButton("retocar", RetouchSelected, "Retocar: abrir el tile elegido en el editor de píxeles"));
             foreach (var (mode, label, help) in Modes)
             {
                 var m = mode;
-                _modes.Add(Ui.Chip(label, _mode == m, () => SetMode(m), help).Margin(0, 0, 4, 4));
+                _modes.Add(Ui.IconButton(IconOf(m), () => SetMode(m), label + ": " + help, _mode == m).Margin(0, 0, 2, 0));
             }
+            _modes.Add(Ui.Text(Modes.First(x => x.mode == _mode).label, 0.9f, bold: true).Margin(6, 0, 0, 0));
             if (_mode == Mode.Terrain)
             {
                 foreach (var t in S.Terrains.All.Where(t => t.Id != 0))
@@ -201,6 +212,26 @@ namespace CTEditor.App
             }
             _info.text = Modes.First(x => x.mode == _mode).help;
         }
+
+        private static readonly float[] ZoomSteps = { 0.5f, 1f, 1.5f, 2f, 3f, 4f };
+
+        private float Step(int dir)
+        {
+            int i = Array.FindIndex(ZoomSteps, z => Mathf.Approximately(z, _zoom));
+            if (i < 0) i = 1;
+            return ZoomSteps[Mathf.Clamp(i + dir, 0, ZoomSteps.Length - 1)];
+        }
+
+        private static string IconOf(Mode m) => m switch
+        {
+            Mode.Paint => "lapiz",
+            Mode.Passage => "paso",
+            Mode.Priority => "prioridad",
+            Mode.Terrain => "terreno",
+            Mode.Bush => "arbusto",
+            Mode.Counter => "mostrador",
+            _ => "pieza",
+        };
 
         private void SetMode(Mode m)
         {

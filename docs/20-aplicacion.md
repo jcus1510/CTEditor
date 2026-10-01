@@ -69,6 +69,19 @@ Detalle y reglas visuales en [`DISENO.md`](DISENO.md) (documento vivo del diseñ
 | **BMP y DIB** | Se pueden importar (`Bmp`, `ImageFile`): se convierten a PNG al entrar. Si ya hay un BMP en `graficos/`, Recursos ofrece «Convertir a PNG». |
 | **Tamaños habituales al cortar** | El asistente ofrece siempre 16, 32 y 48 px (y el del proyecto), encajen o no, y dice cuántos píxeles sobran; luego se ajustan desplazamiento y separación. Un tileset de 16 px se dibuja al tamaño de tile del proyecto. |
 
+## Pulido 2
+
+| Arreglo / novedad | Qué cambia |
+|---|---|
+| **Zoom del mapa** | Midiendo la captura, en vertical los tiles coincidían con la rejilla y en horizontal salían ~3 % más estrechos: la cámara no respetaba la proporción. Ahora la proyección se fija a mano (exactamente ancho × alto píxeles de la textura). |
+| **Tiles compacta** | Pestañas de tileset numeradas (1, 2… con el nombre en la ayuda), nombre pequeño con «…», zoom −/+ con %, retocar y los modos (pintar, paso, prioridad, terreno, arbusto, mostrador, pieza) como iconos. Queda más sitio para los tiles. |
+| **Capas** | Iconos (añadir, subir, bajar, quitar; ver/oculta; bloqueada/desbloqueada), **asa para arrastrar** y cambiar el orden, el papel (suelo, detalles, encima) debajo del nombre, y un **deslizador propio** que se arrastra y muestra el % de opacidad. |
+| **Barras de desplazamiento** | Finas, sin flechas, con una «píldora» redondeada que se ilumina al pasar el ratón. |
+| **Importar** | Vista previa de las imágenes (hasta 8) con medidas y **tipo sugerido** (por el nombre o las medidas, `AssetKindGuesser`). |
+| **Cambiar de tipo** | En Recursos, cada imagen muestra su tipo; clic = moverla a otro tipo con su corte (`AssetMover`). Si es un tileset usado, avisa. |
+| **Menú Ver** | Ver → **Ventanas** → (cada ventana) y Ver → **Distribuciones** → (las de fábrica, las tuyas, guardar). Los menús admiten submenús. En los textos, «ventana» en vez de «panel». |
+| **Escala** | Ctrl + 0 vuelve la interfaz al 100 %; al cambiarla con Ctrl + rueda sale un aviso con el % actual. |
+
 ## Cómo se hace un mapa (flujo)
 
 1. **Recursos** → Importar (o copiar) el tileset en `graficos/tilesets` → **Cortar** (32 px).

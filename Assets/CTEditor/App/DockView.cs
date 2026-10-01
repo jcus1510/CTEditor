@@ -157,7 +157,7 @@ namespace CTEditor.App
             header.style.overflow = Overflow.Hidden;
             for (int i = 0; i < tabs.Panels.Count; i++) header.Add(Tab(tabs, i));
             header.Add(Ui.Spacer());
-            var add = Ui.IconButton("mas", null, "Abrir un panel aquí");
+            var add = Ui.IconButton("mas", null, "Abrir una ventana aquí");
             add.clicked += () => ShowAddMenu(tabs, add);
             add.style.height = Ui.FontSize + 8;
             add.style.minHeight = Ui.FontSize + 8;
@@ -189,7 +189,7 @@ namespace CTEditor.App
             var label = Ui.Text(PanelCatalog.LabelOf(id), 0.95f, dim: !active, bold: active);
             label.pickingMode = PickingMode.Ignore;
             tab.Add(label);
-            var close = Ui.IconButton("cerrar", () => { _layout.Close(id); Changed(); }, "Cerrar el panel", iconSize: Mathf.Round(Ui.FontSize * 0.8f));
+            var close = Ui.IconButton("cerrar", () => { _layout.Close(id); Changed(); }, "Cerrar la ventana", iconSize: Mathf.Round(Ui.FontSize * 0.8f));
             close.style.height = Ui.FontSize + 4;
             close.style.minHeight = Ui.FontSize + 4;
             close.style.width = Ui.FontSize + 4;
@@ -245,7 +245,7 @@ namespace CTEditor.App
                 var id = p.Id;
                 items.Add(new MenuItem(p.Label, () => { _layout.Dock(id, tabs, DockSide.Center); Changed(); }));
             }
-            if (items.Count == 0) items.Add(new MenuItem("Todos los paneles están abiertos", null, enabled: false));
+            if (items.Count == 0) items.Add(new MenuItem("Todas las ventanas están abiertas", null, enabled: false));
             var r = anchor.worldBound;
             _shell.ShowMenu(new Vector2(r.x, r.yMax + 2), items);
         }

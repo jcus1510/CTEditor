@@ -28,6 +28,8 @@ namespace CTEditor.App
         public Action Action;
         public bool Enabled = true;
         public bool Checked;
+        /// <summary>Submenú: al pasar el ratón se abre a la derecha (Ver → Ventanas → ...).</summary>
+        public IList<MenuItem> Children;
 
         public static MenuItem Separator => new MenuItem();
         public bool IsSeparator => Label == null;
@@ -37,6 +39,8 @@ namespace CTEditor.App
         {
             Label = label; Action = action; Shortcut = shortcut; Enabled = enabled; Checked = isChecked;
         }
+
+        public static MenuItem Submenu(string label, IList<MenuItem> children) => new MenuItem(label, null) { Children = children };
     }
 
     /// <summary>
@@ -418,7 +422,7 @@ namespace CTEditor.App
                 (mapId, x, y) = Maps.PlayerStart;
                 if (string.IsNullOrEmpty(mapId) || !Maps.Tree.Contains(mapId))
                 {
-                    if (Maps.Map == null) { Warn("Crea un mapa antes de jugar (panel Mapas → Nuevo mapa)."); return; }
+                    if (Maps.Map == null) { Warn("Crea un mapa antes de jugar (ventana Mapas → Nuevo mapa)."); return; }
                     Warn("Aún no hay inicio del jugador: se empieza en el centro del mapa abierto. Ponlo con la herramienta «Inicio».");
                     (mapId, x, y) = (Maps.Map.Id, Maps.Map.Width / 2, Maps.Map.Height / 2);
                 }
@@ -587,7 +591,12 @@ namespace CTEditor.App
             SaveWorkspaceSoon();
             // Icons are rasterized for the scale: redraw the interface once the user stops zooming.
             _rescale?.Pause();
-            _rescale = Root.schedule.Execute(() => { if (!IsPlaying) Rebuild(); }).StartingIn(700);
+            _rescale = Root.schedule.Execute(() =>
+            {
+                if (IsPlaying) return;
+                Rebuild();
+                if (HasProject) Toast($"Interfaz al {Mathf.RoundToInt(Workspace.UiScale * 100)} % (Ctrl + 0: volver al 100 %)");
+            }).StartingIn(700);
         }
 
         public void SetFontSize(int size)
@@ -727,44 +736,73 @@ namespace CTEditor.App
             catcher.RegisterCallback<PointerDownEvent>(e => { if (e.target == catcher) { CloseMenu(); onClosed?.Invoke(); } });
             if (onPointerMove != null) catcher.RegisterCallback<PointerMoveEvent>(e => onPointerMove(e.position));
 
-            var list = Ui.Column().Bg("panel_alt").Border(1, "borde", 6).Pad(4);
-            list.style.position = Position.Absolute;
-            list.style.left = position.x;
-            list.style.top = position.y;
-            list.style.minWidth = 240;
-            foreach (var item in items)
+            var open = new List<VisualElement>(); // open lists by depth (0 = the menu, 1 = its submenu...)
+
+            VisualElement BuildList(IList<MenuItem> entries, Vector2 at, int depth)
             {
-                if (item.IsSeparator)
+                var list = Ui.Column().Bg("panel_alt").Border(1, "borde", 6).Pad(4);
+                list.style.position = Position.Absolute;
+                list.style.left = at.x;
+                list.style.top = at.y;
+                list.style.minWidth = 220;
+                foreach (var item in entries)
                 {
-                    var sep = Ui.Separator();
-                    sep.Margin(4, 4, 4, 4);
-                    list.Add(sep);
-                    continue;
-                }
-                var row = Ui.Row(10).Pad(10, 5).Round(4);
-                row.Add(Ui.Text(item.Checked ? "•" : " ", bold: true).Colored("acento"));
-                row.Add(Ui.Text(item.Label).Grow());
-                if (!string.IsNullOrEmpty(item.Shortcut)) row.Add(Ui.Text(item.Shortcut, 0.9f, dim: true));
-                if (!item.Enabled) row.style.opacity = 0.4f;
-                else
-                {
-                    row.RegisterCallback<PointerEnterEvent>(_ => row.style.backgroundColor = Ui.C("seleccion"));
+                    if (item.IsSeparator)
+                    {
+                        var sep = Ui.Separator();
+                        sep.Margin(4, 4, 4, 4);
+                        list.Add(sep);
+                        continue;
+                    }
+                    var row = Ui.Row(10).Pad(10, 5).Round(4);
+                    var mark = Ui.Text(item.Checked ? "•" : " ", bold: true).Colored("acento").NoShrink();
+                    mark.style.width = 8;
+                    row.Add(mark);
+                    row.Add(Ui.Text(item.Label).Grow());
+                    if (!string.IsNullOrEmpty(item.Shortcut)) row.Add(Ui.Text(item.Shortcut, 0.9f, dim: true).NoShrink());
+                    if (item.Children != null) row.Add(Icons.Element("siguiente", Ui.IconSize * 0.8f, Ui.C("texto_suave")));
+                    var current = item;
+                    row.RegisterCallback<PointerEnterEvent>(_ =>
+                    {
+                        // Entering a row closes deeper submenus; a row with children opens its own.
+                        while (open.Count > depth + 1) { open[open.Count - 1].RemoveFromHierarchy(); open.RemoveAt(open.Count - 1); }
+                        if (!current.Enabled) return;
+                        row.style.backgroundColor = Ui.C("seleccion");
+                        if (current.Children != null && current.Children.Count > 0)
+                        {
+                            var r = row.worldBound;
+                            var sub = BuildList(current.Children, Root.WorldToLocal(new Vector2(r.xMax + 2, r.y - 4)), depth + 1);
+                            catcher.Add(sub);
+                            open.Add(sub);
+                        }
+                    });
                     row.RegisterCallback<PointerLeaveEvent>(_ => row.style.backgroundColor = new Color(0, 0, 0, 0));
-                    var action = item.Action;
-                    row.RegisterCallback<PointerUpEvent>(_ => { CloseMenu(); onClosed?.Invoke(); action?.Invoke(); });
+                    if (!current.Enabled) row.style.opacity = 0.4f;
+                    else if (current.Children == null)
+                    {
+                        var action = current.Action;
+                        row.RegisterCallback<PointerUpEvent>(_ => { CloseMenu(); onClosed?.Invoke(); action?.Invoke(); });
+                    }
+                    list.Add(row);
                 }
-                list.Add(row);
+                // Keep the list inside the window (a submenu that does not fit on the right opens on the left).
+                list.RegisterCallback<GeometryChangedEvent>(_ =>
+                {
+                    var r = Root.layout;
+                    if (list.layout.xMax > r.width)
+                        list.style.left = depth > 0 && open.Count > depth - 1 && depth - 1 >= 0
+                            ? Mathf.Max(0, open[depth - 1].layout.x - list.layout.width - 2)
+                            : Mathf.Max(0, r.width - list.layout.width - 4);
+                    if (list.layout.yMax > r.height) list.style.top = Mathf.Max(0, r.height - list.layout.height - 4);
+                });
+                return list;
             }
-            catcher.Add(list);
+
+            var root = BuildList(items, position, 0);
+            open.Add(root);
+            catcher.Add(root);
             _popupLayer.Add(catcher);
             _openMenu = catcher;
-            // Keep the list inside the window.
-            list.RegisterCallback<GeometryChangedEvent>(_ =>
-            {
-                var r = Root.layout;
-                if (list.layout.xMax > r.width) list.style.left = Mathf.Max(0, r.width - list.layout.width - 4);
-                if (list.layout.yMax > r.height) list.style.top = Mathf.Max(0, r.height - list.layout.height - 4);
-            });
         }
 
         public void CloseMenu()
@@ -832,6 +870,13 @@ namespace CTEditor.App
         {
             if (e.keyCode == KeyCode.None) return;
             if (IsPlaying && e.keyCode != KeyCode.F5 && e.keyCode != KeyCode.F9 && e.keyCode != KeyCode.F11) return;
+            // Ctrl + 0: interface back to 100 % (Ctrl + wheel changes it).
+            if ((e.ctrlKey || e.commandKey) && (e.keyCode == KeyCode.Alpha0 || e.keyCode == KeyCode.Keypad0) && HasProject)
+            {
+                SetScale(1f);
+                e.StopPropagation();
+                return;
+            }
             if (e.keyCode == KeyCode.Escape)
             {
                 if (IsMenuOpen) { CloseMenu(); e.StopPropagation(); return; }

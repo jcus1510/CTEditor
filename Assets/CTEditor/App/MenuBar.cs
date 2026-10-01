@@ -102,30 +102,34 @@ namespace CTEditor.App
         private IList<MenuItem> ViewItems()
         {
             var ws = _shell.Workspace;
-            var list = new List<MenuItem>();
+            // Ver → Ventanas → (each window, ticked if open) · Ver → Distribuciones → (presets, mine, save).
+            var windows = new List<MenuItem>();
             foreach (var p in PanelCatalog.All)
             {
                 var id = p.Id;
                 bool open = ws.Layout.IsOpen(id);
-                list.Add(new MenuItem("Panel: " + p.Label, () =>
+                windows.Add(new MenuItem(p.Label, () =>
                 {
                     if (ws.Layout.IsOpen(id)) ws.Layout.Close(id);
                     else ws.Layout.Open(id);
                     _shell.SetLayout(ws.Layout);
                 }, isChecked: open));
             }
-            list.Add(MenuItem.Separator);
+            var layouts = new List<MenuItem>();
             foreach (var preset in DockLayout.Presets)
             {
                 var name = preset().Name;
-                list.Add(new MenuItem("Distribución: " + name, () => _shell.UseLayout(name), isChecked: ws.Layout.Name == name));
+                layouts.Add(new MenuItem(name, () => _shell.UseLayout(name), isChecked: ws.Layout.Name == name));
             }
+            if (ws.SavedLayouts.Count > 0) layouts.Add(MenuItem.Separator);
             foreach (var saved in ws.SavedLayouts)
             {
                 var name = saved.Name;
-                list.Add(new MenuItem("Mi distribución: " + name, () => _shell.UseLayout(name), isChecked: ws.Layout.Name == name));
+                layouts.Add(new MenuItem("Mía: " + name, () => _shell.UseLayout(name), isChecked: ws.Layout.Name == name));
             }
-            list.Add(new MenuItem("Guardar esta distribución…", () => _shell.Prompt("Guardar distribución", "Nombre", ws.Layout.Name,
+            layouts.Add(MenuItem.Separator);
+            var list = new List<MenuItem> { MenuItem.Submenu("Ventanas", windows), MenuItem.Submenu("Distribuciones", layouts) };
+            layouts.Add(new MenuItem("Guardar esta distribución…", () => _shell.Prompt("Guardar distribución", "Nombre", ws.Layout.Name,
                 "Guardar", name =>
                 {
                     if (string.IsNullOrWhiteSpace(name)) return;
@@ -135,6 +139,8 @@ namespace CTEditor.App
                     _shell.Success($"Distribución «{name.Trim()}» guardada.");
                     _shell.Rebuild();
                 })));
+            list.Add(MenuItem.Separator);
+            list.Add(new MenuItem("Interfaz al 100 %", () => _shell.SetScale(1f), "Ctrl + 0"));
             return list;
         }
 

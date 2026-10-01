@@ -85,7 +85,7 @@ namespace CTEditor.App
             {
                 var stamp = File.GetLastWriteTimeUtc(path);
                 if (Thumbs.TryGetValue(path, out var t) && t.Stamp == stamp && t.Texture != null) return t.Texture;
-                var tex = FromImage(Downscale(Png.Read(path), maxSide));
+                var tex = FromImage(Downscale(ImageFile.Read(path), maxSide));
                 if (t?.Texture != null) UnityEngine.Object.Destroy(t.Texture);
                 Thumbs[path] = new Thumb { Stamp = stamp, Texture = tex };
                 return tex;

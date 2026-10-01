@@ -86,6 +86,8 @@ namespace CTEditor.Editing
         public event Action<int, int, int, int> TilesChanged;
         /// <summary>Cambiaron las capas, el tamaño, los tilesets o las propiedades del mapa: redibujar todo.</summary>
         public event Action StructureChanged;
+        /// <summary>Visible / bloqueada / opacidad de una capa (solo se redibuja esa capa; no cambia la estructura).</summary>
+        public event Action<int> LayerViewChanged;
         /// <summary>Cambió la herramienta, el sello, la capa activa, la selección o el rectángulo arrastrado.</summary>
         public event Action SelectionChanged;
         /// <summary>Cambiaron las propiedades de tiles o se volvió a cortar un tileset.</summary>
@@ -687,7 +689,7 @@ namespace CTEditor.Editing
             if (locked.HasValue) l.Locked = locked.Value;
             if (opacity.HasValue) l.Opacity = Math.Max(0f, Math.Min(1f, opacity.Value));
             MarkDirty(Map.Id);
-            StructureChanged?.Invoke();
+            LayerViewChanged?.Invoke(index);
         }
 
         /// <summary>Cambia el tamaño. anchorX/anchorY: 0 = se añade/quita a la derecha/abajo, 0,5 = por igual, 1 = a la izquierda/arriba.</summary>
