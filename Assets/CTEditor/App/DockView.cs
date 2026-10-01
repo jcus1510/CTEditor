@@ -179,7 +179,6 @@ namespace CTEditor.App
                     if (!e.altKey) return;
                     ChangeScale(active, e.delta.y < 0 ? 0.1f : -0.1f);
                     e.StopPropagation();
-                    e.PreventDefault();
                 }, TrickleDown.TrickleDown);
                 body.RegisterCallback<PointerEnterEvent>(_ => HoveredPanel = active);
                 // The window you click is the one Ctrl+Z, tools and shortcuts talk to.

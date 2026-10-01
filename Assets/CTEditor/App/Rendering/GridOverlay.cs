@@ -23,7 +23,7 @@ namespace CTEditor.App
             generateVisualContent += Draw;
         }
 
-        public void Clear() { _lines.Clear(); MarkDirtyRepaint(); }
+        public void ClearLines() { _lines.Clear(); MarkDirtyRepaint(); }
 
         /// <summary>A horizontal or vertical line (local points).</summary>
         public void Add(Vector2 a, Vector2 b) => _lines.Add((a, b));

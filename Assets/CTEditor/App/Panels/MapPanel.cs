@@ -625,7 +625,7 @@ namespace CTEditor.App
         private void RedrawOverlay()
         {
             _overlay.Clear();
-            _grid.Clear();
+            _grid.ClearLines();
             if (_renderer?.Target == null || S?.Map == null) return;
             var m = S.Map;
 

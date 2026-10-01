@@ -1,11 +1,4 @@
 ﻿<Solution>
-<<<<<<< Updated upstream
-  <Project Path="CTEditor.Battle.Domain.csproj" />
-  <Project Path="CTEditor.GameDefinition.csproj" />
-  <Project Path="CTEditor.Party.Domain.csproj" />
-  <Project Path="CTEditor.GameDefinition.Editor.csproj" />
-  <Project Path="CTEditor.GameDefinition.Domain.csproj" />
-=======
   <Project Path="CTEditor.GameDefinition.Editor.csproj" />
   <Project Path="CTEditor.Battle.Domain.csproj" />
   <Project Path="CTEditor.GameDefinition.Domain.csproj" />
@@ -14,7 +7,6 @@
   <Project Path="CTEditor.Party.Domain.csproj" />
   <Project Path="CTEditor.Bootstrap.csproj" />
   <Project Path="CTEditor.Adventure.Domain.csproj" />
->>>>>>> Stashed changes
   <Project Path="CTEditor.SharedKernel.csproj" />
   <Project Path="CTEditor.GameContracts.csproj" />
   <Project Path="CTEditor.Eventing.Domain.csproj" />
