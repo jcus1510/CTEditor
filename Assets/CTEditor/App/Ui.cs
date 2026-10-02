@@ -327,8 +327,10 @@ namespace CTEditor.App
         public static Button Chip(string text, bool selected, Action onClick, string tooltip = null)
         {
             var b = Button(text, onClick, selected ? ButtonKind.Primary : ButtonKind.Normal, tooltip);
-            b.style.height = ControlHeight - 4;
-            b.style.minHeight = ControlHeight - 4;
+            b.style.height = ControlHeight - 6;
+            b.style.minHeight = ControlHeight - 6;
+            b.style.fontSize = FontSize * 0.92f;
+            b.style.paddingLeft = 8; b.style.paddingRight = 8;
             b.Round(12);
             return b;
         }

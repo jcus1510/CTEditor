@@ -231,7 +231,7 @@ namespace CTEditor.Content
             {
                 Id(), Name(), English(),
                 new ColumnSpec("descripcion", "Descripción", ColumnKind.LongText, "General", ""),
-                new ColumnSpec("categoria", "Bolsillo", ColumnKind.Text, "General", "Medicina, Ball, Baya..."),
+                new ColumnSpec("categoria", "Categoría", ColumnKind.Choice, "General", "Dónde va en la mochila: Medicinas, Poké Balls, Bayas...", options: ItemCategories.All),
                 new ColumnSpec("precio", "Precio", ColumnKind.Int, "General", "", min: 0),
                 Yes("en_combate", "Se usa en combate", "Uso"), Yes("fuera_combate", "Se usa fuera de combate", "Uso"),
                 Yes("se_gasta", "Se gasta", "Uso"), Yes("es_baya", "Es una baya", "Uso"),

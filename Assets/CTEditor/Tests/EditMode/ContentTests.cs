@@ -257,5 +257,29 @@ namespace CTEditor.Tests.EditMode
             Assert.IsTrue(ContentIds.IsValid("mr_mime"));
             Assert.IsFalse(ContentIds.IsValid("Mr. Mime"));
         }
+
+        [Test]
+        public void Item_categories_are_few_and_shown_in_spanish()
+        {
+            Assert.AreEqual(7, ItemCategories.All.Length);
+            Assert.AreEqual("Medicine", ItemCategories.Normalize("Vitamin"));
+            Assert.AreEqual("Other", ItemCategories.Normalize("held"));
+            Assert.AreEqual("Poké Balls", ContentLabels.Of(ContentSchemas.Items, "categoria", "Ball"));
+            Assert.AreEqual("Medicinas", ContentLabels.Of(ContentSchemas.Items, "categoria", "Revive"));
+            Assert.AreEqual("Un rival", ContentLabels.Of(ContentSchemas.Moves, "objetivo", "rival"));
+            Assert.AreEqual("Ataque", ContentLabels.Of(ContentSchemas.Natures, "sube", "attack"));
+            Assert.AreEqual("Medium slow", ContentLabels.Readable("medium_slow"));
+
+            // Every pack item has one of the seven categories (no warnings from the choice check).
+            var packs = Path.GetFullPath(Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../../../Assets/GameContent/Packs"));
+            if (!Directory.Exists(packs)) return;
+            foreach (var dir in Directory.GetDirectories(packs))
+            {
+                var db = ContentDatabase.Load(dir);
+                var items = db.Table(ContentSchemas.Items);
+                foreach (var r in items.Records)
+                    CollectionAssert.Contains(ItemCategories.All, r["categoria"], $"{Path.GetFileName(dir)}: {items.IdOf(r)}");
+            }
+        }
     }
 }

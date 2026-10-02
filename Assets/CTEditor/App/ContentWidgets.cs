@@ -53,9 +53,25 @@ namespace CTEditor.App
             t.style.whiteSpace = WhiteSpace.Normal;
             t.style.flexShrink = 1;
             t.style.minWidth = 40;
+            // The box grows with its text (never a fixed height that lets the text spill over the next row).
+            t.style.alignItems = Align.Stretch;
+            t.style.height = StyleKeyword.Auto;
+            t.style.overflow = Overflow.Hidden;
             var input = t.Q(className: TextField.inputUssClassName);
-            if (input != null) { input.style.whiteSpace = WhiteSpace.Normal; input.style.flexShrink = 1; }
-            foreach (var te in t.Query<TextElement>().ToList()) te.style.whiteSpace = WhiteSpace.Normal;
+            if (input != null)
+            {
+                input.style.whiteSpace = WhiteSpace.Normal;
+                input.style.flexShrink = 1;
+                input.style.minWidth = 0;
+                input.style.height = StyleKeyword.Auto;
+                input.style.paddingTop = 3; input.style.paddingBottom = 3;
+                input.style.unityTextAlign = TextAnchor.UpperLeft;
+                input.style.overflow = Overflow.Hidden;
+            }
+            foreach (var te in t.Query<TextElement>().ToList()) { te.style.whiteSpace = WhiteSpace.Normal; te.style.flexShrink = 1; te.style.minWidth = 0; }
+#if UNITY_2022_2_OR_NEWER
+            t.verticalScrollerVisibility = ScrollerVisibility.Hidden;
+#endif
             if (!multiLine)
                 t.RegisterCallback<KeyDownEvent>(e =>
                 {
@@ -81,9 +97,20 @@ namespace CTEditor.App
             var b = Ui.Button("", null, Ui.ButtonKind.Normal, tooltip);
             b.style.flexDirection = FlexDirection.Row;
             b.style.justifyContent = Justify.SpaceBetween;
-            b.style.minWidth = 140;
-            var main = Ui.Text(string.IsNullOrEmpty(text) ? "—" : text);
-            var right = Ui.Row(6);
+            // Slightly lighter than a normal button; it shrinks with the window (its text ends in «…»).
+            b.style.minWidth = 90;
+            b.style.maxWidth = 320;
+            b.style.flexShrink = 1;
+            b.style.height = b.style.minHeight = Ui.ControlHeight - 4;
+            b.style.paddingLeft = 8; b.style.paddingRight = 6;
+            b.style.alignSelf = Align.FlexStart;
+            var main = Ui.Text(string.IsNullOrEmpty(text) ? "—" : text, 0.95f);
+            main.style.overflow = Overflow.Hidden;
+            main.style.textOverflow = TextOverflow.Ellipsis;
+            main.style.flexShrink = 1;
+            main.style.minWidth = 0;
+            var right = Ui.Row(6).NoShrink();
+            right.style.marginLeft = 6;
             if (!string.IsNullOrEmpty(small)) right.Add(Ui.Text(small, 0.78f, dim: true));
             right.Add(Ui.Text("▾", 0.9f, dim: true));
             b.With(main, right);

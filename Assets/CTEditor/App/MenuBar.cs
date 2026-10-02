@@ -126,6 +126,7 @@ namespace CTEditor.App
             {
                 var items = keys.Select(k => CTEditor.Content.ContentSchemas.Find(k)).Where(x => x != null)
                     .Select(x => new MenuItem(x.Title, () => _shell.OpenContentItem(x.Key, null))).ToList();
+                if (title == "Criaturas") items.Insert(1, new MenuItem("Árbol de familia", () => FamilyTreePanel.Open(_shell, null)));
                 list.Add(MenuItem.Submenu(title, items));
             }
             list.Add(MenuItem.Separator);
@@ -142,7 +143,7 @@ namespace CTEditor.App
             foreach (var p in PanelCatalog.All)
             {
                 var id = p.Id;
-                if (id.StartsWith(ContentPanel.Prefix) || id == TrashPanel.Id) continue; // in the «Datos» menu
+                if (id.StartsWith(ContentPanel.Prefix) || id == TrashPanel.Id || id == FamilyTreePanel.Id) continue; // in the «Datos» menu
                 bool open = ws.Layout.IsOpen(id);
                 windows.Add(new MenuItem(p.Label, () =>
                 {

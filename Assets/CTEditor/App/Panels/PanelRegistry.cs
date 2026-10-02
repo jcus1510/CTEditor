@@ -30,6 +30,7 @@ namespace CTEditor.App
             Register(PanelCatalog.Events, _ => Placeholder("Eventos", "Eventos en lista o en grafo de nodos, con recetas y el mapa de la historia.", "Fase 7"));
             Register(PanelCatalog.Database, s => new DatabasePanel(s));
             ContentPanel.RegisterAll();
+            FamilyTreePanel.Register();
             ShortcutMap.RegisterAction(new ShortcutAction("linea", "Línea (retoque)", "L", "Herramientas"));
             ShortcutMap.RegisterAction(new ShortcutAction("copiar", "Copiar la selección", "Ctrl+C", "Selección"));
             ShortcutMap.RegisterAction(new ShortcutAction("cortar", "Cortar la selección", "Ctrl+X", "Selección"));

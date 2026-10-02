@@ -35,7 +35,8 @@ namespace CTEditor.App
             d.Body.Add(Ui.Row(8).With(search.Grow(), count));
             var filters = Ui.Column(4);
             d.Body.Add(filters);
-            string type = null, kind = null;
+            string kind = null;
+            var types = new List<string>(); // up to two for species (both must match), one for moves
             var shown = all;
             var list = new ListView
             {
@@ -87,7 +88,7 @@ namespace CTEditor.App
                 IEnumerable<ContentRecord> rows = all;
                 if (restricted) rows = rows.Where(r => only.Contains(table.IdOf(r), StringComparer.OrdinalIgnoreCase));
                 if (q.Length > 0) rows = rows.Where(r => ContentLook.Matches(table, r, q));
-                if (type != null) rows = rows.Where(r => ContentLook.TypesOf(category, r).Contains(type));
+                if (types.Count > 0) rows = rows.Where(r => { var own = ContentLook.TypesOf(category, r).ToList(); return types.All(own.Contains); });
                 if (kind != null) rows = rows.Where(r => ContentLook.KindOf(category, r) == kind);
                 shown = rows.ToList();
                 list.itemsSource = shown;
@@ -105,7 +106,15 @@ namespace CTEditor.App
                     foreach (var t in db.Table(ContentSchemas.Types).Ids.ToList())
                     {
                         var id = t;
-                        row.Add(ContentWidgets.TypeChip(db, id, type == id, () => { type = type == id ? null : id; BuildFilters(); Apply(); }));
+                        row.Add(ContentWidgets.TypeChip(db, id, types.Contains(id), () =>
+                        {
+                            if (!types.Remove(id))
+                            {
+                                while (types.Count >= (category == ContentSchemas.Species ? 2 : 1)) types.RemoveAt(0);
+                                types.Add(id);
+                            }
+                            BuildFilters(); Apply();
+                        }));
                     }
                     filters.Add(row);
                 }
@@ -169,9 +178,9 @@ namespace CTEditor.App
         public static string KindOf(string category, ContentRecord r) => category switch
         {
             ContentSchemas.Moves => r["categoria"].Trim().ToLowerInvariant(),
-            ContentSchemas.Items => r["categoria"].Trim(),
+            ContentSchemas.Items => ItemCategories.Label(r["categoria"]),
             ContentSchemas.Abilities => AbilityCategories.Of(r),
-            ContentSchemas.Sets => r["formato"].Trim().ToLowerInvariant(),
+            ContentSchemas.Sets => ContentLabels.Of(ContentSchemas.Sets, "formato", r["formato"]),
             ContentSchemas.Trainers => r["clase"].Trim(),
             _ => null,
         };
@@ -187,7 +196,7 @@ namespace CTEditor.App
                 case ContentSchemas.Moves:
                     return $"{ContentWidgets.CategoryLabel(r["categoria"])} · pot. {(r["potencia"].Trim().Length == 0 ? "—" : r["potencia"])} · prec. {r["precision"]}";
                 case ContentSchemas.Abilities: return AbilityCategories.Of(r);
-                case ContentSchemas.Items: return r["categoria"] + (r["precio"].Trim().Length > 0 ? $" · {r["precio"]} ₽" : "");
+                case ContentSchemas.Items: return ItemCategories.Label(r["categoria"]) + (r["precio"].Trim().Length > 0 ? $" · {r["precio"]} ₽" : "");
                 case ContentSchemas.Species:
                     int total = StatNames.Ids.Length == 6 ? new[] { "ps", "ataque", "defensa", "atq_esp", "def_esp", "velocidad" }.Sum(c => int.TryParse(r[c], out var v) ? v : 0) : 0;
                     return $"total {total}";
@@ -224,7 +233,7 @@ namespace CTEditor.App
         /// <summary>A small coloured badge with a name (a type).</summary>
         public static VisualElement Badge(string text, Color? color)
         {
-            var b = Ui.Text(text, 0.82f, bold: true).Pad(7, 1).Round(4);
+            var b = Ui.Text(text, 0.78f, bold: true).Pad(6, 1).Round(4);
             var c = color ?? Ui.C("panel_alt");
             b.style.backgroundColor = c;
             b.style.color = (c.r * 0.299f + c.g * 0.587f + c.b * 0.114f) > 0.6f ? Color.black : Color.white;

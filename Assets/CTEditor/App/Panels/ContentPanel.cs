@@ -33,7 +33,8 @@ namespace CTEditor.App
         private ListView _list;
         private List<ContentRecord> _shown = new List<ContentRecord>();
         private string _selected;
-        private string _typeFilter;
+        // Up to two types for species (a Pokémon has two: both must match), one for moves.
+        private readonly List<string> _typeFilter = new List<string>();
         private int _sort; // species: 0 Pokédex, 1 name, 2 total
 
         private ContentSession C => _shell.Content;
@@ -125,7 +126,7 @@ namespace CTEditor.App
                 Ui.IconButton("propiedades", RenameDialog, "Cambiar el id (se cambia en todo el proyecto)").SetEnabledLook(has),
                 Ui.IconButton("vecinos", ShowUses, "¿Quién lo usa?").SetEnabledLook(has),
                 Ui.IconButton("papelera", DeleteDialog, "Borrar (dice quién lo usa y deja sustituirlo)").SetEnabledLook(has),
-                _category == ContentSchemas.Species ? Ui.IconButton("arbol", () => FamilyTreeDialog(_selected), "Árbol de familia completo (evoluciones y variantes)").SetEnabledLook(has) : new VisualElement(),
+                _category == ContentSchemas.Species ? Ui.IconButton("arbol", () => FamilyTreePanel.Open(_shell, _selected), "Editor del árbol de familia (evoluciones, formas y variantes)").SetEnabledLook(has) : new VisualElement(),
                 Ui.Separator(vertical: true).Margin(6, 4, 6, 4),
                 Ui.IconButton("anterior", () => { C.Undo(); }, "Deshacer (Ctrl+Z)"),
                 Ui.IconButton("siguiente", () => { C.Redo(); }, "Rehacer (Ctrl+Y)"),
@@ -134,6 +135,14 @@ namespace CTEditor.App
         }
 
         private string _kindFilter;
+
+        private void ToggleType(string type)
+        {
+            if (_typeFilter.Remove(type)) return;
+            int max = _category == ContentSchemas.Species ? 2 : 1;
+            while (_typeFilter.Count >= max) _typeFilter.RemoveAt(0); // the third replaces the oldest
+            _typeFilter.Add(type);
+        }
 
         private void BuildFilters()
         {
@@ -145,8 +154,10 @@ namespace CTEditor.App
                 foreach (var id in C.Db.Table(ContentSchemas.Types).Ids.ToList())
                 {
                     var t = id;
-                    row.Add(ContentWidgets.TypeChip(C.Db, t, _typeFilter == t, () => { _typeFilter = _typeFilter == t ? null : t; BuildFilters(); Refill(); }));
+                    row.Add(ContentWidgets.TypeChip(C.Db, t, _typeFilter.Contains(t), () => { ToggleType(t); BuildFilters(); Refill(); }));
                 }
+                if (_category == ContentSchemas.Species)
+                    row.tooltip = "Hasta dos tipos a la vez: salen las especies que tienen los dos.";
                 _filters.Add(row);
             }
             // Second row: move category, item pocket, ability category, set format, trainer class.
@@ -224,7 +235,7 @@ namespace CTEditor.App
             var q = (_search.value ?? "").Trim();
             IEnumerable<ContentRecord> rows = t.Records;
             if (q.Length > 0) rows = rows.Where(r => ContentLook.Matches(t, r, q));
-            if (_typeFilter != null) rows = rows.Where(r => ContentLook.TypesOf(_category, r).Contains(_typeFilter));
+            if (_typeFilter.Count > 0) rows = rows.Where(r => { var types = ContentLook.TypesOf(_category, r).ToList(); return _typeFilter.All(types.Contains); });
             if (_kindFilter != null) rows = rows.Where(r => ContentLook.KindOf(_category, r) == _kindFilter);
             if (_category == ContentSchemas.Sets) rows = rows.OrderBy(r => ContentLook.Label(t, r), StringComparer.CurrentCultureIgnoreCase);
             if (_category == ContentSchemas.Species)
@@ -253,7 +264,7 @@ namespace CTEditor.App
             if (!fromList)
             {
                 int index = _shown.FindIndex(r => string.Equals(Table.IdOf(r), id, StringComparison.OrdinalIgnoreCase));
-                if (index < 0) { _search.SetValueWithoutNotify(""); _typeFilter = null; Refill(); index = _shown.FindIndex(r => string.Equals(Table.IdOf(r), id, StringComparison.OrdinalIgnoreCase)); }
+                if (index < 0) { _search.SetValueWithoutNotify(""); _typeFilter.Clear(); Refill(); index = _shown.FindIndex(r => string.Equals(Table.IdOf(r), id, StringComparison.OrdinalIgnoreCase)); }
                 if (index >= 0) { _list.SetSelectionWithoutNotify(new[] { index }); _list.ScrollToItem(index); }
             }
             ShowSelected();
